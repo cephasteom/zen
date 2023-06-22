@@ -135,9 +135,12 @@ button:focus:not(:focus-visible) {
 
 .CodeMirror
 {
-    background: var(--color-grey-darker)!important;
-    height: 80vh!important;
+    background: var(--color-grey-dark)!important;
+    height: 70vh!important;
     padding: 1rem;
+    color: var(--color-yellow)!important;
+    font-size: var(--text-sm);
+    font-weight: 100!important;
 }
 
 /* Flowbite overwrites */
