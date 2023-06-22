@@ -35,7 +35,7 @@
         padding: 1rem;
 
         @media (min-width: 1200px) {
-            padding: 0.5rem 2rem;
+            padding: 1rem 2rem;
         }
 
         $var: calc(1600px - 4rem);
@@ -66,6 +66,7 @@
         justify-content: space-between;
         list-style: none;
         padding: 0;
+        margin: 0;
     }
 
     .menu__item {

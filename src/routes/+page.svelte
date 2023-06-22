@@ -14,52 +14,76 @@
     <div class="editor">
         <Editor />
     </div>
-    <div class="data">
-        <Data />
+    <div class="tools">
+        <Tools />
     </div>
     <div class="visuals">
         <Visuals />
     </div>
-    <div class="tools">
-        <Tools />
+    <div class="data">
+        <Data />
     </div>
 </section>
 
 <style lang="scss">
     .zen {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 11fr 1fr;
+        grid-template-columns: 1fr;
+        grid-template-rows: 6fr 1fr 1fr;
         grid-gap: 1rem;
-        padding: 1rem 2rem;
+        padding: 1rem;
+        
+        @media (min-width: 500px) {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 11fr 1fr;
+        }
+        
+        @media (min-width: 1200px) {
+            padding: 1rem 2rem;
+        }
     }
 
     .editor {
+        height: 100%;
         grid-column: 1;
         grid-row: 1;
-        height: 100%;
+        @media (min-width: 500px) {
+            grid-column: 1;
+            grid-row: 1;
+        }
     }
 
-    .data {
+    .tools {
         grid-column: 1;
         grid-row: 2;
+        @media (min-width: 500px) {
+            grid-column: 1;
+            grid-row: 2;
+        }
         background-color: var(--color-grey-dark);
         padding: 1rem;
     }
 
     .visuals {
-        grid-column: 2;
-        grid-row: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        display: none;
+        @media (min-width: 500px) {
+            grid-column: 2;
+            grid-row: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         background-color: var(--color-grey-dark);
         padding: 1rem;
     }
 
-    .tools {
-        grid-column: 2;
-        grid-row: 2;
+    .data {
+        grid-column: 1;
+        grid-row: 3;
+        @media (min-width: 500px) {
+            grid-column: 2;
+            grid-row: 2;
+        }
         background-color: var(--color-grey-dark);
         padding: 1rem;
     }

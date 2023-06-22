@@ -3,6 +3,8 @@
 </script>
 
 <div class="tools">
+    <span>Start</span>
+    <span>Stop</span>
     <span>Save</span>
     <span>Load</span>
     
