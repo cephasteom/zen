@@ -1,3 +1,7 @@
+import { Noise } from 'noisejs'
+
+export const noise = new Noise(Math.random())
+
 export const max = (a: number, b: number) => a >= b ? a : b
 export const min = (a: number, b: number) =>  a <= b ? a : b
 
@@ -14,3 +18,4 @@ export function roundToFactor(n: number, factor: number = 1) {
 export function clamp(n: number, min: number, max: number) {
     return Math.min(Math.max(n, min), max)
 }
+

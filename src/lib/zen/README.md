@@ -47,12 +47,21 @@ s0.foo('foo').range(0,10).get(0.5) // returns 5
 // additional arguments for freq and step
 s0.foo('foo').range(0,10,4,0.5)
 
-// all methods of the Math object (sin, cos, tan, etc) are methods of Parameter
+// use waveforms - sine, cosine, saw, tri, and square. Arguments same as range...
+s0.sine('foo').range(0,10,4,0.5).get(0.5)
+
+// use noise function. Noise is seeded once on page load
+s0.noise('foo').range(0,10,4,0.5).get(0.5)
+
+// all methods of the Math object (sin, cos, tan, etc) are methods of Parameter (see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math)
 s0.p('foo').sin().get(1)
 
-// additional arguments can be used where appropriate (see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math). For example:
+// additional arguments can be used where appropriate. For example:
 s0.p('foo').range(0,7).pow(-2).get(7)
 
 // chain additional methods to scale values further
 s0.p('foo').cos().add(4).mul(0.5).step(1).get(0.5)
+
+// clamp
+s0.p('foo').range(0,10).clamp(0,1).get(5)
 ```

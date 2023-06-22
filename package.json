@@ -23,6 +23,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@joshnuss/svelte-codemirror": "^0.2.6"
+		"@joshnuss/svelte-codemirror": "^0.2.6",
+		"noisejs": "^2.1.0"
 	}
 }

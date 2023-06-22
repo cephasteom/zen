@@ -1,6 +1,6 @@
 import type { stack } from '../types'
 
-import { mapToRange, roundToFactor, min, max, clamp } from '../utils/utils'
+import { mapToRange, roundToFactor, clamp, noise } from '../utils/utils'
 
 class Parameter {
     private stack: stack = []
@@ -30,6 +30,76 @@ class Parameter {
     // values provided to the callback should be in num of cycles or num of canvas
     range(lo: number = 0, hi: number = 1, freq: number = 1, step: number = 0) {
         this.stack = [(position: number) => mapToRange((position*freq)%1, 0, 1, lo, hi, step)]
+        return this
+    }
+
+    // sine function
+    sine(lo: number = 0, hi: number = 1, freq: number = 1, step: number = 0) {
+        this.stack = [(position: number) => {
+            const radians = ((position*freq)%1) * 360 * (Math.PI/180)
+            const sin = Math.sin(radians)
+
+            return mapToRange(sin, -1, 1, lo, hi, step)
+        }]
+        return this
+    }
+
+    // cosine function
+    cosine(lo: number = 0, hi: number = 1, freq: number = 1, step: number = 0) {
+        this.stack = [(position: number) => {
+            const radians = ((position*freq)%1) * 360 * (Math.PI/180)
+            const cos = Math.cos(radians)
+
+            return mapToRange(cos, -1, 1, lo, hi, step)
+        }]
+        return this
+    }
+
+    // sawtooth function
+    saw(lo: number = 0, hi: number = 1, freq: number = 1, step: number = 0) {
+        this.stack = [(position: number) => {
+            const saw = ((position*freq)%1)
+
+            return mapToRange(saw, 0, 1, lo, hi, step)
+        }]
+        return this
+    }
+
+    // triangle function
+    tri(lo: number = 0, hi: number = 1, freq: number = 1, step: number = 0) {
+        this.stack = [(position: number) => {
+            const tri = Math.abs(((position*freq)%1) - 0.5) * 2
+
+            return mapToRange(tri, 0, 1, lo, hi, step)
+        }]
+        return this
+    }
+
+    // square function
+    square(lo: number = 0, hi: number = 1, freq: number = 1, step: number = 0) {
+        this.stack = [(position: number) => {
+            const square = ((position*freq)%1) < 0.5 ? 0 : 1
+
+            return mapToRange(square, 0, 1, lo, hi, step)
+        }]
+        return this
+    }
+
+    // random function
+    random(lo: number = 0, hi: number = 1, freq: number = 1, step: number = 0) {
+        this.stack = [(position: number) => {
+            const random = Math.random()
+
+            return mapToRange(random, 0, 1, lo, hi, step)
+        }]
+        return this
+    }
+
+    // noise function
+    noise(lo: number = 0, hi: number = 1, freq: number = 1, step: number = 0) {
+        this.stack = [(position: number) => {
+            return mapToRange(noise.simplex2(position*freq,0), -1, 1, lo, hi, step)
+        }]
         return this
     }
 
@@ -76,3 +146,8 @@ class Parameter {
 }
 
 export default Parameter
+
+const p  = new Parameter()
+console.log(
+    p.saw(0, 10, 4).round().get(0.9)
+)
