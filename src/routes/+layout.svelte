@@ -1,53 +1,57 @@
 <script>
-	import Header from './Header.svelte';
-	import './styles.css';
+    // import "../app.postcss";
+    import Header from "./Header.svelte";
+    import "./styles.css";
+    // import "./fonts.css";
 </script>
 
 <div class="app">
-	<Header />
+    <Header />
 
-	<main>
-		<slot />
-	</main>
+    <main class="w-full container">
+        <slot />
+    </main>
 
-	<footer>
-		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
-	</footer>
+    <footer class="footer container">
+        <span>© <a href="https://cephasteom.co.uk">Cephas Teom</a> {new Date().getFullYear()}</span>
+    </footer>
+        
+
 </div>
 
-<style>
-	.app {
-		display: flex;
-		flex-direction: column;
-		min-height: 100vh;
-	}
+<style lang="scss">
+    .app {
+        display: flex;
+        flex-direction: column;
+    }
 
-	main {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		padding: 1rem;
-		width: 100%;
-		max-width: 64rem;
-		margin: 0 auto;
-		box-sizing: border-box;
-	}
+    main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        box-sizing: border-box;
+        background-color: var(--color-grey-mid);
+    }
 
-	footer {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		padding: 12px;
-	}
+    footer {
+        width: 100%;
+        padding: 1rem;
+        margin: 0 auto;
+        color: var(--color-grey-light);
+        text-align: center;
+        @media (min-width: 1200px) {
+            text-align: right;
+            padding: 1rem 2rem;
+        }
 
-	footer a {
-		font-weight: bold;
-	}
+        @media (min-width: 1600px) {
+            padding: 1rem 0;
+        }
 
-	@media (min-width: 480px) {
-		footer {
-			padding: 12px 0;
-		}
-	}
+        span {
+            font-size: var(--text-sm);
+        }
+    }
+
 </style>

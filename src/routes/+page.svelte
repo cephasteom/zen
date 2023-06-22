@@ -1,59 +1,72 @@
 <script>
-	import Counter from './Counter.svelte';
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
+    import CodeMirror from '@joshnuss/svelte-codemirror'
+    import {basicSetup, standardKeymap} from "codemirror"
+  
+    const options = {
+		mode: "javascript",
+		lineNumbers: false,
+        theme: "material",
+        tabSize: 2,
+        lineWrapping: true,
+        height: "100%",
+        keyMaps: [standardKeymap],
+        extensions: [basicSetup]
+	}
+	
+	let code = `function test() {\n  return 42\n}`
+	let editor
 </script>
 
 <svelte:head>
 	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<meta name="description" content="Zen" />
 </svelte:head>
 
-<section>
-	<h1>
-		<span class="welcome">
-			<picture>
-				<source srcset={welcome} type="image/webp" />
-				<img src={welcome_fallback} alt="Welcome" />
-			</picture>
-		</span>
-
-		to your new<br />SvelteKit app
-	</h1>
-
-	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
-
-	<Counter />
+<section class="zen">
+    <div class="editor">
+        <CodeMirror bind:editor {options} class="editor__editor" bind:value={code}/>
+    </div>
+    <div class="data">data</div>
+    <div class="visuals">
+        visuals
+    </div>
+    <div class="tools">tools</div>
 </section>
 
-<style>
-	section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 0.6;
-	}
+<style lang="scss">
+    .zen {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 9fr 1fr;
+        grid-gap: 1rem;
+        padding: 1.5rem 2rem;
+    }
 
-	h1 {
-		width: 100%;
-	}
+    .editor {
+        grid-column: 1;
+        grid-row: 1;
+        height: 100%;
+        
+        &__editor {
+            background-color: green;
+        }
+    }
 
-	.welcome {
-		display: block;
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
+    .data {
+        grid-column: 1;
+        grid-row: 2;
+        background-color: blue;
+    }
 
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
-	}
+    .visuals {
+        grid-column: 2;
+        grid-row: 1;
+        background-color: red;
+    }
+
+    .tools {
+        grid-column: 2;
+        grid-row: 2;
+        background-color: yellow;
+    }
 </style>

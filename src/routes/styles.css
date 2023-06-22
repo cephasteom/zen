@@ -1,33 +1,51 @@
 @import '@fontsource/fira-mono';
 
+@font-face {
+    font-family: 'Lato Medium';
+    font-style: normal;
+    font-weight: 500;
+    /* src: url('/fonts/Lato/Lato-Regular.ttf');  */
+}
+
 :root {
-	--font-body: Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+	--font-body: Lato Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
 		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	--font-mono: 'Fira Mono', monospace;
+    --text-base: 1rem;
+    --text-sm: 0.75rem;
+    --text-xs: 0.65rem;
+    --text-xxs: 0.5rem;
+    --text-spacing: 0.1rem;
 	--color-bg-0: rgb(202, 216, 228);
 	--color-bg-1: hsl(209, 36%, 86%);
 	--color-bg-2: hsl(224, 44%, 95%);
-	--color-theme-1: #ff3e00;
-	--color-theme-2: #4075a6;
 	--color-text: rgba(0, 0, 0, 0.7);
 	--column-width: 42rem;
 	--column-margin-top: 4rem;
 	font-family: var(--font-body);
 	color: var(--color-text);
+    --color-theme-1: #FF695A;
+    --color-theme-2: #E5007F;
+    --color-theme-3: #00A399;
+    --color-yellow: #FEF4E5;
+    --color-grey-lighter: #D1CEC7;
+    --color-grey-light: #B9B9B9;
+    --color-grey-mid: #555555;
+    --color-grey-dark: #404040;
+    --color-grey-darker: #333333;
+    --color-grey-darkest: #262626;
+    --color-box-shadow: rgba(38, 38, 38, 0.75);
+    --max-width: 1600px;
 }
 
 body {
 	min-height: 100vh;
 	margin: 0;
 	background-attachment: fixed;
-	background-color: var(--color-bg-1);
+	background-color: var(--color-grey-darker);
 	background-size: 100vw 100vh;
-	background-image: radial-gradient(
-			50% 50% at 50% 50%,
-			rgba(255, 255, 255, 0.75) 0%,
-			rgba(255, 255, 255, 0) 100%
-		),
-		linear-gradient(180deg, var(--color-bg-0) 0%, var(--color-bg-1) 15%, var(--color-bg-2) 50%);
+    letter-spacing: 0.1rem;
+    user-select: none
 }
 
 h1,
@@ -46,6 +64,7 @@ a {
 }
 
 a:hover {
+    color: inherit;
 	text-decoration: underline;
 }
 
@@ -54,19 +73,22 @@ h1 {
 	text-align: center;
 }
 
-h2 {
-	font-size: 1rem;
+h2, h3 {
+    text-transform: uppercase;
+    color: var(--color-yellow);
 }
 
-pre {
-	font-size: 16px;
-	font-family: var(--font-mono);
-	background-color: rgba(255, 255, 255, 0.45);
-	border-radius: 3px;
-	box-shadow: 2px 2px 6px rgb(255 255 255 / 25%);
-	padding: 0.5em;
-	overflow-x: auto;
-	color: var(--color-text);
+h2 {
+    font-size: var(--text-sm);
+}
+
+h3 {
+    font-size: var(--text-xxs);
+}
+@media (min-width: 1200px) {
+    h3 {
+        font-size: var(--text-xs);
+    }
 }
 
 .text-column {
@@ -104,4 +126,33 @@ button:focus:not(:focus-visible) {
 	position: absolute;
 	width: 1px;
 	white-space: nowrap;
+}
+
+.container {
+    width: 100%;
+    max-width: var(--max-width);
+}
+
+.CodeMirror
+{
+    background: var(--color-grey-darker)!important;
+    height: 80vh!important;
+    padding: 1rem;
+}
+
+/* Flowbite overwrites */
+
+#sidebar {
+    background-color: var(--color-grey-mid);
+}
+
+.toasts > div {
+    background-color: var(--color-yellow);
+    color: var(--color-grey-dark);
+    border: 1px solid var(--color-grey-light);
+    box-shadow: 2px 2px 6px rgb(255 255 255 / 25%);
+}
+
+.lottie-player {
+    height: 56px;
 }

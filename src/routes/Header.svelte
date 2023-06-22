@@ -1,129 +1,97 @@
 <script>
-	import { page } from '$app/stores';
-	import logo from '$lib/images/svelte-logo.svg';
-	import github from '$lib/images/github.svg';
+    import { page } from '$app/stores';
+    import logo from '$lib/images/karma.png';
 </script>
 
 <header>
-	<div class="corner">
-		<a href="https://kit.svelte.dev">
-			<img src={logo} alt="SvelteKit" />
-		</a>
-	</div>
-
-	<nav>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
-		</svg>
-		<ul>
-			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
-				<a href="/">Home</a>
-			</li>
-			<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
-				<a href="/about">About</a>
-			</li>
-			<li aria-current={$page.url.pathname.startsWith('/sverdle') ? 'page' : undefined}>
-				<a href="/sverdle">Sverdle</a>
-			</li>
-		</ul>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
-		</svg>
-	</nav>
-
-	<div class="corner">
-		<a href="https://github.com/sveltejs/kit">
-			<img src={github} alt="GitHub" />
-		</a>
-	</div>
+    <nav class="container">
+        <a href="/" class="icon">
+            <img
+                src={logo}
+                class="mr-3 h-6 sm:h-6"
+                alt="Zen Logo"
+            />
+            Zen
+        </a>
+        <ul class="menu">
+            <li class="menu__item"><a class={$page.url.pathname === '/about' ? 'active' : ''} href="/about">About</a></li>
+            <li class="menu__item"><a class={$page.url.pathname === '/docs' ? 'active' : ''} href="/docs">Docs</a></li>
+            <li class="menu__item"><a class={$page.url.pathname === '/data' ? 'active' : ''} href="/data">Data</a></li>
+        </ul>
+    
+    </nav>
 </header>
 
-<style>
+<style lang="scss">
 	header {
 		display: flex;
-		justify-content: space-between;
-	}
-
-	.corner {
-		width: 3em;
-		height: 3em;
-	}
-
-	.corner a {
-		display: flex;
-		align-items: center;
 		justify-content: center;
-		width: 100%;
-		height: 100%;
+        background-color: var(--color-grey-darkest);
 	}
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
 
-	.corner img {
-		width: 2em;
-		height: 2em;
-		object-fit: contain;
-	}
+        @media (min-width: 1200px) {
+            padding: 0.5rem 2rem;
+        }
 
-	nav {
-		display: flex;
-		justify-content: center;
-		--background: rgba(255, 255, 255, 0.7);
-	}
+        $var: calc(1600px - 4rem);
 
-	svg {
-		width: 2em;
-		height: 3em;
-		display: block;
-	}
+        @media (min-width: 1664px) {
+            padding-left: 0rem;
+            padding-right: 0rem;
+        }
+    }
+    
+    .icon {
+        width: 2rem;
+        height: 1.5rem;
+        display: flex;
+        align-items: center;
+        color: var(--color-yellow);
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: invert(1);
+            margin-right: 0.5rem;
+        }
+    }
 
-	path {
-		fill: var(--background);
-	}
+    .menu {
+        display: flex;
+        justify-content: space-between;
+        list-style: none;
+        padding: 0;
+    }
 
-	ul {
-		position: relative;
-		padding: 0;
-		margin: 0;
-		height: 3em;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		list-style: none;
-		background: var(--background);
-		background-size: contain;
-	}
+    .menu__item {
+        padding-right: 3rem;
+        font-size: var(--text-sm);
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+    }
 
-	li {
-		position: relative;
-		height: 100%;
-	}
+    .menu__item a {
+        text-transform: uppercase;
+        text-decoration: none;
+        color: #FFF;
+    }
 
-	li[aria-current='page']::before {
-		--size: 6px;
-		content: '';
-		width: 0;
-		height: 0;
-		position: absolute;
-		top: 0;
-		left: calc(50% - var(--size));
-		border: var(--size) solid transparent;
-		border-top: var(--size) solid var(--color-theme-1);
-	}
+    .menu__item a:hover {
+        color: var(--color-theme-2);
 
-	nav a {
-		display: flex;
-		height: 100%;
-		align-items: center;
-		padding: 0 0.5rem;
-		color: var(--color-text);
-		font-weight: 700;
-		font-size: 0.8rem;
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
-		text-decoration: none;
-		transition: color 0.2s linear;
-	}
+    }
 
-	a:hover {
-		color: var(--color-theme-1);
-	}
+    a.active {
+        color: var(--color-theme-2);
+    }
+
+    .menu__item:last-of-type {
+        padding-right: 0;
+    }
 </style>
