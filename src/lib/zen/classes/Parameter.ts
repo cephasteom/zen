@@ -33,6 +33,11 @@ class Parameter {
         return this
     }
 
+    seq(values: number[] = [], freq: number = 1) {
+        this.stack = [(position: number) => values[Math.floor((position*freq*values.length)%values.length)]]
+        return this
+    }
+
     // sine function
     sine(lo: number = 0, hi: number = 1, freq: number = 1, step: number = 0) {
         this.stack = [(position: number) => {
@@ -147,7 +152,7 @@ class Parameter {
 
 export default Parameter
 
-const p  = new Parameter()
-console.log(
-    p.saw(0, 10, 4).round().get(0.9)
-)
+// const p  = new Parameter()
+// console.log(
+//     p.seq([0,2,4,6]).get(1)
+// )

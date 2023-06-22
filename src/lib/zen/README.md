@@ -47,6 +47,9 @@ s0.foo('foo').range(0,10).get(0.5) // returns 5
 // additional arguments for freq and step
 s0.foo('foo').range(0,10,4,0.5)
 
+// choose from an array of values. Second value is for freq.
+s0.foo('foo').seq([0,2,4,6], 1)
+
 // use waveforms - sine, cosine, saw, tri, and square. Arguments same as range...
 s0.sine('foo').range(0,10,4,0.5).get(0.5)
 
