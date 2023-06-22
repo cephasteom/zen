@@ -1,0 +1,1 @@
+export type stack = {(x: number): number}[]

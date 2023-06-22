@@ -7,7 +7,6 @@
     <span>Stop</span>
     <span>Save</span>
     <span>Load</span>
-    
 </div>
 
 <style lang="scss">

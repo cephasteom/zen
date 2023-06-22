@@ -3,6 +3,7 @@
     import Visuals from '$lib/components/Visuals.svelte';
     import Data from '$lib/components/Data.svelte';
     import Tools from '$lib/components/Tools.svelte';
+    import Parameter from '$lib/zen/classes/Parameter';
 </script>
 
 <svelte:head>
