@@ -104,6 +104,7 @@ input,
 button {
 	font-size: inherit;
 	font-family: inherit;
+    letter-spacing: 0.1rem;
 }
 
 button:focus:not(:focus-visible) {
