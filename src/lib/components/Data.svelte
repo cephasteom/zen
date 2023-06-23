@@ -1,23 +1,32 @@
 <script lang="ts">
-    
+    import { t, c, q, s } from '$lib/stores/zen';    
+
 </script>
 
 <div class="data">
-    <span>t: 0</span>
-    <span>c: 0</span>
-    <span>q: 0</span>
-    <span>s: 0</span>
+    <div>t: <span>{$t}</span></div>
+    <div>c: <span>{$c}</span></div>
+    <div>q: <span>{$q}</span></div>
+    <div>s: <span>{$s}</span></div>
 </div>
 
 <style lang="scss">
     .data {
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         align-items: center;
         height: 100%;
-        & span {
+        font-size: var(--text-sm);
+        & div {
+            width: 25%;
+            &:last-of-type {
+                width: fit-content;
+            }
             color: var(--color-grey-light);
-            font-size: var(--text-sm);
+            
+            & span {
+                color: var(--color-theme-1);
+            }
         }
     }
 </style>

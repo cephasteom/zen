@@ -1,11 +1,12 @@
 import type { stack } from '../types'
-
 import { mapToRange, roundToFactor, clamp, noise } from '../utils/utils'
 
 class Parameter {
     private stack: stack = []
 
-    constructor() {
+    constructor(value: number | null = null) {
+        value !== null && this.set(value);
+        
         // Add all Math functions to the Parameter class
         Object.getOwnPropertyNames( Math ).map( name => {
             this[name] = (...args: number[]) => {
@@ -142,10 +143,10 @@ class Parameter {
     // Get output based on position in cycle or on canvas
     // expected to be normalised between 0 - 1
     get(position: number = 0) {
-        return this.stack.length ? this.stack.reduce((val, fn) => fn(val), position) : null
+        return this.stack.length ? this.stack.reduce((val, fn) => fn(val), position) : 0
     }
 
-    has() {
+    has() : boolean {
         return !!this.stack.length
     }
 }

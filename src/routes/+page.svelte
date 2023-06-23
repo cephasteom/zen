@@ -3,7 +3,20 @@
     import Visuals from '$lib/components/Visuals.svelte';
     import Data from '$lib/components/Data.svelte';
     import Tools from '$lib/components/Tools.svelte';
-    import Parameter from '$lib/zen/classes/Parameter';
+    import Zen from '$lib/zen/classes/Zen';
+    import { t, c, q, s } from '$lib/stores/zen';
+    import { onMount } from 'svelte';
+
+    const z = new Zen();
+    z.addTCallback(() => t.set(z.time));
+    z.addTCallback(() => c.set(z.cycle));
+    z.addTCallback(() => q.set(z.quant));
+    z.addTCallback(() => s.set(z.size));
+
+    onMount(() => {
+        z.start();
+    })
+    
 </script>
 
 <svelte:head>

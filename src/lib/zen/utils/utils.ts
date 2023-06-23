@@ -19,3 +19,10 @@ export function clamp(n: number, min: number, max: number) {
     return Math.min(Math.max(n, min), max)
 }
 
+export function createCount(start = 0){
+    let counter = start - 1;
+    return function count() {
+        counter = counter + 1;
+        return counter;
+    }
+}
