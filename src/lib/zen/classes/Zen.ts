@@ -1,6 +1,7 @@
 import Parameter from './Parameter'
 import { Loop, Transport, immediate } from 'tone'
-import { createCount } from '../utils/utils'
+
+// TODO: should the loop be outside of the zen class?
 
 class Zen {
     // callbacks to be called on every time update
