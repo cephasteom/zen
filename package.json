@@ -24,6 +24,7 @@
 	"type": "module",
 	"dependencies": {
 		"@joshnuss/svelte-codemirror": "^0.2.6",
-		"noisejs": "^2.1.0"
+		"noisejs": "^2.1.0",
+		"tone": "^14.7.77"
 	}
 }

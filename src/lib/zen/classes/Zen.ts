@@ -4,65 +4,44 @@ import { Loop, Transport, immediate } from 'tone'
 // TODO: should the loop be outside of the zen class?
 
 class Zen {
-    // callbacks to be called on every time update
-    private _tCallbacks: Function[] = []
-
-    // global time, absolute time, cannot be changed
-    private _time: number = 0
+    // incrementing time
+    private _t: number = 0
 
     // size of canvas, can be updated but not patterned
-    private _size: number = 16
+    private _s: number = 16
 
     // frames per cycle, can be updated but not patterned
-    private _quant: number = 16
-
-    // loop
-    private _loop: Loop
+    private _q: number = 16
 
     bpm = new Parameter(120)
 
-    constructor() {
-        this.setLoop()
+    get t() {
+        return this._t
     }
 
-    get time() {
-        return this._time
+    set t(value: number) {
+        this._t = value
     }
 
-    get size() {
-        return this._size
+    get s() {
+        return this._s
     }
 
-    set size(value: number) {
-        this._size = value
+    set s(value: number) {
+        this._s = value
     }
 
-    get quant() {
-        return this._quant
+    get q() {
+        return this._q
     }
 
-    set quant(value: number) {
-        this._quant = value
+    set q(value: number) {
+        this._q = value
     }
 
-    get cycle() {
-        return Math.floor(this._time / this._quant)
-    }
-
-    addTCallback(callback: Function) {
-        this._tCallbacks = [...this._tCallbacks, callback]
-    }
-
-    setLoop() {
-        this._loop = new Loop(time => {
-            // increment t
-            const t = this._time++
-            
-            // call t callbacks
-            const delta = (time - immediate()) * 1000
-            setTimeout(() => this._tCallbacks.forEach(callback => callback(t)), delta);
-
-        }, `${this._quant}n`).start(0)
+    // cycle
+    get c() {
+        return Math.floor(this._t / this._q)
     }
 
     start() {

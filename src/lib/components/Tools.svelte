@@ -1,10 +1,10 @@
 <script lang="ts">
-    import { z } from '$lib/stores/zen';
+    import { start, stop } from '$lib/stores/zen';
 </script>
 
 <div class="tools">
-    <button on:click={() => z.start()}>Start</button>
-    <button on:click={() => z.stop()}>Stop</button>
+    <button on:click={() => start()}>Start</button>
+    <button on:click={() => stop()}>Stop</button>
     <span>Save</span>
     <span>Load</span>
 </div>
