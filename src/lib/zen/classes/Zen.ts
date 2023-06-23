@@ -69,7 +69,7 @@ class Zen {
     }
 
     stop() {
-        Transport.stop()
+        Transport.stop(immediate())
     }
 
     pause() {
