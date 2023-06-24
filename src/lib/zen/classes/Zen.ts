@@ -1,5 +1,5 @@
 import Parameter from './Parameter'
-import { Loop, Transport, immediate } from 'tone'
+import { Transport, immediate } from 'tone'
 
 // TODO: should the loop be outside of the zen class?
 
@@ -42,18 +42,6 @@ class Zen {
     // cycle
     get c() {
         return Math.floor(this._t / this._q)
-    }
-
-    start() {
-        Transport.start('+0.1')
-    }
-
-    stop() {
-        Transport.stop(immediate())
-    }
-
-    pause() {
-        Transport.pause()
     }
 }
 
