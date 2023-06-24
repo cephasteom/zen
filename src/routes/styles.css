@@ -134,15 +134,37 @@ button:focus:not(:focus-visible) {
     max-width: var(--max-width);
 }
 
-.CodeMirror
-{
-    background: var(--color-grey-dark)!important;
-    height: 70vh!important;
-    padding: 1rem;
-    color: var(--color-yellow)!important;
-    font-size: var(--text-sm);
-    font-weight: 100!important;
+/* Monaco overwrites */
+.decorationsOverviewRuler {
+    display: none!important;
 }
+
+.lines-content{
+    margin-top: 1rem!important;
+    margin-bottom: 1rem!important;
+}
+
+.monaco-scrollable-element, .margin-view-overlays, .lines-content {
+    background-color: var(--color-grey-darkest)!important;
+    /* strings */
+    .mtk5 {
+        color: var(--color-theme-2);
+    }
+    /* numbers */
+    .mtk6 {
+        color: var(--color-theme-1);
+    }
+    /* comments */
+    .mtk7 {
+        color: var(--color-theme-2);
+        opacity: 0.5;
+    }
+    /* const etc. */
+    .mtk8 {
+        color: var(--color-theme-3);
+    }
+}
+
 
 /* Flowbite overwrites */
 
