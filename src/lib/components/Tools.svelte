@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { start, stop } from '$lib/stores/zen';
+    import { start, stop } from '$lib/zen';
 </script>
 
 <div class="tools">
