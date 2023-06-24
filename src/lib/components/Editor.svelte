@@ -2,27 +2,34 @@
     import loader from '@monaco-editor/loader';
     import { onDestroy, onMount } from 'svelte';
     import type * as Monaco from 'monaco-editor/esm/vs/editor/editor.api';
+    import { setCode, start, stop } from '$lib/zen';
 
     let editor: Monaco.editor.IStandaloneCodeEditor;
     let monaco: typeof Monaco;
     let editorContainer: HTMLElement;
     let options = {
-        value: [
-            'function x() {',
-            '\tconsole.log("Hello world!");',
-            '}'
-        ].join('\n'),
         language: 'javascript',
         theme: 'vs-dark',
-        lineNumbers: 'off',
+        lineNumbers: {
+            type: 'off'
+        },
         minimap: {
             enabled: false
         },
         automaticLayout: true,
         renderLineHighlight: 'none',
+        quickSuggestions: false,
+        wordWrap: "on",
+        gutter: "off",
         scrollbar: {
-            vertical: 'hidden',
-            horizontal: 'hidden'
+            vertical: "hidden",
+            horizontal: "hidden",
+            verticalScrollbarSize: 0,
+            horizontalScrollbarSize: 0,
+            useShadows: false,
+            verticalHasArrows: false,
+            horizontalHasArrows: false,
+            arrowSize: 0
         },
     };
 
@@ -38,12 +45,20 @@
         // Your monaco instance is ready, let's display some code!
         const editor = monaco.editor.create(editorContainer, options);
         const model = monaco.editor.createModel(
-            "console.log('Hello from Monaco! (the editor, not the city...)')",
+            "// Welcome to Zen!",
             undefined,
-            // Give monaco a hint which syntax highlighting to use
             monaco.Uri.file('sample.js')
         );
         editor.setModel(model);
+
+        editor.onKeyDown(e => {
+            e.keyCode === 9 && stop();
+            if(e.keyCode === 3 && e.shiftKey) {
+                e.preventDefault();
+                setCode(editor.getValue());
+                start();
+            } 
+        })
     });
 
     onDestroy(() => {
@@ -54,11 +69,11 @@
 <svelte:window on:resize={() => editor?.layout({})} />
 
 <div>
-    <div class="container" bind:this={editorContainer} />
+    <div class="editor" bind:this={editorContainer} />
 </div>
 
 <style>
-    .container {
+    .editor {
         width: 100%;
         height: 75vh!important;
     }

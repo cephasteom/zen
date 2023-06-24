@@ -157,7 +157,7 @@ button:focus:not(:focus-visible) {
     /* comments */
     .mtk7 {
         color: var(--color-theme-2);
-        opacity: 0.5;
+        opacity: 0.75;
     }
     /* const etc. */
     .mtk8 {
