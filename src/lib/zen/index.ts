@@ -11,6 +11,7 @@ export const streams = ['s0', 's1', 's2', 's3', 's4', 's5', 's6', 's7'].reduce((
 export const code = writable('');
 export const actions = writable<{ (): void; }[]>([]);
 
+// add callback to be called at exact time of each loop
 export const addAction = (cb: () => void) => {
     actions.update(arr => [...arr, cb])
 }
