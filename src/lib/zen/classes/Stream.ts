@@ -13,10 +13,6 @@ class Stream {
     x = new Parameter()
     y = new Parameter()
     z = new Parameter()
-    
-    // these should just be global?
-    q = 16 // frames per cycle
-    s = 16 // size of canvas
 
     constructor() {
         /* 
@@ -51,13 +47,11 @@ class Stream {
     // set multiple parameters at once, e.g. s0.set({foo: 1, bar: 2})
     set(ps: {}) {
         Object.entries(ps).forEach(([key, value]) => {
-            this.getParameter(key, 'p').set(value)
+            this.p(key).set(value)
         })
     }
 
-    get(time: number = 0) {
-        const {q,s} = this
-        
+    get(time: number = 0, q: number = 16, s: number = 16) {
         // use stream t, if set, or global t
         const t = this.t.has() ? this.t.get(time/q) : time
 

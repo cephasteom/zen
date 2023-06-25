@@ -1,5 +1,4 @@
 import Parameter from './Parameter'
-import { Transport, immediate } from 'tone'
 
 // TODO: should the loop be outside of the zen class?
 
