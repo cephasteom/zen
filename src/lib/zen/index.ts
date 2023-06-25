@@ -16,30 +16,36 @@ const counter = createCount(0);
 
 // initialise Zen and Streams within the scope of the loop
 export const z = new Zen();
-export const streams = ['s0', 's1', 's2', 's3', 's4', 's5', 's6', 's7'].reduce((obj, key) => ({
-    ...obj,
-    [key]: new Stream()
-}), {})
-const { s0, s1, s2, s3, s4, s5, s6, s7 } = streams;
+export const streams: Stream[] = Array(8).fill(0).map((_, i) => new Stream('s' + i))
+const [ s0, s1, s2, s3, s4, s5, s6, s7 ] = streams;
 
 const loop = new Loop(time => {
+    // reset all streams to prevent unwanted parameters when user deletes code
+    streams.forEach(stream => stream.reset())
+    
     // global time
     const t = counter()
     z.t = t;
+
+    // global dimensions
+    const { q, s } = z
     
+    // evaluate the user's code
     eval(get(code))
     
-    // set various global parameters
+    // update dimensions and bpm
     loop.interval = `${z.q}n`
-    Transport.bpm.setValueAtTime(z.bpm.get(z.t/z.q), time)
+    Transport.bpm.setValueAtTime(z.bpm.get(z.t/z.q) || 120, time)
 
-    // TODO: this will require garbage collection
-    const params = Object.entries(streams).reduce((obj, [key, stream]) => ({
-        ...obj,
-        [key]: stream.get(z.t, z.q, z.s)
-    }), {})
+    // compile parameters for each stream
+    const params = streams.map(stream => stream.get(z.t, z.q, z.s))
+        .filter(result => result.e || result.m)
+        .reduce((obj, result) => ({
+            ...obj,
+            [result.id]: result
+        }), {})
 
-    console.log(params.s0.params.n)
+    // TODO: send params to synth engine / midi engine / etc
     
     // call any callbacks provided to Zen at exact time
     const delta = (time - immediate()) * 1000

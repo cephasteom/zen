@@ -2,6 +2,7 @@
 import Parameter from './Parameter'
 
 class Stream {
+    id = ''
     // parameter groups
     p = {}
     px = {}
@@ -14,7 +15,8 @@ class Stream {
     y = new Parameter()
     z = new Parameter()
 
-    constructor() {
+    constructor(id: string) {
+        this.id = id;
         /* 
          * set 'p', 'px'... as functions accepting any parameter name
          * store Parameters by group in this.ps
@@ -62,7 +64,8 @@ class Stream {
         
         // TODO: calculate e and m. Don't bother with the params if e or m is false
         return {
-            e: false,
+            id: this.id,
+            e: true,
             m: false,
             params: {
                 ...this.evaluateGroup(this.p, t/q), // calculate based on position in cycle, 0 - 1
@@ -71,6 +74,13 @@ class Stream {
                 ...this.evaluateGroup(this.pz, z/s), // ...
             }
         }
+    }
+
+    reset() {
+        Object.values(this.p).forEach(p => p.reset())
+        Object.values(this.px).forEach(p => p.reset())
+        Object.values(this.py).forEach(p => p.reset())
+        Object.values(this.pz).forEach(p => p.reset())
     }
 }
 

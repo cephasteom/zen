@@ -21,6 +21,11 @@ class Parameter {
         return this
     }
 
+    reset() {
+        this.stack = []
+        return this
+    }
+
     // use params from another stream, e.g. s1.p('foo').use(s0.p.bar).add(2)
     use(parameter: Parameter) {
       this.stack = [...this.stack, ...parameter.stack]
@@ -143,7 +148,7 @@ class Parameter {
     // Get output based on position in cycle or on canvas
     // expected to be normalised between 0 - 1
     get(position: number = 0) {
-        return this.stack.length ? this.stack.reduce((val, fn) => fn(val), position) : 0
+        return this.stack.length ? this.stack.reduce((val, fn) => fn(val), position) : null
     }
 
     has() : boolean {
@@ -152,8 +157,3 @@ class Parameter {
 }
 
 export default Parameter
-
-// const p  = new Parameter()
-// console.log(
-//     p.seq([0,2,4,6]).get(1)
-// )

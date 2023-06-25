@@ -1,7 +1,5 @@
 import Parameter from './Parameter'
 
-// TODO: should the loop be outside of the zen class?
-
 class Zen {
     // incrementing time
     private _t: number = 0
