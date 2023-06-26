@@ -1,24 +1,64 @@
 # ZEN3
+Zen is a Javascript library for expressing complex patterns with very little code. It was written to take advantage of JS's flexibility and is primed for pattern interference. Zen allows you to map musical parameters across a period of time or the x, y, z axes of a canvas. By manipulating the trajectories of up to 8 separate streams, you can trigger sonic events and mutations; with parameters being determined by the stream's current position in time and space.
+
+Zen is designed to be used as a live coding tool and is available for experimentation at TODO. It can also be integrated into other projects where pattern generation is required. See section TODO for further guidance.
+## Basics
+Zen provides you with 4 global variables, 8 streams, and a global settings object:
+### Variables
+* t: an incrementing integer representing time
+* q: integer, number of divisions per cycle
+* c: integer, current cycle. ie. floor(t / q)
+* s: integer, size of canvas
+
+### Streams
+8 instances of the `Stream` class (see below), assigned to the variables `s0`, `s1`, `s2`, `s3`, `s4`, `s5`, `s6`, `s7`. Used to map musical parameters across each cycle or the canvas, and determine the stream's trajectory across time and space.
+### Zen
+An instance of the `Zen` class (see below), assigned to the variable `z`. Used to update the global `q` and `s` values, as well as other global settings such as `bpm`.
 
 ## Syntax
-
 ### Stream
+#### Time and Space
+TODO: s0.x, s0.t
+#### Parameters
+Musical parameters can be mapped in different ways across a cycle, or across each axis of the canvas, using methods `.p(key: string)`, `.px(key: string)`, `.py(key: string)`, and `.pz(key: string)`. Each method returns an instance of the `Pattern` class which enables you to map values in a variety of ways. E.g.
 ```js
-// instantiate stream
-const s0 = new Stream()
+// map parameter across a cycle using a range function
+s0.p('foo').range(0,2)
+// map parameter across the x axis using a sine function
+s0.px('bar').sine(0,2)
+// set a constant value
+s0.p('foo').set(8)
+// chain methods together for greater complexity
+s0.pz('bar').saw(0,16).mul(2)
+```
+On each division of a cycle, each pattern is evaluated to create a list of parameters key / value pairs. Each method passes its value to the next in the chain, with the first value being the current position in time or in space, expressed as a fraction of 1. For example, 0.5 would be half way across a cycle or the canvas. This allows you manipulate time or space using arithmetic.
+```js
+// offset foo by half a cycle
+s0.p('foo').add(0.5).range(0,256)
+// move across the x axis at twice the speed
+s0.x.set(t)
+s0.x.mul(2).range(0,s)
 ```
 
-Parameters can be mapped in different ways across a cycle, or across each axis of the canvas.
+You can reference other streams' parameters:
 ```js
-// map parameter across a cycle
-s0.p('foo').range(0,2)
+s0.p('foo').tri(16,24,1).add(32)
+s1.p('bar').use(s0.p('foo')).mod(6)
+```
 
-// map parameter across an axis
-s0.px('bar').range(0,2)
+Or simply get their value:
+```js
+s0.p('foo').tri(16,24,1).add(32)
+s1.p('bar').set(s0.p('foo').get(t/q))
+```
 
-// set position in time and space
-// these are also parameters and have the same methods
-// if you don't set t, it will default to the global t
+
+#### Events and Mutations
+
+
+
+
+```js
 s0.t.set(t)
 s0.t.range(0,256,1,1)
 s0.x.set(t*4)
@@ -29,14 +69,10 @@ s0.x.sin(0,16,1,1)
 s0.get(t)
 ```
 
-Streams have a number of useful properties.
-* `s0.t` is the position in time. Should be an incrementing integer.
-* `s0.q` is the number of frames per cycle, or the number of times `t` increments per cycle. Integer.
-* `s0.s` is the size of the canvas. Integer.
-* `s0.x`, `s0.y`, `s0.z` is the position in space.
-* `s0.xyz` sets all axes simultaneously. Array.
 
-### Parameter
+
+### Pattern
+TODO
 Calling `s0.p(<key>)`, `s0.px(<key>)`, `s0.py(<key>)`, `s0.pz(<key>)` instantiates a Parameter at that key. Parameters have a number of methods which can be chained. Each method adds a callback to the stack, which are then evaluated sequentially at the point the user requests the parameter value. All parameters stored at `p` on the Stream are passed the current time value, all parameters stored at `px`, `py`, and `pz` are passed their corresponding axis value. In this way, you can create complex mappings of sonic parameters to a Stream's value in time and space.
 
 Each time you call a method of a Parameter it gets added to a call stack. When you call `.get(value)` it pipes the callstack, passing the initial value to the first function, then the result to each subsequent function. The initial value should be a normalised value .

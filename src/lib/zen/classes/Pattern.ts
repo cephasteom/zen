@@ -135,6 +135,11 @@ class Pattern {
         return this
     }
 
+    mod(value: number = 1) {
+        this.stack = [...this.stack, x => ((x % value) + value) % value]
+        return this
+    }
+
     step(value: number) {
         this.stack = [...this.stack, x => roundToFactor(x, value)]
         return this
