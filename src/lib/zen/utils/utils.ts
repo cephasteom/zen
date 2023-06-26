@@ -27,11 +27,6 @@ export function createCount(start = 0){
     }
 }
 
-export function validateJSString(str: string) {
-    try {
-        eval(str)
-        return {isValid: true, error: null}
-    } catch (e: any) {
-        return {isValid: false, error: e.message}
-    }
+export function numberToBinary(n: number, bits: number = 16) {
+    return (n >>> 0).toString(2).padStart(bits, '0');
 }

@@ -2,7 +2,7 @@
 import Parameter from './Parameter'
 
 class Stream {
-    id = ''
+    id: string
     // parameter groups
     p = {}
     px = {}
@@ -15,8 +15,8 @@ class Stream {
     y = new Parameter()
     z = new Parameter()
 
-    // should stream trigger event or mutation?
-    // uses normal Parameter class but interprets values as booleans, ie. 0 = false, >0 = true
+    // should stream trigger event or mutation
+    // uses normal Parameter class but values will be interpreted as booleans
     e = new Parameter()
     m = new Parameter()
 
@@ -66,24 +66,27 @@ class Stream {
         const x = this.x.has() ? this.x.get(t/s) : 0
         const y = this.y.has() ? this.y.get(t/s) : 0
         const z = this.z.has() ? this.z.get(t/s) : 0
-        // TODO: calculate e and m. Don't bother with the params if e or m is false
-        return {
-            id: this.id,
-            e: this.e.get(t/q),
-            m: this.m.get(t/q),
-            params: {
-                ...this.evaluateGroup(this.p, t/q), // calculate based on position in cycle, 0 - 1
-                ...this.evaluateGroup(this.px, x/s), // calculate based on position in space, 0 - 1
-                ...this.evaluateGroup(this.py, y/s), // ...
-                ...this.evaluateGroup(this.pz, z/s), // ...
-            }
-        }
+        
+        const { id } = this
+        const e = this.e.get(t/q)
+        const m = this.m.get(t/q)
+
+        // id === 's0' && console.log(x, y, z)
+        
+        const params = e || m ? {
+            ...this.evaluateGroup(this.p, t/q), // calculate based on position in cycle, 0 - 1
+            ...this.evaluateGroup(this.px, x/s), // calculate based on position in space, 0 - 1
+            ...this.evaluateGroup(this.py, y/s), // ...
+            ...this.evaluateGroup(this.pz, z/s), // ...
+        } : {}
+        
+        return { id, e, m, params }
     }
 
     reset() {
         const { t, x, y, z, e, m } = this;
         [t, x, y, z, e, m].forEach(p => p.reset())
-        
+
         Object.values(this.p).forEach(p => p.reset())
         Object.values(this.px).forEach(p => p.reset())
         Object.values(this.py).forEach(p => p.reset())

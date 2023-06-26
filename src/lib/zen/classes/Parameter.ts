@@ -1,5 +1,5 @@
 import type { stack } from '../types'
-import { mapToRange, roundToFactor, clamp, noise } from '../utils/utils'
+import { mapToRange, roundToFactor, clamp, noise, numberToBinary } from '../utils/utils'
 
 class Parameter {
     private stack: stack = []
@@ -97,8 +97,8 @@ class Parameter {
     }
 
     // random function
-    random(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1) {
-        this.stack = [(position: number) => {
+    random(lo: number = 0, hi: number = 1, step: number = 0) {
+        this.stack = [() => {
             const random = Math.random()
 
             return mapToRange(random, 0, 1, lo, hi, step)
@@ -194,9 +194,18 @@ class Parameter {
     // return a every cycle * n, otherwise return b. 
     // E.g. every(4) will return 1 every 4 cycles, every(0.5) will return 1 every 0.5 cycles 
     // also useful to write it e.g. every(1/q), every(7/q)
+    // less effective when q uses compound time signatures TODO: fix this
     every(n: number, a: number = 1, b: number = 0) {
         this.stack = [...this.stack, x => !(x % n) ? a : b]
         return this
+    }
+
+    // convert a number to binary and return a or b based on the true/false value at the current position in the string
+    ntb(n: number = 8, q: number = 16, a: number = 1, b: number = 0) {
+        this.stack = [...this.stack, x => {
+            const arr = numberToBinary(n, q).split('')
+            return !!parseInt(arr[Math.floor((x%1)*arr.length)]) ? a : b
+        }]
     }
 
     // do whatever to the preceding value

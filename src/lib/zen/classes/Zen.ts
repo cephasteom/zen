@@ -40,6 +40,10 @@ class Zen {
     get c() {
         return Math.floor(this._t / this._q)
     }
+
+    reset() {
+        [this.bpm].forEach(p => p.reset())
+    }
 }
 
 export default Zen;

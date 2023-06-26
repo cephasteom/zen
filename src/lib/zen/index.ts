@@ -2,15 +2,16 @@ import { Loop, Transport, immediate } from 'tone'
 import { writable, get } from 'svelte/store';
 import Zen from './classes/Zen';
 import Stream from './classes/Stream';
-import { createCount, validateJSString } from './utils/utils';
+import { createCount } from './utils/utils';
+import type { action } from './types';
 
 export const code = writable('');
 export const setCode = (str: string) => {
     code.set(str)
 };
 
-export const actions = writable<{ (): void; }[]>([]);
-export const addAction = (cb: () => void) => {
+export const actions = writable<action[]>([])
+export const addAction = (cb: action) => {
     actions.update(arr => [...arr, cb])
 }
 
@@ -24,6 +25,8 @@ const [ s0 ] = streams;
 const loop = new Loop(time => {
     // reset all streams to prevent unwanted parameters when user deletes code
     streams.forEach(stream => stream.reset())
+    // reset Zen
+    z.reset()
     
     // global time
     const t = counter()
@@ -36,7 +39,8 @@ const loop = new Loop(time => {
     try {
         eval(get(code))
     } catch (e: any) {
-        // TODO error handling
+        // TODO: display error message to user
+        console.log(e.message)
     }
     
     // update dimensions and bpm
@@ -45,18 +49,17 @@ const loop = new Loop(time => {
 
     // compile parameters for each stream
     const params = streams.map(stream => stream.get(z.t, z.q, z.s))
-        .filter(result => result.e || result.m)
+        .filter(({e, m}) => e || m)
         .reduce((obj, result) => ({
             ...obj,
             [result.id]: result
         }), {})
 
     // TODO: send params to synth engine / midi engine / etc
-    console.log(params)
+    
     // call any callbacks provided to Zen at exact time
     const delta = (time - immediate()) * 1000
-    setTimeout(() => get(actions).forEach(cb => cb()), delta);
-    
+    get(actions).forEach(cb => cb(time, delta, params))
 }, `${z.q}n`).start(0)
 
 export const start = () => Transport.start('+0.1')
