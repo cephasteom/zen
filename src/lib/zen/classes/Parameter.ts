@@ -199,6 +199,11 @@ class Parameter {
         return this
     }
 
+    // do whatever to the preceding value
+    fn(cb: {(x: number): number}) {
+        this.stack = [...this.stack, cb]
+        return this
+    }
 
     // Get output based on position in cycle or on canvas
     // expected to be normalised between 0 - 1
