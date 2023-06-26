@@ -51,9 +51,8 @@ Or simply get their value:
 s0.p('foo').tri(16,24,1).add(32)
 s1.p('bar').set(s0.p('foo').get(t/q))
 ```
-
-
 #### Events and Mutations
+A stream's `e` and `m` properties allow you to trigger a musical event - a new synth voice - or mutation - modulating all synth voices within the stream. Each property is, again, an instance of the `Pattern` class, but evaluates the result as a boolean - true triggers an event or mutation, false is ignored. JavaScript uses type inference and is able to compute a true or false from none boolean types. As a `0` is false and any value > `0` is true, we are able to pattern numbers in order to trigger our events.
 
 
 
