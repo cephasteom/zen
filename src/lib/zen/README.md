@@ -8,7 +8,7 @@
 const s0 = new Stream()
 ```
 
-Parameters can be mapped across a cycle, or across each axis of the canvas.
+Parameters can be mapped in different ways across a cycle, or across each axis of the canvas.
 ```js
 // map parameter across a cycle
 s0.p('foo').range(0,2)

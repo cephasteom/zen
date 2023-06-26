@@ -1,4 +1,4 @@
-import Parameter from './Parameter'
+import Pattern from './Pattern'
 
 class Zen {
     // incrementing time
@@ -10,7 +10,7 @@ class Zen {
     // frames per cycle, can be updated but not patterned
     private _q: number = 16
 
-    bpm = new Parameter(120)
+    bpm = new Pattern(120)
 
     get t() {
         return this._t

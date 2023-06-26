@@ -1,5 +1,5 @@
 // TODO: improve typing
-import Parameter from './Parameter'
+import Pattern from './Pattern'
 
 class Stream {
     id: string
@@ -10,15 +10,15 @@ class Stream {
     pz = {}
     
     // patternable parameters
-    t = new Parameter() // used to overide the global t
-    x = new Parameter()
-    y = new Parameter()
-    z = new Parameter()
+    t = new Pattern() // used to overide the global t
+    x = new Pattern()
+    y = new Pattern()
+    z = new Pattern()
 
     // should stream trigger event or mutation
     // uses normal Parameter class but values will be interpreted as booleans
-    e = new Parameter()
-    m = new Parameter()
+    e = new Pattern()
+    m = new Pattern()
 
     constructor(id: string) {
         this.id = id;
@@ -37,7 +37,7 @@ class Stream {
     }
 
     getParameter(key: string, group: {}) {
-        !group[key] && (group[key] = new Parameter())
+        !group[key] && (group[key] = new Pattern())
         return group[key]
     }
 
@@ -70,8 +70,6 @@ class Stream {
         const { id } = this
         const e = this.e.get(t/q)
         const m = this.m.get(t/q)
-
-        // id === 's0' && console.log(x, y, z)
         
         const params = e || m ? {
             ...this.evaluateGroup(this.p, t/q), // calculate based on position in cycle, 0 - 1
@@ -80,7 +78,7 @@ class Stream {
             ...this.evaluateGroup(this.pz, z/s), // ...
         } : {}
         
-        return { id, e, m, params }
+        return { id, e, m, x: x%s, y: y%s, z: z%s, params }
     }
 
     reset() {

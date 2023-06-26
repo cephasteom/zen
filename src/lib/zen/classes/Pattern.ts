@@ -1,7 +1,7 @@
 import type { stack } from '../types'
 import { mapToRange, roundToFactor, clamp, noise, numberToBinary } from '../utils/utils'
 
-class Parameter {
+class Pattern {
     private stack: stack = []
 
     constructor(value: number | null = null) {
@@ -27,8 +27,8 @@ class Parameter {
     }
 
     // use params from another stream, e.g. s1.p('foo').use(s0.p.bar).add(2)
-    use(parameter: Parameter) {
-      this.stack = [...this.stack, ...parameter.stack]
+    use(pattern: Pattern) {
+      this.stack = [...this.stack, ...pattern.stack]
       return this
     }
 
@@ -225,4 +225,4 @@ class Parameter {
     }
 }
 
-export default Parameter
+export default Pattern
