@@ -2,10 +2,14 @@ import { Loop, Transport, immediate } from 'tone'
 import { writable, get } from 'svelte/store';
 import Zen from './classes/Zen';
 import Stream from './classes/Stream';
-import { createCount } from './utils/utils';
+import { createCount, validateJSString } from './utils/utils';
 
 export const code = writable('');
-export const setCode = (str: string) => code.set(str); // TODO: validate
+export const setCode = (str: string) => {
+    const { isValid, error } = validateJSString(str)
+    // TODO: display error
+    isValid && code.set(str)
+};
 
 export const actions = writable<{ (): void; }[]>([]);
 export const addAction = (cb: () => void) => {

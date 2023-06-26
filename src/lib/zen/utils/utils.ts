@@ -26,3 +26,12 @@ export function createCount(start = 0){
         return counter;
     }
 }
+
+export function validateJSString(str: string) {
+    try {
+        eval(str)
+        return {isValid: true, error: null}
+    } catch (e: any) {
+        return {isValid: false, error: e.message}
+    }
+}
