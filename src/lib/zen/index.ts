@@ -6,9 +6,7 @@ import { createCount, validateJSString } from './utils/utils';
 
 export const code = writable('');
 export const setCode = (str: string) => {
-    const { isValid, error } = validateJSString(str)
-    // TODO: display error
-    isValid && code.set(str)
+    code.set(str)
 };
 
 export const actions = writable<{ (): void; }[]>([]);
@@ -21,7 +19,7 @@ const counter = createCount(0);
 // initialise Zen and Streams within the scope of the loop
 export const z = new Zen();
 export const streams: Stream[] = Array(8).fill(0).map((_, i) => new Stream('s' + i))
-const [ s0, s1, s2, s3, s4, s5, s6, s7 ] = streams;
+const [ s0 ] = streams;
 
 const loop = new Loop(time => {
     // reset all streams to prevent unwanted parameters when user deletes code
@@ -35,7 +33,11 @@ const loop = new Loop(time => {
     const { q, s } = z
     
     // evaluate the user's code
-    eval(get(code))
+    try {
+        eval(get(code))
+    } catch (e: any) {
+        // TODO error handling
+    }
     
     // update dimensions and bpm
     loop.interval = `${z.q}n`
@@ -50,7 +52,7 @@ const loop = new Loop(time => {
         }), {})
 
     // TODO: send params to synth engine / midi engine / etc
-    
+    console.log(params)
     // call any callbacks provided to Zen at exact time
     const delta = (time - immediate()) * 1000
     setTimeout(() => get(actions).forEach(cb => cb()), delta);

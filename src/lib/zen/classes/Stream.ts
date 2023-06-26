@@ -15,6 +15,11 @@ class Stream {
     y = new Parameter()
     z = new Parameter()
 
+    // should stream trigger event or mutation?
+    // uses normal Parameter class but interprets values as booleans, ie. 0 = false, >0 = true
+    e = new Parameter()
+    m = new Parameter()
+
     constructor(id: string) {
         this.id = id;
         /* 
@@ -61,12 +66,11 @@ class Stream {
         const x = this.x.has() ? this.x.get(t/s) : 0
         const y = this.y.has() ? this.y.get(t/s) : 0
         const z = this.z.has() ? this.z.get(t/s) : 0
-        
         // TODO: calculate e and m. Don't bother with the params if e or m is false
         return {
             id: this.id,
-            e: true,
-            m: false,
+            e: this.e.get(t/q),
+            m: this.m.get(t/q),
             params: {
                 ...this.evaluateGroup(this.p, t/q), // calculate based on position in cycle, 0 - 1
                 ...this.evaluateGroup(this.px, x/s), // calculate based on position in space, 0 - 1
@@ -77,6 +81,9 @@ class Stream {
     }
 
     reset() {
+        const { t, x, y, z, e, m } = this;
+        [t, x, y, z, e, m].forEach(p => p.reset())
+        
         Object.values(this.p).forEach(p => p.reset())
         Object.values(this.px).forEach(p => p.reset())
         Object.values(this.py).forEach(p => p.reset())
