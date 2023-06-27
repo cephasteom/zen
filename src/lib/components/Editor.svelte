@@ -91,7 +91,7 @@
         position: absolute;
         bottom: 0;
         left: 26px;
-        padding: 1rem 0;
+        padding: 0.5rem 0;
         font-size: var(--text-sm);
         color: var(--color-grey-light);
         background-color: var(--color-grey-darkest);
