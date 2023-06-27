@@ -73,8 +73,10 @@
 
 <div class="container">
     <div class="editor" bind:this={editorContainer} />
-    <div class="error" class:hidden={!$error}>
-        <p>Error: <span>{$error}</span></p>
+    <div class="notices">
+        <ul>
+            <li class:hidden={!$error}>Error: <span>{$error}</span></li>
+        </ul>
     </div>
 </div>
 
@@ -87,14 +89,20 @@
         height: 75vh!important;
     }
 
-    .error {
+    .notices {
         position: absolute;
         bottom: 0;
         left: 26px;
-        padding: 0.5rem 0;
+        padding: 1rem 0;
         font-size: var(--text-sm);
         color: var(--color-grey-light);
         background-color: var(--color-grey-darkest);
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
 
         span {
             color: var(--color-theme-1);
