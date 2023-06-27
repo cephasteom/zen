@@ -206,9 +206,16 @@ class Pattern {
     }
 
     // convert a number to binary and return a or b based on the true/false value at the current position in the string
-    ntb(n: number = 8, q: number = 16, a: number = 1, b: number = 0) {
+    ntbin(n: number = 8, q: number = 16, a: number = 1, b: number = 0) {
         this.stack = [...this.stack, x => {
             const arr = numberToBinary(n, q).split('')
+            return !!parseInt(arr[Math.floor((x%1)*arr.length)]) ? a : b
+        }]
+    }
+
+    bin(n: string = '10000000', a: number = 1, b: number = 0) {
+        this.stack = [...this.stack, x => {
+            const arr = n.split('')
             return !!parseInt(arr[Math.floor((x%1)*arr.length)]) ? a : b
         }]
     }

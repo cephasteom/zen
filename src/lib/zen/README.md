@@ -1,9 +1,9 @@
 # ZEN3
-Zen is a Javascript library for expressing complex patterns with very little code. It was written to take advantage of JS's flexibility and is primed for pattern interference. Zen allows you to map musical parameters across a period of time or the x, y, z axes of a canvas. By manipulating the trajectories of up to 8 separate streams, you can trigger sonic events and mutations; with parameters being determined by the stream's current position in time and space.
+Zen is a Javascript library for expressing complex patterns with very little code. It was written to take advantage of JS's flexibility and is primed for pattern interference. Zen allows you to map musical parameters across time and 3D space. Plot multiple trajectories around the canvas and trigger sonic events and modulations whose parameters are determined by the stream's current position in time and space.
 
-Zen is designed to be used as a live coding tool and is available for experimentation at TODO. It can also be integrated into other projects where pattern generation is required. See section TODO for further guidance.
+Zen is designed to be used as a live coding tool and is available for experimentation at TODO. It can also be integrated into other projects requiring pattern generation. See section TODO for further guidance.
 ## Basics
-Zen provides you with 4 global variables, 8 streams, and a global settings object:
+Zen provides you with 4 const variables, 8 streams, and a global settings interface:
 ### Variables
 * t: an incrementing integer representing time
 * q: integer, number of divisions per cycle
@@ -13,9 +13,19 @@ Zen provides you with 4 global variables, 8 streams, and a global settings objec
 ### Streams
 8 instances of the `Stream` class (see below), assigned to the variables `s0`, `s1`, `s2`, `s3`, `s4`, `s5`, `s6`, `s7`. Used to map musical parameters across each cycle or the canvas, and determine the stream's trajectory across time and space.
 ### Zen
-An instance of the `Zen` class (see below), assigned to the variable `z`. Used to update the global `q` and `s` values, as well as other global settings such as `bpm`.
-
+An instance of the `Zen` class (see below), assigned to the variable `z`. It is used to update the global `q` and `s` values, as well as other global settings such as `bpm`.
 ## Syntax
+### Pattern
+Patterns are at the heart of Zen, allowing you to create complex patterns of number values. You don't usually instantiate the `Pattern` class, or call the `get()` method, directly; they are properties of a `Stream` or `Zen` (see below) and values are obtained under the hood. However, to illustrate how patterns work:
+```js
+const p = new Pattern()
+// create a range of values from 0 to 4 and query the value at the 0.25 phase
+p.range(0,4).get(0.25)
+// create a sine function from 0 to 10. Query the value at 0.75 phase
+p.sine(0,10).get(0.75)
+// chain methods together
+p.tri(0,256,1).add(4).div(0.5).pow(2).clamp(0, 1024)
+```
 ### Stream
 #### Time and Space
 TODO: s0.x, s0.t
@@ -52,54 +62,24 @@ s0.p('foo').tri(16,24,1).add(32)
 s1.p('bar').set(s0.p('foo').get(t/q))
 ```
 #### Events and Mutations
-A stream's `e` and `m` properties allow you to trigger a musical event - a new synth voice - or mutation - modulating all synth voices within the stream. Each property is, again, an instance of the `Pattern` class, but evaluates the result as a boolean - true triggers an event or mutation, false is ignored. JavaScript uses type inference and is able to compute a true or false from none boolean types. As a `0` is false and any value > `0` is true, we are able to pattern numbers in order to trigger our events.
-
-
-
+Use a stream's `e` and `m` properties to trigger musical events - discrete synth voices - or mutations - the modulation of all voices in a stream. Each property is, once again, an instance of the `Pattern` class, but evaluates the result as a boolean type, rather than a number. True triggers an event or mutation, false is ignored. JavaScript is able to infer boolean values from non-boolean types. As `0` is false and any value greater than `0` is true, we are able to pattern numbers in order to trigger our events.
 
 ```js
-s0.t.set(t)
-s0.t.range(0,256,1,1)
-s0.x.set(t*4)
-s0.x.sin(0,16,1,1)
-
-// key list of parameters based on position in time and space
-// t is the global time
-s0.get(t)
-```
-
-
-
-### Pattern
-TODO
-Calling `s0.p(<key>)`, `s0.px(<key>)`, `s0.py(<key>)`, `s0.pz(<key>)` instantiates a Parameter at that key. Parameters have a number of methods which can be chained. Each method adds a callback to the stack, which are then evaluated sequentially at the point the user requests the parameter value. All parameters stored at `p` on the Stream are passed the current time value, all parameters stored at `px`, `py`, and `pz` are passed their corresponding axis value. In this way, you can create complex mappings of sonic parameters to a Stream's value in time and space.
-
-Each time you call a method of a Parameter it gets added to a call stack. When you call `.get(value)` it pipes the callstack, passing the initial value to the first function, then the result to each subsequent function. The initial value should be a normalised value .
-
-```js
-// map a parameter across a cycle or the canvas using a range
-s0.foo('foo').range(0,10).get(0.5) // returns 5
-// additional arguments for freq and step
-s0.foo('foo').range(0,10,4,0.5)
-
-// choose from an array of values. Second value is for freq.
-s0.foo('foo').seq([0,2,4,6], 1)
-
-// use waveforms - sine, cosine, saw, tri, and square. Arguments same as range...
-s0.sine('foo').range(0,10,4,0.5).get(0.5)
-
-// use noise function. Noise is seeded once on page load
-s0.noise('foo').range(0,10,4,0.5).get(0.5)
-
-// all methods of the Math object (sin, cos, tan, etc) are methods of Parameter (see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math)
-s0.p('foo').sin().get(1)
-
-// additional arguments can be used where appropriate. For example:
-s0.p('foo').range(0,7).pow(-2).get(7)
-
-// chain additional methods to scale values further
-s0.p('foo').cos().add(4).mul(0.5).step(1).get(0.5)
-
-// clamp
-s0.p('foo').range(0,10).clamp(0,1).get(5)
+// trigger an event every division
+s0.e.set(1)
+// trigger an event every other division
+s0.e.set(t%2)
+// or...
+s0.e.set(t).odd()
+// use every to get regular rhythms
+s0.e.every(1) // every cycle
+s0.e.every(4) // every 4 cycles
+s0.e.every(0.5) // twice per cycle - if q is regular
+// various logic available to output 1s or 0s
+s0.e.sine(0,1).gt(0.75) // greater than
+s0.e.random(0,1,0.25).eq(0.75) // equal to
+// convert numbers to binary patterns
+s0.e.ntbin(76543, 16)
+// or binary strings to binary patterns
+s0.e.bin('01100101001010')
 ```

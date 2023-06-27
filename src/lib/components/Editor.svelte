@@ -45,7 +45,7 @@
         // Your monaco instance is ready, let's display some code!
         const editor = monaco.editor.create(editorContainer, options);
         const model = monaco.editor.createModel(
-            "// Welcome to Zen!",
+            localStorage.getItem("z.code") || "// Welcome to Zen!",
             undefined,
             monaco.Uri.file('sample.js')
         );
@@ -56,6 +56,7 @@
             if(e.keyCode === 3 && e.shiftKey) {
                 e.preventDefault();
                 setCode(editor.getValue());
+                localStorage.setItem("z.code", editor.getValue());
                 start();
             } 
         })

@@ -20,7 +20,7 @@ const counter = createCount(0);
 // initialise Zen and Streams within the scope of the loop
 export const z = new Zen();
 export const streams: Stream[] = Array(8).fill(0).map((_, i) => new Stream('s' + i))
-const [ s0 ] = streams;
+const [ s0, s1, s2, s3, s4, s5, s6, s7 ] = streams;
 
 const loop = new Loop(time => {
     // reset all streams to prevent unwanted parameters when user deletes code
@@ -54,8 +54,6 @@ const loop = new Loop(time => {
             ...obj,
             [result.id]: result
         }), {})
-
-    // TODO: send params to synth engine / midi engine / etc
     
     // call any callbacks provided to Zen at exact time
     const delta = (time - immediate()) * 1000
