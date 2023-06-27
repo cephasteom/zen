@@ -1,5 +1,5 @@
 <script lang="ts">
-
+    import { visualsData } from "$lib/stores/zen";
 </script>
 
 <div class="visuals">
