@@ -15,7 +15,7 @@ export const addAction = (cb: action) => {
     actions.update(arr => [...arr, cb])
 }
 
-const counter = createCount(0);
+let counter = createCount(0);
 
 // initialise Zen and Streams within the scope of the loop
 export const z = new Zen();
@@ -58,4 +58,10 @@ const loop = new Loop(time => {
 
 export const start = () => Transport.start('+0.1')
 
-export const stop = () => Transport.stop(immediate())
+let stops = 0;
+export const stop = () => {
+    stops++;
+    Transport.stop(immediate())
+    // reset counter if stopped twice
+    !(stops%2) && (counter = createCount(0))
+}

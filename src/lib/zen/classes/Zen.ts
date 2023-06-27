@@ -1,4 +1,5 @@
 import Pattern from './Pattern'
+import { clamp } from '../utils/utils'
 
 class Zen {
     // incrementing time
@@ -25,7 +26,7 @@ class Zen {
     }
 
     set s(value: number) {
-        this._s = value
+        this._s = clamp(Math.floor(value), 1, 48)
     }
 
     get q() {
