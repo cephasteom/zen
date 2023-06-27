@@ -15,6 +15,11 @@ export const addAction = (cb: action) => {
     actions.update(arr => [...arr, cb])
 }
 
+export const errorActions = writable<{(message: string) : void}[]>([])
+export const addErrorAction = (cb: (message: string) => void) => {
+    errorActions.update(arr => [...arr, cb])
+}
+
 let counter = createCount(0);
 
 // initialise Zen and Streams within the scope of the loop
@@ -40,7 +45,7 @@ const loop = new Loop(time => {
         eval(get(code))
     } catch (e: any) {
         // TODO: display error message to user
-        console.log(e.message)
+        get(errorActions).forEach(cb => cb(e.message))
     }
     
     // update dimensions and bpm

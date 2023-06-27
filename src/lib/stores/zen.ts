@@ -1,5 +1,5 @@
-import { writable, derived } from 'svelte/store';
-import { z, addAction } from '$lib/zen';
+import { writable, derived, get } from 'svelte/store';
+import { z, addAction, addErrorAction } from '$lib/zen';
 import { handleEvent, handleMutation } from '$lib/oto';
 
 export const t = writable(0); // time
@@ -8,6 +8,7 @@ export const q = writable(16); // quantization (frames per cycle)
 export const s = writable(16); // size of canvas
 export const eventPositions = writable({});
 export const mutationPositions = writable({});
+export const error = writable('');
 
 // TODO: lots of garbage collection here. Can we use 
 export const visualsData = derived([s, eventPositions, mutationPositions], ([s, eventPositions, mutationPositions]) => {
@@ -60,3 +61,8 @@ addAction((time: number, delta: number, events: { [key: string]: any }[], mutati
         handleMutation(time, id, params);
     }
 )})
+
+addErrorAction((message: string) => {
+    // if error does not equal message, set error
+    get(error) !== message && error.set(message);
+})

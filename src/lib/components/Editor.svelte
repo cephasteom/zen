@@ -3,6 +3,7 @@
     import { onDestroy, onMount } from 'svelte';
     import type * as Monaco from 'monaco-editor/esm/vs/editor/editor.api';
     import { setCode, start, stop } from '$lib/zen';
+    import { error } from '$lib/stores/zen';
 
     let editor: Monaco.editor.IStandaloneCodeEditor;
     let monaco: typeof Monaco;
@@ -55,6 +56,7 @@
             e.keyCode === 9 && stop();
             if(e.keyCode === 3 && e.shiftKey) {
                 e.preventDefault();
+                error.set('');
                 setCode(editor.getValue());
                 localStorage.setItem("z.code", editor.getValue());
                 start();
@@ -69,13 +71,37 @@
 
 <svelte:window on:resize={() => editor?.layout({})} />
 
-<div>
+<div class="container">
     <div class="editor" bind:this={editorContainer} />
+    <div class="error" class:hidden={!$error}>
+        <p>Error: <span>{$error}</span></p>
+    </div>
 </div>
 
-<style>
+<style lang="scss">
+    .container {
+        position: relative;
+    }
     .editor {
         width: 100%;
         height: 75vh!important;
+    }
+
+    .error {
+        position: absolute;
+        bottom: 0;
+        left: 26px;
+        padding: 1rem 0;
+        font-size: var(--text-sm);
+        color: var(--color-grey-light);
+        background-color: var(--color-grey-darkest);
+
+        span {
+            color: var(--color-theme-1);
+        }
+    }
+
+    .hidden {
+        display: none;
     }
 </style>
