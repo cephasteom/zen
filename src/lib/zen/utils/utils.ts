@@ -30,3 +30,5 @@ export function createCount(start = 0){
 export function numberToBinary(n: number, bits: number = 16) {
     return (n >>> 0).toString(2).padStart(bits, '0');
 }
+
+export const mod = (n: number, modulo: number) => ((n % modulo) + modulo) % modulo;

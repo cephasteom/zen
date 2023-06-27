@@ -47,17 +47,13 @@ const loop = new Loop(time => {
     loop.interval = `${z.q}n`
     Transport.bpm.setValueAtTime(z.bpm.get(z.t/z.q) || 120, time)
 
-    // compile parameters for each stream
-    const params = streams.map(stream => stream.get(z.t, z.q, z.s))
-        .filter(({e, m}) => e || m)
-        .reduce((obj, result) => ({
-            ...obj,
-            [result.id]: result
-        }), {})
+    // compile events and mutations
+    const events = streams.map(stream => stream.get(z.t, z.q, z.s)).filter(({e}) => e)
+    const mutations = streams.map(stream => stream.get(z.t, z.q, z.s)).filter(({m}) => m)
     
     // call any callbacks provided to Zen at exact time
     const delta = (time - immediate()) * 1000
-    get(actions).forEach(cb => cb(time, delta, params))
+    get(actions).forEach(cb => cb(time, delta, events, mutations))
 }, `${z.q}n`).start(0)
 
 export const start = () => Transport.start('+0.1')

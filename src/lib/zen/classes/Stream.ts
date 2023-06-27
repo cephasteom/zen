@@ -1,5 +1,6 @@
 // TODO: improve typing
 import Pattern from './Pattern'
+import { mod } from '../utils/utils'
 
 class Stream {
     id: string
@@ -78,7 +79,7 @@ class Stream {
             ...this.evaluateGroup(this.pz, z/s), // ...
         } : {}
         
-        return { id, e, m, x: x%s, y: y%s, z: z%s, params }
+        return { id, e, m, x: mod(x,s), y: mod(y,s), z: mod(z,s), params }
     }
 
     reset() {
