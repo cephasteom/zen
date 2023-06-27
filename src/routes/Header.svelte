@@ -30,8 +30,8 @@
 
         @media all and (display-mode: fullscreen) {
             background-color: var(--color-grey-darker);
-            padding: 2rem;
-            & > nav { display: none }
+            padding-top: 1rem;
+            & > nav > .menu { display: none }
         }
 	}
     nav {

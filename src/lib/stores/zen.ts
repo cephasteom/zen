@@ -1,5 +1,6 @@
 import { writable, derived } from 'svelte/store';
 import { z, addAction } from '$lib/zen';
+import { handleEvent, handleMutation } from '$lib/oto';
 
 export const t = writable(0); // time
 export const c = writable(0); // cycle
@@ -46,7 +47,16 @@ addAction((time: number, delta: number, events: { [key: string]: any }[], mutati
         q.set(z.q);
         s.set(z.s);
         eventPositions.set(events.map(({id,x,y,z}) => ({id,x,y,z})));
-        mutationPositions.set(mutations.map(({id,x,y,z}) => ({id,x,y,z})));
-        
+        mutationPositions.set(mutations.map(({id,x,y,z}) => ({id,x,y,z})));      
     }, delta);
 })
+
+addAction((time: number, delta: number, events: { [key: string]: any }[], mutations: { [key: string]: any }[]) => {
+    events.forEach(({id, params}) => {
+        handleEvent(time, id, params);
+    })
+
+    mutations.forEach(({id, params}) => {
+        handleMutation(time, id, params);
+    }
+)})
