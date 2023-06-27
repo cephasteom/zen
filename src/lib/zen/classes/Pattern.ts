@@ -120,8 +120,14 @@ class Pattern {
         return this
     }
 
-    minus(value: number = 0) {
+    take(value: number = 0) {
         this.stack = [...this.stack, x => x - value]
+        return this
+    }
+
+    // reverse take value - x, rather than x - value
+    $take(value: number = 0) {
+        this.stack = [...this.stack, x => value - x]
         return this
     }
 
@@ -132,6 +138,12 @@ class Pattern {
 
     div(value: number = 1) {
         this.stack = [...this.stack, x => x / value]
+        return this
+    }
+
+    // reverse div value - x, rather than x / value
+    $div(value: number = 1) {
+        this.stack = [...this.stack, x => value / x]
         return this
     }
 
@@ -151,37 +163,37 @@ class Pattern {
     }
 
     // greater than - returns a if true, b if false
-    gt(n: number, a: 1, b: 0) {
+    gt(n: number, a: number = 1, b: number = 0) {
         this.stack = [...this.stack, x => x > n ? a : b]
         return this
     }
 
     // less than - returns a if true, b if false
-    lt(n: number, a: 1, b: 0) {
+    lt(n: number, a: number = 1, b: number = 0) {
         this.stack = [...this.stack, x => x < n ? a : b]
         return this
     }
 
     // greater than or equal to - returns a if true, b if false
-    gte(n: number, a: 1, b: 0) {
+    gte(n: number, a: number = 1, b: number = 0) {
         this.stack = [...this.stack, x => x >= n ? a : b]
         return this
     }
 
     // less than or equal to - returns a if true, b if false
-    lte(n: number, a: 1, b: 0) {
+    lte(n: number, a: number = 1, b: number = 0) {
         this.stack = [...this.stack, x => x <= n ? a : b]
         return this
     }
 
     // equal to - returns a if true, b if false
-    eq(n: number, a: 1, b: 0) {
+    eq(n: number, a: number = 1, b: number = 0) {
         this.stack = [...this.stack, x => x === n ? a : b]
         return this
     }
 
     // not equal to - returns a if true, b if false
-    neq(n: number, a: 1, b: 0) {
+    neq(n: number, a: number = 1, b: number = 0) {
         this.stack = [...this.stack, x => x !== n ? a : b]
         return this
     }

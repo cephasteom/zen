@@ -16,22 +16,24 @@ export const visualsData = derived([s, eventPositions, mutationPositions], ([s, 
         data[i * 4 + 0] = 0;
         data[i * 4 + 1] = 0;
         data[i * 4 + 2] = 0;
-        data[i * 4 + 3] = 255;
+        data[i * 4 + 3] = 0;
     }
 
+    // event rgb(255, 105, 90)
     for (const { x, y } of Object.values(eventPositions)) {
-        const i = (x + y * s) * 4;
+        const i = Math.floor(x + y * s) * 4;
         data[i + 0] = 255;
-        data[i + 1] = 255;
-        data[i + 2] = 255;
+        data[i + 1] = 105;
+        data[i + 2] = 90;
         data[i + 3] = 255;
     }
 
+    // mutation rgb(229, 0, 127)
     for (const { x, y } of Object.values(mutationPositions)) {
-        const i = (x + y * s) * 4;
-        data[i + 0] = 255;
+        const i = Math.floor(x + y * s) * 4;
+        data[i + 0] = 229;
         data[i + 1] = 0;
-        data[i + 2] = 0;
+        data[i + 2] = 127;
         data[i + 3] = 255;
     }
     return data;

@@ -27,6 +27,12 @@
 		display: flex;
 		justify-content: center;
         background-color: var(--color-grey-darkest);
+
+        @media all and (display-mode: fullscreen) {
+            background-color: var(--color-grey-darker);
+            padding: 2rem;
+            & > nav { display: none }
+        }
 	}
     nav {
         display: flex;

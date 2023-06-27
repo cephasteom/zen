@@ -25,6 +25,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@svgdotjs/svg.js": "^3.2.0",
 		"noisejs": "^2.1.0",
 		"tone": "^14.7.77"
 	}
