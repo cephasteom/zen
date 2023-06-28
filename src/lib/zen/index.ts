@@ -3,6 +3,7 @@ import { writable, get } from 'svelte/store';
 import Zen from './classes/Zen';
 import Stream from './classes/Stream';
 import { createCount } from './utils/utils';
+import { formatEventParams, formatMutationParams } from './utils/syntax';
 import type { action } from './types';
 
 export const code = writable('');
@@ -29,19 +30,18 @@ export const streams: Stream[] = Array(8).fill(0).map((_, i) => new Stream('s' +
 const [ s0, s1, s2, s3, s4, s5, s6, s7 ] = streams;
 
 const loop = new Loop(time => {
-    // reset all streams to prevent unwanted parameters when user deletes code
+    // reset all streams and Zen
     streams.forEach(stream => stream.reset())
-    // reset Zen
     z.reset()
     
-    // global time
+    // increment global time
     const t = counter()
     z.t = t;
 
     // global dimensions
     const { q, s } = z
     
-    // evaluate the user's code
+    // evaluate the user's code, using fallback if it fails
     try {
         eval(get(code))
         fallbackCode.set(get(code))
@@ -55,12 +55,18 @@ const loop = new Loop(time => {
     Transport.bpm.setValueAtTime(z.bpm.get(z.t/z.q) || 120, time)
 
     // compile events and mutations
-    const events = streams.map(stream => stream.get(z.t, z.q, z.s)).filter(({e}) => e)
-    const mutations = streams.map(stream => stream.get(z.t, z.q, z.s)).filter(({m}) => m)
+    const compiled = streams.map(stream => stream.get(z.t, z.q, z.s))
+    const events = compiled
+        .filter(({e}) => e)
+        .map(stream => ({...stream, params: formatEventParams(stream.params)}))
+    const mutations = compiled
+        .filter(({m}) => m)
+        .map(stream => ({...stream, params: formatMutationParams(stream.params)}))
     
-    // call any callbacks provided to Zen at exact time
+    // call actions
     const delta = (time - immediate()) * 1000
     get(actions).forEach(cb => cb(time, delta, events, mutations))
+
 }, `${z.q}n`).start(0)
 
 export const start = () => Transport.start('+0.1')

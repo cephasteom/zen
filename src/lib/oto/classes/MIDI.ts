@@ -45,6 +45,7 @@ class Midi {
     trigger(params: { [key: string]: number | string } = {}, time: number) {
         const { midi, midichan, latency, n, dur, amp = 0.5 } = params;
 
+        
         // ignore nonexistent devices
         if(!this.outputs.includes(midi.toString())) return;
 

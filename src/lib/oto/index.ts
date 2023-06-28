@@ -1,6 +1,9 @@
 import { WebMidi } from "webmidi";
 import Midi from './classes/MIDI';
 
+/**
+ * Enable Midi and generate a stream for each device
+**/
 async function enableMidi() {
     await WebMidi.enable().then(() => {
         console.log('MIDI enabled')
@@ -8,30 +11,39 @@ async function enableMidi() {
         console.log('Available MIDI outputs: ' + WebMidi.outputs.map(i => i.name))
     })
 }
-
 enableMidi();
 
-const midiStreams = new Array(8).fill(0).map((_, i) => new Midi());
-console.log(midiStreams)
+const midiStreams:  { [key: string]: Midi } = new Array(8).fill(0)
+    .map((_, i) => new Midi())
+    .reduce((obj, stream, i) => ({
+        ...obj,
+        [`s${i}`]: stream
+    }), {});
 
+/**
+ * Event handlers
+**/
 
 export function handleEvent(time: number, id: string, params: any) {
-    params.midi && handleMidi(time, id, params);
-    // console.log('event', time, id, params)
+    params.midi && midiStreams[id].trigger(params, time);
+
+    console.log('event', time, id, params)
 }
 
 export function handleMutation(time: number, id: string, params: any) {
-    params.midi && handleMidi(time, id, params);
-    const mutable = Object.entries(params)
-        .filter(([key]) => key.startsWith('_'))
-        .reduce((obj, [key, value]) => ({
-            ...obj,
-            [key]: value
-        }), {});
+    // TODO: 
+    // params.midi && midiStreams[id].mutate(params, time);
 
-    // console.log('mutation', time, id, mutable)
+    // const mutable = Object.entries(params)
+    //     .filter(([key]) => key.startsWith('_'))
+    //     .reduce((obj, [key, value]) => ({
+    //         ...obj,
+    //         [`_${key}`]: value
+    //     }), {});
+
+    console.log('mutation', time, id, params)
 }
 
 export function handleMidi(time: number, id: string, params: any) {
-    // console.log('midi', time, id, params)
+    midiStreams
 }
