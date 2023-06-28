@@ -19,13 +19,14 @@ An instance of the `Zen` class (see below), assigned to the variable `z`. It is 
 Patterns are at the heart of Zen, allowing you to create complex patterns of number values. You don't usually instantiate the `Pattern` class, or call the `get()` method, directly; they are properties of a `Stream` or `Zen` (see below) and values are obtained under the hood. However, to illustrate how patterns work:
 ```js
 const p = new Pattern()
-// create a range of values from 0 to 4 and query the value at the 0.25 phase
-p.range(0,4).get(0.25)
-// create a sine function from 0 to 10. Query the value at 0.75 phase
-p.sine(0,10).get(0.75)
+// create a range of values from 0 to 4 and query the value at t
+p.range(0,4).get(t, q) // args are time and divisions
+// create a sine function from 0 to 10. Query the value at t
+p.sine(0,10).get(t, q)
 // chain methods together
 p.tri(0,256,1).add(4).div(0.5).pow(2).clamp(0, 1024)
 ```
+
 ### Stream
 #### Time and Space
 TODO: s0.x, s0.t
@@ -41,7 +42,7 @@ s0.p('foo').set(8)
 // chain methods together for greater complexity
 s0.pz('bar').saw(0,16).mul(2)
 ```
-On each division of a cycle, each pattern is evaluated to create a list of parameters key / value pairs. Each method passes its value to the next in the chain, with the first value being the current position in time or in space, expressed as a fraction of 1. For example, 0.5 would be half way across a cycle or the canvas. This allows you manipulate time or space using arithmetic.
+On each division of a cycle, each pattern is evaluated to create a list of parameters key / value pairs. Each method passes its value to the next in the chain, with the first value being the current time `t`. This allows you manipulate time or space using arithmetic.
 ```js
 // offset foo by half a cycle
 s0.p('foo').add(0.5).range(0,256)

@@ -25,7 +25,7 @@ const midiStreams:  { [key: string]: Midi } = new Array(8).fill(0)
 **/
 
 export function handleEvent(time: number, id: string, params: any) {
-    console.log(params)
+    // console.log(params)
     params.midi && midiStreams[id].trigger(params, time);
 }
 
