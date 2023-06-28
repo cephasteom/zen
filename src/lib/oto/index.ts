@@ -25,7 +25,12 @@ const midiStreams:  { [key: string]: Midi } = new Array(8).fill(0)
 **/
 
 export function handleEvent(time: number, id: string, params: any) {
-    // console.log(params)
+    const { cut } = params;
+    const toCut = cut !== undefined ? [+cut].flat() : []
+    toCut.forEach((id: number) => {
+        midiStreams[`s${id}`].cut(time);
+    })
+
     params.midi && midiStreams[id].trigger(params, time);
 }
 

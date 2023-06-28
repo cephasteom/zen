@@ -91,7 +91,7 @@ class Midi {
             time: `+${((delta + latency) * 1000) - 10}`,
             ...this.history
         }
-
+        
         this.history.device.sendNoteOff(this.history.notes, options);
         this.history.notes = [];
     }
