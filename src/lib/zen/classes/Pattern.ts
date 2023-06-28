@@ -262,6 +262,8 @@ class Pattern {
         return this
     }
 
+    // TODO: this is fairly weighty, can we do it better?
+    // and we're generating this each time! Can we memoize it?
     scale(name: string, length: number = 8, freq: number = 1) {
         const [root, s] = parseScale(name)
         const notes = scalesList[s] || scalesList['major']
