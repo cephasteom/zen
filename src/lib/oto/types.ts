@@ -1,0 +1,1 @@
+export type params = { [key: string]: number | string }
