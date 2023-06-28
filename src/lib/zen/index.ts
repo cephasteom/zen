@@ -9,6 +9,7 @@ export const code = writable('');
 export const setCode = (str: string) => {
     code.set(str)
 };
+export const fallbackCode = writable('');
 
 export const actions = writable<action[]>([])
 export const addAction = (cb: action) => {
@@ -43,9 +44,10 @@ const loop = new Loop(time => {
     // evaluate the user's code
     try {
         eval(get(code))
+        fallbackCode.set(get(code))
     } catch (e: any) {
-        // TODO: display error message to user
         get(errorActions).forEach(cb => cb(e.message))
+        eval(get(fallbackCode))
     }
     
     // update dimensions and bpm
