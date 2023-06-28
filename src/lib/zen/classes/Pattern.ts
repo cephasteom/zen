@@ -4,6 +4,8 @@ import { mapToRange, roundToFactor, clamp, noise, numberToBinary } from '../util
 class Pattern {
     private stack: stack = []
     private _value: number | null = null
+    private _division: number = 16 // q or s
+    private _bpm: number = 120
 
     constructor(value: number | null = null) {
         value !== null && this.set(value);
@@ -236,6 +238,21 @@ class Pattern {
         }]
     }
 
+    /**
+     * convert current value from beats to seconds, scaling by bpm
+     * @returns 
+     */
+    bts() {
+        this.stack = [...this.stack, x => x * (60/this._bpm)]
+        return this
+    }
+
+    // convert current value from beats to milliseconds, scaling by bpm
+    btms() {
+        this.stack = [...this.stack, x => x * (60000/this._bpm)]
+        return this
+    }
+
     // do whatever to the preceding value
     fn(cb: {(x: number): number}) {
         this.stack = [...this.stack, cb]
@@ -244,8 +261,11 @@ class Pattern {
 
     // Get output based on position in cycle or on canvas
     // expected to be normalised between 0 - 1
-    get(position: number = 0) {
-        return this.stack.length ? this.stack.reduce((val, fn) => fn(val), position) : null
+    get(count: number, divisions: number, bpm: number) {
+        this._division = divisions
+        this._bpm = bpm
+
+        return this.stack.length ? this.stack.reduce((val, fn) => fn(val), count/divisions) : null
     }
 
     has() : boolean {
