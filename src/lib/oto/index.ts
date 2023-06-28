@@ -26,24 +26,8 @@ const midiStreams:  { [key: string]: Midi } = new Array(8).fill(0)
 
 export function handleEvent(time: number, id: string, params: any) {
     params.midi && midiStreams[id].trigger(params, time);
-
-    console.log('event', time, id, params)
 }
 
 export function handleMutation(time: number, id: string, params: any) {
-    // TODO: 
-    // params.midi && midiStreams[id].mutate(params, time);
-
-    // const mutable = Object.entries(params)
-    //     .filter(([key]) => key.startsWith('_'))
-    //     .reduce((obj, [key, value]) => ({
-    //         ...obj,
-    //         [`_${key}`]: value
-    //     }), {});
-
-    console.log('mutation', time, id, params)
-}
-
-export function handleMidi(time: number, id: string, params: any) {
-    midiStreams
+    params.midi && midiStreams[id].mutate(params, time);
 }

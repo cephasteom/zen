@@ -39,7 +39,7 @@ const loop = new Loop(time => {
     z.t = t;
 
     // global dimensions
-    const { q, s } = z
+    const { q, s, c } = z
     
     // evaluate the user's code, using fallback if it fails
     try {
@@ -51,17 +51,18 @@ const loop = new Loop(time => {
     }
     
     // update dimensions and bpm
+    const bpm = z.bpm.get(t/q) || 120
     loop.interval = `${z.q}n`
-    Transport.bpm.setValueAtTime(z.bpm.get(z.t/z.q) || 120, time)
+    Transport.bpm.setValueAtTime(bpm, time)
 
     // compile events and mutations
     const compiled = streams.map(stream => stream.get(z.t, z.q, z.s))
     const events = compiled
         .filter(({e}) => e)
-        .map(stream => ({...stream, params: formatEventParams(stream.params)}))
+        .map(stream => ({...stream, params: {...formatEventParams(stream.params), bpm}}))
     const mutations = compiled
         .filter(({m}) => m)
-        .map(stream => ({...stream, params: formatMutationParams(stream.params)}))
+        .map(stream => ({...stream, params: {...formatMutationParams(stream.params), bpm}}))
     
     // call actions
     const delta = (time - immediate()) * 1000
