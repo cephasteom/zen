@@ -101,11 +101,7 @@ class Pattern {
 
     // random function
     random(lo: number = 0, hi: number = 1, step: number = 0) {
-        this.stack = [() => {
-            const random = Math.random()
-
-            return mapToRange(random, 0, 1, lo, hi, step)
-        }]
+        this.stack = [() => mapToRange(Math.random(), 0, 1, lo, hi, step)]
         return this
     }
 

@@ -32,3 +32,9 @@ export function numberToBinary(n: number, bits: number = 16) {
 }
 
 export const mod = (n: number, modulo: number) => ((n % modulo) + modulo) % modulo;
+
+// TODO: difficult to type as args are unknown
+export const _reduced = (f: () => any, g: () => any) => (...args) => g(f(...args));
+export const pipe = (...fns) => fns.reduce(_reduced);
+
+export const beatsToSeconds = (beats: number, bpm: number) => beats * (60 / bpm);

@@ -56,13 +56,13 @@ const loop = new Loop(time => {
     Transport.bpm.setValueAtTime(bpm, time)
 
     // compile events and mutations
-    const compiled = streams.map(stream => stream.get(z.t, z.q, z.s))
+    const compiled = streams.map(stream => stream.get(z.t, z.q, z.s, bpm))
     const events = compiled
         .filter(({e}) => e)
-        .map(stream => ({...stream, params: {...formatEventParams(stream.params), bpm}}))
+        .map(stream => ({...stream, params: {...formatEventParams(stream.params)}}))
     const mutations = compiled
         .filter(({m}) => m)
-        .map(stream => ({...stream, params: {...formatMutationParams(stream.params), bpm}}))
+        .map(stream => ({...stream, params: {...formatMutationParams(stream.params)}}))
     
     // call actions
     const delta = (time - immediate()) * 1000
