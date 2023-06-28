@@ -53,13 +53,14 @@ class Midi {
         const delta = time - immediate()
         const channels = midichan ? (Array.isArray(midichan) ? midichan : [+midichan]) : undefined;
         const device = WebMidi.getOutputByName(midi.toString());
+        const duration = +dur * 1000;
         const timestamp = (delta + (+latency || 0)) * 1000
         
         const options = {
-            duration: +dur,
+            duration,
             time: `+${timestamp}`,
             attack: +amp,
-            channels, // todo: this may need work if empty [] is not accepted
+            channels,
         }
 
         // Play notes
