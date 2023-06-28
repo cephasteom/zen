@@ -3,9 +3,11 @@ import { mapToRange, roundToFactor, clamp, noise, numberToBinary } from '../util
 
 class Pattern {
     private stack: stack = []
+    private _value: number | null = null
 
     constructor(value: number | null = null) {
         value !== null && this.set(value);
+        this._value = value;
         
         // Add all Math functions to the Parameter class
         Object.getOwnPropertyNames( Math ).map( name => {
@@ -23,6 +25,7 @@ class Pattern {
 
     reset() {
         this.stack = []
+        this._value && this.set(this._value)
         return this
     }
 
@@ -205,6 +208,11 @@ class Pattern {
 
     even(a: number = 1, b: number = 0) {
         this.stack = [...this.stack, x => x % 2 === 0 ? a : b]
+        return this
+    }
+
+    if(a: number = 1, b: number = 0) {
+        this.stack = [...this.stack, x => x ? a : b]
         return this
     }
 

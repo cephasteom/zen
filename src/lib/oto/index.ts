@@ -1,6 +1,6 @@
 export function handleEvent(time: number, id: string, params: any) {
     params.midi && handleMidi(time, id, params);
-    console.log('event', time, id, params)
+    // console.log('event', time, id, params)
 }
 
 export function handleMutation(time: number, id: string, params: any) {
@@ -12,9 +12,9 @@ export function handleMutation(time: number, id: string, params: any) {
             [key]: value
         }), {});
 
-    console.log('mutation', time, id, mutable)
+    // console.log('mutation', time, id, mutable)
 }
 
 export function handleMidi(time: number, id: string, params: any) {
-    console.log('midi', time, id, params)
+    // console.log('midi', time, id, params)
 }
