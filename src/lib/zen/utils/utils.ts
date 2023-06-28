@@ -38,3 +38,20 @@ export const _reduced = (f: () => any, g: () => any) => (...args) => g(f(...args
 export const pipe = (...fns) => fns.reduce(_reduced);
 
 export const beatsToSeconds = (beats: number, bpm: number) => beats * (60 / bpm);
+
+export function repeatArrayUntilLength(arr: [], length: number = 0) {
+    // if supplied length is shorter than array, ignore
+    if(arr.length > length) return arr
+
+    let repeatedArr: any[] = [];
+    const count = createCount()
+    while(repeatedArr.length < length) {
+        repeatedArr = [
+            ...repeatedArr, 
+            arr[ wrap(count(), arr.length) ]
+        ]
+    }
+    return repeatedArr
+}
+
+export const wrap = (i: number, max: number) => i % max

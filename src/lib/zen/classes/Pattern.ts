@@ -1,5 +1,8 @@
 import type { stack } from '../types'
-import { mapToRange, roundToFactor, clamp, noise, numberToBinary } from '../utils/utils'
+import { mapToRange, roundToFactor, clamp, noise, numberToBinary, repeatArrayUntilLength } from '../utils/utils';
+import { parseScale } from '../utils/params'
+import { letterToInteger } from '../utils/musical'
+import { scales as scalesList } from '../data/scales'
 
 class Pattern {
     private stack: stack = []
@@ -259,10 +262,14 @@ class Pattern {
         return this
     }
 
-    // scale(name: string) {
-    //     this.stack = [...this.stack, x => scale(name, x)]
-    //     return this
-    // }
+    scale(name: string, length: number = 8, freq: number = 1) {
+        const [root, s] = parseScale(name)
+        const notes = scalesList[s] || scalesList['major']
+        const repeated = repeatArrayUntilLength(notes, length || notes.length)
+        const transposed = repeated.map((n, i) => 36 + letterToInteger(root) + n + (Math.floor(i/notes.length) * 12))
+        this.seq(transposed, freq)
+        return this
+    }
 
     // Get output based on position in cycle or on canvas
     // expected to be normalised between 0 - 1
