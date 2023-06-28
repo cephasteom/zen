@@ -40,18 +40,18 @@ class Pattern {
     // step quantised the output, freq is the number of iterations of the range, either per cycle or per canvas
     // values provided to the callback should be in num of cycles or num of canvas
     range(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1) {
-        this.stack = [(t: number) => mapToRange(((t/this._q)*freq)%1, 0, 1, lo, hi, step)]
+        this.stack = [...this.stack, (t: number) => mapToRange(((t/this._q)*freq)%1, 0, 1, lo, hi, step)]
         return this
     }
 
     seq(values: number[] = [], freq: number = 1) {
-        this.stack = [(t: number) => values[Math.floor(((t/this._q)*freq*values.length)%values.length)]]
+        this.stack = [...this.stack, (t: number) => values[Math.floor(((t/this._q)*freq*values.length)%values.length)]]
         return this
     }
 
     // sine function
     sine(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1) {
-        this.stack = [(t: number) => {
+        this.stack = [...this.stack, (t: number) => {
             const radians = (((t/this._q)*freq)%1) * 360 * (Math.PI/180)
             const sin = Math.sin(radians)
 
@@ -62,7 +62,7 @@ class Pattern {
 
     // cosine function
     cosine(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1) {
-        this.stack = [(t: number) => {
+        this.stack = [...this.stack, (t: number) => {
             const radians = (((t/this._q)*freq)%1) * 360 * (Math.PI/180)
             const cos = Math.cos(radians)
 
@@ -73,7 +73,7 @@ class Pattern {
 
     // sawtooth function
     saw(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1) {
-        this.stack = [(t: number) => {
+        this.stack = [...this.stack, (t: number) => {
             const saw = (((t/this._q)*freq)%1)
 
             return mapToRange(saw, 0, 1, lo, hi, step)
@@ -83,7 +83,7 @@ class Pattern {
 
     // triangle function
     tri(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1) {
-        this.stack = [(t: number) => {
+        this.stack = [...this.stack, (t: number) => {
             const tri = Math.abs((((t/this._q)*freq)%1) - 0.5) * 2
 
             return mapToRange(tri, 0, 1, lo, hi, step)
@@ -93,7 +93,7 @@ class Pattern {
 
     // square function
     square(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1) {
-        this.stack = [(t: number) => {
+        this.stack = [...this.stack, (t: number) => {
             const square = (((t/this._q)*freq)%1) < 0.5 ? 0 : 1
 
             return mapToRange(square, 0, 1, lo, hi, step)
@@ -109,7 +109,7 @@ class Pattern {
 
     // noise function
     noise(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1) {
-        this.stack = [(t: number) => {
+        this.stack = [...this.stack, (t: number) => {
             return mapToRange(noise.simplex2((t/this._q)*freq,0), -1, 1, lo, hi, step)
         }]
         return this
@@ -258,6 +258,11 @@ class Pattern {
         this.stack = [...this.stack, cb]
         return this
     }
+
+    // scale(name: string) {
+    //     this.stack = [...this.stack, x => scale(name, x)]
+    //     return this
+    // }
 
     // Get output based on position in cycle or on canvas
     // expected to be normalised between 0 - 1
