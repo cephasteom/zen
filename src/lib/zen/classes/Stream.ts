@@ -61,7 +61,7 @@ class Stream {
 
     get(time: number = 0, q: number = 16, s: number = 16) {
         // use stream t, if set, or global t
-        const t = this.t.has() ? this.t.get(time/q) : time
+        const t = this.t.has() ? Math.round(this.t.get(time/q)) : time
 
         // use stream x, y, z, if set, or 0
         const x = this.x.has() ? this.x.get(t/s) : 0
