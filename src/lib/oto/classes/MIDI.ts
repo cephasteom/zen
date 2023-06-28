@@ -20,11 +20,11 @@ class Midi {
     }
 
     // keep track of notes and ccs for each device
-    storeHistory(notes: number[], ccs: {}[], device?: Output, channels?: number[] | undefined, latency?: number) {
+    storeHistory(note: number, ccs: {}[], device?: Output, channels?: number[] | undefined, latency?: number) {
         const history = this.history || {}
         device && (history.device = device);
         channels && (history.channels = channels);
-        notes && (history.notes = [...(history.notes || []), ...notes]);
+        note && (history.notes = [...(history.notes || []), note]);
         ccs && (history.ccs = [...(history.ccs || []), ...ccs]);
         latency && (history.latency = latency);
         this.history = history
@@ -42,20 +42,20 @@ class Midi {
         }, []);
     }
 
+    // accepts a single note
     trigger(params: { [key: string]: number | string } = {}, time: number) {
-        const { midi, midichan, latency, n, dur, amp = 0.5 } = params;
+        const { midi, midichan, latency, n, dur = 1, amp = 0.5 } = params;
 
         // ignore nonexistent devices
         if(!this.outputs.includes(midi.toString())) return;
 
         const note = n || 60;
-        const notes = Array.isArray(note) ? note : [+note];
         const delta = time - immediate()
         const channels = midichan ? (Array.isArray(midichan) ? midichan : [+midichan]) : undefined;
         const device = WebMidi.getOutputByName(midi.toString());
         const duration = +dur * 1000;
         const timestamp = (delta + (+latency || 0)) * 1000
-        
+
         const options = {
             duration,
             time: `+${timestamp}`,
@@ -63,8 +63,8 @@ class Midi {
             channels,
         }
 
-        // Play notes
-        notes.forEach((note, i) => device.playNote(note, {...options, time: `+${timestamp + (i * ((+params.strum) || 0))}`}))
+        // Play note
+        device.playNote(note, {...options, time: `+${timestamp}`});
 
         // get ccs from params
         const ccs = this.getCCsFromParams(params);
@@ -77,7 +77,7 @@ class Midi {
             device.sendControlChange(cc, !prev[value] ? 0 : value, options)
         })
 
-        this.storeHistory(notes, ccs, device, channels, +latency);
+        this.storeHistory(+note, ccs, device, channels, +latency);
     }
 
 
