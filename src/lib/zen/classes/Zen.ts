@@ -34,7 +34,7 @@ class Zen {
     }
 
     set q(value: number) {
-        this._q = value
+        this._s = clamp(Math.floor(value), 1, 64)
     }
 
     // cycle
