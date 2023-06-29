@@ -1,6 +1,7 @@
 // TODO: improve typing
 import Pattern from './Pattern'
-import { mod, pipe, beatsToSeconds } from '../utils/utils'
+import { mod } from '../utils/utils'
+import { formatEventParams, formatMutationParams } from '../utils/syntax';
 
 class Stream {
     id: string
@@ -88,7 +89,7 @@ class Stream {
             ...this.evaluateGroup(this.pz, z, s, bpm), // ...
         } : {}
         
-        return { id, e, m, x: mod(x,s), y: mod(y,s), z: mod(z,s), params }
+        return { id, e, m, x: mod(x,s), y: mod(y,s), z: mod(z,s), eparams: formatEventParams(params), mparams: formatMutationParams(params) }
     }
 
     reset() {

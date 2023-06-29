@@ -60,12 +60,8 @@ const loop = new Loop(time => {
 
     // compile events and mutations
     const compiled = streams.map(stream => stream.get(z.t, z.q, z.s, bpm))
-    const events = compiled
-        .filter(({e}) => e)
-        .map(stream => ({...stream, params: {...formatEventParams(stream.params)}}))
-    const mutations = compiled
-        .filter(({m}) => m)
-        .map(stream => ({...stream, params: {...formatMutationParams(stream.params)}}))
+    const events = compiled.filter(({e}) => e)
+    const mutations = compiled.filter(({m}) => m)
     
     // call actions
     const delta = (time - immediate()) * 1000

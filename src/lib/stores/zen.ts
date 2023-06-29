@@ -53,12 +53,12 @@ addAction((time: number, delta: number, events: { [key: string]: any }[], mutati
 })
 
 addAction((time: number, delta: number, events: { [key: string]: any }[], mutations: { [key: string]: any }[]) => {
-    events.forEach(({id, params}) => {
-        handleEvent(time, id, params);
+    events.forEach(({id, eparams}) => {
+        handleEvent(time, id, eparams);
     })
 
-    mutations.forEach(({id, params}) => {
-        handleMutation(time, id, params);
+    mutations.forEach(({id, mparams}) => {
+        handleMutation(time, id, mparams);
     }
 )})
 
