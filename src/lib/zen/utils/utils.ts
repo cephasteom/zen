@@ -34,25 +34,10 @@ export function numberToBinary(n: number, bits: number = 16) {
 export const mod = (n: number, modulo: number) => ((n % modulo) + modulo) % modulo;
 
 // TODO: difficult to type as args are unknown
-export const _reduced = (f: () => any, g: () => any) => (...value) => g(f(...value));
+export const _reduced = (f: () => any, g: () => any) => (...values) => g(f(...values));
 export const pipe = (...fns) => fns.reduce(_reduced);
 
 export const beatsToSeconds = (beats: number, bpm: number) => beats * (60 / bpm);
-
-export const repeatArrayUntilLength = (arr: [], length: number = 0) => {
-    // if supplied length is shorter than array, ignore
-    if(arr.length > length) return arr
-
-    let repeatedArr: any[] = [];
-    const count = createCount()
-    while(repeatedArr.length < length) {
-        repeatedArr = [
-            ...repeatedArr, 
-            arr[ wrap(count(), arr.length) ]
-        ]
-    }
-    return repeatedArr
-}
 
 export const wrap = (i: number, max: number) => i % max
 
@@ -60,7 +45,7 @@ export const wrap = (i: number, max: number) => i % max
 export function memoize(fn) {
     let cache = {};
     return (value) => {
-        let n = value; 
+        let n = value;
         return n in cache 
             ? cache[n]
             : (cache[n] = fn(n));
