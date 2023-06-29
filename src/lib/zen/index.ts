@@ -3,7 +3,6 @@ import { writable, get } from 'svelte/store';
 import Zen from './classes/Zen';
 import Stream from './classes/Stream';
 import { createCount } from './utils/utils';
-import { formatEventParams, formatMutationParams } from './utils/syntax';
 import type { action } from './types';
 
 export const code = writable('');
@@ -30,10 +29,6 @@ export const streams: Stream[] = Array(8).fill(0).map((_, i) => new Stream('s' +
 const [ s0, s1, s2, s3, s4, s5, s6, s7 ] = streams;
 
 const loop = new Loop(time => {
-    // reset all streams and Zen
-    // TODO: don't do this! it's wasteful. we should be compiling the callbacks once, and then just calling them with the new time
-    // ...or perhaps we must do this if we want to be able to pass in different values as args to the callbacks
-    // perhaps we pass time to each stream right away, then call the callback and store the value, rather than storing the stack...
     streams.forEach(stream => stream.reset())
     z.reset()
     

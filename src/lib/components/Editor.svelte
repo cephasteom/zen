@@ -33,6 +33,7 @@
             arrowSize: 0
         },
     };
+    let flash = false
 
     onMount(async () => {
 
@@ -60,6 +61,8 @@
                 setCode(editor.getValue());
                 localStorage.setItem("z.code", editor.getValue());
                 start();
+                flash = true;
+                setTimeout(() => flash = false, 400);
             } 
         })
     });
@@ -71,7 +74,7 @@
 
 <svelte:window on:resize={() => editor?.layout({})} />
 
-<div class="container">
+<div class="container" class:flash={flash}>
     <div class="editor" bind:this={editorContainer} />
     <div class="notices">
         <ul>
@@ -83,6 +86,15 @@
 <style lang="scss">
     .container {
         position: relative;
+    }
+    
+    .flash {
+        animation: flash 0.5s;
+    }
+
+    @keyframes flash {
+        0% { filter: invert(0.25) }
+        100% { filter: invert(0) }
     }
     .editor {
         width: 100%;
