@@ -81,15 +81,23 @@ class Stream {
         const { id } = this
         const e = this.e.get(t, q)
         const m = this.m.get(t, q)
-        
-        const params = e || m ? {
+    
+        // compile all parameters
+        const compiled = e || m ? {
             ...this.evaluateGroup(this.p, t, q, bpm), // calculate based on position in cycle, 0 - 1
             ...this.evaluateGroup(this.px, x, s, bpm), // calculate based on position in space, 0 - 1
             ...this.evaluateGroup(this.py, y, s, bpm), // ...
             ...this.evaluateGroup(this.pz, z, s, bpm), // ...
         } : {}
+
+        // compute parameters - post processing of parameters that rely on each other - e.g. scales | degree
+        const computed = compiled
         
-        return { id, e, m, x: mod(x,s), y: mod(y,s), z: mod(z,s), eparams: formatEventParams(params), mparams: formatMutationParams(params) }
+        return { 
+            id, e, m, x: mod(x,s), y: mod(y,s), z: mod(z,s), 
+            eparams: formatEventParams(computed), 
+            mparams: formatMutationParams(computed) 
+        }
     }
 
     reset() {

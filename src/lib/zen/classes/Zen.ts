@@ -11,6 +11,10 @@ class Zen {
     // frames per cycle, can be updated but not patterned
     private _q: number = 16
 
+    // be able to store state. TODO: this needs some thinking about.
+    // need to initialize it then update it
+    state: any = {}
+
     bpm = new Pattern(120)
 
     get t() {

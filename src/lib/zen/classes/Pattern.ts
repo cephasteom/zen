@@ -260,12 +260,16 @@ class Pattern {
         return this
     }
 
-    scale(name: string, length: number = 8) {
-        const scale = getScale(name)
-        const size = min(length, scale.length)
-        this.stack = [...this.stack, x => scale[Math.floor(x)%size]]
+    scales(names: string | string[], length: number = 8, freq: number = 1) {
+        const scales = [names].flat().map(name => {
+            const scale = getScale(name)
+            return scale.slice(0, min(length, scale.length))
+        })
+        const sequence = scales.flat()
+        this.seq(sequence, freq).add(48)
         return this
     }
+
 
     // Get output based on position in cycle or on canvas
     // expected to be normalised between 0 - 1
