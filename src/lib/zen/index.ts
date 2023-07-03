@@ -44,6 +44,7 @@ const loop = new Loop(time => {
         eval(get(code))
         fallbackCode.set(get(code))
     } catch (e: any) {
+        console.log(e)
         get(errorActions).forEach(cb => cb(e.message))
         eval(get(fallbackCode))
     }
@@ -57,6 +58,8 @@ const loop = new Loop(time => {
     const compiled = streams.map(stream => stream.get(z.t, z.q, z.s, bpm))
     const events = compiled.filter(({e}) => e)
     const mutations = compiled.filter(({m}) => m)
+
+    console.log(events)
     
     // call actions
     const delta = (time - immediate()) * 1000
