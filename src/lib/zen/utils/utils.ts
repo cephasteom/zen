@@ -51,3 +51,47 @@ export function memoize(fn) {
             : (cache[n] = fn(n));
         }
 }
+
+/**
+ * 
+ * @param x value to be normalised
+ * @param q divisions of the normalised range
+ * @param freq frequency of the normalised range
+ * @returns 
+ */
+export function calculateNormalisedPosition(x: number, q: number, freq: number) {
+    return ((x / q) * freq) % 1
+}
+
+export function isArray(value: any) {
+    return Array.isArray(value)
+}
+
+export function isString(value: any) {
+    return typeof value === 'string'
+}
+
+export function add(a: number, b: number) {
+    return a + b
+}
+
+export function sub(a: number, b: number) {
+    return a - b
+}
+
+export function mul(a: number, b: number) {
+    return a * b
+}
+
+export function div(a: number, b: number) {
+    return a / b
+}
+
+export function odd(n: number) {
+    return n % 2 === 1
+}
+
+export function even(n: number) {
+    return n % 2 === 0
+}
+

@@ -1,5 +1,7 @@
-// convert to typed arrays?
-export const scales: { [key: string]: number[] } = {
+
+import type { dictionary } from '../types'
+
+export const scales: dictionary = {
     minPent: [0,3,5,7,10],
     majPent: [0,2,4,7,9],
     ritusen: [0,2,5,7,9],

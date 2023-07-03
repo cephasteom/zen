@@ -12,10 +12,10 @@ class Stream {
     #bpm = 120
     
     // // parameter groups
-    p: ProxyHandler<Pattern>
-    px: ProxyHandler<Pattern>
-    py: ProxyHandler<Pattern>
-    pz: ProxyHandler<Pattern>
+    p: ProxyHandler<dictionary>
+    px: ProxyHandler<dictionary>
+    py: ProxyHandler<dictionary>
+    pz: ProxyHandler<dictionary>
     
     // patternable parameters
     t = new Pattern() // used to overide the global t

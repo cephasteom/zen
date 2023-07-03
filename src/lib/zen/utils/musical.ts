@@ -1,5 +1,6 @@
 import { memoize } from './utils'
 import { scales } from '../data/scales'
+import { chords } from '../data/chords'
 
 export function letterToInteger(letter: string) {
     return { 
@@ -19,10 +20,17 @@ export function letterToInteger(letter: string) {
 }
 
 export const getScale = memoize((name: string) => {
-    const [root = 'c', scale = 'major'] = name.split("`")
+    const [root = 'c', scale = 'major'] = name.split("-")
     const notes = scales[scale]
     const rootIndex = letterToInteger(root)
     return Array(8).fill(notes)
         .map((notes: number[], octave: number) => notes.map((n: number) => (n + rootIndex + (octave * 12))))
         .flat()
+})
+
+export const getChord = memoize((name: string) => {
+    const [root = 'c', chord = 'major'] = name.split("-")
+    const notes = chords[chord]
+    const rootIndex = letterToInteger(root)
+    return notes.map((n: number) => n + rootIndex)
 })
