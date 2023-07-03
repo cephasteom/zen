@@ -15,7 +15,7 @@ class Zen {
     // need to initialize it then update it
     state: any = {}
 
-    bpm = new Pattern(120)
+    bpm = new Pattern()
 
     get t() {
         return this._t

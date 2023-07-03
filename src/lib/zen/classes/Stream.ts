@@ -6,10 +6,6 @@ import type { dictionary } from '../types'
 
 class Stream {
     id: string
-    #t = 0
-    #q = 0
-    #s = 0
-    #bpm = 120
     
     // // parameter groups
     p: ProxyHandler<dictionary>

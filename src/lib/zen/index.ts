@@ -51,8 +51,6 @@ const loop = new Loop(time => {
     
     // update dimensions and bpm
     const bpm = z.bpm.get(t, q) || 120
-
-    console.log(z)
     loop.interval = `${z.q}n`
     Transport.bpm.setValueAtTime(bpm, time)
 
