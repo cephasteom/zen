@@ -51,6 +51,8 @@ const loop = new Loop(time => {
     
     // update dimensions and bpm
     const bpm = z.bpm.get(t, q) || 120
+
+    console.log(z)
     loop.interval = `${z.q}n`
     Transport.bpm.setValueAtTime(bpm, time)
 
@@ -58,8 +60,6 @@ const loop = new Loop(time => {
     const compiled = streams.map(stream => stream.get(z.t, z.q, z.s, bpm))
     const events = compiled.filter(({e}) => e)
     const mutations = compiled.filter(({m}) => m)
-
-    console.log(events)
     
     // call actions
     const delta = (time - immediate()) * 1000
