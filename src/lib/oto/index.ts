@@ -32,13 +32,15 @@ export function handleEvent(time: number, id: string, params: any) {
         midiStreams[`s${id}`].cut(time);
     });
 
-    [n].flat().forEach((_, i: number) => {
+    
+    // TODO: [midi].flat().map...
+    [n].flat().forEach((n: number, i: number) => {
         // handle multiple notes and params
         const ps = Object.entries(params).reduce((obj, [key, val]) => ({
             ...obj,
             [key]: Array.isArray(val) ? val[i%val.length] : val
         }), {});
-
+        
         params.midi && midiStreams[id].trigger(ps, time + (i * strum));
     })
 
