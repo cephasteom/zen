@@ -2,6 +2,7 @@
 import Pattern from './Pattern'
 import { mod } from '../utils/utils'
 import { formatEventParams, formatMutationParams } from '../utils/syntax';
+import type { dictionary } from '../types'
 
 class Stream {
     id: string
@@ -10,11 +11,11 @@ class Stream {
     #s = 0
     #bpm = 120
     
-    // parameter groups
-    p = {}
-    px = {}
-    py = {}
-    pz = {}
+    // // parameter groups
+    p: ProxyHandler<Pattern>
+    px: ProxyHandler<Pattern>
+    py: ProxyHandler<Pattern>
+    pz: ProxyHandler<Pattern>
     
     // patternable parameters
     t = new Pattern() // used to overide the global t
@@ -29,23 +30,19 @@ class Stream {
 
     constructor(id: string) {
         this.id = id;
-        /* 
-         * set 'p', 'px'... as functions accepting any parameter name
-         * store Patterns by group in this.ps
-         * work with a single or array of parameters(s)
-        */
-        ['p', 'px', 'py', 'pz'].forEach(group => {
-            this[group] = (key: string | []) => (
-                Array.isArray(key) 
-                    ? key.map(key => this.getParameter(key, this[group]))
-                    : this.getParameter(key, this[group])
-            )
-        })
-    }
 
-    getParameter(key: string, group: {}) {
-        !group[key] && (group[key] = new Pattern())
-        return group[key]
+        // catch all calls to this.p, this.px, this.py, this.pz and return a new Pattern if the key doesn't exist
+        const handler = {
+            get: (target: dictionary, key: string) => {
+                Object.keys(target).includes(key) || (target[key] = new Pattern());
+                return target[key];
+            },
+        }
+
+        this.p = new Proxy({}, handler)
+        this.px = new Proxy({}, handler)
+        this.py = new Proxy({}, handler)
+        this.pz = new Proxy({}, handler)
     }
 
     /**
@@ -89,14 +86,11 @@ class Stream {
             ...this.evaluateGroup(this.py, y, s, bpm), // ...
             ...this.evaluateGroup(this.pz, z, s, bpm), // ...
         } : {}
-
-        // compute parameters - post processing of parameters that rely on each other - e.g. scales | degree
-        const computed = compiled
         
         return { 
             id, e, m, x: mod(x,s), y: mod(y,s), z: mod(z,s), 
-            eparams: formatEventParams(computed), 
-            mparams: formatMutationParams(computed) 
+            eparams: formatEventParams(compiled), 
+            mparams: formatMutationParams(compiled) 
         }
     }
 
