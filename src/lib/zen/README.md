@@ -34,18 +34,18 @@ TODO: s0.x, s0.t
 Musical parameters can be mapped in different ways across a cycle, or across each axis of the canvas, using methods `.p(key: string)`, `.px(key: string)`, `.py(key: string)`, and `.pz(key: string)`. Each method returns an instance of the `Pattern` class which enables you to map values in a variety of ways. E.g.
 ```js
 // map parameter across a cycle using a range function
-s0.p('foo').range(0,2)
+s0.p.foo.range(0,2)
 // map parameter across the x axis using a sine function
-s0.px('bar').sine(0,2)
+s0.px.bar.sine(0,2)
 // set a constant value
-s0.p('foo').set(8)
+s0.p.foo.set(8)
 // chain methods together for greater complexity
-s0.pz('bar').saw(0,16).mul(2)
+s0.pz.bar.saw(0,16).mul(2)
 ```
 On each division of a cycle, each pattern is evaluated to create a list of parameters key / value pairs. Each method passes its value to the next in the chain, with the first value being the current time `t`. This allows you manipulate time or space using arithmetic.
 ```js
 // offset foo by half a cycle
-s0.p('foo').add(0.5).range(0,256)
+s0.p.foo.add(0.5).range(0,256)
 // move across the x axis at twice the speed
 s0.x.set(t)
 s0.x.mul(2).range(0,s)
@@ -53,14 +53,14 @@ s0.x.mul(2).range(0,s)
 
 You can reference other streams' parameters:
 ```js
-s0.p('foo').tri(16,24,1).add(32)
-s1.p('bar').use(s0.p('foo')).mod(6)
+s0.p.foo.tri(16,24,1).add(32)
+s1.p.bar.use(s0.p('foo')).mod(6)
 ```
 
 Or simply get their value:
 ```js
-s0.p('foo').tri(16,24,1).add(32)
-s1.p('bar').set(s0.p('foo').get(t/q))
+s0.p.foo.tri(16,24,1).add(32)
+s1.p.bar.set(s0.p('foo').get(t/q))
 ```
 #### Events and Mutations
 Use a stream's `e` and `m` properties to trigger musical events - discrete synth voices - or mutations - the modulation of all voices in a stream. Each property is, once again, an instance of the `Pattern` class, but evaluates the result as a boolean type, rather than a number. True triggers an event or mutation, false is ignored. JavaScript is able to infer boolean values from non-boolean types. As `0` is false and any value greater than `0` is true, we are able to pattern numbers in order to trigger our events.
