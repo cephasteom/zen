@@ -84,3 +84,13 @@ s0.e.ntbin(76543, 16)
 // or binary strings to binary patterns
 s0.e.bin('01100101001010')
 ```
+
+#### Key Mapping
+You can map alternative key names using the `.map` property of a stream, which accepts an object. For example, to use more descriptive keys when sending midi messages, whilst still compiling parameters to use a `cc1` format:
+```js
+s0.map={cutoff: 'cc74'}
+```
+You may extend Zen by adding your own mappings in TBC. There is one map available:
+```js
+s0.map=keymap.nordlead1a
+```
