@@ -48,64 +48,54 @@ class Pattern {
     // step quantised the output, freq is the number of iterations of the range, either per cycle or per canvas
     // values provided to the callback should be in num of cycles or num of canvas
     range(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1) {
-        this.stack = [(x: patternValue) => mapToRange(pos(+x, this._q, freq), 0, 1, lo, hi, step)]
+        this.stack.push((x: patternValue) => mapToRange(pos(x, this._q, freq), 0, 1, lo, hi, step))
         return this
     }
 
     // sine function
     sine(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1) {
-        this.stack = [
-            (x: patternValue) => {
-                const radians = pos(+x, this._q, freq) * 360 * (Math.PI/180)
-                const sin = Math.sin(radians)
-                return mapToRange(sin, -1, 1, lo, hi, step)
-            }
-        ]
+        this.stack.push((x: patternValue) => {
+            const radians = pos(x, this._q, freq) * 360 * (Math.PI/180)
+            const sin = Math.sin(radians)
+            return mapToRange(sin, -1, 1, lo, hi, step)
+        })
         return this
     }
 
     // cosine function
     cosine(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1) {
-        this.stack = [
-            (x: patternValue) =>  {
-                const radians = pos(+x, this._q, freq) * 360 * (Math.PI/180)
-                const cos = Math.cos(radians)
-                return mapToRange(cos, -1, 1, lo, hi, step)
-            }
-        ]
+        this.stack.push((x: patternValue) =>  {
+            const radians = pos(x, this._q, freq) * 360 * (Math.PI/180)
+            const cos = Math.cos(radians)
+            return mapToRange(cos, -1, 1, lo, hi, step)
+        })
         return this
     }
 
     // sawtooth function
     saw(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1) {
-        this.stack = [
-            (x: patternValue) => {
-                const saw = pos(+x, this._q, freq)
-                return mapToRange(saw, 0, 1, lo, hi, step)
-            }
-        ]
+        this.stack.push((x: patternValue) => {
+            const saw = pos(x, this._q, freq)
+            return mapToRange(saw, 0, 1, lo, hi, step)
+        })
         return this
     }
     
     // triangle function
     tri(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1) {
-        this.stack = [
-            (x: patternValue) => {
-                const tri = Math.abs(pos(+x, this._q, freq) - 0.5) * 2
-                return mapToRange(tri, 0, 0.5, lo, hi, step)
-            }
-        ]
+        this.stack.push((x: patternValue) => {
+            const tri = Math.abs(pos(x, this._q, freq) - 0.5) * 2
+            return mapToRange(tri, 0, 0.5, lo, hi, step)
+        })
         return this
     }
 
     // pulse function
     pulse(lo: number = 0, hi: number = 1, width: number = 0.5, freq: number = 1) {
-        this.stack = [
-            (x: patternValue) => {
-                const pulse = (((pos(+x, this._q, freq))%1) < width ? 1 : 0)
-                return mapToRange(pulse, 0, 1, lo, hi)
-            }
-        ]
+        this.stack.push((x: patternValue) => {
+            const pulse = (((pos(x, this._q, freq))%1) < width ? 1 : 0)
+            return mapToRange(pulse, 0, 1, lo, hi)
+        })
         return this
     }
 
@@ -116,7 +106,7 @@ class Pattern {
     }
 
     // random function
-    random(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1) {
+    random(lo: number = 0, hi: number = 1, step: number = 0) {
         this.stack = [() => mapToRange(Math.random(), 0, 1, lo, hi, step)]
         return this
     }
@@ -124,7 +114,7 @@ class Pattern {
     // noise function
     noise(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1) {
         this.stack = [(x: patternValue) => {
-            return mapToRange(noise.simplex2(pos(+x, this._q, freq), 0), -1, 1, lo, hi, step)
+            return mapToRange(noise.simplex2(pos(x, this._q, freq), 0), -1, 1, lo, hi, step)
         }]
         return this
     }
@@ -135,8 +125,9 @@ class Pattern {
         return this
     }
 
+    // generate patterns from binary strings
     bin(n: string = '10000000', a: number = 1, b: number = 0) {
-        this.stack = [x => {
+        this.stack = [(x: patternValue) => {
             const arr = n.split('')
             return !!parseInt(arr[Math.floor((+x%1)*arr.length)]) ? a : b
         }]
@@ -148,11 +139,9 @@ class Pattern {
         return this.bin(numberToBinary(+n, q), a, b)
     }
 
-
-
     // Chained functions - should be able to handle arrays
     seq(values: number[] = [], freq: number = 1) {
-        this.stack.push((x: patternValue) => values[Math.floor((pos(+x, this._q, freq)*values.length)%values.length)])
+        this.stack.push((x: patternValue) => values[Math.floor((pos(x, this._q, freq)*values.length)%values.length)])
         return this
     }
     
@@ -286,12 +275,7 @@ class Pattern {
     }
 
     chords(names: string | string[], freq: number = 1) {
-        const chords = [names].flat().map(name => {
-            const chord = getChord(name)
-            return chord
-        })
-
-        this.seq(chords, freq).add(48)
+        this.seq([names].flat().map(name => getChord(name)), freq).add(48)
         return this
     }
 

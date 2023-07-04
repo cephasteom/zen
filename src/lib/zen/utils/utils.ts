@@ -1,4 +1,5 @@
 import { Noise } from 'noisejs'
+import type { patternValue } from '../types'
 
 export const noise = new Noise(Math.random())
 
@@ -59,8 +60,9 @@ export function memoize(fn) {
  * @param freq frequency of the normalised range
  * @returns 
  */
-export function calculateNormalisedPosition(x: number, q: number, freq: number) {
-    return ((x / q) * freq) % 1
+export function calculateNormalisedPosition(x: patternValue, q: number, freq: number) {
+    const val = isArray(x) ? x[0] : x // ensure x is a number
+    return ((+val / q) * freq) % 1
 }
 
 export function isArray(value: any) {

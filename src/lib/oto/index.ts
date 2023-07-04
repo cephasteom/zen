@@ -25,23 +25,26 @@ const midiStreams:  { [key: string]: Midi } = new Array(8).fill(0)
 **/
 
 export function handleEvent(time: number, id: string, params: any) {
-    const { cut, n = 60, strum = 0 } = params;
+    const { cut, n = 60, strum = 0, midi } = params;
     
     const toCut = cut !== undefined ? [+cut].flat() : []
     toCut.forEach((id: number) => {
         midiStreams[`s${id}`].cut(time);
     });
-
     
-    // TODO: [midi].flat().map...
-    [n].flat().forEach((n: number, i: number) => {
-        // handle multiple notes and params
-        const ps = Object.entries(params).reduce((obj, [key, val]) => ({
-            ...obj,
-            [key]: Array.isArray(val) ? val[i%val.length] : val
-        }), {});
-        
-        params.midi && midiStreams[id].trigger(ps, time + (i * strum));
+    if(!midi) return;
+    
+    [midi].flat().forEach((midi: string, instIndex: number) => {
+        [n].flat().forEach((n: number, noteIndex: number) => {
+            // handle multiple notes and params
+            const ps = Object.entries(params).reduce((obj, [key, val]) => ({
+                ...obj,
+                [key]: Array.isArray(val) ? val[instIndex%val.length] : val
+            }), {});
+            ps.n = n
+            ps.midi = midi;
+            midiStreams[id].trigger(ps, time + (noteIndex * strum));
+        })
     })
 
 }
