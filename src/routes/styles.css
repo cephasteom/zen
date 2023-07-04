@@ -152,22 +152,21 @@ button:focus:not(:focus-visible) {
 .monaco-scrollable-element, .margin-view-overlays, .lines-content {
     background-color: var(--color-grey-darkest)!important;
     /* strings */
-    .mtk5 {
-        color: var(--color-theme-2);
-    }
-    /* numbers */
-    .mtk6 {
-        color: var(--color-theme-1);
-    }
-    /* comments */
-    .mtk7 {
-        color: var(--color-theme-2);
-        opacity: 0.75;
-    }
-    /* const etc. */
-    .mtk8 {
-        color: var(--color-theme-3);
-    }
+}
+.monaco-scrollable-element, .margin-view-overlays, .lines-content .mtk5 {
+    color: var(--color-theme-2);
+}
+/* numbers */
+.monaco-scrollable-element, .margin-view-overlays, .lines-content .mtk6 {
+    color: var(--color-theme-1);
+}
+/* comments */
+.monaco-scrollable-element, .margin-view-overlays, .lines-content .mtk7 {
+    color: var(--color-theme-2);
+}
+/* const etc. */
+.monaco-scrollable-element, .margin-view-overlays, .lines-content .mtk8 {
+    color: var(--color-theme-3);
 }
 
 
