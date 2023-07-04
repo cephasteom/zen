@@ -4,6 +4,7 @@ import Zen from './classes/Zen';
 import Stream from './classes/Stream';
 import { createCount } from './utils/utils';
 import type { action } from './types';
+import keymap from './data/keymapping'
 
 export const code = writable('');
 export const setCode = (str: string) => {
@@ -27,6 +28,7 @@ let counter = createCount(0);
 export const z = new Zen();
 export const streams: Stream[] = Array(8).fill(0).map((_, i) => new Stream('s' + i))
 const [ s0, s1, s2, s3, s4, s5, s6, s7 ] = streams;
+const map = keymap
 
 const loop = new Loop(time => {
     // increment global time
