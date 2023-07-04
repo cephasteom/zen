@@ -16,7 +16,7 @@
         <ul class="menu">
             <li class="menu__item"><a class={$page.url.pathname === '/about' ? 'active' : ''} href="/about">About</a></li>
             <li class="menu__item"><a class={$page.url.pathname === '/docs' ? 'active' : ''} href="/docs">Docs</a></li>
-            <li class="menu__item"><a class={$page.url.pathname === '/data' ? 'active' : ''} href="/data">Data</a></li>
+            <li class="menu__item"><a class={$page.url.pathname === '/learn' ? 'active' : ''} href="/learn">Learn</a></li>
         </ul>
     
     </nav>
