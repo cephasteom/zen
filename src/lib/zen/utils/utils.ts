@@ -54,14 +54,13 @@ export function memoize(fn: (x: any) => any) {
         }
 }
 
-export function handleArrayOrSingleValue(value: patternValue, fn: (x: patternValue) => patternValue) {
+export function handleArrayOrSingleValue(value: patternValue, fn: (x: number) => number) {
     return Array.isArray(value)
-        // @ts-ignore
         ? singleValueArrayToSingleValue(value.map(fn))
         : fn(value)
 }
 
-function singleValueArrayToSingleValue(value: patternValue): patternValue {
+export function singleValueArrayToSingleValue(value: patternValue): patternValue {
     Array.isArray(value) && value.length === 1 && ( value = value[0] );
     return value
 }

@@ -35,7 +35,7 @@ const loop = new Loop(time => {
     streams.forEach(stream => stream.reset())
     z.reset(t)
 
-    // global dimensions
+    // global variables
     let { q, s, c } = z
     
     // evaluate the user's code, using fallback if it fails
@@ -43,19 +43,19 @@ const loop = new Loop(time => {
         eval(get(code))
         fallbackCode.set(get(code))
     } catch (e: any) {
-        console.log(e)
         get(errorActions).forEach(cb => cb(e.message))
         eval(get(fallbackCode))
     }
     
-    // get updated variable values
-    t = z.time
+    // reassign global variables in case the user has changed them
+    t = z.getTime()
     s = z.s
     q = z.q
     c = z.c
+    const bpm = z.getBpm()
 
-    const bpm = z.bpm.get(t, q) || 120
-    loop.interval = `${z.q}n`
+    // update loop and transport
+    loop.interval = `${q}n`
     Transport.bpm.setValueAtTime(bpm, time)
 
     // compile events and mutations

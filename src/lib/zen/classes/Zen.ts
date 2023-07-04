@@ -42,10 +42,16 @@ class Zen {
         return Math.floor(this._t / this._q)
     }
 
-    get time() {
+    getTime() : number {
         const localT = this.t.get(this._t, this._q)
         const globalT = this._t
-        return localT !== null ? localT : globalT
+        this._t = localT !== null ? Array.isArray(localT) ? localT[0] : localT : globalT
+        return this._t
+    }
+
+    getBpm() : number {
+        const value = this.bpm.get(this._t, this._q)
+        return value !== null ? Array.isArray(value) ? value[0] : value : 120
     }
 
     reset(t: number) {

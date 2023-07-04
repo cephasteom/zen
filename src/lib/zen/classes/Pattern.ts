@@ -372,13 +372,8 @@ class Pattern {
         this._bpm = bpm || this._bpm
 
         return this.stack.length 
-            ? [
-                ...this.stack,
-                (x: any) => {
-                    isArray(x) && x.length === 1 && ( x = x[0] );
-                    return x
-                }
-            ].reduce((val, fn) => fn(val), t) 
+            // @ts-ignore
+            ? this.stack.reduce((val, fn) => fn(val), t) 
             : null
     }
 
