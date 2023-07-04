@@ -20,10 +20,9 @@ class Pattern {
 
     constructor() {
         // Add all Math functions to the Parameter class
-        // TODO: handling arrays?
         Object.getOwnPropertyNames( Math ).map( name => {
             this[name] = (...args: number[]) => {
-                this.stack.push((x: patternValue) => Math[name](+x, ...args))
+                this.stack.push((x: patternValue) => [x].flat().map(x => Math[name](+x, ...args))) 
                 return this
             }
         });
@@ -269,8 +268,7 @@ class Pattern {
             const scale = getScale(name)
             return scale.slice(0, min(length, scale.length))
         })
-        const sequence = scales.flat()
-        this.seq(sequence, freq).add(48)
+        this.seq(scales.flat(), freq).add(48)
         return this
     }
 
