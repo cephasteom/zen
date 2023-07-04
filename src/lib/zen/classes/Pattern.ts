@@ -1,3 +1,5 @@
+// TODO: conditionals for arrays...
+
 import type { stack, patternValue } from '../types'
 import { 
     mapToRange, 
@@ -17,16 +19,6 @@ class Pattern {
     private stack: stack = []
     private _q: number = 16 // divisions per cycle
     private _bpm: number = 120
-
-    constructor() {
-        // Add all Math functions to the Parameter class
-        Object.getOwnPropertyNames( Math ).map( name => {
-            this[name] = (...args: number[]) => {
-                this.stack.push((x: patternValue) => [x].flat().map(x => Math[name](+x, ...args))) 
-                return this
-            }
-        });
-    }
 
     set(value: patternValue) {
         this.stack = [() => value] 
@@ -276,6 +268,104 @@ class Pattern {
         this.seq([names].flat().map(name => getChord(name)), freq).add(48)
         return this
     }
+
+    // Math
+    sin() {
+        this.stack.push((x: patternValue) => [x].flat().map(x => Math.sin(+x))) 
+        return this
+    }
+
+    cos() {
+        this.stack.push((x: patternValue) => [x].flat().map(x => Math.cos(+x)))
+        return this
+    }
+
+    tan() {
+        this.stack.push((x: patternValue) => [x].flat().map(x => Math.tan(+x)))
+        return this
+    }
+
+    asin() {
+        this.stack.push((x: patternValue) => [x].flat().map(x => Math.asin(+x)))
+        return this
+    }
+
+    acos() {
+        this.stack.push((x: patternValue) => [x].flat().map(x => Math.acos(+x)))
+        return this
+    }
+
+    atan() {
+        this.stack.push((x: patternValue) => [x].flat().map(x => Math.atan(+x)))
+        return this
+    }
+
+    atan2(y: number) {
+        this.stack.push((x: patternValue) => [x].flat().map(x => Math.atan2(+x, y)))
+        return this
+    }
+
+    abs() {
+        this.stack.push((x: patternValue) => [x].flat().map(x => Math.abs(+x)))
+        return this
+    }
+
+    ceil() {
+        this.stack.push((x: patternValue) => [x].flat().map(x => Math.ceil(+x)))
+        return this
+    }
+
+    floor() {
+        this.stack.push((x: patternValue) => [x].flat().map(x => Math.floor(+x)))
+        return this
+    }
+
+    round() {
+        this.stack.push((x: patternValue) => [x].flat().map(x => Math.round(+x)))
+        return this
+    }
+
+    exp() {
+        this.stack.push((x: patternValue) => [x].flat().map(x => Math.exp(+x)))
+        return this
+    }
+
+    log() {
+        this.stack.push((x: patternValue) => [x].flat().map(x => Math.log(+x)))
+        return this
+    }
+
+    max(compare: number = 0) {
+        this.stack.push((x: patternValue) => [x].flat().map(x => Math.max(+x, compare)))
+        return this
+    }
+
+    min(compare: number = 0) {
+        this.stack.push((x: patternValue) => [x].flat().map(x => Math.min(+x, compare)))
+        return this
+    }
+
+    pow(exponent: number = 2) {
+        this.stack.push((x: patternValue) => [x].flat().map(x => Math.pow(+x, exponent)))
+        return this
+    }
+
+    sqrt() {
+        this.stack.push((x: patternValue) => [x].flat().map(x => Math.sqrt(+x)))
+        return this
+    }
+
+    // Trig
+    deg() {
+        this.stack.push((x: patternValue) => [x].flat().map(x => x * 180 / Math.PI))
+        return this
+    }
+
+    rad() {
+        this.stack.push((x: patternValue) => [x].flat().map(x => x * Math.PI / 180))
+
+        return this
+    }   
 
     // Get output based on position in cycle or on canvas
     get(t: number, q: number, bpm?: number) {
