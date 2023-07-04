@@ -1,16 +1,16 @@
 import { writable, derived, get } from 'svelte/store';
-import { z, addAction, addErrorAction } from '$lib/zen';
+import { addAction, addErrorAction } from '$lib/zen';
 import { handleEvent, handleMutation } from '$lib/oto';
+import type { ActionArgs } from '$lib/zen/types';
 
 export const t = writable(0); // time
 export const c = writable(0); // cycle
 export const q = writable(16); // quantization (frames per cycle)
 export const s = writable(16); // size of canvas
-export const eventPositions = writable({});
-export const mutationPositions = writable({});
+export const eventPositions = writable<{id: string, x: number, y: number, z: number}[]>([]);
+export const mutationPositions = writable<{id: string, x: number, y: number, z: number}[]>([]);
 export const error = writable('');
 
-// TODO: lots of garbage collection here. Can we use 
 export const visualsData = derived([s, eventPositions, mutationPositions], ([s, eventPositions, mutationPositions]) => {
     const data = new Uint8Array(s * s * 4);
     
@@ -41,18 +41,20 @@ export const visualsData = derived([s, eventPositions, mutationPositions], ([s, 
     return data;
 });
 
-addAction((time: number, delta: number, events: { [key: string]: any }[], mutations: { [key: string]: any }[]) => {
+addAction((args: ActionArgs) => {
+    const { t: time, c: cycle, q: quant, s: size, events, mutations, delta } = args;
     setTimeout(() => {
-        t.set(z.t);
-        c.set(z.c);
-        q.set(z.q);
-        s.set(z.s);
+        t.set(time);
+        c.set(cycle);
+        q.set(quant);
+        s.set(size);
         eventPositions.set(events.map(({id,x,y,z}) => ({id,x,y,z})));
         mutationPositions.set(mutations.map(({id,x,y,z}) => ({id,x,y,z})));      
     }, delta);
 })
 
-addAction((time: number, delta: number, events: { [key: string]: any }[], mutations: { [key: string]: any }[]) => {
+addAction((args: ActionArgs) => {
+    const { time, events, mutations } = args;
     events.forEach(({id, eparams}) => {
         handleEvent(time, id, eparams);
     })

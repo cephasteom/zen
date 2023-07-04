@@ -2,7 +2,13 @@ import Pattern from './Pattern'
 import { clamp } from '../utils/utils'
 
 class Zen {
-    // incrementing time
+    // be able to pattern time e.g. z.t.range(0, 16, 1)
+    t = new Pattern()
+
+    // be able to pattern bpm e.g. z.bpm.range(60, 120, 1)
+    bpm = new Pattern()
+
+    // global time
     private _t: number = 0
 
     // size of canvas, can be updated but not patterned
@@ -14,16 +20,6 @@ class Zen {
     // be able to store state. TODO: this needs some thinking about.
     // need to initialize it then update it
     state: any = {}
-
-    bpm = new Pattern()
-
-    get t() {
-        return this._t
-    }
-
-    set t(value: number) {
-        this._t = value
-    }
 
     get s() {
         return this._s
@@ -46,8 +42,15 @@ class Zen {
         return Math.floor(this._t / this._q)
     }
 
-    reset() {
-        [this.bpm].forEach(p => p.reset())
+    get time() {
+        const localT = this.t.get(this._t, this._q)
+        const globalT = this._t
+        return localT !== null ? localT : globalT
+    }
+
+    reset(t: number) {
+        this._t = t;
+        [this.bpm, this.t].forEach(p => p.reset())
     }
 }
 

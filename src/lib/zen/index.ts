@@ -29,15 +29,14 @@ export const streams: Stream[] = Array(8).fill(0).map((_, i) => new Stream('s' +
 const [ s0, s1, s2, s3, s4, s5, s6, s7 ] = streams;
 
 const loop = new Loop(time => {
-    streams.forEach(stream => stream.reset())
-    z.reset()
-    
     // increment global time
-    const t = counter()
-    z.t = t;
+    let t = counter()
+
+    streams.forEach(stream => stream.reset())
+    z.reset(t)
 
     // global dimensions
-    const { q, s, c } = z
+    let { q, s, c } = z
     
     // evaluate the user's code, using fallback if it fails
     try {
@@ -49,19 +48,25 @@ const loop = new Loop(time => {
         eval(get(fallbackCode))
     }
     
-    // update dimensions and bpm
+    // get updated variable values
+    t = z.time
+    s = z.s
+    q = z.q
+    c = z.c
+
     const bpm = z.bpm.get(t, q) || 120
     loop.interval = `${z.q}n`
     Transport.bpm.setValueAtTime(bpm, time)
 
     // compile events and mutations
-    const compiled = streams.map(stream => stream.get(z.t, z.q, z.s, bpm))
+    const compiled = streams.map(stream => stream.get(t, q, s, bpm))
     const events = compiled.filter(({e}) => e)
     const mutations = compiled.filter(({m}) => m)
     
     // call actions
     const delta = (time - immediate()) * 1000
-    get(actions).forEach(cb => cb(time, delta, events, mutations))
+    const data = { time, t, s, q, c, delta, events, mutations }
+    get(actions).forEach(cb => cb(data))
 
 }, `${z.q}n`).start(0)
 

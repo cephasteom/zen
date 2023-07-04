@@ -5,4 +5,14 @@ export type patternValue = number | number[]
 
 export type stack = {(x: number | patternValue): patternValue}[]
 
-export type action = { (time: number, delta: number, events: dictionary[], mutations: dictionary[]): void }
+export interface ActionArgs {
+    time: number
+    delta: number
+    events: dictionary[]
+    mutations: dictionary[]
+    t: number
+    c: number
+    q: number
+    s: number
+}
+export type action = { (input: ActionArgs): void }
