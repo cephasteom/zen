@@ -1,5 +1,5 @@
 import { Noise } from 'noisejs'
-import type { patternValue } from '../types'
+import type { patternValue, dictionary } from '../types'
 
 export const noise = new Noise(Math.random())
 
@@ -34,8 +34,9 @@ export function numberToBinary(n: number, bits: number = 16) {
 
 export const mod = (n: number, modulo: number) => ((n % modulo) + modulo) % modulo;
 
-// TODO: difficult to type as args are unknown
+// @ts-ignore
 export const _reduced = (f: () => any, g: () => any) => (...values) => g(f(...values));
+// @ts-ignore
 export const pipe = (...fns) => fns.reduce(_reduced);
 
 export const beatsToSeconds = (beats: number, bpm: number) => beats * (60 / bpm);
@@ -43,14 +44,26 @@ export const beatsToSeconds = (beats: number, bpm: number) => beats * (60 / bpm)
 export const wrap = (i: number, max: number) => i % max
 
 // memoize single argument function
-export function memoize(fn) {
-    let cache = {};
-    return (value) => {
+export function memoize(fn: (x: any) => any) {
+    let cache: dictionary = {};
+    return (value: any) => {
         let n = value;
         return n in cache 
             ? cache[n]
             : (cache[n] = fn(n));
         }
+}
+
+export function handleArrayOrSingleValue(value: patternValue, fn: (x: patternValue) => patternValue) {
+    return Array.isArray(value)
+        // @ts-ignore
+        ? singleValueArrayToSingleValue(value.map(fn))
+        : fn(value)
+}
+
+function singleValueArrayToSingleValue(value: patternValue): patternValue {
+    Array.isArray(value) && value.length === 1 && ( value = value[0] );
+    return value
 }
 
 /**
@@ -61,7 +74,7 @@ export function memoize(fn) {
  * @returns 
  */
 export function calculateNormalisedPosition(x: patternValue, q: number, freq: number) {
-    const val = isArray(x) ? x[0] : x // ensure x is a number
+    const val = Array.isArray(x) ? x[0] : x // ensure x is a number
     return ((+val / q) * freq) % 1
 }
 

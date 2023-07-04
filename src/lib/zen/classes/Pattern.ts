@@ -11,7 +11,8 @@ import {
     calculateNormalisedPosition as pos, 
     isArray,
     odd, 
-    even
+    even,
+    handleArrayOrSingleValue as handle,
 } from '../utils/utils';
 import { getScale, getChord } from '../utils/musical';
 
@@ -32,8 +33,8 @@ class Pattern {
 
     // use params from another stream, e.g. s1.p('foo').use(s0.p.bar).add(2)
     use(pattern: Pattern) {
-      this.stack.push(...pattern.stack)
-      return this
+        this.stack.push(...pattern.stack)
+        return this
     }
 
     // step quantised the output, freq is the number of iterations of the range, either per cycle or per canvas
@@ -137,49 +138,49 @@ class Pattern {
     }
     
     add(value: number = 0) {
-        this.stack.push(x => [x].flat().map(x => x + value))
+        this.stack.push(x => handle(x, x => x + value))
         return this
     }
 
     take(value: number = 0) {
-        this.stack.push(x => [x].flat().map(x => value - x))
+        this.stack.push(x => handle(x, x => value - x))
         return this
     }
 
     // reverse take value - x, rather than x - value
     $take(value: number = 0) {
-        this.stack.push(x => [x].flat().map(x => value - x))
+        this.stack.push(x => handle(x, x => value - x))
         return this
     }
 
     mul(value: number = 1) {
-        this.stack.push(x => [x].flat().map(x => x * value))
+        this.stack.push(x => handle(x, x => x * value))
         return this
     }
 
     div(value: number = 1) {
-        this.stack.push(x => [x].flat().map(x => x / value))
+        this.stack.push(x => handle(x, x => x / value))
         return this
     }
 
     // reverse div value - x, rather than x / value
     $div(value: number = 1) {
-        this.stack.push(x => [x].flat().map(x => value / x))
+        this.stack.push(x => handle(x, x => value / x))
         return this
     }
 
     mod(value: number = 1) {
-        this.stack.push(x => [x].flat().map(x => ((x % value) + value) % value))
+        this.stack.push(x => handle(x, x => ((x % value) + value) % value))
         return this
     }
 
     step(value: number) {
-        this.stack.push(x => [x].flat().map(x => roundToFactor(x, value)))
+        this.stack.push(x => handle(x, x => roundToFactor(x, value)))
         return this
     }
 
     clamp(min: number, max: number) {
-        this.stack.push(x => [x].flat().map(x => clamp(x, min, max)))
+        this.stack.push(x => handle(x, x => clamp(x, min, max)))
         return this
     }
 
@@ -234,18 +235,16 @@ class Pattern {
         return this
     }
 
-    /**
-     * convert current value(s) from beats to seconds, scaling by bpm
-     * @returns 
-     */
+    
+    // convert current value(s) from beats to seconds, scaling by bpm
     bts() {
-        this.stack.push(x => [x].flat().map(x => x * (60/this._bpm)))
+        this.stack.push(x => handle(x, x => x * (60/this._bpm)))
         return this
     }
 
     // convert current value from beats to milliseconds, scaling by bpm
     btms() {
-        this.stack.push(x => [x].flat().map(x => x * (60000/this._bpm)))
+        this.stack.push(x => handle(x, x => x * (60000/this._bpm)))
         return this
     }
 
@@ -271,98 +270,98 @@ class Pattern {
 
     // Math
     sin() {
-        this.stack.push((x: patternValue) => [x].flat().map(x => Math.sin(+x))) 
+        this.stack.push((x: patternValue) => handle(x, x => Math.sin(+x))) 
         return this
     }
 
     cos() {
-        this.stack.push((x: patternValue) => [x].flat().map(x => Math.cos(+x)))
+        this.stack.push((x: patternValue) => handle(x, x => Math.cos(+x)))
         return this
     }
 
     tan() {
-        this.stack.push((x: patternValue) => [x].flat().map(x => Math.tan(+x)))
+        this.stack.push((x: patternValue) => handle(x, x => Math.tan(+x)))
         return this
     }
 
     asin() {
-        this.stack.push((x: patternValue) => [x].flat().map(x => Math.asin(+x)))
+        this.stack.push((x: patternValue) => handle(x, x => Math.asin(+x)))
         return this
     }
 
     acos() {
-        this.stack.push((x: patternValue) => [x].flat().map(x => Math.acos(+x)))
+        this.stack.push((x: patternValue) => handle(x, x => Math.acos(+x)))
         return this
     }
 
     atan() {
-        this.stack.push((x: patternValue) => [x].flat().map(x => Math.atan(+x)))
+        this.stack.push((x: patternValue) => handle(x, x => Math.atan(+x)))
         return this
     }
 
     atan2(y: number) {
-        this.stack.push((x: patternValue) => [x].flat().map(x => Math.atan2(+x, y)))
+        this.stack.push((x: patternValue) => handle(x, x => Math.atan2(+x, y)))
         return this
     }
 
     abs() {
-        this.stack.push((x: patternValue) => [x].flat().map(x => Math.abs(+x)))
+        this.stack.push((x: patternValue) => handle(x, x => Math.abs(+x)))
         return this
     }
 
     ceil() {
-        this.stack.push((x: patternValue) => [x].flat().map(x => Math.ceil(+x)))
+        this.stack.push((x: patternValue) => handle(x, x => Math.ceil(+x)))
         return this
     }
 
     floor() {
-        this.stack.push((x: patternValue) => [x].flat().map(x => Math.floor(+x)))
+        this.stack.push((x: patternValue) => handle(x, x => Math.floor(+x)))
         return this
     }
 
     round() {
-        this.stack.push((x: patternValue) => [x].flat().map(x => Math.round(+x)))
+        this.stack.push((x: patternValue) => handle(x, x => Math.round(+x)))
         return this
     }
 
     exp() {
-        this.stack.push((x: patternValue) => [x].flat().map(x => Math.exp(+x)))
+        this.stack.push((x: patternValue) => handle(x, x => Math.exp(+x)))
         return this
     }
 
     log() {
-        this.stack.push((x: patternValue) => [x].flat().map(x => Math.log(+x)))
+        this.stack.push((x: patternValue) => handle(x, x => Math.log(+x)))
         return this
     }
 
     max(compare: number = 0) {
-        this.stack.push((x: patternValue) => [x].flat().map(x => Math.max(+x, compare)))
+        this.stack.push((x: patternValue) => handle(x, x => Math.max(+x, compare)))
         return this
     }
 
     min(compare: number = 0) {
-        this.stack.push((x: patternValue) => [x].flat().map(x => Math.min(+x, compare)))
+        this.stack.push((x: patternValue) => handle(x, x => Math.min(+x, compare)))
         return this
     }
 
     pow(exponent: number = 2) {
-        this.stack.push((x: patternValue) => [x].flat().map(x => Math.pow(+x, exponent)))
+        this.stack.push((x: patternValue) => handle(x, x => Math.pow(+x, exponent)))
         return this
     }
 
     sqrt() {
-        this.stack.push((x: patternValue) => [x].flat().map(x => Math.sqrt(+x)))
+        this.stack.push((x: patternValue) => handle(x, x => Math.sqrt(+x)))
         return this
     }
 
     // Trig
     deg() {
-        this.stack.push((x: patternValue) => [x].flat().map(x => x * 180 / Math.PI))
+        this.stack.push((x: patternValue) => handle(x, x => x * 180 / Math.PI))
         return this
     }
 
     rad() {
-        this.stack.push((x: patternValue) => [x].flat().map(x => x * Math.PI / 180))
+        this.stack.push((x: patternValue) => handle(x, x => x * Math.PI / 180))
 
         return this
     }   
@@ -375,7 +374,10 @@ class Pattern {
         return this.stack.length 
             ? [
                 ...this.stack,
-                (x: any) => isArray(x) && x.length === 1 ? x[0] : x
+                (x: any) => {
+                    isArray(x) && x.length === 1 && ( x = x[0] );
+                    return x
+                }
             ].reduce((val, fn) => fn(val), t) 
             : null
     }
