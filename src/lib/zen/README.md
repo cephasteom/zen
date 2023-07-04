@@ -13,7 +13,7 @@ Zen provides you with 4 const variables, 8 streams, and a global settings interf
 ### Streams
 8 instances of the `Stream` class (see below), assigned to the variables `s0`, `s1`, `s2`, `s3`, `s4`, `s5`, `s6`, `s7`. Used to map musical parameters across each cycle or the canvas, and determine the stream's trajectory across time and space.
 ### Zen
-An instance of the `Zen` class (see below), assigned to the variable `z`. It is used to update the global `q` and `s` values, as well as other global settings such as `bpm`.
+An instance of the `Zen` class (see below), assigned to the variable `z`. It is used to update the global `q` and `s` values. You are also able to pattern `z.t` to override the global time and `z.bpm` to control tempo.
 ## Syntax
 ### Pattern
 Patterns are at the heart of Zen, allowing you to create complex patterns of number values. You don't usually instantiate the `Pattern` class, or call the `get()` method, directly; they are properties of a `Stream` or `Zen` (see below) and values are obtained under the hood. However, to illustrate how patterns work:

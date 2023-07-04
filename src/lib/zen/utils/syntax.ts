@@ -1,20 +1,28 @@
+import type { dictionary } from '../types'
+
 // remove _ from all params
-export const formatEventParams = (params: any) => {    
+export const formatEventParams = (params: any, map: dictionary) => {    
     return Object.entries(params)
         .filter(([_, value]) => value !== null)
-        .reduce((obj, [key, value]) => ({
-            ...obj,
-            [key.startsWith('_') ? key.substring(1) : key]: value
-        }), {});
+        .reduce((obj, [key, value]) => {
+            key = map[key] || key;
+            return {
+                ...obj,
+                [key.startsWith('_') ? key.substring(1) : key]: value
+            }
+        }, {});
 }
 
 // filter out all params that don't start with _
 // remove _ from remaining params
-export const formatMutationParams = (params: any) => {    
+export const formatMutationParams = (params: any, map: dictionary) => {    
     return Object.entries(params)
         .filter(([key, value]) => key.startsWith('_') && value !== null)
-        .reduce((obj, [key, value]) => ({
-            ...obj,
-            [key.substring(1)]: value
-        }), {});
+        .reduce((obj, [key, value]) => {
+            key = map[key] || key;
+            return {
+                ...obj,
+                [key.substring(1)]: value
+            }
+        }, {});
 }

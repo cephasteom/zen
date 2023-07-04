@@ -7,7 +7,7 @@ import type { dictionary } from '../types'
 class Stream {
     id: string
     
-    // // parameter groups
+    // parameter groups
     p: ProxyHandler<dictionary>
     px: ProxyHandler<dictionary>
     py: ProxyHandler<dictionary>
@@ -23,6 +23,10 @@ class Stream {
     // uses normal Parameter class but values will be interpreted as booleans
     e = new Pattern()
     m = new Pattern()
+
+    // map of event/mutation names to their parameters
+    // use this to overide keys in the event/mutation object. Useful for mapping to MIDI CCs
+    map = {}
 
     constructor(id: string) {
         this.id = id;
@@ -64,14 +68,14 @@ class Stream {
 
     get(time: number = 0, q: number = 16, s: number = 16, bpm: number = 120) {
         // use stream t, if set, or global t
-        const t = this.t.has() ? Math.round(this.t.get(time, q) || 0) : time
+        const t = this.t.has() ? Math.round(this.t.get(time, q) || 0) : time;
         
         // use stream x, y, z, if set, or 0
         const x = this.x.get(t, s) || 0
         const y = this.y.get(t, s) || 0
         const z = this.z.get(t, s) || 0
         
-        const { id } = this
+        const { id } = this;
         const e = this.e.get(t, q)
         const m = this.m.get(t, q)
     
@@ -85,8 +89,8 @@ class Stream {
         
         return { 
             id, e, m, x: mod(x,s), y: mod(y,s), z: mod(z,s), 
-            eparams: formatEventParams(compiled), 
-            mparams: formatMutationParams(compiled) 
+            eparams: formatEventParams(compiled, this.map), 
+            mparams: formatMutationParams(compiled, this.map) 
         }
     }
 

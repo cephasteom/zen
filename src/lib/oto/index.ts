@@ -23,7 +23,6 @@ const midiStreams:  { [key: string]: Midi } = new Array(8).fill(0)
 /**
  * Event handlers
 **/
-
 export function handleEvent(time: number, id: string, params: any) {
     const { cut, n = 60, strum = 0, midi } = params;
     
