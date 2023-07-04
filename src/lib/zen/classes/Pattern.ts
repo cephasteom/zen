@@ -1,7 +1,15 @@
 import type { stack, patternValue } from '../types'
 import { 
-    mapToRange, roundToFactor, clamp, noise, numberToBinary, min, calculateNormalisedPosition as pos, isArray,
-    add, sub, mul, div, odd, even
+    mapToRange, 
+    roundToFactor, 
+    clamp, 
+    noise, 
+    numberToBinary, 
+    min, 
+    calculateNormalisedPosition as pos, 
+    isArray,
+    odd, 
+    even
 } from '../utils/utils';
 import { getScale, getChord } from '../utils/musical';
 
@@ -12,7 +20,7 @@ class Pattern {
 
     constructor() {
         // Add all Math functions to the Parameter class
-        // TODO: handling ranges
+        // TODO: handling arrays?
         Object.getOwnPropertyNames( Math ).map( name => {
             this[name] = (...args: number[]) => {
                 this.stack.push((x: patternValue) => Math[name](+x, ...args))
@@ -91,19 +99,19 @@ class Pattern {
     }
 
     // pulse function
-    pulse(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1, width: number = 0.5) {
+    pulse(lo: number = 0, hi: number = 1, width: number = 0.5, freq: number = 1) {
         this.stack = [
             (x: patternValue) => {
                 const pulse = (((pos(+x, this._q, freq))%1) < width ? 1 : 0)
-                return mapToRange(pulse, 0, 1, lo, hi, step)
+                return mapToRange(pulse, 0, 1, lo, hi)
             }
         ]
         return this
     }
 
     // square function
-    square(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1) {
-        this.pulse(lo, hi, step, freq, 0.5)
+    square(lo: number = 0, hi: number = 1, freq: number = 1) {
+        this.pulse(lo, hi, 0.5, freq)
         return this
     }
 
