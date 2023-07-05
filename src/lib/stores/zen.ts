@@ -50,17 +50,17 @@ addAction((args: ActionArgs) => {
         s.set(size);
         eventPositions.set(events.map(({id,x,y,z}) => ({id,x,y,z})));
         mutationPositions.set(mutations.map(({id,x,y,z}) => ({id,x,y,z})));      
-    }, delta);
+    }, delta * 1000);
 })
 
 addAction((args: ActionArgs) => {
-    const { time, events, mutations } = args;
+    const { time, delta, events, mutations } = args;
     events.forEach(({id, eparams}) => {
-        handleEvent(time, id, eparams);
+        handleEvent(time, delta, id, eparams);
     })
 
     mutations.forEach(({id, mparams}) => {
-        handleMutation(time, id, mparams);
+        handleMutation(time, delta, id, mparams);
     }
 )})
 

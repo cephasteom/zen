@@ -23,12 +23,12 @@ const midiStreams:  { [key: string]: Midi } = new Array(8).fill(0)
 /**
  * Event handlers
 **/
-export function handleEvent(time: number, id: string, params: any) {
+export function handleEvent(time: number, delta: number, id: string, params: any) {
     const { cut, n = 60, strum = 0, midi } = params;
     
     const toCut = cut !== undefined ? [+cut].flat() : []
     toCut.forEach((id: number) => {
-        midiStreams[`s${id}`].cut(time);
+        midiStreams[`s${id}`].cut(delta);
     });
 
     // handle multiple midi devices
@@ -41,11 +41,11 @@ export function handleEvent(time: number, id: string, params: any) {
             }), {});
             ps.n = n
             ps.midi = midi;
-            midiStreams[id].trigger(ps, time + (noteIndex * strum));
+            midiStreams[id].trigger(ps, delta + (noteIndex * strum));
         })
     })
 }
 
-export function handleMutation(time: number, id: string, params: any) {
-    params.midi && midiStreams[id].mutate(params, time);
+export function handleMutation(time: number, delta: number, id: string, params: any) {
+    params.midi && midiStreams[id].mutate(params, delta);
 }

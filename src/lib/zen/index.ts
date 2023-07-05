@@ -1,4 +1,4 @@
-import { start, Loop, Transport, immediate } from 'tone'
+import { start, Loop, Transport, immediate, now } from 'tone'
 import { writable, get } from 'svelte/store';
 import Zen from './classes/Zen';
 import Stream from './classes/Stream';
@@ -27,8 +27,6 @@ let counter = createCount(0);
 // initialise Zen and Streams within the scope of the loop
 export const z = new Zen();
 export const streams: Stream[] = Array(8).fill(0).map((_, i) => new Stream('s' + i))
-const [ s0, s1, s2, s3, s4, s5, s6, s7 ] = streams;
-const map = keymap
 
 const loop = new Loop(time => {
     // increment global time
@@ -42,6 +40,8 @@ const loop = new Loop(time => {
     
     // evaluate the user's code, using fallback if it fails
     try {
+        const [ s0, s1, s2, s3, s4, s5, s6, s7 ] = streams;
+        const map = keymap    
         eval(get(code))
         fallbackCode.set(get(code))
     } catch (e: any) {
@@ -66,14 +66,14 @@ const loop = new Loop(time => {
     const mutations = compiled.filter(({m}) => m)
     
     // call actions
-    const delta = (time - immediate()) * 1000
-    const data = { time, t, s, q, c, delta, events, mutations }
+    const delta = (time - immediate())
+    const data = { time, delta, t, s, q, c, events, mutations }
     get(actions).forEach(cb => cb(data))
 
 }, `${z.q}n`).start(0)
 
 export const play = () => {
-    Transport.start('+0.01')
+    Transport.start('+0.1')
 }
 
 let stops = 0;

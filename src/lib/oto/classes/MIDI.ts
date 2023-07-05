@@ -1,5 +1,4 @@
 import { WebMidi, Output } from "webmidi";
-import { immediate } from 'tone'
 import { mapToStepRange } from '../utils/utils'
 import type { params } from '../types'
 
@@ -43,14 +42,13 @@ class Midi {
     }
 
     // accepts a single note
-    trigger(params: { [key: string]: number | string } = {}, time: number) {
+    trigger(params: { [key: string]: number | string } = {}, delta: number) {
         const { midi, midichan, latency, n, dur = 1, amp = 0.5 } = params;
 
         // ignore nonexistent devices
         if(!this.outputs.includes(midi.toString())) return;
 
         const note = n || 60;
-        const delta = time - immediate()
         const channels = midichan ? (Array.isArray(midichan) ? midichan : [+midichan]) : undefined;
         const device = WebMidi.getOutputByName(midi.toString());
         const duration = +dur * 1000;
@@ -81,12 +79,10 @@ class Midi {
     }
 
 
-    cut(time: number) {
+    cut(delta: number) {
         if(!this.history.device) return;
         
         const latency = this.history.latency || 0;
-        
-        const delta = time - immediate()
         
         const options = {
             time: `+${((delta + latency) * 1000) - 10}`,
@@ -97,12 +93,11 @@ class Midi {
         this.history.notes = [];
     }
 
-    mutate(params: params, time: number) {
+    mutate(params: params, delta: number) {
         if(!this.history.device) return;
         
         const { latency } = params;
         
-        const delta = time - immediate()
         const timestamp = ((delta + (+latency || 0)) * 1000) - 10
         
         const options = {
