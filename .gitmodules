@@ -1,0 +1,3 @@
+[submodule "ct-synths"]
+	path = src/lib/ct-synths
+	url = https://github.com/cephasteom/ct-synths.git
