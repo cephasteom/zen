@@ -48,4 +48,7 @@ export const handleSynthEvent = (time: number, id: string, params: any) => {
 
     // TODO: handle multiple n
     synth && synth.play(params, time)
+
+    // TODO: handle FX
+    channels[params.channel].set(params, time)
 }
