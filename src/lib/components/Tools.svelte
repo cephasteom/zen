@@ -1,10 +1,11 @@
 <script lang="ts">
     import { play, stop } from '$lib/zen';
+    let isPlaying = false
 </script>
 
 <div class="tools">
-    <button on:click={() => play()}>Play</button>
-    <button on:click={() => stop()}>Stop</button>
+    <button on:click={() => { play(), isPlaying = true}} class:active={isPlaying}>Play</button>
+    <button on:click={() => { stop(), isPlaying = false}}>Stop</button>
     <span>Save</span>
     <span>Load</span>
 </div>
@@ -26,8 +27,11 @@
 
             &:hover {
                 color: var(--color-theme-1);
-
+            }
+            &.active {
+                color: var(--color-theme-1);
             }
         }
     }
+
 </style>
