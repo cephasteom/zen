@@ -86,6 +86,8 @@ class Stream {
             ...this.evaluateGroup(this.py, y, s, bpm), // ...
             ...this.evaluateGroup(this.pz, z, s, bpm), // ...
         } : {}
+
+        compiled.channel = +this.id.slice(1)
         
         return { 
             id, e, m, x: mod(x,s), y: mod(y,s), z: mod(z,s), 
