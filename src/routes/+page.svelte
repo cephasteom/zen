@@ -3,12 +3,19 @@
     import Visuals from '$lib/components/Visuals.svelte';
     import Data from '$lib/components/Data.svelte';
     import Tools from '$lib/components/Tools.svelte';
+    import { startAudio } from '$lib/zen/index';
 </script>
 
 <svelte:head>
 	<title>Zen</title>
 	<meta name="description" content="Zen" />
 </svelte:head>
+
+<svelte:window 
+    on:click={startAudio} 
+    on:touchstart={startAudio}
+    on:keydown={startAudio}
+/>
 
 <section class="zen">
     <div class="editor">

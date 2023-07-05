@@ -1,4 +1,4 @@
-import { Loop, Transport, immediate } from 'tone'
+import { start, Loop, Transport, immediate } from 'tone'
 import { writable, get } from 'svelte/store';
 import Zen from './classes/Zen';
 import Stream from './classes/Stream';
@@ -72,7 +72,9 @@ const loop = new Loop(time => {
 
 }, `${z.q}n`).start(0)
 
-export const start = () => Transport.start('+0.1')
+export const play = () => {
+    Transport.start('+0.01')
+}
 
 let stops = 0;
 export const stop = () => {
@@ -80,4 +82,12 @@ export const stop = () => {
     Transport.stop(immediate())
     // reset counter if stopped twice
     !(stops%2) && (counter = createCount(0))
+}
+
+export async function startAudio() {
+    await start()    
+    console.log('started audio')
+    window.removeEventListener('keydown', startAudio)
+    window.removeEventListener('click', startAudio)
+    window.removeEventListener('touchstart', startAudio)
 }

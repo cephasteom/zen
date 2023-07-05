@@ -1,9 +1,9 @@
 <script lang="ts">
-    import { start, stop } from '$lib/zen';
+    import { play, stop } from '$lib/zen';
 </script>
 
 <div class="tools">
-    <button on:click={() => start()}>Start</button>
+    <button on:click={() => play()}>Play</button>
     <button on:click={() => stop()}>Stop</button>
     <span>Save</span>
     <span>Load</span>

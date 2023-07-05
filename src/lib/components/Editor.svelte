@@ -2,7 +2,7 @@
     import loader from '@monaco-editor/loader';
     import { onDestroy, onMount } from 'svelte';
     import type * as Monaco from 'monaco-editor/esm/vs/editor/editor.api';
-    import { setCode, start, stop } from '$lib/zen';
+    import { setCode, play, stop } from '$lib/zen';
     import { error } from '$lib/stores/zen';
 
     let editor: Monaco.editor.IStandaloneCodeEditor;
@@ -39,8 +39,8 @@
 
         // Remove the next two lines to load the monaco editor from a CDN
         // see https://www.npmjs.com/package/@monaco-editor/loader#config
-        // const monacoEditor = await import('monaco-editor');
-        // loader.config({ monaco: monacoEditor.default });
+        const monacoEditor = await import('monaco-editor');
+        loader.config({ monaco: monacoEditor.default });
 
         monaco = await loader.init();
 
@@ -60,7 +60,7 @@
                 error.set('');
                 setCode(editor.getValue());
                 localStorage.setItem("z.code", editor.getValue());
-                start();
+                play();
                 flash = true;
                 setTimeout(() => flash = false, 400);
             } 
