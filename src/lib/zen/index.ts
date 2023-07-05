@@ -45,6 +45,7 @@ const loop = new Loop(time => {
         eval(get(code))
         fallbackCode.set(get(code))
     } catch (e: any) {
+        const [ s0, s1, s2, s3, s4, s5, s6, s7 ] = streams;
         get(errorActions).forEach(cb => cb(e.message))
         eval(get(fallbackCode))
     }
