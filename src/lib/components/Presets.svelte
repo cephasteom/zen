@@ -1,9 +1,7 @@
 <script lang="ts">
     import { presetKeys, presets, savePreset, activePreset as active } from '$lib/stores/presets';
-    // import { FontAwesomeIcon } from 'fontawesome-svelte';
-    // import { library } from '@fortawesome/fontawesome-svg-core';
-    // import { faChevronLeft, faChevronRight, faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
-    // library.add(faChevronLeft, faChevronRight, faFloppyDisk);
+    import Icon from 'svelte-awesome';
+    import { faChevronLeft, faChevronRight, faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
 
     let current = $active
 
@@ -37,7 +35,7 @@
 
 <div class="presets">
     <button class="presets__chevron" on:click={onPrev}>
-        <!-- <FontAwesomeIcon icon={faChevronLeft} /> -->
+        <Icon data="{faChevronLeft}" />
     </button>
 
     <span class="presets__input">
@@ -45,29 +43,36 @@
     </span>
 
     <button class="presets__store" on:click={() => savePreset($active)}>
-        <!-- <FontAwesomeIcon icon={faFloppyDisk} /> -->
+        <Icon data="{faFloppyDisk}" />
     </button>
 
     <button class="presets__chevron" on:click={onNext}>
-        <!-- <FontAwesomeIcon icon={faChevronRight} /> -->
+        <Icon data="{faChevronRight}" />
     </button>
 
 </div>
 
 <style lang="scss">
+    button {
+        background-color: transparent;
+        border: none;
+        display: flex;
+        align-items: center;
+        color: var(--color-grey-mid);
+    }
     .presets {
         background-color: var(--color-yellow);
         border-radius: 5px;
         font-size: var(--text-sm);
-        padding: 0.25rem 1rem;
-        text-transform: uppercase;
+        font-family: var(--font-family);
+        padding: 0.5rem;
         color: var(--color-grey-mid);
         border-radius: 5px;
         font-weight: 500;
         display: flex;
         align-items: center;
         &__chevron {
-            width: 1.5rem;
+            width: 1.25rem;
             text-align: center;
             cursor: pointer;
         }
@@ -77,7 +82,7 @@
             color: var(--color-grey-mid);
             font-size: var(--text-sm);
             font-weight: 500;
-            text-transform: uppercase;
+
             text-align: center;
             width: 5rem;
             padding: 0;
