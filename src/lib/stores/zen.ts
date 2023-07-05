@@ -10,6 +10,7 @@ export const s = writable(16); // size of canvas
 export const eventPositions = writable<{id: string, x: number, y: number, z: number}[]>([]);
 export const mutationPositions = writable<{id: string, x: number, y: number, z: number}[]>([]);
 export const error = writable('');
+export const isPlaying = writable(false);
 
 export const visualsData = derived([s, eventPositions, mutationPositions], ([s, eventPositions, mutationPositions]) => {
     const data = new Uint8Array(s * s * 4);
