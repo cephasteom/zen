@@ -39,8 +39,8 @@
 
         // Remove the next two lines to load the monaco editor from a CDN
         // see https://www.npmjs.com/package/@monaco-editor/loader#config
-        const monacoEditor = await import('monaco-editor');
-        loader.config({ monaco: monacoEditor.default });
+        // const monacoEditor = await import('monaco-editor');
+        // loader.config({ monaco: monacoEditor.default });
 
         monaco = await loader.init();
 
