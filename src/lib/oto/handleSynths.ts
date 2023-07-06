@@ -53,7 +53,7 @@ export const handleSynthEvent = (time: number, id: string, params: any) => {
 
         // handle multiple notes
         [n].flat().forEach((n: number, noteIndex: number) => {
-            const ps = Object.entries(params).reduce((obj, [key, val]) => ({
+            const ps: Dictionary = Object.entries(params).reduce((obj, [key, val]) => ({
                 ...obj,
                 [key]: Array.isArray(val) ? val[instIndex%val.length] : val
             }), {});
