@@ -43,10 +43,10 @@ class Zen {
     }
 
     getTime() : number {
-        const localT = Math.floor(this.t.get(this._t, this._q))
+        const localT = this.t.get(this._t, this._q)
         const globalT = this._t
         this._t = localT !== null ? Array.isArray(localT) ? localT[0] : localT : globalT
-        return this._t
+        return Math.floor(this._t)
     }
 
     getBpm() : number {
