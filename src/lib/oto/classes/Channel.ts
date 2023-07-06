@@ -19,6 +19,10 @@ class Channel {
         this._fx.set(params, time)
     }
 
+    mutate(params: any, time: number, lag: number) {
+        this._fx.mutate(params, time, lag)
+    }
+
 }
 
 export default Channel

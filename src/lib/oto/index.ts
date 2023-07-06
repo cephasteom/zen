@@ -1,5 +1,5 @@
 import { handleMidiEvent, handleMidiMutation } from "./handleMidi";
-import { handleSynthEvent } from "./handleSynths";
+import { handleSynthEvent, handleSynthMutation } from "./handleSynths";
 
 export function handleEvent(time: number, delta: number, id: string, params: any) {
     params.midi && handleMidiEvent(delta, id, params);
@@ -8,4 +8,5 @@ export function handleEvent(time: number, delta: number, id: string, params: any
 
 export function handleMutation(time: number, delta: number, id: string, params: any) {
     params.midi && handleMidiMutation(delta, id, params);
+    handleSynthMutation(time, id, params);
 }

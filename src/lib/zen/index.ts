@@ -65,7 +65,7 @@ const loop = new Loop(time => {
     const compiled = streams.map(stream => stream.get(t, q, s, bpm))
     const events = compiled.filter(({e}) => e)
     const mutations = compiled.filter(({m}) => m)
-    
+
     // call actions
     const delta = (time - immediate())
     const data = { time, delta, t, s, q, c, events, mutations }

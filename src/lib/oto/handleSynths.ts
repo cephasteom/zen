@@ -31,7 +31,8 @@ const connect = (synth: any, channel: number, type: string) => {
 }
 
 export const handleSynthEvent = (time: number, id: string, params: any) => {
-    const { cut, n = 60, strum = 0, inst, channel } = params;
+    const { cut, n = 60, strum = 0, inst } = params;
+    const channel = +id.slice(1)
 
     // Handle cut notes
     const toCut = cut !== undefined ? [+cut].flat() : []
@@ -40,15 +41,15 @@ export const handleSynthEvent = (time: number, id: string, params: any) => {
         Object.values(stream).forEach((synth: any) => synth?.cut(time))
     });
 
-    // TODO: handle multiple insts
+    // handle multiple insts
     [inst].flat().forEach((inst: string, instIndex: number) => {
         // ignore instruments that don't exist
         if(!synthTypes.includes(inst)) return
     
         // Get or make synth
-        const synth = synths[params.channel] && synths[params.channel][inst] 
-            ? synths[params.channel][inst] 
-            : connect(makeSynth(inst), params.channel, inst);
+        const synth = synths[channel] && synths[channel][inst] 
+            ? synths[channel][inst] 
+            : connect(makeSynth(inst), channel, inst);
 
         // handle multiple notes
         [n].flat().forEach((n: number, noteIndex: number) => {
@@ -62,6 +63,20 @@ export const handleSynthEvent = (time: number, id: string, params: any) => {
         })
     })
 
-    // TODO: handle FX
-    channels[params.channel].set(params, time)
+    // handle FX
+    channels[channel].set(params, time)
+}
+
+export const handleSynthMutation = (time: number, id: string, params: any) => {
+    const { lag=500 } = params;
+    const channel = +id.slice(1)
+
+    const { n } = params
+    const ps = n ! === undefined
+        ?  {...params, n: Array.isArray(n) ? n[0] : n}
+        : params    
+
+    Object.values(synths[channel])?.forEach((s: any) => s.mutate(ps, time, lag))
+    
+    channels[channel].mutate(params, time, lag)
 }

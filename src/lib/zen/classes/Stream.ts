@@ -68,7 +68,7 @@ class Stream {
 
     get(time: number = 0, q: number = 16, s: number = 16, bpm: number = 120) {
         // use stream t, if set, or global t
-        const t = this.t.has() ? Math.round(this.t.get(time, q) || 0) : time;
+        const t = this.t.has() ? Math.floor(this.t.get(time, q) || 0) : time;
         
         // use stream x, y, z, if set, or 0
         const x = this.x.get(t, s) || 0
@@ -86,8 +86,6 @@ class Stream {
             ...this.evaluateGroup(this.py, y, s, bpm), // ...
             ...this.evaluateGroup(this.pz, z, s, bpm), // ...
         } : {}
-
-        compiled.channel = +this.id.slice(1)
         
         return { 
             id, e, m, x: mod(x,s), y: mod(y,s), z: mod(z,s), 
