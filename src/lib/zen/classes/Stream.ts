@@ -8,10 +8,10 @@ class Stream {
     id: string
     
     // parameter groups
-    p: ProxyHandler<Dictionary>
-    px: ProxyHandler<Dictionary>
-    py: ProxyHandler<Dictionary>
-    pz: ProxyHandler<Dictionary>
+    p
+    px
+    py
+    pz
     
     // patternable parameters
     t = new Pattern() // used to overide the global t
@@ -33,10 +33,9 @@ class Stream {
 
         // catch all calls to this.p, this.px, this.py, this.pz and return a new Pattern if the key doesn't exist
         const handler = {
-            get: (target: Dictionary, key: string) => {
-                Object.keys(target).includes(key) || (target[key] = new Pattern());
-                return target[key];
-            },
+            get: (target: Dictionary, key: string) => key in target 
+                ? target[key as keyof typeof target] 
+                : (target[key] = new Pattern())
         }
 
         this.p = new Proxy({}, handler)
@@ -52,7 +51,7 @@ class Stream {
      * @param bpm
      * @returns object of formatted key/value pairs
      */
-    evaluateGroup(group: Pattern, count: number, divisions: number, bpm: number) : { [key: string]: any } {
+    evaluateGroup(group: Dictionary, count: number, divisions: number, bpm: number) : { [key: string]: any } {
         return Object.entries(group).reduce((obj, [key, pattern]) => ({
             ...obj,
             [key]: pattern.get(count, divisions, bpm)
@@ -68,12 +67,12 @@ class Stream {
 
     get(time: number = 0, q: number = 16, s: number = 16, bpm: number = 120) {
         // use stream t, if set, or global t
-        const t = Math.floor(this.t.has() ? this.t.get(time, q) || 0 : time);
+        const t = +(this.t.has() ? this.t.get(time, q) || 0 : time);
         
         // use stream x, y, z, if set, or 0
-        const x = this.x.get(t, s) || 0
-        const y = this.y.get(t, s) || 0
-        const z = this.z.get(t, s) || 0
+        const x = +(this.x.get(t, s) || 0)
+        const y = +(this.y.get(t, s) || 0)
+        const z = +(this.z.get(t, s) || 0)
         
         const { id } = this;
         const e = this.e.get(t, q)
