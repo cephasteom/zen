@@ -30,7 +30,7 @@ const connect = (synth: any, channel: number, type: string) => {
     return synth
 }
 
-export const handleSynthEvent = (time: number, id: string, params: any) => {
+export const handleSynthEvent = (time: number, id: string, params: Dictionary) => {
     const { cut, n = 60, strum = 0, inst } = params;
     const channel = +id.slice(1)
 
@@ -67,7 +67,7 @@ export const handleSynthEvent = (time: number, id: string, params: any) => {
     channels[channel].set(params, time)
 }
 
-export const handleSynthMutation = (time: number, id: string, params: any) => {
+export const handleSynthMutation = (time: number, id: string, params: Dictionary) => {
     const { lag=500 } = params;
     const channel = +id.slice(1)
 
