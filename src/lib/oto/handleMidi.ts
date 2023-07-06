@@ -43,6 +43,6 @@ export function handleMidiEvent(delta: number, id: string, params: Dictionary) {
     })
 }
 
-export function handleMidiMutation(delta: number, id: string, params: any) {
+export function handleMidiMutation(delta: number, id: string, params: Dictionary) {
     midiStreams[id].mutate(params, delta);
 }

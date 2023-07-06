@@ -1,3 +1,4 @@
+import type { Dictionary } from "../types";
 import { Split, context } from 'tone'
 import { CtFXChain } from "../ct-synths"
 
@@ -15,11 +16,11 @@ class Channel {
         this.input = this._fx.input
     }
 
-    set(params: any, time: number) {
+    set(params: Dictionary, time: number) {
         this._fx.set(params, time)
     }
 
-    mutate(params: any, time: number, lag: number) {
+    mutate(params: Dictionary, time: number, lag: number) {
         this._fx.mutate(params, time, lag)
     }
 

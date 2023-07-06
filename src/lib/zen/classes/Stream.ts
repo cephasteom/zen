@@ -59,7 +59,7 @@ class Stream {
     }
 
     // set multiple parameters at once, e.g. s0.set({foo: 1, bar: 2})
-    set(ps: {}) {
+    set(ps: Dictionary) {
         Object.entries(ps).forEach(([key, value]) => {
             this.p[key].set(value)
         })
