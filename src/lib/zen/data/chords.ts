@@ -1,6 +1,6 @@
-import type { dictionary } from '../types'
+import type { Dictionary } from '../types'
 
-const list: dictionary = {
+const list: Dictionary = {
     major: [0,4,7],
     aug: [0,4,8],
     six: [0,4,7,9],
@@ -52,7 +52,7 @@ const list: dictionary = {
     minor11sharp: [0,3,7,10,14,18],
 }
 
-export const chords: dictionary = {
+export const chords: Dictionary = {
     major: list['major'],
     maj: list['major'],
     M: list['major'],

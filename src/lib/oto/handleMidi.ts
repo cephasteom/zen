@@ -1,5 +1,6 @@
 import { WebMidi } from "webmidi";
 import Midi from './classes/MIDI';
+import type { Dictionary } from "./types";
 
 // Enable Midi and log available devices
 async function enableMidi() {
@@ -19,7 +20,7 @@ const midiStreams:  { [key: string]: Midi } = new Array(8).fill(0)
         [`s${i}`]: stream
     }), {});
 
-export function handleMidiEvent(delta: number, id: string, params: any) {
+export function handleMidiEvent(delta: number, id: string, params: Dictionary) {
     const { cut, n = 60, strum = 0, midi } = params;
     
     const toCut = cut !== undefined ? [+cut].flat() : []
@@ -31,7 +32,7 @@ export function handleMidiEvent(delta: number, id: string, params: any) {
     [midi].flat().forEach((midi: string, instIndex: number) => {
         // handle multiple notes
         [n].flat().forEach((n: number, noteIndex: number) => {
-            const ps = Object.entries(params).reduce((obj, [key, val]) => ({
+            const ps: Dictionary = Object.entries(params).reduce((obj, [key, val]) => ({
                 ...obj,
                 [key]: Array.isArray(val) ? val[instIndex%val.length] : val
             }), {});

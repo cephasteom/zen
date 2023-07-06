@@ -1,7 +1,7 @@
 
-import type { dictionary } from '../types'
+import type { Dictionary } from '../types'
 
-export const scales: dictionary = {
+export const scales: Dictionary = {
     minPent: [0,3,5,7,10],
     majPent: [0,2,4,7,9],
     ritusen: [0,2,5,7,9],

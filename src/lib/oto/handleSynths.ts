@@ -1,12 +1,12 @@
 import { CtSynth, CtSampler, CtGranulator, CtAdditive, CtAcidSynth, CtDroneSynth, CtSubSynth } from "./ct-synths"
-import type { dictionary } from './types'
+import type { Dictionary } from './types'
 import Channel from './classes/Channel'
 import { output } from './destination';
 
-const channels: dictionary = {}
+const channels: Dictionary = {}
 const channelCount = output.numberOfInputs
 
-const synths: dictionary = {}
+const synths: Dictionary = {}
 
 const synthTypes = ['synth', 'sampler', 'granular', 'additive', 'acid', 'drone', 'sub']
 const makeSynth = (type: string) => {

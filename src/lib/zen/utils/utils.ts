@@ -1,5 +1,5 @@
 import { Noise } from 'noisejs'
-import type { patternValue, dictionary } from '../types'
+import type { patternValue, Dictionary } from '../types'
 
 export const noise = new Noise(Math.random())
 
@@ -45,7 +45,7 @@ export const wrap = (i: number, max: number) => i % max
 
 // memoize single argument function
 export function memoize(fn: (x: any) => any) {
-    let cache: dictionary = {};
+    let cache: Dictionary = {};
     return (value: any) => {
         let n = value;
         return n in cache 

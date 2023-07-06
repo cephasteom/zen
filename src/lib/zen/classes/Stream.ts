@@ -2,16 +2,16 @@
 import Pattern from './Pattern'
 import { mod } from '../utils/utils'
 import { formatEventParams, formatMutationParams } from '../utils/syntax';
-import type { dictionary } from '../types'
+import type { Dictionary } from '../types'
 
 class Stream {
     id: string
     
     // parameter groups
-    p: ProxyHandler<dictionary>
-    px: ProxyHandler<dictionary>
-    py: ProxyHandler<dictionary>
-    pz: ProxyHandler<dictionary>
+    p: ProxyHandler<Dictionary>
+    px: ProxyHandler<Dictionary>
+    py: ProxyHandler<Dictionary>
+    pz: ProxyHandler<Dictionary>
     
     // patternable parameters
     t = new Pattern() // used to overide the global t
@@ -33,7 +33,7 @@ class Stream {
 
         // catch all calls to this.p, this.px, this.py, this.pz and return a new Pattern if the key doesn't exist
         const handler = {
-            get: (target: dictionary, key: string) => {
+            get: (target: Dictionary, key: string) => {
                 Object.keys(target).includes(key) || (target[key] = new Pattern());
                 return target[key];
             },
