@@ -31,23 +31,36 @@ const connect = (synth: any, channel: number, type: string) => {
 }
 
 export const handleSynthEvent = (time: number, id: string, params: any) => {
-    const { cut, n = 60, strum = 0, midi } = params;
+    const { cut, n = 60, strum = 0, inst, channel } = params;
 
+    // Handle cut notes
     const toCut = cut !== undefined ? [+cut].flat() : []
     toCut.forEach((channel: number) => {
         const stream = synths[channel] || {}
         Object.values(stream).forEach((synth: any) => synth?.cut(time))
     });
 
-    // ignore instruments that don't exist
-    if(!synthTypes.includes(params.inst)) return
+    // TODO: handle multiple insts
+    [inst].flat().forEach((inst: string, instIndex: number) => {
+        // ignore instruments that don't exist
+        if(!synthTypes.includes(inst)) return
+    
+        // Get or make synth
+        const synth = synths[params.channel] && synths[params.channel][inst] 
+            ? synths[params.channel][inst] 
+            : connect(makeSynth(inst), params.channel, inst);
 
-    const synth = synths[params.channel] && synths[params.channel][params.inst] 
-        ? synths[params.channel][params.inst] 
-        : connect(makeSynth(params.inst), params.channel, params.inst);
+        // handle multiple notes
+        [n].flat().forEach((n: number, noteIndex: number) => {
+            const ps = Object.entries(params).reduce((obj, [key, val]) => ({
+                ...obj,
+                [key]: Array.isArray(val) ? val[instIndex%val.length] : val
+            }), {});
+            ps.n = n
 
-    // TODO: handle multiple n
-    synth && synth.play(params, time)
+            synth.play(ps, time + (noteIndex * strum));
+        })
+    })
 
     // TODO: handle FX
     channels[params.channel].set(params, time)
