@@ -32,7 +32,7 @@ const connect = (synth: any, channel: number, type: string) => {
 
 export const handleSynthEvent = (time: number, id: string, params: Dictionary) => {
     const { cut, n = 60, strum = 0, inst } = params;
-    const channel = +id.slice(1)
+    const channel = +id.slice(1) * 2
 
     // Handle cut notes
     const toCut = cut !== undefined ? [+cut].flat() : []
@@ -69,7 +69,7 @@ export const handleSynthEvent = (time: number, id: string, params: Dictionary) =
 
 export const handleSynthMutation = (time: number, id: string, params: Dictionary) => {
     const { lag=500 } = params;
-    const channel = +id.slice(1)
+    const channel = +id.slice(1) * 2
 
     const { n } = params
     const ps = n ! === undefined
