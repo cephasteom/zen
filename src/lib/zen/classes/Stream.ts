@@ -24,6 +24,9 @@ class Stream {
     e = new Pattern()
     m = new Pattern()
 
+    mute = new Pattern() // mute stream
+    solo = new Pattern() // solo stream
+
     // map of event/mutation names to their parameters
     // use this to overide keys in the event/mutation object. Useful for mapping to MIDI CCs
     map = {}
@@ -75,11 +78,13 @@ class Stream {
         const z = +(this.z.get(t, s) || 0)
         
         const { id } = this;
-        const e = this.e.get(t, q)
-        const m = this.m.get(t, q)
+        const mute = !!this.mute.get(t, q)
+        const solo = !!this.solo.get(t, q)
+        const e = !!this.e.get(t, q) && !mute
+        const m = !!this.m.get(t, q) && !mute
     
         // compile all parameters
-        const compiled = e || m ? {
+        const compiled = (e || m) && !mute ? {
             ...this.evaluateGroup(this.p, t, q, bpm), // calculate based on position in cycle, 0 - 1
             ...this.evaluateGroup(this.px, x, s, bpm), // calculate based on position in space, 0 - 1
             ...this.evaluateGroup(this.py, y, s, bpm), // ...
@@ -87,15 +92,18 @@ class Stream {
         } : {}
         
         return { 
-            id, e, m, x: mod(x,s), y: mod(y,s), z: mod(z,s), 
+            id, 
+            e, m, 
+            mute, solo,
+            x: mod(x,s), y: mod(y,s), z: mod(z,s), 
             eparams: formatEventParams(compiled, this.map), 
             mparams: formatMutationParams(compiled, this.map) 
         }
     }
 
     reset() {
-        const { t, x, y, z, e, m } = this;
-        [t, x, y, z, e, m].forEach(p => p.reset())
+        const { t, x, y, z, e, m, solo, mute } = this;
+        [t, x, y, z, e, m, solo, mute].forEach(p => p.reset())
 
         Object.values(this.p).forEach(p => p.reset())
         Object.values(this.px).forEach(p => p.reset())

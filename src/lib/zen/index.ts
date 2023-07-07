@@ -1,4 +1,4 @@
-import { start, Loop, Transport, immediate, now } from 'tone'
+import { start, Loop, Transport, immediate } from 'tone'
 import { writable, get } from 'svelte/store';
 import Zen from './classes/Zen';
 import Stream from './classes/Stream';
@@ -14,12 +14,12 @@ export const fallbackCode = writable('');
 
 export const actions = writable<action[]>([])
 export const addAction = (cb: action) => {
-    actions.update(arr => [...arr, cb])
+    actions.update((arr: action[]) => [...arr, cb])
 }
 
 export const errorActions = writable<{(message: string) : void}[]>([])
 export const addErrorAction = (cb: (message: string) => void) => {
-    errorActions.update(arr => [...arr, cb])
+    errorActions.update((arr: {(message: string) : void}[]) => [...arr, cb])
 }
 
 let counter = createCount(0);
@@ -63,13 +63,15 @@ const loop = new Loop(time => {
 
     // compile events and mutations
     const compiled = streams.map(stream => stream.get(t, q, s, bpm))
-    const events = compiled.filter(({e}) => e)
-    const mutations = compiled.filter(({m}) => m)
+    const soloed = compiled.filter(({solo}) => solo)
+    const data = soloed.length ? soloed : compiled
+    const events = data.filter(({e}) => e)
+    const mutations = data.filter(({m}) => m)
 
     // call actions
     const delta = (time - immediate())
-    const data = { time, delta, t, s, q, c, events, mutations }
-    get(actions).forEach(cb => cb(data))
+    const args = { time, delta, t, s, q, c, events, mutations }
+    get(actions).forEach((cb: action) => cb(args))
 
 }, `${z.q}n`).start(0)
 
