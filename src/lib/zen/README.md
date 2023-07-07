@@ -94,3 +94,12 @@ You may extend Zen by adding your own mappings in TBC. There is one map availabl
 ```js
 s0.map=keymap.nordlead1a
 ```
+
+#### Solo | Mute
+You can solo and mute streams. Solo and mute properties are also Patterns.
+```js
+s0.solo.set(1)
+s0.solo.every(1)
+
+s0.mute.set(1)
+```
