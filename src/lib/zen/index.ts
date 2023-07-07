@@ -6,11 +6,12 @@ import { createCount } from './utils/utils';
 import type { action } from './types';
 import keymap from './data/keymapping'
 
+
+export const lastCode = writable('');
 export const code = writable('');
 export const setCode = (str: string) => {
     code.set(str)
 };
-export const fallbackCode = writable('');
 
 export const actions = writable<action[]>([])
 export const addAction = (cb: action) => {
@@ -28,6 +29,7 @@ let counter = createCount(0);
 export const z = new Zen();
 export const streams: Stream[] = Array(8).fill(0).map((_, i) => new Stream('s' + i))
 
+// Main Zen loop
 const loop = new Loop(time => {
     // increment global time
     let t = counter()
@@ -42,12 +44,13 @@ const loop = new Loop(time => {
     try {
         const [ s0, s1, s2, s3, s4, s5, s6, s7 ] = streams;
         const map = keymap    
-        eval(get(code))
-        fallbackCode.set(get(code))
+        const thisCode = !(t%q) ? get(code) : get(lastCode) // only eval code on the beat
+        eval(thisCode)
+        lastCode.set(thisCode)
     } catch (e: any) {
         const [ s0, s1, s2, s3, s4, s5, s6, s7 ] = streams;
         get(errorActions).forEach(cb => cb(e.message))
-        eval(get(fallbackCode))
+        eval(get(lastCode))
     }
     
     // reassign global variables in case the user has changed them
