@@ -1,3 +1,4 @@
+import { writable } from "svelte/store";
 import { CtSynth, CtSampler, CtGranulator, CtAdditive, CtAcidSynth, CtDroneSynth, CtSubSynth } from "./ct-synths"
 import type { Dictionary } from './types'
 import Channel from './classes/Channel'
@@ -80,3 +81,36 @@ export const handleSynthMutation = (time: number, id: string, params: Dictionary
     
     channels[channel].mutate(params, time, lag)
 }
+
+// Fetch samples lists
+const samples = writable<Dictionary>({});
+// fetch samples
+fetch('/samples/samples.json/')
+    .then(res => res.json())
+    .then(json => {
+        if(!json) return
+        samples.update((samples: Dictionary) => ({...samples, ...json}))
+        // update sample banks list
+        // Object.values(streams.all()).forEach(({sampler, granular}) => {
+        //     // update any existing samplers
+        //     [sampler, granular].forEach(synth => synth.banks = {...synth.banks, ...banks})
+        // })
+    })
+
+// fetch custom samples
+fetch('http://localhost:5000/samples.json')
+    .then(res => res.json())
+    .then(json => {
+        if(!json) return
+        samples.update((samples: Dictionary) => ({...samples, ...json}))
+        // // update sample banks list
+        // Object.values(streams.all()).forEach(({sampler, granular}) => {
+        //     // update any existing samplers
+        //     [sampler, granular].forEach(synth => synth.banks = {...synth.banks, ...banks})
+        // })
+    })
+    .catch(_ => console.log('no custom samples available'))    
+
+samples.subscribe((samples: Dictionary) => {
+    console.log('samples', samples)
+})
