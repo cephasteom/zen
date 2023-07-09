@@ -85,32 +85,20 @@ export const handleSynthMutation = (time: number, id: string, params: Dictionary
 // Fetch samples lists
 const samples = writable<Dictionary>({});
 // fetch samples
-fetch('/samples/samples.json/')
-    .then(res => res.json())
-    .then(json => {
-        if(!json) return
-        samples.update((samples: Dictionary) => ({...samples, ...json}))
-        // update sample banks list
-        // Object.values(streams.all()).forEach(({sampler, granular}) => {
-        //     // update any existing samplers
-        //     [sampler, granular].forEach(synth => synth.banks = {...synth.banks, ...banks})
-        // })
-    })
-
-// fetch custom samples
-fetch('http://localhost:5000/samples.json')
-    .then(res => res.json())
-    .then(json => {
-        if(!json) return
-        samples.update((samples: Dictionary) => ({...samples, ...json}))
-        // // update sample banks list
-        // Object.values(streams.all()).forEach(({sampler, granular}) => {
-        //     // update any existing samplers
-        //     [sampler, granular].forEach(synth => synth.banks = {...synth.banks, ...banks})
-        // })
-    })
-    .catch(_ => console.log('no custom samples available'))    
+['/samples/samples.json/', 'http://localhost:5000/samples.json'].forEach(url => {
+    fetch(url)
+        .then(res => res.json())
+        .then(json => {
+            if(!json) return
+            samples.update((samples: Dictionary) => ({...samples, ...json}))
+        })
+        .catch(_ => console.log('no samples available at ' + url))
+})
 
 samples.subscribe((samples: Dictionary) => {
-    console.log('samples', samples)
+    console.log(samples)
+    Object.values(synths).forEach(({sampler, granular}) => {
+        // update any existing samplers
+        [sampler, granular].forEach(synth => synth.banks = {...synth.banks, ...samples})
+    })
 })
