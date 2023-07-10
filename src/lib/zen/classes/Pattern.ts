@@ -17,6 +17,7 @@ import {
 import { getScale, getChord } from '../utils/musical';
 
 class Pattern {
+    private _value: patternValue | null = null
     private stack: stack = []
     private _q: number = 16 // divisions per cycle
     private _bpm: number = 120
@@ -28,12 +29,18 @@ class Pattern {
 
     reset() {
         this.stack = []
+        this._value = null
         return this
     }
 
     // use params from another stream, e.g. s1.p('foo').use(s0.p.bar).add(2)
     use(pattern: Pattern) {
         this.stack.push(...pattern.stack)
+        return this
+    }
+
+    eval(pattern: Pattern) {
+        this.stack.push(() => pattern._value)
         return this
     }
 
@@ -373,10 +380,11 @@ class Pattern {
         this._q = q
         this._bpm = bpm || this._bpm
 
-        return this.stack.length 
-            // @ts-ignore
-            ? this.stack.reduce((val, fn) => fn(val), t) 
+        this._value = this.stack.length 
+            ? this.stack.reduce((val: patternValue, fn) => fn(val), t) 
             : null
+
+        return this._value
     }
 
     has() : boolean {
