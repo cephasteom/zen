@@ -27,6 +27,19 @@ p.sine(0,10).get(t, q)
 p.tri(0,256,1).add(4).div(0.5).pow(2).clamp(0, 1024)
 ```
 
+#### Snap
+Snap a sample to the number of divisions.
+```js
+s0.px.snap.set(s)
+```
+
+#### Dur, Lag, ADSR
+All of these values should be given in milliseconds. If you wish to quantize these values to the project tempo use `.btms()` - beats to milliseconds.
+```js
+z.bpm.set(139)
+s0.p.dur.set(1).btms() // plays for 1 beat, regardless of the bpm
+```
+
 ### Stream
 #### Time and Space
 TODO: s0.x, s0.t

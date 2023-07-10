@@ -90,6 +90,8 @@ class Stream {
             ...this.evaluateGroup(this.px, x, s, bpm), // calculate based on position in space, 0 - 1
             ...this.evaluateGroup(this.py, y, s, bpm), // ...
             ...this.evaluateGroup(this.pz, z, s, bpm), // ...
+            bpm, // bpm
+            q, // divisions
         } : {}
         
         return { 
