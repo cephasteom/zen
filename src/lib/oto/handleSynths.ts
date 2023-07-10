@@ -1,4 +1,4 @@
-import { writable } from "svelte/store";
+import { writable, get } from "svelte/store";
 import { CtSynth, CtSampler, CtGranulator, CtAdditive, CtAcidSynth, CtDroneSynth, CtSubSynth } from "./ct-synths"
 import type { Dictionary } from './types'
 import Channel from './classes/Channel'
@@ -7,7 +7,8 @@ import { output } from './destination';
 const channels: Dictionary = {}
 const channelCount = output.numberOfInputs
 
-const synths: Dictionary = {}
+// const synths: Dictionary = {}
+const synths = writable<Dictionary>({});
 
 const synthTypes = ['synth', 'sampler', 'granular', 'additive', 'acid', 'drone', 'sub']
 const makeSynth = (type: string) => {
@@ -26,8 +27,13 @@ const connect = (synth: any, channel: number, type: string) => {
     if(!synth) return
     !channels[channel] && (channels[channel] = new Channel(output, channel%channelCount))
     synth.connect(channels[channel].input)
-    synths[channel] = synths[channel] || {}
-    synths[channel][type] = synth
+    synths.update((obj: Dictionary) => ({
+        ...obj,
+        [channel]: {
+            ...obj[channel],
+            [type]: synth
+        }
+    }))
     return synth
 }
 
@@ -48,8 +54,9 @@ export const handleSynthEvent = (time: number, id: string, params: Dictionary) =
         if(!synthTypes.includes(inst)) return
     
         // Get or make synth
-        const synth = synths[channel] && synths[channel][inst] 
-            ? synths[channel][inst] 
+        const store = get(synths)
+        const synth = store[channel] && store[channel][inst] 
+            ? store[channel][inst] 
             : connect(makeSynth(inst), channel, inst);
 
         // handle multiple notes
@@ -75,9 +82,10 @@ export const handleSynthMutation = (time: number, id: string, params: Dictionary
     const { n } = params
     const ps = n ! === undefined
         ?  {...params, n: Array.isArray(n) ? n[0] : n}
-        : params    
+        : params
 
-    Object.values(synths[channel])?.forEach((s: any) => s.mutate(ps, time, lag))
+    const store = get(synths)
+    Object.values(store[channel])?.forEach((s: any) => s.mutate(ps, time, lag))
     
     channels[channel].mutate(params, time, lag)
 }
@@ -91,14 +99,14 @@ const samples = writable<Dictionary>({});
         .then(json => {
             if(!json) return
             samples.update((samples: Dictionary) => ({...samples, ...json}))
+            console.log('Loaded samples from ' + url)
         })
-        .catch(_ => console.log('no samples available at ' + url))
+        .catch(_ => console.log('No samples available at ' + url))
 })
 
-samples.subscribe((samples: Dictionary) => {
-    console.log(samples)
-    Object.values(synths).forEach(({sampler, granular}) => {
-        // update any existing samplers
-        [sampler, granular].forEach(synth => synth.banks = {...synth.banks, ...samples})
-    })
+synths.subscribe((synths: Dictionary) => {
+    Object.values(synths).forEach(({sampler, granular}) => 
+        [sampler, granular].forEach(synth => 
+            synth && (synth.banks = {...synth.banks, ...get(samples)})
+        ))
 })
