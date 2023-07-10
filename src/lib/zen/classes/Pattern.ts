@@ -118,10 +118,12 @@ class Pattern {
     }
 
     // generate patterns from binary strings
-    bin(n: string = '10000000', a: number = 1, b: number = 0) {
+    bin(n: string = '10000000', freq: number = 1, a: number = 1, b: number = 0) {
+        const arr = n.replace(/\s+/g, '').split('').map(x => !!parseInt(x))
+        const divisions = this._q / freq
         this.stack = [(x: patternValue) => {
-            const arr = n.split('')
-            return !!parseInt(arr[Math.floor((+x%1)*arr.length)]) ? a : b
+            // return arr[+x%arr.length] ? a : b
+            return arr[ (+x%divisions) / (divisions/arr.length) ] ? a : b
         }]
         return this
     }
