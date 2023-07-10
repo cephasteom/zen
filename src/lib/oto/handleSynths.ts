@@ -80,7 +80,7 @@ export const handleSynthMutation = (time: number, id: string, params: Dictionary
     const channel = +id.slice(1) * 2
 
     const { n } = params
-    const ps = n ! === undefined
+    const ps = n !== undefined
         ?  {...params, n: Array.isArray(n) ? n[0] : n}
         : params
 

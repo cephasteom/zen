@@ -15,10 +15,10 @@ export const formatEventParams = (params: Dictionary, map: Dictionary) => {
 
 // filter out all params that don't start with _
 // remove _ from remaining params
-export const formatMutationParams = (params: Dictionary, map: Dictionary) => {    
+export const formatMutationParams = (params: Dictionary, map: Dictionary, lag: number) => {
     return {
         ...Object.entries(params)
-            .filter(([key, value]) => key.startsWith('_') && value !== null)
+            .filter(([key, value]) => key.startsWith('_') && value !== null && value !== undefined)
             .reduce((obj, [key, value]) => {
                 key = map[key] || key;
                 return {
@@ -26,6 +26,6 @@ export const formatMutationParams = (params: Dictionary, map: Dictionary) => {
                     [key.substring(1)]: value
                 }
             }, {}),
-        lag: params.lag
+        lag: params.lag || lag
     }
 }

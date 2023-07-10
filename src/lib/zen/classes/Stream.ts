@@ -82,7 +82,8 @@ class Stream {
         const solo = !!this.solo.get(t, q)
         const e = !!this.e.get(t, q) && !mute
         const m = !!this.m.get(t, q) && !mute
-    
+        const lag = (60000/bpm)/q // ms per division
+
         // compile all parameters
         const compiled = (e || m) && !mute ? {
             ...this.evaluateGroup(this.p, t, q, bpm), // calculate based on position in cycle, 0 - 1
@@ -97,7 +98,7 @@ class Stream {
             mute, solo,
             x: mod(x,s), y: mod(y,s), z: mod(z,s), 
             eparams: formatEventParams(compiled, this.map), 
-            mparams: formatMutationParams(compiled, this.map) 
+            mparams: formatMutationParams(compiled, this.map, lag) 
         }
     }
 
