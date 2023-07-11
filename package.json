@@ -6,7 +6,8 @@
 		"build": "vite build",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+        "docs": "npx typedoc --json static/docs/docs.json --entryPoints src/lib/zen/classes/Pattern.ts --entryPoints src/lib/zen/classes/Zen.ts --entryPoints src/lib/zen/classes/Stream.ts"
 	},
 	"devDependencies": {
 		"@fontsource/fira-mono": "^4.5.10",
