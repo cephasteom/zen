@@ -72,9 +72,14 @@ body {
     user-select: none
 }
 
-p {
+p, li {
     font-weight: 400;
 	line-height: 1.5;
+    font-size: 1rem;
+}
+
+p:not(code > &), li {
+    color: var(--color-yellow);
 }
 
 a {
@@ -87,7 +92,7 @@ a:hover {
 	text-decoration: underline;
 }
 
-h1, h2, h3, p {
+h1, h2, h3, h4, p {
     margin: 0;
     margin-top: var(--flow-space, 1em);
 }
@@ -108,7 +113,13 @@ h3 {
     text-transform: uppercase;
     color: var(--color-theme-3);
     font-family: 'Lato Bold', sans-serif;
-    font-size: clamp(1.5rem, 1.29rem + 1.07vw, 2.25rem);
+    font-size: clamp(1.25rem, 1.11rem + 0.71vw, 1.75rem);
+}
+
+h4 {
+    color: var(--color-yellow);
+    font-family: 'Lato Bold', sans-serif;
+    font-size: clamp(1.125rem, 1.09rem + 0.18vw, 1.25rem);
 }
 
 svg {
@@ -116,13 +127,35 @@ svg {
     height: 100%;
 }
 
+ul {
+    list-style: none;
+    padding: 1rem;
+    margin: 0;
+}
+
 .content {
 	padding: 1rem;
+    background-color: var(--color-grey-dark);
 }
 @media(min-width: 1200px) {
     .content {
         padding: 1rem 2rem;
     }
+}
+
+pre > code {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+}
+
+code.inline-code {
+    font-family: var(--font-mono);
+    color: var(--color-theme-1);
+}
+
+pre {
+    background-color: var(--color-yellow);
+    padding: 1rem;
 }
 
 input,
@@ -181,22 +214,4 @@ button:focus:not(:focus-visible) {
 /* const etc. */
 .monaco-scrollable-element, .margin-view-overlays, .lines-content .mtk8 {
     color: var(--color-theme-3);
-}
-
-
-/* Flowbite overwrites */
-
-#sidebar {
-    background-color: var(--color-grey-mid);
-}
-
-.toasts > div {
-    background-color: var(--color-yellow);
-    color: var(--color-grey-dark);
-    border: 1px solid var(--color-grey-light);
-    box-shadow: 2px 2px 6px rgb(255 255 255 / 25%);
-}
-
-.lottie-player {
-    height: 56px;
 }

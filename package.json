@@ -30,6 +30,7 @@
 		"@fortawesome/free-solid-svg-icons": "^6.4.0",
 		"@rnbo/js": "^1.1.2",
 		"@svgdotjs/svg.js": "^3.2.0",
+		"highlight.js": "^11.2.0",
 		"noisejs": "^2.1.0",
 		"svelte-awesome": "^3.2.1",
 		"tone": "^14.7.77",

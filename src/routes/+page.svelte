@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import Editor from '$lib/components/Editor.svelte';
     import Visuals from '$lib/components/Visuals.svelte';
     import Data from '$lib/components/Data.svelte';
