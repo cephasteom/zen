@@ -3,6 +3,6 @@
 	<meta name="description" content="Zen Tutorials" />
 </svelte:head>
 
-<div class="text-column">
+<section class="content">
 	<h1>Learn page</h1>
-</div>
+</section>
