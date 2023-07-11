@@ -1,0 +1,5099 @@
+{
+	"id": 0,
+	"name": "zen-3",
+	"variant": "project",
+	"kind": 1,
+	"flags": {},
+	"children": [
+		{
+			"id": 1,
+			"name": "default",
+			"variant": "declaration",
+			"kind": 128,
+			"flags": {},
+			"comment": {
+				"summary": [
+					{
+						"kind": "text",
+						"text": "Pattern class"
+					}
+				]
+			},
+			"children": [
+				{
+					"id": 2,
+					"name": "constructor",
+					"variant": "declaration",
+					"kind": 512,
+					"flags": {},
+					"signatures": [
+						{
+							"id": 3,
+							"name": "new default",
+							"variant": "signature",
+							"kind": 16384,
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 6,
+					"name": "_bpm",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isPrivate": true
+					},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 23,
+							"character": 12,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L23"
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					},
+					"defaultValue": "120"
+				},
+				{
+					"id": 5,
+					"name": "_q",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isPrivate": true
+					},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 22,
+							"character": 12,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L22"
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					},
+					"defaultValue": "16"
+				},
+				{
+					"id": 4,
+					"name": "stack",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isPrivate": true
+					},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 21,
+							"character": 12,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L21"
+						}
+					],
+					"type": {
+						"type": "reference",
+						"target": {
+							"sourceFileName": "src/lib/zen/types.ts",
+							"qualifiedName": "stack"
+						},
+						"name": "stack",
+						"package": "zen-3"
+					},
+					"defaultValue": "[]"
+				},
+				{
+					"id": 103,
+					"name": "$div",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 182,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L182"
+						}
+					],
+					"signatures": [
+						{
+							"id": 104,
+							"name": "$div",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 182,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L182"
+								}
+							],
+							"parameters": [
+								{
+									"id": 105,
+									"name": "value",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 94,
+					"name": "$take",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 166,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L166"
+						}
+					],
+					"signatures": [
+						{
+							"id": 95,
+							"name": "$take",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 166,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L166"
+								}
+							],
+							"parameters": [
+								{
+									"id": 96,
+									"name": "value",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 192,
+					"name": "abs",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 322,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L322"
+						}
+					],
+					"signatures": [
+						{
+							"id": 193,
+							"name": "abs",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 322,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L322"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 185,
+					"name": "acos",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 307,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L307"
+						}
+					],
+					"signatures": [
+						{
+							"id": 186,
+							"name": "acos",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 307,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L307"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 88,
+					"name": "add",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 155,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L155"
+						}
+					],
+					"signatures": [
+						{
+							"id": 89,
+							"name": "add",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 155,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L155"
+								}
+							],
+							"parameters": [
+								{
+									"id": 90,
+									"name": "value",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 183,
+					"name": "asin",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 302,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L302"
+						}
+					],
+					"signatures": [
+						{
+							"id": 184,
+							"name": "asin",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 302,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L302"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 187,
+					"name": "atan",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 312,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L312"
+						}
+					],
+					"signatures": [
+						{
+							"id": 188,
+							"name": "atan",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 312,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L312"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 189,
+					"name": "atan2",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 317,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L317"
+						}
+					],
+					"signatures": [
+						{
+							"id": 190,
+							"name": "atan2",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 317,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L317"
+								}
+							],
+							"parameters": [
+								{
+									"id": 191,
+									"name": "y",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 72,
+					"name": "bin",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 134,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L134"
+						}
+					],
+					"signatures": [
+						{
+							"id": 73,
+							"name": "bin",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 134,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L134"
+								}
+							],
+							"parameters": [
+								{
+									"id": 74,
+									"name": "n",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									},
+									"defaultValue": "'10000000'"
+								},
+								{
+									"id": 75,
+									"name": "freq",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								},
+								{
+									"id": 76,
+									"name": "a",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								},
+								{
+									"id": 77,
+									"name": "b",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 160,
+					"name": "btms",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 261,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L261"
+						}
+					],
+					"signatures": [
+						{
+							"id": 161,
+							"name": "btms",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 261,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L261"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 158,
+					"name": "bts",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 255,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L255"
+						}
+					],
+					"signatures": [
+						{
+							"id": 159,
+							"name": "bts",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 255,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L255"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 194,
+					"name": "ceil",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 327,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L327"
+						}
+					],
+					"signatures": [
+						{
+							"id": 195,
+							"name": "ceil",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 327,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L327"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 173,
+					"name": "chords",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 281,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L281"
+						}
+					],
+					"signatures": [
+						{
+							"id": 174,
+							"name": "chords",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 281,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L281"
+								}
+							],
+							"parameters": [
+								{
+									"id": 175,
+									"name": "names",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "union",
+										"types": [
+											{
+												"type": "intrinsic",
+												"name": "string"
+											},
+											{
+												"type": "array",
+												"elementType": {
+													"type": "intrinsic",
+													"name": "string"
+												}
+											}
+										]
+									}
+								},
+								{
+									"id": 176,
+									"name": "freq",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 112,
+					"name": "clamp",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 197,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L197"
+						}
+					],
+					"signatures": [
+						{
+							"id": 113,
+							"name": "clamp",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 197,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L197"
+								}
+							],
+							"parameters": [
+								{
+									"id": 114,
+									"name": "min",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 115,
+									"name": "max",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 179,
+					"name": "cos",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 292,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L292"
+						}
+					],
+					"signatures": [
+						{
+							"id": 180,
+							"name": "cos",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 292,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L292"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 27,
+					"name": "cosine",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 71,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L71"
+						}
+					],
+					"signatures": [
+						{
+							"id": 28,
+							"name": "cosine",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 71,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L71"
+								}
+							],
+							"parameters": [
+								{
+									"id": 29,
+									"name": "lo",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0"
+								},
+								{
+									"id": 30,
+									"name": "hi",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								},
+								{
+									"id": 31,
+									"name": "step",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0"
+								},
+								{
+									"id": 32,
+									"name": "freq",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 215,
+					"name": "deg",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 373,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L373"
+						}
+					],
+					"signatures": [
+						{
+							"id": 216,
+							"name": "deg",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 373,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L373"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 100,
+					"name": "div",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 176,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L176"
+						}
+					],
+					"signatures": [
+						{
+							"id": 101,
+							"name": "div",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 176,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L176"
+								}
+							],
+							"parameters": [
+								{
+									"id": 102,
+									"name": "value",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 136,
+					"name": "eq",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 227,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L227"
+						}
+					],
+					"signatures": [
+						{
+							"id": 137,
+							"name": "eq",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 227,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L227"
+								}
+							],
+							"parameters": [
+								{
+									"id": 138,
+									"name": "n",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 139,
+									"name": "a",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								},
+								{
+									"id": 140,
+									"name": "b",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 150,
+					"name": "even",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 243,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L243"
+						}
+					],
+					"signatures": [
+						{
+							"id": 151,
+							"name": "even",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 243,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L243"
+								}
+							],
+							"parameters": [
+								{
+									"id": 152,
+									"name": "a",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								},
+								{
+									"id": 153,
+									"name": "b",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 67,
+					"name": "every",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 128,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L128"
+						}
+					],
+					"signatures": [
+						{
+							"id": 68,
+							"name": "every",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 128,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L128"
+								}
+							],
+							"parameters": [
+								{
+									"id": 69,
+									"name": "n",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 70,
+									"name": "a",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								},
+								{
+									"id": 71,
+									"name": "b",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 200,
+					"name": "exp",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 342,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L342"
+						}
+					],
+					"signatures": [
+						{
+							"id": 201,
+							"name": "exp",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 342,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L342"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 196,
+					"name": "floor",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 332,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L332"
+						}
+					],
+					"signatures": [
+						{
+							"id": 197,
+							"name": "floor",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 332,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L332"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 162,
+					"name": "fn",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 267,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L267"
+						}
+					],
+					"signatures": [
+						{
+							"id": 163,
+							"name": "fn",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 267,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L267"
+								}
+							],
+							"parameters": [
+								{
+									"id": 164,
+									"name": "cb",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "reflection",
+										"declaration": {
+											"id": 165,
+											"name": "__type",
+											"variant": "declaration",
+											"kind": 65536,
+											"flags": {},
+											"sources": [
+												{
+													"fileName": "Pattern.ts",
+													"line": 267,
+													"character": 11,
+													"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L267"
+												}
+											],
+											"signatures": [
+												{
+													"id": 166,
+													"name": "__type",
+													"variant": "signature",
+													"kind": 4096,
+													"flags": {},
+													"sources": [
+														{
+															"fileName": "Pattern.ts",
+															"line": 267,
+															"character": 12,
+															"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L267"
+														}
+													],
+													"parameters": [
+														{
+															"id": 167,
+															"name": "x",
+															"variant": "param",
+															"kind": 32768,
+															"flags": {},
+															"type": {
+																"type": "reference",
+																"target": {
+																	"sourceFileName": "src/lib/zen/types.ts",
+																	"qualifiedName": "patternValue"
+																},
+																"name": "patternValue",
+																"package": "zen-3"
+															}
+														}
+													],
+													"type": {
+														"type": "reference",
+														"target": {
+															"sourceFileName": "src/lib/zen/types.ts",
+															"qualifiedName": "patternValue"
+														},
+														"name": "patternValue",
+														"package": "zen-3"
+													}
+												}
+											]
+										}
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 219,
+					"name": "get",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 385,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L385"
+						}
+					],
+					"signatures": [
+						{
+							"id": 220,
+							"name": "get",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 385,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L385"
+								}
+							],
+							"parameters": [
+								{
+									"id": 221,
+									"name": "t",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 222,
+									"name": "q",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 223,
+									"name": "bpm",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {
+										"isOptional": true
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "union",
+								"types": [
+									{
+										"type": "literal",
+										"value": null
+									},
+									{
+										"type": "reference",
+										"target": {
+											"sourceFileName": "src/lib/zen/types.ts",
+											"qualifiedName": "patternValue"
+										},
+										"name": "patternValue",
+										"package": "zen-3"
+									}
+								]
+							}
+						}
+					]
+				},
+				{
+					"id": 116,
+					"name": "gt",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 203,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L203"
+						}
+					],
+					"signatures": [
+						{
+							"id": 117,
+							"name": "gt",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 203,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L203"
+								}
+							],
+							"parameters": [
+								{
+									"id": 118,
+									"name": "n",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 119,
+									"name": "a",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								},
+								{
+									"id": 120,
+									"name": "b",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 126,
+					"name": "gte",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 215,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L215"
+						}
+					],
+					"signatures": [
+						{
+							"id": 127,
+							"name": "gte",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 215,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L215"
+								}
+							],
+							"parameters": [
+								{
+									"id": 128,
+									"name": "n",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 129,
+									"name": "a",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								},
+								{
+									"id": 130,
+									"name": "b",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 224,
+					"name": "has",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 397,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L397"
+						}
+					],
+					"signatures": [
+						{
+							"id": 225,
+							"name": "has",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 397,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L397"
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							}
+						}
+					]
+				},
+				{
+					"id": 154,
+					"name": "if",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 248,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L248"
+						}
+					],
+					"signatures": [
+						{
+							"id": 155,
+							"name": "if",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 248,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L248"
+								}
+							],
+							"parameters": [
+								{
+									"id": 156,
+									"name": "a",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								},
+								{
+									"id": 157,
+									"name": "b",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 202,
+					"name": "log",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 347,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L347"
+						}
+					],
+					"signatures": [
+						{
+							"id": 203,
+							"name": "log",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 347,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L347"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 121,
+					"name": "lt",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 209,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L209"
+						}
+					],
+					"signatures": [
+						{
+							"id": 122,
+							"name": "lt",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 209,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L209"
+								}
+							],
+							"parameters": [
+								{
+									"id": 123,
+									"name": "n",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 124,
+									"name": "a",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								},
+								{
+									"id": 125,
+									"name": "b",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 131,
+					"name": "lte",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 221,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L221"
+						}
+					],
+					"signatures": [
+						{
+							"id": 132,
+							"name": "lte",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 221,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L221"
+								}
+							],
+							"parameters": [
+								{
+									"id": 133,
+									"name": "n",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 134,
+									"name": "a",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								},
+								{
+									"id": 135,
+									"name": "b",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 204,
+					"name": "max",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 352,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L352"
+						}
+					],
+					"signatures": [
+						{
+							"id": 205,
+							"name": "max",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 352,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L352"
+								}
+							],
+							"parameters": [
+								{
+									"id": 206,
+									"name": "compare",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 207,
+					"name": "min",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 357,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L357"
+						}
+					],
+					"signatures": [
+						{
+							"id": 208,
+							"name": "min",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 357,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L357"
+								}
+							],
+							"parameters": [
+								{
+									"id": 209,
+									"name": "compare",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 106,
+					"name": "mod",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 187,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L187"
+						}
+					],
+					"signatures": [
+						{
+							"id": 107,
+							"name": "mod",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 187,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L187"
+								}
+							],
+							"parameters": [
+								{
+									"id": 108,
+									"name": "value",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 97,
+					"name": "mul",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 171,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L171"
+						}
+					],
+					"signatures": [
+						{
+							"id": 98,
+							"name": "mul",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 171,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L171"
+								}
+							],
+							"parameters": [
+								{
+									"id": 99,
+									"name": "value",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 141,
+					"name": "neq",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 233,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L233"
+						}
+					],
+					"signatures": [
+						{
+							"id": 142,
+							"name": "neq",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 233,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L233"
+								}
+							],
+							"parameters": [
+								{
+									"id": 143,
+									"name": "n",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 144,
+									"name": "a",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								},
+								{
+									"id": 145,
+									"name": "b",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 61,
+					"name": "noise",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 120,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L120"
+						}
+					],
+					"signatures": [
+						{
+							"id": 62,
+							"name": "noise",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 120,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L120"
+								}
+							],
+							"parameters": [
+								{
+									"id": 63,
+									"name": "lo",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0"
+								},
+								{
+									"id": 64,
+									"name": "hi",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								},
+								{
+									"id": 65,
+									"name": "step",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0"
+								},
+								{
+									"id": 66,
+									"name": "freq",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 78,
+					"name": "ntbin",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 145,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L145"
+						}
+					],
+					"signatures": [
+						{
+							"id": 79,
+							"name": "ntbin",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 145,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L145"
+								}
+							],
+							"parameters": [
+								{
+									"id": 80,
+									"name": "n",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "8"
+								},
+								{
+									"id": 81,
+									"name": "q",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "16"
+								},
+								{
+									"id": 82,
+									"name": "a",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								},
+								{
+									"id": 83,
+									"name": "b",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 146,
+					"name": "odd",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 238,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L238"
+						}
+					],
+					"signatures": [
+						{
+							"id": 147,
+							"name": "odd",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 238,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L238"
+								}
+							],
+							"parameters": [
+								{
+									"id": 148,
+									"name": "a",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								},
+								{
+									"id": 149,
+									"name": "b",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 210,
+					"name": "pow",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 362,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L362"
+						}
+					],
+					"signatures": [
+						{
+							"id": 211,
+							"name": "pow",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 362,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L362"
+								}
+							],
+							"parameters": [
+								{
+									"id": 212,
+									"name": "exponent",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "2"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 45,
+					"name": "pulse",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 99,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L99"
+						}
+					],
+					"signatures": [
+						{
+							"id": 46,
+							"name": "pulse",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 99,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L99"
+								}
+							],
+							"parameters": [
+								{
+									"id": 47,
+									"name": "lo",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0"
+								},
+								{
+									"id": 48,
+									"name": "hi",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								},
+								{
+									"id": 49,
+									"name": "width",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0.5"
+								},
+								{
+									"id": 50,
+									"name": "freq",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 217,
+					"name": "rad",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 378,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L378"
+						}
+					],
+					"signatures": [
+						{
+							"id": 218,
+							"name": "rad",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 378,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L378"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 56,
+					"name": "random",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 114,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L114"
+						}
+					],
+					"signatures": [
+						{
+							"id": 57,
+							"name": "random",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 114,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L114"
+								}
+							],
+							"parameters": [
+								{
+									"id": 58,
+									"name": "lo",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0"
+								},
+								{
+									"id": 59,
+									"name": "hi",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								},
+								{
+									"id": 60,
+									"name": "step",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 15,
+					"name": "range",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 55,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L55"
+						}
+					],
+					"signatures": [
+						{
+							"id": 16,
+							"name": "range",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 55,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L55"
+								}
+							],
+							"parameters": [
+								{
+									"id": 17,
+									"name": "lo",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0"
+								},
+								{
+									"id": 18,
+									"name": "hi",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								},
+								{
+									"id": 19,
+									"name": "step",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0"
+								},
+								{
+									"id": 20,
+									"name": "freq",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 10,
+					"name": "reset",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 36,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L36"
+						}
+					],
+					"signatures": [
+						{
+							"id": 11,
+							"name": "reset",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 36,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L36"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 198,
+					"name": "round",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 337,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L337"
+						}
+					],
+					"signatures": [
+						{
+							"id": 199,
+							"name": "round",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 337,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L337"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 33,
+					"name": "saw",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 81,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L81"
+						}
+					],
+					"signatures": [
+						{
+							"id": 34,
+							"name": "saw",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 81,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L81"
+								}
+							],
+							"parameters": [
+								{
+									"id": 35,
+									"name": "lo",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0"
+								},
+								{
+									"id": 36,
+									"name": "hi",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								},
+								{
+									"id": 37,
+									"name": "step",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0"
+								},
+								{
+									"id": 38,
+									"name": "freq",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 168,
+					"name": "scales",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 272,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L272"
+						}
+					],
+					"signatures": [
+						{
+							"id": 169,
+							"name": "scales",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 272,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L272"
+								}
+							],
+							"parameters": [
+								{
+									"id": 170,
+									"name": "names",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "union",
+										"types": [
+											{
+												"type": "intrinsic",
+												"name": "string"
+											},
+											{
+												"type": "array",
+												"elementType": {
+													"type": "intrinsic",
+													"name": "string"
+												}
+											}
+										]
+									}
+								},
+								{
+									"id": 171,
+									"name": "length",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "8"
+								},
+								{
+									"id": 172,
+									"name": "freq",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 84,
+					"name": "seq",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 150,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L150"
+						}
+					],
+					"signatures": [
+						{
+							"id": 85,
+							"name": "seq",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 150,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L150"
+								}
+							],
+							"parameters": [
+								{
+									"id": 86,
+									"name": "values",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "array",
+										"elementType": {
+											"type": "intrinsic",
+											"name": "number"
+										}
+									},
+									"defaultValue": "[]"
+								},
+								{
+									"id": 87,
+									"name": "freq",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 7,
+					"name": "set",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 31,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L31"
+						}
+					],
+					"signatures": [
+						{
+							"id": 8,
+							"name": "set",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"comment": {
+								"summary": [],
+								"blockTags": [
+									{
+										"tag": "@returns",
+										"content": [
+											{
+												"kind": "text",
+												"text": "- returns pattern instance"
+											}
+										]
+									},
+									{
+										"tag": "@example",
+										"content": [
+											{
+												"kind": "code",
+												"text": "```ts\ns0.p.set(1)\n```"
+											}
+										]
+									}
+								]
+							},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 31,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L31"
+								}
+							],
+							"parameters": [
+								{
+									"id": 9,
+									"name": "value",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "set pattern to single value"
+											}
+										]
+									},
+									"type": {
+										"type": "reference",
+										"target": {
+											"sourceFileName": "src/lib/zen/types.ts",
+											"qualifiedName": "patternValue"
+										},
+										"name": "patternValue",
+										"package": "zen-3"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 177,
+					"name": "sin",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 287,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L287"
+						}
+					],
+					"signatures": [
+						{
+							"id": 178,
+							"name": "sin",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 287,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L287"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 21,
+					"name": "sine",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 61,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L61"
+						}
+					],
+					"signatures": [
+						{
+							"id": 22,
+							"name": "sine",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 61,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L61"
+								}
+							],
+							"parameters": [
+								{
+									"id": 23,
+									"name": "lo",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0"
+								},
+								{
+									"id": 24,
+									"name": "hi",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								},
+								{
+									"id": 25,
+									"name": "step",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0"
+								},
+								{
+									"id": 26,
+									"name": "freq",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 213,
+					"name": "sqrt",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 367,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L367"
+						}
+					],
+					"signatures": [
+						{
+							"id": 214,
+							"name": "sqrt",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 367,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L367"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 51,
+					"name": "square",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 108,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L108"
+						}
+					],
+					"signatures": [
+						{
+							"id": 52,
+							"name": "square",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 108,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L108"
+								}
+							],
+							"parameters": [
+								{
+									"id": 53,
+									"name": "lo",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0"
+								},
+								{
+									"id": 54,
+									"name": "hi",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								},
+								{
+									"id": 55,
+									"name": "freq",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 109,
+					"name": "step",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 192,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L192"
+						}
+					],
+					"signatures": [
+						{
+							"id": 110,
+							"name": "step",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 192,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L192"
+								}
+							],
+							"parameters": [
+								{
+									"id": 111,
+									"name": "value",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 91,
+					"name": "take",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 160,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L160"
+						}
+					],
+					"signatures": [
+						{
+							"id": 92,
+							"name": "take",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 160,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L160"
+								}
+							],
+							"parameters": [
+								{
+									"id": 93,
+									"name": "value",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 181,
+					"name": "tan",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 297,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L297"
+						}
+					],
+					"signatures": [
+						{
+							"id": 182,
+							"name": "tan",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 297,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L297"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 39,
+					"name": "tri",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 90,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L90"
+						}
+					],
+					"signatures": [
+						{
+							"id": 40,
+							"name": "tri",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 90,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L90"
+								}
+							],
+							"parameters": [
+								{
+									"id": 41,
+									"name": "lo",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0"
+								},
+								{
+									"id": 42,
+									"name": "hi",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								},
+								{
+									"id": 43,
+									"name": "step",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "0"
+								},
+								{
+									"id": 44,
+									"name": "freq",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"defaultValue": "1"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				},
+				{
+					"id": 12,
+					"name": "use",
+					"variant": "declaration",
+					"kind": 2048,
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "Pattern.ts",
+							"line": 43,
+							"character": 4,
+							"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L43"
+						}
+					],
+					"signatures": [
+						{
+							"id": 13,
+							"name": "use",
+							"variant": "signature",
+							"kind": 4096,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Pattern.ts",
+									"line": 43,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L43"
+								}
+							],
+							"parameters": [
+								{
+									"id": 14,
+									"name": "pattern",
+									"variant": "param",
+									"kind": 32768,
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"target": 1,
+										"name": "Pattern",
+										"package": "zen-3"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": 1,
+								"name": "Pattern",
+								"package": "zen-3"
+							}
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Constructors",
+					"children": [
+						2
+					]
+				},
+				{
+					"title": "Properties",
+					"children": [
+						6,
+						5,
+						4
+					]
+				},
+				{
+					"title": "Methods",
+					"children": [
+						103,
+						94,
+						192,
+						185,
+						88,
+						183,
+						187,
+						189,
+						72,
+						160,
+						158,
+						194,
+						173,
+						112,
+						179,
+						27,
+						215,
+						100,
+						136,
+						150,
+						67,
+						200,
+						196,
+						162,
+						219,
+						116,
+						126,
+						224,
+						154,
+						202,
+						121,
+						131,
+						204,
+						207,
+						106,
+						97,
+						141,
+						61,
+						78,
+						146,
+						210,
+						45,
+						217,
+						56,
+						15,
+						10,
+						198,
+						33,
+						168,
+						84,
+						7,
+						177,
+						21,
+						213,
+						51,
+						109,
+						91,
+						181,
+						39,
+						12
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "Pattern.ts",
+					"line": 19,
+					"character": 6,
+					"url": "https://github.com/cephasteom/zen-3/blob/af7583e/src/lib/zen/classes/Pattern.ts#L19"
+				}
+			]
+		}
+	],
+	"groups": [
+		{
+			"title": "Classes",
+			"children": [
+				1
+			]
+		}
+	],
+	"packageName": "zen-3",
+	"readme": [
+		{
+			"kind": "text",
+			"text": "# ZEN3\nZen is a Javascript library for expressing complex patterns with very little code. It was written to take advantage of JS's flexibility and is primed for pattern interference. Zen allows you to map musical parameters across time and 3D space. Plot multiple trajectories around the canvas and trigger sonic events and modulations whose parameters are determined by the stream's current position in time and space.\n\nZen is designed to be used as a live coding tool and is available for experimentation at TODO. It can also be integrated into other projects requiring pattern generation. See section TODO for further guidance.\n## Basics\nZen provides you with 4 const variables, 8 streams, and a global settings interface:\n### Variables\n* t: an incrementing integer representing time\n* q: integer, number of divisions per cycle\n* c: integer, current cycle. ie. floor(t / q)\n* s: integer, size of canvas\n\n### Streams\n8 instances of the "
+		},
+		{
+			"kind": "code",
+			"text": "`Stream`"
+		},
+		{
+			"kind": "text",
+			"text": " class (see below), assigned to the variables "
+		},
+		{
+			"kind": "code",
+			"text": "`s0`"
+		},
+		{
+			"kind": "text",
+			"text": ", "
+		},
+		{
+			"kind": "code",
+			"text": "`s1`"
+		},
+		{
+			"kind": "text",
+			"text": ", "
+		},
+		{
+			"kind": "code",
+			"text": "`s2`"
+		},
+		{
+			"kind": "text",
+			"text": ", "
+		},
+		{
+			"kind": "code",
+			"text": "`s3`"
+		},
+		{
+			"kind": "text",
+			"text": ", "
+		},
+		{
+			"kind": "code",
+			"text": "`s4`"
+		},
+		{
+			"kind": "text",
+			"text": ", "
+		},
+		{
+			"kind": "code",
+			"text": "`s5`"
+		},
+		{
+			"kind": "text",
+			"text": ", "
+		},
+		{
+			"kind": "code",
+			"text": "`s6`"
+		},
+		{
+			"kind": "text",
+			"text": ", "
+		},
+		{
+			"kind": "code",
+			"text": "`s7`"
+		},
+		{
+			"kind": "text",
+			"text": ". Used to map musical parameters across each cycle or the canvas, and determine the stream's trajectory across time and space.\n### Zen\nAn instance of the "
+		},
+		{
+			"kind": "code",
+			"text": "`Zen`"
+		},
+		{
+			"kind": "text",
+			"text": " class (see below), assigned to the variable "
+		},
+		{
+			"kind": "code",
+			"text": "`z`"
+		},
+		{
+			"kind": "text",
+			"text": ". It is used to update the global "
+		},
+		{
+			"kind": "code",
+			"text": "`q`"
+		},
+		{
+			"kind": "text",
+			"text": " and "
+		},
+		{
+			"kind": "code",
+			"text": "`s`"
+		},
+		{
+			"kind": "text",
+			"text": " values. You are also able to pattern "
+		},
+		{
+			"kind": "code",
+			"text": "`z.t`"
+		},
+		{
+			"kind": "text",
+			"text": " to override the global time and "
+		},
+		{
+			"kind": "code",
+			"text": "`z.bpm`"
+		},
+		{
+			"kind": "text",
+			"text": " to control tempo.\n## Syntax\n### Pattern\nPatterns are at the heart of Zen, allowing you to create complex patterns of number values. You don't usually instantiate the "
+		},
+		{
+			"kind": "code",
+			"text": "`Pattern`"
+		},
+		{
+			"kind": "text",
+			"text": " class, or call the "
+		},
+		{
+			"kind": "code",
+			"text": "`get()`"
+		},
+		{
+			"kind": "text",
+			"text": " method, directly; they are properties of a "
+		},
+		{
+			"kind": "code",
+			"text": "`Stream`"
+		},
+		{
+			"kind": "text",
+			"text": " or "
+		},
+		{
+			"kind": "code",
+			"text": "`Zen`"
+		},
+		{
+			"kind": "text",
+			"text": " (see below) and values are obtained under the hood. However, to illustrate how patterns work:\n"
+		},
+		{
+			"kind": "code",
+			"text": "```js\nconst p = new Pattern()\n// create a range of values from 0 to 4 and query the value at t\np.range(0,4).get(t, q) // args are time and divisions\n// create a sine function from 0 to 10. Query the value at t\np.sine(0,10).get(t, q)\n// chain methods together\np.tri(0,256,1).add(4).div(0.5).pow(2).clamp(0, 1024)\n```"
+		},
+		{
+			"kind": "text",
+			"text": "\n\n#### Snap\nSnap a sample to the number of divisions.\n"
+		},
+		{
+			"kind": "code",
+			"text": "```js\ns0.px.snap.set(s)\n```"
+		},
+		{
+			"kind": "text",
+			"text": "\n\n#### Dur, Lag, ADSR\nAll of these values should be given in milliseconds. If you wish to quantize these values to the project tempo use "
+		},
+		{
+			"kind": "code",
+			"text": "`.btms()`"
+		},
+		{
+			"kind": "text",
+			"text": " - beats to milliseconds.\n"
+		},
+		{
+			"kind": "code",
+			"text": "```js\nz.bpm.set(139)\ns0.p.dur.set(1).btms() // plays for 1 beat, regardless of the bpm\n```"
+		},
+		{
+			"kind": "text",
+			"text": "\n\n### Stream\n#### Time and Space\nTODO: s0.x, s0.t\n#### Parameters\nMusical parameters can be mapped in different ways across a cycle, or across each axis of the canvas, using methods "
+		},
+		{
+			"kind": "code",
+			"text": "`.p(key: string)`"
+		},
+		{
+			"kind": "text",
+			"text": ", "
+		},
+		{
+			"kind": "code",
+			"text": "`.px(key: string)`"
+		},
+		{
+			"kind": "text",
+			"text": ", "
+		},
+		{
+			"kind": "code",
+			"text": "`.py(key: string)`"
+		},
+		{
+			"kind": "text",
+			"text": ", and "
+		},
+		{
+			"kind": "code",
+			"text": "`.pz(key: string)`"
+		},
+		{
+			"kind": "text",
+			"text": ". Each method returns an instance of the "
+		},
+		{
+			"kind": "code",
+			"text": "`Pattern`"
+		},
+		{
+			"kind": "text",
+			"text": " class which enables you to map values in a variety of ways. E.g.\n"
+		},
+		{
+			"kind": "code",
+			"text": "```js\n// map parameter across a cycle using a range function\ns0.p.foo.range(0,2)\n// map parameter across the x axis using a sine function\ns0.px.bar.sine(0,2)\n// set a constant value\ns0.p.foo.set(8)\n// chain methods together for greater complexity\ns0.pz.bar.saw(0,16).mul(2)\n```"
+		},
+		{
+			"kind": "text",
+			"text": "\nOn each division of a cycle, each pattern is evaluated to create a list of parameters key / value pairs. Each method passes its value to the next in the chain, with the first value being the current time "
+		},
+		{
+			"kind": "code",
+			"text": "`t`"
+		},
+		{
+			"kind": "text",
+			"text": ". This allows you manipulate time or space using arithmetic.\n"
+		},
+		{
+			"kind": "code",
+			"text": "```js\n// offset foo by half a cycle\ns0.p.foo.add(0.5).range(0,256)\n// move across the x axis at twice the speed\ns0.x.set(t)\ns0.x.mul(2).range(0,s)\n```"
+		},
+		{
+			"kind": "text",
+			"text": "\n\nYou can reference other streams' parameters:\n"
+		},
+		{
+			"kind": "code",
+			"text": "```js\ns0.p.foo.tri(16,24,1).add(32)\ns1.p.bar.use(s0.p('foo')).mod(6)\n```"
+		},
+		{
+			"kind": "text",
+			"text": "\n\nOr simply get their value:\n"
+		},
+		{
+			"kind": "code",
+			"text": "```js\ns0.p.foo.tri(16,24,1).add(32)\ns1.p.bar.set(s0.p('foo').get(t/q))\n```"
+		},
+		{
+			"kind": "text",
+			"text": "\n#### Events and Mutations\nUse a stream's "
+		},
+		{
+			"kind": "code",
+			"text": "`e`"
+		},
+		{
+			"kind": "text",
+			"text": " and "
+		},
+		{
+			"kind": "code",
+			"text": "`m`"
+		},
+		{
+			"kind": "text",
+			"text": " properties to trigger musical events - discrete synth voices - or mutations - the modulation of all voices in a stream. Each property is, once again, an instance of the "
+		},
+		{
+			"kind": "code",
+			"text": "`Pattern`"
+		},
+		{
+			"kind": "text",
+			"text": " class, but evaluates the result as a boolean type, rather than a number. True triggers an event or mutation, false is ignored. JavaScript is able to infer boolean values from non-boolean types. As "
+		},
+		{
+			"kind": "code",
+			"text": "`0`"
+		},
+		{
+			"kind": "text",
+			"text": " is false and any value greater than "
+		},
+		{
+			"kind": "code",
+			"text": "`0`"
+		},
+		{
+			"kind": "text",
+			"text": " is true, we are able to pattern numbers in order to trigger our events.\n\n"
+		},
+		{
+			"kind": "code",
+			"text": "```js\n// trigger an event every division\ns0.e.set(1)\n// trigger an event every other division\ns0.e.set(t%2)\n// or...\ns0.e.set(t).odd()\n// use every to get regular rhythms\ns0.e.every(1) // every cycle\ns0.e.every(4) // every 4 cycles\ns0.e.every(0.5) // twice per cycle - if q is regular\n// various logic available to output 1s or 0s\ns0.e.sine(0,1).gt(0.75) // greater than\ns0.e.random(0,1,0.25).eq(0.75) // equal to\n// convert numbers to binary patterns\ns0.e.ntbin(76543, 16)\n// or binary strings to binary patterns\ns0.e.bin('01100101001010')\n```"
+		},
+		{
+			"kind": "text",
+			"text": "\n\n#### Key Mapping\nYou can map alternative key names using the "
+		},
+		{
+			"kind": "code",
+			"text": "`.map`"
+		},
+		{
+			"kind": "text",
+			"text": " property of a stream, which accepts an object. For example, to use more descriptive keys when sending midi messages, whilst still compiling parameters to use a "
+		},
+		{
+			"kind": "code",
+			"text": "`cc1`"
+		},
+		{
+			"kind": "text",
+			"text": " format:\n"
+		},
+		{
+			"kind": "code",
+			"text": "```js\ns0.map={cutoff: 'cc74'}\n```"
+		},
+		{
+			"kind": "text",
+			"text": "\nYou may extend Zen by adding your own mappings in TBC. There is one map available:\n"
+		},
+		{
+			"kind": "code",
+			"text": "```js\ns0.map=keymap.nordlead1a\n```"
+		},
+		{
+			"kind": "text",
+			"text": "\n\n#### Solo | Mute\nYou can solo and mute streams. Solo and mute properties are also Patterns.\n"
+		},
+		{
+			"kind": "code",
+			"text": "```js\ns0.solo.set(1)\ns0.solo.every(1)\n\ns0.mute.set(1)\n```"
+		}
+	],
+	"symbolIdMap": {
+		"0": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": ""
+		},
+		"1": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern"
+		},
+		"4": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.stack"
+		},
+		"5": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern._q"
+		},
+		"6": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern._bpm"
+		},
+		"7": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.set"
+		},
+		"8": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.set"
+		},
+		"9": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "value"
+		},
+		"10": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.reset"
+		},
+		"11": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.reset"
+		},
+		"12": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.use"
+		},
+		"13": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.use"
+		},
+		"14": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "pattern"
+		},
+		"15": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.range"
+		},
+		"16": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.range"
+		},
+		"17": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "lo"
+		},
+		"18": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "hi"
+		},
+		"19": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "step"
+		},
+		"20": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "freq"
+		},
+		"21": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.sine"
+		},
+		"22": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.sine"
+		},
+		"23": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "lo"
+		},
+		"24": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "hi"
+		},
+		"25": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "step"
+		},
+		"26": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "freq"
+		},
+		"27": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.cosine"
+		},
+		"28": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.cosine"
+		},
+		"29": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "lo"
+		},
+		"30": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "hi"
+		},
+		"31": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "step"
+		},
+		"32": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "freq"
+		},
+		"33": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.saw"
+		},
+		"34": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.saw"
+		},
+		"35": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "lo"
+		},
+		"36": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "hi"
+		},
+		"37": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "step"
+		},
+		"38": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "freq"
+		},
+		"39": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.tri"
+		},
+		"40": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.tri"
+		},
+		"41": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "lo"
+		},
+		"42": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "hi"
+		},
+		"43": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "step"
+		},
+		"44": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "freq"
+		},
+		"45": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.pulse"
+		},
+		"46": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.pulse"
+		},
+		"47": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "lo"
+		},
+		"48": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "hi"
+		},
+		"49": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "width"
+		},
+		"50": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "freq"
+		},
+		"51": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.square"
+		},
+		"52": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.square"
+		},
+		"53": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "lo"
+		},
+		"54": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "hi"
+		},
+		"55": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "freq"
+		},
+		"56": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.random"
+		},
+		"57": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.random"
+		},
+		"58": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "lo"
+		},
+		"59": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "hi"
+		},
+		"60": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "step"
+		},
+		"61": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.noise"
+		},
+		"62": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.noise"
+		},
+		"63": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "lo"
+		},
+		"64": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "hi"
+		},
+		"65": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "step"
+		},
+		"66": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "freq"
+		},
+		"67": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.every"
+		},
+		"68": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.every"
+		},
+		"69": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "n"
+		},
+		"70": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "a"
+		},
+		"71": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "b"
+		},
+		"72": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.bin"
+		},
+		"73": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.bin"
+		},
+		"74": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "n"
+		},
+		"75": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "freq"
+		},
+		"76": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "a"
+		},
+		"77": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "b"
+		},
+		"78": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.ntbin"
+		},
+		"79": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.ntbin"
+		},
+		"80": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "n"
+		},
+		"81": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "q"
+		},
+		"82": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "a"
+		},
+		"83": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "b"
+		},
+		"84": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.seq"
+		},
+		"85": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.seq"
+		},
+		"86": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "values"
+		},
+		"87": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "freq"
+		},
+		"88": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.add"
+		},
+		"89": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.add"
+		},
+		"90": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "value"
+		},
+		"91": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.take"
+		},
+		"92": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.take"
+		},
+		"93": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "value"
+		},
+		"94": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.$take"
+		},
+		"95": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.$take"
+		},
+		"96": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "value"
+		},
+		"97": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.mul"
+		},
+		"98": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.mul"
+		},
+		"99": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "value"
+		},
+		"100": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.div"
+		},
+		"101": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.div"
+		},
+		"102": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "value"
+		},
+		"103": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.$div"
+		},
+		"104": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.$div"
+		},
+		"105": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "value"
+		},
+		"106": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.mod"
+		},
+		"107": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.mod"
+		},
+		"108": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "value"
+		},
+		"109": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.step"
+		},
+		"110": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.step"
+		},
+		"111": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "value"
+		},
+		"112": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.clamp"
+		},
+		"113": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.clamp"
+		},
+		"114": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "min"
+		},
+		"115": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "max"
+		},
+		"116": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.gt"
+		},
+		"117": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.gt"
+		},
+		"118": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "n"
+		},
+		"119": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "a"
+		},
+		"120": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "b"
+		},
+		"121": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.lt"
+		},
+		"122": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.lt"
+		},
+		"123": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "n"
+		},
+		"124": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "a"
+		},
+		"125": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "b"
+		},
+		"126": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.gte"
+		},
+		"127": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.gte"
+		},
+		"128": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "n"
+		},
+		"129": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "a"
+		},
+		"130": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "b"
+		},
+		"131": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.lte"
+		},
+		"132": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.lte"
+		},
+		"133": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "n"
+		},
+		"134": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "a"
+		},
+		"135": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "b"
+		},
+		"136": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.eq"
+		},
+		"137": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.eq"
+		},
+		"138": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "n"
+		},
+		"139": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "a"
+		},
+		"140": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "b"
+		},
+		"141": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.neq"
+		},
+		"142": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.neq"
+		},
+		"143": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "n"
+		},
+		"144": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "a"
+		},
+		"145": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "b"
+		},
+		"146": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.odd"
+		},
+		"147": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.odd"
+		},
+		"148": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "a"
+		},
+		"149": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "b"
+		},
+		"150": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.even"
+		},
+		"151": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.even"
+		},
+		"152": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "a"
+		},
+		"153": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "b"
+		},
+		"154": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.if"
+		},
+		"155": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.if"
+		},
+		"156": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "a"
+		},
+		"157": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "b"
+		},
+		"158": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.bts"
+		},
+		"159": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.bts"
+		},
+		"160": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.btms"
+		},
+		"161": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.btms"
+		},
+		"162": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.fn"
+		},
+		"163": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.fn"
+		},
+		"164": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "cb"
+		},
+		"165": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "__type"
+		},
+		"166": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "__type"
+		},
+		"167": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "x"
+		},
+		"168": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.scales"
+		},
+		"169": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.scales"
+		},
+		"170": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "names"
+		},
+		"171": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "length"
+		},
+		"172": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "freq"
+		},
+		"173": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.chords"
+		},
+		"174": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.chords"
+		},
+		"175": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "names"
+		},
+		"176": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "freq"
+		},
+		"177": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.sin"
+		},
+		"178": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.sin"
+		},
+		"179": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.cos"
+		},
+		"180": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.cos"
+		},
+		"181": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.tan"
+		},
+		"182": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.tan"
+		},
+		"183": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.asin"
+		},
+		"184": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.asin"
+		},
+		"185": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.acos"
+		},
+		"186": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.acos"
+		},
+		"187": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.atan"
+		},
+		"188": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.atan"
+		},
+		"189": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.atan2"
+		},
+		"190": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.atan2"
+		},
+		"191": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "y"
+		},
+		"192": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.abs"
+		},
+		"193": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.abs"
+		},
+		"194": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.ceil"
+		},
+		"195": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.ceil"
+		},
+		"196": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.floor"
+		},
+		"197": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.floor"
+		},
+		"198": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.round"
+		},
+		"199": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.round"
+		},
+		"200": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.exp"
+		},
+		"201": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.exp"
+		},
+		"202": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.log"
+		},
+		"203": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.log"
+		},
+		"204": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.max"
+		},
+		"205": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.max"
+		},
+		"206": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "compare"
+		},
+		"207": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.min"
+		},
+		"208": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.min"
+		},
+		"209": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "compare"
+		},
+		"210": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.pow"
+		},
+		"211": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.pow"
+		},
+		"212": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "exponent"
+		},
+		"213": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.sqrt"
+		},
+		"214": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.sqrt"
+		},
+		"215": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.deg"
+		},
+		"216": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.deg"
+		},
+		"217": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.rad"
+		},
+		"218": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.rad"
+		},
+		"219": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.get"
+		},
+		"220": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.get"
+		},
+		"221": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "t"
+		},
+		"222": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "q"
+		},
+		"223": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "bpm"
+		},
+		"224": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.has"
+		},
+		"225": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.has"
+		}
+	}
+}

@@ -1,5 +1,5 @@
 // TODO: improve typing
-import Pattern from './Pattern'
+import { Pattern } from './Pattern'
 import { mod } from '../utils/utils'
 import { formatEventParams, formatMutationParams } from '../utils/syntax';
 import type { Dictionary } from '../types'

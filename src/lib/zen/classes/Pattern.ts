@@ -1,5 +1,3 @@
-// TODO: conditionals for arrays...
-
 import type { stack, patternValue } from '../types'
 import { 
     mapToRange, 
@@ -9,50 +7,89 @@ import {
     numberToBinary, 
     min, 
     calculateNormalisedPosition as pos, 
-    isArray,
     odd, 
     even,
     handleArrayOrSingleValue as handle,
 } from '../utils/utils';
 import { getScale, getChord } from '../utils/musical';
 
-class Pattern {
-    private _value: patternValue | null = null
+/**
+ * Pattern class
+ */
+export class Pattern {
+    private _value: patternValue = 0
     private stack: stack = []
     private _q: number = 16 // divisions per cycle
     private _bpm: number = 120
 
-    set(value: patternValue) {
+    /**
+     * Set a single value
+     * @param {patternValue} value - a single string or number or array of strings or numbers
+     * @returns {Pattern}
+     * @example s0.p.amp.set(1)
+     */
+    set(value: patternValue): Pattern {
         this.stack = [() => value] 
         return this
     }
-
+    
+    /** @hidden */
     reset() {
         this.stack = []
-        this._value = null
+        this._value = 0
         return this
     }
 
-    // use params from another stream, e.g. s1.p('foo').use(s0.p.bar).add(2)
-    use(pattern: Pattern) {
+    /**
+     * Use another pattern's stack
+     * @param {Pattern} pattern - an instance of another pattern
+     * @returns {Pattern}
+     * @example 
+    s0.p.amp.use(s1.p.amp)
+    s1.p.amp.eval(s0.p.amp).mul(2);
+     */
+    use(pattern: Pattern): Pattern {
         this.stack.push(...pattern.stack)
         return this
     }
 
-    eval(pattern: Pattern) {
+    /**
+     * Get the current value of another pattern
+     * @param {Pattern} pattern - an instance of another pattern
+     * @returns {Pattern}
+     * @example 
+    s0.e.odd()
+    s1.e.eval(s0.e).neq(1)
+     */
+    eval(pattern: Pattern): Pattern {
         this.stack.push(() => pattern._value)
         return this
     }
 
-    // step quantised the output, freq is the number of iterations of the range, either per cycle or per canvas
-    // values provided to the callback should be in num of cycles or num of canvas
-    range(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1) {
+    /**
+     * Generate a range of values between lo and hi. Use as the first call in a pattern chain.
+     * @param lo lowest value in range
+     * @param hi highest value in range
+     * @param step step size to round the output. Default is 0, which means no rounding.
+     * @param freq number of iterations of the range, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @returns {Pattern}
+     * @example s0.p.modi.range(0, 10, 1, 2)
+     */
+    range(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1): Pattern {
         this.stack.push((x: patternValue) => mapToRange(pos(x, this._q, freq), 0, 1, lo, hi, step))
         return this
     }
 
-    // sine function
-    sine(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1) {
+    /**
+     * Generate a sine wave between lo and hi. Use as the first call in a pattern chain.
+     * @param lo lowest value in range
+     * @param hi highest value in range
+     * @param step step size to round the output. Default is 0, which means no rounding.
+     * @param freq number of iterations of the range, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @returns {Pattern}
+     * @example s0.p.modi.sine(0, 10)
+     */
+    sine(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1): Pattern {
         this.stack.push((x: patternValue) => {
             const radians = pos(x, this._q, freq) * 360 * (Math.PI/180)
             const sin = Math.sin(radians)
@@ -61,8 +98,17 @@ class Pattern {
         return this
     }
 
-    // cosine function
-    cosine(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1) {
+    
+    /**
+     * Generate a cosine wave between lo and hi. Use as the first call in a pattern chain.
+     * @param lo lowest value in range
+     * @param hi highest value in range
+     * @param step step size to round the output. Default is 0, which means no rounding.
+     * @param freq number of iterations of the range, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @returns {Pattern}
+     * @example s0.p.modi.cosine(0, 10)
+     */
+    cosine(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1): Pattern {
         this.stack.push((x: patternValue) =>  {
             const radians = pos(x, this._q, freq) * 360 * (Math.PI/180)
             const cos = Math.cos(radians)
@@ -71,17 +117,29 @@ class Pattern {
         return this
     }
 
-    // sawtooth function
-    saw(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1) {
-        this.stack.push((x: patternValue) => {
-            const saw = pos(x, this._q, freq)
-            return mapToRange(saw, 0, 1, lo, hi, step)
-        })
-        return this
+    /**
+     * Generate a saw wave between lo and hi. Alias of range. Use as the first call in a pattern chain.
+     * @param lo lowest value in range
+     * @param hi highest value in range
+     * @param step step size to round the output. Default is 0, which means no rounding.
+     * @param freq number of iterations of the range, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @returns {Pattern}
+     * @example s0.p.modi.saw(0, 10)
+     */
+    saw(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1): Pattern {
+        return this.range(lo, hi, step, freq)
     }
     
-    // triangle function
-    tri(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1) {
+    /**
+     * Generate a triangle wave between lo and hi. Use as the first call in a pattern chain.
+     * @param lo lowest value in range
+     * @param hi highest value in range
+     * @param step step size to round the output. Default is 0, which means no rounding.
+     * @param freq number of iterations of the range, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @returns {Pattern}
+     * @example s0.p.harm.tri(0, 4, 0.25)
+     */
+    tri(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1): Pattern {
         this.stack.push((x: patternValue) => {
             const tri = Math.abs(pos(x, this._q, freq) - 0.5) * 2
             return mapToRange(tri, 0, 0.5, lo, hi, step)
@@ -89,8 +147,16 @@ class Pattern {
         return this
     }
 
-    // pulse function
-    pulse(lo: number = 0, hi: number = 1, width: number = 0.5, freq: number = 1) {
+    /**
+     * Generate a pulse wave between lo and hi. Use as the first call in a pattern chain.
+     * @param lo - lowest value in range
+     * @param hi - highest value in range
+     * @param width - width of the pulse. Default is 0.5, which means a square wave.
+     * @param freq - number of iterations of the range, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @returns {Pattern}
+     * @example s0.p.modi.pulse(0, 10, 0.25)
+    */
+    pulse(lo: number = 0, hi: number = 1, width: number = 0.5, freq: number = 1): Pattern {
         this.stack.push((x: patternValue) => {
             const pulse = (((pos(x, this._q, freq))%1) < width ? 1 : 0)
             return mapToRange(pulse, 0, 1, lo, hi)
@@ -98,34 +164,72 @@ class Pattern {
         return this
     }
 
-    // square function
-    square(lo: number = 0, hi: number = 1, freq: number = 1) {
+    /**
+     * Generate a square wave between lo and hi. Use as the first call in a pattern chain. See also pulse.
+     * @param lo lowest value in range
+     * @param hi highest value in range
+     * @param freq number of iterations of the range, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @returns {Pattern}
+     * @example s0.p.modi.square(0, 10)
+    */
+    square(lo: number = 0, hi: number = 1, freq: number = 1): Pattern {
         this.pulse(lo, hi, 0.5, freq)
         return this
     }
 
-    // random function
-    random(lo: number = 0, hi: number = 1, step: number = 0) {
+    /**
+     * Generate a random number between lo and hi.
+     * @param lo lowest value in range
+     * @param hi highest value in range
+     * @param step step size to round the output. Default is 0, which means no rounding.
+     * @returns {Pattern}
+     * @example s0.p.n.random(60,72,1)
+     */
+    random(lo: number = 0, hi: number = 1, step: number = 0): Pattern {
         this.stack = [() => mapToRange(Math.random(), 0, 1, lo, hi, step)]
         return this
     }
 
-    // noise function
-    noise(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1) {
+    /**
+     * Generate a number between lo and hi, using a simplex noise function.
+     * @param lo lowest value in range
+     * @param hi highest value in range
+     * @param step step size to round the output. Default is 0, which means no rounding.
+     * @param freq number of iterations of the range, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @returns {Pattern}
+     * @example s0.p.pan.noise(0, 1)
+    */
+    noise(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1): Pattern {
         this.stack = [(x: patternValue) => {
             return mapToRange(noise.simplex2(pos(x, this._q, freq), 0), -1, 1, lo, hi, step)
         }]
         return this
     }
 
-    // generate on / off values every x steps
-    every(n: number, a: number = 1, b: number = 0) {
+    /**
+     * Generate truthy or falsy values every n divisions.
+     * @param n number of divisions
+     * @param a value to return when true
+     * @param b value to return when false
+     * @returns {Pattern}
+     * @example s0.e.every(4) // return 1 every 4 divisions, 0 otherwise
+     * @example s0.p.n.every(2, 60, 72) // return 60 every 2 divisions, 72 otherwise
+     */
+    every(n: number, a: number = 1, b: number = 0): Pattern {
         this.stack.push(x => !(+x % n) ? a : b)
         return this
     }
 
-    // generate patterns from binary strings
-    bin(n: string = '10000000', freq: number = 1, a: number = 1, b: number = 0) {
+    /**
+     * Generate truthy or falsy values from a binary string.
+     * @param n binary string
+     * @param freq number of iterations of the range, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @param a value to return when true
+     * @param b value to return when false
+     * @returns {Pattern}
+     * @example s0.p.n.bin('1111') // output depends on the number of division per cycle / canvas. If 16, returns 1 every 4 divisions, 0 otherwise
+    */
+    bin(n: string = '10000000', freq: number = 1, a: number = 1, b: number = 0): Pattern {
         const arr = n.replace(/\s+/g, '').split('').map(x => !!parseInt(x))
         const divisions = this._q / freq
         this.stack = [(x: patternValue) => {
@@ -135,8 +239,16 @@ class Pattern {
         return this
     }
 
-    // convert a number to binary string and return a or b based on the true/false value at the current position in the string
-    ntbin(n: number = 8, q: number = 16, a: number = 1, b: number = 0) {
+    /**
+     * Convert a number to binary string, then passes it to .bin().
+     * @param n a number
+     * @param q the length of the binary string
+     * @param a value to return when true
+     * @param b value to return when false
+     * @returns {Pattern}
+     * @example s0.p.n.ntbin(9, 8) // 9 in binary is 1001, padded out to 8 digits. Passes 00001001 to .bin()
+     */
+    ntbin(n: number = 8, q: number = 16, a: number = 1, b: number = 0): Pattern {
         return this.bin(numberToBinary(+n, q), a, b)
     }
 
@@ -380,16 +492,16 @@ class Pattern {
         this._q = q
         this._bpm = bpm || this._bpm
 
-        this._value = this.stack.length 
+        // this._value = 
+        const value = this.stack.length 
             ? this.stack.reduce((val: patternValue, fn) => fn(val), t) 
             : null
 
-        return this._value
+        this._value = value || 0
+        return value
     }
 
     has() : boolean {
         return !!this.stack.length
     }
 }
-
-export default Pattern
