@@ -14,13 +14,26 @@ import {
 import { getScale, getChord } from '../utils/musical';
 
 /**
- * Pattern class
+ * Patterns are the building blocks of Zen. They are used to generate patterns of values in interesting, concise ways. The first value passed to a pattern is either time `t` or a position in space `x`, `y`, or `z`, depending on whether the pattern is assigned to a stream's `p`, `px`, `py`, or `pz` property. Patterns methods can be chained together applying each new method to the value passed from the previous one in the chain.
+ * @example
+ * s0.p.amp.range(0,1)
+ * s0.px.drive.sine(0,1)
+ * s0.py.modi.range(0,10).mul((t%q)/q)
  */
 export class Pattern {
+    /** @hidden */
     private _value: patternValue = 0
+    /** @hidden */
     private stack: stack = []
+    /** @hidden */
     private _q: number = 16 // divisions per cycle
+    /** @hidden */
     private _bpm: number = 120
+
+    /** @hidden */
+    constructor() {
+        this.reset()
+    }
 
     /**
      * Set a single value

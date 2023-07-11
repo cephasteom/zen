@@ -1,6 +1,6 @@
 import { start, Loop, Transport, immediate } from 'tone'
 import { writable, get } from 'svelte/store';
-import Zen from './classes/Zen';
+import { Zen } from './classes/Zen';
 import { Stream } from './classes/Stream';
 import { createCount } from './utils/utils';
 import type { action } from './types';
