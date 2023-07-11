@@ -71,7 +71,7 @@ export class Pattern {
      * @param lo lowest value in range
      * @param hi highest value in range
      * @param step step size to round the output. Default is 0, which means no rounding.
-     * @param freq number of iterations of the range, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
      * @example s0.p.modi.range(0, 10, 1, 2)
      */
@@ -85,7 +85,7 @@ export class Pattern {
      * @param lo lowest value in range
      * @param hi highest value in range
      * @param step step size to round the output. Default is 0, which means no rounding.
-     * @param freq number of iterations of the range, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
      * @example s0.p.modi.sine(0, 10)
      */
@@ -104,7 +104,7 @@ export class Pattern {
      * @param lo lowest value in range
      * @param hi highest value in range
      * @param step step size to round the output. Default is 0, which means no rounding.
-     * @param freq number of iterations of the range, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
      * @example s0.p.modi.cosine(0, 10)
      */
@@ -122,7 +122,7 @@ export class Pattern {
      * @param lo lowest value in range
      * @param hi highest value in range
      * @param step step size to round the output. Default is 0, which means no rounding.
-     * @param freq number of iterations of the range, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
      * @example s0.p.modi.saw(0, 10)
      */
@@ -135,7 +135,7 @@ export class Pattern {
      * @param lo lowest value in range
      * @param hi highest value in range
      * @param step step size to round the output. Default is 0, which means no rounding.
-     * @param freq number of iterations of the range, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
      * @example s0.p.harm.tri(0, 4, 0.25)
      */
@@ -152,7 +152,7 @@ export class Pattern {
      * @param lo - lowest value in range
      * @param hi - highest value in range
      * @param width - width of the pulse. Default is 0.5, which means a square wave.
-     * @param freq - number of iterations of the range, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @param freq - number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
      * @example s0.p.modi.pulse(0, 10, 0.25)
     */
@@ -168,7 +168,7 @@ export class Pattern {
      * Generate a square wave between lo and hi. Use as the first call in a pattern chain. See also pulse.
      * @param lo lowest value in range
      * @param hi highest value in range
-     * @param freq number of iterations of the range, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
      * @example s0.p.modi.square(0, 10)
     */
@@ -195,7 +195,7 @@ export class Pattern {
      * @param lo lowest value in range
      * @param hi highest value in range
      * @param step step size to round the output. Default is 0, which means no rounding.
-     * @param freq number of iterations of the range, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
      * @example s0.p.pan.noise(0, 1)
     */
@@ -223,7 +223,7 @@ export class Pattern {
     /**
      * Generate truthy or falsy values from a binary string.
      * @param n binary string
-     * @param freq number of iterations of the range, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @param a value to return when true
      * @param b value to return when false
      * @returns {Pattern}
@@ -252,130 +252,264 @@ export class Pattern {
         return this.bin(numberToBinary(+n, q), a, b)
     }
 
-    // Chained functions - should be able to handle arrays
-    seq(values: number[] = [], freq: number = 1) {
+    /**
+     * Choose from a sequence of values. Use as the first call in a pattern chain.
+     * @param values an array of values
+     * @param freq number of iterations of the sequence, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @returns {Pattern}
+     * @example s0.p.n.seq([60,72,74,76])
+     */
+    seq(values: number[] = [], freq: number = 1): Pattern {
         this.stack.push((x: patternValue) => values[Math.floor((pos(x, this._q, freq)*values.length)%values.length)])
         return this
     }
     
-    add(value: number = 0) {
+    /**
+     * Add a value to the previous value in the pattern chain.
+     * @param value value to add
+     * @returns {Pattern}
+     * @example s0.p.n.noise(60,72,1).add(12)
+     */
+    add(value: number = 0): Pattern {
         this.stack.push(x => handle(x, x => x + value))
         return this
     }
 
-    take(value: number = 0) {
+    /**
+     * Subtract a value from the previous value in the pattern chain.
+     * @param value value to subtract
+     * @returns {Pattern}
+     * @example s0.p.n.noise(60,72,1).sub(12)
+     */
+    take(value: number = 0): Pattern {
         this.stack.push(x => handle(x, x => value - x))
         return this
     }
 
-    // reverse take value - x, rather than x - value
-    $take(value: number = 0) {
+    /**
+     * Reverse subtract a value from the previous value in the pattern chain.
+     * @param value value to subtract
+     * @returns {Pattern}
+     * @example s0.p.amp.noise(0.5,0.25).$sub(1)
+     */
+    $take(value: number = 0): Pattern {
         this.stack.push(x => handle(x, x => value - x))
         return this
     }
 
-    mul(value: number = 1) {
+    /**
+     * Multiply the previous value in the pattern chain by a value.
+     * @param value value to multiply by
+     * @returns {Pattern}
+     * @example s0.p.n.noise(60,72,1).mul(2)
+     */ 
+    mul(value: number = 1): Pattern {
         this.stack.push(x => handle(x, x => x * value))
         return this
     }
 
-    div(value: number = 1) {
+    /**
+     * Divide the previous value in the pattern chain by a value.
+     * @param value value to divide by
+     * @returns {Pattern}
+     * @example s0.p.n.noise(60,72,1).div(2)
+     */
+    div(value: number = 1): Pattern {
         this.stack.push(x => handle(x, x => x / value))
         return this
     }
 
-    // reverse div value - x, rather than x / value
-    $div(value: number = 1) {
+    /**
+     * Reverse divide the previous value in the pattern chain by a value.
+     * @param value value to divide by
+     * @returns {Pattern}
+     * @example s0.p.modi.noise(1,2).$div(2)
+     */ 
+    $div(value: number = 1): Pattern {
         this.stack.push(x => handle(x, x => value / x))
         return this
     }
 
-    mod(value: number = 1) {
+    /**
+     * Modulo the previous value in the pattern chain by a value.
+     * @param value value to modulo by
+     * @returns {Pattern}
+    */ 
+    mod(value: number = 1): Pattern {
         this.stack.push(x => handle(x, x => ((x % value) + value) % value))
         return this
     }
 
-    step(value: number) {
+    /**
+     * Round the previous value in the pattern chain to the step value.\
+     * @param value value to round to
+     * @returns {Pattern}
+     */
+    step(value: number): Pattern {
         this.stack.push(x => handle(x, x => roundToFactor(x, value)))
         return this
     }
 
-    clamp(min: number, max: number) {
+    /**
+     * Clamp the previous value in the pattern chain to a range.
+     * @param min minimum value
+     * @param max maximum value
+     * @returns {Pattern}
+     */ 
+    clamp(min: number, max: number): Pattern {
         this.stack.push(x => handle(x, x => clamp(x, min, max)))
         return this
     }
 
-    // greater than - returns a if true, b if false
-    gt(n: number, a: number = 1, b: number = 0) {
+    /**
+     * Test if the previous value in the pattern chain is greater than a value.
+     * @param value value to test against
+     * @param a value to return when true
+     * @param b value to return when false
+     * @returns {Pattern}
+     * @example s0.p.n.noise(0,1).gt(0.3, 60, 72)
+     */ 
+    gt(n: number, a: number = 1, b: number = 0): Pattern {
         this.stack.push(x => [x].flat().every(x => x > n) ? a : b)
         return this
     }
 
-    // less than - returns a if true, b if false
-    lt(n: number, a: number = 1, b: number = 0) {
+    /**
+     * Test if the previous value in the pattern chain is less than a value.
+     * @param value value to test against
+     * @param a value to return when true
+     * @param b value to return when false
+     * @returns {Pattern}
+     */ 
+    lt(n: number, a: number = 1, b: number = 0): Pattern {
         this.stack.push(x => [x].flat().every(x => x < n) ? a : b)
         return this
     }
 
-    // greater than or equal to - returns a if true, b if false
-    gte(n: number, a: number = 1, b: number = 0) {
+    /**
+     * Test if the previous value in the pattern chain is greater than or equal to a value.
+     * @param value value to test against
+     * @param a value to return when true
+     * @param b value to return when false
+     * @returns {Pattern}
+     * @example s0.p.n.noise(0,1).gte(0.3, 60, 72)
+     */ 
+    gte(n: number, a: number = 1, b: number = 0): Pattern {
         this.stack.push(x => [x].flat().every(x => x >= n) ? a : b)
         return this
     }
 
-    // less than or equal to - returns a if true, b if false
-    lte(n: number, a: number = 1, b: number = 0) {
+    /**
+     * Test if the previous value in the pattern chain is less than or equal to a value.
+     * @param value value to test against
+     * @param a value to return when true
+     * @param b value to return when false
+     * @returns {Pattern}
+     */
+    lte(n: number, a: number = 1, b: number = 0): Pattern {
         this.stack.push(x => [x].flat().every(x => x <= n) ? a : b)
         return this
     }
 
-    // equal to - returns a if true, b if false
-    eq(n: number, a: number = 1, b: number = 0) {
+    /**
+     * Test if the previous value in the pattern chain is equal to a value.
+     * @param value value to test against
+     * @param a value to return when true
+     * @param b value to return when false
+     * @returns {Pattern}
+     */ 
+    eq(n: number, a: number = 1, b: number = 0): Pattern {
         this.stack.push(x => [x].flat().every(x => x === n) ? a : b)
         return this
     }
 
-    // not equal to - returns a if true, b if false
-    neq(n: number, a: number = 1, b: number = 0) {
+    /**
+     * Test if the previous value in the pattern chain is not equal to a value.
+     * @param value value to test against
+     * @param a value to return when true
+     * @param b value to return when false
+     * @returns {Pattern}
+     */ 
+    neq(n: number, a: number = 1, b: number = 0): Pattern {
         this.stack.push(x => [x].flat().every(x => x !== n) ? a : b)
         return this
     }
 
-    odd(a: number = 1, b: number = 0) {
+    /**
+     * Test if the previous value in the pattern chain is an odd number
+     * @param a value to return when true
+     * @param b value to return when false
+     * @returns {Pattern}
+     */ 
+    odd(a: number = 1, b: number = 0): Pattern {
         this.stack.push(x => [x].flat().every(odd) ? a : b)
         return this
     }
 
-    even(a: number = 1, b: number = 0) {
+    /**
+     * Test if the previous value in the pattern chain is an even number
+     * @param a value to return when true
+     * @param b value to return when false
+     * @returns {Pattern}
+     */ 
+    even(a: number = 1, b: number = 0): Pattern {
         this.stack.push(x => [x].flat().every(even) ? a : b)
         return this
     }
 
-    if(a: number = 1, b: number = 0) {
+    /**
+     * Test if the previous value in the pattern chain is a truthy or falsy value
+     * @param a value to return when true
+     * @param b value to return when false
+     * @returns {Pattern}
+     */ 
+    if(a: number = 1, b: number = 0): Pattern {
         this.stack.push(x => [x].flat().every(x => !!x) ? a : b)
         return this
     }
 
     
-    // convert current value(s) from beats to seconds, scaling by bpm
-    bts() {
+    /**
+     * Convert the previous value from beats to seconds, scaling by bpm
+     * @returns {Pattern}
+     * @example s0.p.dur(1).bts().mul(1000)
+     */ 
+    bts(): Pattern {
         this.stack.push(x => handle(x, x => x * (60/this._bpm)))
         return this
     }
 
-    // convert current value from beats to milliseconds, scaling by bpm
-    btms() {
+    /**
+     * Convert the previous value from beats to milliseconds, scaling by bpm
+     * @returns {Pattern}
+     * @example s0.p.dur(1).btms()
+     */ 
+    btms(): Pattern {
         this.stack.push(x => handle(x, x => x * (60000/this._bpm)))
         return this
     }
 
-    // do whatever to the preceding value
-    fn(cb: {(x: patternValue): patternValue}) {
+    /**
+     * Provide a callback function to the previous value in the pattern chain
+     * @param cb callback function
+     * @returns {Pattern}
+     * @example s0.p.modi.seq([0,1,2,3]).fn(x => x * 2)
+     */ 
+    fn(cb: {(x: patternValue): patternValue}): Pattern {
         this.stack.push(cb)
         return this
     }
 
-    scales(names: string | string[], length: number = 8, freq: number = 1) {
+    /**
+     * Use the previous value in the pattern chain as an index to retrieve a value from an array of musical scales
+     * @param names name of scale or array of scale names. Scales follow root-scale format, e.g. 'c-major'.
+     * @todo show link to available scales
+     * @param length length of each scale
+     * @param freq number of iterations of the pattern
+     * @returns {Pattern}
+     * @example s0.p.n.scales('c-dorian', 16)
+     */ 
+    scales(names: string | string[], length: number = 8, freq: number = 1): Pattern {
         const scales = [names].flat().map(name => {
             const scale = getScale(name)
             return scale.slice(0, min(length, scale.length))
@@ -384,110 +518,177 @@ export class Pattern {
         return this
     }
 
-    chords(names: string | string[], freq: number = 1) {
+    /**
+     * Use the previous value in the pattern chain as an index to retrieve a chord from an array of musical chords
+     * @param names name of chord or array of chord names. Chords follow root-chord format, e.g. 'd-min7'.
+     * @todo show link to available chords
+     * @param freq number of iterations of the pattern
+     * @returns {Pattern}
+     * @example s0.p.n.chords(['d-min7', 'g-dom7'])
+     */ 
+    chords(names: string | string[], freq: number = 1): Pattern {
         this.seq([names].flat().map(name => getChord(name)), freq).add(48)
         return this
     }
 
-    // Math
-    sin() {
+    /**
+     * Get the sine of the previous value in the pattern chain
+     * @returns {Pattern}
+     */ 
+    sin(): Pattern {
         this.stack.push((x: patternValue) => handle(x, x => Math.sin(+x))) 
         return this
     }
 
-    cos() {
+    /**
+     * Get the cosine of the previous value in the pattern chain
+     * @returns {Pattern}
+     */ 
+    cos(): Pattern {
         this.stack.push((x: patternValue) => handle(x, x => Math.cos(+x)))
         return this
     }
 
-    tan() {
+    /**
+     * Get the tangent of the previous value in the pattern chain
+     * @returns {Pattern}
+     */ 
+    tan(): Pattern {
         this.stack.push((x: patternValue) => handle(x, x => Math.tan(+x)))
         return this
     }
 
-    asin() {
+    /**
+     * Get the arctangent of the previous value in the pattern chain
+     * @returns {Pattern}
+     */ 
+    asin(): Pattern {
         this.stack.push((x: patternValue) => handle(x, x => Math.asin(+x)))
         return this
     }
 
-    acos() {
+    /**
+     * Get the arccosine of the previous value in the pattern chain
+     * @returns {Pattern}
+     */ 
+    acos(): Pattern {
         this.stack.push((x: patternValue) => handle(x, x => Math.acos(+x)))
         return this
     }
 
-    atan() {
+    /**
+     * Get the arctangent of the previous value in the pattern chain
+     * @returns {Pattern}
+     */ 
+    atan(): Pattern {
         this.stack.push((x: patternValue) => handle(x, x => Math.atan(+x)))
         return this
     }
 
-    atan2(y: number) {
+    /**
+     * Get the arctangent of the previous value in the pattern chain
+     * @param y value to divide by
+     * @returns {Pattern}
+     */ 
+    atan2(y: number): Pattern {
         this.stack.push((x: patternValue) => handle(x, x => Math.atan2(+x, y)))
         return this
     }
 
-    abs() {
+    /**
+     * Get the absolute value of the previous value in the pattern chain
+     * @returns {Pattern}
+     */ 
+    abs(): Pattern {
         this.stack.push((x: patternValue) => handle(x, x => Math.abs(+x)))
         return this
     }
 
-    ceil() {
+    /**
+     * Get the ceiling of the previous value in the pattern chain
+     * @returns {Pattern}
+     */ 
+    ceil(): Pattern {
         this.stack.push((x: patternValue) => handle(x, x => Math.ceil(+x)))
         return this
     }
 
-    floor() {
+    /**
+     * Get the floor of the previous value in the pattern chain
+     * @returns {Pattern}
+     */ 
+    floor(): Pattern {
         this.stack.push((x: patternValue) => handle(x, x => Math.floor(+x)))
         return this
     }
 
-    round() {
+    /**
+     * Round the previous value in the pattern chain
+     * @returns {Pattern}
+     */ 
+    round(): Pattern {
         this.stack.push((x: patternValue) => handle(x, x => Math.round(+x)))
         return this
     }
 
-    exp() {
+    /**
+     * Get the exponential of the previous value in the pattern chain
+     * @returns {Pattern}
+     */ 
+    exp(): Pattern {
         this.stack.push((x: patternValue) => handle(x, x => Math.exp(+x)))
         return this
     }
 
-    log() {
+    /**
+     * Get the natural log of the previous value in the pattern chain
+     * @returns {Pattern}
+     */ 
+    log(): Pattern {
         this.stack.push((x: patternValue) => handle(x, x => Math.log(+x)))
         return this
     }
 
-    max(compare: number = 0) {
+    /**
+     * Get the maximum of the previous value in the pattern chain and a given value
+     * @param compare value to compare to
+     * @returns {Pattern}
+     */ 
+    max(compare: number = 0): Pattern {
         this.stack.push((x: patternValue) => handle(x, x => Math.max(+x, compare)))
         return this
     }
 
-    min(compare: number = 0) {
+    /**
+     * Get the minimum of the previous value in the pattern chain and a given value
+     * @param compare value to compare to
+     * @returns {Pattern}
+     */ 
+    min(compare: number = 0): Pattern {
         this.stack.push((x: patternValue) => handle(x, x => Math.min(+x, compare)))
         return this
     }
 
-    pow(exponent: number = 2) {
+    /**
+     * Multiply the previous value in the pattern chain to the power of a given value
+     * @param exponent value to multiply by
+     * @returns {Pattern}
+     */ 
+    pow(exponent: number = 2): Pattern {
         this.stack.push((x: patternValue) => handle(x, x => Math.pow(+x, exponent)))
         return this
     }
 
-    sqrt() {
+    /**
+     * Get the square root of the previous value in the pattern chain
+     * @returns {Pattern}
+     */ 
+    sqrt(): Pattern {
         this.stack.push((x: patternValue) => handle(x, x => Math.sqrt(+x)))
         return this
     }
 
-    // Trig
-    deg() {
-        this.stack.push((x: patternValue) => handle(x, x => x * 180 / Math.PI))
-        return this
-    }
-
-    rad() {
-        this.stack.push((x: patternValue) => handle(x, x => x * Math.PI / 180))
-
-        return this
-    }   
-
-    // Get output based on position in cycle or on canvas
+    /** @hidden */
     get(t: number, q: number, bpm?: number) {
         this._q = q
         this._bpm = bpm || this._bpm
@@ -501,6 +702,7 @@ export class Pattern {
         return value
     }
 
+    /** @hidden */
     has() : boolean {
         return !!this.stack.length
     }
