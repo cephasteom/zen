@@ -120,8 +120,14 @@
     <section class="Sound">
         <h2>Sound <button on:click={() => expandSound = !expandSound}><Icon data="{faCaretDown}" /></button></h2>
         <div class="expandable{expandSound ? '--expanded' : ''}">
-            <span class="quick-link"><a href="/docs#instruments">Instruments</a></span>
-            <span class="quick-link"><a href="/docs#fx">Effects</a></span>
+            {#each ['synth', 'sampler', 'granular'] as instrument}
+                <span class="quick-link"><a href="/docs#{instrument}">{instrument}</a></span>
+            {/each}
+            {#each ['synth', 'sampler', 'granular'] as instrument}
+                <div class="instrument">
+                    <h3 id={instrument}>{instrument}</h3>
+                </div>
+            {/each}
         </div>
     </section>
 
