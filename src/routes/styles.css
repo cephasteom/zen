@@ -134,6 +134,7 @@ ul {
 }
 
 .content {
+    min-height: 80vh;
 	padding: 1rem;
     background-color: var(--color-grey-dark);
 }

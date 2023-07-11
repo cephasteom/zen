@@ -4,5 +4,6 @@
 </svelte:head>
 
 <section class="content">
-	<h1>Learn page</h1>
+	<h1>Tutorial</h1>
+    
 </section>
