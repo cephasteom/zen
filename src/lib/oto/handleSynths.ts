@@ -44,7 +44,7 @@ export const handleSynthEvent = (time: number, id: string, params: Dictionary) =
     // Handle cut notes
     const toCut = cut !== undefined ? [+cut].flat() : []
     toCut.forEach((channel: number) => {
-        const stream = synths[channel] || {}
+        const stream = get(synths)[channel] || {}
         Object.values(stream).forEach((synth: any) => synth?.cut(time))
     });
 
