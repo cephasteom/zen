@@ -97,9 +97,10 @@ s0.e.every(4)`,
     .expandable {
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.5s ease-in-out;
+        transition: height 1s ease-in-out;
         &--expanded {
             max-height: auto;
+            transition: height 1s ease-in-out;
         }
     }
 

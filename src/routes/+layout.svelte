@@ -35,17 +35,19 @@
     }
 
     footer {
-        width: 100%;
+        width: calc(100% - 2rem);
         padding: 1rem;
         margin: 0 auto;
         color: var(--color-grey-light);
         text-align: center;
         @media (min-width: 1200px) {
             text-align: right;
+            width: calc(100% - 4rem);
             padding: 1rem 2rem;
         }
 
         @media (min-width: 1600px) {
+            width: 100%;
             padding: 1rem 0;
         }
 

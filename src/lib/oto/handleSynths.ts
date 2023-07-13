@@ -87,7 +87,7 @@ export const handleSynthMutation = (time: number, id: string, params: Dictionary
     const store = get(synths)
     Object.values(store[channel])?.forEach((s: any) => s.mutate(ps, time, lag))
     
-    channels[channel].mutate(params, time, lag)
+    channels[channel].mutate(ps, time, lag)
 }
 
 // Fetch samples lists

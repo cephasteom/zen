@@ -8,7 +8,7 @@
     let editor: Monaco.editor.IStandaloneCodeEditor;
     let monaco: typeof Monaco;
     let editorContainer: HTMLElement;
-    let options = {
+    let options: Monaco.editor.IStandaloneEditorConstructionOptions = {
         language: 'javascript',
         theme: 'vs-dark',
         lineNumbers: {
@@ -32,6 +32,12 @@
             horizontalHasArrows: false,
             arrowSize: 0
         },
+        suggestOnTriggerCharacters: false,
+        acceptSuggestionOnEnter: "off",
+        acceptSuggestionOnCommitCharacter: false,
+        wordBasedSuggestions: false,
+        snippetSuggestions: 'none',
+        roundedSelection: false,
     };
     let flash = false
 
@@ -102,7 +108,10 @@
     }
     .editor {
         width: 100%;
-        height: 75vh!important;
+        height: 60vh!important;
+        @media (min-width: 500px) {
+            height: 75vh!important;
+        }
     }
 
     .notices {

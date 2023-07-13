@@ -70,17 +70,22 @@
     .menu {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         list-style: none;
         padding: 0;
         margin: 0;
     }
 
     .menu__item {
-        padding-right: 3rem;
+        padding-left: 1rem;
+        @media(min-width: 600px) {
+            padding-right: 3rem;
+        }
         font-size: var(--text-sm);
         font-weight: 500;
         display: flex;
         align-items: center;
+        margin-top: 0;
     }
 
     .menu__item a {
