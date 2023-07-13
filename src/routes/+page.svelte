@@ -7,8 +7,8 @@
 </script>
 
 <svelte:head>
-	<title>Zen</title>
-	<meta name="description" content="Zen" />
+	<title>Zen | Home</title>
+	<meta name="description" content="A musical live coding language that runs in your browser" />
 </svelte:head>
 
 <svelte:window 

@@ -1,6 +1,6 @@
 <svelte:head>
-	<title>Docs</title>
-	<meta name="description" content="Zen Tutorials" />
+	<title>Zen | Learn</title>
+	<meta name="description" content="Learn how to make music with Zen, a musical live coding language that runs in your browser." />
 </svelte:head>
 
 <section class="content">

@@ -7,8 +7,6 @@
     import classes from "$lib/docs/classes.json"
     import synths from "$lib/docs/synths.json"
 
-    console.log(classes, synths)
-
     let expandVariables = false;
     let expandClasses = false;
     let expandSound = false;
@@ -16,8 +14,8 @@
 </script>
 
 <svelte:head>
-	<title>Documentation</title>
-	<meta name="description" content="Zen Documentation" />
+	<title>Zen | Docs</title>
+	<meta name="description" content="Documentation for Zen, a musical live coding language that runs in your browser." />
 </svelte:head>
 
 <div class="content">
