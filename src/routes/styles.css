@@ -69,7 +69,6 @@ body {
 	background-color: var(--color-grey-darker);
 	background-size: 100vw 100vh;
     letter-spacing: 0.1rem;
-    user-select: none
 }
 
 p, li {

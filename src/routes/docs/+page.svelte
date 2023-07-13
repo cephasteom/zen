@@ -1,6 +1,9 @@
-<!-- TODO: Midi, Oto -->
 
 <script lang="ts">
+    import hljs from 'highlight.js/lib/core';
+    import javascript from 'highlight.js/lib/languages/javascript';
+    hljs.registerLanguage('javascript', javascript);
+    
     import Icon from 'svelte-awesome';
     import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
     import Docs from "$lib/components/Docs.svelte"
@@ -58,6 +61,20 @@
     <section class="Midi">
         <h2>Midi <button on:click={() => expandMidi = !expandMidi}><Icon data="{faCaretDown}" /></button></h2>
         <div class="expandable{expandMidi ? '--expanded' : ''}">
+            <p>Midi is simple to use in Zen. On page load, all available midi inputs and outputs are printed in your console for reference. These strings can be assigned to a stream's <code class="inline-code">midi</code> parameter in order to send messages to that device. The following parameters control midi routing in Zen:</p>
+            <ul>
+                <li><code class="inline-code">midi</code> the midi device to send messages to.</li>
+                <li><code class="inline-code">midichan</code> the midi channel to send messages to. Sends to all channels if not included.</li>
+                <li><code class="inline-code">latency</code> delay midi messages by n milliseconds. Useful for synchronising midi and audio.</li>
+                <li><code class="inline-code">cc1</code>, <code class="inline-code">cc2</code> etc. Send control change messages. If you wish to use more memorable names, you can map keys to other keys using a stream's map property. See Classes > Stream > map. CC values are normalised (0 - 1).</li>
+            </ul>
+            <pre><code>{@html
+                hljs.highlight(`s0.set({midi: 'Nord1a', midichan: 1}) 
+s0.p.cc1.range(0, 1, 1)
+s0.p.cc2.noise(0, 0.5)
+s0.e.every(4)`,
+                    {language: 'javascript'}).value
+            }</code></pre>
         </div>
     </section>
 

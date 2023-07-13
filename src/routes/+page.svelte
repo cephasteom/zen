@@ -39,6 +39,7 @@
         grid-template-rows: 6fr 1fr 1fr;
         grid-gap: 1rem;
         padding: 1rem;
+        user-select: none;
         
         @media (min-width: 500px) {
             grid-template-columns: 1fr 1fr;
