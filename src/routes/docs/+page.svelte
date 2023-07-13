@@ -49,7 +49,7 @@
     </section>
 
     <section class="Sound">
-        <h2>Sound <button on:click={() => expandSound = !expandSound}><Icon data="{faCaretDown}" /></button></h2>
+        <h2>Instruments | Effects <button on:click={() => expandSound = !expandSound}><Icon data="{faCaretDown}" /></button></h2>
         {#if synths}
             <div class="expandable{expandSound ? '--expanded' : ''}">
                 <Docs json={synths} />

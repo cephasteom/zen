@@ -18,6 +18,7 @@
         "src/lib/oto/ct-synths/rnbo/AcidSynth.ts",
         "src/lib/oto/ct-synths/rnbo/Granular.ts",
         "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
+        "src/lib/oto/ct-synths/rnbo/Sampler.ts",
     ],
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
 	//
