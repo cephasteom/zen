@@ -706,7 +706,6 @@ export class Pattern {
         this._q = q
         this._bpm = bpm || this._bpm
 
-        // this._value = 
         const value = this.stack.length 
             ? this.stack.reduce((val: patternValue, fn) => fn(val), t) 
             : null

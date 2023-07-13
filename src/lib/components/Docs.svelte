@@ -70,7 +70,7 @@
 
                                     {#if signature.parameters}
                                         <ul>
-                                            {#each [signature.parameters[0]] as parameter}
+                                            {#each signature.parameters as parameter}
                                                 <li>
                                                     {#if parameter.name}{parameter.name}{/if}: 
                                                     {#if parameter.comment}{@html parseTSDocsText(parameter.comment.summary)}{/if}
