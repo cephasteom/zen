@@ -14294,6 +14294,4404 @@
 			]
 		},
 		{
+			"id": 1003,
+			"name": "SubSynth",
+			"variant": "declaration",
+			"kind": 2,
+			"flags": {},
+			"children": [
+				{
+					"id": 1004,
+					"name": "default",
+					"variant": "declaration",
+					"kind": 128,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "A simple synth for creating sine wave sub bass sounds, with some FM modulation."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\ns0.set({inst: 'sub'})\n```"
+									}
+								]
+							}
+						]
+					},
+					"children": [
+						{
+							"id": 1073,
+							"name": "_amp",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 153,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L153"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1074,
+									"name": "_amp",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Mutate the amplitude of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 153,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L153"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1075,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "amplitude value, from 0 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "1"
+										},
+										{
+											"id": 1076,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time of mutation"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth._amp"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth._amp"
+							}
+						},
+						{
+							"id": 1185,
+							"name": "_cutoff",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 349,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L349"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1186,
+									"name": "_cutoff",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Mutate the cutoff of the filter"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 349,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L349"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1187,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "cutoff value, in Hz"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "20000"
+										},
+										{
+											"id": 1188,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time of mutation"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth._cutoff"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth._cutoff"
+							}
+						},
+						{
+							"id": 1193,
+							"name": "_detune",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 363,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L363"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1194,
+									"name": "_detune",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Mutate the detune of the pitch"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 363,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L363"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1195,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "detune value, in semitones"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "0"
+										},
+										{
+											"id": 1196,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time of mutation"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth._detune"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth._detune"
+							}
+						},
+						{
+							"id": 1017,
+							"name": "_fat",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "SubSynth.ts",
+									"line": 65,
+									"character": 4
+								}
+							],
+							"signatures": [
+								{
+									"id": 1018,
+									"name": "_fat",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Mutate the synth fatness"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "SubSynth.ts",
+											"line": 65,
+											"character": 4
+										}
+									],
+									"parameters": [
+										{
+											"id": 1019,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "0 is not fat, 1 is max fat"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "0"
+										},
+										{
+											"id": 1020,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time of mutation"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									}
+								}
+							]
+						},
+						{
+							"id": 1037,
+							"name": "_lfodepth",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "SubSynth.ts",
+									"line": 100,
+									"character": 4
+								}
+							],
+							"signatures": [
+								{
+									"id": 1038,
+									"name": "_lfodepth",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Mutate the LFO depth"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "SubSynth.ts",
+											"line": 100,
+											"character": 4
+										}
+									],
+									"parameters": [
+										{
+											"id": 1039,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "LFO depth, 0 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "0"
+										},
+										{
+											"id": 1040,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time of mutation"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									}
+								}
+							]
+						},
+						{
+							"id": 1029,
+							"name": "_lforate",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "SubSynth.ts",
+									"line": 86,
+									"character": 4
+								}
+							],
+							"signatures": [
+								{
+									"id": 1030,
+									"name": "_lforate",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Mutate the LFO rate"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "SubSynth.ts",
+											"line": 86,
+											"character": 4
+										}
+									],
+									"parameters": [
+										{
+											"id": 1031,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "LFO rate in Hz"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "1"
+										},
+										{
+											"id": 1032,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time of mutation"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									}
+								}
+							]
+						},
+						{
+							"id": 1057,
+							"name": "_n",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 124,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L124"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1058,
+									"name": "_n",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Mutate the midi note number of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 124,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L124"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1059,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "midi note number"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "60"
+										},
+										{
+											"id": 1060,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time of mutation"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth._n"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth._n"
+							}
+						},
+						{
+							"id": 1065,
+							"name": "_pan",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 138,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L138"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1066,
+									"name": "_pan",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Mutate the pan of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 138,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L138"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1067,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "pan value, from 0 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "0.5"
+										},
+										{
+											"id": 1068,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time of mutation"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth._pan"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth._pan"
+							}
+						},
+						{
+							"id": 1177,
+							"name": "_res",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 335,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L335"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1178,
+									"name": "_res",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Mutate the resonance of the filter"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 335,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L335"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1179,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "resonance value, from 0 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "0"
+										},
+										{
+											"id": 1180,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time of mutation"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth._res"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth._res"
+							}
+						},
+						{
+							"id": 1081,
+							"name": "_vol",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 167,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L167"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1082,
+									"name": "_vol",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Mutate the volume of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 167,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L167"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1083,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "volume value, from 0 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "1"
+										},
+										{
+											"id": 1084,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time of mutation"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth._vol"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth._vol"
+							}
+						},
+						{
+							"id": 1089,
+							"name": "a",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 181,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L181"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1090,
+									"name": "a",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Set the attack of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 181,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L181"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1091,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "attack value in ms"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "10"
+										},
+										{
+											"id": 1092,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in seconds"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth.a"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth.a"
+							}
+						},
+						{
+							"id": 1105,
+							"name": "acurve",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 209,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L209"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1106,
+									"name": "acurve",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Set the attack curve of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 209,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L209"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1107,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "attack curve value, from -1 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										},
+										{
+											"id": 1108,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in seconds"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth.acurve"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth.acurve"
+							}
+						},
+						{
+							"id": 1069,
+							"name": "amp",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 146,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L146"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1070,
+									"name": "amp",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Set the amplitude of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 146,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L146"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1071,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "amplitude value, from 0 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "1"
+										},
+										{
+											"id": 1072,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in seconds"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth.amp"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth.amp"
+							}
+						},
+						{
+							"id": 1045,
+							"name": "cut",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 100,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L100"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1046,
+									"name": "cut",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Cut all events playing at the given time"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 100,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L100"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1047,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to cut events"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										},
+										{
+											"id": 1048,
+											"name": "ms",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time in ms taken to release events"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "10"
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth.cut"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth.cut"
+							}
+						},
+						{
+							"id": 1181,
+							"name": "cutoff",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 342,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L342"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1182,
+									"name": "cutoff",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Set the cutoff of the filter of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 342,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L342"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1183,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "cutoff value, in Hz"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "20000"
+										},
+										{
+											"id": 1184,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in seconds"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth.cutoff"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth.cutoff"
+							}
+						},
+						{
+							"id": 1093,
+							"name": "d",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 188,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L188"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1094,
+									"name": "d",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Set the decay of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 188,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L188"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1095,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "decay value in ms"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "100"
+										},
+										{
+											"id": 1096,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in seconds"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth.d"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth.d"
+							}
+						},
+						{
+							"id": 1109,
+							"name": "dcurve",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 216,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L216"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1110,
+									"name": "dcurve",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Set the decay curve of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 216,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L216"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1111,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "decay curve value, from -1 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										},
+										{
+											"id": 1112,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in seconds"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth.dcurve"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth.dcurve"
+							}
+						},
+						{
+							"id": 1189,
+							"name": "detune",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 356,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L356"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1190,
+									"name": "detune",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Detune the pitch of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 356,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L356"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1191,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "detune value, in semitones"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "0"
+										},
+										{
+											"id": 1192,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in seconds"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth.detune"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth.detune"
+							}
+						},
+						{
+							"id": 1049,
+							"name": "dur",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 110,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L110"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1050,
+									"name": "dur",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Set the duration of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 110,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L110"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1051,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "duration in ms"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "1000"
+										},
+										{
+											"id": 1052,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in seconds"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth.dur"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth.dur"
+							}
+						},
+						{
+							"id": 1013,
+							"name": "fat",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "SubSynth.ts",
+									"line": 58,
+									"character": 4
+								}
+							],
+							"signatures": [
+								{
+									"id": 1014,
+									"name": "fat",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Synth fatness - amount of FM applied"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "SubSynth.ts",
+											"line": 58,
+											"character": 4
+										}
+									],
+									"parameters": [
+										{
+											"id": 1015,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "0 is not fat, 1 is max fat"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "0"
+										},
+										{
+											"id": 1016,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in seconds"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									}
+								}
+							]
+						},
+						{
+							"id": 1145,
+							"name": "fila",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 279,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L279"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1146,
+									"name": "fila",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Set the attack of the filter envelope of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 279,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L279"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1147,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "attack value in ms"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "10"
+										},
+										{
+											"id": 1148,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in seconds"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth.fila"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth.fila"
+							}
+						},
+						{
+							"id": 1161,
+							"name": "filacurve",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 307,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L307"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1162,
+									"name": "filacurve",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Set the attack curve of the filter envelope of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 307,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L307"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1163,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "attack curve value, from -1 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										},
+										{
+											"id": 1164,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in seconds"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth.filacurve"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth.filacurve"
+							}
+						},
+						{
+							"id": 1149,
+							"name": "fild",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 286,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L286"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1150,
+									"name": "fild",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Set the decay of the filter envelope of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 286,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L286"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1151,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "decay value in ms"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "100"
+										},
+										{
+											"id": 1152,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in seconds"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth.fild"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth.fild"
+							}
+						},
+						{
+							"id": 1165,
+							"name": "fildcurve",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 314,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L314"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1166,
+									"name": "fildcurve",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Set the decay curve of the filter envelope of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 314,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L314"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1167,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "decay curve value, from -1 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										},
+										{
+											"id": 1168,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in seconds"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth.fildcurve"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth.fildcurve"
+							}
+						},
+						{
+							"id": 1157,
+							"name": "filr",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 300,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L300"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1158,
+									"name": "filr",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Set the release of the filter envelope of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 300,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L300"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1159,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "release value in ms"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "1000"
+										},
+										{
+											"id": 1160,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in seconds"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth.filr"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth.filr"
+							}
+						},
+						{
+							"id": 1169,
+							"name": "filrcurve",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 321,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L321"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1170,
+									"name": "filrcurve",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Set the release curve of the filter envelope of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 321,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L321"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1171,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "release curve value, from -1 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										},
+										{
+											"id": 1172,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in seconds"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth.filrcurve"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth.filrcurve"
+							}
+						},
+						{
+							"id": 1153,
+							"name": "fils",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 293,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L293"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1154,
+									"name": "fils",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Set the sustain of the filter envelope of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 293,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L293"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1155,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "sustain value, from 0 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "0.8"
+										},
+										{
+											"id": 1156,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in seconds"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth.fils"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth.fils"
+							}
+						},
+						{
+							"id": 1085,
+							"name": "hold",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 174,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L174"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1086,
+									"name": "hold",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Set the hold of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 174,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L174"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1087,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "hold value, from 0 to 1??"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										},
+										{
+											"id": 1088,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in seconds"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth.hold"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth.hold"
+							}
+						},
+						{
+							"id": 1033,
+							"name": "lfodepth",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "SubSynth.ts",
+									"line": 93,
+									"character": 4
+								}
+							],
+							"signatures": [
+								{
+									"id": 1034,
+									"name": "lfodepth",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "LFO depth"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "SubSynth.ts",
+											"line": 93,
+											"character": 4
+										}
+									],
+									"parameters": [
+										{
+											"id": 1035,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "LFO depth, 0 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "0"
+										},
+										{
+											"id": 1036,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in seconds"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									}
+								}
+							]
+						},
+						{
+							"id": 1025,
+							"name": "lforate",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "SubSynth.ts",
+									"line": 79,
+									"character": 4
+								}
+							],
+							"signatures": [
+								{
+									"id": 1026,
+									"name": "lforate",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "LFO rate"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "SubSynth.ts",
+											"line": 79,
+											"character": 4
+										}
+									],
+									"parameters": [
+										{
+											"id": 1027,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "LFO rate in Hz"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "1"
+										},
+										{
+											"id": 1028,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in seconds"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									}
+								}
+							]
+						},
+						{
+							"id": 1117,
+							"name": "moda",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 230,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L230"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1118,
+									"name": "moda",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Set the attack of the modulation envelope of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 230,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L230"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1119,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "attack value in ms"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "10"
+										},
+										{
+											"id": 1120,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in seconds"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth.moda"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth.moda"
+							}
+						},
+						{
+							"id": 1133,
+							"name": "modacurve",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 258,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L258"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1134,
+									"name": "modacurve",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Set the attack curve of the modulation envelope of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 258,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L258"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1135,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "attack curve value, from -1 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										},
+										{
+											"id": 1136,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in seconds"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth.modacurve"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth.modacurve"
+							}
+						},
+						{
+							"id": 1121,
+							"name": "modd",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 237,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L237"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1122,
+									"name": "modd",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Set the decay of the modulation envelope of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 237,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L237"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1123,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "decay value in ms"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "100"
+										},
+										{
+											"id": 1124,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in seconds"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth.modd"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth.modd"
+							}
+						},
+						{
+							"id": 1137,
+							"name": "moddcurve",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 265,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L265"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1138,
+									"name": "moddcurve",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Set the decay curve of the modulation envelope of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 265,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L265"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1139,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "decay curve value, from -1 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										},
+										{
+											"id": 1140,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in seconds"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth.moddcurve"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth.moddcurve"
+							}
+						},
+						{
+							"id": 1129,
+							"name": "modr",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 251,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L251"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1130,
+									"name": "modr",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Set the release of the modulation envelope of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 251,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L251"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1131,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "release value in ms"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "1000"
+										},
+										{
+											"id": 1132,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in seconds"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth.modr"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth.modr"
+							}
+						},
+						{
+							"id": 1141,
+							"name": "modrcurve",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 272,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L272"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1142,
+									"name": "modrcurve",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Set the release curve of the modulation envelope of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 272,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L272"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1143,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "release curve value, from -1 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										},
+										{
+											"id": 1144,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in seconds"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth.modrcurve"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth.modrcurve"
+							}
+						},
+						{
+							"id": 1125,
+							"name": "mods",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 244,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L244"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1126,
+									"name": "mods",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Set the sustain of the modulation envelope of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 244,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L244"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1127,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "sustain value, from 0 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "0.8"
+										},
+										{
+											"id": 1128,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in seconds"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth.mods"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth.mods"
+							}
+						},
+						{
+							"id": 1053,
+							"name": "n",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 117,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L117"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1054,
+									"name": "n",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Set the midi note number of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 117,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L117"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1055,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "midi note number"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "60"
+										},
+										{
+											"id": 1056,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in seconds"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth.n"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth.n"
+							}
+						},
+						{
+							"id": 1061,
+							"name": "pan",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 131,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L131"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1062,
+									"name": "pan",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Set the pan of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 131,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L131"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1063,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "pan value, from 0 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "0.5"
+										},
+										{
+											"id": 1064,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in seconds"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth.pan"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth.pan"
+							}
+						},
+						{
+							"id": 1101,
+							"name": "r",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 202,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L202"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1102,
+									"name": "r",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Set the release of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 202,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L202"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1103,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "release value in ms"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "1000"
+										},
+										{
+											"id": 1104,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in seconds"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth.r"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth.r"
+							}
+						},
+						{
+							"id": 1113,
+							"name": "rcurve",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 223,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L223"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1114,
+									"name": "rcurve",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Set the release curve of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 223,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L223"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1115,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "release curve value, from -1 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										},
+										{
+											"id": 1116,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in seconds"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth.rcurve"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth.rcurve"
+							}
+						},
+						{
+							"id": 1041,
+							"name": "release",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 88,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L88"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1042,
+									"name": "release",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Release any events playing at the given note"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 88,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L88"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1043,
+											"name": "n",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "midi note number"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										},
+										{
+											"id": 1044,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to release note"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth.release"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth.release"
+							}
+						},
+						{
+							"id": 1173,
+							"name": "res",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 328,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L328"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1174,
+									"name": "res",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Set the resonance of the filter of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 328,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L328"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1175,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "resonance value, from 0 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "0"
+										},
+										{
+											"id": 1176,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in seconds"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth.res"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth.res"
+							}
+						},
+						{
+							"id": 1097,
+							"name": "s",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 195,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L195"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1098,
+									"name": "s",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Set the sustain of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 195,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L195"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1099,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "sustain value, from 0 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "0.5"
+										},
+										{
+											"id": 1100,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in seconds"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth.s"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth.s"
+							}
+						},
+						{
+							"id": 1021,
+							"name": "slide",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "SubSynth.ts",
+									"line": 72,
+									"character": 4
+								}
+							],
+							"signatures": [
+								{
+									"id": 1022,
+									"name": "slide",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Portamento time"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "SubSynth.ts",
+											"line": 72,
+											"character": 4
+										}
+									],
+									"parameters": [
+										{
+											"id": 1023,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "portamento time in ms"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "10"
+										},
+										{
+											"id": 1024,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in ms"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									}
+								}
+							]
+						},
+						{
+							"id": 1077,
+							"name": "vol",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "BaseSynth.ts",
+									"line": 160,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L160"
+								}
+							],
+							"signatures": [
+								{
+									"id": 1078,
+									"name": "vol",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Set the volume of an event"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "BaseSynth.ts",
+											"line": 160,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/3011cfa/rnbo/BaseSynth.ts#L160"
+										}
+									],
+									"parameters": [
+										{
+											"id": 1079,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "volume value, from 0 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "1"
+										},
+										{
+											"id": 1080,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "time to set parameter in seconds"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"target": -1,
+										"name": "BaseSynth.vol"
+									}
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "BaseSynth.vol"
+							}
+						}
+					],
+					"groups": [
+						{
+							"title": "Methods",
+							"children": [
+								1073,
+								1185,
+								1193,
+								1017,
+								1037,
+								1029,
+								1057,
+								1065,
+								1177,
+								1081,
+								1089,
+								1105,
+								1069,
+								1045,
+								1181,
+								1093,
+								1109,
+								1189,
+								1049,
+								1013,
+								1145,
+								1161,
+								1149,
+								1165,
+								1157,
+								1169,
+								1153,
+								1085,
+								1033,
+								1025,
+								1117,
+								1133,
+								1121,
+								1137,
+								1129,
+								1141,
+								1125,
+								1053,
+								1061,
+								1101,
+								1113,
+								1041,
+								1173,
+								1097,
+								1021,
+								1077
+							]
+						}
+					],
+					"sources": [
+						{
+							"fileName": "SubSynth.ts",
+							"line": 10,
+							"character": 6
+						}
+					],
+					"extendedTypes": [
+						{
+							"type": "reference",
+							"target": {
+								"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+								"qualifiedName": "BaseSynth"
+							},
+							"name": "BaseSynth",
+							"package": "zen-3"
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Classes",
+					"children": [
+						1004
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "SubSynth.ts",
+					"line": 1,
+					"character": 0
+				}
+			]
+		},
+		{
 			"id": 1,
 			"name": "Synth",
 			"variant": "declaration",
@@ -18801,6 +23199,7 @@
 				501,
 				228,
 				723,
+				1003,
 				1
 			]
 		}
@@ -22070,6 +26469,750 @@
 			"qualifiedName": "value"
 		},
 		"974": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1003": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
+			"qualifiedName": ""
+		},
+		"1004": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
+			"qualifiedName": "SubSynth"
+		},
+		"1013": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
+			"qualifiedName": "SubSynth.fat"
+		},
+		"1014": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
+			"qualifiedName": "SubSynth.fat"
+		},
+		"1015": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1016": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1017": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
+			"qualifiedName": "SubSynth._fat"
+		},
+		"1018": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
+			"qualifiedName": "SubSynth._fat"
+		},
+		"1019": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1020": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1021": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
+			"qualifiedName": "SubSynth.slide"
+		},
+		"1022": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
+			"qualifiedName": "SubSynth.slide"
+		},
+		"1023": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1024": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1025": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
+			"qualifiedName": "SubSynth.lforate"
+		},
+		"1026": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
+			"qualifiedName": "SubSynth.lforate"
+		},
+		"1027": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1028": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1029": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
+			"qualifiedName": "SubSynth._lforate"
+		},
+		"1030": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
+			"qualifiedName": "SubSynth._lforate"
+		},
+		"1031": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1032": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1033": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
+			"qualifiedName": "SubSynth.lfodepth"
+		},
+		"1034": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
+			"qualifiedName": "SubSynth.lfodepth"
+		},
+		"1035": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1036": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1037": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
+			"qualifiedName": "SubSynth._lfodepth"
+		},
+		"1038": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
+			"qualifiedName": "SubSynth._lfodepth"
+		},
+		"1039": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1040": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1041": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.release"
+		},
+		"1042": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.release"
+		},
+		"1043": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "n"
+		},
+		"1044": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1045": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.cut"
+		},
+		"1046": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.cut"
+		},
+		"1047": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1048": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "ms"
+		},
+		"1049": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.dur"
+		},
+		"1050": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.dur"
+		},
+		"1051": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1052": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1053": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.n"
+		},
+		"1054": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.n"
+		},
+		"1055": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1056": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1057": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth._n"
+		},
+		"1058": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth._n"
+		},
+		"1059": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1060": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1061": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.pan"
+		},
+		"1062": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.pan"
+		},
+		"1063": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1064": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1065": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth._pan"
+		},
+		"1066": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth._pan"
+		},
+		"1067": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1068": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1069": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.amp"
+		},
+		"1070": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.amp"
+		},
+		"1071": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1072": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1073": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth._amp"
+		},
+		"1074": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth._amp"
+		},
+		"1075": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1076": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1077": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.vol"
+		},
+		"1078": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.vol"
+		},
+		"1079": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1080": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1081": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth._vol"
+		},
+		"1082": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth._vol"
+		},
+		"1083": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1084": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1085": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.hold"
+		},
+		"1086": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.hold"
+		},
+		"1087": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1088": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1089": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.a"
+		},
+		"1090": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.a"
+		},
+		"1091": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1092": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1093": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.d"
+		},
+		"1094": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.d"
+		},
+		"1095": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1096": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1097": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.s"
+		},
+		"1098": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.s"
+		},
+		"1099": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1100": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1101": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.r"
+		},
+		"1102": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.r"
+		},
+		"1103": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1104": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1105": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.acurve"
+		},
+		"1106": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.acurve"
+		},
+		"1107": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1108": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1109": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.dcurve"
+		},
+		"1110": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.dcurve"
+		},
+		"1111": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1112": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1113": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.rcurve"
+		},
+		"1114": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.rcurve"
+		},
+		"1115": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1116": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1117": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.moda"
+		},
+		"1118": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.moda"
+		},
+		"1119": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1120": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1121": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.modd"
+		},
+		"1122": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.modd"
+		},
+		"1123": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1124": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1125": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.mods"
+		},
+		"1126": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.mods"
+		},
+		"1127": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1128": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1129": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.modr"
+		},
+		"1130": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.modr"
+		},
+		"1131": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1132": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1133": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.modacurve"
+		},
+		"1134": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.modacurve"
+		},
+		"1135": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1136": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1137": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.moddcurve"
+		},
+		"1138": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.moddcurve"
+		},
+		"1139": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1140": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1141": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.modrcurve"
+		},
+		"1142": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.modrcurve"
+		},
+		"1143": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1144": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1145": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.fila"
+		},
+		"1146": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.fila"
+		},
+		"1147": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1148": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1149": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.fild"
+		},
+		"1150": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.fild"
+		},
+		"1151": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1152": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1153": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.fils"
+		},
+		"1154": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.fils"
+		},
+		"1155": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1156": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1157": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.filr"
+		},
+		"1158": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.filr"
+		},
+		"1159": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1160": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1161": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.filacurve"
+		},
+		"1162": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.filacurve"
+		},
+		"1163": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1164": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1165": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.fildcurve"
+		},
+		"1166": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.fildcurve"
+		},
+		"1167": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1168": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1169": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.filrcurve"
+		},
+		"1170": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.filrcurve"
+		},
+		"1171": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1172": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1173": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.res"
+		},
+		"1174": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.res"
+		},
+		"1175": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1176": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1177": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth._res"
+		},
+		"1178": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth._res"
+		},
+		"1179": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1180": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1181": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.cutoff"
+		},
+		"1182": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.cutoff"
+		},
+		"1183": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1184": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1185": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth._cutoff"
+		},
+		"1186": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth._cutoff"
+		},
+		"1187": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1188": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1189": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.detune"
+		},
+		"1190": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth.detune"
+		},
+		"1191": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1192": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "time"
+		},
+		"1193": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth._detune"
+		},
+		"1194": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "BaseSynth._detune"
+		},
+		"1195": {
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
+			"qualifiedName": "value"
+		},
+		"1196": {
 			"sourceFileName": "src/lib/oto/ct-synths/rnbo/BaseSynth.ts",
 			"qualifiedName": "time"
 		}
