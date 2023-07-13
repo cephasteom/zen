@@ -22,10 +22,10 @@
 }
 
 @font-face {
-    font-family: 'Inter Bold';
+    font-family: 'Ubuntu Bold';
     font-style: normal;
-    font-weight: 700;
-    src: url('/fonts/Inter/static/Inter-Bold.ttf'); 
+    font-weight: 500;
+    src: url('/fonts/Ubuntu/Ubuntu-Bold.ttf'); 
 }
 
 
@@ -97,7 +97,7 @@ h1, h2, h3, h4, p {
 }
 
 h1 {
-    font-family: 'Inter Bold', sans-serif;
+    font-family: 'Ubuntu Bold', sans-serif;
     color: var(--color-theme-1);
     font-size: clamp(2.25rem, 1.82rem + 2.14vw, 3.75rem);
 }
