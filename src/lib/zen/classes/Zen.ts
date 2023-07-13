@@ -74,6 +74,8 @@ export class Zen {
 
     /**
      * Get the current cycle. This is available within your code as `c`.
+     * @example
+     * s0.e.every(c%2 ? 1 : 4) // every 1 frame on odd cycles, every 4 frames on even cycles
      */ 
     get c() {
         return Math.floor(this._t / this._q)
