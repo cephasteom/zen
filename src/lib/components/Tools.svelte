@@ -3,14 +3,28 @@
     import { faPlay, faStop, faFloppyDisk, faCode } from '@fortawesome/free-solid-svg-icons';
     import { play, stop } from '$lib/zen';
     import { isPlaying } from '$lib/stores/zen';
+    import Dialog from './Dialog.svelte'
+    import Save from './Save.svelte'
+    import Load from './Load.svelte'
+    
+    let save: HTMLDialogElement;
+    let load: HTMLDialogElement;
 </script>
 
 <div class="tools">
     <button on:click={() => { play(), isPlaying.set(true)}} class:active={$isPlaying}><Icon data="{faPlay}" /></button>
     <button on:click={() => { stop(), isPlaying.set(false)}}><Icon data="{faStop}" /></button>
-    <button on:click={() => console.log('save')} class:active={false}><Icon data="{faFloppyDisk}" /></button>
-    <button on:click={() => console.log('load')} class:active={false}><Icon data="{faCode}" /></button>
+    <button on:click={() => save.showModal()} class:active={false}><Icon data="{faFloppyDisk}" /></button>
+    <button on:click={() => load.showModal()} class:active={false}><Icon data="{faCode}" /></button>
 </div>
+
+<Dialog bind:dialog={save} on:close={() => console.log('closed')}>
+    <Save />
+</Dialog>
+
+<Dialog bind:dialog={load} on:close={() => console.log('closed')}>
+    <Load />
+</Dialog>
 
 <style lang="scss">
     .tools {
