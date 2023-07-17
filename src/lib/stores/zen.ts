@@ -3,6 +3,7 @@ import { addAction, addErrorAction } from '$lib/zen';
 import { handleEvent, handleMutation } from '$lib/oto';
 import type { ActionArgs } from '$lib/zen/types';
 
+export const editorValue = writable('');
 export const t = writable(0); // time
 export const c = writable(0); // cycle
 export const q = writable(16); // quantization (frames per cycle)

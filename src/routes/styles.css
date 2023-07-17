@@ -220,3 +220,8 @@ button:focus:not(:focus-visible) {
 .monaco-scrollable-element, .margin-view-overlays, .lines-content .mtk8 {
     color: var(--color-theme-3);
 }
+
+*:focus {
+    outline: none;
+    border-bottom: 2px solid var(--color-theme-3);
+}

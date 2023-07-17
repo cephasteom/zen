@@ -3,7 +3,7 @@
     import { onDestroy, onMount } from 'svelte';
     import type * as Monaco from 'monaco-editor/esm/vs/editor/editor.api';
     import { setCode, play, stop } from '$lib/zen';
-    import { error, isPlaying } from '$lib/stores/zen';
+    import { error, isPlaying, editorValue } from '$lib/stores/zen';
 
     let editor: Monaco.editor.IStandaloneCodeEditor;
     let monaco: typeof Monaco;
@@ -58,8 +58,11 @@
             monaco.Uri.file('sample.js')
         );
         editor.setModel(model);
+        editorValue.set(editor.getValue());
 
         editor.onKeyDown(e => {
+            editorValue.set(editor.getValue());
+
             if(e.keyCode === 9) {
                 stop();
                 isPlaying.set(false);

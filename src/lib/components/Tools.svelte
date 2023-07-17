@@ -18,8 +18,8 @@
     <button on:click={() => load.showModal()} class:active={false}><Icon data="{faCode}" /></button>
 </div>
 
-<Dialog bind:dialog={save} on:close={() => console.log('closed')}>
-    <Save />
+<Dialog bind:dialog={save} on:close={() => save.close()}>
+    <Save on:save={() => save.close()} />
 </Dialog>
 
 <Dialog bind:dialog={load} on:close={() => console.log('closed')}>

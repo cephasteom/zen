@@ -1,4 +1,5 @@
 import { writable, derived, get } from 'svelte/store';
+import { editorValue } from './zen';
 
 export const presets = writable({} as {[key: string]: string | null})
 
@@ -35,10 +36,9 @@ function loadPreset(key: string) {
 }
 
 export function savePreset(key: string) {
-    const stored = JSON.parse(localStorage.getItem('q1synth-presets') || "{}");
-    stored[key] = "" // get code from Editor component
+    const stored = JSON.parse(localStorage.getItem('z.presets') || "{}");
+    stored[key] = get(editorValue) // get current code from the Editor
     
     localStorage.setItem('z.presets', JSON.stringify(stored));
-
     presets.update(presets => ({...presets, ...stored}))
 }
