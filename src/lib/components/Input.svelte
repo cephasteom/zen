@@ -10,7 +10,7 @@
 <input 
     {id} {placeholder} bind:value 
     on:change={() => dispatch('change', value)}
-    on:keydown={e => e.key === 'Enter' && value !== '' && dispatch('enter', value)}
+    on:keydown={e => e.key === 'Enter' && value !== '' && dispatch('enter', value) && (value = '')}
 />
 
 <style lang="scss">

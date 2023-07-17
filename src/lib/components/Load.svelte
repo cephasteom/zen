@@ -1,19 +1,42 @@
 <script lang="ts">
+    import { onMount } from 'svelte';
     import { createEventDispatcher } from 'svelte';
     const dispatch = createEventDispatcher();
 
     import { presets, activePreset } from "$lib/stores/presets";
+
+    let index = 0;
+
+    onMount(() => {
+        index = Object.keys($presets).indexOf($activePreset)
+    })
+
+    function handleKeydown(e: KeyboardEvent) {
+        if(!['ArrowDown', 'ArrowUp', 'Enter'].includes(e.key)) return
+        e.preventDefault()
+        if (e.key === 'ArrowDown') {
+            index = Math.min(index + 1, Object.keys($presets).length - 1)
+        } else if (e.key === 'ArrowUp') {
+            index = Math.max(index - 1, 0)
+        } else if (e.key === 'Enter') {
+            const key = Object.keys($presets)[index]
+            activePreset.set(key)
+            dispatch('load')
+        }
+    }
+
+    $: index = Object.keys($presets).indexOf($activePreset)
 </script>
 
-<div class="presets">
-    <h3>Presets</h3>
+<div class="presets" on:keydown={handleKeydown}>
+    <h3>Load</h3>
     {#if Object.keys($presets).length === 0}
         <p>No presets saved</p>
     {:else}
         <ul>
-            {#each Object.entries($presets) as [key, preset]}
+            {#each Object.keys($presets) as key, i}
             
-            <li class:active={$activePreset === key}>
+            <li class:active={$activePreset === key || index === i}>
                 <button 
                     on:click={() => {
                         activePreset.set(key)
@@ -48,14 +71,16 @@
         }
         & li {
             margin-top: 0;
-            &:hover {
-                background-color: var(--color-yellow);
-                & button { color: var(--color-grey-dark) }
-            }
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            &:hover, &.active {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
 
-            &.active button {
-                color: var(--color-theme-1);
+                background-color: var(--color-yellow);
                 font-weight: bold;
+                & button { color: var(--color-grey-dark) }
             }
         }
         & button {
