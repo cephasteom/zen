@@ -4,7 +4,6 @@
     const dispatch = createEventDispatcher();
 
     import { presets, activePreset } from "$lib/stores/presets";
-
     let index = 0;
 
     onMount(() => {
@@ -24,11 +23,9 @@
             dispatch('load')
         }
     }
-
-    // $: index = Object.keys($presets).indexOf($activePreset)
 </script>
 
-<div class="presets" on:keydown={handleKeydown}>
+<div class="presets" on:keydown={handleKeydown} >
     {#if Object.keys($presets).length === 0}
         <p>No presets saved</p>
     {:else}
@@ -52,7 +49,8 @@
 
 <style lang="scss">
     .presets {
-        height: 20vh;
+        max-height: 50vh;
+        height: fit-content;
         min-width: 20vw; 
         display: flex;
         
