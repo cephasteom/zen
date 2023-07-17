@@ -36,12 +36,12 @@
     .zen {
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 6fr 1fr 1fr;
+        grid-template-rows: 1fr 6fr 1fr;
         grid-gap: 1rem;
         padding: 1rem;
         user-select: none;
         
-        @media (min-width: 500px) {
+        @media (min-width: 600px) {
             grid-template-columns: 1fr 1fr;
             grid-template-rows: 11fr 1fr;
         }
@@ -54,8 +54,8 @@
     .editor {
         height: 100%;
         grid-column: 1;
-        grid-row: 1;
-        @media (min-width: 500px) {
+        grid-row: 2;
+        @media (min-width: 600px) {
             grid-column: 1;
             grid-row: 1;
         }
@@ -63,8 +63,8 @@
 
     .tools {
         grid-column: 1;
-        grid-row: 2;
-        @media (min-width: 500px) {
+        grid-row: 1;
+        @media (min-width: 600px) {
             grid-column: 1;
             grid-row: 2;
         }
@@ -74,7 +74,7 @@
 
     .visuals {
         display: none;
-        @media (min-width: 500px) {
+        @media (min-width: 600px) {
             grid-column: 2;
             grid-row: 1;
             display: flex;
@@ -88,7 +88,7 @@
     .data {
         grid-column: 1;
         grid-row: 3;
-        @media (min-width: 500px) {
+        @media (min-width: 600px) {
             grid-column: 2;
             grid-row: 2;
         }
