@@ -13,32 +13,33 @@
 
     function handleKeydown(e: KeyboardEvent) {
         if(!['ArrowDown', 'ArrowUp', 'Enter'].includes(e.key)) return
-        e.preventDefault()
         if (e.key === 'ArrowDown') {
             index = Math.min(index + 1, Object.keys($presets).length - 1)
         } else if (e.key === 'ArrowUp') {
             index = Math.max(index - 1, 0)
         } else if (e.key === 'Enter') {
+            e.preventDefault()
             const key = Object.keys($presets)[index]
             activePreset.set(key)
             dispatch('load')
         }
     }
 
-    $: index = Object.keys($presets).indexOf($activePreset)
+    // $: index = Object.keys($presets).indexOf($activePreset)
 </script>
 
 <div class="presets" on:keydown={handleKeydown}>
-    <h3>Load</h3>
     {#if Object.keys($presets).length === 0}
         <p>No presets saved</p>
     {:else}
+        <label>Load</label>
         <ul>
             {#each Object.keys($presets) as key, i}
             
             <li class:active={$activePreset === key || index === i}>
                 <button 
                     on:click={() => {
+                        index = i
                         activePreset.set(key)
                         dispatch('load')
                     }}
@@ -51,35 +52,35 @@
 
 <style lang="scss">
     .presets {
-        height: 40vh;
-        min-width: 25vw; 
+        height: 20vh;
+        min-width: 20vw; 
+        display: flex;
         
-        overflow: scroll;
-        & h3 {
-            margin: 0;
+        & label {
+            padding: 0.5rem;
+            color: var(--color-grey-light);
         }
 
-        & p {
-            color: var(--color-grey-light);
-            margin-top: 0.5rem;
-        }
+        
         & ul {
-            margin-top: 0.5rem;
+            margin-top: 0rem;
             display: flex;
             flex-direction: column;
             padding: 0;
+            overflow: scroll;
+            border-left: 1px solid var(--color-grey-mid);
+            font-size: var(--text-sm);
+            width: 100%;
+
         }
         & li {
             margin-top: 0;
             display: flex;
             align-items: center;
             padding: 0.5rem;
+            width: 100%;
             &:hover, &.active {
-                padding-left: 0.5rem;
-                padding-right: 0.5rem;
-
                 background-color: var(--color-yellow);
-                font-weight: bold;
                 & button { color: var(--color-grey-dark) }
             }
         }
@@ -87,8 +88,7 @@
             background: none;
             border: none;
             cursor: pointer;
-            color: var(--color-grey-light);
-            font-size: var(--text-sm);
+            color: var(--color-yellow);
             font-family: var(--font-family);
             padding: 0;
             text-align: left;

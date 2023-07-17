@@ -11,7 +11,6 @@ function initPresets() {
         ...presets, 
         ...stored
     }))
-    activePreset.set(Object.keys(get(presets)).sort((a, b) => a.localeCompare(b))[0])
 }
 
 initPresets();
