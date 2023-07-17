@@ -53,7 +53,6 @@
     }
     
     .icon {
-        width: 2rem;
         height: 1.25rem;
         display: flex;
         align-items: center;
