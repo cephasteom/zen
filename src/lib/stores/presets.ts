@@ -9,11 +9,7 @@ function initPresets() {
     const stored = JSON.parse(localStorage.getItem('z.presets') || '{}');
     presets.update(presets => ({
         ...presets, 
-        ...stored, 
-        ['user 1']: null,
-        ['user 2']: null,
-        ['user 3']: null,
-        ['user 4']: null,
+        ...stored
     }))
     activePreset.set(Object.keys(get(presets)).sort((a, b) => a.localeCompare(b))[0])
 }

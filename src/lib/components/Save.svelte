@@ -1,5 +1,3 @@
-<!-- TODO: command s should update current preset if set -->
-
 <script lang="ts">
     import { createEventDispatcher } from 'svelte';
     const dispatch = createEventDispatcher();

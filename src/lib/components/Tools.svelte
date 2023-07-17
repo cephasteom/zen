@@ -24,7 +24,7 @@
 </Dialog>
 
 <Dialog bind:dialog={load} on:close={() => load.close()}>
-    <Load />
+    <Load on:load={() => load.close()}/>
 </Dialog>
 
 <svelte:window on:keydown={e => { 
