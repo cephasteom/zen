@@ -4,6 +4,7 @@
     import type * as Monaco from 'monaco-editor/esm/vs/editor/editor.api';
     import { setCode, play, stop } from '$lib/zen';
     import { error, isPlaying, editorValue } from '$lib/stores/zen';
+    import { activePreset, presets } from '$lib/stores/presets';
 
     let editor: Monaco.editor.IStandaloneCodeEditor;
     let monaco: typeof Monaco;
@@ -78,6 +79,14 @@
                 setTimeout(() => flash = false, 400);
             } 
         })
+
+        activePreset.subscribe(key => {
+            if(key && $presets[key]) {
+                editor.setValue($presets[key] || '');
+                editorValue.set(editor.getValue());
+            }
+        })
+
     });
 
     onDestroy(() => {

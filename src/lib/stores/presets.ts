@@ -22,15 +22,6 @@ export const presetKeys = derived(
     $presets => Object.keys($presets).sort((a, b) => a.localeCompare(b))
 )
 
-activePreset.subscribe(loadPreset)
-
-function loadPreset(key: string) {
-    const preset = get(presets)[key]
-    if(!preset) return;
-    
-    // somehow update string in Editor component
-}
-
 export function savePreset(key: string) {
     const stored = JSON.parse(localStorage.getItem('z.presets') || "{}");
     stored[key] = get(editorValue) // get current code from the Editor
