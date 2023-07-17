@@ -9,6 +9,7 @@
     
     let save: HTMLDialogElement;
     let load: HTMLDialogElement;
+
 </script>
 
 <div class="tools">
@@ -22,9 +23,16 @@
     <Save on:save={() => save.close()} />
 </Dialog>
 
-<Dialog bind:dialog={load} on:close={() => console.log('closed')}>
+<Dialog bind:dialog={load} on:close={() => load.close()}>
     <Load />
 </Dialog>
+
+<svelte:window on:keydown={e => { 
+    if(!e.metaKey || !['s', 'o'].includes(e.key)) return
+    e.preventDefault()
+    e.key === 's' && save.showModal();
+    e.key === 'o' && load.showModal();
+}} />
 
 <style lang="scss">
     .tools {

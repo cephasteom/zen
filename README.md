@@ -27,3 +27,8 @@ You can preview the production build with `npm run preview`.
 
 ## Docs
 We use TSDocs to generate documentation for all Zen classes and synths. These generate each time you run a build. If you want to refresh them manually see the scripts in `package.json`.
+
+## Hot Keys
+* `cmd` + `s`: save. Brings up the save modal
+* `cmd` + `o`: load. Brings up the load modal
+
