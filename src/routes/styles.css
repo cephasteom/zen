@@ -225,3 +225,7 @@ button:focus:not(:focus-visible) {
     outline: none;
     border-bottom: 2px solid var(--color-theme-3);
 }
+
+dialog::backdrop {
+    background: rgba(255, 105, 90, 0.5);
+  }
