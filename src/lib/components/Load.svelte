@@ -30,6 +30,7 @@
         <p>No presets saved</p>
     {:else}
         <label>Load</label>
+    
         <ul>
             {#each Object.keys($presets) as key, i}
             
@@ -54,7 +55,7 @@
         min-width: 20vw; 
         display: flex;
         
-        & label {
+        & label, & p {
             padding: 0.5rem;
             color: var(--color-grey-light);
         }
@@ -69,7 +70,12 @@
             border-left: 1px solid var(--color-grey-mid);
             font-size: var(--text-sm);
             width: 100%;
-
+        }
+        
+        & p {
+            margin-top: 0rem;
+            padding: 0rem;
+            color: var(--color-grey-light);
         }
         & li {
             margin-top: 0;

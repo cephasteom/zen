@@ -38,14 +38,14 @@ const connect = (synth: any, channel: number, type: string) => {
 }
 
 export const handleSynthEvent = (time: number, id: string, params: Dictionary) => {
-    const { cut, n = 60, strum = 0, inst } = params;
+    const { cut, n = 60, strum = 0, inst, cutr = 5 } = params;
     const channel = +id.slice(1) * 2
 
     // Handle cut notes
     const toCut = cut !== undefined ? [+cut].flat() : []
     toCut.forEach((channel: number) => {
         const stream = get(synths)[channel] || {}
-        Object.values(stream).forEach((synth: any) => synth?.cut(time))
+        Object.values(stream).forEach((synth: any) => synth?.cut(time, cutr))
     });
 
     // handle multiple insts
