@@ -43,8 +43,8 @@ const loop = new Loop(time => {
     // evaluate the user's code, using fallback if it fails
     try {
         const [ s0, s1, s2, s3, s4, s5, s6, s7 ] = streams;
-        const map = keymap    
-        const thisCode = !(t%q) ? get(code) : get(lastCode) // only eval code on the beat
+        const map = keymap
+        const thisCode = !(t%z.update) ? get(code) : get(lastCode) // only eval code on the beat
         eval(thisCode)
         lastCode.set(thisCode)
     } catch (e: any) {

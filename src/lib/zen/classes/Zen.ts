@@ -44,6 +44,10 @@ export class Zen {
     /** @hidden */
     state: any = {}
 
+    // when to update the executed code, ie at the next division, on the next beat, etc
+    /** @hidden */
+    private _update: number = 1
+
     /** @hidden */
     get s() {
         return this._s
@@ -79,6 +83,24 @@ export class Zen {
      */ 
     get c() {
         return Math.floor(this._t / this._q)
+    }
+
+    /**
+     * @hidden
+     */ 
+    get update() {
+        return this._update
+    }
+
+    /**
+     * Set when to update the executed code
+     * @example
+     * z.update = 1 // update on every frame
+     * z.update = 4 // update on every 4th frame
+     * z.update = q // update on the next cycle
+     */
+    set update(value: number) {
+        this._update = clamp(Math.floor(value), 1, this._q * 16)
     }
 
     /** @hidden */
