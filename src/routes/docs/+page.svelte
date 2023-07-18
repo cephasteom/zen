@@ -10,6 +10,7 @@
     import classes from "$lib/docs/classes.json"
     import synths from "$lib/docs/synths.json"
 
+    let expandControls = false;
     let expandVariables = false;
     let expandClasses = false;
     let expandSound = false;
@@ -24,6 +25,20 @@
 <div class="content">
 	<h1>Documentation</h1>
     <p>The following documentation provides a comprehensive list of all Zen variables, classes and methods. It is intended as a reference whilst using Zen. If you are new to Zen, we recommend that you follow the <a href="/learn">tutorial</a> or load some examples in the <a href="/">code editor</a> first.</p>
+    
+    <section class="controls">
+        <h2>Controls <button on:click={() => expandControls = !expandControls}><Icon data="{faCaretDown}" /></button></h2>
+
+        <div class="expandable{expandControls ? '--expanded' : ''}">
+            <p>Zen exposes the following read-only variables:</p>
+            <ul>
+                <li><code class="inline-code">shift + enter</code> executes the code and starts playback.</li>
+                <li><code class="inline-code">esc</code> stops playback. Pressing <code class="inline-code">esc</code> twice resets <code class="inline-code">t</code> to 0.</li>
+                <li><code class="inline-code">cmd + o</code> opens a list of presets.</li>
+                <li><code class="inline-code">cmd + s</code> saves your code.</li>
+            </ul>
+        </div>
+    </section>
 
     <section class="variables">
         <h2>Variables <button on:click={() => expandVariables = !expandVariables}><Icon data="{faCaretDown}" /></button></h2>

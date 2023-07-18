@@ -7,8 +7,8 @@
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-        "docs:classes": "npx typedoc --json src/lib/docs/classes.json --entryPoints src/lib/zen/classes/Pattern.ts --entryPoints src/lib/zen/classes/Zen.ts --entryPoints src/lib/zen/classes/Stream.ts",
-        "docs:synths": "npx typedoc --json src/lib/docs/synths.json --entryPoints src/lib/oto/ct-synths/rnbo/Synth.ts --entryPoints src/lib/oto/ct-synths/rnbo/FXChain.ts --entryPoints src/lib/oto/ct-synths/rnbo/AcidSynth.ts --entryPoints src/lib/oto/ct-synths/rnbo/Granular.ts --entryPoints src/lib/oto/ct-synths/rnbo/SubSynth.ts --entryPoints src/lib/oto/ct-synths/rnbo/Sampler.ts"
+		"docs:classes": "npx typedoc --json src/lib/docs/classes.json --entryPoints src/lib/zen/classes/Pattern.ts --entryPoints src/lib/zen/classes/Zen.ts --entryPoints src/lib/zen/classes/Stream.ts",
+		"docs:synths": "npx typedoc --json src/lib/docs/synths.json --entryPoints src/lib/oto/ct-synths/rnbo/Synth.ts --entryPoints src/lib/oto/ct-synths/rnbo/FXChain.ts --entryPoints src/lib/oto/ct-synths/rnbo/AcidSynth.ts --entryPoints src/lib/oto/ct-synths/rnbo/Granular.ts --entryPoints src/lib/oto/ct-synths/rnbo/SubSynth.ts --entryPoints src/lib/oto/ct-synths/rnbo/Sampler.ts"
 	},
 	"devDependencies": {
 		"@fontsource/fira-mono": "^4.5.10",
@@ -32,7 +32,9 @@
 		"@fortawesome/free-solid-svg-icons": "^6.4.0",
 		"@rnbo/js": "^1.1.2",
 		"@svgdotjs/svg.js": "^3.2.0",
+		"@types/marked": "^5.0.1",
 		"highlight.js": "^11.2.0",
+		"marked": "^5.1.1",
 		"noisejs": "^2.1.0",
 		"svelte-awesome": "^3.2.1",
 		"tone": "^14.7.77",
