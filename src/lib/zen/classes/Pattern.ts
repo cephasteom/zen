@@ -295,7 +295,7 @@ export class Pattern {
      * @example s0.p.n.noise(60,72,1).sub(12)
      */
     take(value: number = 0): Pattern {
-        this.stack.push(x => handle(x, x => value - x))
+        this.stack.push(x => handle(x, x => x - value))
         return this
     }
 
