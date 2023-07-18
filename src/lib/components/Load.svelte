@@ -3,24 +3,32 @@
     import { createEventDispatcher } from 'svelte';
     const dispatch = createEventDispatcher();
 
-    import { presets, activePreset } from "$lib/stores/presets";
+    import { presets, activePreset, deletePreset } from "$lib/stores/presets";
     let index = 0;
 
     onMount(() => {
         index = Object.keys($presets).indexOf($activePreset)
+        index = index === -1 ? 0 : index
     })
 
     function handleKeydown(e: KeyboardEvent) {
-        if(!['ArrowDown', 'ArrowUp', 'Enter'].includes(e.key)) return
-        if (e.key === 'ArrowDown') {
-            index = Math.min(index + 1, Object.keys($presets).length - 1)
-        } else if (e.key === 'ArrowUp') {
-            index = Math.max(index - 1, 0)
-        } else if (e.key === 'Enter') {
-            e.preventDefault()
-            const key = Object.keys($presets)[index]
-            activePreset.set(key)
-            dispatch('load')
+        const key = Object.keys($presets)[index]
+        
+        switch (e.key) {
+            case 'ArrowDown':
+                index = Math.min(index + 1, Object.keys($presets).length - 1)
+                break;
+            case 'ArrowUp':
+                index = Math.max(index - 1, 0)
+                break;
+            case 'Enter':
+                e.preventDefault()
+                activePreset.set(key)
+                dispatch('load')
+                break;
+            case 'Backspace':
+                deletePreset(key)
+                break;
         }
     }
 </script>

@@ -28,3 +28,11 @@ export function savePreset(key: string) {
     localStorage.setItem('z.presets', JSON.stringify(stored));
     presets.update(presets => ({...presets, ...stored}))
 }
+
+export function deletePreset(key: string) {
+    const stored = JSON.parse(localStorage.getItem('z.presets') || "{}");
+    delete stored[key];
+    
+    localStorage.setItem('z.presets', JSON.stringify(stored));
+    presets.set(stored)
+}
