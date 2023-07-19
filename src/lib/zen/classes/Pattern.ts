@@ -155,7 +155,7 @@ export class Pattern {
     tri(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1): Pattern {
         this.stack.push((x: patternValue) => {
             const tri = Math.abs(pos(x, this._q, freq) - 0.5) * 2
-            return mapToRange(tri, 0, 0.5, lo, hi, step)
+            return mapToRange(tri, 0, 1, lo, hi, step)
         })
         return this
     }

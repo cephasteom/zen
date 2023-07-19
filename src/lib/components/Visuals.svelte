@@ -3,6 +3,7 @@
     import { SVG } from '@svgdotjs/svg.js'
     import { visualsData } from "$lib/stores/zen";
 
+    // @ts-ignore
     let draw: SVG.Doc;
     let s: number = 16;
 
@@ -32,7 +33,7 @@
                 const b = data[i*4+2];
                 const a = data[i*4+3];
                 const element = SVG(`rect.rect--${i}`)
-                element?.fill(`rgba(${r},${g},${b},${a})`);
+                element?.fill(`rgba(${r},${g},${b},${a/255})`);
             }
         });
     })

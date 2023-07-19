@@ -1,9 +1,11 @@
+// TODO: link to a video tutorial
+
 export const tutorial = `# Tutorial
 Welcome to Zen, a live coding tool for the browser that allows you to generate complex musical patterns with a small amount of code. Familiarity with JavaScript or another programming language is helpful, but not essential; with a little patience, you'll be making music in no time. 
 
-This is a tutorial to help you get started. It's not meant to be comprehensive, but it should give you a good idea of how to use Zen. For more information, check out the [documentation](/docs) and the code examples in the [code editor](/). We recommend that you <a href="https://zen.cephasteom.co.uk" target="_blank">open the code editor in a separate tab</a> so that you can try out the examples whilst following this guide.
+This is a tutorial to help you get started. It's not meant to be comprehensive, but it should give you a good idea of how to use Zen. For more information, check out the [documentation](/docs) and the code examples in the [code editor](/). We recommend that you <a href="https://zen.cephasteom.co.uk" target="_blank">open the code editor in a separate tab</a> so that you can try out the examples whilst working through this guide.
 
-## What can Zen do?
+## What does Zen sound like?
 
 For a flavour of what Zen can do, copy and paste the following code into the code editor and press *shift + enter* to play:
 \`\`\`js
@@ -12,13 +14,13 @@ For a flavour of what Zen can do, copy and paste the following code into the cod
 Don't worry too much about the details at this point, simply change some values, press  *shift + enter* again, and see what happens. Press *esc* to stop playback or refresh the page if everything goes haywire.
 
 ## Time and space
-Zen allows you to map musical parameters across periods of time, or across the different axes of a virtual canvas. Zen gives you control over 8 [Streams](docs) which you can move around. Streams are stored in the variables \`s0\` to \`s7\`, and each one has an x and y parameter which can be set to any value. Try the following example:
+Zen allows you to map musical parameters across periods of time and/or the axes of a virtual canvas; then trigger events at different points in time and space to elicit different sounds. Before we tackle these parameteres, let's look at how to move around the canvas. Zen gives you control over 8 [Streams](docs); assigned to the variables \`s0\` to \`s7\`. Each Stream has an x and y parameter which can be set to a numerical value. Try the following example:
 \`\`\`js
 s0.x.set(8)
 s0.y.set(8)
 s0.e.set(1)
 \`\`\`
-Try changing the values of \`s0.x\` and \`s0.y\` and observe what happens to the movement of the stream.
+Try changing the numbers in parentheses at \`s0.x\` and \`s0.y\` and observe what happens to the movement of the stream.
 
 When you hit play, you'll have noticed the value of \`t\` changing below the canvas. This represents the current time and is used, under the hood, as the basis for all the patterns you'll generate. You can use it in your own code too. Try this:
 \`\`\`js
@@ -32,7 +34,7 @@ Having access to a value that increments as time passes is extremely useful in g
 \`s0.x\`, \`s0.y\`, \`s0.e\`, and pretty much every musical parameter that we're going to set, are instances of a [Pattern](docs); a class with methods to help you generate interesting, varying values. We'll discuss a few methods here, but for a full list, check out the [Pattern](docs) documentation.
 
 ### Range
-As we have seen, the \`set\` method of a Pattern takes a single value, and sets that value for the entire duration of the pattern. By contrast, the \`range\` method takes a start value and an end value, then moves linearly from one to the other over the course of a cycle. Try this:
+As we have seen, the \`set\` method of a Pattern takes a single value, and sets it for the duration of the pattern. By contrast, the \`range\` method takes a start value and an end value, then moves linearly from one to the other over the course of a cycle. Try this:
 \`\`\`js
 s0.x.range(0,16)
 s0.y.set(8)
@@ -46,7 +48,7 @@ s0.e.set(1)
 \`\`\`
 
 ### Sine
-As we have seen, the \`set\` method of a Pattern takes a single value, and sets that value for the entire duration of the pattern. By contrast, the \`sine\` method takes a minimum of two values: a start value, an end value, and an optional step value. It then oscillates between the start and end values over the course of a cycle. Try this:
+The \`sine\` method takes a minimum of two values: a start value, an end value, and an optional step value. It then oscillates between the start and end values over the course of a cycle. Try this:
 \`\`\`js
 s0.x.sine(0,15,1)
 s0.y.set(8)
@@ -54,15 +56,38 @@ s0.e.set(1)
 \`\`\`
 
 ### Chaining methods
-You can chain methods together to create more complex patterns. Try this:
+You can chain methods together to create more complex patterns:
 \`\`\`js
-s0.x.sine().mul(15)
-s0.y.even().mul(8).add(4)
-s0.e.every(t%3)
+s0.x.tri(0,8,1,0.5).clamp(4,12)
+s0.y.add(8).tri(0,8,1,0.5).clamp(4,12)
+s0.e.every(1)
+\`\`\`
 
-s1.y.sine().mul(15)
-s1.x.even().mul(8).add(4)
-s1.e.add(1).every(t%3)
+## Global settings
+You can update global parameters, such as the size of the canvas, the number of steps per cycle, using the Zen class, represeted in your code as the variable \`z\`:
+\`\`\`js
+z.q = 32 // set the number of steps per cycle to 32.
+z.s = 11 // set the size of the canvas to 11.
+\`\`\`
+The global time and global tempo parameters are instance of a Pattern, allowing you to use Pattern methods for interesting results:
+\`\`\`js
+z.s=15
+z.q=16
+z.bpm.set(240)
+z.t.tri(0,q*2,1,0.25).add(20)
+
+s0.x.tri(0,16,1,0.5).clamp(4,12).take(1)
+s0.y.add(8).tri(0,16,1,0.5).clamp(4,12).take(1)
+s0.e.every(1)
+
+s1.x.tri(0,16,1,0.5).clamp(4,12).add(2)
+s1.y.add(8).tri(0,16,1,0.5).clamp(4,12).add(2)
+s1.e.every(1)
+
+s2.x.tri(0,16,1,0.5).clamp(4,12).take(4)
+s2.y.add(8).tri(0,16,1,0.5).clamp(4,12).take(4)
+s2.e.every(1)
 \`\`\`
 `;
+
 

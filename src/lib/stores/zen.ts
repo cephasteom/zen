@@ -1,7 +1,7 @@
 import { writable, derived, get } from 'svelte/store';
-import { addAction, addErrorAction } from '$lib/zen';
-import { handleEvent, handleMutation } from '$lib/oto';
-import type { ActionArgs } from '$lib/zen/types';
+import { addAction, addErrorAction } from '../zen';
+import { handleEvent, handleMutation } from '../oto';
+import type { ActionArgs } from '../zen/types';
 
 export const editorValue = writable('');
 export const t = writable(0); // time
@@ -15,13 +15,14 @@ export const isPlaying = writable(false);
 
 export const visualsData = derived([s, eventPositions, mutationPositions], ([s, eventPositions, mutationPositions]) => {
     const data = new Uint8Array(s * s * 4);
-    
+
     for (let i = 0; i < s * s; i++) {
         data[i * 4 + 0] = 0;
         data[i * 4 + 1] = 0;
         data[i * 4 + 2] = 0;
         data[i * 4 + 3] = 0;
     }
+    
 
     // event rgb(255, 105, 90)
     for (const { x, y } of Object.values(eventPositions)) {
@@ -40,6 +41,7 @@ export const visualsData = derived([s, eventPositions, mutationPositions], ([s, 
         data[i + 2] = 127;
         data[i + 3] = 255;
     }
+
     return data;
 });
 
