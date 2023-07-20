@@ -143,10 +143,10 @@ export class Stream {
      * @hidden
      */
     evaluateGroup(group: Dictionary, count: number, divisions: number, bpm: number) : { [key: string]: any } {
-        return Object.entries(group).reduce((obj, [key, pattern]) => ({
-            ...obj,
-            [key]: pattern.get(count, divisions, bpm)
-        }), {})
+        return Object.entries(group)
+            .map(([key, pattern]) => [key, pattern.get(count, divisions, bpm)])
+            .filter(([_, value]) => value !== undefined && value !== null)
+            .reduce((obj, [key, value]) => ({...obj, [key]: value}), {})
     }
 
     // set multiple parameters at once, e.g. s0.set({foo: 1, bar: 2})
@@ -188,7 +188,7 @@ export class Stream {
             bpm, // bpm
             q, // divisions
         } : {}
-        
+
         return { 
             id, 
             e, m, 
