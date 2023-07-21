@@ -10,11 +10,11 @@
     import classes from "$lib/docs/classes.json"
     import synths from "$lib/docs/synths.json"
 
-    let expandControls = false;
-    let expandVariables = false;
-    let expandClasses = false;
-    let expandSound = false;
-    let expandMidi = false;
+    let expandControls = true;
+    let expandVariables = true;
+    let expandClasses = true;
+    let expandSound = true;
+    let expandMidi = true;
 </script>
 
 <svelte:head>
@@ -51,7 +51,15 @@
                 <li><code class="inline-code">s</code> the size of the canvas.</li>
                 <li><code class="inline-code">c</code> the current cycle.</li>
             </ul>
-            <p><code class="inline-code">t</code>, <code class="inline-code">q</code>, and <code class="inline-code">s</code> can be manipulated using the Zen class <code class="inline-code">z</code>, see below.</p>
+            <p><code class="inline-code">t</code>, <code class="inline-code">q</code>, and <code class="inline-code">s</code> cannot be changed directly, but must be manipulated on the global Zen settings class, represented as <code class="inline-code">z</code> in your code.</p>
+            <pre><code>{@html
+                hljs.highlight(`z.q = 11 // set the number of divisions per cycle to 11
+z.s = 15 // set the canvas size to 15
+z.t.sine(0,128,1) // t is an instance of Pattern, so you can have some serious fun with it`,
+                    {language: 'javascript'}).value
+            }</code></pre>
+            <p>See Classes for more information about Patterns and the Zen global settings class.</p>
+
         </div>
     </section>
 

@@ -14,7 +14,7 @@ For a flavour of what Zen can do, copy and paste the following code into the cod
 Don't worry too much about the details at this point, simply change some values, press  *shift + enter* again, and see what happens. Press *esc* to stop playback or refresh the page if everything goes haywire.
 
 ## Time and space
-Zen allows you to map musical parameters across periods of time and/or the axes of a virtual canvas; then trigger events at different points in time and space to elicit different sounds. Before we tackle these parameteres, let's look at how to move around the canvas. Zen gives you control over 8 [Streams](docs); assigned to the variables \`s0\` to \`s7\`. Each Stream has an x and y parameter which can be set to a numerical value. Try the following example:
+Zen allows you to map musical parameters across periods of time and/or the axes of a virtual canvas; then trigger events at different points in time and space to elicit different sounds. Before we tackle these parameters, let's look at how to move around the canvas. Zen gives you control over 8 [Streams](docs); assigned to the variables \`s0\` to \`s7\`. Each Stream has an x and y parameter which can be set to a numerical value. Try the following example:
 \`\`\`js
 s0.x.set(8)
 s0.y.set(8)
@@ -64,7 +64,7 @@ s0.e.every(1)
 \`\`\`
 
 ## Global settings
-You can update global parameters, such as the size of the canvas, the number of steps per cycle, using the Zen class, represeted in your code as the variable \`z\`:
+You can update global parameters, such as the size of the canvas, or the number of steps per cycle, using the Zen class, represented in your code as the variable \`z\`:
 \`\`\`js
 z.q = 32 // set the number of steps per cycle to 32.
 z.s = 11 // set the size of the canvas to 11.
@@ -88,6 +88,45 @@ s2.x.tri(0,16,1,0.5).clamp(4,12).take(4)
 s2.y.add(8).tri(0,16,1,0.5).clamp(4,12).take(4)
 s2.e.every(1)
 \`\`\`
+
+## Let's make some noise
+Now that we've covered the basics, let's make some noise. The simplest way of setting musical parameters is to use the \`.set()\` method on each stream - which takes a list of keys and values as its sole argument. Try this:
+\`\`\`js
+s0.set({inst: 'synth', n: 48, dur: 1000})
+s0.e.every(8)
+\`\`\`
+Zen comes with a number of built-in instruments, which you can find in the [documentation](docs). The \`n\` parameter sets the note, and the \`dur\` parameter sets the duration of the note in milliseconds. These are default parameters found on all instruments. Each instrument also has its own special parameters, for example:
+\`\`\`js
+s0.set({inst: 'synth', n: 48, dur: 1000, modi: 2, harm: 1.25})
+s0.e.every(8)
+\`\`\`
+Of course, interesting musical results come from parameters that change over time. You can map changing parameters to the passing of time, using a stream's \`p\` property. Any parameter name written after the \`p\` property is an instance of [Pattern](docs) and is mapped to the passing of time. Try this:
+\`\`\`js
+s0.set({inst: 'synth', n: 48, dur: 1000, cut: 0, reverb: 0.5})
+s0.p.modi.range(0,4,1,0.5)
+s0.p.harm.range(0,4,0.125,0.5)
+s0.e.every(1)
+\`\`\`
+Or you can map parameters to the x, and y axes of the canvas, using a stream's \`px\` and \`py\` properties. Any parameter name written after the \`px\` or \`py\` properties is an instance of [Pattern](docs) and is mapped to the x or y axis of the canvas. Try this:
+\`\`\`js
+s0.set({inst: 'synth', n: 48, dur: 1000, cut: 0, reverb: 0.5})
+s0.px.modi.range(0,4,1,0.5)
+s0.py.harm.range(0,4,0.125,0.5)
+s0.x.set(t)
+s0.y.sine(0,15)
+s0.e.every(1)
+\`\`\`
+
+## Events
+// show different ways of triggering events
+## Mutations
+// explain mutations
+
+## Pattern Interference
+
+## Conclusion
+
+
 `;
 
 
