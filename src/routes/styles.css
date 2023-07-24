@@ -202,23 +202,23 @@ button:focus:not(:focus-visible) {
     margin-bottom: 1rem!important;
 }
 
+/* strings */
 .monaco-scrollable-element, .margin-view-overlays, .lines-content {
     background-color: var(--color-grey-darkest)!important;
-    /* strings */
 }
-.monaco-scrollable-element, .margin-view-overlays, .lines-content .mtk5 {
+.monaco-scrollable-element, .margin-view-overlays, .lines-content .mtk5, .hljs-string {
     color: var(--color-theme-2);
 }
 /* numbers */
-.monaco-scrollable-element, .margin-view-overlays, .lines-content .mtk6 {
+.monaco-scrollable-element, .margin-view-overlays, .lines-content .mtk6, .hljs-number {
     color: var(--color-theme-1);
 }
 /* comments */
-.monaco-scrollable-element, .margin-view-overlays, .lines-content .mtk7 {
+.monaco-scrollable-element, .margin-view-overlays, .lines-content .mtk7, .hljs-comment {
     color: var(--color-theme-2);
 }
 /* const etc. */
-.monaco-scrollable-element, .margin-view-overlays, .lines-content .mtk8 {
+.monaco-scrollable-element, .margin-view-overlays, .lines-content .mtk8, .hljs-title {
     color: var(--color-theme-3);
 }
 
@@ -229,4 +229,4 @@ button:focus:not(:focus-visible) {
 
 dialog::backdrop {
     background: rgba(255, 105, 90, 0.5);
-  }
+}

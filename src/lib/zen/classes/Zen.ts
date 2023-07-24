@@ -2,6 +2,19 @@ import { Stream } from './Stream';
 import { Pattern } from './Pattern'
 import { clamp } from '../utils/utils'
 
+/**
+ * The Zen class allows you to set global parameters. It is available within your code as `z`.
+ * @example
+ * z.t.range(0, 16, 1) // pattern time
+ * z.bpm.range(60, 120, 1) // pattern bpm
+ * z.s = 16 // size of canvas
+ * z.q = 16 // frames per cycle
+ * z.update = 1 // when to update the executed code, 1 is on the next division, q is on the next cycle etc.
+ * z.set({reverb: 1, rsize: 0.5}) // set global parameters for all streams. Can be overwritten by stream parameters
+ * z.p.n.scales('d-dorian', 16) // set global time parameters using z.p
+ * z.px._modi.range(0, 1, 0.25) // set global stream parameters using z.px
+ * etc.
+ */ 
 export class Zen extends Stream {
     /** @hidden */
     constructor() {
