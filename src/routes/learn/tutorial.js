@@ -63,6 +63,12 @@ s0.e.set(1)
 \`\`\`
 Having access to a value that increments as time passes is extremely useful in generative music, and is also the basis for procedural drawing.
 
+You can even set all axes simultaneously, using the \`xyz\` method of a Stream. Try this:
+\`\`\`js
+s0.xyz.set([t,8,0])
+s0.e.set(1)
+\`\`\`
+
 ## Patterns
 \`s0.x\`, \`s0.y\`, \`s0.e\`, and pretty much every musical parameter that we're going to set, are instances of a [Pattern](docs); a class with methods to help you generate interesting, varying values. We'll discuss a flavour of these below:
 
