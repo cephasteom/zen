@@ -1,6 +1,6 @@
 import { start, Loop, Transport, immediate } from 'tone'
 import { writable, get } from 'svelte/store';
-import { Zen2 } from './classes/Zen2';
+import { Zen } from './classes/Zen';
 import { Stream } from './classes/Stream';
 import { createCount } from './utils/utils';
 import type { action } from './types';
@@ -26,7 +26,7 @@ export const addErrorAction = (cb: (message: string) => void) => {
 let counter = createCount(0);
 
 // initialise Zen and Streams within the scope of the loop
-export const z = new Zen2();
+export const z = new Zen();
 export const streams: Stream[] = Array(8).fill(0).map((_, i) => new Stream('s' + i))
 
 // Main Zen loop

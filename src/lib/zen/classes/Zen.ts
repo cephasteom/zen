@@ -1,17 +1,11 @@
+import { Stream } from './Stream';
 import { Pattern } from './Pattern'
 import { clamp } from '../utils/utils'
 
-/**
- * The Zen class allows you to set global parameters. It is available within your code as `z`.
- * @example
- * z.t.range(0, 16, 1) // pattern time
- * z.bpm.range(60, 120, 1) // pattern bpm
- * z.s = 16 // size of canvas
- * z.q = 16 // frames per cycle
- */ 
-export class Zen {
-    /** @hidden */
-    constructor() {}
+export class Zen extends Stream {
+    constructor() {
+        super('z')
+    }
 
     /**
      * A Pattern for setting the global time. The outcome of the pattern updates the variable `t` within your code.
@@ -38,11 +32,6 @@ export class Zen {
     // frames per cycle, can be updated but not patterned
     /** @hidden */
     private _q: number = 16
-
-    // be able to store state. TODO: this needs some thinking about.
-    // need to initialize it then update it
-    /** @hidden */
-    state: any = {}
 
     // when to update the executed code, ie at the next division, on the next beat, etc
     /** @hidden */
@@ -118,8 +107,11 @@ export class Zen {
     }
 
     /** @hidden */
-    reset(t: number) {
+    resetGlobals(t: number) {
         this._t = t;
+        this._s = 16;
+        this._q = 16;
+        this._update = 1;
         [this.bpm, this.t].forEach(p => p.reset())
     }
 }

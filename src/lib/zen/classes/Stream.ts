@@ -1,5 +1,5 @@
 import { Pattern } from './Pattern'
-import type { Zen2 } from './Zen2'
+import type { Zen } from './Zen'
 import { mod } from '../utils/utils'
 import { formatEventParams, formatMutationParams } from '../utils/syntax';
 import type { Dictionary } from '../types'
@@ -164,7 +164,7 @@ export class Stream {
     }
 
     /** @hidden */
-    get(time: number = 0, q: number = 16, s: number = 16, bpm: number = 120, global: Zen2) {
+    get(time: number = 0, q: number = 16, s: number = 16, bpm: number = 120, global: Zen) {
         // use stream t, if set, or global t
         const t = +(this.t.has() ? this.t.get(time, q) || 0 : time);
         
