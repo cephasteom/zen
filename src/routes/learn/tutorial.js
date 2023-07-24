@@ -5,16 +5,50 @@ Welcome to Zen, a live coding tool for the browser that allows you to generate c
 
 This is a tutorial to help you get started. It's not meant to be comprehensive, but it should give you a good idea of how to use Zen. For more information, check out the [documentation](/docs) and the code examples in the [code editor](/). We recommend that you <a href="https://zen.cephasteom.co.uk" target="_blank">open the code editor in a separate tab</a> so that you can try out the examples whilst working through this guide.
 
-## What does Zen sound like?
+## What am I looking at?
+On desktop, the Zen app has a code editor on the left hand side, a pattern visualiser on the right and, below that, a list of useful values. \`t\` represents the current time, \`c\` shows the current cycle number, \`q\` represents the number of steps per cycle (how many time \`t\` increments each cycle), and \`s\` represents the size of the canvas. 
 
-For a flavour of what Zen can do, copy and paste the following code into the code editor and press *shift + enter* to play:
+## What does it sound like?
+For a flavour of what Zen can do, copy and paste the following code into the editor and press *shift + enter* to play:
 \`\`\`js
-// todo
+z.s = (t%q)+4
+z.q = z.s
+
+s0.set({inst: 'synth', reverb: 0.75, vol: 0.25, lag: 1000, s: 0.25, r: 2000, cut: 1, harm: 1.01})
+s0.p.n.scales('d-dorian', 16).add(12)
+s0.px._modi.range().mul((c%16)).div(4)
+s0.x.noise(0,s)
+s0.e.every((c%4) + 3)
+s0.m.every(2)
+
+s1.set({inst: 'synth', reverb: 1, cut: 1, vol: 0.25, rsize: 0.75, lag: 1000})
+s1.p.n.scales('d-dorian', 8)
+s1.px._modi.range()
+s1.py._harm.range(1,2,0.25)
+s1.x.eval(s0.x).$take(s)
+s1.y.noise(0, s-1)
+s1.e.use(s0.e).neq(1)
+s0.m.set(1)
+
+s2.set({inst: 'synth', vol: 0.25, reverb: 1})
+s2.p._n.scales('d-dorian', 16).add(12)
+s2.y.set(s/3)
+s2.x.set(t)
+s2.e.every(4)
+s2.m.every(6)
+
+s3.set({inst: 'synth', lag: 1000, vol: 1/8, reverb: 1, rsize: 1, s: 0.1, dtime: 500, dfb: 0.75})
+s3.p.delay.saw(0,1,0,0.125)
+s3.p._n.eval(s2.p._n).add(19)
+s3.y.set(s*(2/3))
+s2.x.set(s-t)
+s3.e.eval(s2.e)
+s3.m.every(4)
 \`\`\`
-Don't worry too much about the details at this point, simply change some values, press  *shift + enter* again, and see what happens. Press *esc* to stop playback or refresh the page if everything goes haywire.
+Don't worry about the details, simply change some values, comment out some lines, press  *shift + enter* again, and see what happens. Press *esc* to stop playback or refresh the page if everything goes haywire.
 
 ## Time and space
-Zen allows you to map musical parameters across periods of time and/or the axes of a virtual canvas; then trigger events at different points in time and space to elicit different sounds. Before we tackle these parameters, let's look at how to move around the canvas. Zen gives you control over 8 [Streams](docs); assigned to the variables \`s0\` to \`s7\`. Each Stream has an x and y parameter which can be set to a numerical value. Try the following example:
+Zen allows you to map musical parameters across periods of time and/or the axes of a virtual canvas; then trigger events at different points in time and space to elicit different sounds. Before we tackle these parameters, let's look at how to move around the canvas. Zen gives you control over 8 [Streams](docs), which you can think of as a single musical layer. These are assigned to the variables \`s0\` to \`s7\`. Each Stream has an x and y parameter, used to move it around the canvas. Try the following example:
 \`\`\`js
 s0.x.set(8)
 s0.y.set(8)
@@ -31,7 +65,7 @@ s0.e.set(1)
 Having access to a value that increments as time passes is extremely useful in generative music, and is also the basis for procedural drawing.
 
 ## Patterns
-\`s0.x\`, \`s0.y\`, \`s0.e\`, and pretty much every musical parameter that we're going to set, are instances of a [Pattern](docs); a class with methods to help you generate interesting, varying values. We'll discuss a few methods here, but for a full list, check out the [Pattern](docs) documentation.
+\`s0.x\`, \`s0.y\`, \`s0.e\`, and pretty much every musical parameter that we're going to set, are instances of a [Pattern](docs); a class with methods to help you generate interesting, varying values. We'll discuss a flavour of these below:
 
 ### Range
 As we have seen, the \`set\` method of a Pattern takes a single value, and sets it for the duration of the pattern. By contrast, the \`range\` method takes a start value and an end value, then moves linearly from one to the other over the course of a cycle. Try this:
@@ -40,7 +74,7 @@ s0.x.range(0,16)
 s0.y.set(8)
 s0.e.set(1)
 \`\`\`
-You can also pass a step value as the third argument, and a frequency value as the fourth argument. The step value rounds the output to the given step size, and the frequency value determines how many repetitions of the pattern occur per cycle. Try the following code, and then change the values of the step and frequency:
+Range also has arguments for step size and frequency. The step value rounds the output to the given step size, and the frequency value determines how many repetitions of the pattern occur each cycle. Try the following code, and play around with the values:
 \`\`\`js
 s0.x.range(0,16,4,0.5)
 s0.y.set(8)
@@ -48,7 +82,7 @@ s0.e.set(1)
 \`\`\`
 
 ### Sine
-The \`sine\` method takes a minimum of two values: a start value, an end value, and an optional step value. It then oscillates between the start and end values over the course of a cycle. Try this:
+The \`sine\` method has the same arguments as range, but the result is an oscillation between the start and end values over the course of a cycle. Try this:
 \`\`\`js
 s0.x.sine(0,15,1)
 s0.y.set(8)
@@ -58,9 +92,88 @@ s0.e.set(1)
 ### Chaining methods
 You can chain methods together to create more complex patterns:
 \`\`\`js
-s0.x.tri(0,8,1,0.5).clamp(4,12)
-s0.y.add(8).tri(0,8,1,0.5).clamp(4,12)
+s0.x.tri(0,16,1,0.5).clamp(4,12)
+s0.y.add(8).tri(0,16,1,0.5).clamp(4,12)
 s0.e.every(1)
+\`\`\`
+
+For a full list of Pattern methods, check out the [docs](docs).
+
+## Let's make some noise
+Now that we've covered the basics, let's make some noise. The simplest way of setting musical parameters is to use the \`.set()\` method on each stream - which takes a list of keys and values as its sole argument. Try this:
+\`\`\`js
+z.s=16
+z.q=16
+s0.set({inst: 'synth', n: 48, dur: 1000})
+s0.e.every(8)
+\`\`\`
+Zen comes with a number of built-in instruments, which you can find in the [documentation](docs). The \`n\` parameter sets the note, and the \`dur\` parameter sets the duration of the note in milliseconds. These are default parameters found on all instruments. Each instrument also has its own special parameters, for example:
+\`\`\`js
+s0.set({inst: 'synth', n: 48, dur: 1000, modi: 2, harm: 1.25})
+s0.e.every(8)
+\`\`\`
+Of course, interesting musical results come from parameters that change over time. You can map changing parameters to the passing of time, using a stream's \`p\` property. Any parameter name written after the \`p\` property is an instance of [Pattern](docs) and is mapped to the passing of time. Try this:
+\`\`\`js
+s0.set({inst: 'synth', n: 48, dur: 1000, cut: 0, reverb: 0.5})
+s0.p.modi.range(0,4,1,0.5)
+s0.p.harm.range(0,4,0.125,0.5)
+s0.e.every(1)
+\`\`\`
+Or you can map parameters to the x, and y axes of the canvas, using a stream's \`px\` and \`py\` properties. Any parameter name written after the \`px\` or \`py\` properties is an instance of [Pattern](docs) and is mapped to the x or y axis of the canvas. Try this:
+\`\`\`js
+s0.set({inst: 'synth', dur: 1000, cut: 0, reverb: 0.5, locut: 0.3})
+s0.p.n.scales('d-minPent', 16)
+s0.px.modi.range(0,4,1,0.5)
+s0.py.harm.range(0,4,0.125,0.5)
+s0.x.set(t)
+s0.y.sine(0,15)
+s0.e.every(1)
+\`\`\`
+
+## Events and mutations
+When a sound is triggered, it is called an event. You can trigger events using the \`e\` property of a stream. The \`e\` property is an instance of [Pattern](docs), and can be used to trigger events at different points in time and space. Depending on how you have mapped parameters across each cycle and the canvas, the sounds will be different. Try this:
+\`\`\`js
+z.bpm.set(30);
+
+s0.set({inst: 'synth', cut: 0})
+s0.p.n.scales('d-dorian', 16)
+s0.px.harm.range(1,5,0.25)
+s0.py.modi.range(1,10)
+
+s0.x.random(0,16,1)
+s0.y.random(0,16,1)
+s0.e.set(1)
+\`\`\`
+Here, the \`n\` parameter maps a scale to time. Since we're letting time flow in a linear direction, the position of the stream on the canvas doesn't affect the note - it keeps cycling through the scale. However, the \`harm\` and \`modi\` parameters are mapped to the x and y axes of the canvas, so these parameters changes as the stream moves randomly around the canvas.
+
+When an event is triggered, the parameters remain the same for the duration of the event. What happens if you want to change parameters in between events? Mutations allow you to adjust a stream's parameters at any point in time, without triggering a new event. It will affect all active events within that stream. To make a parameter mutable, prefix it with \`_\`. Then, trigger a mutation using the \`m\` property of a stream - again, another instance of [Pattern](docs). The example below sets the \`harm\` parameter to mutate in between each event. Try adding \`_\` to other parameters to hear the difference:
+\`\`\`js
+z.bpm.set(30);
+
+s0.set({inst: 'synth', cut: 0, dur: 2000})
+s0.p.n.scales('d-dorian', 16)
+s0.px._harm.range(1,5,0.25)
+s0.py.modi.range(1,10)
+
+s0.x.random(0,16,1)
+s0.y.random(0,16,1)
+s0.e.every(4)
+s0.m.every(2)
+\`\`\`
+You can control how quickly a stream mutates using the \`lag\` parameter:
+\`\`\`js
+z.bpm.set(30);
+
+s0.set({inst: 'synth', cut: 0, dur: 2000})
+s0.p.lag.set(1).btms()
+s0.p.n.scales('d-dorian', 16)
+s0.px._harm.range(1,5,0.25)
+s0.py.modi.range(1,10)
+
+s0.x.random(0,16,1)
+s0.y.random(0,16,1)
+s0.e.every(4)
+s0.m.every(2)
 \`\`\`
 
 ## Global settings
@@ -89,44 +202,47 @@ s2.y.add(8).tri(0,16,1,0.5).clamp(4,12).take(4)
 s2.e.every(1)
 \`\`\`
 
-## Let's make some noise
-Now that we've covered the basics, let's make some noise. The simplest way of setting musical parameters is to use the \`.set()\` method on each stream - which takes a list of keys and values as its sole argument. Try this:
+## Pattern interference
+Zen was designed to allow you express complex patterns, then let them interfere with each other to create interesting, unplanned results. The example below uses various logical methods of Pattern to make each stream interact with each other:
 \`\`\`js
-s0.set({inst: 'synth', n: 48, dur: 1000})
-s0.e.every(8)
-\`\`\`
-Zen comes with a number of built-in instruments, which you can find in the [documentation](docs). The \`n\` parameter sets the note, and the \`dur\` parameter sets the duration of the note in milliseconds. These are default parameters found on all instruments. Each instrument also has its own special parameters, for example:
-\`\`\`js
-s0.set({inst: 'synth', n: 48, dur: 1000, modi: 2, harm: 1.25})
-s0.e.every(8)
-\`\`\`
-Of course, interesting musical results come from parameters that change over time. You can map changing parameters to the passing of time, using a stream's \`p\` property. Any parameter name written after the \`p\` property is an instance of [Pattern](docs) and is mapped to the passing of time. Try this:
-\`\`\`js
-s0.set({inst: 'synth', n: 48, dur: 1000, cut: 0, reverb: 0.5})
-s0.p.modi.range(0,4,1,0.5)
-s0.p.harm.range(0,4,0.125,0.5)
-s0.e.every(1)
-\`\`\`
-Or you can map parameters to the x, and y axes of the canvas, using a stream's \`px\` and \`py\` properties. Any parameter name written after the \`px\` or \`py\` properties is an instance of [Pattern](docs) and is mapped to the x or y axis of the canvas. Try this:
-\`\`\`js
-s0.set({inst: 'synth', n: 48, dur: 1000, cut: 0, reverb: 0.5})
-s0.px.modi.range(0,4,1,0.5)
-s0.py.harm.range(0,4,0.125,0.5)
-s0.x.set(t)
-s0.y.sine(0,15)
-s0.e.every(1)
+z.s = (t%q)+4
+z.q = z.s
+
+s0.set({inst: 'synth', reverb: 0.75, vol: 0.25, lag: 1000, s: 0.25, r: 2000, cut: 1, harm: 1.01})
+s0.p.n.scales('d-dorian', 16).add(12)
+s0.px._modi.range().mul((c%16)).div(4)
+s0.x.noise(0,s)
+s0.e.every((c%4) + 3)
+s0.m.every(2)
+
+s1.set({inst: 'synth', reverb: 1, cut: 1, vol: 0.25, rsize: 0.75, lag: 1000})
+s1.p.n.scales('d-dorian', 8)
+s1.px._modi.range().mul((c%16)).div(8)
+s1.x.eval(s0.x).$take(s)
+s1.e.use(s0.e).neq(1)
+s0.m.set(1)
 \`\`\`
 
-## Events
-// show different ways of triggering events
-## Mutations
-// explain mutations
+## Advanced
+So, how does this all work then? At the top level, Zen executes your code each time \`t\` increments. Where you've use \`t\`, or any other dynamic value, in your code, this will change each frame, allowing you to approach pattern generation as you would procedural drawing. 
 
-## Pattern Interference
+Each time chain a method onto an instance of Pattern, used for musical parameters and events, a new function is added to a stack of callbacks. After your code has executed, Zen iterates through this stack, passing the current value of \`t\` to the first function, then passing the result of that function to the next function, and so on. The result of the last function is then used to set the parameter.
+
+If you need to get the value of a stream's parameter, perhaps using it in another stream, you can pass the parameter to the \`eval\` method of a Pattern. This will return the current value of the parameter. For example:
+\`\`\`js
+s0.set({inst: 'synth'})
+s0.p._n.scales('d-dorian', 16)
+s0.e.every(4)
+s0.m.every(2)
+
+s1.set({inst: 'synth', lag: 100})
+s1.p._n.eval(s0.p._n).add(7)
+s1.e.eval(s0.e)
+s1.m.every(2)
+\`\`\`
 
 ## Conclusion
-
-
+Zen is in its infancy. It needs an active user base to help it grow and improve. If you have any questions, suggestions, or feedback, or you'd like to contribute to the project, check out the [GitHub repo](https://github.com/cephasteom/zen-3) and open an issue. Thanks for reading!
 `;
 
 

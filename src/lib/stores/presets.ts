@@ -1,5 +1,6 @@
 import { writable, derived, get } from 'svelte/store';
 import { editorValue } from './zen';
+import { examples } from '../examples/examples';
 
 export const presets = writable({} as {[key: string]: string | null})
 
@@ -9,12 +10,13 @@ function initPresets() {
     const stored = JSON.parse(localStorage.getItem('z.presets') || '{}');
     presets.update(presets => ({
         ...presets, 
+        ...examples,
         ...stored
     }))
 }
 
 initPresets();
-presets.subscribe(presets => localStorage.setItem('z.presets', JSON.stringify(presets)))
+// presets.subscribe(presets => localStorage.setItem('z.presets', JSON.stringify(presets)))
 
 export const presetKeys = derived(
     presets,
@@ -34,5 +36,5 @@ export function deletePreset(key: string) {
     delete stored[key];
     
     localStorage.setItem('z.presets', JSON.stringify(stored));
-    presets.set(stored)
+    presets.update(presets => ({...presets, ...stored}))
 }
