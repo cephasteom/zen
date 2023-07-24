@@ -1,6 +1,6 @@
 import { start, Loop, Transport, immediate } from 'tone'
 import { writable, get } from 'svelte/store';
-import { Zen } from './classes/Zen';
+import { Zen2 } from './classes/Zen2';
 import { Stream } from './classes/Stream';
 import { createCount } from './utils/utils';
 import type { action } from './types';
@@ -26,7 +26,7 @@ export const addErrorAction = (cb: (message: string) => void) => {
 let counter = createCount(0);
 
 // initialise Zen and Streams within the scope of the loop
-export const z = new Zen();
+export const z = new Zen2();
 export const streams: Stream[] = Array(8).fill(0).map((_, i) => new Stream('s' + i))
 
 // Main Zen loop
@@ -35,7 +35,8 @@ const loop = new Loop(time => {
     let t = counter()
 
     streams.forEach(stream => stream.reset())
-    z.reset(t)
+    // z.reset(t)
+    z.resetGlobals(t)
 
     // global variables
     let { q, s, c } = z
@@ -65,7 +66,7 @@ const loop = new Loop(time => {
     Transport.bpm.setValueAtTime(bpm, time)
 
     // compile events and mutations
-    const compiled = streams.map(stream => stream.get(t, q, s, bpm))
+    const compiled = streams.map(stream => stream.get(t, q, s, bpm, z))
     const soloed = compiled.filter(({solo}) => solo)
     const data = soloed.length ? soloed : compiled
     const events = data.filter(({e}) => e)

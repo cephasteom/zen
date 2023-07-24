@@ -1,4 +1,5 @@
 import { Pattern } from './Pattern'
+import type { Zen2 } from './Zen2'
 import { mod } from '../utils/utils'
 import { formatEventParams, formatMutationParams } from '../utils/syntax';
 import type { Dictionary } from '../types'
@@ -163,7 +164,7 @@ export class Stream {
     }
 
     /** @hidden */
-    get(time: number = 0, q: number = 16, s: number = 16, bpm: number = 120) {
+    get(time: number = 0, q: number = 16, s: number = 16, bpm: number = 120, global: Zen2) {
         // use stream t, if set, or global t
         const t = +(this.t.has() ? this.t.get(time, q) || 0 : time);
         
@@ -181,6 +182,10 @@ export class Stream {
 
         // compile all parameters
         const compiled = (e || m) && !mute ? {
+            ...this.evaluateGroup(global.p, t, q, bpm), // calculate based on position in cycle, 0 - 1
+            ...this.evaluateGroup(global.px, x, s, bpm), // calculate based on position in space, 0 - 1
+            ...this.evaluateGroup(global.py, y, s, bpm), // ...
+            ...this.evaluateGroup(global.pz, z, s, bpm), // ...
             ...this.evaluateGroup(this.p, t, q, bpm), // calculate based on position in cycle, 0 - 1
             ...this.evaluateGroup(this.px, x, s, bpm), // calculate based on position in space, 0 - 1
             ...this.evaluateGroup(this.py, y, s, bpm), // ...
