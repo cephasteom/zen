@@ -79,6 +79,13 @@ export class Stream {
     z = new Pattern()
 
     /**
+     * A Pattern for setting all axes of the stream's position at the same time. Expects an array of values
+     * @example
+     * s0.xyz.set([t,8,0])
+     */ 
+    xyz = new Pattern()
+
+    /**
      * A Pattern for determining whether the stream should trigger an event
      * @example
      * s0.e.set(1) // trigger an event every division
@@ -169,9 +176,10 @@ export class Stream {
         const t = +(this.t.has() ? this.t.get(time, q) || 0 : time);
         
         // use stream x, y, z, if set, or 0
-        const x = +(this.x.get(t, s) || 0)
-        const y = +(this.y.get(t, s) || 0)
-        const z = +(this.z.get(t, s) || 0)
+        const xyz = [this.xyz.get(t, s)].flat()
+        const x = +(xyz[0] || this.x.get(t, s) || 0)
+        const y = +(xyz[1] || this.y.get(t, s) || 0)
+        const z = +(xyz[2] || this.z.get(t, s) || 0)
         
         const { id } = this;
         const mute = !!this.mute.get(t, q)
@@ -206,8 +214,8 @@ export class Stream {
 
     /** @hidden */
     reset() {
-        const { t, x, y, z, e, m, solo, mute } = this;
-        [t, x, y, z, e, m, solo, mute].forEach(p => p.reset())
+        const { t, x, y, z, xyz, e, m, solo, mute } = this;
+        [t, x, y, z, xyz, e, m, solo, mute].forEach(p => p.reset())
 
         Object.values(this.p).forEach(p => p.reset())
         Object.values(this.px).forEach(p => p.reset())
