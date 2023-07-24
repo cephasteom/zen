@@ -1,6 +1,8 @@
 export const examples = {
-    "dorian noodles": 
-`z.s = (t%q)+4
+    "Dorian Noodles": 
+`// Press Shift + Enter to run your code. 
+// Press Esc to stop.
+z.s = (t%q)+4
 z.q = z.s
 z.set({inst: 'synth', reverb: 0.75, vol: 0.25, lag: 1000, s: 0.25, r: 2000})
 z.p.n.scales('d-dorian', 16)

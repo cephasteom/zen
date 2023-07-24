@@ -11,10 +11,10 @@
     </main>
 
     <footer class="footer container">
+        <span>Something wrong? <a href="https://github.com/cephasteom/zen-3/issues">Open an issue</a>.</span><br />
         <span>© <a href="https://cephasteom.co.uk">Cephas Teom</a> {new Date().getFullYear()}</span>
-    </footer>
-        
 
+    </footer>
 </div>
 
 <style lang="scss">
