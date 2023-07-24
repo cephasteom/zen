@@ -35,7 +35,7 @@ const loop = new Loop(time => {
     let t = counter()
 
     streams.forEach(stream => stream.reset())
-    // z.reset(t)
+    z.reset()
     z.resetGlobals(t)
 
     // global variables

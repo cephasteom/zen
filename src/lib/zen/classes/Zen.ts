@@ -3,6 +3,7 @@ import { Pattern } from './Pattern'
 import { clamp } from '../utils/utils'
 
 export class Zen extends Stream {
+    /** @hidden */
     constructor() {
         super('z')
     }

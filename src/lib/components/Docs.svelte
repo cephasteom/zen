@@ -73,11 +73,13 @@
 
                                 {#if subChild.signatures}
                                     {#each subChild.signatures as signature}
-                                        <p>{@html parseTSDocsText(signature.comment.summary)}</p>
-                                        {#if signature.comment.blockTags}
-                                            {#each signature.comment.blockTags as tag}
-                                                <span>{@html parseTSDocsText(tag.content)}</span>
-                                            {/each}
+                                        {#if signature.comment}
+                                            <p>{@html parseTSDocsText(signature.comment.summary)}</p>
+                                            {#if signature.comment.blockTags}
+                                                {#each signature.comment.blockTags as tag}
+                                                    <span>{@html parseTSDocsText(tag.content)}</span>
+                                                {/each}
+                                            {/if}
                                         {/if}
 
                                         {#if signature.parameters}
