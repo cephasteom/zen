@@ -17,3 +17,9 @@
     </ul>
 
 </section>
+
+<style lang="scss">
+    ul {
+        padding-left: 0;
+    }
+</style>
