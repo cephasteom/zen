@@ -113,7 +113,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 49,
 									"character": 8,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L49"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L49"
 								}
 							],
 							"getSignature": {
@@ -150,7 +150,7 @@
 										"fileName": "classes/Pattern.ts",
 										"line": 49,
 										"character": 4,
-										"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L49"
+										"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L49"
 									}
 								],
 								"type": {
@@ -172,7 +172,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 59,
 									"character": 8,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L59"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L59"
 								}
 							],
 							"getSignature": {
@@ -209,7 +209,7 @@
 										"fileName": "classes/Pattern.ts",
 										"line": 59,
 										"character": 4,
-										"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L59"
+										"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L59"
 									}
 								],
 								"type": {
@@ -231,7 +231,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 369,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L369"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L369"
 								}
 							],
 							"signatures": [
@@ -269,7 +269,7 @@
 											"fileName": "classes/Pattern.ts",
 											"line": 369,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L369"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L369"
 										}
 									],
 									"parameters": [
@@ -314,7 +314,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 336,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L336"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L336"
 								}
 							],
 							"signatures": [
@@ -352,7 +352,7 @@
 											"fileName": "classes/Pattern.ts",
 											"line": 336,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L336"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L336"
 										}
 									],
 									"parameters": [
@@ -387,7 +387,7 @@
 							]
 						},
 						{
-							"id": 213,
+							"id": 217,
 							"name": "abs",
 							"variant": "declaration",
 							"kind": 2048,
@@ -395,14 +395,14 @@
 							"sources": [
 								{
 									"fileName": "classes/Pattern.ts",
-									"line": 667,
+									"line": 678,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L667"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L678"
 								}
 							],
 							"signatures": [
 								{
-									"id": 214,
+									"id": 218,
 									"name": "abs",
 									"variant": "signature",
 									"kind": 4096,
@@ -424,9 +424,9 @@
 									"sources": [
 										{
 											"fileName": "classes/Pattern.ts",
-											"line": 667,
+											"line": 678,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L667"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L678"
 										}
 									],
 									"type": {
@@ -439,7 +439,7 @@
 							]
 						},
 						{
-							"id": 206,
+							"id": 210,
 							"name": "acos",
 							"variant": "declaration",
 							"kind": 2048,
@@ -447,14 +447,14 @@
 							"sources": [
 								{
 									"fileName": "classes/Pattern.ts",
-									"line": 639,
+									"line": 650,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L639"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L650"
 								}
 							],
 							"signatures": [
 								{
-									"id": 207,
+									"id": 211,
 									"name": "acos",
 									"variant": "signature",
 									"kind": 4096,
@@ -476,9 +476,9 @@
 									"sources": [
 										{
 											"fileName": "classes/Pattern.ts",
-											"line": 639,
+											"line": 650,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L639"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L650"
 										}
 									],
 									"type": {
@@ -501,7 +501,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 314,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L314"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L314"
 								}
 							],
 							"signatures": [
@@ -539,7 +539,7 @@
 											"fileName": "classes/Pattern.ts",
 											"line": 314,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L314"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L314"
 										}
 									],
 									"parameters": [
@@ -574,7 +574,7 @@
 							]
 						},
 						{
-							"id": 204,
+							"id": 208,
 							"name": "asin",
 							"variant": "declaration",
 							"kind": 2048,
@@ -582,14 +582,14 @@
 							"sources": [
 								{
 									"fileName": "classes/Pattern.ts",
-									"line": 630,
+									"line": 641,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L630"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L641"
 								}
 							],
 							"signatures": [
 								{
-									"id": 205,
+									"id": 209,
 									"name": "asin",
 									"variant": "signature",
 									"kind": 4096,
@@ -611,9 +611,9 @@
 									"sources": [
 										{
 											"fileName": "classes/Pattern.ts",
-											"line": 630,
+											"line": 641,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L630"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L641"
 										}
 									],
 									"type": {
@@ -626,7 +626,7 @@
 							]
 						},
 						{
-							"id": 208,
+							"id": 212,
 							"name": "atan",
 							"variant": "declaration",
 							"kind": 2048,
@@ -634,14 +634,14 @@
 							"sources": [
 								{
 									"fileName": "classes/Pattern.ts",
-									"line": 648,
+									"line": 659,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L648"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L659"
 								}
 							],
 							"signatures": [
 								{
-									"id": 209,
+									"id": 213,
 									"name": "atan",
 									"variant": "signature",
 									"kind": 4096,
@@ -663,9 +663,9 @@
 									"sources": [
 										{
 											"fileName": "classes/Pattern.ts",
-											"line": 648,
+											"line": 659,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L648"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L659"
 										}
 									],
 									"type": {
@@ -678,7 +678,7 @@
 							]
 						},
 						{
-							"id": 210,
+							"id": 214,
 							"name": "atan2",
 							"variant": "declaration",
 							"kind": 2048,
@@ -686,14 +686,14 @@
 							"sources": [
 								{
 									"fileName": "classes/Pattern.ts",
-									"line": 658,
+									"line": 669,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L658"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L669"
 								}
 							],
 							"signatures": [
 								{
-									"id": 211,
+									"id": 215,
 									"name": "atan2",
 									"variant": "signature",
 									"kind": 4096,
@@ -715,14 +715,14 @@
 									"sources": [
 										{
 											"fileName": "classes/Pattern.ts",
-											"line": 658,
+											"line": 669,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L658"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L669"
 										}
 									],
 									"parameters": [
 										{
-											"id": 212,
+											"id": 216,
 											"name": "y",
 											"variant": "param",
 											"kind": 32768,
@@ -761,7 +761,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 273,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L273"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L273"
 								}
 							],
 							"signatures": [
@@ -799,7 +799,7 @@
 											"fileName": "classes/Pattern.ts",
 											"line": 273,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L273"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L273"
 										}
 									],
 									"parameters": [
@@ -894,7 +894,7 @@
 							]
 						},
 						{
-							"id": 181,
+							"id": 185,
 							"name": "btms",
 							"variant": "declaration",
 							"kind": 2048,
@@ -902,14 +902,14 @@
 							"sources": [
 								{
 									"fileName": "classes/Pattern.ts",
-									"line": 552,
+									"line": 563,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L552"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L563"
 								}
 							],
 							"signatures": [
 								{
-									"id": 182,
+									"id": 186,
 									"name": "btms",
 									"variant": "signature",
 									"kind": 4096,
@@ -940,9 +940,9 @@
 									"sources": [
 										{
 											"fileName": "classes/Pattern.ts",
-											"line": 552,
+											"line": 563,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L552"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L563"
 										}
 									],
 									"type": {
@@ -955,7 +955,7 @@
 							]
 						},
 						{
-							"id": 179,
+							"id": 183,
 							"name": "bts",
 							"variant": "declaration",
 							"kind": 2048,
@@ -963,14 +963,14 @@
 							"sources": [
 								{
 									"fileName": "classes/Pattern.ts",
-									"line": 542,
+									"line": 553,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L542"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L553"
 								}
 							],
 							"signatures": [
 								{
-									"id": 180,
+									"id": 184,
 									"name": "bts",
 									"variant": "signature",
 									"kind": 4096,
@@ -1001,9 +1001,9 @@
 									"sources": [
 										{
 											"fileName": "classes/Pattern.ts",
-											"line": 542,
+											"line": 553,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L542"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L553"
 										}
 									],
 									"type": {
@@ -1016,7 +1016,7 @@
 							]
 						},
 						{
-							"id": 215,
+							"id": 219,
 							"name": "ceil",
 							"variant": "declaration",
 							"kind": 2048,
@@ -1024,14 +1024,14 @@
 							"sources": [
 								{
 									"fileName": "classes/Pattern.ts",
-									"line": 676,
+									"line": 687,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L676"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L687"
 								}
 							],
 							"signatures": [
 								{
-									"id": 216,
+									"id": 220,
 									"name": "ceil",
 									"variant": "signature",
 									"kind": 4096,
@@ -1053,9 +1053,9 @@
 									"sources": [
 										{
 											"fileName": "classes/Pattern.ts",
-											"line": 676,
+											"line": 687,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L676"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L687"
 										}
 									],
 									"type": {
@@ -1068,7 +1068,7 @@
 							]
 						},
 						{
-							"id": 194,
+							"id": 198,
 							"name": "chords",
 							"variant": "declaration",
 							"kind": 2048,
@@ -1076,14 +1076,14 @@
 							"sources": [
 								{
 									"fileName": "classes/Pattern.ts",
-									"line": 594,
+									"line": 605,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L594"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L605"
 								}
 							],
 							"signatures": [
 								{
-									"id": 195,
+									"id": 199,
 									"name": "chords",
 									"variant": "signature",
 									"kind": 4096,
@@ -1123,14 +1123,14 @@
 									"sources": [
 										{
 											"fileName": "classes/Pattern.ts",
-											"line": 594,
+											"line": 605,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L594"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L605"
 										}
 									],
 									"parameters": [
 										{
-											"id": 196,
+											"id": 200,
 											"name": "names",
 											"variant": "param",
 											"kind": 32768,
@@ -1161,7 +1161,7 @@
 											}
 										},
 										{
-											"id": 197,
+											"id": 201,
 											"name": "freq",
 											"variant": "param",
 											"kind": 32768,
@@ -1201,7 +1201,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 400,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L400"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L400"
 								}
 							],
 							"signatures": [
@@ -1230,7 +1230,7 @@
 											"fileName": "classes/Pattern.ts",
 											"line": 400,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L400"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L400"
 										}
 									],
 									"parameters": [
@@ -1283,7 +1283,7 @@
 							]
 						},
 						{
-							"id": 200,
+							"id": 204,
 							"name": "cos",
 							"variant": "declaration",
 							"kind": 2048,
@@ -1291,14 +1291,14 @@
 							"sources": [
 								{
 									"fileName": "classes/Pattern.ts",
-									"line": 612,
+									"line": 623,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L612"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L623"
 								}
 							],
 							"signatures": [
 								{
-									"id": 201,
+									"id": 205,
 									"name": "cos",
 									"variant": "signature",
 									"kind": 4096,
@@ -1320,9 +1320,9 @@
 									"sources": [
 										{
 											"fileName": "classes/Pattern.ts",
-											"line": 612,
+											"line": 623,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L612"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L623"
 										}
 									],
 									"type": {
@@ -1345,7 +1345,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 152,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L152"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L152"
 								}
 							],
 							"signatures": [
@@ -1383,7 +1383,7 @@
 											"fileName": "classes/Pattern.ts",
 											"line": 152,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L152"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L152"
 										}
 									],
 									"parameters": [
@@ -1488,7 +1488,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 358,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L358"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L358"
 								}
 							],
 							"signatures": [
@@ -1526,7 +1526,7 @@
 											"fileName": "classes/Pattern.ts",
 											"line": 358,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L358"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L358"
 										}
 									],
 									"parameters": [
@@ -1571,7 +1571,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 462,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L462"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L462"
 								}
 							],
 							"signatures": [
@@ -1600,7 +1600,7 @@
 											"fileName": "classes/Pattern.ts",
 											"line": 462,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L462"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L462"
 										}
 									],
 									"parameters": [
@@ -1613,7 +1613,8 @@
 											"type": {
 												"type": "intrinsic",
 												"name": "number"
-											}
+											},
+											"defaultValue": "1"
 										},
 										{
 											"id": 150,
@@ -1676,7 +1677,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 474,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L474"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L474"
 								}
 							],
 							"signatures": [
@@ -1705,7 +1706,7 @@
 											"fileName": "classes/Pattern.ts",
 											"line": 474,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L474"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L474"
 										}
 									],
 									"parameters": [
@@ -1718,7 +1719,8 @@
 											"type": {
 												"type": "intrinsic",
 												"name": "number"
-											}
+											},
+											"defaultValue": "1"
 										},
 										{
 											"id": 155,
@@ -1781,7 +1783,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 105,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L105"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L105"
 								}
 							],
 							"signatures": [
@@ -1819,7 +1821,7 @@
 											"fileName": "classes/Pattern.ts",
 											"line": 105,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L105"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L105"
 										}
 									],
 									"parameters": [
@@ -1855,7 +1857,7 @@
 							]
 						},
 						{
-							"id": 171,
+							"id": 175,
 							"name": "even",
 							"variant": "declaration",
 							"kind": 2048,
@@ -1863,14 +1865,14 @@
 							"sources": [
 								{
 									"fileName": "classes/Pattern.ts",
-									"line": 520,
+									"line": 531,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L520"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L531"
 								}
 							],
 							"signatures": [
 								{
-									"id": 172,
+									"id": 176,
 									"name": "even",
 									"variant": "signature",
 									"kind": 4096,
@@ -1892,14 +1894,14 @@
 									"sources": [
 										{
 											"fileName": "classes/Pattern.ts",
-											"line": 520,
+											"line": 531,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L520"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L531"
 										}
 									],
 									"parameters": [
 										{
-											"id": 173,
+											"id": 177,
 											"name": "a",
 											"variant": "param",
 											"kind": 32768,
@@ -1919,7 +1921,7 @@
 											"defaultValue": "1"
 										},
 										{
-											"id": 174,
+											"id": 178,
 											"name": "b",
 											"variant": "param",
 											"kind": 32768,
@@ -1959,7 +1961,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 259,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L259"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L259"
 								}
 							],
 							"signatures": [
@@ -2006,7 +2008,7 @@
 											"fileName": "classes/Pattern.ts",
 											"line": 259,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L259"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L259"
 										}
 									],
 									"parameters": [
@@ -2080,7 +2082,7 @@
 							]
 						},
 						{
-							"id": 221,
+							"id": 225,
 							"name": "exp",
 							"variant": "declaration",
 							"kind": 2048,
@@ -2088,14 +2090,14 @@
 							"sources": [
 								{
 									"fileName": "classes/Pattern.ts",
-									"line": 703,
+									"line": 714,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L703"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L714"
 								}
 							],
 							"signatures": [
 								{
-									"id": 222,
+									"id": 226,
 									"name": "exp",
 									"variant": "signature",
 									"kind": 4096,
@@ -2117,9 +2119,9 @@
 									"sources": [
 										{
 											"fileName": "classes/Pattern.ts",
-											"line": 703,
+											"line": 714,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L703"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L714"
 										}
 									],
 									"type": {
@@ -2132,7 +2134,7 @@
 							]
 						},
 						{
-							"id": 217,
+							"id": 221,
 							"name": "floor",
 							"variant": "declaration",
 							"kind": 2048,
@@ -2140,14 +2142,14 @@
 							"sources": [
 								{
 									"fileName": "classes/Pattern.ts",
-									"line": 685,
+									"line": 696,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L685"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L696"
 								}
 							],
 							"signatures": [
 								{
-									"id": 218,
+									"id": 222,
 									"name": "floor",
 									"variant": "signature",
 									"kind": 4096,
@@ -2169,9 +2171,9 @@
 									"sources": [
 										{
 											"fileName": "classes/Pattern.ts",
-											"line": 685,
+											"line": 696,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L685"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L696"
 										}
 									],
 									"type": {
@@ -2184,7 +2186,7 @@
 							]
 						},
 						{
-							"id": 183,
+							"id": 187,
 							"name": "fn",
 							"variant": "declaration",
 							"kind": 2048,
@@ -2192,14 +2194,14 @@
 							"sources": [
 								{
 									"fileName": "classes/Pattern.ts",
-									"line": 563,
+									"line": 574,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L563"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L574"
 								}
 							],
 							"signatures": [
 								{
-									"id": 184,
+									"id": 188,
 									"name": "fn",
 									"variant": "signature",
 									"kind": 4096,
@@ -2230,14 +2232,14 @@
 									"sources": [
 										{
 											"fileName": "classes/Pattern.ts",
-											"line": 563,
+											"line": 574,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L563"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L574"
 										}
 									],
 									"parameters": [
 										{
-											"id": 185,
+											"id": 189,
 											"name": "cb",
 											"variant": "param",
 											"kind": 32768,
@@ -2253,7 +2255,7 @@
 											"type": {
 												"type": "reflection",
 												"declaration": {
-													"id": 186,
+													"id": 190,
 													"name": "__type",
 													"variant": "declaration",
 													"kind": 65536,
@@ -2261,14 +2263,14 @@
 													"sources": [
 														{
 															"fileName": "classes/Pattern.ts",
-															"line": 563,
+															"line": 574,
 															"character": 11,
-															"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L563"
+															"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L574"
 														}
 													],
 													"signatures": [
 														{
-															"id": 187,
+															"id": 191,
 															"name": "__type",
 															"variant": "signature",
 															"kind": 4096,
@@ -2276,14 +2278,14 @@
 															"sources": [
 																{
 																	"fileName": "classes/Pattern.ts",
-																	"line": 563,
+																	"line": 574,
 																	"character": 12,
-																	"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L563"
+																	"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L574"
 																}
 															],
 															"parameters": [
 																{
-																	"id": 188,
+																	"id": 192,
 																	"name": "x",
 																	"variant": "param",
 																	"kind": 32768,
@@ -2334,7 +2336,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 413,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L413"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L413"
 								}
 							],
 							"signatures": [
@@ -2372,7 +2374,7 @@
 											"fileName": "classes/Pattern.ts",
 											"line": 413,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L413"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L413"
 										}
 									],
 									"parameters": [
@@ -2448,7 +2450,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 438,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L438"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L438"
 								}
 							],
 							"signatures": [
@@ -2486,7 +2488,7 @@
 											"fileName": "classes/Pattern.ts",
 											"line": 438,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L438"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L438"
 										}
 									],
 									"parameters": [
@@ -2552,7 +2554,7 @@
 							]
 						},
 						{
-							"id": 175,
+							"id": 179,
 							"name": "if",
 							"variant": "declaration",
 							"kind": 2048,
@@ -2560,14 +2562,14 @@
 							"sources": [
 								{
 									"fileName": "classes/Pattern.ts",
-									"line": 531,
+									"line": 542,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L531"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L542"
 								}
 							],
 							"signatures": [
 								{
-									"id": 176,
+									"id": 180,
 									"name": "if",
 									"variant": "signature",
 									"kind": 4096,
@@ -2589,14 +2591,14 @@
 									"sources": [
 										{
 											"fileName": "classes/Pattern.ts",
-											"line": 531,
+											"line": 542,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L531"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L542"
 										}
 									],
 									"parameters": [
 										{
-											"id": 177,
+											"id": 181,
 											"name": "a",
 											"variant": "param",
 											"kind": 32768,
@@ -2616,7 +2618,7 @@
 											"defaultValue": "1"
 										},
 										{
-											"id": 178,
+											"id": 182,
 											"name": "b",
 											"variant": "param",
 											"kind": 32768,
@@ -2646,7 +2648,7 @@
 							]
 						},
 						{
-							"id": 223,
+							"id": 227,
 							"name": "log",
 							"variant": "declaration",
 							"kind": 2048,
@@ -2654,14 +2656,14 @@
 							"sources": [
 								{
 									"fileName": "classes/Pattern.ts",
-									"line": 712,
+									"line": 723,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L712"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L723"
 								}
 							],
 							"signatures": [
 								{
-									"id": 224,
+									"id": 228,
 									"name": "log",
 									"variant": "signature",
 									"kind": 4096,
@@ -2683,9 +2685,9 @@
 									"sources": [
 										{
 											"fileName": "classes/Pattern.ts",
-											"line": 712,
+											"line": 723,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L712"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L723"
 										}
 									],
 									"type": {
@@ -2708,7 +2710,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 425,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L425"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L425"
 								}
 							],
 							"signatures": [
@@ -2737,7 +2739,7 @@
 											"fileName": "classes/Pattern.ts",
 											"line": 425,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L425"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L425"
 										}
 									],
 									"parameters": [
@@ -2813,7 +2815,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 450,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L450"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L450"
 								}
 							],
 							"signatures": [
@@ -2842,7 +2844,7 @@
 											"fileName": "classes/Pattern.ts",
 											"line": 450,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L450"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L450"
 										}
 									],
 									"parameters": [
@@ -2908,7 +2910,7 @@
 							]
 						},
 						{
-							"id": 225,
+							"id": 229,
 							"name": "max",
 							"variant": "declaration",
 							"kind": 2048,
@@ -2916,14 +2918,14 @@
 							"sources": [
 								{
 									"fileName": "classes/Pattern.ts",
-									"line": 722,
+									"line": 733,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L722"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L733"
 								}
 							],
 							"signatures": [
 								{
-									"id": 226,
+									"id": 230,
 									"name": "max",
 									"variant": "signature",
 									"kind": 4096,
@@ -2945,14 +2947,14 @@
 									"sources": [
 										{
 											"fileName": "classes/Pattern.ts",
-											"line": 722,
+											"line": 733,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L722"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L733"
 										}
 									],
 									"parameters": [
 										{
-											"id": 227,
+											"id": 231,
 											"name": "compare",
 											"variant": "param",
 											"kind": 32768,
@@ -2982,7 +2984,7 @@
 							]
 						},
 						{
-							"id": 228,
+							"id": 232,
 							"name": "min",
 							"variant": "declaration",
 							"kind": 2048,
@@ -2990,14 +2992,14 @@
 							"sources": [
 								{
 									"fileName": "classes/Pattern.ts",
-									"line": 732,
+									"line": 743,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L732"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L743"
 								}
 							],
 							"signatures": [
 								{
-									"id": 229,
+									"id": 233,
 									"name": "min",
 									"variant": "signature",
 									"kind": 4096,
@@ -3019,14 +3021,14 @@
 									"sources": [
 										{
 											"fileName": "classes/Pattern.ts",
-											"line": 732,
+											"line": 743,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L732"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L743"
 										}
 									],
 									"parameters": [
 										{
-											"id": 230,
+											"id": 234,
 											"name": "compare",
 											"variant": "param",
 											"kind": 32768,
@@ -3066,7 +3068,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 379,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L379"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L379"
 								}
 							],
 							"signatures": [
@@ -3095,7 +3097,7 @@
 											"fileName": "classes/Pattern.ts",
 											"line": 379,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L379"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L379"
 										}
 									],
 									"parameters": [
@@ -3140,7 +3142,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 347,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L347"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L347"
 								}
 							],
 							"signatures": [
@@ -3178,7 +3180,7 @@
 											"fileName": "classes/Pattern.ts",
 											"line": 347,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L347"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L347"
 										}
 									],
 									"parameters": [
@@ -3223,7 +3225,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 486,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L486"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L486"
 								}
 							],
 							"signatures": [
@@ -3252,7 +3254,7 @@
 											"fileName": "classes/Pattern.ts",
 											"line": 486,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L486"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L486"
 										}
 									],
 									"parameters": [
@@ -3265,7 +3267,8 @@
 											"type": {
 												"type": "intrinsic",
 												"name": "number"
-											}
+											},
+											"defaultValue": "1"
 										},
 										{
 											"id": 160,
@@ -3328,7 +3331,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 498,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L498"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L498"
 								}
 							],
 							"signatures": [
@@ -3357,7 +3360,7 @@
 											"fileName": "classes/Pattern.ts",
 											"line": 498,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L498"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L498"
 										}
 									],
 									"parameters": [
@@ -3370,7 +3373,8 @@
 											"type": {
 												"type": "intrinsic",
 												"name": "number"
-											}
+											},
+											"defaultValue": "1"
 										},
 										{
 											"id": 165,
@@ -3433,7 +3437,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 243,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L243"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L243"
 								}
 							],
 							"signatures": [
@@ -3471,7 +3475,7 @@
 											"fileName": "classes/Pattern.ts",
 											"line": 243,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L243"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L243"
 										}
 									],
 									"parameters": [
@@ -3566,6 +3570,100 @@
 							]
 						},
 						{
+							"id": 167,
+							"name": "not",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "classes/Pattern.ts",
+									"line": 509,
+									"character": 4,
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L509"
+								}
+							],
+							"signatures": [
+								{
+									"id": 168,
+									"name": "not",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Invert the previous value in the pattern chain - like a bitwise NOT."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@returns",
+												"content": []
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "classes/Pattern.ts",
+											"line": 509,
+											"character": 4,
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L509"
+										}
+									],
+									"parameters": [
+										{
+											"id": 169,
+											"name": "a",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "value to return when true"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "1"
+										},
+										{
+											"id": 170,
+											"name": "b",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "value to return when false"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "0"
+										}
+									],
+									"type": {
+										"type": "reference",
+										"target": 2,
+										"name": "Pattern",
+										"package": "zen-3"
+									}
+								}
+							]
+						},
+						{
 							"id": 89,
 							"name": "ntbin",
 							"variant": "declaration",
@@ -3576,7 +3674,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 292,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L292"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L292"
 								}
 							],
 							"signatures": [
@@ -3614,7 +3712,7 @@
 											"fileName": "classes/Pattern.ts",
 											"line": 292,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L292"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L292"
 										}
 									],
 									"parameters": [
@@ -3709,7 +3807,7 @@
 							]
 						},
 						{
-							"id": 167,
+							"id": 171,
 							"name": "odd",
 							"variant": "declaration",
 							"kind": 2048,
@@ -3717,14 +3815,14 @@
 							"sources": [
 								{
 									"fileName": "classes/Pattern.ts",
-									"line": 509,
+									"line": 520,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L509"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L520"
 								}
 							],
 							"signatures": [
 								{
-									"id": 168,
+									"id": 172,
 									"name": "odd",
 									"variant": "signature",
 									"kind": 4096,
@@ -3746,14 +3844,14 @@
 									"sources": [
 										{
 											"fileName": "classes/Pattern.ts",
-											"line": 509,
+											"line": 520,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L509"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L520"
 										}
 									],
 									"parameters": [
 										{
-											"id": 169,
+											"id": 173,
 											"name": "a",
 											"variant": "param",
 											"kind": 32768,
@@ -3773,7 +3871,7 @@
 											"defaultValue": "1"
 										},
 										{
-											"id": 170,
+											"id": 174,
 											"name": "b",
 											"variant": "param",
 											"kind": 32768,
@@ -3803,7 +3901,7 @@
 							]
 						},
 						{
-							"id": 231,
+							"id": 235,
 							"name": "pow",
 							"variant": "declaration",
 							"kind": 2048,
@@ -3811,14 +3909,14 @@
 							"sources": [
 								{
 									"fileName": "classes/Pattern.ts",
-									"line": 742,
+									"line": 753,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L742"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L753"
 								}
 							],
 							"signatures": [
 								{
-									"id": 232,
+									"id": 236,
 									"name": "pow",
 									"variant": "signature",
 									"kind": 4096,
@@ -3840,14 +3938,14 @@
 									"sources": [
 										{
 											"fileName": "classes/Pattern.ts",
-											"line": 742,
+											"line": 753,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L742"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L753"
 										}
 									],
 									"parameters": [
 										{
-											"id": 233,
+											"id": 237,
 											"name": "exponent",
 											"variant": "param",
 											"kind": 32768,
@@ -3887,7 +3985,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 200,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L200"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L200"
 								}
 							],
 							"signatures": [
@@ -3925,7 +4023,7 @@
 											"fileName": "classes/Pattern.ts",
 											"line": 200,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L200"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L200"
 										}
 									],
 									"parameters": [
@@ -4030,7 +4128,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 229,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L229"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L229"
 								}
 							],
 							"signatures": [
@@ -4068,7 +4166,7 @@
 											"fileName": "classes/Pattern.ts",
 											"line": 229,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L229"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L229"
 										}
 									],
 									"parameters": [
@@ -4153,7 +4251,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 119,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L119"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L119"
 								}
 							],
 							"signatures": [
@@ -4191,7 +4289,7 @@
 											"fileName": "classes/Pattern.ts",
 											"line": 119,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L119"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L119"
 										}
 									],
 									"parameters": [
@@ -4286,7 +4384,7 @@
 							]
 						},
 						{
-							"id": 219,
+							"id": 223,
 							"name": "round",
 							"variant": "declaration",
 							"kind": 2048,
@@ -4294,14 +4392,14 @@
 							"sources": [
 								{
 									"fileName": "classes/Pattern.ts",
-									"line": 694,
+									"line": 705,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L694"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L705"
 								}
 							],
 							"signatures": [
 								{
-									"id": 220,
+									"id": 224,
 									"name": "round",
 									"variant": "signature",
 									"kind": 4096,
@@ -4323,9 +4421,9 @@
 									"sources": [
 										{
 											"fileName": "classes/Pattern.ts",
-											"line": 694,
+											"line": 705,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L694"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L705"
 										}
 									],
 									"type": {
@@ -4348,7 +4446,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 170,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L170"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L170"
 								}
 							],
 							"signatures": [
@@ -4386,7 +4484,7 @@
 											"fileName": "classes/Pattern.ts",
 											"line": 170,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L170"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L170"
 										}
 									],
 									"parameters": [
@@ -4481,7 +4579,7 @@
 							]
 						},
 						{
-							"id": 189,
+							"id": 193,
 							"name": "scales",
 							"variant": "declaration",
 							"kind": 2048,
@@ -4489,14 +4587,14 @@
 							"sources": [
 								{
 									"fileName": "classes/Pattern.ts",
-									"line": 577,
+									"line": 588,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L577"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L588"
 								}
 							],
 							"signatures": [
 								{
-									"id": 190,
+									"id": 194,
 									"name": "scales",
 									"variant": "signature",
 									"kind": 4096,
@@ -4536,14 +4634,14 @@
 									"sources": [
 										{
 											"fileName": "classes/Pattern.ts",
-											"line": 577,
+											"line": 588,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L577"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L588"
 										}
 									],
 									"parameters": [
 										{
-											"id": 191,
+											"id": 195,
 											"name": "names",
 											"variant": "param",
 											"kind": 32768,
@@ -4574,7 +4672,7 @@
 											}
 										},
 										{
-											"id": 192,
+											"id": 196,
 											"name": "length",
 											"variant": "param",
 											"kind": 32768,
@@ -4594,7 +4692,7 @@
 											"defaultValue": "8"
 										},
 										{
-											"id": 193,
+											"id": 197,
 											"name": "freq",
 											"variant": "param",
 											"kind": 32768,
@@ -4634,7 +4732,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 303,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L303"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L303"
 								}
 							],
 							"signatures": [
@@ -4672,7 +4770,7 @@
 											"fileName": "classes/Pattern.ts",
 											"line": 303,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L303"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L303"
 										}
 									],
 									"parameters": [
@@ -4740,7 +4838,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 70,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L70"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L70"
 								}
 							],
 							"signatures": [
@@ -4778,7 +4876,7 @@
 											"fileName": "classes/Pattern.ts",
 											"line": 70,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L70"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L70"
 										}
 									],
 									"parameters": [
@@ -4817,7 +4915,7 @@
 							]
 						},
 						{
-							"id": 198,
+							"id": 202,
 							"name": "sin",
 							"variant": "declaration",
 							"kind": 2048,
@@ -4825,14 +4923,14 @@
 							"sources": [
 								{
 									"fileName": "classes/Pattern.ts",
-									"line": 603,
+									"line": 614,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L603"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L614"
 								}
 							],
 							"signatures": [
 								{
-									"id": 199,
+									"id": 203,
 									"name": "sin",
 									"variant": "signature",
 									"kind": 4096,
@@ -4854,9 +4952,9 @@
 									"sources": [
 										{
 											"fileName": "classes/Pattern.ts",
-											"line": 603,
+											"line": 614,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L603"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L614"
 										}
 									],
 									"type": {
@@ -4879,7 +4977,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 133,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L133"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L133"
 								}
 							],
 							"signatures": [
@@ -4917,7 +5015,7 @@
 											"fileName": "classes/Pattern.ts",
 											"line": 133,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L133"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L133"
 										}
 									],
 									"parameters": [
@@ -5012,7 +5110,7 @@
 							]
 						},
 						{
-							"id": 234,
+							"id": 238,
 							"name": "sqrt",
 							"variant": "declaration",
 							"kind": 2048,
@@ -5020,14 +5118,14 @@
 							"sources": [
 								{
 									"fileName": "classes/Pattern.ts",
-									"line": 751,
+									"line": 762,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L751"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L762"
 								}
 							],
 							"signatures": [
 								{
-									"id": 235,
+									"id": 239,
 									"name": "sqrt",
 									"variant": "signature",
 									"kind": 4096,
@@ -5049,9 +5147,9 @@
 									"sources": [
 										{
 											"fileName": "classes/Pattern.ts",
-											"line": 751,
+											"line": 762,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L751"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L762"
 										}
 									],
 									"type": {
@@ -5074,7 +5172,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 216,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L216"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L216"
 								}
 							],
 							"signatures": [
@@ -5112,7 +5210,7 @@
 											"fileName": "classes/Pattern.ts",
 											"line": 216,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L216"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L216"
 										}
 									],
 									"parameters": [
@@ -5197,7 +5295,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 389,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L389"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L389"
 								}
 							],
 							"signatures": [
@@ -5226,7 +5324,7 @@
 											"fileName": "classes/Pattern.ts",
 											"line": 389,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L389"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L389"
 										}
 									],
 									"parameters": [
@@ -5270,7 +5368,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 325,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L325"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L325"
 								}
 							],
 							"signatures": [
@@ -5308,7 +5406,7 @@
 											"fileName": "classes/Pattern.ts",
 											"line": 325,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L325"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L325"
 										}
 									],
 									"parameters": [
@@ -5343,7 +5441,7 @@
 							]
 						},
 						{
-							"id": 202,
+							"id": 206,
 							"name": "tan",
 							"variant": "declaration",
 							"kind": 2048,
@@ -5351,14 +5449,14 @@
 							"sources": [
 								{
 									"fileName": "classes/Pattern.ts",
-									"line": 621,
+									"line": 632,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L621"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L632"
 								}
 							],
 							"signatures": [
 								{
-									"id": 203,
+									"id": 207,
 									"name": "tan",
 									"variant": "signature",
 									"kind": 4096,
@@ -5380,9 +5478,9 @@
 									"sources": [
 										{
 											"fileName": "classes/Pattern.ts",
-											"line": 621,
+											"line": 632,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L621"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L632"
 										}
 									],
 									"type": {
@@ -5405,7 +5503,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 183,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L183"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L183"
 								}
 							],
 							"signatures": [
@@ -5443,7 +5541,7 @@
 											"fileName": "classes/Pattern.ts",
 											"line": 183,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L183"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L183"
 										}
 									],
 									"parameters": [
@@ -5548,7 +5646,7 @@
 									"fileName": "classes/Pattern.ts",
 									"line": 92,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L92"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L92"
 								}
 							],
 							"signatures": [
@@ -5586,7 +5684,7 @@
 											"fileName": "classes/Pattern.ts",
 											"line": 92,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L92"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L92"
 										}
 									],
 									"parameters": [
@@ -5635,60 +5733,61 @@
 							"children": [
 								114,
 								105,
-								213,
-								206,
-								99,
-								204,
-								208,
+								217,
 								210,
+								99,
+								208,
+								212,
+								214,
 								83,
-								181,
-								179,
-								215,
-								194,
+								185,
+								183,
+								219,
+								198,
 								123,
-								200,
+								204,
 								38,
 								111,
 								147,
 								152,
 								23,
-								171,
+								175,
 								78,
+								225,
 								221,
-								217,
-								183,
+								187,
 								127,
 								137,
-								175,
-								223,
+								179,
+								227,
 								132,
 								142,
-								225,
-								228,
+								229,
+								232,
 								117,
 								108,
 								157,
 								162,
 								72,
-								89,
 								167,
-								231,
+								89,
+								171,
+								235,
 								56,
 								67,
 								26,
-								219,
+								223,
 								44,
-								189,
+								193,
 								95,
 								15,
-								198,
+								202,
 								32,
-								234,
+								238,
 								62,
 								120,
 								102,
-								202,
+								206,
 								50,
 								20
 							]
@@ -5699,7 +5798,7 @@
 							"fileName": "classes/Pattern.ts",
 							"line": 23,
 							"character": 13,
-							"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L23"
+							"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L23"
 						}
 					]
 				}
@@ -5717,19 +5816,19 @@
 					"fileName": "classes/Pattern.ts",
 					"line": 1,
 					"character": 0,
-					"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Pattern.ts#L1"
+					"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Pattern.ts#L1"
 				}
 			]
 		},
 		{
-			"id": 329,
+			"id": 333,
 			"name": "Stream",
 			"variant": "declaration",
 			"kind": 2,
 			"flags": {},
 			"children": [
 				{
-					"id": 330,
+					"id": 334,
 					"name": "Stream",
 					"variant": "declaration",
 					"kind": 128,
@@ -5819,7 +5918,7 @@
 					},
 					"children": [
 						{
-							"id": 344,
+							"id": 348,
 							"name": "e",
 							"variant": "declaration",
 							"kind": 1024,
@@ -5848,7 +5947,7 @@
 									"fileName": "classes/Stream.ts",
 									"line": 95,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L95"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L95"
 								}
 							],
 							"type": {
@@ -5860,7 +5959,7 @@
 							"defaultValue": "..."
 						},
 						{
-							"id": 345,
+							"id": 349,
 							"name": "m",
 							"variant": "declaration",
 							"kind": 1024,
@@ -5901,7 +6000,7 @@
 									"fileName": "classes/Stream.ts",
 									"line": 103,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L103"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L103"
 								}
 							],
 							"type": {
@@ -5913,7 +6012,7 @@
 							"defaultValue": "..."
 						},
 						{
-							"id": 348,
+							"id": 352,
 							"name": "map",
 							"variant": "declaration",
 							"kind": 1024,
@@ -5942,13 +6041,13 @@
 									"fileName": "classes/Stream.ts",
 									"line": 126,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L126"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L126"
 								}
 							],
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 349,
+									"id": 353,
 									"name": "__type",
 									"variant": "declaration",
 									"kind": 65536,
@@ -5958,7 +6057,7 @@
 											"fileName": "classes/Stream.ts",
 											"line": 126,
 											"character": 10,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L126"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L126"
 										}
 									]
 								}
@@ -5966,7 +6065,7 @@
 							"defaultValue": "{}"
 						},
 						{
-							"id": 346,
+							"id": 350,
 							"name": "mute",
 							"variant": "declaration",
 							"kind": 1024,
@@ -5995,7 +6094,7 @@
 									"fileName": "classes/Stream.ts",
 									"line": 111,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L111"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L111"
 								}
 							],
 							"type": {
@@ -6007,7 +6106,7 @@
 							"defaultValue": "..."
 						},
 						{
-							"id": 335,
+							"id": 339,
 							"name": "p",
 							"variant": "declaration",
 							"kind": 1024,
@@ -6036,7 +6135,7 @@
 									"fileName": "classes/Stream.ts",
 									"line": 30,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L30"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L30"
 								}
 							],
 							"type": {
@@ -6050,7 +6149,7 @@
 							}
 						},
 						{
-							"id": 336,
+							"id": 340,
 							"name": "px",
 							"variant": "declaration",
 							"kind": 1024,
@@ -6079,7 +6178,7 @@
 									"fileName": "classes/Stream.ts",
 									"line": 37,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L37"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L37"
 								}
 							],
 							"type": {
@@ -6093,7 +6192,7 @@
 							}
 						},
 						{
-							"id": 337,
+							"id": 341,
 							"name": "py",
 							"variant": "declaration",
 							"kind": 1024,
@@ -6122,7 +6221,7 @@
 									"fileName": "classes/Stream.ts",
 									"line": 44,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L44"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L44"
 								}
 							],
 							"type": {
@@ -6136,7 +6235,7 @@
 							}
 						},
 						{
-							"id": 338,
+							"id": 342,
 							"name": "pz",
 							"variant": "declaration",
 							"kind": 1024,
@@ -6165,7 +6264,7 @@
 									"fileName": "classes/Stream.ts",
 									"line": 51,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L51"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L51"
 								}
 							],
 							"type": {
@@ -6179,7 +6278,7 @@
 							}
 						},
 						{
-							"id": 347,
+							"id": 351,
 							"name": "solo",
 							"variant": "declaration",
 							"kind": 1024,
@@ -6208,7 +6307,7 @@
 									"fileName": "classes/Stream.ts",
 									"line": 119,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L119"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L119"
 								}
 							],
 							"type": {
@@ -6220,7 +6319,7 @@
 							"defaultValue": "..."
 						},
 						{
-							"id": 339,
+							"id": 343,
 							"name": "t",
 							"variant": "declaration",
 							"kind": 1024,
@@ -6249,7 +6348,7 @@
 									"fileName": "classes/Stream.ts",
 									"line": 58,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L58"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L58"
 								}
 							],
 							"type": {
@@ -6261,7 +6360,7 @@
 							"defaultValue": "..."
 						},
 						{
-							"id": 340,
+							"id": 344,
 							"name": "x",
 							"variant": "declaration",
 							"kind": 1024,
@@ -6290,7 +6389,7 @@
 									"fileName": "classes/Stream.ts",
 									"line": 65,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L65"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L65"
 								}
 							],
 							"type": {
@@ -6302,7 +6401,7 @@
 							"defaultValue": "..."
 						},
 						{
-							"id": 343,
+							"id": 347,
 							"name": "xyz",
 							"variant": "declaration",
 							"kind": 1024,
@@ -6331,7 +6430,7 @@
 									"fileName": "classes/Stream.ts",
 									"line": 86,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L86"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L86"
 								}
 							],
 							"type": {
@@ -6343,7 +6442,7 @@
 							"defaultValue": "..."
 						},
 						{
-							"id": 341,
+							"id": 345,
 							"name": "y",
 							"variant": "declaration",
 							"kind": 1024,
@@ -6372,7 +6471,7 @@
 									"fileName": "classes/Stream.ts",
 									"line": 72,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L72"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L72"
 								}
 							],
 							"type": {
@@ -6384,7 +6483,7 @@
 							"defaultValue": "..."
 						},
 						{
-							"id": 342,
+							"id": 346,
 							"name": "z",
 							"variant": "declaration",
 							"kind": 1024,
@@ -6413,7 +6512,7 @@
 									"fileName": "classes/Stream.ts",
 									"line": 79,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L79"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L79"
 								}
 							],
 							"type": {
@@ -6425,7 +6524,7 @@
 							"defaultValue": "..."
 						},
 						{
-							"id": 359,
+							"id": 363,
 							"name": "set",
 							"variant": "declaration",
 							"kind": 2048,
@@ -6435,12 +6534,12 @@
 									"fileName": "classes/Stream.ts",
 									"line": 167,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L167"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L167"
 								}
 							],
 							"signatures": [
 								{
-									"id": 360,
+									"id": 364,
 									"name": "set",
 									"variant": "signature",
 									"kind": 4096,
@@ -6469,12 +6568,12 @@
 											"fileName": "classes/Stream.ts",
 											"line": 167,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L167"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L167"
 										}
 									],
 									"parameters": [
 										{
-											"id": 361,
+											"id": 365,
 											"name": "ps",
 											"variant": "param",
 											"kind": 32768,
@@ -6510,26 +6609,26 @@
 						{
 							"title": "Properties",
 							"children": [
-								344,
-								345,
 								348,
-								346,
-								335,
-								336,
-								337,
-								338,
-								347,
+								349,
+								352,
+								350,
 								339,
 								340,
-								343,
 								341,
-								342
+								342,
+								351,
+								343,
+								344,
+								347,
+								345,
+								346
 							]
 						},
 						{
 							"title": "Methods",
 							"children": [
-								359
+								363
 							]
 						}
 					],
@@ -6538,13 +6637,13 @@
 							"fileName": "classes/Stream.ts",
 							"line": 21,
 							"character": 13,
-							"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L21"
+							"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L21"
 						}
 					],
 					"extendedBy": [
 						{
 							"type": "reference",
-							"target": 249,
+							"target": 253,
 							"name": "Zen"
 						}
 					]
@@ -6554,7 +6653,7 @@
 				{
 					"title": "Classes",
 					"children": [
-						330
+						334
 					]
 				}
 			],
@@ -6563,19 +6662,19 @@
 					"fileName": "classes/Stream.ts",
 					"line": 1,
 					"character": 0,
-					"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L1"
+					"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L1"
 				}
 			]
 		},
 		{
-			"id": 248,
+			"id": 252,
 			"name": "Zen",
 			"variant": "declaration",
 			"kind": 2,
 			"flags": {},
 			"children": [
 				{
-					"id": 249,
+					"id": 253,
 					"name": "Zen",
 					"variant": "declaration",
 					"kind": 128,
@@ -6609,7 +6708,7 @@
 					},
 					"children": [
 						{
-							"id": 253,
+							"id": 257,
 							"name": "bpm",
 							"variant": "declaration",
 							"kind": 1024,
@@ -6638,7 +6737,7 @@
 									"fileName": "classes/Zen.ts",
 									"line": 36,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Zen.ts#L36"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Zen.ts#L36"
 								}
 							],
 							"type": {
@@ -6650,7 +6749,7 @@
 							"defaultValue": "..."
 						},
 						{
-							"id": 288,
+							"id": 292,
 							"name": "e",
 							"variant": "declaration",
 							"kind": 1024,
@@ -6679,7 +6778,7 @@
 									"fileName": "classes/Stream.ts",
 									"line": 95,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L95"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L95"
 								}
 							],
 							"type": {
@@ -6691,12 +6790,12 @@
 							"defaultValue": "...",
 							"inheritedFrom": {
 								"type": "reference",
-								"target": 344,
+								"target": 348,
 								"name": "Stream.e"
 							}
 						},
 						{
-							"id": 289,
+							"id": 293,
 							"name": "m",
 							"variant": "declaration",
 							"kind": 1024,
@@ -6737,7 +6836,7 @@
 									"fileName": "classes/Stream.ts",
 									"line": 103,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L103"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L103"
 								}
 							],
 							"type": {
@@ -6749,12 +6848,12 @@
 							"defaultValue": "...",
 							"inheritedFrom": {
 								"type": "reference",
-								"target": 345,
+								"target": 349,
 								"name": "Stream.m"
 							}
 						},
 						{
-							"id": 292,
+							"id": 296,
 							"name": "map",
 							"variant": "declaration",
 							"kind": 1024,
@@ -6783,13 +6882,13 @@
 									"fileName": "classes/Stream.ts",
 									"line": 126,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L126"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L126"
 								}
 							],
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 293,
+									"id": 297,
 									"name": "__type",
 									"variant": "declaration",
 									"kind": 65536,
@@ -6799,7 +6898,7 @@
 											"fileName": "classes/Stream.ts",
 											"line": 126,
 											"character": 10,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L126"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L126"
 										}
 									]
 								}
@@ -6807,12 +6906,12 @@
 							"defaultValue": "{}",
 							"inheritedFrom": {
 								"type": "reference",
-								"target": 348,
+								"target": 352,
 								"name": "Stream.map"
 							}
 						},
 						{
-							"id": 290,
+							"id": 294,
 							"name": "mute",
 							"variant": "declaration",
 							"kind": 1024,
@@ -6841,7 +6940,7 @@
 									"fileName": "classes/Stream.ts",
 									"line": 111,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L111"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L111"
 								}
 							],
 							"type": {
@@ -6853,12 +6952,12 @@
 							"defaultValue": "...",
 							"inheritedFrom": {
 								"type": "reference",
-								"target": 346,
+								"target": 350,
 								"name": "Stream.mute"
 							}
 						},
 						{
-							"id": 280,
+							"id": 284,
 							"name": "p",
 							"variant": "declaration",
 							"kind": 1024,
@@ -6887,7 +6986,7 @@
 									"fileName": "classes/Stream.ts",
 									"line": 30,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L30"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L30"
 								}
 							],
 							"type": {
@@ -6901,12 +7000,12 @@
 							},
 							"inheritedFrom": {
 								"type": "reference",
-								"target": 335,
+								"target": 339,
 								"name": "Stream.p"
 							}
 						},
 						{
-							"id": 281,
+							"id": 285,
 							"name": "px",
 							"variant": "declaration",
 							"kind": 1024,
@@ -6935,7 +7034,7 @@
 									"fileName": "classes/Stream.ts",
 									"line": 37,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L37"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L37"
 								}
 							],
 							"type": {
@@ -6949,12 +7048,12 @@
 							},
 							"inheritedFrom": {
 								"type": "reference",
-								"target": 336,
+								"target": 340,
 								"name": "Stream.px"
 							}
 						},
 						{
-							"id": 282,
+							"id": 286,
 							"name": "py",
 							"variant": "declaration",
 							"kind": 1024,
@@ -6983,7 +7082,7 @@
 									"fileName": "classes/Stream.ts",
 									"line": 44,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L44"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L44"
 								}
 							],
 							"type": {
@@ -6997,12 +7096,12 @@
 							},
 							"inheritedFrom": {
 								"type": "reference",
-								"target": 337,
+								"target": 341,
 								"name": "Stream.py"
 							}
 						},
 						{
-							"id": 283,
+							"id": 287,
 							"name": "pz",
 							"variant": "declaration",
 							"kind": 1024,
@@ -7031,7 +7130,7 @@
 									"fileName": "classes/Stream.ts",
 									"line": 51,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L51"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L51"
 								}
 							],
 							"type": {
@@ -7045,12 +7144,12 @@
 							},
 							"inheritedFrom": {
 								"type": "reference",
-								"target": 338,
+								"target": 342,
 								"name": "Stream.pz"
 							}
 						},
 						{
-							"id": 291,
+							"id": 295,
 							"name": "solo",
 							"variant": "declaration",
 							"kind": 1024,
@@ -7079,7 +7178,7 @@
 									"fileName": "classes/Stream.ts",
 									"line": 119,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L119"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L119"
 								}
 							],
 							"type": {
@@ -7091,12 +7190,12 @@
 							"defaultValue": "...",
 							"inheritedFrom": {
 								"type": "reference",
-								"target": 347,
+								"target": 351,
 								"name": "Stream.solo"
 							}
 						},
 						{
-							"id": 252,
+							"id": 256,
 							"name": "t",
 							"variant": "declaration",
 							"kind": 1024,
@@ -7133,7 +7232,7 @@
 									"fileName": "classes/Zen.ts",
 									"line": 29,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Zen.ts#L29"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Zen.ts#L29"
 								}
 							],
 							"type": {
@@ -7145,12 +7244,12 @@
 							"defaultValue": "...",
 							"overwrites": {
 								"type": "reference",
-								"target": 339,
+								"target": 343,
 								"name": "Stream.t"
 							}
 						},
 						{
-							"id": 284,
+							"id": 288,
 							"name": "x",
 							"variant": "declaration",
 							"kind": 1024,
@@ -7179,7 +7278,7 @@
 									"fileName": "classes/Stream.ts",
 									"line": 65,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L65"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L65"
 								}
 							],
 							"type": {
@@ -7191,12 +7290,12 @@
 							"defaultValue": "...",
 							"inheritedFrom": {
 								"type": "reference",
-								"target": 340,
+								"target": 344,
 								"name": "Stream.x"
 							}
 						},
 						{
-							"id": 287,
+							"id": 291,
 							"name": "xyz",
 							"variant": "declaration",
 							"kind": 1024,
@@ -7225,7 +7324,7 @@
 									"fileName": "classes/Stream.ts",
 									"line": 86,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L86"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L86"
 								}
 							],
 							"type": {
@@ -7237,12 +7336,12 @@
 							"defaultValue": "...",
 							"inheritedFrom": {
 								"type": "reference",
-								"target": 343,
+								"target": 347,
 								"name": "Stream.xyz"
 							}
 						},
 						{
-							"id": 285,
+							"id": 289,
 							"name": "y",
 							"variant": "declaration",
 							"kind": 1024,
@@ -7271,7 +7370,7 @@
 									"fileName": "classes/Stream.ts",
 									"line": 72,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L72"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L72"
 								}
 							],
 							"type": {
@@ -7283,12 +7382,12 @@
 							"defaultValue": "...",
 							"inheritedFrom": {
 								"type": "reference",
-								"target": 341,
+								"target": 345,
 								"name": "Stream.y"
 							}
 						},
 						{
-							"id": 286,
+							"id": 290,
 							"name": "z",
 							"variant": "declaration",
 							"kind": 1024,
@@ -7317,7 +7416,7 @@
 									"fileName": "classes/Stream.ts",
 									"line": 79,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L79"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L79"
 								}
 							],
 							"type": {
@@ -7329,12 +7428,12 @@
 							"defaultValue": "...",
 							"inheritedFrom": {
 								"type": "reference",
-								"target": 342,
+								"target": 346,
 								"name": "Stream.z"
 							}
 						},
 						{
-							"id": 266,
+							"id": 270,
 							"name": "c",
 							"variant": "declaration",
 							"kind": 262144,
@@ -7344,11 +7443,11 @@
 									"fileName": "classes/Zen.ts",
 									"line": 87,
 									"character": 8,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Zen.ts#L87"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Zen.ts#L87"
 								}
 							],
 							"getSignature": {
-								"id": 267,
+								"id": 271,
 								"name": "c",
 								"variant": "signature",
 								"kind": 524288,
@@ -7385,7 +7484,7 @@
 										"fileName": "classes/Zen.ts",
 										"line": 87,
 										"character": 4,
-										"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Zen.ts#L87"
+										"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Zen.ts#L87"
 									}
 								],
 								"type": {
@@ -7395,7 +7494,7 @@
 							}
 						},
 						{
-							"id": 262,
+							"id": 266,
 							"name": "q",
 							"variant": "declaration",
 							"kind": 262144,
@@ -7405,11 +7504,11 @@
 									"fileName": "classes/Zen.ts",
 									"line": 78,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Zen.ts#L78"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Zen.ts#L78"
 								}
 							],
 							"setSignature": {
-								"id": 264,
+								"id": 268,
 								"name": "q",
 								"variant": "signature",
 								"kind": 1048576,
@@ -7446,12 +7545,12 @@
 										"fileName": "classes/Zen.ts",
 										"line": 78,
 										"character": 4,
-										"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Zen.ts#L78"
+										"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Zen.ts#L78"
 									}
 								],
 								"parameters": [
 									{
-										"id": 265,
+										"id": 269,
 										"name": "value",
 										"variant": "param",
 										"kind": 32768,
@@ -7469,7 +7568,7 @@
 							}
 						},
 						{
-							"id": 258,
+							"id": 262,
 							"name": "s",
 							"variant": "declaration",
 							"kind": 262144,
@@ -7479,11 +7578,11 @@
 									"fileName": "classes/Zen.ts",
 									"line": 64,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Zen.ts#L64"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Zen.ts#L64"
 								}
 							],
 							"setSignature": {
-								"id": 260,
+								"id": 264,
 								"name": "s",
 								"variant": "signature",
 								"kind": 1048576,
@@ -7520,12 +7619,12 @@
 										"fileName": "classes/Zen.ts",
 										"line": 64,
 										"character": 4,
-										"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Zen.ts#L64"
+										"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Zen.ts#L64"
 									}
 								],
 								"parameters": [
 									{
-										"id": 261,
+										"id": 265,
 										"name": "value",
 										"variant": "param",
 										"kind": 32768,
@@ -7543,7 +7642,7 @@
 							}
 						},
 						{
-							"id": 268,
+							"id": 272,
 							"name": "update",
 							"variant": "declaration",
 							"kind": 262144,
@@ -7553,11 +7652,11 @@
 									"fileName": "classes/Zen.ts",
 									"line": 105,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Zen.ts#L105"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Zen.ts#L105"
 								}
 							],
 							"setSignature": {
-								"id": 270,
+								"id": 274,
 								"name": "update",
 								"variant": "signature",
 								"kind": 1048576,
@@ -7586,12 +7685,12 @@
 										"fileName": "classes/Zen.ts",
 										"line": 105,
 										"character": 4,
-										"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Zen.ts#L105"
+										"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Zen.ts#L105"
 									}
 								],
 								"parameters": [
 									{
-										"id": 271,
+										"id": 275,
 										"name": "value",
 										"variant": "param",
 										"kind": 32768,
@@ -7609,7 +7708,7 @@
 							}
 						},
 						{
-							"id": 303,
+							"id": 307,
 							"name": "set",
 							"variant": "declaration",
 							"kind": 2048,
@@ -7619,12 +7718,12 @@
 									"fileName": "classes/Stream.ts",
 									"line": 167,
 									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L167"
+									"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L167"
 								}
 							],
 							"signatures": [
 								{
-									"id": 304,
+									"id": 308,
 									"name": "set",
 									"variant": "signature",
 									"kind": 4096,
@@ -7653,12 +7752,12 @@
 											"fileName": "classes/Stream.ts",
 											"line": 167,
 											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Stream.ts#L167"
+											"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Stream.ts#L167"
 										}
 									],
 									"parameters": [
 										{
-											"id": 305,
+											"id": 309,
 											"name": "ps",
 											"variant": "param",
 											"kind": 32768,
@@ -7688,14 +7787,14 @@
 									},
 									"inheritedFrom": {
 										"type": "reference",
-										"target": 360,
+										"target": 364,
 										"name": "Stream.set"
 									}
 								}
 							],
 							"inheritedFrom": {
 								"type": "reference",
-								"target": 359,
+								"target": 363,
 								"name": "Stream.set"
 							}
 						}
@@ -7704,36 +7803,36 @@
 						{
 							"title": "Properties",
 							"children": [
-								253,
-								288,
-								289,
+								257,
 								292,
-								290,
-								280,
-								281,
-								282,
-								283,
-								291,
-								252,
+								293,
+								296,
+								294,
 								284,
-								287,
 								285,
-								286
+								286,
+								287,
+								295,
+								256,
+								288,
+								291,
+								289,
+								290
 							]
 						},
 						{
 							"title": "Accessors",
 							"children": [
+								270,
 								266,
 								262,
-								258,
-								268
+								272
 							]
 						},
 						{
 							"title": "Methods",
 							"children": [
-								303
+								307
 							]
 						}
 					],
@@ -7742,13 +7841,13 @@
 							"fileName": "classes/Zen.ts",
 							"line": 18,
 							"character": 13,
-							"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Zen.ts#L18"
+							"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Zen.ts#L18"
 						}
 					],
 					"extendedTypes": [
 						{
 							"type": "reference",
-							"target": 330,
+							"target": 334,
 							"name": "Stream",
 							"package": "zen-3"
 						}
@@ -7759,7 +7858,7 @@
 				{
 					"title": "Classes",
 					"children": [
-						249
+						253
 					]
 				}
 			],
@@ -7768,7 +7867,7 @@
 					"fileName": "classes/Zen.ts",
 					"line": 1,
 					"character": 0,
-					"url": "https://github.com/cephasteom/zen-3/blob/c8b56ef/src/lib/zen/classes/Zen.ts#L1"
+					"url": "https://github.com/cephasteom/zen-3/blob/b65075b/src/lib/zen/classes/Zen.ts#L1"
 				}
 			]
 		}
@@ -7778,8 +7877,8 @@
 			"title": "Modules",
 			"children": [
 				1,
-				329,
-				248
+				333,
+				252
 			]
 		}
 	],
@@ -8765,11 +8864,11 @@
 		},
 		"167": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.odd"
+			"qualifiedName": "Pattern.not"
 		},
 		"168": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.odd"
+			"qualifiedName": "Pattern.not"
 		},
 		"169": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
@@ -8781,11 +8880,11 @@
 		},
 		"171": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.even"
+			"qualifiedName": "Pattern.odd"
 		},
 		"172": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.even"
+			"qualifiedName": "Pattern.odd"
 		},
 		"173": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
@@ -8797,11 +8896,11 @@
 		},
 		"175": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.if"
+			"qualifiedName": "Pattern.even"
 		},
 		"176": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.if"
+			"qualifiedName": "Pattern.even"
 		},
 		"177": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
@@ -8813,75 +8912,75 @@
 		},
 		"179": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.bts"
+			"qualifiedName": "Pattern.if"
 		},
 		"180": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.bts"
+			"qualifiedName": "Pattern.if"
 		},
 		"181": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.btms"
+			"qualifiedName": "a"
 		},
 		"182": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.btms"
+			"qualifiedName": "b"
 		},
 		"183": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.fn"
+			"qualifiedName": "Pattern.bts"
 		},
 		"184": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.fn"
+			"qualifiedName": "Pattern.bts"
 		},
 		"185": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "cb"
+			"qualifiedName": "Pattern.btms"
 		},
 		"186": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "__type"
+			"qualifiedName": "Pattern.btms"
 		},
 		"187": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "__type"
+			"qualifiedName": "Pattern.fn"
 		},
 		"188": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "x"
+			"qualifiedName": "Pattern.fn"
 		},
 		"189": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.scales"
+			"qualifiedName": "cb"
 		},
 		"190": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.scales"
+			"qualifiedName": "__type"
 		},
 		"191": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "names"
+			"qualifiedName": "__type"
 		},
 		"192": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "length"
+			"qualifiedName": "x"
 		},
 		"193": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "freq"
+			"qualifiedName": "Pattern.scales"
 		},
 		"194": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.chords"
+			"qualifiedName": "Pattern.scales"
 		},
 		"195": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.chords"
+			"qualifiedName": "names"
 		},
 		"196": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "names"
+			"qualifiedName": "length"
 		},
 		"197": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
@@ -8889,191 +8988,195 @@
 		},
 		"198": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.sin"
+			"qualifiedName": "Pattern.chords"
 		},
 		"199": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.sin"
+			"qualifiedName": "Pattern.chords"
 		},
 		"200": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.cos"
+			"qualifiedName": "names"
 		},
 		"201": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.cos"
+			"qualifiedName": "freq"
 		},
 		"202": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.tan"
+			"qualifiedName": "Pattern.sin"
 		},
 		"203": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.tan"
+			"qualifiedName": "Pattern.sin"
 		},
 		"204": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.asin"
+			"qualifiedName": "Pattern.cos"
 		},
 		"205": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.asin"
+			"qualifiedName": "Pattern.cos"
 		},
 		"206": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.acos"
+			"qualifiedName": "Pattern.tan"
 		},
 		"207": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.acos"
+			"qualifiedName": "Pattern.tan"
 		},
 		"208": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.atan"
+			"qualifiedName": "Pattern.asin"
 		},
 		"209": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.atan"
+			"qualifiedName": "Pattern.asin"
 		},
 		"210": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.atan2"
+			"qualifiedName": "Pattern.acos"
 		},
 		"211": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.atan2"
+			"qualifiedName": "Pattern.acos"
 		},
 		"212": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "y"
+			"qualifiedName": "Pattern.atan"
 		},
 		"213": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.abs"
+			"qualifiedName": "Pattern.atan"
 		},
 		"214": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.abs"
+			"qualifiedName": "Pattern.atan2"
 		},
 		"215": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.ceil"
+			"qualifiedName": "Pattern.atan2"
 		},
 		"216": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.ceil"
+			"qualifiedName": "y"
 		},
 		"217": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.floor"
+			"qualifiedName": "Pattern.abs"
 		},
 		"218": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.floor"
+			"qualifiedName": "Pattern.abs"
 		},
 		"219": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.round"
+			"qualifiedName": "Pattern.ceil"
 		},
 		"220": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.round"
+			"qualifiedName": "Pattern.ceil"
 		},
 		"221": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.exp"
+			"qualifiedName": "Pattern.floor"
 		},
 		"222": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.exp"
+			"qualifiedName": "Pattern.floor"
 		},
 		"223": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.log"
+			"qualifiedName": "Pattern.round"
 		},
 		"224": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.log"
+			"qualifiedName": "Pattern.round"
 		},
 		"225": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.max"
+			"qualifiedName": "Pattern.exp"
 		},
 		"226": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.max"
+			"qualifiedName": "Pattern.exp"
 		},
 		"227": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "compare"
+			"qualifiedName": "Pattern.log"
 		},
 		"228": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.min"
+			"qualifiedName": "Pattern.log"
 		},
 		"229": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.min"
+			"qualifiedName": "Pattern.max"
 		},
 		"230": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "compare"
+			"qualifiedName": "Pattern.max"
 		},
 		"231": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.pow"
+			"qualifiedName": "compare"
 		},
 		"232": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.pow"
+			"qualifiedName": "Pattern.min"
 		},
 		"233": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "exponent"
+			"qualifiedName": "Pattern.min"
 		},
 		"234": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
-			"qualifiedName": "Pattern.sqrt"
+			"qualifiedName": "compare"
 		},
 		"235": {
 			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.pow"
+		},
+		"236": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.pow"
+		},
+		"237": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "exponent"
+		},
+		"238": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
 			"qualifiedName": "Pattern.sqrt"
 		},
-		"248": {
-			"sourceFileName": "src/lib/zen/classes/Zen.ts",
-			"qualifiedName": ""
-		},
-		"249": {
-			"sourceFileName": "src/lib/zen/classes/Zen.ts",
-			"qualifiedName": "Zen"
+		"239": {
+			"sourceFileName": "src/lib/zen/classes/Pattern.ts",
+			"qualifiedName": "Pattern.sqrt"
 		},
 		"252": {
 			"sourceFileName": "src/lib/zen/classes/Zen.ts",
-			"qualifiedName": "Zen.t"
+			"qualifiedName": ""
 		},
 		"253": {
 			"sourceFileName": "src/lib/zen/classes/Zen.ts",
+			"qualifiedName": "Zen"
+		},
+		"256": {
+			"sourceFileName": "src/lib/zen/classes/Zen.ts",
+			"qualifiedName": "Zen.t"
+		},
+		"257": {
+			"sourceFileName": "src/lib/zen/classes/Zen.ts",
 			"qualifiedName": "Zen.bpm"
-		},
-		"258": {
-			"sourceFileName": "src/lib/zen/classes/Zen.ts",
-			"qualifiedName": "Zen.s"
-		},
-		"260": {
-			"sourceFileName": "src/lib/zen/classes/Zen.ts",
-			"qualifiedName": "Zen.s"
-		},
-		"261": {
-			"sourceFileName": "src/lib/zen/classes/Zen.ts",
-			"qualifiedName": "value"
 		},
 		"262": {
 			"sourceFileName": "src/lib/zen/classes/Zen.ts",
-			"qualifiedName": "Zen.q"
+			"qualifiedName": "Zen.s"
 		},
 		"264": {
 			"sourceFileName": "src/lib/zen/classes/Zen.ts",
-			"qualifiedName": "Zen.q"
+			"qualifiedName": "Zen.s"
 		},
 		"265": {
 			"sourceFileName": "src/lib/zen/classes/Zen.ts",
@@ -9081,169 +9184,181 @@
 		},
 		"266": {
 			"sourceFileName": "src/lib/zen/classes/Zen.ts",
-			"qualifiedName": "Zen.c"
-		},
-		"267": {
-			"sourceFileName": "src/lib/zen/classes/Zen.ts",
-			"qualifiedName": "Zen.c"
+			"qualifiedName": "Zen.q"
 		},
 		"268": {
 			"sourceFileName": "src/lib/zen/classes/Zen.ts",
-			"qualifiedName": "Zen.update"
+			"qualifiedName": "Zen.q"
 		},
-		"270": {
-			"sourceFileName": "src/lib/zen/classes/Zen.ts",
-			"qualifiedName": "Zen.update"
-		},
-		"271": {
+		"269": {
 			"sourceFileName": "src/lib/zen/classes/Zen.ts",
 			"qualifiedName": "value"
 		},
-		"280": {
-			"sourceFileName": "src/lib/zen/classes/Stream.ts",
-			"qualifiedName": "Stream.p"
+		"270": {
+			"sourceFileName": "src/lib/zen/classes/Zen.ts",
+			"qualifiedName": "Zen.c"
 		},
-		"281": {
-			"sourceFileName": "src/lib/zen/classes/Stream.ts",
-			"qualifiedName": "Stream.px"
+		"271": {
+			"sourceFileName": "src/lib/zen/classes/Zen.ts",
+			"qualifiedName": "Zen.c"
 		},
-		"282": {
-			"sourceFileName": "src/lib/zen/classes/Stream.ts",
-			"qualifiedName": "Stream.py"
+		"272": {
+			"sourceFileName": "src/lib/zen/classes/Zen.ts",
+			"qualifiedName": "Zen.update"
 		},
-		"283": {
-			"sourceFileName": "src/lib/zen/classes/Stream.ts",
-			"qualifiedName": "Stream.pz"
+		"274": {
+			"sourceFileName": "src/lib/zen/classes/Zen.ts",
+			"qualifiedName": "Zen.update"
+		},
+		"275": {
+			"sourceFileName": "src/lib/zen/classes/Zen.ts",
+			"qualifiedName": "value"
 		},
 		"284": {
 			"sourceFileName": "src/lib/zen/classes/Stream.ts",
-			"qualifiedName": "Stream.x"
+			"qualifiedName": "Stream.p"
 		},
 		"285": {
 			"sourceFileName": "src/lib/zen/classes/Stream.ts",
-			"qualifiedName": "Stream.y"
+			"qualifiedName": "Stream.px"
 		},
 		"286": {
 			"sourceFileName": "src/lib/zen/classes/Stream.ts",
-			"qualifiedName": "Stream.z"
+			"qualifiedName": "Stream.py"
 		},
 		"287": {
 			"sourceFileName": "src/lib/zen/classes/Stream.ts",
-			"qualifiedName": "Stream.xyz"
+			"qualifiedName": "Stream.pz"
 		},
 		"288": {
 			"sourceFileName": "src/lib/zen/classes/Stream.ts",
-			"qualifiedName": "Stream.e"
+			"qualifiedName": "Stream.x"
 		},
 		"289": {
 			"sourceFileName": "src/lib/zen/classes/Stream.ts",
-			"qualifiedName": "Stream.m"
+			"qualifiedName": "Stream.y"
 		},
 		"290": {
 			"sourceFileName": "src/lib/zen/classes/Stream.ts",
-			"qualifiedName": "Stream.mute"
+			"qualifiedName": "Stream.z"
 		},
 		"291": {
 			"sourceFileName": "src/lib/zen/classes/Stream.ts",
-			"qualifiedName": "Stream.solo"
+			"qualifiedName": "Stream.xyz"
 		},
 		"292": {
 			"sourceFileName": "src/lib/zen/classes/Stream.ts",
-			"qualifiedName": "Stream.map"
+			"qualifiedName": "Stream.e"
 		},
 		"293": {
 			"sourceFileName": "src/lib/zen/classes/Stream.ts",
-			"qualifiedName": "__object"
-		},
-		"303": {
-			"sourceFileName": "src/lib/zen/classes/Stream.ts",
-			"qualifiedName": "Stream.set"
-		},
-		"304": {
-			"sourceFileName": "src/lib/zen/classes/Stream.ts",
-			"qualifiedName": "Stream.set"
-		},
-		"305": {
-			"sourceFileName": "src/lib/zen/classes/Stream.ts",
-			"qualifiedName": "ps"
-		},
-		"329": {
-			"sourceFileName": "src/lib/zen/classes/Stream.ts",
-			"qualifiedName": ""
-		},
-		"330": {
-			"sourceFileName": "src/lib/zen/classes/Stream.ts",
-			"qualifiedName": "Stream"
-		},
-		"335": {
-			"sourceFileName": "src/lib/zen/classes/Stream.ts",
-			"qualifiedName": "Stream.p"
-		},
-		"336": {
-			"sourceFileName": "src/lib/zen/classes/Stream.ts",
-			"qualifiedName": "Stream.px"
-		},
-		"337": {
-			"sourceFileName": "src/lib/zen/classes/Stream.ts",
-			"qualifiedName": "Stream.py"
-		},
-		"338": {
-			"sourceFileName": "src/lib/zen/classes/Stream.ts",
-			"qualifiedName": "Stream.pz"
-		},
-		"339": {
-			"sourceFileName": "src/lib/zen/classes/Stream.ts",
-			"qualifiedName": "Stream.t"
-		},
-		"340": {
-			"sourceFileName": "src/lib/zen/classes/Stream.ts",
-			"qualifiedName": "Stream.x"
-		},
-		"341": {
-			"sourceFileName": "src/lib/zen/classes/Stream.ts",
-			"qualifiedName": "Stream.y"
-		},
-		"342": {
-			"sourceFileName": "src/lib/zen/classes/Stream.ts",
-			"qualifiedName": "Stream.z"
-		},
-		"343": {
-			"sourceFileName": "src/lib/zen/classes/Stream.ts",
-			"qualifiedName": "Stream.xyz"
-		},
-		"344": {
-			"sourceFileName": "src/lib/zen/classes/Stream.ts",
-			"qualifiedName": "Stream.e"
-		},
-		"345": {
-			"sourceFileName": "src/lib/zen/classes/Stream.ts",
 			"qualifiedName": "Stream.m"
 		},
-		"346": {
+		"294": {
 			"sourceFileName": "src/lib/zen/classes/Stream.ts",
 			"qualifiedName": "Stream.mute"
 		},
-		"347": {
+		"295": {
 			"sourceFileName": "src/lib/zen/classes/Stream.ts",
 			"qualifiedName": "Stream.solo"
 		},
-		"348": {
+		"296": {
 			"sourceFileName": "src/lib/zen/classes/Stream.ts",
 			"qualifiedName": "Stream.map"
 		},
-		"349": {
+		"297": {
 			"sourceFileName": "src/lib/zen/classes/Stream.ts",
 			"qualifiedName": "__object"
 		},
-		"359": {
+		"307": {
 			"sourceFileName": "src/lib/zen/classes/Stream.ts",
 			"qualifiedName": "Stream.set"
 		},
-		"360": {
+		"308": {
 			"sourceFileName": "src/lib/zen/classes/Stream.ts",
 			"qualifiedName": "Stream.set"
 		},
-		"361": {
+		"309": {
+			"sourceFileName": "src/lib/zen/classes/Stream.ts",
+			"qualifiedName": "ps"
+		},
+		"333": {
+			"sourceFileName": "src/lib/zen/classes/Stream.ts",
+			"qualifiedName": ""
+		},
+		"334": {
+			"sourceFileName": "src/lib/zen/classes/Stream.ts",
+			"qualifiedName": "Stream"
+		},
+		"339": {
+			"sourceFileName": "src/lib/zen/classes/Stream.ts",
+			"qualifiedName": "Stream.p"
+		},
+		"340": {
+			"sourceFileName": "src/lib/zen/classes/Stream.ts",
+			"qualifiedName": "Stream.px"
+		},
+		"341": {
+			"sourceFileName": "src/lib/zen/classes/Stream.ts",
+			"qualifiedName": "Stream.py"
+		},
+		"342": {
+			"sourceFileName": "src/lib/zen/classes/Stream.ts",
+			"qualifiedName": "Stream.pz"
+		},
+		"343": {
+			"sourceFileName": "src/lib/zen/classes/Stream.ts",
+			"qualifiedName": "Stream.t"
+		},
+		"344": {
+			"sourceFileName": "src/lib/zen/classes/Stream.ts",
+			"qualifiedName": "Stream.x"
+		},
+		"345": {
+			"sourceFileName": "src/lib/zen/classes/Stream.ts",
+			"qualifiedName": "Stream.y"
+		},
+		"346": {
+			"sourceFileName": "src/lib/zen/classes/Stream.ts",
+			"qualifiedName": "Stream.z"
+		},
+		"347": {
+			"sourceFileName": "src/lib/zen/classes/Stream.ts",
+			"qualifiedName": "Stream.xyz"
+		},
+		"348": {
+			"sourceFileName": "src/lib/zen/classes/Stream.ts",
+			"qualifiedName": "Stream.e"
+		},
+		"349": {
+			"sourceFileName": "src/lib/zen/classes/Stream.ts",
+			"qualifiedName": "Stream.m"
+		},
+		"350": {
+			"sourceFileName": "src/lib/zen/classes/Stream.ts",
+			"qualifiedName": "Stream.mute"
+		},
+		"351": {
+			"sourceFileName": "src/lib/zen/classes/Stream.ts",
+			"qualifiedName": "Stream.solo"
+		},
+		"352": {
+			"sourceFileName": "src/lib/zen/classes/Stream.ts",
+			"qualifiedName": "Stream.map"
+		},
+		"353": {
+			"sourceFileName": "src/lib/zen/classes/Stream.ts",
+			"qualifiedName": "__object"
+		},
+		"363": {
+			"sourceFileName": "src/lib/zen/classes/Stream.ts",
+			"qualifiedName": "Stream.set"
+		},
+		"364": {
+			"sourceFileName": "src/lib/zen/classes/Stream.ts",
+			"qualifiedName": "Stream.set"
+		},
+		"365": {
 			"sourceFileName": "src/lib/zen/classes/Stream.ts",
 			"qualifiedName": "ps"
 		}
