@@ -77,7 +77,7 @@ p, li {
     font-size: 1rem;
 }
 
-p:not(code > &), li {
+p:not(code > p), li {
     color: var(--color-yellow);
 }
 
