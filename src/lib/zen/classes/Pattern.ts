@@ -31,27 +31,34 @@ export class Pattern {
     private _bpm: number = 120
 
     // Logic
-    and;
-    or;
+    /** @hidden */
+    _and: null | Pattern = null;
+    /** @hidden */
+    _or: null | Pattern = null;
 
     /** @hidden */
     constructor() {
         this.reset()
+    }
 
-        // all we need is a way of preventing from being instantiated until it is needed
-        const handler = {
-            pattern: null,
-            get: (target: {pattern: null | Pattern}, key: string) => {
-                if(key === 'pattern') return target.pattern
-                console.log(arguments)
-                target.pattern = target.pattern || new Pattern()
-                // @ts-ignore
-                return target.pattern[key]
-            }
-        }
+    /**
+     * Initialise a new pattern and compare it with the previous chain
+     * @returns {Pattern}
+     * @example s0.e.every(3).and.every(2)
+     */ 
+    get and() {
+        !this._and && (this._and = new Pattern())
+        return this._and
+    }
 
-        this.and = new Proxy({pattern: null}, handler)
-        this.or = new Proxy({pattern: null}, handler)
+    /**
+     * Initialise a new pattern and compare it with the previous chain
+     * @returns {Pattern}
+     * @example s0.e.every(3).or.every(2)
+     */
+    get or() {
+        !this._or && (this._or = new Pattern())
+        return this._or
     }
 
     /**
@@ -69,6 +76,8 @@ export class Pattern {
     reset() {
         this.stack = []
         this._value = 0
+        this._and?.reset()
+        this._or?.reset()
         return this
     }
 
@@ -444,7 +453,7 @@ export class Pattern {
     }
 
     /**
-     * Test if the previous value in the pattern chain is equal to a value.
+     * Test if the previous value in the pattern chain is equal to a value using ==.
      * @param value value to test against
      * @param a value to return when true
      * @param b value to return when false
@@ -456,7 +465,19 @@ export class Pattern {
     }
 
     /**
-     * Test if the previous value in the pattern chain is not equal to a value.
+     * Test if the previous value in the pattern chain is equal to a value using ===.
+     * @param value value to test against
+     * @param a value to return when true
+     * @param b value to return when false
+     * @returns {Pattern}
+     */ 
+    eqq(n: number, a: number = 1, b: number = 0): Pattern {
+        this.stack.push(x => [x].flat().every(x => x === n) ? a : b)
+        return this
+    }
+
+    /**
+     * Test if the previous value in the pattern chain is not equal to a value using !=.
      * @param value value to test against
      * @param a value to return when true
      * @param b value to return when false
@@ -464,6 +485,18 @@ export class Pattern {
      */ 
     neq(n: number, a: number = 1, b: number = 0): Pattern {
         this.stack.push(x => [x].flat().every(x => x != n) ? a : b)
+        return this
+    }
+
+    /**
+     * Test if the previous value in the pattern chain is not equal to a value using !==.
+     * @param value value to test against
+     * @param a value to return when true
+     * @param b value to return when false
+     * @returns {Pattern}
+     */ 
+    neqq(n: number, a: number = 1, b: number = 0): Pattern {
+        this.stack.push(x => [x].flat().every(x => x !== n) ? a : b)
         return this
     }
 
@@ -720,19 +753,31 @@ export class Pattern {
         return this
     }
 
+    /**
+     * push additional functions to the pattern stack if logic operators have been applied
+     * @param t current time
+     * @param q current division
+     * @param bpm current bpm
+     * @hidden
+     */ 
+    applyLogic(t: number, q: number, bpm?: number) {
+        const and = this._and && this._and.get(t, q, bpm);
+        const or = this._or && this._or.get(t, q, bpm);
+        and !== null && this.fn(x => x && and ? 1 : 0)
+        or !== null && this.fn(x => x || or ? 1 : 0)
+    }
+
     /** @hidden */
-    get(t: number, q: number, bpm?: number) {
+    get(t: number, q: number, bpm?: number): patternValue | null {
         this._q = q
         this._bpm = bpm || this._bpm
 
-        // const and = this.and.pattern ? this.and.pattern.get(t, q, bpm) : null
-        // const or = this.or.pattern ? this.or.pattern.get(t, q, bpm) : null
-        // console.log(this.and.pattern?.stack)
-
+        this.applyLogic(t, q, bpm)
+        
         const value = this.stack.length 
             ? this.stack.reduce((val: patternValue, fn) => fn(val), t) 
             : null
-
+        
         this._value = value || 0
         return value
     }
