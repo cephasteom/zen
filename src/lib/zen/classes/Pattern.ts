@@ -35,6 +35,8 @@ export class Pattern {
     _and: null | Pattern = null;
     /** @hidden */
     _or: null | Pattern = null;
+    /** @hidden */
+    _xor: null | Pattern = null;
 
     /** @hidden */
     constructor() {
@@ -46,7 +48,7 @@ export class Pattern {
      * @returns {Pattern}
      * @example s0.e.every(3).and.every(2)
      */ 
-    get and() {
+    get and(): Pattern {
         !this._and && (this._and = new Pattern())
         return this._and
     }
@@ -56,10 +58,20 @@ export class Pattern {
      * @returns {Pattern}
      * @example s0.e.every(3).or.every(2)
      */
-    get or() {
+    get or(): Pattern {
         !this._or && (this._or = new Pattern())
         return this._or
     }
+
+    /**
+     * Initialise a new pattern and compare it with the previous chain
+     * @returns {Pattern}
+     * @example s0.e.every(3).xor.every(2)
+     */
+    get xor(): Pattern {
+        !this._xor && (this._xor = new Pattern())
+        return this._xor
+    } 
 
     /**
      * Set a single value
@@ -774,8 +786,10 @@ export class Pattern {
     applyLogic(t: number, q: number, bpm?: number) {
         const and = this._and && this._and.get(t, q, bpm);
         const or = this._or && this._or.get(t, q, bpm);
+        const xor = this._xor && this._xor.get(t, q, bpm);
         and !== null && this.fn(x => x && and ? 1 : 0)
         or !== null && this.fn(x => x || or ? 1 : 0)
+        xor !== null && this.fn(x => x !== xor ? 1 : 0)
     }
 
     /** @hidden */
