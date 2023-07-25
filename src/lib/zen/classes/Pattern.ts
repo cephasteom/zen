@@ -459,7 +459,7 @@ export class Pattern {
      * @param b value to return when false
      * @returns {Pattern}
      */ 
-    eq(n: number, a: number = 1, b: number = 0): Pattern {
+    eq(n: number = 1, a: number = 1, b: number = 0): Pattern {
         this.stack.push(x => [x].flat().every(x => x == n) ? a : b)
         return this
     }
@@ -471,7 +471,7 @@ export class Pattern {
      * @param b value to return when false
      * @returns {Pattern}
      */ 
-    eqq(n: number, a: number = 1, b: number = 0): Pattern {
+    eqq(n: number = 1, a: number = 1, b: number = 0): Pattern {
         this.stack.push(x => [x].flat().every(x => x === n) ? a : b)
         return this
     }
@@ -483,7 +483,7 @@ export class Pattern {
      * @param b value to return when false
      * @returns {Pattern}
      */ 
-    neq(n: number, a: number = 1, b: number = 0): Pattern {
+    neq(n: number = 1, a: number = 1, b: number = 0): Pattern {
         this.stack.push(x => [x].flat().every(x => x != n) ? a : b)
         return this
     }
@@ -495,8 +495,19 @@ export class Pattern {
      * @param b value to return when false
      * @returns {Pattern}
      */ 
-    neqq(n: number, a: number = 1, b: number = 0): Pattern {
+    neqq(n: number = 1, a: number = 1, b: number = 0): Pattern {
         this.stack.push(x => [x].flat().every(x => x !== n) ? a : b)
+        return this
+    }
+
+    /**
+     * Invert the previous value in the pattern chain - like a bitwise NOT.
+     * @param a value to return when true
+     * @param b value to return when false
+     * @returns {Pattern}
+     */ 
+    not(a: number = 1, b: number = 0): Pattern {
+        this.stack.push(x => [x].flat().every(x => !x) ? a : b)
         return this
     }
 
