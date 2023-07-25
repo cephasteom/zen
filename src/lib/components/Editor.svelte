@@ -110,6 +110,7 @@
 <style lang="scss">
     .container {
         position: relative;
+        background-color: var(--color-grey-darkest);
     }
     
     .flash {
@@ -121,7 +122,7 @@
         100% { filter: invert(0) }
     }
     .editor {
-        width: 100%;
+        width: calc(100% - 1rem);
         height: 60vh!important;
         @media (min-width: 500px) {
             height: 75vh!important;
