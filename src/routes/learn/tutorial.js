@@ -136,7 +136,7 @@ s0.e.every(1)
 \`\`\`
 
 ## Events and mutations
-When a sound is triggered, it is called an event. You can trigger events using the \`e\` property of a stream. The \`e\` property is an instance of [Pattern](docs), and can be used to trigger events at different points in time and space. Depending on how you have mapped parameters across each cycle and the canvas, the sounds will be different. Try this:
+When a sound is triggered, it is called an event. You can trigger events using the \`e\` property of a stream. The \`e\` property is an instance of [Pattern](docs) and will trigger an event each time it receives a value that is greater than 0. Try this:
 \`\`\`js
 z.bpm.set(30);
 
@@ -149,7 +149,8 @@ s0.x.random(0,16,1)
 s0.y.random(0,16,1)
 s0.e.set(1)
 \`\`\`
-Here, the \`n\` parameter maps a scale to time. Since we're letting time flow in a linear direction, the position of the stream on the canvas doesn't affect the note - it keeps cycling through the scale. However, the \`harm\` and \`modi\` parameters are mapped to the x and y axes of the canvas, so these parameters changes as the stream moves randomly around the canvas.
+
+Here, \`e\` is always set to 1, so an event is triggered every time the code is executed. As you can hear, the musical parameters change with each event. The \`n\` parameter maps a scale to time. Since we're letting time flow in a linear direction, the position of the stream on the canvas doesn't affect the note - it keeps cycling through the scale. However, the \`harm\` and \`modi\` parameters are mapped to the x and y axes of the canvas, so these parameters changes as the stream moves randomly around the canvas.
 
 When an event is triggered, the parameters remain the same for the duration of the event. What happens if you want to change parameters in between events? Mutations allow you to adjust a stream's parameters at any point in time, without triggering a new event. It will affect all active events within that stream. To make a parameter mutable, prefix it with \`_\`. Then, trigger a mutation using the \`m\` property of a stream - again, another instance of [Pattern](docs). The example below sets the \`harm\` parameter to mutate in between each event. Try adding \`_\` to other parameters to hear the difference:
 \`\`\`js

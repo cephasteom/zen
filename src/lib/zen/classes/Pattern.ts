@@ -30,9 +30,28 @@ export class Pattern {
     /** @hidden */
     private _bpm: number = 120
 
+    // Logic
+    and;
+    or;
+
     /** @hidden */
     constructor() {
         this.reset()
+
+        // all we need is a way of preventing from being instantiated until it is needed
+        const handler = {
+            pattern: null,
+            get: (target: {pattern: null | Pattern}, key: string) => {
+                if(key === 'pattern') return target.pattern
+                console.log(arguments)
+                target.pattern = target.pattern || new Pattern()
+                // @ts-ignore
+                return target.pattern[key]
+            }
+        }
+
+        this.and = new Proxy({pattern: null}, handler)
+        this.or = new Proxy({pattern: null}, handler)
     }
 
     /**
@@ -54,12 +73,12 @@ export class Pattern {
     }
 
     /**
-     * Use another pattern's stack
+     * Inset another pattern's stack into the current pattern's stack
      * @param {Pattern} pattern - an instance of another pattern
      * @returns {Pattern}
      * @example 
-    s0.p.amp.use(s1.p.amp)
-    s1.p.amp.eval(s0.p.amp).mul(2);
+    s0.p.amp.sine()
+    s1.p.pan.eval(s0.p.amp);
      */
     use(pattern: Pattern): Pattern {
         this.stack.push(...pattern.stack)
@@ -67,7 +86,7 @@ export class Pattern {
     }
 
     /**
-     * Get the current value of another pattern
+     * Get the current value of another pattern, replaces the previous value in the pattern chain
      * @param {Pattern} pattern - an instance of another pattern
      * @returns {Pattern}
      * @example 
@@ -432,7 +451,7 @@ export class Pattern {
      * @returns {Pattern}
      */ 
     eq(n: number, a: number = 1, b: number = 0): Pattern {
-        this.stack.push(x => [x].flat().every(x => x === n) ? a : b)
+        this.stack.push(x => [x].flat().every(x => x == n) ? a : b)
         return this
     }
 
@@ -444,7 +463,7 @@ export class Pattern {
      * @returns {Pattern}
      */ 
     neq(n: number, a: number = 1, b: number = 0): Pattern {
-        this.stack.push(x => [x].flat().every(x => x !== n) ? a : b)
+        this.stack.push(x => [x].flat().every(x => x != n) ? a : b)
         return this
     }
 
@@ -705,6 +724,10 @@ export class Pattern {
     get(t: number, q: number, bpm?: number) {
         this._q = q
         this._bpm = bpm || this._bpm
+
+        // const and = this.and.pattern ? this.and.pattern.get(t, q, bpm) : null
+        // const or = this.or.pattern ? this.or.pattern.get(t, q, bpm) : null
+        // console.log(this.and.pattern?.stack)
 
         const value = this.stack.length 
             ? this.stack.reduce((val: patternValue, fn) => fn(val), t) 
