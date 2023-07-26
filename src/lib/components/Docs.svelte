@@ -3,6 +3,11 @@
     export let json: any;
     let selectedSection: string;
     let selectedChild: string;
+
+    const handleSelectSection = (section: string) => {
+        selectedSection = section;
+        selectedChild = '';
+    }
 </script>
 
 <div>
@@ -10,7 +15,7 @@
         {#each json.children as section}
             <button 
                 class="quick-link {selectedSection === section.name && 'active'}" 
-                on:click={() => selectedSection = section.name}>
+                on:click={() => handleSelectSection(section.name)}>
                     {section.name}
             </button>
         {/each}
