@@ -42,14 +42,14 @@ const loop = new Loop(time => {
     let { q, s, c } = z
     
     // evaluate the user's code, using fallback if it fails
+    const [ s0, s1, s2, s3, s4, s5, s6, s7 ] = streams;
+    const map = keymap
     try {
-        const [ s0, s1, s2, s3, s4, s5, s6, s7 ] = streams;
-        const map = keymap
+        [s0, s1, s2, s3, s4, s5, s6, s7]; map; // prevent unused variable errors
         const thisCode = !(t%z.update) ? get(code) : get(lastCode) // only eval code on the beat
         eval(thisCode)
         lastCode.set(thisCode)
     } catch (e: any) {
-        const [ s0, s1, s2, s3, s4, s5, s6, s7 ] = streams;
         get(errorActions).forEach(cb => cb(e.message))
         eval(get(lastCode))
     }
