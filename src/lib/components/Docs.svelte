@@ -41,7 +41,7 @@
                         </div>
 
                         {#each child.children as subChild}
-                            <div id={subChild.name} class="class {subChild.name !== selectedChild && 'hidden'}">
+                            <div class="class {subChild.name !== selectedChild && 'hidden'}">
                                 <h4 id={subChild.name.toLowerCase()}>{subChild.name}</h4>
                                 <p class="path">Defined in <a href={subChild.sources[0]?.url} target="_blank">{subChild.sources[0]?.fileName}</a></p>
                                 {#if subChild.comment}

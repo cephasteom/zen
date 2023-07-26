@@ -1,5 +1,7 @@
 
 <script lang="ts">
+    import { page } from '$app/stores';
+    import { onMount } from 'svelte';
     import hljs from 'highlight.js/lib/core';
     import javascript from 'highlight.js/lib/languages/javascript';
     hljs.registerLanguage('javascript', javascript);
@@ -13,8 +15,18 @@
     let expanded: string | boolean = false
 
     const handleExpand = (section: string) => {
-        expanded = expanded === section ? false : section
+        expanded = expanded === section 
+            ? false 
+            : section
+        const route = $page.url.searchParams.get('route').split(',')
+        route[0] = expanded || ''
+        window.history.pushState({}, '', `?route=${route.join(',')}`)
     }
+
+    onMount(() => {
+        const route = $page.url.searchParams.get('route').split(',')
+        route.length > 0 && handleExpand(route[0])
+    })
 </script>
 
 <svelte:head>
