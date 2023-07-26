@@ -60,7 +60,6 @@ const loop = new Loop(time => {
     s = z.s
     q = z.q
     c = z.c
-    
 
     // update loop and transport
     loop.interval = `${q}n`
