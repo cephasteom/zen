@@ -10,11 +10,11 @@
     import classes from "$lib/docs/classes.json"
     import synths from "$lib/docs/synths.json"
 
-    let expandControls = true;
-    let expandVariables = true;
-    let expandClasses = true;
-    let expandSound = true;
-    let expandMidi = true;
+    let expanded: string | boolean = false
+
+    const handleExpand = (section: string) => {
+        expanded = expanded === section ? false : section
+    }
 </script>
 
 <svelte:head>
@@ -27,9 +27,9 @@
     <p>The following documentation provides a comprehensive list of all Zen variables, classes and methods. It is intended as a reference whilst using Zen. If you are new to Zen, we recommend that you follow the <a href="/learn">tutorial</a> or load some examples in the <a href="/">code editor</a> first.</p>
     
     <section class="controls">
-        <h2>Controls <button on:click={() => expandControls = !expandControls}><Icon data="{faCaretDown}" /></button></h2>
+        <h2>Controls <button on:click={() => handleExpand('controls')}><Icon data="{faCaretDown}" /></button></h2>
 
-        <div class="expandable{expandControls ? '--expanded' : ''}">
+        <div class="expandable{expanded === 'controls' ? '--expanded' : ''}">
             <p>Zen exposes the following read-only variables:</p>
             <ul>
                 <li><code class="inline-code">shift + enter</code> executes the code and starts playback.</li>
@@ -41,9 +41,9 @@
     </section>
 
     <section class="variables">
-        <h2>Variables <button on:click={() => expandVariables = !expandVariables}><Icon data="{faCaretDown}" /></button></h2>
+        <h2>Variables <button on:click={() => handleExpand('variables')}><Icon data="{faCaretDown}" /></button></h2>
 
-        <div class="expandable{expandVariables ? '--expanded' : ''}">
+        <div class="expandable{expanded === 'variables' ? '--expanded' : ''}">
             <p>Zen exposes the following read-only variables:</p>
             <ul>
                 <li><code class="inline-code">t</code> an integer representing time.</li>
@@ -64,26 +64,26 @@ z.t.sine(0,128,1) // t is an instance of Pattern, so you can have some serious f
     </section>
 
     <section class="classes">
-        <h2>Classes <button on:click={() => expandClasses = !expandClasses}><Icon data="{faCaretDown}" /></button></h2>
+        <h2>Classes <button on:click={() => handleExpand('classes')}><Icon data="{faCaretDown}" /></button></h2>
         {#if classes}
-            <div class="expandable{expandClasses ? '--expanded' : ''}">
+            <div class="expandable{expanded === 'classes' ? '--expanded' : ''}">
                 <Docs json={classes} />
             </div>
         {/if}
     </section>
 
     <section class="Sound">
-        <h2>Instruments | Effects <button on:click={() => expandSound = !expandSound}><Icon data="{faCaretDown}" /></button></h2>
+        <h2>Instruments | Effects <button on:click={() => handleExpand('sound')}><Icon data="{faCaretDown}" /></button></h2>
         {#if synths}
-            <div class="expandable{expandSound ? '--expanded' : ''}">
+            <div class="expandable{expanded === 'sound' ? '--expanded' : ''}">
                 <Docs json={synths} />
             </div>
         {/if}
     </section>
 
     <section class="Midi">
-        <h2>Midi <button on:click={() => expandMidi = !expandMidi}><Icon data="{faCaretDown}" /></button></h2>
-        <div class="expandable{expandMidi ? '--expanded' : ''}">
+        <h2>Midi <button on:click={() => handleExpand('midi')}><Icon data="{faCaretDown}" /></button></h2>
+        <div class="expandable{expanded === 'midi' ? '--expanded' : ''}">
             <p>Midi is simple to use in Zen. On page load, all available midi inputs and outputs are printed in your console for reference. These strings can be assigned to a stream's <code class="inline-code">midi</code> parameter in order to send messages to that device. The following parameters control midi routing in Zen:</p>
             <ul>
                 <li><code class="inline-code">midi</code> the midi device to send messages to.</li>
