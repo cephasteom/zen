@@ -28,6 +28,7 @@ let counter = createCount(0);
 // initialise Zen and Streams within the scope of the loop
 export const z = new Zen();
 export const streams: Stream[] = Array(8).fill(0).map((_, i) => new Stream('s' + i))
+let bpm = 120
 
 // Main Zen loop
 const loop = new Loop(time => {
@@ -59,11 +60,17 @@ const loop = new Loop(time => {
     s = z.s
     q = z.q
     c = z.c
-    const bpm = z.getBpm()
+    
 
     // update loop and transport
     loop.interval = `${q}n`
-    Transport.bpm.setValueAtTime(bpm, time)
+    const newBpm = z.getBpm()
+    if(newBpm !== bpm) {
+
+        Transport.bpm.setValueAtTime(newBpm, time)
+        bpm = newBpm
+    }
+    // Transport.bpm.value = bpm
 
     // compile events and mutations
     const compiled = streams.map(stream => stream.get(t, q, s, bpm, z))
