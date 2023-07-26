@@ -162,6 +162,7 @@ code {
 pre {
     background-color: var(--color-yellow);
     padding: 1rem;
+    overflow: scroll;
 }
 
 input,
