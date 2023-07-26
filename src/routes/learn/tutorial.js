@@ -107,8 +107,6 @@ For a full list of Pattern methods, check out the [docs](docs).
 ## Let's make some noise
 Now that we've covered the basics, let's make some noise. The simplest way of setting musical parameters is to use the \`.set()\` method on each stream - which takes a list of keys and values as its sole argument. Try this:
 \`\`\`js
-z.s=16
-z.q=16
 s0.set({inst: 'synth', n: 48, dur: 1000})
 s0.e.every(8)
 \`\`\`
@@ -127,7 +125,7 @@ s0.e.every(1)
 Or you can map parameters to the x, and y axes of the canvas, using a stream's \`px\` and \`py\` properties. Any parameter name written after the \`px\` or \`py\` properties is an instance of [Pattern](docs) and is mapped to the x or y axis of the canvas. Try this:
 \`\`\`js
 s0.set({inst: 'synth', dur: 1000, cut: 0, reverb: 0.5, locut: 0.3})
-s0.p.n.scales('d-minPent', 16)
+s0.p.n.scales('d-minpent', 16)
 s0.px.modi.range(0,4,1,0.5)
 s0.py.harm.range(0,4,0.125,0.5)
 s0.x.set(t)
@@ -258,9 +256,9 @@ s0.m.set(1)
 \`\`\`
 
 ## Advanced
-So, how does this all work then? At the top level, Zen executes your code each time \`t\` increments. Where you've use \`t\`, or any other dynamic value, in your code, this will change each frame, allowing you to approach pattern generation as you would procedural drawing. 
+So, how does this all work then? At the top level, Zen executes your code each time \`t\` increments. Where you've use \`t\` in your code, this will change each frame, allowing you to approach pattern generation as you would procedural drawing. 
 
-Each time chain a method onto an instance of Pattern, used for musical parameters and events, a new function is added to a stack of callbacks. After your code has executed, Zen iterates through this stack, passing the current value of \`t\` to the first function, then passing the result of that function to the next function, and so on. The result of the last function is then used to set the parameter.
+Instances of Pattern are used for musical parameters, events and mutations. Each time you chain a method, a new function is added to a stack of callbacks. After your code has executed, Zen calculates the current \'t\' value and passes it to the first function in the stack. The result is passed to the next function, and so on. The result of the last function is then used to set the parameter.
 
 If you need to get the value of a stream's parameter, perhaps using it in another stream, you can pass the parameter to the \`eval\` method of a Pattern. This will return the current value of the parameter. For example:
 \`\`\`js
