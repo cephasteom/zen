@@ -21,13 +21,14 @@
         expanded = expanded === section 
             ? false 
             : section
-        const route = $page.url.searchParams.get('route').split(',')
+        const route = $page.url.searchParams.has('route') && $page.url.searchParams.get('route').split(',')
+        if(!route) return
         route[0] = expanded || ''
         window.history.pushState({}, '', `?route=${route.join(',')}`)
     }
 
     onMount(() => {
-        const route = $page.url.searchParams.get('route').split(',')
+        const route = $page.url.searchParams.has('route') && $page.url.searchParams.get('route').split(',')
         route.length > 0 && handleExpand(route[0])
     })
 </script>
