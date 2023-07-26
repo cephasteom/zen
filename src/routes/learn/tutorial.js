@@ -182,6 +182,22 @@ s0.e.every(4)
 s0.m.every(2)
 \`\`\`
 
+## Cutting events
+You can cut events short using the \`cut\` parameter. This is useful for truncating sounds in the same or other streams when a new sound is triggered:
+\`\`\`js
+z.set({inst: 'synth', dur: 4000})
+z.px.n.scales('d-dorian', 16)
+
+s0.set({cut: [0,1]}) // cut stream 0 and 1 when new event is triggered
+s0.x.range(0,s)
+s0.e.every(8)
+
+s1.x.range(0,s)
+s1.y.set(s/2)
+s1.e.add(4).every(8)
+\`\`\`
+You can control how quickly a stream cuts using the \`cutr\` parameter, a value given in ms.
+
 ## Global settings
 You can update global parameters, such as the size of the canvas, or the number of steps per cycle, using the Zen class, represented in your code as the variable \`z\`:
 \`\`\`js
