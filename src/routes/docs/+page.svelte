@@ -12,6 +12,9 @@
     import classes from "$lib/docs/classes.json"
     import synths from "$lib/docs/synths.json"
 
+    import { scales } from "$lib/zen/data/scales";
+    import { chords } from "$lib/zen/data/chords";
+
     let expanded: string | boolean = false
 
     const handleExpand = (section: string) => {
@@ -113,9 +116,22 @@ s0.e.every(4)`,
         </div>
     </section>
 
+    <section class="data">
+        <h2>Scales and Chords <button on:click={() => handleExpand('data')}><Icon data="{faCaretDown}" /></button></h2>
+        <div class="expandable{expanded === 'data' ? '--expanded' : ''}">
+            <p>All of the scales that you can use in the <code class="inline-code">scales</code> pattern method (exported from TidalCycles - with thanks.):</p>
+            <p class="scales">{ Object.keys(scales).join(', ') }</p>
+            
+            <p>All of the chords that you can use in the <code class="inline-code">chords</code> pattern method (exported from TidalCycles - with thanks.):</p>
+            <p class="chords">{ Object.keys(chords).join(', ') }</p>
+
+    </section>
 </div>
 
 <style lang="scss">
+    .content {
+        padding-bottom: 3rem;
+    }
     p, li {
         margin-top: 1rem;
     }
@@ -145,5 +161,9 @@ s0.e.every(4)`,
         cursor: pointer;
         color: var(--color-theme-2);
         padding: 0;
+    }
+
+    .scales, .chords {
+        color: var(--color-theme-3);
     }
 </style>
