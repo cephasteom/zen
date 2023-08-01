@@ -19,13 +19,13 @@ class Midi {
     }
 
     // keep track of notes and ccs for each device
-    storeHistory(note: number, ccs: {}[], device?: Output, channels?: number[] | undefined, latency?: number) {
+    storeHistory(note: number, ccs: {}[], device?: Output, channels?: number[] | undefined, mididelay?: number) {
         const history = this.history || {}
         device && (history.device = device);
         channels && (history.channels = channels);
         note && (history.notes = [...(history.notes || []), note]);
         ccs && (history.ccs = [...(history.ccs || []), ...ccs]);
-        latency && (history.latency = latency);
+        mididelay && (history.mididelay = mididelay);
         this.history = history
     }
 
@@ -43,7 +43,7 @@ class Midi {
 
     // accepts a single note
     trigger(params: { [key: string]: number | string } = {}, delta: number) {
-        const { midi, midichan, latency, n, dur = 1, amp = 0.5 } = params;
+        const { midi, midichan, mididelay, n, dur = 1, amp = 0.5 } = params;
 
         // ignore nonexistent devices
         if(!this.outputs.includes(midi.toString())) return;
@@ -52,7 +52,7 @@ class Midi {
         const channels = midichan ? (Array.isArray(midichan) ? midichan : [+midichan]) : undefined;
         const device = WebMidi.getOutputByName(midi.toString());
         const duration = +dur * 1000;
-        const timestamp = (delta * 1000) + (+latency || 0)
+        const timestamp = (delta * 1000) + (+mididelay || 0)
 
         const options = {
             duration,
@@ -75,17 +75,17 @@ class Midi {
             device.sendControlChange(cc, !prev[value] ? 0 : value, options)
         })
 
-        this.storeHistory(+note, ccs, device, channels, +latency);
+        this.storeHistory(+note, ccs, device, channels, +mididelay);
     }
 
 
     cut(delta: number) {
         if(!this.history.device) return;
         
-        const latency = this.history.latency || 0;
+        const mididelay = this.history.mididelay || 0;
         
         const options = {
-            time: `+${(delta * 1000) + latency - 10}`,
+            time: `+${(delta * 1000) + mididelay - 10}`,
             ...this.history
         }
         
@@ -96,9 +96,9 @@ class Midi {
     mutate(params: params, delta: number) {
         if(!this.history.device) return;
         
-        const { latency } = params;
+        const { mididelay } = params;
         
-        const timestamp = (delta * 1000) + (+latency || 0) - 10
+        const timestamp = (delta * 1000) + (+mididelay || 0) - 10
         
         const options = {
             time: `+${timestamp}`,

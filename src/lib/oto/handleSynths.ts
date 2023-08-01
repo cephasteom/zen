@@ -99,8 +99,9 @@ const samples = writable<Dictionary>({});
         .then(res => res.json())
         .then(json => {
             if(!json) return
-            samples.update((samples: Dictionary) => ({...samples, ...json}))
             console.log('Loaded samples from ' + url)
+            samples.update((samples: Dictionary) => ({...samples, ...json}))
+            
         })
         .catch(_ => console.log('No samples available at ' + url))
 })
@@ -111,3 +112,5 @@ synths.subscribe((synths: Dictionary) => {
             synth && (synth.banks = {...synth.banks, ...get(samples)})
         ))
 })
+
+samples.subscribe((samples: Dictionary) => console.log(...Object.keys(samples)))

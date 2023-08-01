@@ -104,7 +104,7 @@ z.t.sine(0,128,1) // t is an instance of Pattern, so you can have some serious f
             <ul>
                 <li><code class="inline-code">midi</code> the midi device to send messages to.</li>
                 <li><code class="inline-code">midichan</code> the midi channel to send messages to. Sends to all channels if not included.</li>
-                <li><code class="inline-code">latency</code> delay midi messages by n milliseconds. Useful for synchronising midi and audio.</li>
+                <li><code class="inline-code">mididelay</code> delay midi messages by n milliseconds. Useful for synchronising midi and audio.</li>
                 <li><code class="inline-code">cc1</code>, <code class="inline-code">cc2</code> etc. Send control change messages. If you wish to use more memorable names, you can map keys to other keys using a stream's map property. See Classes > Stream > map. CC values are normalised (0 - 1).</li>
             </ul>
             <pre><code>{@html
@@ -120,9 +120,11 @@ s0.e.every(4)`,
     <section class="data">
         <h2>Scales and Chords <button on:click={() => handleExpand('data')}><Icon data="{faCaretDown}" /></button></h2>
         <div class="expandable{expanded === 'data' ? '--expanded' : ''}">
+            <p>Scales use the following syntax <code class="inline-code">root-scale</code>, as in <code class="inline-code">d-major</code></p>
             <p>All of the scales that you can use in the <code class="inline-code">scales</code> pattern method (exported from TidalCycles - with thanks.):</p>
             <p class="scales">{ Object.keys(scales).join(', ') }</p>
             
+            <p>Scales use the following syntax <code class="inline-code">root-chord</code>, as in <code class="inline-code">a-min7</code></p>
             <p>All of the chords that you can use in the <code class="inline-code">chords</code> pattern method (exported from TidalCycles - with thanks.):</p>
             <p class="chords">{ Object.keys(chords).join(', ') }</p>
 
