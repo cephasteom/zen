@@ -29,7 +29,7 @@ export function handleMidiEvent(delta: number, id: string, params: Dictionary) {
     });
 
     // handle multiple midi devices
-    [midi].flat().forEach((midi: string, instIndex: number) => {
+    midi && [midi].flat().forEach((midi: string, instIndex: number) => {
         // handle multiple notes
         [n].flat().forEach((n: number, noteIndex: number) => {
             const ps: Dictionary = Object.entries(params).reduce((obj, [key, val]) => ({

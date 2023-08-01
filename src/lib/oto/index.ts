@@ -3,8 +3,8 @@ import { handleSynthEvent, handleSynthMutation } from "./handleSynths";
 import type { Dictionary } from "./types";
 
 export function handleEvent(time: number, delta: number, id: string, params: Dictionary) {
-    params.midi && handleMidiEvent(delta, id, params);
-    params.inst && handleSynthEvent(time, id, params);
+    handleMidiEvent(delta, id, params);
+    handleSynthEvent(time, id, params);
 }
 
 export function handleMutation(time: number, delta: number, id: string, params: Dictionary) {

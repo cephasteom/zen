@@ -50,7 +50,7 @@ export const handleSynthEvent = (time: number, id: string, params: Dictionary) =
     });
 
     // handle multiple insts
-    [inst].flat().forEach((inst: string, instIndex: number) => {
+    inst && [inst].flat().forEach((inst: string, instIndex: number) => {
         // ignore instruments that don't exist
         if(!synthTypes.includes(inst)) return
     
@@ -73,7 +73,7 @@ export const handleSynthEvent = (time: number, id: string, params: Dictionary) =
     })
 
     // handle FX
-    channels[channel].set(params, time)
+    channels[channel]?.set(params, time)
 }
 
 export const handleSynthMutation = (time: number, id: string, params: Dictionary) => {
