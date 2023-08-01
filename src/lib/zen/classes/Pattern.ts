@@ -120,6 +120,23 @@ export class Pattern {
     }
 
     /**
+     * Negate the value passed as the first argument
+     * @param {boolean | Pattern} x - a boolean or pattern
+     * @returns {Pattern}
+     * @example 
+     * s0.e.every(3)
+     * s1.e.not(s0.e)
+     * s2.e.not(!(t%3))
+     */ 
+    not(x: boolean | Pattern): Pattern {
+        this.stack.push(() => {
+            const value = x instanceof Pattern ? x._value : x
+            return !value ? 1 : 0
+        })
+        return this
+    }
+
+    /**
      * Generate a range of values between lo and hi. Use as the first call in a pattern chain.
      * @param lo lowest value in range
      * @param hi highest value in range
@@ -514,12 +531,11 @@ export class Pattern {
 
     /**
      * Invert the previous value in the pattern chain - like a bitwise NOT.
-     * @param a value to return when true
-     * @param b value to return when false
+     * Returns a 0 if true, and a 1 if false.
      * @returns {Pattern}
      */ 
-    not(a: number = 1, b: number = 0): Pattern {
-        this.stack.push(x => [x].flat().every(x => !x) ? a : b)
+    invert(): Pattern {
+        this.if(0, 1)
         return this
     }
 
