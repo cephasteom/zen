@@ -43,7 +43,7 @@ class Midi {
 
     // accepts a single note
     trigger(params: { [key: string]: number | string } = {}, delta: number) {
-        const { midi, midichan, mididelay, n, dur = 1, amp = 0.5 } = params;
+        const { midi, midichan, mididelay = 0, n, dur = 1, amp = 0.5, nudge = 0 } = params;
 
         // ignore nonexistent devices
         if(!this.outputs.includes(midi.toString())) return;
@@ -52,7 +52,7 @@ class Midi {
         const channels = midichan ? (Array.isArray(midichan) ? midichan : [+midichan]) : undefined;
         const device = WebMidi.getOutputByName(midi.toString());
         const duration = +dur * 1000;
-        const timestamp = (delta * 1000) + (+mididelay || 0)
+        const timestamp = (delta * 1000) + +mididelay + +nudge
 
         const options = {
             duration,
@@ -96,9 +96,9 @@ class Midi {
     mutate(params: params, delta: number) {
         if(!this.history.device) return;
         
-        const { mididelay } = params;
+        const { mididelay = 0, nudge = 0 } = params;
         
-        const timestamp = (delta * 1000) + (+mididelay || 0) - 10
+        const timestamp = (delta * 1000) + +mididelay - 10 + +nudge
         
         const options = {
             time: `+${timestamp}`,
