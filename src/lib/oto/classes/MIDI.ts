@@ -52,7 +52,7 @@ class Midi {
         const channels = midichan ? (Array.isArray(midichan) ? midichan : [+midichan]) : undefined;
         const device = WebMidi.getOutputByName(midi.toString());
         const duration = +dur * 1000;
-        const timestamp = (delta + (+latency || 0)) * 1000
+        const timestamp = (delta * 1000) + (+latency || 0)
 
         const options = {
             duration,
@@ -85,7 +85,7 @@ class Midi {
         const latency = this.history.latency || 0;
         
         const options = {
-            time: `+${((delta + latency) * 1000) - 10}`,
+            time: `+${(delta * 1000) + latency - 10}`,
             ...this.history
         }
         
@@ -98,7 +98,7 @@ class Midi {
         
         const { latency } = params;
         
-        const timestamp = ((delta + (+latency || 0)) * 1000) - 10
+        const timestamp = (delta * 1000) + (+latency || 0) - 10
         
         const options = {
             time: `+${timestamp}`,
