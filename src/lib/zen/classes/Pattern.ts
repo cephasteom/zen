@@ -38,6 +38,11 @@ export class Pattern {
     /** @hidden */
     _xor: null | Pattern = null;
 
+    // State
+    _state: any
+    _toggle: boolean = false
+
+
     /** @hidden */
     constructor() {
         this.reset()
@@ -132,6 +137,26 @@ export class Pattern {
         this.stack.push(() => {
             const value = x instanceof Pattern ? x._value : x
             return !value ? 1 : 0
+        })
+        return this
+    }
+
+    /**
+     * Toggle on or off using the value passed as the first argument
+     * A true value will toggle the pattern on, a false value will toggle it off
+     * Accepts a boolean or pattern as the first argument
+     * @param {boolean | Pattern} x - a boolean or pattern
+     * @returns {Pattern}
+     * @example
+     * s0.e.every(3)
+     * s1.e.toggle(s0.e)
+     * s2.e.toggle(!(t%3))
+     */ 
+    toggle(x: boolean | Pattern): Pattern {
+        this.stack.push(() => {
+            const value = x instanceof Pattern ? x._value : x
+            if (value) this._toggle = !this._toggle
+            return this._toggle ? 1 : 0
         })
         return this
     }
