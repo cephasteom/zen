@@ -1,11 +1,13 @@
 import { WebMidi, Output } from "webmidi";
 import { mapToStepRange } from '../utils/utils'
-import type { params } from '../types'
+import type { params, Dictionary } from '../types'
 
 class Midi {
     history: any = {}
     inputs: string[] = []
     outputs: string[] = []
+    // Having to manage own note offs as we are unable to clear queued notes. See https://bugs.chromium.org/p/chromium/issues/detail?id=471798
+    noteoffs: { [note: string]: number | NodeJS.Timeout } = {}
     
     constructor() {
         this.init();
@@ -43,7 +45,7 @@ class Midi {
 
     // accepts a single note
     trigger(params: { [key: string]: number | string } = {}, delta: number) {
-        const { midi, midichan, mididelay = 0, n, dur = 1, amp = 0.5, nudge = 0 } = params;
+        const { midi, midichan, mididelay = 0, n, dur = 1000, amp = 0.5, nudge = 0 } = params;
 
         // ignore nonexistent devices
         if(!this.outputs.includes(midi.toString())) return;
@@ -51,15 +53,25 @@ class Midi {
         const note = n || 60;
         const channels = midichan ? (Array.isArray(midichan) ? midichan : [+midichan]) : undefined;
         const device = WebMidi.getOutputByName(midi.toString());
-        const duration = +dur * 1000;
         const timestamp = (delta * 1000) + +mididelay + +nudge
 
         const options = {
-            duration,
+            // duration: +dur,
             time: `+${timestamp}`,
             attack: +amp,
             channels,
         }
+
+        // if note is already playing, send note off
+        this.noteoffs[note] && clearTimeout(this.noteoffs[note] as NodeJS.Timeout);
+
+        const id = setTimeout(() => {
+            device.stopNote(note, {channels});
+            this.history.notes = this.history.notes.filter((n: number) => n !== note);
+            delete this.noteoffs[note]
+        }, timestamp + +dur);
+
+        this.noteoffs = { ...this.noteoffs, [note]: id }
 
         // Play note
         device.playNote(note, {...options, time: `+${timestamp}`});
