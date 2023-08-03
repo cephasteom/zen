@@ -38,6 +38,16 @@ export class Pattern {
     /** @hidden */
     _xor: null | Pattern = null;
 
+    // Maths
+    /** @hidden */
+    _add: null | Pattern = null;
+    /** @hidden */
+    _sub: null | Pattern = null;
+    /** @hidden */
+    _mul: null | Pattern = null;
+    /** @hidden */
+    _div: null | Pattern = null;
+
     // State
     _state: any
     _toggle: boolean = false
@@ -383,7 +393,7 @@ export class Pattern {
      * @returns {Pattern}
      * @example s0.p.n.noise(60,72,1).sub(12)
      */
-    take(value: number = 0): Pattern {
+    sub(value: number = 0): Pattern {
         this.stack.push(x => handle(x, x => x - value))
         return this
     }
@@ -394,7 +404,7 @@ export class Pattern {
      * @returns {Pattern}
      * @example s0.p.amp.noise(0.5,0.25).$sub(1)
      */
-    $take(value: number = 0): Pattern {
+    $sub(value: number = 0): Pattern {
         this.stack.push(x => handle(x, x => value - x))
         return this
     }
