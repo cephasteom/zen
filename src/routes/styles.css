@@ -219,8 +219,12 @@ button:focus:not(:focus-visible) {
     color: var(--color-theme-2);
 }
 /* const etc. */
-.monaco-scrollable-element, .margin-view-overlays, .lines-content .mtk8, .hljs-title {
+.monaco-scrollable-element, .margin-view-overlays, .lines-content .mtk22, .hljs-title {
     color: var(--color-theme-3);
+}
+
+.lines-content .mtk8 {
+    color: #d4d4d4;
 }
 
 *:focus {
