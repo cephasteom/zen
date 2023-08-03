@@ -891,6 +891,13 @@ export class Pattern {
         XOR !== null && this.fn(x => x !== XOR ? 1 : 0)
     }
 
+    /**
+     * push additional functions to the pattern stack if math operators have been applied
+     * @param t current time
+     * @param q current division
+     * @param bpm current bpm
+     * @hidden
+     */ 
     applyMath(t: number, q: number, bpm?: number) {
         const ADD = this._add && this._add.get(t, q, bpm);
         const SUB = this._sub && this._sub.get(t, q, bpm);
