@@ -26,7 +26,7 @@ s0.m.every(2)
 s1.p.n.use(z.p.n)
 s1.px._modi.range()
 s1.py._harm.range(1,2,0.25)
-s1.x.eval(s0.x).$take(s)
+s1.x.eval(s0.x).$sub(s)
 s1.y.noise(0, s-1)
 s1.e.use(s0.e).neq(1)
 s0.m.set(1)
@@ -103,6 +103,25 @@ s0.e.every(1)
 \`\`\`
 
 For a full list of Pattern methods, check out the [docs](docs).
+
+### Pattern Logic
+You can compare patterns chains using \'AND\', \'OR\', and \'XOR\' logic. Try this:
+\`\`\`js
+s0.set({inst: 'synth', n: 48, dur: 1000})
+s0.e.every(5).OR.every(7)
+\`\`\`
+
+### Pattern Maths
+You can perform mathematical operations on chains of patterns using \`ADD\`, \`SUB\`, \`MUL\`, and \`DIV\`. Note the use of capitals to distinguish these from the methods of the same name. Try this:
+\`\`\`js
+s0.set({inst: 'synth'})
+s0.e.bin('1001 0110')
+
+s1.set({inst: 'synth', cut: 1})
+s1.p.n.scales('c-dorian', 16).add(12) // uses the add method
+    .ADD.eval(s0.e).if(12,0) // uses the add operator to add the outcome of another pattern. In this case, if s0.e is 1, add 12, otherwise add 0.
+s1.e.set(1)
+\`\`\`
 
 ## Let's make some noise
 Now that we've covered the basics, let's make some noise. The simplest way of setting musical parameters is to use the \`.set()\` method on each stream - which takes a list of keys and values as its sole argument. Try this:
@@ -209,16 +228,16 @@ z.q=16
 z.bpm.set(240)
 z.t.tri(0,q*2,1,0.25).add(20)
 
-s0.x.tri(0,16,1,0.5).clamp(4,12).take(1)
-s0.y.add(8).tri(0,16,1,0.5).clamp(4,12).take(1)
+s0.x.tri(0,16,1,0.5).clamp(4,12).sub(1)
+s0.y.add(8).tri(0,16,1,0.5).clamp(4,12).sub(1)
 s0.e.every(1)
 
 s1.x.tri(0,16,1,0.5).clamp(4,12).add(2)
 s1.y.add(8).tri(0,16,1,0.5).clamp(4,12).add(2)
 s1.e.every(1)
 
-s2.x.tri(0,16,1,0.5).clamp(4,12).take(4)
-s2.y.add(8).tri(0,16,1,0.5).clamp(4,12).take(4)
+s2.x.tri(0,16,1,0.5).clamp(4,12).sub(4)
+s2.y.add(8).tri(0,16,1,0.5).clamp(4,12).sub(4)
 s2.e.every(1)
 \`\`\`
 
@@ -250,7 +269,7 @@ s0.m.every(2)
 s1.set({inst: 'synth', reverb: 1, cut: 1, vol: 0.25, rsize: 0.75, lag: 1000})
 s1.p.n.scales('d-dorian', 8)
 s1.px._modi.range().mul((c%16)).div(8)
-s1.x.eval(s0.x).$take(s)
+s1.x.eval(s0.x).$sub(s)
 s1.e.use(s0.e).neq(1)
 s0.m.set(1)
 \`\`\`
