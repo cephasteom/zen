@@ -12,6 +12,7 @@ import {
     handleArrayOrSingleValue as handle,
 } from '../utils/utils';
 import { getScale, getChord } from '../utils/musical';
+import type { Dictionary } from '../types'
 
 /**
  * Patterns are the building blocks of Zen. They are used to generate patterns of values in interesting, concise ways. The first value passed to a pattern is either time `t` or a position in space `x`, `y`, or `z`, depending on whether the pattern is assigned to a stream's `p`, `px`, `py`, or `pz` property. Patterns methods can be chained together applying each new method to the value passed from the previous one in the chain.
@@ -52,7 +53,6 @@ export class Pattern {
     _state: any
     _toggle: boolean = false
 
-
     /** @hidden */
     constructor() {
         this.reset()
@@ -61,9 +61,9 @@ export class Pattern {
     /**
      * Initialise a new pattern and compare it with the previous chain
      * @returns {Pattern}
-     * @example s0.e.every(3).and.every(2)
+     * @example s0.e.every(3).AND.every(2)
      */ 
-    get and(): Pattern {
+    get AND(): Pattern {
         !this._and && (this._and = new Pattern())
         return this._and
     }
@@ -71,9 +71,9 @@ export class Pattern {
     /**
      * Initialise a new pattern and compare it with the previous chain
      * @returns {Pattern}
-     * @example s0.e.every(3).or.every(2)
+     * @example s0.e.every(3).OR.every(2)
      */
-    get or(): Pattern {
+    get OR(): Pattern {
         !this._or && (this._or = new Pattern())
         return this._or
     }
@@ -81,12 +81,52 @@ export class Pattern {
     /**
      * Initialise a new pattern and compare it with the previous chain
      * @returns {Pattern}
-     * @example s0.e.every(3).xor.every(2)
+     * @example s0.e.every(3).XOR.every(2)
      */
-    get xor(): Pattern {
+    get XOR(): Pattern {
         !this._xor && (this._xor = new Pattern())
         return this._xor
     } 
+
+    /**
+     * Initialise a new pattern and add it to the previous chain
+     * @returns {Pattern}
+     * @example s0.px.n.range(0,16).ADD.noise(0,16,1)
+     */ 
+    get ADD(): Pattern {
+        !this._add && (this._add = new Pattern())
+        return this._add
+    } 
+
+    /**
+     * Initialise a new pattern and subtract it from the previous chain
+     * @returns {Pattern}
+     * @example s0.px.n.range(0,16).SUB.noise(0,16,1)
+     */ 
+    get SUB(): Pattern {
+        !this._sub && (this._sub = new Pattern())
+        return this._sub
+    }
+
+    /**
+     * Initialise a new pattern and multiply it with the previous chain
+     * @returns {Pattern}
+     * @example s0.px.n.range(0,16).MUL.noise(0,16,1)
+     */ 
+    get MUL(): Pattern {
+        !this._mul && (this._mul = new Pattern())
+        return this._mul
+    }
+
+    /**
+     * Initialise a new pattern and divide it from the previous chain
+     * @returns {Pattern}
+     * @example s0.px.n.range(0,16).DIV.noise(0,16,1)
+     */ 
+    get DIV(): Pattern {
+        !this._div && (this._div = new Pattern())
+        return this._div
+    }
 
     /**
      * Set a single value
@@ -842,12 +882,23 @@ export class Pattern {
      * @hidden
      */ 
     applyLogic(t: number, q: number, bpm?: number) {
-        const and = this._and && this._and.get(t, q, bpm);
-        const or = this._or && this._or.get(t, q, bpm);
-        const xor = this._xor && this._xor.get(t, q, bpm);
-        and !== null && this.fn(x => x && and ? 1 : 0)
-        or !== null && this.fn(x => x || or ? 1 : 0)
-        xor !== null && this.fn(x => x !== xor ? 1 : 0)
+        const AND = this._and && this._and.get(t, q, bpm);
+        const OR = this._or && this._or.get(t, q, bpm);
+        const XOR = this._xor && this._xor.get(t, q, bpm);
+        AND !== null && this.fn(x => x && AND ? 1 : 0)
+        OR !== null && this.fn(x => x || OR ? 1 : 0)
+        XOR !== null && this.fn(x => x !== XOR ? 1 : 0)
+    }
+
+    applyMath(t: number, q: number, bpm?: number) {
+        const ADD = this._add && this._add.get(t, q, bpm);
+        const SUB = this._sub && this._sub.get(t, q, bpm);
+        const MUL = this._mul && this._mul.get(t, q, bpm);
+        const DIV = this._div && this._div.get(t, q, bpm);
+        ADD !== null && this.add(+ADD)
+        SUB !== null && this.sub(+SUB)
+        MUL !== null && this.mul(+MUL)
+        DIV !== null && this.div(+DIV)
     }
 
     /** @hidden */
@@ -856,6 +907,7 @@ export class Pattern {
         this._bpm = bpm || this._bpm
 
         this.applyLogic(t, q, bpm)
+        this.applyMath(t, q, bpm)
         
         const value = this.stack.length 
             ? this.stack.reduce((val: patternValue, fn) => fn(val), t) 
