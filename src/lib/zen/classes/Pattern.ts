@@ -125,6 +125,13 @@ export class Pattern {
     }
 
     /**
+     * Alias for `eval`
+     */ 
+    e(pattern: Pattern): Pattern {
+        return this.eval(pattern)
+    }
+
+    /**
      * Negate the value passed as the first argument
      * @param {boolean | Pattern} x - a boolean or pattern
      * @returns {Pattern}

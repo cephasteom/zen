@@ -56,7 +56,6 @@ class Midi {
         const timestamp = (delta * 1000) + +mididelay + +nudge
 
         const options = {
-            // duration: +dur,
             time: `+${timestamp}`,
             attack: +amp,
             channels,
