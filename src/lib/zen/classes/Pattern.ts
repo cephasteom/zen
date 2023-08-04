@@ -21,7 +21,11 @@ import { getScale, getChord } from '../utils/musical';
  * s0.py.modi.range(0,10).mul((t%q)/q)
  */
 export class Pattern {
-    /** @hidden */
+    /**
+     * The value of the pattern after get() has been called
+     * Enables use of pattern value in other patterns, using e.g. s1.e.eval(s0.e)
+     * @hidden
+     */
     private _value: patternValue = 0
     /** @hidden */
     private stack: stack = []

@@ -65,14 +65,16 @@ const loop = new Loop(time => {
     loop.interval = `${q}n`
     const newBpm = z.getBpm()
     if(newBpm !== bpm) {
-
         Transport.bpm.setValueAtTime(newBpm, time)
         bpm = newBpm
     }
-    // Transport.bpm.value = bpm
 
-    // compile events and mutations
-    const compiled = streams.map(stream => stream.get(t, q, s, bpm, z))
+    // evaluate events and mutations first, so that they can be used in parameter patterns
+    streams.forEach(stream => stream.getE(t, q))
+    streams.forEach(stream => stream.getM(q))
+
+    // compile parameters, events and mutations
+    const compiled = streams.map(stream => stream.get(q, s, bpm, z))
     const soloed = compiled.filter(({solo}) => solo)
     const data = soloed.length ? soloed : compiled
     const events = data.filter(({e}) => e)

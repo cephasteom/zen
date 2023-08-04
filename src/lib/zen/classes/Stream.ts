@@ -21,6 +21,21 @@ import type { Dictionary } from '../types'
 export class Stream {
     /** @hidden */
     id: string
+
+    /** @hidden */
+    _t: number = 0
+    
+    /** @hidden */
+    _e: boolean = false
+
+    /** @hidden */
+    _m: boolean = false
+
+    /** @hidden */
+    _solo: boolean = false
+
+    /** @hidden */
+    _mute: boolean = false
     
     /**
      * Patterns to be mapped across time
@@ -169,11 +184,25 @@ export class Stream {
             this.p[key].set(value)
         })
     }
+    /** @hidden */
+    getE(time: number = 0, q: number = 16) {
+        // use stream t, if set, or global t
+        this._t = +(this.t.has() ? this.t.get(time, q) || 0 : time);
+        this._mute = !!this.mute.get(this._t, q)
+        this._solo = !!this.solo.get(this._t, q)
+        this._e = !!this.e.get(this._t, q) && !this._mute
+    }
 
     /** @hidden */
-    get(time: number = 0, q: number = 16, s: number = 16, bpm: number = 120, global: Zen) {
+    getM(q: number = 16) {
+        const t = this._t
+        this._m = !!this.m.get(t, q) && !this._mute
+    }
+
+    /** @hidden */
+    get(q: number = 16, s: number = 16, bpm: number = 120, global: Zen) {
         // use stream t, if set, or global t
-        const t = +(this.t.has() ? this.t.get(time, q) || 0 : time);
+        const t = this._t
         
         // use stream x, y, z, if set, or 0
         const xyz = [this.xyz.get(t, s)].flat()
@@ -182,14 +211,14 @@ export class Stream {
         const z = +(xyz[2] || this.z.get(t, s) || 0)
         
         const { id } = this;
-        const mute = !!this.mute.get(t, q)
-        const solo = !!this.solo.get(t, q)
-        const e = !!this.e.get(t, q) && !mute
-        const m = !!this.m.get(t, q) && !mute
+        const mute = this._mute
+        const solo = this._solo
+        const e = this._e
+        const m = this._m
         const lag = (60000/bpm)/q // ms per division
 
         // compile all parameters
-        const compiled = (e || m) && !mute ? {
+        const compiled = (e || m) ? {
             ...this.evaluateGroup(global.p, t, q, bpm), // calculate based on position in cycle, 0 - 1
             ...this.evaluateGroup(global.px, x, s, bpm), // calculate based on position in space, 0 - 1
             ...this.evaluateGroup(global.py, y, s, bpm), // ...
@@ -216,6 +245,11 @@ export class Stream {
     reset() {
         const { t, x, y, z, xyz, e, m, solo, mute } = this;
         [t, x, y, z, xyz, e, m, solo, mute].forEach(p => p.reset())
+        this._t = 0
+        this._mute = false
+        this._solo = false
+        this._e = false
+        this._m = false
 
         Object.values(this.p).forEach(p => p.reset())
         Object.values(this.px).forEach(p => p.reset())
