@@ -184,6 +184,7 @@ export class Stream {
             this.p[key].set(value)
         })
     }
+    // TODO: consider adding a value method to the pattern, which you can then call on the stream, e.g. s0.e.value(), rather than saving it as a private var.
     /** @hidden */
     getE(time: number = 0, q: number = 16) {
         // use stream t, if set, or global t
