@@ -24,18 +24,15 @@ export class Stream {
 
     /** @hidden */
     _t: number = 0
-    
-    /** @hidden */
-    _e: boolean = false
 
     /** @hidden */
-    _m: boolean = false
+    _q: number = 0
 
     /** @hidden */
-    _solo: boolean = false
+    _s: number = 0
 
     /** @hidden */
-    _mute: boolean = false
+    _bpm: number = 120
     
     /**
      * Patterns to be mapped across time
@@ -184,26 +181,40 @@ export class Stream {
             this.p[key].set(value)
         })
     }
-    // TODO: consider adding a value method to the pattern, which you can then call on the stream, e.g. s0.e.value(), rather than saving it as a private var.
-    /** @hidden */
-    getE(time: number = 0, q: number = 16) {
-        // use stream t, if set, or global t
+
+    /**
+     * Get t, mute and solo values, before getting the value of all other parameters
+     * @param time
+     * @param q
+     * @returns void
+     * @hidden
+     */ 
+    prepareStream(time: number, q: number, s: number, bpm: number) {
         this._t = +(this.t.has() ? this.t.get(time, q) || 0 : time);
-        this._mute = !!this.mute.get(this._t, q)
-        this._solo = !!this.solo.get(this._t, q)
-        this._e = !!this.e.get(this._t, q) && !this._mute
+        this._q = q;
+        this._s = s;
+        this._bpm = bpm;
+        this.mute.get(this._t, q)
+        this.solo.get(this._t, q)
     }
 
     /** @hidden */
-    getM(q: number = 16) {
-        const t = this._t
-        this._m = !!this.m.get(t, q) && !this._mute
+    getE() {
+        this.e.get(this._t, this._q)
     }
 
     /** @hidden */
-    get(q: number = 16, s: number = 16, bpm: number = 120, global: Zen) {
+    getM() {
+        this.m.get(this._t, this._q)
+    }
+
+    /** @hidden */
+    get(global: Zen) {
         // use stream t, if set, or global t
         const t = this._t
+        const s = this._s
+        const q = this._q
+        const bpm = this._bpm
         
         // use stream x, y, z, if set, or 0
         const xyz = [this.xyz.get(t, s)].flat()
@@ -212,10 +223,10 @@ export class Stream {
         const z = +(xyz[2] || this.z.get(t, s) || 0)
         
         const { id } = this;
-        const mute = this._mute
-        const solo = this._solo
-        const e = this._e
-        const m = this._m
+        const mute = !!this.mute.value()
+        const solo = !!this.solo.value()
+        const e = this.e.value() && !mute
+        const m = this.m.value() && !mute
         const lag = (60000/bpm)/q // ms per division
 
         // compile all parameters
@@ -247,10 +258,9 @@ export class Stream {
         const { t, x, y, z, xyz, e, m, solo, mute } = this;
         [t, x, y, z, xyz, e, m, solo, mute].forEach(p => p.reset())
         this._t = 0
-        this._mute = false
-        this._solo = false
-        this._e = false
-        this._m = false
+        this._q = 0
+        this._s = 0
+        this._bpm = 120
 
         Object.values(this.p).forEach(p => p.reset())
         Object.values(this.px).forEach(p => p.reset())

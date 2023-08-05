@@ -187,6 +187,14 @@ export class Pattern {
     }
 
     /**
+     * Get the current value of pattern if it has been evaluated. Used internally.
+     * @hidden
+     */ 
+    value(): patternValue {
+        return this._value
+    }
+
+    /**
      * Negate the value passed as the first argument
      * @param {boolean | Pattern} x - a boolean or pattern
      * @returns {Pattern}
