@@ -35,18 +35,6 @@ export class Zen extends Stream {
      */ 
     bpm = new Pattern()
 
-    // global time
-    /** @hidden */
-    private _t: number = 0
-
-    // size of canvas, can be updated but not patterned
-    /** @hidden */
-    private _s: number = 16
-
-    // frames per cycle, can be updated but not patterned
-    /** @hidden */
-    private _q: number = 16
-
     // when to update the executed code, ie at the next division, on the next beat, etc
     /** @hidden */
     private _update: number = 1

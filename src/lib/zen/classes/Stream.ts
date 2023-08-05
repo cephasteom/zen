@@ -26,10 +26,10 @@ export class Stream {
     _t: number = 0
 
     /** @hidden */
-    _q: number = 0
-
+    _s: number = 16
+    
     /** @hidden */
-    _s: number = 0
+    _q: number = 16
 
     /** @hidden */
     _bpm: number = 120

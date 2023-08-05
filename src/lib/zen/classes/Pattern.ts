@@ -99,11 +99,21 @@ export class Pattern {
         return this._xor
     } 
 
+    /**
+     * Initialise a new pattern and apply if preceding value is true
+     * @returns {Pattern}
+     * @example s0.n.every(3).IF.set(48).ELSE.set(36)
+     */ 
     get IF(): Pattern {
         !this._if && (this._if = new Pattern())
         return this._if
     }
 
+    /**
+     * Initialise a new pattern and apply if preceding value is false
+     * @returns {Pattern}
+     * @example s0.n.every(3).IF.set(48).ELSE.set(36)
+     */ 
     get ELSE(): Pattern {
         !this._else && (this._else = new Pattern())
         return this._else
