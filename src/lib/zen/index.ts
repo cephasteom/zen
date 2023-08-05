@@ -30,9 +30,8 @@ export const z = new Zen();
 export const streams: Stream[] = Array(8).fill(0).map((_, i) => new Stream('s' + i))
 let bpm = 120
 
-// Main Zen loop
+// Main application loop
 const loop = new Loop(time => {
-    // increment global time
     let t = counter()
 
     streams.forEach(stream => stream.reset())
