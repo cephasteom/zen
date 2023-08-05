@@ -111,6 +111,20 @@ s0.set({inst: 'synth', n: 48, dur: 1000})
 s0.e.every(5).OR.every(7)
 \`\`\`
 
+### Pattern Conditionals
+You can use conditionals to determine whether to run one pattern chain or another. Try this:
+\`\`\`js
+s0.set({inst: 'synth', n: 48, dur: 1000})
+s0.e.every(4)
+
+s1.set({inst: 'synth', dur: 1000, cut: 1})
+s1.p.n.eval(s0.e)
+    .IF.scales('ef-majpent').add(12)
+    .ELSE.scales('c-dorian')
+s1.e.every(1)
+\`\`\`
+
+
 ### Pattern Maths
 You can perform mathematical operations on chains of patterns using \`ADD\`, \`SUB\`, \`MUL\`, and \`DIV\`. Note the use of capitals to distinguish these from the methods of the same name. Try this:
 \`\`\`js
