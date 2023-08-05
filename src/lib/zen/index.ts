@@ -6,7 +6,6 @@ import { createCount } from './utils/utils';
 import type { action } from './types';
 import keymap from './data/keymapping'
 
-
 export const lastCode = writable('');
 export const code = writable('');
 export const setCode = (str: string) => {

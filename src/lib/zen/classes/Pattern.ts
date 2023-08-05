@@ -42,6 +42,12 @@ export class Pattern {
     /** @hidden */
     _xor: null | Pattern = null;
 
+    // Conditionals
+    /** @hidden */
+    _if: null | Pattern = null;
+    /** @hidden */
+    _else: null | Pattern = null;
+
     // Maths
     /** @hidden */
     _add: null | Pattern = null;
@@ -92,6 +98,16 @@ export class Pattern {
         !this._xor && (this._xor = new Pattern())
         return this._xor
     } 
+
+    get IF(): Pattern {
+        !this._if && (this._if = new Pattern())
+        return this._if
+    }
+
+    get ELSE(): Pattern {
+        !this._else && (this._else = new Pattern())
+        return this._else
+    }
 
     /**
      * Initialise a new pattern and add it to the previous chain
@@ -150,6 +166,9 @@ export class Pattern {
         this._value = 0
         this._and?.reset()
         this._or?.reset()
+        this._xor?.reset()
+        this._if?.reset()
+        this._else?.reset()
         return this
     }
 
@@ -904,6 +923,20 @@ export class Pattern {
     }
 
     /**
+     * push additional functions to the pattern stack if conditional operators have been applied
+     * @param t current time
+     * @param q current division
+     * @param bpm current bpm
+     * @hidden
+     */ 
+    applyConditionals(t: number, q: number, bpm?: number) {
+        const IF = this._if && this._if.get(t, q, bpm);
+        const ELSE = this._if && this._if._else && this._if._else.get(t, q, bpm);
+        IF !== null && this.fn(x => x ? IF : 0)
+        ELSE !== null && this.fn(x => x ? IF || 0 : ELSE)
+    }
+
+    /**
      * push additional functions to the pattern stack if math operators have been applied
      * @param t current time
      * @param q current division
@@ -927,6 +960,7 @@ export class Pattern {
         this._bpm = bpm || this._bpm
 
         this.applyLogic(t, q, bpm)
+        this.applyConditionals(t, q, bpm)
         this.applyMath(t, q, bpm)
         
         const value = this.stack.length 
