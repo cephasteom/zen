@@ -88,9 +88,7 @@ const loop = new Loop(time => {
 
 }, `${z.q}n`).start(0)
 
-export const play = () => {
-    Transport.start('+0.1')
-}
+export const play = () => Transport.start('+0.1')
 
 let stops = 0;
 export const stop = () => {
