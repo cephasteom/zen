@@ -25,7 +25,7 @@ export function handleMidiEvent(delta: number, id: string, params: Dictionary) {
     
     const toCut = cut !== undefined ? [+cut].flat() : []
     toCut.forEach((id: number) => {
-        midiStreams[`s${id}`].cut(delta);
+        midiStreams[`s${id}`]?.cut(delta);
     });
 
     // handle multiple midi devices
