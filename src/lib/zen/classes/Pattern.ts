@@ -79,7 +79,7 @@ export class Pattern {
 
     /**
      * Return the Pattern that instantiated this Pattern if it exists, otherwise return this Pattern.
-     * Useful when using any of the dollar methods, which spawn new Patterns, allowing you to return to the original pattern.
+     * Useful when using any of the dollar methods, which spawn new Patterns, allowing you to return to this parent pattern.
      * @returns {Pattern}
      * @example
      * s1.set({inst: 'synth', cut: 1})
@@ -90,6 +90,24 @@ export class Pattern {
      */ 
     get $(): Pattern {
         return this._parent || this
+    }
+
+    /**
+     * Return the original Pattern in the chain.
+     * Useful when using any of the dollar methods, which spawn new Patterns, allowing you to return to the original pattern.
+     * @returns {Pattern}
+     * @example
+        s0.set({inst: 'synth', n: 50})
+        s0.e.every(5)
+
+        s1.set({inst: 'synth', cut: [0,1]})
+        s1.p.n
+            .$if(s0.e).set(57).$add.saw(1,16).$.$mul.range(1,2,0,0.25).$$
+            .$else.scales('d-dorian', 16)
+        s1.e.every(1)
+     */ 
+    get $$(): Pattern {
+        return this._parent?.$$ || this
     }
 
     /**
