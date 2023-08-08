@@ -126,18 +126,6 @@ s1.p.n.scales('c-dorian', 16).add(12) // uses the add method
 s1.e.set(1)
 \`\`\`
 
-You can go pretty wild with combining patterns, creating interesting, unexpected outcomes. Just remember that each time you use a \`$\` method, you are creating a new pattern, which means that you end up spawning child patterns on child patterns. Use the \`$\` method to go up one level, and the \`$$\` method to go up to the top level. Try this:
-\`\`\`js
-s0.set({inst: 'synth', n: 50})
-s0.e.every(5)
-
-s1.set({inst: 'synth', cut: [0,1]})
-s1.p.n
-    .$if(s0.e).set(57).$add.saw(1,16).$.$mul.range(1,2,0,0.25).$$
-    .$else.scales('d-dorian', 16)
-s1.e.every(1)
-\`\`\`
-
 ### Pattern Conditionals
 You can use conditionals to determine whether to run one pattern chain or another. Since we want to chain our pattern conditionals together, and all \`$\` methods return a new pattern, we need a way to return to the parent pattern chain. We do this using the \`$\` method, which simply returns the pattern that spawned the pattern we are on. You can also use the \`$$\` method, which returns the first pattern in the chain, no matter how deep you go. Try this:
 \`\`\`js
@@ -147,6 +135,18 @@ s0.e.every(3)
 s1.set({inst: 'synth', cut: [0,1]})
 s1.p.n
     .$if(s0.e).set(57).$ // note the .$ at the end to return us to the original n pattern
+    .$else.scales('d-dorian', 16)
+s1.e.every(1)
+\`\`\`
+
+You can go pretty wild with combining patterns, creating interesting, unexpected outcomes. Just remember that each time you use a \`$\` method, you are creating a new pattern, which means that you end up spawning child patterns on child patterns. Use the \`$\` method to go back one level, and the \`$$\` method to go back to the top level. Try this:
+\`\`\`js
+s0.set({inst: 'synth', n: 50})
+s0.e.every(5)
+
+s1.set({inst: 'synth', cut: [0,1]})
+s1.p.n
+    .$if(s0.e).set(57).$add.saw(1,16).$.$mul.range(1,2,0,0.25).$$
     .$else.scales('d-dorian', 16)
 s1.e.every(1)
 \`\`\`
