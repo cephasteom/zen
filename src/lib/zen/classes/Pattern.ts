@@ -44,6 +44,8 @@ export class Pattern {
 
     // Conditionals
     /** @hidden */
+    _ifcondition: boolean = false;
+    /** @hidden */
     _if: null | Pattern = null;
     /** @hidden */
     _else: null | Pattern = null;
@@ -102,9 +104,11 @@ export class Pattern {
     /**
      * Initialise a new pattern and apply if preceding value is true
      * @returns {Pattern}
-     * @example s0.n.every(3).IF.set(48).ELSE.set(36)
+     * @example s0.n.every(3).IF(t%2).set(48).ELSE.set(36)
      */ 
-    get IF(): Pattern {
+    IF(condition: boolean): Pattern {
+        console.log('condition', condition)
+        this._ifcondition = !!condition
         !this._if && (this._if = new Pattern())
         return this._if
     }
@@ -177,6 +181,7 @@ export class Pattern {
         this._and?.reset()
         this._or?.reset()
         this._xor?.reset()
+        this._ifcondition = false
         this._if?.reset()
         this._else?.reset()
         return this
@@ -939,11 +944,11 @@ export class Pattern {
      * @param bpm current bpm
      * @hidden
      */ 
-    applyConditionals(t: number, q: number, bpm?: number) {
-        const IF = this._if && this._if.get(t, q, bpm);
-        const ELSE = this._if && this._if._else && this._if._else.get(t, q, bpm);
-        IF !== null && this.fn(x => x ? IF : 0)
-        ELSE !== null && this.fn(x => x ? IF || 0 : ELSE)
+    applyConditionals() {
+        const stack = this._ifcondition 
+            ? this._if?.stack
+            : this._if?._else?.stack;
+        stack && this.stack.push(...stack)
     }
 
     /**
@@ -970,7 +975,7 @@ export class Pattern {
         this._bpm = bpm || this._bpm
 
         this.applyLogic(t, q, bpm)
-        this.applyConditionals(t, q, bpm)
+        this.applyConditionals()
         this.applyMath(t, q, bpm)
         
         const value = this.stack.length 
