@@ -21,6 +21,11 @@ import { getScale, getChord } from '../utils/musical';
  * s0.py.modi.range(0,10).mul((t%q)/q)
  */
 export class Pattern {
+    /** 
+     * The Pattern that instantiated this Pattern
+     * @hidden 
+     */
+    private _parent: Pattern | null = null
     /**
      * The value of the pattern after get() has been called
      * Enables use of pattern value in other patterns, using e.g. s1.e.eval(s0.e)
@@ -67,8 +72,24 @@ export class Pattern {
     _toggle: boolean = false
 
     /** @hidden */
-    constructor() {
+    constructor(parent: Pattern | null = null) {
+        this._parent = parent
         this.reset()
+    }
+
+    /**
+     * Return the Pattern that instantiated this Pattern if it exists, otherwise return this Pattern.
+     * Useful when using any of the dollar methods, which spawn new Patterns, allowing you to return to the original pattern.
+     * @returns {Pattern}
+     * @example
+     * s1.set({inst: 'synth', cut: 1})
+     * s1.p.n
+     *  .$if(t%3).set(57).$
+     *  .$else.scales('d-dorian', 16)
+     * s1.e.every(1)
+     */ 
+    get $(): Pattern {
+        return this._parent || this
     }
 
     /**
@@ -77,7 +98,7 @@ export class Pattern {
      * @example s0.e.every(3).$and.every(2)
      */ 
     get $and(): Pattern {
-        !this._and && (this._and = new Pattern())
+        !this._and && (this._and = new Pattern(this))
         return this._and
     }
 
@@ -87,7 +108,7 @@ export class Pattern {
      * @example s0.e.every(3).$or.every(2)
      */
     get $or(): Pattern {
-        !this._or && (this._or = new Pattern())
+        !this._or && (this._or = new Pattern(this))
         return this._or
     }
 
@@ -97,7 +118,7 @@ export class Pattern {
      * @example s0.e.every(3).$xor.every(2)
      */
     get $xor(): Pattern {
-        !this._xor && (this._xor = new Pattern())
+        !this._xor && (this._xor = new Pattern(this))
         return this._xor
     } 
 
@@ -111,7 +132,7 @@ export class Pattern {
     $if(condition: boolean | Pattern): Pattern {
         this._ifCondition = condition
 
-        !this._if && (this._if = new Pattern())
+        !this._if && (this._if = new Pattern(this))
         return this._if
     }
 
@@ -121,7 +142,7 @@ export class Pattern {
      * @example s0.n.every(3).$if.set(48).$else.set(36)
      */ 
     get $else(): Pattern {
-        !this._else && (this._else = new Pattern())
+        !this._else && (this._else = new Pattern(this))
         return this._else
     }
 
@@ -131,7 +152,7 @@ export class Pattern {
      * @example s0.px.n.range(0,16).$add.noise(0,16,1)
      */ 
     get $add(): Pattern {
-        !this._add && (this._add = new Pattern())
+        !this._add && (this._add = new Pattern(this))
         return this._add
     } 
 
@@ -141,7 +162,7 @@ export class Pattern {
      * @example s0.px.n.range(0,16).$sub.noise(0,16,1)
      */ 
     get $sub(): Pattern {
-        !this._sub && (this._sub = new Pattern())
+        !this._sub && (this._sub = new Pattern(this))
         return this._sub
     }
 
@@ -151,7 +172,7 @@ export class Pattern {
      * @example s0.px.n.range(0,16).$mul.noise(0,16,1)
      */ 
     get $mul(): Pattern {
-        !this._mul && (this._mul = new Pattern())
+        !this._mul && (this._mul = new Pattern(this))
         return this._mul
     }
 
@@ -161,7 +182,7 @@ export class Pattern {
      * @example s0.px.n.range(0,16).$div.noise(0,16,1)
      */ 
     get $div(): Pattern {
-        !this._div && (this._div = new Pattern())
+        !this._div && (this._div = new Pattern(this))
         return this._div
     }
 
@@ -180,9 +201,16 @@ export class Pattern {
     reset() {
         this.stack = []
         this._value = 0
+        // logic
         this._and?.reset()
         this._or?.reset()
         this._xor?.reset()
+        // maths
+        this._add?.reset()
+        this._sub?.reset()
+        this._mul?.reset()
+        this._div?.reset()
+        // conditionals
         this._ifCondition = false
         this._if?.reset()
         this._else?.reset()
@@ -978,8 +1006,8 @@ export class Pattern {
         this._bpm = bpm || this._bpm
 
         this.applyLogic(t, q, bpm)
-        this.applyConditionals()
         this.applyMath(t, q, bpm)
+        this.applyConditionals()
         
         const value = this.stack.length 
             ? this.stack.reduce((val: patternValue, fn) => fn(val), t) 
