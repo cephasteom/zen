@@ -104,36 +104,40 @@ s0.e.every(1)
 
 For a full list of Pattern methods, check out the [docs](docs).
 
+## Chaining Patterns
+At some point you'll want to compare patterns, conditionally combine patterns, or perform mathematical operations using one pattern on another. All of the pattern methods that are prefixed with a \`$\` return a new pattern, which is combined with the previous pattern in different ways.
+
+
 ### Pattern Logic
-You can compare patterns chains using \'AND\', \'OR\', and \'XOR\' logic. Try this:
+You can compare patterns chains using \'$and\', \'$or\', and \'$xor\' logic. Try this:
 \`\`\`js
 s0.set({inst: 'synth', n: 48, dur: 1000})
-s0.e.every(5).OR.every(7)
+s0.e.every(5).$or.every(7)
 \`\`\`
 
 ### Pattern Conditionals
 You can use conditionals to determine whether to run one pattern chain or another. Try this:
 \`\`\`js
-s0.set({inst: 'synth', n: 48, dur: 1000})
-s0.e.every(4)
+s0.set({inst: 'synth', n: 50})
+s0.e.every(3)
 
-s1.set({inst: 'synth', dur: 1000, cut: 1})
-s1.p.n.eval(s0.e)
-    .IF.scales('ef-majpent').add(12)
-    .ELSE.scales('c-dorian')
+s1.set({inst: 'synth', cut: [0,1]})
+s1.p.n
+    .$if(s0.e).set(57)
+    .$else.scales('d-dorian', 16)
 s1.e.every(1)
 \`\`\`
 
 
 ### Pattern Maths
-You can perform mathematical operations on chains of patterns using \`ADD\`, \`SUB\`, \`MUL\`, and \`DIV\`. Note the use of capitals to distinguish these from the methods of the same name. Try this:
+You can perform mathematical operations on chains of patterns using \`$add\`, \`$sub\`, \`$mul\`, and \`$div\`. Note the use of the \`$\` prefix to distinguish these from the methods of the same name. Try this:
 \`\`\`js
 s0.set({inst: 'synth'})
 s0.e.bin('1001 0110')
 
 s1.set({inst: 'synth', cut: 1})
 s1.p.n.scales('c-dorian', 16).add(12) // uses the add method
-    .ADD.eval(s0.e).if(12,0) // uses the add operator to add the outcome of another pattern. In this case, if s0.e is 1, add 12, otherwise add 0.
+    .$add.eval(s0.e).if(12,0) // uses the add operator to add the outcome of another pattern. In this case, if s0.e is 1, add 12, otherwise add 0.
 s1.e.set(1)
 \`\`\`
 

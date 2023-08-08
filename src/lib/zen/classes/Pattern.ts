@@ -74,9 +74,9 @@ export class Pattern {
     /**
      * Initialise a new pattern and compare it with the previous chain
      * @returns {Pattern}
-     * @example s0.e.every(3).AND.every(2)
+     * @example s0.e.every(3).$and.every(2)
      */ 
-    get AND(): Pattern {
+    get $and(): Pattern {
         !this._and && (this._and = new Pattern())
         return this._and
     }
@@ -84,9 +84,9 @@ export class Pattern {
     /**
      * Initialise a new pattern and compare it with the previous chain
      * @returns {Pattern}
-     * @example s0.e.every(3).OR.every(2)
+     * @example s0.e.every(3).$or.every(2)
      */
-    get OR(): Pattern {
+    get $or(): Pattern {
         !this._or && (this._or = new Pattern())
         return this._or
     }
@@ -94,9 +94,9 @@ export class Pattern {
     /**
      * Initialise a new pattern and compare it with the previous chain
      * @returns {Pattern}
-     * @example s0.e.every(3).XOR.every(2)
+     * @example s0.e.every(3).$xor.every(2)
      */
-    get XOR(): Pattern {
+    get $xor(): Pattern {
         !this._xor && (this._xor = new Pattern())
         return this._xor
     } 
@@ -105,10 +105,10 @@ export class Pattern {
      * Apply following chain of methods if condition is true
      * Also, accepts an instance of a Pattern
      * @returns {Pattern}
-     * @example s0.n.IF(t%2).set(48).ELSE.set(36)
-     * @example s0.n.IF(s1.e)).set(48).ELSE.set(36)
+     * @example s0.n.$if(t%2).set(48).$else.set(36)
+     * @example s0.n.$if(s1.e)).set(48).$else.set(36)
      */ 
-    IF(condition: boolean | Pattern): Pattern {
+    $if(condition: boolean | Pattern): Pattern {
         this._ifCondition = condition
 
         !this._if && (this._if = new Pattern())
@@ -118,9 +118,9 @@ export class Pattern {
     /**
      * Initialise a new pattern and apply if preceding value is false
      * @returns {Pattern}
-     * @example s0.n.every(3).IF.set(48).ELSE.set(36)
+     * @example s0.n.every(3).$if.set(48).$else.set(36)
      */ 
-    get ELSE(): Pattern {
+    get $else(): Pattern {
         !this._else && (this._else = new Pattern())
         return this._else
     }
@@ -128,9 +128,9 @@ export class Pattern {
     /**
      * Initialise a new pattern and add it to the previous chain
      * @returns {Pattern}
-     * @example s0.px.n.range(0,16).ADD.noise(0,16,1)
+     * @example s0.px.n.range(0,16).$add.noise(0,16,1)
      */ 
-    get ADD(): Pattern {
+    get $add(): Pattern {
         !this._add && (this._add = new Pattern())
         return this._add
     } 
@@ -138,9 +138,9 @@ export class Pattern {
     /**
      * Initialise a new pattern and subtract it from the previous chain
      * @returns {Pattern}
-     * @example s0.px.n.range(0,16).SUB.noise(0,16,1)
+     * @example s0.px.n.range(0,16).$sub.noise(0,16,1)
      */ 
-    get SUB(): Pattern {
+    get $sub(): Pattern {
         !this._sub && (this._sub = new Pattern())
         return this._sub
     }
@@ -148,9 +148,9 @@ export class Pattern {
     /**
      * Initialise a new pattern and multiply it with the previous chain
      * @returns {Pattern}
-     * @example s0.px.n.range(0,16).MUL.noise(0,16,1)
+     * @example s0.px.n.range(0,16).$mul.noise(0,16,1)
      */ 
-    get MUL(): Pattern {
+    get $mul(): Pattern {
         !this._mul && (this._mul = new Pattern())
         return this._mul
     }
@@ -158,9 +158,9 @@ export class Pattern {
     /**
      * Initialise a new pattern and divide it from the previous chain
      * @returns {Pattern}
-     * @example s0.px.n.range(0,16).DIV.noise(0,16,1)
+     * @example s0.px.n.range(0,16).$div.noise(0,16,1)
      */ 
-    get DIV(): Pattern {
+    get $div(): Pattern {
         !this._div && (this._div = new Pattern())
         return this._div
     }
@@ -491,9 +491,9 @@ export class Pattern {
      * Reverse subtract a value from the previous value in the pattern chain.
      * @param value value to subtract
      * @returns {Pattern}
-     * @example s0.p.amp.noise(0.5,0.25).$sub(1)
+     * @example s0.p.amp.noise(0.5,0.25).subr(1)
      */
-    $sub(value: number = 0): Pattern {
+    subr(value: number = 0): Pattern {
         this.stack.push(x => handle(x, x => value - x))
         return this
     }
@@ -524,9 +524,9 @@ export class Pattern {
      * Reverse divide the previous value in the pattern chain by a value.
      * @param value value to divide by
      * @returns {Pattern}
-     * @example s0.p.modi.noise(1,2).$div(2)
+     * @example s0.p.modi.noise(1,2).divr(2)
      */ 
-    $div(value: number = 1): Pattern {
+    divr(value: number = 1): Pattern {
         this.stack.push(x => handle(x, x => value / x))
         return this
     }
@@ -941,9 +941,6 @@ export class Pattern {
 
     /**
      * push additional functions to the pattern stack if conditional operators have been applied
-     * @param t current time
-     * @param q current division
-     * @param bpm current bpm
      * @hidden
      */ 
     applyConditionals() {
