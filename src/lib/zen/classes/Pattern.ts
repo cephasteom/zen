@@ -143,6 +143,7 @@ export class Pattern {
      */ 
     get $else(): Pattern {
         !this._else && (this._else = new Pattern(this))
+        console.log(this._else)
         return this._else
     }
 
@@ -952,7 +953,7 @@ export class Pattern {
     }
 
     /**
-     * push additional functions to the pattern stack if logic operators have been applied
+     * Push additional functions to the pattern stack if logic operators have been applied
      * @param t current time
      * @param q current division
      * @param bpm current bpm
@@ -968,37 +969,42 @@ export class Pattern {
     }
 
     /**
-     * push additional functions to the pattern stack if conditional operators have been applied
-     * @hidden
-     */ 
-    applyConditionals() {
-        const isTrue = this._ifCondition instanceof Pattern
-            ? !!this._ifCondition.value()
-            : !!this._ifCondition
-
-        const stack = isTrue
-            ? this._if?.stack
-            : this._if?._else?.stack;
-        stack && this.stack.push(...stack)
-    }
-
-    /**
-     * push additional functions to the pattern stack if math operators have been applied
+     * Push additional functions to the pattern stack if math operators have been applied
      * @param t current time
      * @param q current division
      * @param bpm current bpm
      * @hidden
      */ 
     applyMath(t: number, q: number, bpm?: number) {
-        const ADD = this._add && this._add.get(t, q, bpm);
-        const SUB = this._sub && this._sub.get(t, q, bpm);
-        const MUL = this._mul && this._mul.get(t, q, bpm);
-        const DIV = this._div && this._div.get(t, q, bpm);
-        ADD !== null && this.add(+ADD)
-        SUB !== null && this.sub(+SUB)
-        MUL !== null && this.mul(+MUL)
-        DIV !== null && this.div(+DIV)
+        const add = this._add && this._add.get(t, q, bpm);
+        const sub = this._sub && this._sub.get(t, q, bpm);
+        const mul = this._mul && this._mul.get(t, q, bpm);
+        const div = this._div && this._div.get(t, q, bpm);
+        add !== null && this.add(+add)
+        sub !== null && this.sub(+sub)
+        mul !== null && this.mul(+mul)
+        div !== null && this.div(+div)
     }
+
+    /**
+     * Push additional functions to the pattern stack if conditional operators have been applied
+     * @hidden
+     */ 
+    applyConditionals(t: number, q: number, bpm?: number) {
+        const isTrue = this._ifCondition instanceof Pattern
+            ? !!this._ifCondition.value()
+            : !!this._ifCondition
+
+        // generate the if/else stack
+        isTrue && this._if?.get(t, q, bpm)
+        !isTrue && this._else?.get(t, q, bpm)
+
+        // push the stack to the pattern stack
+        const stack = isTrue
+            ? this._if?.stack
+            : this._else?.stack;
+        stack && this.stack.push(...stack)
+    }    
 
     /** @hidden */
     get(t: number, q: number, bpm?: number): patternValue | null {
@@ -1007,7 +1013,7 @@ export class Pattern {
 
         this.applyLogic(t, q, bpm)
         this.applyMath(t, q, bpm)
-        this.applyConditionals()
+        this.applyConditionals(t, q, bpm)
         
         const value = this.stack.length 
             ? this.stack.reduce((val: patternValue, fn) => fn(val), t) 
