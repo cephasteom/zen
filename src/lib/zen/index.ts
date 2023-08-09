@@ -40,7 +40,6 @@ const loop = new Loop(time => {
     // global variables
     let { q, s, c } = z
     
-    
     // evaluate the user's code, using fallback if it fails
     const [ s0, s1, s2, s3, s4, s5, s6, s7 ] = streams;
     const map = keymap
@@ -58,7 +57,8 @@ const loop = new Loop(time => {
     t = z.getTime()
     s = z.s
     q = z.q
-    
+    c = z.c
+
     // update loop and transport
     loop.interval = `${q}n`
     const newBpm = z.getBpm()
