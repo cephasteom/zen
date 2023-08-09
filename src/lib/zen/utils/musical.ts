@@ -21,7 +21,7 @@ export function letterToInteger(letter: string) {
 
 export const getScale = memoize((name: string) => {
     const [root = 'c', scale = 'major'] = name.split("-")
-    const notes = scales[scale]
+    const notes = scales[scale] || []
     const rootIndex = letterToInteger(root)
     return Array(8).fill(notes)
         .map((notes: number[], octave: number) => notes.map((n: number) => (n + rootIndex + (octave * 12))))
