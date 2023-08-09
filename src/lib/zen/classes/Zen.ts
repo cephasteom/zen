@@ -111,8 +111,6 @@ export class Zen extends Stream {
     /** @hidden */
     resetGlobals(t: number) {
         this._t = t;
-        this._s = 16;
-        this._q = 16;
         this._update = 1;
         [this.bpm, this.t].forEach(p => p.reset())
     }

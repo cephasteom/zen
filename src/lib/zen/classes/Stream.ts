@@ -258,8 +258,6 @@ export class Stream {
         const { t, x, y, z, xyz, e, m, solo, mute } = this;
         [t, x, y, z, xyz, e, m, solo, mute].forEach(p => p.reset())
         this._t = 0
-        this._q = 0
-        this._s = 0
         this._bpm = 120
 
         Object.values(this.p).forEach(p => p.reset())
