@@ -30,7 +30,7 @@ export const getScale = memoize((name: string) => {
 
 export const getChord = memoize((name: string) => {
     const [root = 'c', chord = 'major'] = name.split("-")
-    const notes = chords[chord]
+    const notes = chords[chord] || []
     const rootIndex = letterToInteger(root)
     return notes.map((n: number) => n + rootIndex)
 })
