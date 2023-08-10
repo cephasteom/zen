@@ -970,6 +970,90 @@ export class Pattern {
     }
 
     /**
+     * 50/50 chance of returning 1 or 0
+     * @param a value to return if true
+     * @param b value to return if false
+     * @returns {Pattern}
+     * @example
+     * s0.e.sometimes()
+     */ 
+    sometimes(a: number = 1, b: number = 0): Pattern {
+        this.stack.push(() => Math.random() < 0.5 ? a : b)
+        return this
+    }
+
+    /**
+     * Alias for `sometimes`
+     */ 
+    coin(a: number = 1, b: number = 0): Pattern {
+        this.stack.push(() => Math.random() < 0.5 ? a : b)
+        return this
+    }
+
+    /**
+     * Alias for `$sometimes`
+     */ 
+    get $coin(): Pattern {
+        return this.$sometimes
+    }
+
+    /**
+     * 50/50 chance of adding another pattern to the stack
+     * @returns {Pattern}
+     * @example
+     * s0.p.n.scales('d-dorian', 16).$sometimes.add(12)
+     */
+    get $sometimes(): Pattern {
+        return this.$if(Math.random() < 0.5)
+    }
+
+    /**
+     * 25/75 chance of returning 1 or 0
+     * @param a value to return if true
+     * @param b value to return if false
+     * @returns {Pattern}
+     * @example
+     * s0.e.rarely()
+     */ 
+    rarely(a: number = 1, b: number = 0): Pattern {
+        this.stack.push(() => Math.random() < 0.25 ? a : b)
+        return this
+    }
+
+    /**
+     * 25/75 chance of adding another pattern to the stack
+     * @returns {Pattern}
+     * @example
+     * s0.p.n.scales('d-dorian', 16).$rarely.add(12)
+     */ 
+    get $rarely(): Pattern {
+        return this.$if(Math.random() < 0.25)
+    }
+
+    /**
+     * 75/25 chance of returning a 1 or 0
+     * @param a value to return if true
+     * @param b value to return if false
+     * @returns {Pattern}
+     * @example
+     * s0.e.often()
+     */ 
+    often(a: number = 1, b: number = 0): Pattern {
+        this.stack.push(() => Math.random() < 0.75 ? a : b)
+        return this
+    }
+
+    /**
+     * 75/25 chance of adding another pattern to the stack
+     * @returns {Pattern}
+     * @example
+     * s0.p.n.scales('d-dorian', 16).$often.add(12)
+     */ 
+    get $often(): Pattern {
+        return this.$if(Math.random() < 0.75)
+    }
+
+    /**
      * Push additional functions to the pattern stack if logic operators have been applied
      * @param t current time
      * @param q current division
@@ -1021,7 +1105,7 @@ export class Pattern {
             ? this._if?.stack
             : this._else?.stack;
         stack && this.stack.push(...stack)
-    }    
+    }
 
     /** @hidden */
     get(t: number, q: number, bpm?: number): patternValue | null {
