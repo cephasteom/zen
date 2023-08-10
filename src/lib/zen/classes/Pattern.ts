@@ -161,7 +161,6 @@ export class Pattern {
      */ 
     get $else(): Pattern {
         !this._else && (this._else = new Pattern(this))
-        console.log(this._else)
         return this._else
     }
 
@@ -242,7 +241,7 @@ export class Pattern {
      * @returns {Pattern}
      * @example 
     s0.p.amp.sine()
-    s1.p.pan.eval(s0.p.amp);
+    s1.p.pan.use(s0.p.amp);
      */
     use(pattern: Pattern): Pattern {
         this.stack.push(...pattern.stack)
