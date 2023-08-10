@@ -1054,8 +1054,7 @@ export class Pattern {
     }
 
     /**
-     * Invert the previous value in the pattern chain, as if it were a chord
-     * Expects an array as the previous value
+     * Invert the previous chord in the pattern chain
      * @param i inversion
      * @returns {Pattern}
      * @example
