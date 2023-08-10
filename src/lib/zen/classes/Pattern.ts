@@ -145,6 +145,8 @@ export class Pattern {
      * @param value value to subtract
      * @returns {Pattern}
      * @example s0.p.n.noise(60,72,1).sub(12)
+     * Or, use $sub to create a new pattern and subtract it from the previous pattern in the chain.
+     * @example s0.p.n.noise(60,72,1).$sub.noise(0,12,1)
      */
     sub(value: number = 0): Pattern {
         this.stack.push(x => handle(x, x => x - value))
@@ -156,6 +158,8 @@ export class Pattern {
      * @param value value to subtract
      * @returns {Pattern}
      * @example s0.p.amp.noise(0.5,0.25).subr(1)
+     * Or, use $subr to create a new pattern and subtract it from the previous pattern in the chain.
+     * @example s0.p.n.noise(0,12,1).$subr.noise(60,72,1)
      */
     subr(value: number = 0): Pattern {
         this.stack.push(x => handle(x, x => value - x))
@@ -167,6 +171,8 @@ export class Pattern {
      * @param value value to multiply by
      * @returns {Pattern}
      * @example s0.p.n.noise(60,72,1).mul(2)
+     * Or, use $mul to create a new pattern and multiply it by the previous pattern in the chain.
+     * @example s0.p.n.noise(60,72,1).$mul.noise(0,12,1)
      */ 
     mul(value: number = 1): Pattern {
         this.stack.push(x => handle(x, x => x * value))
@@ -178,6 +184,8 @@ export class Pattern {
      * @param value value to divide by
      * @returns {Pattern}
      * @example s0.p.n.noise(60,72,1).div(2)
+     * Or, use $div to create a new pattern and divide it by the previous pattern in the chain.
+     * @example s0.p.n.noise(60,72,1).$div.noise(0,12,1)
      */
     div(value: number = 1): Pattern {
         this.stack.push(x => handle(x, x => x / value))
@@ -189,6 +197,8 @@ export class Pattern {
      * @param value value to divide by
      * @returns {Pattern}
      * @example s0.p.modi.noise(1,2).divr(2)
+     * Or, use $divr to create a new pattern and divide it by the previous pattern in the chain.
+     * @example s0.p.n.noise(0,12,1).$divr.noise(60,72,1)
      */ 
     divr(value: number = 1): Pattern {
         this.stack.push(x => handle(x, x => value / x))
