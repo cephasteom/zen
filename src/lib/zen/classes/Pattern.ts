@@ -70,7 +70,7 @@ export class Pattern {
         this.combine = this.combine.bind(this);
         // auto generate $ methods
         // TODO: generate from list of methods
-        ['add', 'sub', 'subr', 'mul', 'div', 'divr'].forEach(method => {
+        ['add', 'sub', 'subr', 'mul', 'div', 'divr', 'and'].forEach(method => {
             Object.defineProperty(this, `$${method}`, {
                 get: () => {
                     const pattern = new Pattern(this)
@@ -207,13 +207,16 @@ export class Pattern {
     
     // COMPARISON: TODO
     /**
-     * Initialise a new pattern and compare it with the previous chain
+     * Compare the previous value in the pattern chain with a value.
+     * @param value value to compare with
      * @returns {Pattern}
+     * @example s0.e.every(3).add(t%2)
+     * Or, use $and to create a new pattern and compare it with the previous pattern in the chain.
      * @example s0.e.every(3).$and.every(2)
      */ 
-    get $and(): Pattern {
-        !this._and && (this._and = new Pattern(this))
-        return this._and
+    and(value: number = 1): Pattern {
+        this.stack.push(x => handle(x, x => x && value))
+        return this
     }
 
     /**
