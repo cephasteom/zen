@@ -39,10 +39,6 @@ export class Pattern {
     /** @hidden */
     private _bpm: number = 120
 
-    // Logic
-    /** @hidden */
-    _xor: null | Pattern = null;
-
     // Conditionals
     /** @hidden */
     _ifCondition: boolean | Pattern = false;
@@ -66,7 +62,7 @@ export class Pattern {
         this.combine = this.combine.bind(this);
         // auto generate $ methods
         // TODO: generate from list of methods
-        ['add', 'sub', 'subr', 'mul', 'div', 'divr', 'and', 'or'].forEach(method => {
+        ['add', 'sub', 'subr', 'mul', 'div', 'divr', 'and', 'or', 'xor'].forEach(method => {
             Object.defineProperty(this, `$${method}`, {
                 get: () => {
                     const pattern = new Pattern(this)
@@ -201,7 +197,7 @@ export class Pattern {
         return this
     }   
     
-    // COMPARISON: TODO
+    // COMPARISON
     /**
      * Compare the previous value in the pattern chain with a value.
      * @param value value to compare with
@@ -229,14 +225,17 @@ export class Pattern {
     }
 
     /**
-     * Initialise a new pattern and compare it with the previous chain
+     * Compare the previous value in the pattern chain with a value.
+     * @param value value to compare with
      * @returns {Pattern}
+     * @example s0.e.every(3).xor(t%2)
+     * Or, use $xor to create a new pattern and compare it with the previous pattern in the chain.
      * @example s0.e.every(3).$xor.every(2)
-     */
-    get $xor(): Pattern {
-        !this._xor && (this._xor = new Pattern(this))
-        return this._xor
-    } 
+     */ 
+    xor(value: number = 1): Pattern {
+        this.stack.push(x => handle(x, x => x ^ value))
+        return this
+    }
 
     /**
      * Apply following chain of methods if condition is true
@@ -277,10 +276,6 @@ export class Pattern {
     reset() {
         this.stack = []
         this._value = 0
-        // logic
-        this._and?.reset()
-        this._or?.reset()
-        this._xor?.reset()
         // conditionals
         this._ifCondition = false
         this._if?.reset()
@@ -1063,19 +1058,6 @@ export class Pattern {
         return this
     }
 
-
-    /**
-     * Push additional functions to the pattern stack if logic operators have been applied
-     * @param t current time
-     * @param q current division
-     * @param bpm current bpm
-     * @hidden
-     */ 
-    applyLogic(t: number, q: number, bpm?: number) {
-        const XOR = this._xor && this._xor.get(t, q, bpm);
-        XOR !== null && this.fn(x => x !== XOR ? 1 : 0)
-    }
-
     /**
      * Push additional functions to the pattern stack if conditional operators have been applied
      * @hidden
@@ -1106,7 +1088,6 @@ export class Pattern {
         // combine all $ patterns into the stack
         this._state.$.forEach(this.combine)
 
-        this.applyLogic(t, q, bpm)
         this.applyConditionals(t, q, bpm)
         
         const value = this.stack.length 
