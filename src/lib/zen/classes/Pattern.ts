@@ -970,7 +970,7 @@ export class Pattern {
     }
 
     /**
-     * 50/50 chance of returning 1 or 0
+     * 50/50 chance of returning 1 or 0. Also, use `coin()`.
      * @param a value to return if true
      * @param b value to return if false
      * @returns {Pattern}
@@ -980,6 +980,16 @@ export class Pattern {
     sometimes(a: number = 1, b: number = 0): Pattern {
         this.stack.push(() => Math.random() < 0.5 ? a : b)
         return this
+    }
+
+    /**
+     * 50/50 chance of adding another pattern to the stack. Also, use `$coin`.
+     * @returns {Pattern}
+     * @example
+     * s0.p.n.scales('d-dorian', 16).$sometimes.add(12)
+     */
+    get $sometimes(): Pattern {
+        return this.$if(Math.random() < 0.5)
     }
 
     /**
@@ -995,17 +1005,7 @@ export class Pattern {
      */ 
     get $coin(): Pattern {
         return this.$sometimes
-    }
-
-    /**
-     * 50/50 chance of adding another pattern to the stack
-     * @returns {Pattern}
-     * @example
-     * s0.p.n.scales('d-dorian', 16).$sometimes.add(12)
-     */
-    get $sometimes(): Pattern {
-        return this.$if(Math.random() < 0.5)
-    }
+    }    
 
     /**
      * 25/75 chance of returning 1 or 0
