@@ -41,10 +41,6 @@ export class Pattern {
 
     // Logic
     /** @hidden */
-    _and: null | Pattern = null;
-    /** @hidden */
-    _or: null | Pattern = null;
-    /** @hidden */
     _xor: null | Pattern = null;
 
     // Conditionals
@@ -70,7 +66,7 @@ export class Pattern {
         this.combine = this.combine.bind(this);
         // auto generate $ methods
         // TODO: generate from list of methods
-        ['add', 'sub', 'subr', 'mul', 'div', 'divr', 'and'].forEach(method => {
+        ['add', 'sub', 'subr', 'mul', 'div', 'divr', 'and', 'or'].forEach(method => {
             Object.defineProperty(this, `$${method}`, {
                 get: () => {
                     const pattern = new Pattern(this)
@@ -220,13 +216,16 @@ export class Pattern {
     }
 
     /**
-     * Initialise a new pattern and compare it with the previous chain
+     * Compare the previous value in the pattern chain with a value.
+     * @param value value to compare with
      * @returns {Pattern}
+     * @example s0.e.every(3).or(t%2)
+     * Or, use $or to create a new pattern and compare it with the previous pattern in the chain.
      * @example s0.e.every(3).$or.every(2)
-     */
-    get $or(): Pattern {
-        !this._or && (this._or = new Pattern(this))
-        return this._or
+     */ 
+    or(value: number = 1): Pattern {
+        this.stack.push(x => handle(x, x => x || value))
+        return this
     }
 
     /**
@@ -1073,11 +1072,7 @@ export class Pattern {
      * @hidden
      */ 
     applyLogic(t: number, q: number, bpm?: number) {
-        const AND = this._and && this._and.get(t, q, bpm);
-        const OR = this._or && this._or.get(t, q, bpm);
         const XOR = this._xor && this._xor.get(t, q, bpm);
-        AND !== null && this.fn(x => x && AND ? 1 : 0)
-        OR !== null && this.fn(x => x || OR ? 1 : 0)
         XOR !== null && this.fn(x => x !== XOR ? 1 : 0)
     }
 
