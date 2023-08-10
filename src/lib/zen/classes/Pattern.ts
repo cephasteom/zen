@@ -55,19 +55,11 @@ export class Pattern {
     /** @hidden */
     _else: null | Pattern = null;
 
-    // Maths
-    /** @hidden */
-    _add: null | Pattern = null;
-    /** @hidden */
-    _sub: null | Pattern = null;
-    /** @hidden */
-    _mul: null | Pattern = null;
-    /** @hidden */
-    _div: null | Pattern = null;
-
     // State
     /** @hidden */
-    _state: any
+    _state: any = {
+        $: []
+    }
     /** @hidden */
     _toggle: boolean = false
 
@@ -75,9 +67,21 @@ export class Pattern {
     constructor(parent: Pattern | null = null) {
         this._parent = parent
         this.reset()
+        this.combine = this.combine.bind(this);
+        // auto generate $ methods
+        // TODO: generate from list of methods
+        ['add', 'sub', 'subr', 'mul', 'div', 'divr'].forEach(method => {
+            Object.defineProperty(this, `$${method}`, {
+                get: () => {
+                    const pattern = new Pattern(this)
+                    this._state.$.push({method, pattern})
+                    return pattern
+                }
+            })
+        })
     }
 
-    /**
+   /**
      * Return the Pattern that instantiated this Pattern if it exists, otherwise return this Pattern.
      * Useful when using any of the dollar methods, which spawn new Patterns, allowing you to return to this parent pattern.
      * @returns {Pattern}
@@ -105,11 +109,93 @@ export class Pattern {
             .$if(s0.e).set(57).$add.saw(1,16).$.$mul.range(1,2,0,0.25).$$
             .$else.scales('d-dorian', 16)
         s1.e.every(1)
-     */ 
+    */ 
     get $$(): Pattern {
         return this._parent?.$$ || this
+    }    
+
+    /**
+     * Pass the value of a pattern to a method on the previous pattern
+     * @param pattern 
+     * @param method 
+     * @hidden
+     */
+    combine({pattern, method} : {pattern: Pattern, method: string}) {
+        // @ts-ignore
+        this[method] && this[method](pattern.value())
     }
 
+    
+    // MATHS
+    /**
+     * Add a value to the previous value in the pattern chain.
+     * @param value value to add
+     * @returns {Pattern}
+     * @example s0.p.n.noise(60,72,1).add(12)
+     * Or, use $add to create a new pattern and add it to the previous pattern in the chain.
+     * @example s0.p.n.noise(60,72,1).$add.noise(0,12,1)
+     */
+    add(value: number = 0): Pattern {
+        this.stack.push(x => handle(x, x => x + value))
+        return this
+    }
+
+    /**
+     * Subtract a value from the previous value in the pattern chain.
+     * @param value value to subtract
+     * @returns {Pattern}
+     * @example s0.p.n.noise(60,72,1).sub(12)
+     */
+    sub(value: number = 0): Pattern {
+        this.stack.push(x => handle(x, x => x - value))
+        return this
+    }    
+
+    /**
+     * Reverse subtract a value from the previous value in the pattern chain.
+     * @param value value to subtract
+     * @returns {Pattern}
+     * @example s0.p.amp.noise(0.5,0.25).subr(1)
+     */
+    subr(value: number = 0): Pattern {
+        this.stack.push(x => handle(x, x => value - x))
+        return this
+    }
+
+    /**
+     * Multiply the previous value in the pattern chain by a value.
+     * @param value value to multiply by
+     * @returns {Pattern}
+     * @example s0.p.n.noise(60,72,1).mul(2)
+     */ 
+    mul(value: number = 1): Pattern {
+        this.stack.push(x => handle(x, x => x * value))
+        return this
+    }
+
+    /**
+     * Divide the previous value in the pattern chain by a value.
+     * @param value value to divide by
+     * @returns {Pattern}
+     * @example s0.p.n.noise(60,72,1).div(2)
+     */
+    div(value: number = 1): Pattern {
+        this.stack.push(x => handle(x, x => x / value))
+        return this
+    }
+
+    /**
+     * Reverse divide the previous value in the pattern chain by a value.
+     * @param value value to divide by
+     * @returns {Pattern}
+     * @example s0.p.modi.noise(1,2).divr(2)
+     */ 
+    divr(value: number = 1): Pattern {
+        this.stack.push(x => handle(x, x => value / x))
+        return this
+    }   
+    
+    // COMPARISON: TODO
     /**
      * Initialise a new pattern and compare it with the previous chain
      * @returns {Pattern}
@@ -165,46 +251,6 @@ export class Pattern {
     }
 
     /**
-     * Initialise a new pattern and add it to the previous chain
-     * @returns {Pattern}
-     * @example s0.px.n.range(0,16).$add.noise(0,16,1)
-     */ 
-    get $add(): Pattern {
-        !this._add && (this._add = new Pattern(this))
-        return this._add
-    } 
-
-    /**
-     * Initialise a new pattern and subtract it from the previous chain
-     * @returns {Pattern}
-     * @example s0.px.n.range(0,16).$sub.noise(0,16,1)
-     */ 
-    get $sub(): Pattern {
-        !this._sub && (this._sub = new Pattern(this))
-        return this._sub
-    }
-
-    /**
-     * Initialise a new pattern and multiply it with the previous chain
-     * @returns {Pattern}
-     * @example s0.px.n.range(0,16).$mul.noise(0,16,1)
-     */ 
-    get $mul(): Pattern {
-        !this._mul && (this._mul = new Pattern(this))
-        return this._mul
-    }
-
-    /**
-     * Initialise a new pattern and divide it from the previous chain
-     * @returns {Pattern}
-     * @example s0.px.n.range(0,16).$div.noise(0,16,1)
-     */ 
-    get $div(): Pattern {
-        !this._div && (this._div = new Pattern(this))
-        return this._div
-    }
-
-    /**
      * Set a single value
      * @param {patternValue} value - a single string or number or array of strings or numbers
      * @returns {Pattern}
@@ -223,15 +269,13 @@ export class Pattern {
         this._and?.reset()
         this._or?.reset()
         this._xor?.reset()
-        // maths
-        this._add?.reset()
-        this._sub?.reset()
-        this._mul?.reset()
-        this._div?.reset()
         // conditionals
         this._ifCondition = false
         this._if?.reset()
         this._else?.reset()
+
+        // TODO: this is unfortunate as all Patterns stored here will be garbage collected rather than reused...
+        this._state.$ = []
         return this
     }
 
@@ -510,72 +554,8 @@ export class Pattern {
         this.stack.push((x: patternValue) => values[Math.floor((pos(x, this._q, freq)*values.length)%values.length)])
         return this
     }
-    
-    /**
-     * Add a value to the previous value in the pattern chain.
-     * @param value value to add
-     * @returns {Pattern}
-     * @example s0.p.n.noise(60,72,1).add(12)
-     */
-    add(value: number = 0): Pattern {
-        this.stack.push(x => handle(x, x => x + value))
-        return this
-    }
 
-    /**
-     * Subtract a value from the previous value in the pattern chain.
-     * @param value value to subtract
-     * @returns {Pattern}
-     * @example s0.p.n.noise(60,72,1).sub(12)
-     */
-    sub(value: number = 0): Pattern {
-        this.stack.push(x => handle(x, x => x - value))
-        return this
-    }
 
-    /**
-     * Reverse subtract a value from the previous value in the pattern chain.
-     * @param value value to subtract
-     * @returns {Pattern}
-     * @example s0.p.amp.noise(0.5,0.25).subr(1)
-     */
-    subr(value: number = 0): Pattern {
-        this.stack.push(x => handle(x, x => value - x))
-        return this
-    }
-
-    /**
-     * Multiply the previous value in the pattern chain by a value.
-     * @param value value to multiply by
-     * @returns {Pattern}
-     * @example s0.p.n.noise(60,72,1).mul(2)
-     */ 
-    mul(value: number = 1): Pattern {
-        this.stack.push(x => handle(x, x => x * value))
-        return this
-    }
-
-    /**
-     * Divide the previous value in the pattern chain by a value.
-     * @param value value to divide by
-     * @returns {Pattern}
-     * @example s0.p.n.noise(60,72,1).div(2)
-     */
-    div(value: number = 1): Pattern {
-        this.stack.push(x => handle(x, x => x / value))
-        return this
-    }
-
-    /**
-     * Reverse divide the previous value in the pattern chain by a value.
-     * @param value value to divide by
-     * @returns {Pattern}
-     * @example s0.p.modi.noise(1,2).divr(2)
-     */ 
-    divr(value: number = 1): Pattern {
-        this.stack.push(x => handle(x, x => value / x))
-        return this
-    }
 
     /**
      * Modulo the previous value in the pattern chain by a value.
@@ -1089,24 +1069,6 @@ export class Pattern {
     }
 
     /**
-     * Push additional functions to the pattern stack if math operators have been applied
-     * @param t current time
-     * @param q current division
-     * @param bpm current bpm
-     * @hidden
-     */ 
-    applyMath(t: number, q: number, bpm?: number) {
-        const add = this._add && this._add.get(t, q, bpm);
-        const sub = this._sub && this._sub.get(t, q, bpm);
-        const mul = this._mul && this._mul.get(t, q, bpm);
-        const div = this._div && this._div.get(t, q, bpm);
-        add !== null && this.add(+add)
-        sub !== null && this.sub(+sub)
-        mul !== null && this.mul(+mul)
-        div !== null && this.div(+div)
-    }
-
-    /**
      * Push additional functions to the pattern stack if conditional operators have been applied
      * @hidden
      */ 
@@ -1131,8 +1093,12 @@ export class Pattern {
         this._q = q
         this._bpm = bpm || this._bpm
 
+        // evaluate all $ patterns stored in the state
+        this._state.$.forEach(({pattern} : {pattern: Pattern}) => pattern.get(t, q, bpm))
+        // combine all $ patterns into the stack
+        this._state.$.forEach(this.combine)
+
         this.applyLogic(t, q, bpm)
-        this.applyMath(t, q, bpm)
         this.applyConditionals(t, q, bpm)
         
         const value = this.stack.length 
