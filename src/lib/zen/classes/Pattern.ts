@@ -1054,6 +1054,26 @@ export class Pattern {
     }
 
     /**
+     * Invert the previous value in the pattern chain, as if it were a chord
+     * Expects an array as the previous value
+     * @param i inversion
+     * @returns {Pattern}
+     * @example
+     * s0.p.n.chords('d-dorian', 16).i(1)
+     */ 
+    inversion(i: number): Pattern {
+        this.stack.push((x: patternValue) => {
+            const chord = [x].flat()
+            const length = chord.length
+            const head = chord.slice(0, i%length)
+            const tail = chord.slice(i%length)
+            return [...tail, ...head.map(n => n + 12)].map(n => n + (12 * Math.floor((i%(length*4))/length)))
+        })
+        return this
+    }
+
+
+    /**
      * Push additional functions to the pattern stack if logic operators have been applied
      * @param t current time
      * @param q current division
