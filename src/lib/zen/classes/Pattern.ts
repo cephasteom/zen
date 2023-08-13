@@ -1,3 +1,4 @@
+// TODO: conditionals
 import type { stack, patternValue } from '../types'
 import { 
     mapToRange, 
@@ -62,7 +63,7 @@ export class Pattern {
         this.combine = this.combine.bind(this);
         // auto generate $ methods
         // TODO: generate from list of methods
-        ['add', 'sub', 'subr', 'mul', 'div', 'divr', 'and', 'or', 'xor'].forEach(method => {
+        ['add', 'sub', 'subr', 'mul', 'div', 'divr', 'and', 'or', 'xor', 'not'].forEach(method => {
             Object.defineProperty(this, `$${method}`, {
                 get: () => {
                     const pattern = new Pattern(this)
@@ -237,6 +238,7 @@ export class Pattern {
         return this
     }
 
+    // Conditionals
     /**
      * Apply following chain of methods if condition is true
      * Also, accepts an instance of a Pattern
@@ -263,12 +265,13 @@ export class Pattern {
 
     /**
      * Set a single value
-     * @param {patternValue} value - a single string or number or array of strings or numbers
+     * @param {patternValue | Pattern} value - a single string or number or array of strings or numbers, or a Pattern
      * @returns {Pattern}
      * @example s0.p.amp.set(1)
+     * @example s1.p.set(s0.e)
      */
-    set(value: patternValue): Pattern {
-        this.stack = [() => value] 
+    set(value: patternValue | Pattern): Pattern {
+        this.stack = [() => value instanceof Pattern ? value.value() : value] 
         return this
     }
     
@@ -300,26 +303,6 @@ export class Pattern {
     }
 
     /**
-     * Get the current value of another pattern, replaces the previous value in the pattern chain
-     * @param {Pattern} pattern - an instance of another pattern
-     * @returns {Pattern}
-     * @example 
-    s0.e.odd()
-    s1.e.eval(s0.e).neq(1)
-     */
-    eval(pattern: Pattern): Pattern {
-        this.stack.push(() => pattern._value)
-        return this
-    }
-
-    /**
-     * Alias for `eval`
-     */ 
-    e(pattern: Pattern): Pattern {
-        return this.eval(pattern)
-    }
-
-    /**
      * Get the current value of pattern if it has been evaluated. Used internally.
      * @hidden
      */ 
@@ -335,6 +318,9 @@ export class Pattern {
      * s0.e.every(3)
      * s1.e.not(s0.e)
      * s2.e.not(!(t%3))
+     * Or use $not to negate the outcome of a pattern
+     * @example
+     * s0.e.$not.square(0,1,1)
      */ 
     not(x: boolean | Pattern): Pattern {
         this.stack.push(() => {
