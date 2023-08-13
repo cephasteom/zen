@@ -63,7 +63,7 @@ export class Pattern {
         this.combine = this.combine.bind(this);
         // auto generate $ methods
         // TODO: generate from list of methods
-        ['add', 'sub', 'subr', 'mul', 'div', 'divr', 'and', 'or', 'xor', 'not'].forEach(method => {
+        ['add', 'sub', 'subr', 'mul', 'div', 'divr', 'and', 'or', 'xor', 'not', 'every', 'mod', 'step', 'gt', 'lt', 'gte', 'lte', 'eq', 'eqq', 'neq', 'neqq', 'odd', 'even', 'bts', 'btms', 'sin', 'cos', 'tan', 'asin', 'tacos', 'atan', 'atan2', 'abs', 'ceil', 'floor', 'round', 'exp', 'log', 'sqrt'].forEach(method => {
             Object.defineProperty(this, `$${method}`, {
                 get: () => {
                     const pattern = new Pattern(this)
@@ -382,7 +382,6 @@ export class Pattern {
         return this
     }
 
-    
     /**
      * Generate a cosine wave between lo and hi. Use as the first call in a pattern chain.
      * @param lo lowest value in range
@@ -498,6 +497,8 @@ export class Pattern {
      * @returns {Pattern}
      * @example s0.e.every(4) // return 1 every 4 divisions, 0 otherwise
      * @example s0.p.n.every(2, 60, 72) // return 60 every 2 divisions, 72 otherwise
+     * Or use $every to pass the outcome of a pattern as the first argument
+     * @example s0.p.$every.sine(1,16,1)
      */
     every(n: number, a: number = 1, b: number = 0): Pattern {
         this.stack.push(x => !(+x % n) ? a : b)
@@ -548,20 +549,21 @@ export class Pattern {
         return this
     }
 
-
-
     /**
      * Modulo the previous value in the pattern chain by a value.
+     * Or, use $mod to pass the outcome of a pattern to the function
      * @param value value to modulo by
      * @returns {Pattern}
-    */ 
+     * @example s0.n.set(t).mod(12).add(36)
+     * @example s0.n.set(t).$mod.set(12)
+     */ 
     mod(value: number = 1): Pattern {
         this.stack.push(x => handle(x, x => ((x % value) + value) % value))
         return this
     }
 
     /**
-     * Round the previous value in the pattern chain to the step value.\
+     * Round the previous value in the pattern chain to the step value.
      * @param value value to round to
      * @returns {Pattern}
      */
@@ -942,6 +944,7 @@ export class Pattern {
         return this
     }
 
+    // Chance
     /**
      * 50/50 chance of returning 1 or 0. Also, use `coin()`.
      * @param a value to return if true
