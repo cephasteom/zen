@@ -61,9 +61,9 @@ export class Pattern {
         this._parent = parent
         this.reset()
         this.combine = this.combine.bind(this);
+        
         // auto generate $ methods
-        // TODO: generate from list of methods
-        ['add', 'sub', 'subr', 'mul', 'div', 'divr', 'and', 'or', 'xor', 'not', 'every', 'mod', 'step', 'gt', 'lt', 'gte', 'lte', 'eq', 'eqq', 'neq', 'neqq', 'odd', 'even', 'bts', 'btms', 'sin', 'cos', 'tan', 'asin', 'tacos', 'atan', 'atan2', 'abs', 'ceil', 'floor', 'round', 'exp', 'log', 'sqrt'].forEach(method => {
+        ['add', 'sub', 'subr', 'mul', 'div', 'divr', 'and', 'or', 'xor', 'not', 'every', 'mod', 'step', 'gt', 'lt', 'gte', 'lte', 'eq', 'eqq', 'neq', 'neqq'].forEach(method => {
             Object.defineProperty(this, `$${method}`, {
                 get: () => {
                     const pattern = new Pattern(this)
@@ -788,6 +788,25 @@ export class Pattern {
     }
 
     /**
+     * Invert the previous chord in the pattern chain
+     * @param i inversion
+     * @returns {Pattern}
+     * @example s0.p.n.chords('d-dorian', 16).inversion(1)
+     * @example s0.p.n.chords('d-dorian', 16).$inversion.range(0,8,1)
+     */ 
+    inversion(i: number): Pattern {
+        this.stack.push((x: patternValue) => {
+            const chord = [x].flat()
+            const length = chord.length
+            const head = chord.slice(0, i%length)
+            const tail = chord.slice(i%length)
+            return [...tail, ...head.map(n => n + 12)].map(n => n + (12 * Math.floor((i%(length*4))/length)))
+        })
+        return this
+    }
+
+    // Maths
+    /**
      * Get the sine of the previous value in the pattern chain
      * @returns {Pattern}
      */ 
@@ -1027,24 +1046,6 @@ export class Pattern {
      */ 
     get $often(): Pattern {
         return this.$if(Math.random() < 0.75)
-    }
-
-    /**
-     * Invert the previous chord in the pattern chain
-     * @param i inversion
-     * @returns {Pattern}
-     * @example
-     * s0.p.n.chords('d-dorian', 16).i(1)
-     */ 
-    inversion(i: number): Pattern {
-        this.stack.push((x: patternValue) => {
-            const chord = [x].flat()
-            const length = chord.length
-            const head = chord.slice(0, i%length)
-            const tail = chord.slice(i%length)
-            return [...tail, ...head.map(n => n + 12)].map(n => n + (12 * Math.floor((i%(length*4))/length)))
-        })
-        return this
     }
 
     /**
