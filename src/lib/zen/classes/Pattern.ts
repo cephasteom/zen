@@ -55,7 +55,14 @@ export class Pattern {
         this.combine = this.combine.bind(this);
         
         // auto generate $ methods
-        ['if', 'else', 'add', 'sub', 'subr', 'mul', 'div', 'divr', 'and', 'or', 'xor', 'not', 'every', 'mod', 'step', 'gt', 'lt', 'gte', 'lte', 'eq', 'eqq', 'neq', 'neqq'].forEach(method => {
+        [
+            'if', 'else', 
+            'add', 'sub', 'subr', 'mul', 'div', 'divr', 'mod',
+            'and', 'or', 'xor', 
+            'not', 'every', 'step', 
+            'gt', 'lt', 'gte', 'lte', 'eq', 'eqq', 'neq', 'neqq',
+            'somtimes', 'rarely', 'often', 'coin'
+        ].forEach(method => {
             Object.defineProperty(this, `$${method}`, {
                 get: () => {
                     const pattern = new Pattern(this)
@@ -950,29 +957,12 @@ export class Pattern {
     }
 
     /**
-     * 50/50 chance of adding another pattern to the stack. Also, use `$coin`.
-     * @returns {Pattern}
-     * @example
-     * s0.p.n.scales('d-dorian', 16).$sometimes.add(12)
-     */
-    get $sometimes(): Pattern {
-        return this.$if(Math.random() < 0.5)
-    }
-
-    /**
      * Alias for `sometimes`
      */ 
     coin(a: number = 1, b: number = 0): Pattern {
         this.stack.push(() => Math.random() < 0.5 ? a : b)
         return this
-    }
-
-    /**
-     * Alias for `$sometimes`
-     */ 
-    get $coin(): Pattern {
-        return this.$sometimes
-    }    
+    }  
 
     /**
      * 25/75 chance of returning 1 or 0
@@ -988,16 +978,6 @@ export class Pattern {
     }
 
     /**
-     * 25/75 chance of adding another pattern to the stack
-     * @returns {Pattern}
-     * @example
-     * s0.p.n.scales('d-dorian', 16).$rarely.add(12)
-     */ 
-    get $rarely(): Pattern {
-        return this.$if(Math.random() < 0.25)
-    }
-
-    /**
      * 75/25 chance of returning a 1 or 0
      * @param a value to return if true
      * @param b value to return if false
@@ -1008,16 +988,6 @@ export class Pattern {
     often(a: number = 1, b: number = 0): Pattern {
         this.stack.push(() => Math.random() < 0.75 ? a : b)
         return this
-    }
-
-    /**
-     * 75/25 chance of adding another pattern to the stack
-     * @returns {Pattern}
-     * @example
-     * s0.p.n.scales('d-dorian', 16).$often.add(12)
-     */ 
-    get $often(): Pattern {
-        return this.$if(Math.random() < 0.75)
     }
 
     /** @hidden */
