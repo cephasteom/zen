@@ -40,14 +40,6 @@ export class Pattern {
     /** @hidden */
     private _bpm: number = 120
 
-    // Conditionals
-    /** @hidden */
-    _ifCondition: boolean | Pattern = false;
-    /** @hidden */
-    _if: null | Pattern = null;
-    /** @hidden */
-    _else: null | Pattern = null;
-
     // State
     /** @hidden */
     _state: any = {
@@ -63,7 +55,7 @@ export class Pattern {
         this.combine = this.combine.bind(this);
         
         // auto generate $ methods
-        ['add', 'sub', 'subr', 'mul', 'div', 'divr', 'and', 'or', 'xor', 'not', 'every', 'mod', 'step', 'gt', 'lt', 'gte', 'lte', 'eq', 'eqq', 'neq', 'neqq'].forEach(method => {
+        ['if', 'else', 'add', 'sub', 'subr', 'mul', 'div', 'divr', 'and', 'or', 'xor', 'not', 'every', 'mod', 'step', 'gt', 'lt', 'gte', 'lte', 'eq', 'eqq', 'neq', 'neqq'].forEach(method => {
             Object.defineProperty(this, `$${method}`, {
                 get: () => {
                     const pattern = new Pattern(this)
@@ -118,7 +110,6 @@ export class Pattern {
         this[method] && this[method](pattern.value())
     }
 
-    
     // MATHS
     /**
      * Add a value to the previous value in the pattern chain.
@@ -238,31 +229,6 @@ export class Pattern {
         return this
     }
 
-    // Conditionals
-    /**
-     * Apply following chain of methods if condition is true
-     * Also, accepts an instance of a Pattern
-     * @returns {Pattern}
-     * @example s0.n.$if(t%2).set(48).$else.set(36)
-     * @example s0.n.$if(s1.e)).set(48).$else.set(36)
-     */ 
-    $if(condition: boolean | Pattern): Pattern {
-        this._ifCondition = condition
-
-        !this._if && (this._if = new Pattern(this))
-        return this._if
-    }
-
-    /**
-     * Initialise a new pattern and apply if preceding value is false
-     * @returns {Pattern}
-     * @example s0.n.every(3).$if.set(48).$else.set(36)
-     */ 
-    get $else(): Pattern {
-        !this._else && (this._else = new Pattern(this))
-        return this._else
-    }
-
     /**
      * Set a single value
      * @param {patternValue | Pattern} value - a single string or number or array of strings or numbers, or a Pattern
@@ -279,10 +245,6 @@ export class Pattern {
     reset() {
         this.stack = []
         this._value = 0
-        // conditionals
-        this._ifCondition = false
-        this._if?.reset()
-        this._else?.reset()
 
         // TODO: this is unfortunate as all Patterns stored here will be garbage collected rather than reused...
         this._state.$ = []
@@ -715,15 +677,25 @@ export class Pattern {
 
     /**
      * Test if the previous value in the pattern chain is a truthy or falsy value
-     * @param a value to return when true
-     * @param b value to return when false
+     * If true return new value, if false, simply pass on the previous value
+     * @param value value to return when true
      * @returns {Pattern}
      */ 
-    if(a: number = 1, b: number = 0): Pattern {
-        this.stack.push(x => [x].flat().every(x => !!x) ? a : b)
+    if(value: number = 1): Pattern {
+        this.stack.push(x => [x].flat().every(x => !!x) ? value : x)
         return this
     }
 
+    /**
+     * Test if the previous value in the pattern chain is a truthy or falsy value
+     * If false return new value, if true, simply pass on the previous value
+     * @param value value to return when false
+     * @returns {Pattern}
+     */ 
+    else(value: number = 1): Pattern {
+        this.stack.push(x => [x].flat().every(x => !x) ? value : x)
+        return this
+    }
     
     /**
      * Convert the previous value from beats to seconds, scaling by bpm
@@ -1048,26 +1020,6 @@ export class Pattern {
         return this.$if(Math.random() < 0.75)
     }
 
-    /**
-     * Push additional functions to the pattern stack if conditional operators have been applied
-     * @hidden
-     */ 
-    applyConditionals(t: number, q: number, bpm?: number) {
-        const isTrue = this._ifCondition instanceof Pattern
-            ? !!this._ifCondition.value()
-            : !!this._ifCondition
-
-        // generate the if/else stack
-        isTrue && this._if?.get(t, q, bpm)
-        !isTrue && this._else?.get(t, q, bpm)
-
-        // push the stack to the pattern stack
-        const stack = isTrue
-            ? this._if?.stack
-            : this._else?.stack;
-        stack && this.stack.push(...stack)
-    }
-
     /** @hidden */
     get(t: number, q: number, bpm?: number): patternValue | null {
         this._q = q
@@ -1077,8 +1029,6 @@ export class Pattern {
         this._state.$.forEach(({pattern} : {pattern: Pattern}) => pattern.get(t, q, bpm))
         // combine all $ patterns into the stack
         this._state.$.forEach(this.combine)
-
-        this.applyConditionals(t, q, bpm)
         
         const value = this.stack.length 
             ? this.stack.reduce((val: patternValue, fn) => fn(val), t) 
