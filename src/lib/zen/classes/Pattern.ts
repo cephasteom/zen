@@ -656,7 +656,7 @@ export class Pattern {
      * @returns {Pattern}
      */ 
     invert(): Pattern {
-        this.if(0, 1)
+        this.stack.push(x => [x].flat().every(x => !!x) ? 0 : 1)
         return this
     }
 
