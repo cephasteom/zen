@@ -52,19 +52,6 @@ export class Pattern {
         this._parent = parent
         this.reset()
         this.combine = this.combine.bind(this);
-        
-        // auto generate $ methods
-        [
-            'somtimes', 'rarely', 'often', 'coin'
-        ].forEach(method => {
-            Object.defineProperty(this, `$${method}`, {
-                get: () => {
-                    const pattern = new Pattern(this)
-                    this._state.$.push({method, pattern})
-                    return pattern
-                }
-            })
-        })
     }
 
    /**
