@@ -1,4 +1,3 @@
-// TODO: conditionals
 import type { stack, patternValue } from '../types'
 import { 
     mapToRange, 
@@ -56,11 +55,6 @@ export class Pattern {
         
         // auto generate $ methods
         [
-            'if', 'else', 
-            'add', 'sub', 'subr', 'mul', 'div', 'divr', 'mod',
-            'and', 'or', 'xor', 
-            'not', 'every', 'step', 
-            'gt', 'lt', 'gte', 'lte', 'eq', 'eqq', 'neq', 'neqq',
             'somtimes', 'rarely', 'often', 'coin'
         ].forEach(method => {
             Object.defineProperty(this, `$${method}`, {
@@ -74,17 +68,17 @@ export class Pattern {
     }
 
    /**
-     * Return the Pattern that instantiated this Pattern if it exists, otherwise return this Pattern.
-     * Useful when using any of the dollar methods, which spawn new Patterns, allowing you to return to this parent pattern.
+     * Return the parent Pattern if it exists, otherwise return this Pattern.
+     * Useful when using any of the dollar methods, which spawn new Patterns, allowing you to return to this original pattern.
      * @returns {Pattern}
      * @example
      * s1.set({inst: 'synth', cut: 1})
-     * s1.p.n
-     *  .$if(t%3).set(57).$
+     * s1.p.n.coin()
+     *  .$if.set(57)._
      *  .$else.scales('d-dorian', 16)
      * s1.e.every(1)
      */ 
-    get $(): Pattern {
+    get _(): Pattern {
         return this._parent || this
     }
 
@@ -97,13 +91,13 @@ export class Pattern {
         s0.e.every(5)
 
         s1.set({inst: 'synth', cut: [0,1]})
-        s1.p.n
-            .$if(s0.e).set(57).$add.saw(1,16).$.$mul.range(1,2,0,0.25).$$
+        s1.p.n.set(s0.e)
+            .$if.set(57).$add.saw(1,16)._.$mul.range(1,2,0,0.25).__
             .$else.scales('d-dorian', 16)
         s1.e.every(1)
     */ 
-    get $$(): Pattern {
-        return this._parent?.$$ || this
+    get __(): Pattern {
+        return this._parent?.__ || this
     }    
 
     /**
@@ -115,125 +109,6 @@ export class Pattern {
     combine({pattern, method} : {pattern: Pattern, method: string}) {
         // @ts-ignore
         this[method] && this[method](pattern.value())
-    }
-
-    // MATHS
-    /**
-     * Add a value to the previous value in the pattern chain.
-     * @param value value to add
-     * @returns {Pattern}
-     * @example s0.p.n.noise(60,72,1).add(12)
-     * Or, use $add to create a new pattern and add it to the previous pattern in the chain.
-     * @example s0.p.n.noise(60,72,1).$add.noise(0,12,1)
-     */
-    add(value: number = 0): Pattern {
-        this.stack.push(x => handle(x, x => x + value))
-        return this
-    }
-
-    /**
-     * Subtract a value from the previous value in the pattern chain.
-     * @param value value to subtract
-     * @returns {Pattern}
-     * @example s0.p.n.noise(60,72,1).sub(12)
-     * Or, use $sub to create a new pattern and subtract it from the previous pattern in the chain.
-     * @example s0.p.n.noise(60,72,1).$sub.noise(0,12,1)
-     */
-    sub(value: number = 0): Pattern {
-        this.stack.push(x => handle(x, x => x - value))
-        return this
-    }    
-
-    /**
-     * Reverse subtract a value from the previous value in the pattern chain.
-     * @param value value to subtract
-     * @returns {Pattern}
-     * @example s0.p.amp.noise(0.5,0.25).subr(1)
-     * Or, use $subr to create a new pattern and subtract it from the previous pattern in the chain.
-     * @example s0.p.n.noise(0,12,1).$subr.noise(60,72,1)
-     */
-    subr(value: number = 0): Pattern {
-        this.stack.push(x => handle(x, x => value - x))
-        return this
-    }
-
-    /**
-     * Multiply the previous value in the pattern chain by a value.
-     * @param value value to multiply by
-     * @returns {Pattern}
-     * @example s0.p.n.noise(60,72,1).mul(2)
-     * Or, use $mul to create a new pattern and multiply it by the previous pattern in the chain.
-     * @example s0.p.n.noise(60,72,1).$mul.noise(0,12,1)
-     */ 
-    mul(value: number = 1): Pattern {
-        this.stack.push(x => handle(x, x => x * value))
-        return this
-    }
-
-    /**
-     * Divide the previous value in the pattern chain by a value.
-     * @param value value to divide by
-     * @returns {Pattern}
-     * @example s0.p.n.noise(60,72,1).div(2)
-     * Or, use $div to create a new pattern and divide it by the previous pattern in the chain.
-     * @example s0.p.n.noise(60,72,1).$div.noise(0,12,1)
-     */
-    div(value: number = 1): Pattern {
-        this.stack.push(x => handle(x, x => x / value))
-        return this
-    }
-
-    /**
-     * Reverse divide the previous value in the pattern chain by a value.
-     * @param value value to divide by
-     * @returns {Pattern}
-     * @example s0.p.modi.noise(1,2).divr(2)
-     * Or, use $divr to create a new pattern and divide it by the previous pattern in the chain.
-     * @example s0.p.n.noise(0,12,1).$divr.noise(60,72,1)
-     */ 
-    divr(value: number = 1): Pattern {
-        this.stack.push(x => handle(x, x => value / x))
-        return this
-    }   
-    
-    // COMPARISON
-    /**
-     * Compare the previous value in the pattern chain with a value.
-     * @param value value to compare with
-     * @returns {Pattern}
-     * @example s0.e.every(3).add(t%2)
-     * Or, use $and to create a new pattern and compare it with the previous pattern in the chain.
-     * @example s0.e.every(3).$and.every(2)
-     */ 
-    and(value: number = 1): Pattern {
-        this.stack.push(x => handle(x, x => x && value))
-        return this
-    }
-
-    /**
-     * Compare the previous value in the pattern chain with a value.
-     * @param value value to compare with
-     * @returns {Pattern}
-     * @example s0.e.every(3).or(t%2)
-     * Or, use $or to create a new pattern and compare it with the previous pattern in the chain.
-     * @example s0.e.every(3).$or.every(2)
-     */ 
-    or(value: number = 1): Pattern {
-        this.stack.push(x => handle(x, x => x || value))
-        return this
-    }
-
-    /**
-     * Compare the previous value in the pattern chain with a value.
-     * @param value value to compare with
-     * @returns {Pattern}
-     * @example s0.e.every(3).xor(t%2)
-     * Or, use $xor to create a new pattern and compare it with the previous pattern in the chain.
-     * @example s0.e.every(3).$xor.every(2)
-     */ 
-    xor(value: number = 1): Pattern {
-        this.stack.push(x => handle(x, x => x ^ value))
-        return this
     }
 
     /**
@@ -287,9 +162,6 @@ export class Pattern {
      * s0.e.every(3)
      * s1.e.not(s0.e)
      * s2.e.not(!(t%3))
-     * Or use $not to negate the outcome of a pattern
-     * @example
-     * s0.e.$not.square(0,1,1)
      */ 
     not(x: boolean | Pattern): Pattern {
         this.stack.push(() => {
@@ -297,6 +169,18 @@ export class Pattern {
             return !value ? 1 : 0
         })
         return this
+    }
+
+    /**
+     * Instantiate a new Pattern and negate the outcome of the pattern
+     * @returns {Pattern}
+     * @example
+     * s0.e.$not.square(0,1,1)
+     */ 
+    get $not(): Pattern {
+        const pattern = new Pattern(this)
+        this._state.$.push({method: 'not', pattern})
+        return pattern
     }
 
     /**
@@ -319,6 +203,298 @@ export class Pattern {
         return this
     }
 
+    /**
+     * See toggle.
+     * @returns {Pattern}
+     */ 
+    get $toggle(): Pattern {
+        const pattern = new Pattern(this)
+        this._state.$.push({method: 'toggle', pattern})
+        return pattern
+    }
+
+    // CONDITIONALS
+    /**
+     * Test if the previous value in the pattern chain is a truthy or falsy value
+     * If true return new value, if false, simply pass on the previous value
+     * @param value value to return when true
+     * @returns {Pattern}
+     */ 
+    if(value: number = 1): Pattern {
+        this.stack.push(x => [x].flat().every(x => !!x) ? value : x)
+        return this
+    }
+
+    /**
+     * Instantiate a new Pattern and test if the previous value in the pattern chain is a truthy or falsy value
+     * If true return outcome of pattern
+     * @returns {Pattern}
+     * @example 
+     * s0.x.coin().$if.set(4)._.$else.set(12)
+     * s0.e.set(1)
+     */ 
+    get $if(): Pattern {
+        const pattern = new Pattern(this)
+        this._state.$.push({method: 'if', pattern})
+        return pattern
+    }
+
+    /**
+     * Test if the previous value in the pattern chain is a truthy or falsy value
+     * If false return new value, if true, simply pass on the previous value
+     * @param value value to return when false
+     * @returns {Pattern}
+     */ 
+    else(value: number = 1): Pattern {
+        this.stack.push(x => [x].flat().every(x => !x) ? value : x)
+        return this
+    }
+
+    /**
+     * Instantiate a new Pattern and test if the previous value in the pattern chain is a truthy or falsy value
+     * If false return outcome of pattern
+     * @returns {Pattern}
+     * @example
+     * s0.x.coin().$if.set(4)._.$else.set(12)
+     * s0.e.set(0)
+     */ 
+    get $else(): Pattern {
+        const pattern = new Pattern(this)
+        this._state.$.push({method: 'else', pattern})
+        return pattern
+    }
+
+    // MATHS
+    /**
+     * Add a value to the previous value in the pattern chain.
+     * @param value value to add
+     * @returns {Pattern}
+     * @example s0.p.n.noise(60,72,1).add(12)
+     */
+    add(value: number = 0): Pattern {
+        this.stack.push(x => handle(x, x => x + value))
+        return this
+    }
+
+    /**
+     * Instantiate a new Pattern and add the result to the previous value in the pattern chain
+     * @example s0.p.n.noise(60,72,1).$add.noise(0,12,1)
+     * @returns {Pattern}
+     */
+    get $add(): Pattern {
+        const pattern = new Pattern(this)
+        this._state.$.push({method: 'add', pattern})
+        return pattern
+    }
+
+    /**
+     * Subtract a value from the previous value in the pattern chain.
+     * @param value value to subtract
+     * @returns {Pattern}
+     * @example s0.p.n.noise(60,72,1).sub(12)
+     */
+    sub(value: number = 0): Pattern {
+        this.stack.push(x => handle(x, x => x - value))
+        return this
+    }    
+
+    /**
+     * Instantiate a new Pattern and subtract the result from the previous value in the pattern chain
+     * @example s0.p.n.noise(60,72,1).$sub.noise(0,12,1)
+     * @returns {Pattern}
+     */ 
+    get $sub(): Pattern {
+        const pattern = new Pattern(this)
+        this._state.$.push({method: 'sub', pattern})
+        return pattern
+    }
+
+    /**
+     * Reverse subtract. Subtract the previous value in the pattern chain from a value.
+     * @param value value to subtract
+     * @returns {Pattern}
+     * @example s0.p.amp.noise(0.5,0.25).subr(1)
+     */
+    subr(value: number = 0): Pattern {
+        this.stack.push(x => handle(x, x => value - x))
+        return this
+    }
+
+    /**
+     * Instantiate a new Pattern and subtract the previous value in the pattern chain
+     * @example s0.p.n.noise(0,12,1).$subr.noise(60,72,1)
+     * @returns {Pattern}
+     */ 
+    get $subr(): Pattern {
+        const pattern = new Pattern(this)
+        this._state.$.push({method: 'subr', pattern})
+        return pattern
+    }
+
+    /**
+     * Multiply the previous value in the pattern chain by a value.
+     * @param value value to multiply by
+     * @returns {Pattern}
+     * @example s0.p.n.noise(60,72,1).mul(2)
+     */ 
+    mul(value: number = 1): Pattern {
+        this.stack.push(x => handle(x, x => x * value))
+        return this
+    }
+
+    /**
+     * Instantiate a new Pattern and multiply the previous value in the pattern chain
+     * @example s0.p.n.noise(60,72,1).$mul.noise(0,12,1)
+     * @returns {Pattern}
+     */ 
+    get $mul(): Pattern {
+        const pattern = new Pattern(this)
+        this._state.$.push({method: 'mul', pattern})
+        return pattern
+    }
+
+    /**
+     * Divide the previous value in the pattern chain by a value.
+     * @param value value to divide by
+     * @returns {Pattern}
+     * @example s0.p.n.noise(60,72,1).div(2)
+     * Or, use $div to create a new pattern and divide it by the previous pattern in the chain.
+     * @example s0.p.n.noise(60,72,1).$div.noise(0,12,1)
+     */
+    div(value: number = 1): Pattern {
+        this.stack.push(x => handle(x, x => x / value))
+        return this
+    }
+
+    /**
+     * Instantiate a new Pattern and divide the previous value in the pattern chain
+     * @example s0.p.n.noise(60,72,1).$div.noise(0,12,1)
+     * @returns {Pattern}
+     */ 
+    get $div(): Pattern {
+        const pattern = new Pattern(this)
+        this._state.$.push({method: 'div', pattern})
+        return pattern
+    }
+
+    /**
+     * Reverse divide the previous value in the pattern chain by a value.
+     * @param value value to divide by
+     * @returns {Pattern}
+     * @example s0.p.modi.noise(1,2).divr(2)
+     * Or, use $divr to create a new pattern and divide it by the previous pattern in the chain.
+     * @example s0.p.n.noise(0,12,1).$divr.noise(60,72,1)
+     */ 
+    divr(value: number = 1): Pattern {
+        this.stack.push(x => handle(x, x => value / x))
+        return this
+    }   
+
+    /**
+     * Instantiate a new Pattern and divide the previous value in the pattern chain
+     * @example s0.p.n.noise(0,12,1).$divr.noise(60,72,1)
+     * @returns {Pattern}
+     */ 
+    get $divr(): Pattern {
+        const pattern = new Pattern(this)
+        this._state.$.push({method: 'divr', pattern})
+        return pattern
+    }
+
+    /**
+     * Modulo the previous value in the pattern chain by a value.
+     * Or, use $mod to pass the outcome of a pattern to the function
+     * @param value value to modulo by
+     * @returns {Pattern}
+     * @example s0.n.set(t).mod(12).add(36)
+     * @example s0.n.set(t).$mod.set(12)
+     */ 
+    mod(value: number = 1): Pattern {
+        this.stack.push(x => handle(x, x => ((x % value) + value) % value))
+        return this
+    }
+
+    /**
+     * Instantiate a new Pattern and modulo the previous value in the pattern chain
+     * @example s0.p.n.noise(0,12,1).$mod.noise(60,72,1)
+     * @returns {Pattern}
+     */ 
+    get $mod(): Pattern {
+        const pattern = new Pattern(this)
+        this._state.$.push({method: 'mod', pattern})
+        return pattern
+    }    
+    
+    // COMPARISON
+    /**
+     * Compare the previous value in the pattern chain with a value.
+     * @param value value to compare with
+     * @returns {Pattern}
+     * @example s0.e.every(3).add(t%2)
+     * Or, use $and to create a new pattern and compare it with the previous pattern in the chain.
+     * @example s0.e.every(3).$and.every(2)
+     */ 
+    and(value: number = 1): Pattern {
+        this.stack.push(x => handle(x, x => x && value))
+        return this
+    }
+
+    /**
+     * Instantiate a new Pattern and compare the previous value in the pattern chain with a value.
+     * @return {Pattern}
+     * @example s0.e.every(3).$and.every(2)
+     */ 
+    get $and(): Pattern {
+        const pattern = new Pattern(this)
+        this._state.$.push({method: 'and', pattern})
+        return pattern
+    }
+
+    /**
+     * Compare the previous value in the pattern chain with a value.
+     * @param value value to compare with
+     * @returns {Pattern}
+     * @example s0.e.every(3).or(t%2)
+     */ 
+    or(value: number = 1): Pattern {
+        this.stack.push(x => handle(x, x => x || value))
+        return this
+    }
+
+    /**
+     * Instantiate a new Pattern and compare the previous value in the pattern chain with a value.
+     * @return {Pattern}
+     * @example s0.e.every(3).$or.every(2)
+     */ 
+    get $or(): Pattern {
+        const pattern = new Pattern(this)
+        this._state.$.push({method: 'or', pattern})
+        return pattern
+    }
+
+    /**
+     * Compare the previous value in the pattern chain with a value.
+     * @param value value to compare with
+     * @returns {Pattern}
+     * @example s0.e.every(3).xor(t%2)
+     */ 
+    xor(value: number = 1): Pattern {
+        this.stack.push(x => handle(x, x => x ^ value))
+        return this
+    }
+
+    /**
+     * Instantiate a new Pattern and compare the previous value in the pattern chain with a value.
+     * @return {Pattern}
+     * @example s0.e.every(3).$xor.every(2)
+     */ 
+    get $xor(): Pattern {
+        const pattern = new Pattern(this)
+        this._state.$.push({method: 'xor', pattern})
+        return pattern
+    }
+
+    // Generators
     /**
      * Generate a range of values between lo and hi. Use as the first call in a pattern chain.
      * @param lo lowest value in range
@@ -466,12 +642,21 @@ export class Pattern {
      * @returns {Pattern}
      * @example s0.e.every(4) // return 1 every 4 divisions, 0 otherwise
      * @example s0.p.n.every(2, 60, 72) // return 60 every 2 divisions, 72 otherwise
-     * Or use $every to pass the outcome of a pattern as the first argument
-     * @example s0.p.$every.sine(1,16,1)
      */
     every(n: number, a: number = 1, b: number = 0): Pattern {
         this.stack.push(x => !(+x % n) ? a : b)
         return this
+    }
+
+    /**
+     * Instantiate a new Pattern and generate truthy or falsy values every n divisions, where n is a number generated by the new Pattern.
+     * @returns {Pattern}
+     * @example s0.p.$every.sine(1,16,1)
+     */ 
+    get $every(): Pattern {
+        const pattern = new Pattern(this)
+        this._state.$.push({method: 'every', pattern})
+        return pattern
     }
 
     /**
@@ -519,19 +704,6 @@ export class Pattern {
     }
 
     /**
-     * Modulo the previous value in the pattern chain by a value.
-     * Or, use $mod to pass the outcome of a pattern to the function
-     * @param value value to modulo by
-     * @returns {Pattern}
-     * @example s0.n.set(t).mod(12).add(36)
-     * @example s0.n.set(t).$mod.set(12)
-     */ 
-    mod(value: number = 1): Pattern {
-        this.stack.push(x => handle(x, x => ((x % value) + value) % value))
-        return this
-    }
-
-    /**
      * Round the previous value in the pattern chain to the step value.
      * @param value value to round to
      * @returns {Pattern}
@@ -539,6 +711,17 @@ export class Pattern {
     step(value: number): Pattern {
         this.stack.push(x => handle(x, x => roundToFactor(x, value)))
         return this
+    }
+
+    /**
+     * Instantiate a new Pattern and round the previous value in the pattern chain to the step value, where the step value is a number generated by the new Pattern.
+     * @returns {Pattern}
+     * @example s0.p.n.noise(0,1).$step.noise(0,12,1)
+     */ 
+    get $step(): Pattern {
+        const pattern = new Pattern(this)
+        this._state.$.push({method: 'step', pattern})
+        return pattern
     }
 
     /**
@@ -566,6 +749,17 @@ export class Pattern {
     }
 
     /**
+     * Instantiate a new Pattern and test if the previous value in the pattern chain is greater than the Pattern's value.
+     * @returns {Pattern}
+     * @example s0.e.noise(0,16).$gt.square(0,12)
+     */ 
+    get $gt(): Pattern {
+        const pattern = new Pattern(this)
+        this._state.$.push({method: 'gt', pattern})
+        return pattern
+    }
+
+    /**
      * Test if the previous value in the pattern chain is less than a value.
      * @param value value to test against
      * @param a value to return when true
@@ -575,6 +769,17 @@ export class Pattern {
     lt(n: number, a: number = 1, b: number = 0): Pattern {
         this.stack.push(x => [x].flat().every(x => x < n) ? a : b)
         return this
+    }
+
+    /**
+     * Instantiate a new Pattern and test if the previous value in the pattern chain is less than the Pattern's value.
+     * @returns {Pattern}
+     * @example s0.e.noise(0,16).$lt.square(0,12)
+     */ 
+    get $lt(): Pattern {
+        const pattern = new Pattern(this)
+        this._state.$.push({method: 'lt', pattern})
+        return pattern
     }
 
     /**
@@ -591,6 +796,17 @@ export class Pattern {
     }
 
     /**
+     * Instantiate a new Pattern and test if the previous value in the pattern chain is greater than or equal to the Pattern's value.
+     * @returns {Pattern}
+     * @example s0.e.noise(0,16).$gte.square(0,12)
+     */ 
+    get $gte(): Pattern {
+        const pattern = new Pattern(this)
+        this._state.$.push({method: 'gte', pattern})
+        return pattern
+    }
+
+    /**
      * Test if the previous value in the pattern chain is less than or equal to a value.
      * @param value value to test against
      * @param a value to return when true
@@ -600,6 +816,17 @@ export class Pattern {
     lte(n: number, a: number = 1, b: number = 0): Pattern {
         this.stack.push(x => [x].flat().every(x => x <= n) ? a : b)
         return this
+    }
+
+    /**
+     * Instantiate a new Pattern and test if the previous value in the pattern chain is less than or equal to the Pattern's value.
+     * @returns {Pattern}
+     * @example s0.e.noise(0,16).$lte.square(0,12)
+     */ 
+    get $lte(): Pattern {
+        const pattern = new Pattern(this)
+        this._state.$.push({method: 'lte', pattern})
+        return pattern
     }
 
     /**
@@ -615,6 +842,17 @@ export class Pattern {
     }
 
     /**
+     * Instantiate a new Pattern and test if the previous value in the pattern chain is equal to the Pattern's value, using ==.
+     * @returns {Pattern}
+     * @example s0.e.noise(0,16).$eq.square(0,12)
+     */ 
+    get $eq(): Pattern {
+        const pattern = new Pattern(this)
+        this._state.$.push({method: 'eq', pattern})
+        return pattern
+    }
+
+    /**
      * Test if the previous value in the pattern chain is equal to a value using ===.
      * @param value value to test against
      * @param a value to return when true
@@ -624,6 +862,17 @@ export class Pattern {
     eqq(n: number = 1, a: number = 1, b: number = 0): Pattern {
         this.stack.push(x => [x].flat().every(x => x === n) ? a : b)
         return this
+    }
+
+    /**
+     * Instantiate a new Pattern and test if the previous value in the pattern chain is equal to the Pattern's value, using ===.
+     * @returns {Pattern}
+     * @example s0.e.noise(0,16).$eqq.square(0,12)
+     */ 
+    get $eqq(): Pattern {
+        const pattern = new Pattern(this)
+        this._state.$.push({method: 'eqq', pattern})
+        return pattern
     }
 
     /**
@@ -639,6 +888,17 @@ export class Pattern {
     }
 
     /**
+     * Instantiate a new Pattern and test if the previous value in the pattern chain is not equal to the Pattern's value, using !=.
+     * @returns {Pattern}
+     * @example s0.e.noise(0,16).$neq.square(0,12)
+     */ 
+    get $neq(): Pattern {
+        const pattern = new Pattern(this)
+        this._state.$.push({method: 'neq', pattern})
+        return pattern
+    }
+
+    /**
      * Test if the previous value in the pattern chain is not equal to a value using !==.
      * @param value value to test against
      * @param a value to return when true
@@ -648,6 +908,17 @@ export class Pattern {
     neqq(n: number = 1, a: number = 1, b: number = 0): Pattern {
         this.stack.push(x => [x].flat().every(x => x !== n) ? a : b)
         return this
+    }
+
+    /**
+     * Instantiate a new Pattern and test if the previous value in the pattern chain is not equal to the Pattern's value, using !==.
+     * @returns {Pattern}
+     * @example s0.e.noise(0,16).$neqq.square(0,12)
+     */ 
+    get $neqq(): Pattern {
+        const pattern = new Pattern(this)
+        this._state.$.push({method: 'neqq', pattern})
+        return pattern
     }
 
     /**
@@ -679,28 +950,6 @@ export class Pattern {
      */ 
     even(a: number = 1, b: number = 0): Pattern {
         this.stack.push(x => [x].flat().every(even) ? a : b)
-        return this
-    }
-
-    /**
-     * Test if the previous value in the pattern chain is a truthy or falsy value
-     * If true return new value, if false, simply pass on the previous value
-     * @param value value to return when true
-     * @returns {Pattern}
-     */ 
-    if(value: number = 1): Pattern {
-        this.stack.push(x => [x].flat().every(x => !!x) ? value : x)
-        return this
-    }
-
-    /**
-     * Test if the previous value in the pattern chain is a truthy or falsy value
-     * If false return new value, if true, simply pass on the previous value
-     * @param value value to return when false
-     * @returns {Pattern}
-     */ 
-    else(value: number = 1): Pattern {
-        this.stack.push(x => [x].flat().every(x => !x) ? value : x)
         return this
     }
     
