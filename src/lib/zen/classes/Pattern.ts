@@ -26,32 +26,142 @@ export class Pattern {
      * @hidden 
      */
     private _parent: Pattern | null = null
+    
     /**
      * The value of the pattern after get() has been called
      * Enables use of pattern value in other patterns, using e.g. s1.e.eval(s0.e)
      * @hidden
      */
     private _value: patternValue = 0
+
     /** @hidden */
     private stack: stack = []
+
     /** @hidden */
     private _q: number = 16 // divisions per cycle
+
     /** @hidden */
     private _bpm: number = 120
 
-    // State
     /** @hidden */
     _state: any = {
-        $: []
+        $: [],
+        toggle: false,
     }
-    /** @hidden */
-    _toggle: boolean = false
+
+    /**
+     * Shorthand aliases for pattern methods
+     * @example
+     * {
+    add: 'a',
+    and: 'an',
+    bin: 'b',
+    btms: 'bm',
+    bts: 'bs',
+    chords: 'ch',
+    clamp: 'cl',
+    coin: 'c',
+    cosine: 'co',
+    div: 'd',
+    divr: 'dr',
+    else: 'e',
+    eq: 'eq',
+    every: 'ev',
+    if: 'i',
+    inversion: 'inv',
+    invert: 'in',
+    mod: 'mo',
+    mul: 'm',
+    not: 'n',
+    noise: 'no',
+    ntbin: 'nb',
+    or: 'o',
+    often: 'of',
+    pulse: 'pu',
+    random: 'rd',
+    range: 'ra',
+    rarely: 'r',
+    saw: 'sa',
+    scales: 'sc',
+    seq: 'se',
+    set: 'v',
+    sine: 'si',
+    square: 'sq',
+    step: 'st',
+    sometimes: 'so',
+    sub: 's',
+    subr: 'sr',
+    toggle: 't',
+    tri: 'tr',
+    use: 'u',
+    xor: 'x',
+}
+     */ 
+    _aliases = {
+        add: 'a',
+        and: 'an',
+        bin: 'b',
+        btms: 'bm',
+        bts: 'bs',
+        chords: 'ch',
+        clamp: 'cl',
+        coin: 'c',
+        cosine: 'co',
+        div: 'd',
+        divr: 'dr',
+        else: 'e',
+        eq: 'eq',
+        every: 'ev',
+        if: 'i',
+        inversion: 'inv',
+        invert: 'in',
+        mod: 'mo',
+        mul: 'm',
+        not: 'n',
+        noise: 'no',
+        ntbin: 'nb',
+        or: 'o',
+        often: 'of',
+        pulse: 'pu',
+        random: 'rd',
+        range: 'ra',
+        rarely: 'r',
+        saw: 'sa',
+        scales: 'sc',
+        seq: 'se',
+        set: 'v',
+        sine: 'si',
+        square: 'sq',
+        step: 'st',
+        sometimes: 'so',
+        sub: 's',
+        subr: 'sr',
+        toggle: 't',
+        tri: 'tr',
+        use: 'u',
+        xor: 'x',
+    }
 
     /** @hidden */
     constructor(parent: Pattern | null = null) {
         this._parent = parent
         this.reset()
         this.combine = this.combine.bind(this);
+        
+        // Set aliases
+        Object.entries(this._aliases).forEach(([method, alias]) => {
+            // @ts-ignore
+            this[alias] = this[method]
+            
+            // create dollar method for alias
+            Object.defineProperty(this, `$${alias}`, {
+                get: () => {
+                    const pattern = new Pattern(this)
+                    this._state.$.push({method: alias, pattern})
+                    return pattern
+                }
+            })
+        })
     }
 
    /**
@@ -71,7 +181,7 @@ export class Pattern {
 
     /**
      * Return the original Pattern in the chain.
-     * Useful when using any of the dollar methods, which spawn new Patterns, allowing you to return to the original pattern.
+     * Useful when using any of the dollar methods, which spawn new Patterns, allowing you to return to the first pattern in the chain.
      * @returns {Pattern}
      * @example
         s0.set({inst: 'synth', n: 50})
@@ -184,8 +294,8 @@ export class Pattern {
     toggle(x: boolean | Pattern): Pattern {
         this.stack.push(() => {
             const value = x instanceof Pattern ? x._value : x
-            if (value) this._toggle = !this._toggle
-            return this._toggle ? 1 : 0
+            if (value) this._state.toggle = !this._state.toggle
+            return this._state.toggle ? 1 : 0
         })
         return this
     }
@@ -840,29 +950,6 @@ export class Pattern {
     }
 
     /**
-     * Test if the previous value in the pattern chain is equal to a value using ===.
-     * @param value value to test against
-     * @param a value to return when true
-     * @param b value to return when false
-     * @returns {Pattern}
-     */ 
-    eqq(n: number = 1, a: number = 1, b: number = 0): Pattern {
-        this.stack.push(x => [x].flat().every(x => x === n) ? a : b)
-        return this
-    }
-
-    /**
-     * Instantiate a new Pattern and test if the previous value in the pattern chain is equal to the Pattern's value, using ===.
-     * @returns {Pattern}
-     * @example s0.e.noise(0,16).$eqq.square(0,12)
-     */ 
-    get $eqq(): Pattern {
-        const pattern = new Pattern(this)
-        this._state.$.push({method: 'eqq', pattern})
-        return pattern
-    }
-
-    /**
      * Test if the previous value in the pattern chain is not equal to a value using !=.
      * @param value value to test against
      * @param a value to return when true
@@ -882,29 +969,6 @@ export class Pattern {
     get $neq(): Pattern {
         const pattern = new Pattern(this)
         this._state.$.push({method: 'neq', pattern})
-        return pattern
-    }
-
-    /**
-     * Test if the previous value in the pattern chain is not equal to a value using !==.
-     * @param value value to test against
-     * @param a value to return when true
-     * @param b value to return when false
-     * @returns {Pattern}
-     */ 
-    neqq(n: number = 1, a: number = 1, b: number = 0): Pattern {
-        this.stack.push(x => [x].flat().every(x => x !== n) ? a : b)
-        return this
-    }
-
-    /**
-     * Instantiate a new Pattern and test if the previous value in the pattern chain is not equal to the Pattern's value, using !==.
-     * @returns {Pattern}
-     * @example s0.e.noise(0,16).$neqq.square(0,12)
-     */ 
-    get $neqq(): Pattern {
-        const pattern = new Pattern(this)
-        this._state.$.push({method: 'neqq', pattern})
         return pattern
     }
 
