@@ -95,6 +95,7 @@ export class Pattern {
     subr: 'sr',
     toggle: 't',
     tri: 'tr',
+    tune: 'tu',
     use: 'u',
     xor: 'x',
 }
@@ -771,9 +772,10 @@ export class Pattern {
     bin(n: string = '10000000', freq: number = 1, a: number = 1, b: number = 0): Pattern {
         const arr = n.replace(/\s+/g, '').split('').map(x => !!parseInt(x))
         const divisions = this._q / freq
+
         this.stack = [(x: patternValue) => {
-            // return arr[+x%arr.length] ? a : b
-            return arr[ (+x%divisions) / (divisions/arr.length) ] ? a : b
+            const result = arr[ (+x%divisions) / (divisions/arr.length) ] ? a : b
+            return result
         }]
         return this
     }
@@ -782,13 +784,14 @@ export class Pattern {
      * Convert a number to binary string, then passes it to .bin().
      * @param n a number
      * @param q the length of the binary string
+     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @param a value to return when true
      * @param b value to return when false
      * @returns {Pattern}
      * @example s0.p.n.ntbin(9, 8) // 9 in binary is 1001, padded out to 8 digits. Passes 00001001 to .bin()
      */
-    ntbin(n: number = 8, q: number = 16, a: number = 1, b: number = 0): Pattern {
-        return this.bin(numberToBinary(+n, q), a, b)
+    ntbin(n: number = 8, q: number = 16, freq: number = 1, a: number = 1, b: number = 0): Pattern {
+        return this.bin(numberToBinary(+n, q), freq, a, b)
     }
 
     /**
@@ -834,13 +837,13 @@ export class Pattern {
         const min = Math.min(...array)
         const max = Math.max(...array)
         const octaves = Math.floor((max - min) / 12) + 1
-        console.log(array)
 
         this.stack.push(x => handle(x, x => roundToNearest(
                 Math.round(x) % (octaves * 12), 
                 array.map(x => (x - min) + (min % 12))
             ) + Math.floor(x / 12) * 12
         ))
+
         return this
     }
 
