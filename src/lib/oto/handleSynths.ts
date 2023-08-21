@@ -71,8 +71,7 @@ export const handleSynthEvent = (time: number, id: string, params: Dictionary) =
                 [key]: Array.isArray(val) ? val[instIndex%val.length] : val
             }), {});
             ps.n = n
-
-            synth.play(ps, time + (noteIndex * strum));
+            synth.play(ps, time + (noteIndex * (strum/1000)));
         })
     })
 

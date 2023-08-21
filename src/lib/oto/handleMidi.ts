@@ -38,7 +38,7 @@ export function handleMidiEvent(delta: number, id: string, params: Dictionary) {
             }), {});
             ps.n = n
             ps.midi = midi;
-            midiStreams[id].trigger(ps, delta + (noteIndex * strum));
+            midiStreams[id].trigger(ps, delta + (noteIndex * (strum/1000)));
         })
     })
 }
