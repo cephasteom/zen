@@ -27,6 +27,6 @@ export const formatMutationParams = (params: Dictionary, map: Dictionary, lag: n
                     [key.substring(1)]: value
                 }
             }, {}),
-        lag: params.lag || lag
+        lag: params.lag || params.la || lag
     }
 }
