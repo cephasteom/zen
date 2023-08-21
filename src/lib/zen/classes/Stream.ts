@@ -64,41 +64,68 @@ export class Stream {
      */ 
     pz
     
+    /** @hidden */
+    _tPattern: null | Pattern = null
     /**
      * A Pattern for setting the stream's position in time
      * @example
      * s0.t.sine(0,16,1) // override the global t with a sine wave between 0 and 16
      */ 
-    t = new Pattern()
+    get t() { 
+        this._tPattern = this._tPattern || new Pattern()
+        return this._tPattern
+    }
 
+    /** @hidden */
+    _xPattern: null | Pattern = null
     /**
      * A Pattern for setting the stream's position in space
      * @example
      * s0.x.saw(0,16,1) // move the stream across the x axis of the canvas with a saw wave between 0 and 16
      */ 
-    x = new Pattern()
+    get x() {
+        this._xPattern = this._xPattern || new Pattern()
+        return this._xPattern
+    }
 
+    /** @hidden */
+    _yPattern: null | Pattern = null
     /**
      * A Pattern for setting the stream's position in space
      * @example
      * s0.y.saw(0,16,1) // move the stream across the y axis of the canvas with a saw wave between 0 and 16
      */ 
-    y = new Pattern()
+    get y() {
+        this._yPattern = this._yPattern || new Pattern()
+        return this._yPattern
+    }
 
+    /** @hidden */
+    _zPattern: null | Pattern = null
     /**
      * A Pattern for setting the stream's position in space
      * @example
      * s0.z.saw(0,16,1) // move the stream across the z axis of the canvas with a saw wave between 0 and 16
      */ 
-    z = new Pattern()
+    get z() {
+        this._zPattern = this._zPattern || new Pattern()
+        return this._zPattern
+    }
 
+    /** @hidden */
+    _xyzPattern: null | Pattern = null
     /**
      * A Pattern for setting all axes of the stream's position at the same time. Expects an array of values
      * @example
      * s0.xyz.set([t,8,0])
      */ 
-    xyz = new Pattern()
+    get xyz() {
+        this._xyzPattern = this._xyzPattern || new Pattern()
+        return this._xyzPattern
+    }
 
+    /** @hidden */
+    _ePattern: null | Pattern = null
     /**
      * A Pattern for determining whether the stream should trigger an event
      * @example
@@ -106,31 +133,49 @@ export class Stream {
      * s0.e.every(4) // trigger an event every 4 divisions
      * s0.e.bin('1000 1001') // use a binary pattern to trigger events
      */ 
-    e = new Pattern()
+    get e() {
+        this._ePattern = this._ePattern || new Pattern()
+        return this._ePattern
+    }
 
+    /** @hidden */
+    _mPattern: null | Pattern = null
     /**
      * A Pattern for determining whether to mutate all active events in the stream. Only mutates parameters prefixed with `_`, e.g. `_amp`
      * @example
      * s0.m.set(1) // mutate all active events every division
      * s0.m.every(4) // mutate all active events every 4 divisions
      */ 
-    m = new Pattern()
-
+    get m() {
+        this._mPattern = this._mPattern || new Pattern()
+        return this._mPattern
+    }
+    
+    /** @hidden */
+    _mutePattern: null | Pattern = null
     /**
      * A Pattern for determining whether to mute the stream
      * @example
      * s0.mute.set(1) // mute the stream every division
      * s0.mute.every(4) // mute the stream every 4 divisions
      */ 
-    mute = new Pattern() // mute stream
+    get mute() {
+        this._mutePattern = this._mutePattern || new Pattern()
+        return this._mutePattern
+    }
 
+    /** @hidden */
+    _soloPattern: null | Pattern = null
     /**
      * A Pattern for determining whether to solo the stream. If true, mutes all other streams
      * @example
      * s0.solo.set(1) // solo the stream every division
      * s0.solo.every(4) // solo the stream every 4 divisions
      */ 
-    solo = new Pattern() // solo stream
+    get solo() {
+        this._soloPattern = this._soloPattern || new Pattern()
+        return this._soloPattern
+    }
 
     /**
      * An object used to map parameter names to different keys. Useful for mapping to MIDI controllers
