@@ -833,10 +833,7 @@ export class Pattern {
         const min = Math.min(...array)
         const max = Math.max(...array)
         const octaves = Math.floor((max - min) / 12) + 1
-
-        // calculate which octave min falls within
-        const octave = Math.floor(min / 12)
-        console.log(octave)
+        console.log(array)
 
         this.stack.push(x => handle(x, x => roundToNearest(
                 Math.round(x) % (octaves * 12), 
@@ -1082,7 +1079,7 @@ export class Pattern {
      * @returns {Pattern}
      * @example s0.p.n.scales('c-dorian', 16)
      */ 
-    scales(names: string | string[], length: number = 8, octave: number = 4, freq: number = 1): Pattern {
+    scales(names: string | string[], length: number = 8, freq: number = 1, octave: number = 4): Pattern {
         const scales = [names].flat().map(name => {
             const scale = getScale(name)
             return scale.slice(0, min(length, scale.length))
@@ -1100,7 +1097,7 @@ export class Pattern {
      * @returns {Pattern}
      * @example s0.p.n.chords(['d-min7', 'g-dom7'])
      */ 
-    chords(names: string | string[], octave: number = 4, freq: number = 1): Pattern {
+    chords(names: string | string[], freq: number = 1, octave: number = 4): Pattern {
         this.seq([names].flat().map(name => getChord(name)), freq).add(octave * 12)
         return this
     }
