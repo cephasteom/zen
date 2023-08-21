@@ -140,6 +140,7 @@ export class Pattern {
         subr: 'sr',
         toggle: 't',
         tri: 'tr',
+        tune: 'tu',
         use: 'u',
         xor: 'x',
     }
