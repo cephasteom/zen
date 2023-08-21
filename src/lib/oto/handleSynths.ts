@@ -4,6 +4,8 @@ import type { Dictionary } from './types'
 import Channel from './classes/Channel'
 import { output } from './destination';
 
+const instMap = [ 'synth', 'sampler', 'granular', 'additive', 'acid', 'drone', 'sub' ]
+
 const channels: Dictionary = {}
 const channelCount = output.numberOfInputs
 
@@ -50,7 +52,8 @@ export const handleSynthEvent = (time: number, id: string, params: Dictionary) =
     });
 
     // handle multiple insts
-    inst && [inst].flat().forEach((inst: string, instIndex: number) => {
+    [inst].flat().forEach((inst: string | number, instIndex: number) => {
+        inst = typeof(inst) === 'number' ? instMap[inst] : inst;
         // ignore instruments that don't exist
         if(!synthTypes.includes(inst)) return
     
