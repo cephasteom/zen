@@ -25,6 +25,7 @@ const makeSynth = (type: string) => {
         default: return null
     }
 }
+
 const connect = (synth: any, channel: number, type: string) => {
     if(!synth) return
     !channels[channel] && (channels[channel] = new Channel(output, channel%channelCount))

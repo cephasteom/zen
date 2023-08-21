@@ -137,6 +137,20 @@ export class Stream {
      */ 
     map = {}
 
+    /**
+     * Shorthand aliases for pattern methods
+     * @example
+     * {
+    add: 'a',
+    and: 'an',
+    }
+     */
+    _aliases = {
+        solo: 'so',
+        mute: 'mu',
+        set: 'v'
+    }
+
     /** @hidden */
     constructor(id: string) {
         this.id = id;
@@ -152,6 +166,11 @@ export class Stream {
         this.px = new Proxy({}, handler)
         this.py = new Proxy({}, handler)
         this.pz = new Proxy({}, handler)
+
+        Object.entries(this._aliases).forEach(([method, alias]) => {
+            // @ts-ignore
+            this[alias] = this[method]
+        })
     }
 
     /**
