@@ -1,8 +1,5 @@
 import type { Dictionary } from '../types'
-
-const aliases: Dictionary = {
-    
-}
+import { aliases } from '../data/keymapping'
 
 // remove _ from all params
 export const formatEventParams = (params: Dictionary, map: Dictionary) => {    
