@@ -109,3 +109,9 @@ export function even(n: number) {
     return n % 2 === 0
 }
 
+export function roundToNearest(n: number, arr: number[]) {
+    console.log(n, arr)
+    return arr.reduce((a, b) => {
+        return Math.abs(b - n) < Math.abs(a - n) ? b : a
+    })
+}
