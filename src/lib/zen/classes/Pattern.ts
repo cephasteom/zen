@@ -16,45 +16,9 @@ import {
 import { getScale, getChord } from '../utils/musical';
 
 /**
- * Patterns are the building blocks of Zen. They are used to generate patterns of values in interesting, concise ways. The first value passed to a pattern is either time `t` or a position in space `x`, `y`, or `z`, depending on whether the pattern is assigned to a stream's `p`, `px`, `py`, or `pz` property. Patterns methods can be chained together applying each new method to the value passed from the previous one in the chain.
+ * Shorthand aliases for pattern methods. Stored outside the class to save on memory.
  * @example
- * s0.p.amp.range(0,1)
- * s0.px.drive.sine(0,1)
- * s0.py.modi.range(0,10).mul((t%q)/q)
- */
-export class Pattern {
-    /** 
-     * The Pattern that instantiated this Pattern
-     * @hidden 
-     */
-    private _parent: Pattern | null = null
-    
-    /**
-     * The value of the pattern after get() has been called
-     * Enables use of pattern value in other patterns, using e.g. s1.e.eval(s0.e)
-     * @hidden
-     */
-    private _value: patternValue = 0
-
-    /** @hidden */
-    private stack: stack = []
-
-    /** @hidden */
-    private _q: number = 16 // divisions per cycle
-
-    /** @hidden */
-    private _bpm: number = 120
-
-    /** @hidden */
-    _state: any = {
-        $: [],
-        toggle: false,
-    }
-
-    /**
-     * Shorthand aliases for pattern methods
-     * @example
-     * {
+ * {
     add: 'a',
     and: 'an',
     bin: 'b',
@@ -99,51 +63,87 @@ export class Pattern {
     use: 'u',
     xor: 'x',
 }
-     */ 
-    _aliases = {
-        add: 'a',
-        and: 'an',
-        bin: 'b',
-        btms: 'bm',
-        bts: 'bs',
-        chords: 'ch',
-        clamp: 'cl',
-        coin: 'c',
-        cosine: 'co',
-        div: 'd',
-        divr: 'dr',
-        else: 'e',
-        eq: 'eq',
-        every: 'ev',
-        if: 'i',
-        inversion: 'inv',
-        invert: 'in',
-        mod: 'mo',
-        mul: 'm',
-        not: 'n',
-        noise: 'no',
-        ntbin: 'nb',
-        or: 'o',
-        often: 'of',
-        pulse: 'pu',
-        random: 'rd',
-        range: 'ra',
-        rarely: 'r',
-        saw: 'sa',
-        scales: 'sc',
-        seq: 'se',
-        set: 'v',
-        sine: 'si',
-        square: 'sq',
-        step: 'st',
-        sometimes: 'so',
-        sub: 's',
-        subr: 'sr',
-        toggle: 't',
-        tri: 'tr',
-        tune: 'tu',
-        use: 'u',
-        xor: 'x',
+ */ 
+const aliases = {
+    add: 'a',
+    and: 'an',
+    bin: 'b',
+    btms: 'bm',
+    bts: 'bs',
+    chords: 'ch',
+    clamp: 'cl',
+    coin: 'c',
+    cosine: 'co',
+    div: 'd',
+    divr: 'dr',
+    else: 'e',
+    eq: 'eq',
+    every: 'ev',
+    if: 'i',
+    inversion: 'inv',
+    invert: 'in',
+    mod: 'mo',
+    mul: 'm',
+    not: 'n',
+    noise: 'no',
+    ntbin: 'nb',
+    or: 'o',
+    often: 'of',
+    pulse: 'pu',
+    random: 'rd',
+    range: 'ra',
+    rarely: 'r',
+    saw: 'sa',
+    scales: 'sc',
+    seq: 'se',
+    set: 'v',
+    sine: 'si',
+    square: 'sq',
+    step: 'st',
+    sometimes: 'so',
+    sub: 's',
+    subr: 'sr',
+    toggle: 't',
+    tri: 'tr',
+    tune: 'tu',
+    use: 'u',
+    xor: 'x',
+}
+
+/**
+ * Patterns are the building blocks of Zen. They are used to generate patterns of values in interesting, concise ways. The first value passed to a pattern is either time `t` or a position in space `x`, `y`, or `z`, depending on whether the pattern is assigned to a stream's `p`, `px`, `py`, or `pz` property. Patterns methods can be chained together applying each new method to the value passed from the previous one in the chain.
+ * @example
+ * s0.p.amp.range(0,1)
+ * s0.px.drive.sine(0,1)
+ * s0.py.modi.range(0,10).mul((t%q)/q)
+ */
+export class Pattern {
+    /** 
+     * The Pattern that instantiated this Pattern
+     * @hidden 
+     */
+    private _parent: Pattern | null = null
+    
+    /**
+     * The value of the pattern after get() has been called
+     * Enables use of pattern value in other patterns, using e.g. s1.e.eval(s0.e)
+     * @hidden
+     */
+    private _value: patternValue = 0
+
+    /** @hidden */
+    private stack: stack = []
+
+    /** @hidden */
+    private _q: number = 16 // divisions per cycle
+
+    /** @hidden */
+    private _bpm: number = 120
+
+    /** @hidden */
+    _state: any = {
+        $: [],
+        toggle: false,
     }
 
     /** @hidden */
@@ -153,7 +153,7 @@ export class Pattern {
         this.combine = this.combine.bind(this);
         
         // Set aliases
-        Object.entries(this._aliases).forEach(([method, alias]) => {
+        Object.entries(aliases).forEach(([method, alias]) => {
             // @ts-ignore
             this[alias] = this[method]
             

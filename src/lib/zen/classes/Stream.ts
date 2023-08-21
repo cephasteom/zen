@@ -33,6 +33,8 @@ export class Stream {
 
     /** @hidden */
     _bpm: number = 120
+
+    /** @hidden */
     
     /**
      * Patterns to be mapped across time
