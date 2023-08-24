@@ -1,4 +1,5 @@
-import type { stack, patternValue } from '../types'
+import type { Stream } from './Stream'
+import type { stack, patternValue, Dictionary } from '../types'
 import { 
     mapToRange, 
     roundToFactor, 
@@ -124,7 +125,7 @@ export class Pattern {
      * The Pattern that instantiated this Pattern
      * @hidden 
      */
-    private _parent: Pattern | null = null
+    private _parent: Pattern | Stream | null = null
     
     /**
      * The value of the pattern after get() has been called
@@ -149,7 +150,7 @@ export class Pattern {
     }
 
     /** @hidden */
-    constructor(parent: Pattern | null = null) {
+    constructor(parent: Pattern | Stream | null = null) {
         this._parent = parent
         this.reset()
         this.combine = this.combine.bind(this);
@@ -171,8 +172,9 @@ export class Pattern {
     }
 
    /**
-     * Return the parent Pattern if it exists, otherwise return this Pattern.
+     * Return the parent Pattern or Stream if it exists, otherwise return this Pattern.
      * Useful when using any of the dollar methods, which spawn new Patterns, allowing you to return to this original pattern.
+     * Or, use as shorthand to access the underlying stream
      * @returns {Pattern}
      * @example
      * s1.set({inst: 'synth', cut: 1})
@@ -180,28 +182,12 @@ export class Pattern {
      *  .$if.set(57)._
      *  .$else.scales('d-dorian', 16)
      * s1.e.every(1)
-     */ 
-    get _(): Pattern {
-        return this._parent || this
-    }
-
-    /**
-     * Return the original Pattern in the chain.
-     * Useful when using any of the dollar methods, which spawn new Patterns, allowing you to return to the first pattern in the chain.
-     * @returns {Pattern}
      * @example
-        s0.set({inst: 'synth', n: 50})
-        s0.e.every(5)
-
-        s1.set({inst: 'synth', cut: [0,1]})
-        s1.p.n.set(s0.e)
-            .$if.set(57).$add.saw(1,16)._.$mul.range(1,2,0,0.25).__
-            .$else.scales('d-dorian', 16)
-        s1.e.every(1)
-    */ 
-    get __(): Pattern {
-        return this._parent?.__ || this
-    }    
+     * s0.x.set(8)._.y.set(8)
+     */ 
+    get _(): Pattern | Stream {
+        return this._parent || this
+    }   
 
     /**
      * Pass the value of a pattern to a method on the previous pattern
