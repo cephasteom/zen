@@ -200,14 +200,13 @@ export class Stream {
 
     /** @hidden */
     constructor(id: string) {
-        const thisStream = this
         this.id = id;
 
         // catch all calls to this.p, this.px, this.py, this.pz and return a new Pattern if the key doesn't exist
         const handler = {
             get: (target: Dictionary, key: string) => key in target 
                 ? target[key as keyof typeof target] 
-                : (target[key] = new Pattern(thisStream))
+                : (target[key] = new Pattern(this))
         }
 
         this.p = new Proxy({}, handler)
@@ -240,6 +239,7 @@ export class Stream {
     /**
      * Set multiple stream parameter using key/value pairs
      * @param ps key/value pairs
+     * @returns {this}
      * @example
      * s0.set({amp: 1, n: 60, reverb: 0.5})
      */ 
@@ -247,6 +247,7 @@ export class Stream {
         Object.entries(ps).forEach(([key, value]) => {
             this.p[key].set(value)
         })
+        return this
     }
 
     /**

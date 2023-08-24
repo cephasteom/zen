@@ -1,5 +1,5 @@
 import type { Stream } from './Stream'
-import type { stack, patternValue, Dictionary } from '../types'
+import type { stack, patternValue } from '../types'
 import { 
     mapToRange, 
     roundToFactor, 
@@ -172,7 +172,7 @@ export class Pattern {
     }
 
    /**
-     * Return the parent Pattern or Stream if it exists, otherwise return this Pattern.
+     * Return to parent Pattern or Stream
      * Useful when using any of the dollar methods, which spawn new Patterns, allowing you to return to this original pattern.
      * Or, use as shorthand to access the underlying stream
      * @returns {Pattern}

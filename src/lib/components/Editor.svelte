@@ -40,6 +40,7 @@
         wordBasedSuggestions: false,
         snippetSuggestions: 'none',
         roundedSelection: false,
+        tabSize: 2,
     };
     let flash = false
 
