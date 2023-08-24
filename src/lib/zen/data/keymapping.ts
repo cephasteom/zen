@@ -118,7 +118,7 @@ export const aliases: Dictionary = {
     sl: 'slide',
     sp: 'snap',
     st: 'strum',
-    sy: 'inst',
+    in: 'inst',
     v: 'vol',
 }
 
