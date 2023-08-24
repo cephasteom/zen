@@ -1,4 +1,3 @@
-
 import type { Dictionary } from '../types'
 
 export const scales: Dictionary = {
