@@ -223,6 +223,14 @@ button:focus:not(:focus-visible) {
     color: var(--color-theme-3);
 }
 
+.monaco-editor .bracket-highlighting-0 {
+    color: var(--color-theme-3) !important;
+}
+
+.monaco-editor .bracket-highlighting-1 {
+    color: var(--color-theme-2) !important;
+}
+
 .lines-content .mtk8 {
     color: #d4d4d4;
 }

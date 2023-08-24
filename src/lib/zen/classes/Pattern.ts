@@ -187,7 +187,7 @@ export class Pattern {
      */ 
     get _(): Pattern | Stream {
         return this._parent || this
-    }   
+    }
 
     /**
      * Pass the value of a pattern to a method on the previous pattern
