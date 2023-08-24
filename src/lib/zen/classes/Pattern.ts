@@ -28,6 +28,7 @@ import { getScale, getChord } from '../utils/musical';
     clamp: 'cl',
     coin: 'c',
     cosine: 'co',
+    curve: 'cu',
     div: 'd',
     divr: 'dr',
     else: 'e',
@@ -74,6 +75,7 @@ const aliases = {
     clamp: 'cl',
     coin: 'c',
     cosine: 'co',
+    curve: 'cu',
     div: 'd',
     divr: 'dr',
     else: 'e',
@@ -657,6 +659,21 @@ export class Pattern {
      */
     saw(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1): Pattern {
         return this.range(lo, hi, step, freq)
+    }
+
+    /**
+     * Generate a curve between lo and hi. Use as the first call in a pattern chain.
+     * @param lo lowest value in range
+     * @param hi highest value in range
+     * @param curve curve of the pattern. Default is 1, which means a linear curve.
+     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
+     */
+    curve(lo: number = 0, hi: number = 1, curve: number = 0.5, freq: number = 1): Pattern {
+        this.stack.push((x: patternValue) => {
+            const value = Math.pow(pos(x, this._q, freq), curve) 
+            return mapToRange(value, 0, 1, lo, hi)
+        })
+        return this
     }
     
     /**

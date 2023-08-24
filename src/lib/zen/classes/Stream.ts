@@ -321,8 +321,8 @@ export class Stream {
 
     /** @hidden */
     reset() {
-        const { t, x, y, z, xyz, e, m, solo, mute } = this;
-        [t, x, y, z, xyz, e, m, solo, mute].forEach(p => p.reset())
+        const { _tPattern, _xPattern, _yPattern, _zPattern, _xyzPattern, _ePattern, _mPattern, _soloPattern, _mutePattern } = this;
+        [_tPattern, _xPattern, _yPattern, _zPattern, _xyzPattern, _ePattern, _mPattern, _soloPattern, _mutePattern].forEach(p => p?.reset())
         this._t = 0
         this._bpm = 120
 

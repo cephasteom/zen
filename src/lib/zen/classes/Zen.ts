@@ -21,19 +21,29 @@ export class Zen extends Stream {
         super('z')
     }
 
+    /** @hidden */
+    _tPattern: null | Pattern = null
     /**
      * A Pattern for setting the global time. The outcome of the pattern updates the variable `t` within your code.
      * @example
      * z.t.sine(0,16,1) // set the global t with a sine wave between 0 and 16
      */ 
-    t = new Pattern()
+    get t() { 
+        this._tPattern = this._tPattern || new Pattern()
+        return this._tPattern
+    }
 
+    /** @hidden */
+    _bpmPattern: null | Pattern = null
     /**
      * A Pattern for setting the global bpm
      * @example
      * z.bpm.saw(60,120,0.5) // set the global bpm with a saw wave between 60 and 120, over 2 cycles
      */ 
-    bpm = new Pattern()
+    get bpm() {
+        this._bpmPattern = this._bpmPattern || new Pattern()
+        return this._bpmPattern
+    }
 
     // when to update the executed code, ie at the next division, on the next beat, etc
     /** @hidden */
@@ -112,6 +122,6 @@ export class Zen extends Stream {
     resetGlobals(t: number) {
         this._t = t;
         this._update = 1;
-        [this.bpm, this.t].forEach(p => p.reset())
+        [this._bpmPattern, this._tPattern].forEach(p => p?.reset())
     }
 }
