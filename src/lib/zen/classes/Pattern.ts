@@ -805,7 +805,9 @@ export class Pattern {
      * @example s0.p.n.seq([60,72,74,76])
      */
     seq(values: number[] = [], freq: number = 1): Pattern {
-        this.stack.push((x: patternValue) => values[Math.floor((pos(x, this._q, freq)*values.length)%values.length)])
+        this.stack.push((x: patternValue) => {
+            return values[Math.round((pos(x, this._q, freq)*values.length)%values.length)]
+        })
         return this
     }
 
