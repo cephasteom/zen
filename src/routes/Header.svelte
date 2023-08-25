@@ -3,26 +3,24 @@
     import logo from '$lib/images/karma.png';
 </script>
 
-{#if $page.url.search !== "?content=true"}
-    <header>
-        <nav class="container">
-            <a href="/" class="icon">
-                <img
-                    src={logo}
-                    class="mr-3 h-6 sm:h-6"
-                    alt="Zen Logo"
-                />
-                Zen
-            </a>
-            <ul class="menu">
-                <li class="menu__item"><a class={$page.url.pathname === '/about' ? 'active' : ''} href="/about">About</a></li>
-                <li class="menu__item"><a class={$page.url.pathname === '/learn' ? 'active' : ''} href="/learn">Learn</a></li>
-                <li class="menu__item"><a class={$page.url.pathname === '/docs' ? 'active' : ''} href="/docs">Docs</a></li>
-            </ul>
-        
-        </nav>
-    </header>
-{/if}
+<header>
+    <nav class="container">
+        <a href="/" class="icon">
+            <img
+                src={logo}
+                class="mr-3 h-6 sm:h-6"
+                alt="Zen Logo"
+            />
+            Zen
+        </a>
+        <ul class="menu">
+            <li class="menu__item"><a class={$page.url.pathname === '/about' ? 'active' : ''} href="/about">About</a></li>
+            <li class="menu__item"><a class={$page.url.pathname === '/learn' ? 'active' : ''} href="/learn">Learn</a></li>
+            <li class="menu__item"><a class={$page.url.pathname === '/docs' ? 'active' : ''} href="/docs">Docs</a></li>
+        </ul>
+    
+    </nav>
+</header>
 
 
 <style lang="scss">

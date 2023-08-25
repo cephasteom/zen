@@ -1,5 +1,4 @@
 <script>
-    import { page } from '$app/stores';
     import Header from "./Header.svelte";
     import "./styles.css";
 </script>
@@ -11,13 +10,11 @@
         <slot />
     </main>
 
-    {#if $page.url.search !== "?content=true"}
     <footer class="footer container">
         <span>Something wrong? <a target="_blank" href="https://github.com/cephasteom/zen-3/issues">Open an issue</a>.</span>
         <span>© <a target="_blank" href="https://cephasteom.co.uk">Cephas Teom</a> {new Date().getFullYear()}</span>
 
     </footer>
-    {/if}
 </div>
 
 <style lang="scss">

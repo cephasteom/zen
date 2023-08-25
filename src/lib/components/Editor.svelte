@@ -5,7 +5,6 @@
     import { setCode, play, stop } from '$lib/zen';
     import { error, isPlaying, editorValue } from '$lib/stores/zen';
     import { activePreset, presets } from '$lib/stores/presets';
-    import { showDocs } from '$lib/stores/app';
     import { examples } from '../examples/examples';
 
     let editor: Monaco.editor.IStandaloneCodeEditor;
@@ -82,11 +81,6 @@
                 flash = true;
                 setTimeout(() => flash = false, 400);
             } 
-            // if keycode is h and option key is pressed
-            if(e.keyCode === 38 && e.metaKey) {
-                e.preventDefault();
-                showDocs.update(v => !v);
-            }
         })
 
         activePreset.subscribe(key => {

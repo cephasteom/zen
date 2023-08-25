@@ -4,7 +4,6 @@
     import Data from '$lib/components/Data.svelte';
     import Tools from '$lib/components/Tools.svelte';
     import { startAudio } from '$lib/zen/index';
-    import { showDocs } from '$lib/stores/app';
 </script>
 
 <svelte:head>
@@ -30,9 +29,6 @@
     </div>
     <div class="data">
         <Data />
-    </div>
-    <div class="docs" style:display={$showDocs ? 'flex' : 'none'}>
-        <iframe title="docs" src="docs/?content=true" frameborder="0"></iframe>
     </div>
 </section>
 
@@ -76,7 +72,7 @@
         padding: 1rem;
     }
 
-    .visuals, .docs {
+    .visuals {
         display: none;
         @media (min-width: 600px) {
             grid-column: 2;
@@ -98,14 +94,5 @@
         }
         background-color: var(--color-grey-dark);
         padding: 1rem;
-    }
-
-    .docs {
-        display: none;
-        & iframe {
-            width: 100%;
-            height: 100%;
-        }
-        z-index: 1000;
     }
 </style>
