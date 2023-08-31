@@ -806,7 +806,7 @@ export class Pattern {
      */
     seq(values: number[] = [], freq: number = 1): Pattern {
         this.stack.push((x: patternValue) => {
-            return values[Math.round((pos(x, this._q, freq)*values.length)%values.length)]
+            return values[Math.floor((pos(x, this._q, freq)*values.length)%values.length)]
         })
         return this
     }
@@ -1083,17 +1083,17 @@ export class Pattern {
      * @param names name of scale or array of scale names. Scales follow root-scale format, e.g. 'c-major'.
      * @todo show link to available scales
      * @param length length of each scale
-     * @param octave octave to start scale. Default is 4.
      * @param freq number of iterations of the pattern
+     * @param asArray return the entire scale as an array. Default is false.
      * @returns {Pattern}
      * @example s0.p.n.scales('c-dorian', 16)
      */ 
-    scales(names: string | string[], length: number = 8, freq: number = 1, octave: number = 4): Pattern {
+    scales(names: string | string[], length: number = 8, freq: number = 1, asArray: boolean = false): Pattern {
         const scales = [names].flat().map(name => {
             const scale = getScale(name)
             return scale.slice(0, min(length, scale.length))
         })
-        this.seq(scales.flat(), freq).add(octave * 12)
+        this.seq(asArray ? scales : scales.flat(), freq).add(48)
         return this
     }
 
@@ -1109,6 +1109,30 @@ export class Pattern {
     chords(names: string | string[], freq: number = 1, octave: number = 4): Pattern {
         this.seq([names].flat().map(name => getChord(name)), freq).add(octave * 12)
         return this
+    }
+
+    /**
+     * Get a value from the previous value in the pattern chain, at index n
+     * Expects the previous value to be an array
+     * @param n index of value to retrieve
+     * @returns {Pattern}
+     * @example s0.p.n.scales('d-dorian',16,1,1).at(t%16)
+     */ 
+    at(n: number): Pattern {
+        this.stack.push(x => [x].flat()[n])
+        return this
+    }
+
+    /**
+     * Instantiate a new Pattern and use the resulting value to get a value from the previous value in the pattern chain, at index n
+     * Expects the previous value to be an array
+     * @returns {Pattern}
+     * @example s0.p.n.scales('d-dorian',16,1,1).$at.saw(0,16,1)
+     */ 
+    get $at(): Pattern {
+        const pattern = new Pattern(this)
+        this._state.$.push({method: 'at', pattern})
+        return pattern
     }
 
     /**
