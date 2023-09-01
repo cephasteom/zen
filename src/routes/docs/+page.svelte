@@ -122,11 +122,11 @@ s0.e.every(4)`,
         <div class="expandable{expanded === 'data' ? '--expanded' : ''}">
             <p>Scales use the following syntax <code class="inline-code">root-scale</code>, as in <code class="inline-code">d-major</code></p>
             <p>All of the scales that you can use in the <code class="inline-code">scales</code> pattern method (exported from TidalCycles - with thanks.):</p>
-            <p class="scales">{ Object.keys(scales).join(', ') }</p>
+            <p class="scales">{ Object.keys(scales).sort().join(', ') }</p>
             
             <p>Scales use the following syntax <code class="inline-code">root-chord</code>, as in <code class="inline-code">a-min7</code></p>
             <p>All of the chords that you can use in the <code class="inline-code">chords</code> pattern method (exported from TidalCycles - with thanks.):</p>
-            <p class="chords">{ Object.keys(chords).join(', ') }</p>
+            <p class="chords">{ Object.keys(chords).sort().join(', ') }</p>
 
     </section>
 </div>
