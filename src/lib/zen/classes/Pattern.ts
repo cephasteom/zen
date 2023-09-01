@@ -38,6 +38,7 @@ import { getScale, getChord } from '../utils/musical';
     if: 'i',
     inversion: 'inv',
     invert: 'in',
+    layer: 'la',
     mod: 'mo',
     mul: 'm',
     not: 'n',
@@ -85,6 +86,7 @@ const aliases = {
     if: 'i',
     inversion: 'inv',
     invert: 'in',
+    layer: 'la',
     mod: 'mo',
     mul: 'm',
     not: 'n',
@@ -1112,6 +1114,24 @@ export class Pattern {
     }
 
     /**
+     * Invert the previous chord in the pattern chain
+     * @param i inversion
+     * @returns {Pattern}
+     * @example s0.p.n.chords('d-dorian', 16).inversion(1)
+     * @example s0.p.n.chords('d-dorian', 16).$inversion.range(0,8,1)
+     */ 
+    inversion(i: number): Pattern {
+        this.stack.push((x: patternValue) => {
+            const chord = [x].flat()
+            const length = chord.length
+            const head = chord.slice(0, i%length)
+            const tail = chord.slice(i%length)
+            return [...tail, ...head.map(n => n + 12)].map(n => n + (12 * Math.floor((i%(length*4))/length)))
+        })
+        return this
+    }
+
+    /**
      * Get a value from the previous value in the pattern chain, at index n
      * Expects the previous value to be an array
      * @param n index of value to retrieve
@@ -1134,23 +1154,27 @@ export class Pattern {
         this._state.$.push({method: 'at', pattern})
         return pattern
     }
+    
+    /**
+     * Layer a value on top of the previous value in the pattern chain, forming an array of values
+     * @param n 
+     * @returns 
+     * @example s0.p.n.scales('d-dorian',16).layer(12)
+     */
+    layer(n: number): Pattern {
+        this.stack.push(x => [x].flat().concat(n))
+        return this
+    }
 
     /**
-     * Invert the previous chord in the pattern chain
-     * @param i inversion
+     * Instantiate a new Pattern and use the resulting value to layer a value on top of the previous value in the pattern chain, forming an array of values
      * @returns {Pattern}
-     * @example s0.p.n.chords('d-dorian', 16).inversion(1)
-     * @example s0.p.n.chords('d-dorian', 16).$inversion.range(0,8,1)
+     * @example s0.p.n.scales('d-dorian',16).$layer.scales('f-lydian',16)
      */ 
-    inversion(i: number): Pattern {
-        this.stack.push((x: patternValue) => {
-            const chord = [x].flat()
-            const length = chord.length
-            const head = chord.slice(0, i%length)
-            const tail = chord.slice(i%length)
-            return [...tail, ...head.map(n => n + 12)].map(n => n + (12 * Math.floor((i%(length*4))/length)))
-        })
-        return this
+    get $layer(): Pattern {
+        const pattern = new Pattern(this)
+        this._state.$.push({method: 'layer', pattern})
+        return pattern
     }
 
     // Maths
