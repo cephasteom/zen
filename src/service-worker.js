@@ -33,6 +33,8 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
     // ignore POST requests etc
     if (event.request.method !== 'GET') return;
+    // ignore requests to http://localhost:5000
+    if (event.request.url.startsWith('http://localhost:5000')) return;
 
     async function respond() {
         const url = new URL(event.request.url);

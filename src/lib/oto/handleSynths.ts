@@ -96,8 +96,8 @@ export const handleSynthMutation = (time: number, id: string, params: Dictionary
 
 // Fetch samples lists
 const samples = writable<Dictionary>({});
-// fetch samples
-['/samples/samples.json/', 'http://localhost:5000/samples.json'].forEach(url => {
+
+const fetchSamples = async (url: string) => {
     fetch(url)
         .then(res => res.json())
         .then(json => {
@@ -107,7 +107,10 @@ const samples = writable<Dictionary>({});
             
         })
         .catch(_ => console.log('No samples available at ' + url))
-})
+}
+
+await fetchSamples('/samples/samples.json')
+await fetchSamples('http://localhost:5000/samples.json')
 
 synths.subscribe((synths: Dictionary) => {
     Object.values(synths).forEach(({sampler, granular}) => 
