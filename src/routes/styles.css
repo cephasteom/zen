@@ -198,11 +198,6 @@ button:focus:not(:focus-visible) {
     display: none!important;
 }
 
-.lines-content{
-    margin-top: 1rem!important;
-    margin-bottom: 1rem!important;
-}
-
 /* strings */
 .monaco-scrollable-element, .margin-view-overlays, .lines-content {
     background-color: var(--color-grey-darkest)!important;

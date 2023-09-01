@@ -112,6 +112,8 @@
     .container {
         position: relative;
         background-color: var(--color-grey-darkest);
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
     }
     
     .flash {
