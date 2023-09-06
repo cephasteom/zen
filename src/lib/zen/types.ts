@@ -14,5 +14,6 @@ export interface ActionArgs {
     c: number
     q: number
     s: number
+    v: Uint8Array
 }
 export type action = { (input: ActionArgs): void }

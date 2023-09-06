@@ -2,6 +2,7 @@ import { start, Loop, Transport, immediate } from 'tone'
 import { writable, get } from 'svelte/store';
 import { Zen } from './classes/Zen';
 import { Stream } from './classes/Stream';
+import { Visuals } from './classes/Visuals';
 import { createCount } from './utils/utils';
 import type { action } from './types';
 import { helpers } from './utils/helpers';
@@ -37,8 +38,9 @@ fetch('http://localhost:5000/data.json')
 let counter = createCount(0);
 
 // initialise Zen and Streams within the scope of the loop
-export const z = new Zen();
-export const streams: Stream[] = Array(8).fill(0).map((_, i) => new Stream('s' + i))
+const z = new Zen();
+const streams: Stream[] = Array(8).fill(0).map((_, i) => new Stream('s' + i))
+const v = new Visuals(16)
 let bpm = 120
 
 // helper functions and constants
@@ -58,6 +60,8 @@ const loop = new Loop(time => {
     const bts = initBts(bpm)
     const btms = initBtms(bpm)
     const ms = btms
+    v.resize(s)
+    v.reset()
     
     // evaluate the user's code, using fallback if it fails
     const [ s0, s1, s2, s3, s4, s5, s6, s7 ] = streams;
@@ -95,10 +99,12 @@ const loop = new Loop(time => {
     const result = soloed.length ? soloed : compiled
     const events = result.filter(({e}) => e)
     const mutations = result.filter(({m}) => m)
+    v.setPositions(events.map(({x,y}) => ({x,y})), true)
+    v.setPositions(mutations.map(({x,y}) => ({x,y})), false)
 
     // call actions
     const delta = (time - immediate())
-    const args = { time, delta, t, s, q, c, events, mutations }
+    const args = { time, delta, t, s, q, c, events, mutations, v: v.get() }
     get(actions).forEach((cb: action) => cb(args))
 
 }, `${z.q}n`).start(0)
