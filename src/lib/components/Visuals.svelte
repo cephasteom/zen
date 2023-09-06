@@ -16,7 +16,7 @@
                 .attr({x: `${w * (i%s)}%`, y: `${w * Math.floor((s*s-(i+1))/s)}%`})
                 .stroke({color: 'var(--color-grey-dark)', width: 1})
                 .fill('transparent')
-                .addClass(`rect--${i}`);
+                .addClass(`rect--${i}`)
         }
     }
 
@@ -33,7 +33,7 @@
                 const b = data[i*4+2];
                 const a = data[i*4+3];
                 const element = SVG(`rect.rect--${i}`)
-                element?.fill(`rgba(${r},${g},${b},${a/255})`);
+                element?.fill(`rgba(${r},${g},${b},${a/255})`)
             }
         });
     })

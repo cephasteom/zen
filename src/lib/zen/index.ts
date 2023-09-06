@@ -61,7 +61,6 @@ const loop = new Loop(time => {
     const btms = initBtms(bpm)
     const ms = btms
     v.resize(s)
-    v.reset()
     
     // evaluate the user's code, using fallback if it fails
     const [ s0, s1, s2, s3, s4, s5, s6, s7 ] = streams;
@@ -99,12 +98,13 @@ const loop = new Loop(time => {
     const result = soloed.length ? soloed : compiled
     const events = result.filter(({e}) => e)
     const mutations = result.filter(({m}) => m)
-    v.setPositions(events.map(({x,y}) => ({x,y})), true)
-    v.setPositions(mutations.map(({x,y}) => ({x,y})), false)
+    const ePositions = events.map(({x,y}) => ({x,y}))
+    const mPositions = mutations.map(({x,y}) => ({x,y}))
+    const vis = v.get(ePositions, mPositions)
 
     // call actions
     const delta = (time - immediate())
-    const args = { time, delta, t, s, q, c, events, mutations, v: v.get() }
+    const args = { time, delta, t, s, q, c, events, mutations, v: vis }
     get(actions).forEach((cb: action) => cb(args))
 
 }, `${z.q}n`).start(0)
