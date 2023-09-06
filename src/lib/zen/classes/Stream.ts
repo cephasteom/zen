@@ -33,8 +33,6 @@ export class Stream {
 
     /** @hidden */
     _bpm: number = 120
-
-    /** @hidden */
     
     /**
      * Patterns to be mapped across time
@@ -250,39 +248,10 @@ export class Stream {
         return this
     }
 
-    /**
-     * Get t, mute and solo values, before getting the value of all other parameters
-     * @param time
-     * @param q
-     * @returns void
-     * @hidden
-     */ 
-    prepareStream(time: number, q: number, s: number, bpm: number) {
-        this._t = +(this.t.has() ? this.t.get(time, q) || 0 : time);
-        this._q = q;
-        this._s = s;
-        this._bpm = bpm;
-        this.mute.get(this._t, q)
-        this.solo.get(this._t, q)
-    }
-
     /** @hidden */
-    getE() {
-        this.e.get(this._t, this._q)
-    }
-
-    /** @hidden */
-    getM() {
-        this.m.get(this._t, this._q)
-    }
-
-    /** @hidden */
-    get(global: Zen) {
+    get(time: number, q: number, s: number, bpm: number, global: Zen) {
         // use stream t, if set, or global t
-        const t = this._t
-        const s = this._s
-        const q = this._q
-        const bpm = this._bpm
+        const t = +(this.t.has() ? this.t.get(time, q) || 0 : time);
         
         // use stream x, y, z, if set, or 0
         const xyz = [this.xyz.get(t, s)].flat()
@@ -293,8 +262,8 @@ export class Stream {
         const { id } = this;
         const mute = !!this.mute.value()
         const solo = !!this.solo.value()
-        const e = this.e.value() && !mute
-        const m = this.m.value() && !mute
+        const e = !mute && this.e.get(t, q)
+        const m = !mute && this.m.get(t, q)
         const lag = (60000/bpm)/q // ms per division
 
         // compile all parameters
@@ -325,8 +294,6 @@ export class Stream {
     reset() {
         const { _tPattern, _xPattern, _yPattern, _zPattern, _xyzPattern, _ePattern, _mPattern, _soloPattern, _mutePattern } = this;
         [_tPattern, _xPattern, _yPattern, _zPattern, _xyzPattern, _ePattern, _mPattern, _soloPattern, _mutePattern].forEach(p => p?.reset())
-        this._t = 0
-        this._bpm = 120
 
         Object.values(this.p).forEach(p => p.reset())
         Object.values(this.px).forEach(p => p.reset())

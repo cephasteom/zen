@@ -89,13 +89,8 @@ const loop = new Loop(time => {
         bpm = newBpm
     }
 
-    // evaluate events and mutations first, so that they can be used in parameter patterns
-    streams.forEach(stream => stream.prepareStream(t, q, s, bpm))
-    streams.forEach(stream => stream.getE())
-    streams.forEach(stream => stream.getM())
-
     // compile parameters, events and mutations
-    const compiled = streams.map(stream => stream.get(z))
+    const compiled = streams.map(stream => stream.get(t, q, s, bpm, z))
     const soloed = compiled.filter(({solo}) => solo)
     const result = soloed.length ? soloed : compiled
     const events = result.filter(({e}) => e)
