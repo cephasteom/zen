@@ -731,12 +731,13 @@ export class Pattern {
      * @param hi highest value in range
      * @param step step size to round the output. Default is 0, which means no rounding.
      * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @param cycles number of cycles of the pattern. Default is 4.
      * @returns {Pattern}
      * @example s0.p.pan.noise(0, 1)
     */
-    noise(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1): Pattern {
+    noise(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1, cycles: number = 4): Pattern {
         this.stack = [(x: patternValue) => {
-            return mapToRange(noise.simplex2(pos(x, this._q, freq), 0), -1, 1, lo, hi, step)
+            return mapToRange(noise.simplex2(pos(x, this._q, freq, cycles), 0), -1, 1, lo, hi, step)
         }]
         return this
     }

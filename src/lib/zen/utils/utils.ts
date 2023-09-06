@@ -72,9 +72,9 @@ export function singleValueArrayToSingleValue(value: patternValue): patternValue
  * @param freq frequency of the normalised range
  * @returns 
  */
-export function calculateNormalisedPosition(x: patternValue, q: number, freq: number) {
+export function calculateNormalisedPosition(x: patternValue, q: number, freq: number, mod: number = 1) {
     const val = Array.isArray(x) ? x[0] : x // ensure x is a number
-    return ((+val / q) * freq) % 1
+    return ((+val / q) * freq) % mod
 }
 
 export function isArray(value: any) {
