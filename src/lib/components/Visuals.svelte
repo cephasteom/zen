@@ -32,8 +32,9 @@
                 const g = data[i*4+1];
                 const b = data[i*4+2];
                 const a = data[i*4+3];
-                const element = SVG(`rect.rect--${i}`)
-                element?.fill(`rgba(${r},${g},${b},${a/255})`)
+                const rect = SVG(`rect.rect--${i}`)
+                rect?.fill(`rgba(${r},${g},${b},${a/255})`)
+
             }
         });
     })
