@@ -234,6 +234,7 @@ export class Pattern {
      */
     use(pattern: Pattern): Pattern {
         this.stack.push(...pattern.stack)
+        this._state.$.push(...pattern._state.$)
         return this
     }
 
