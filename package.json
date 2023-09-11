@@ -31,7 +31,6 @@
 		"@fortawesome/free-regular-svg-icons": "^6.4.0",
 		"@fortawesome/free-solid-svg-icons": "^6.4.0",
 		"@rnbo/js": "^1.1.2",
-		"@svgdotjs/svg.js": "^3.2.0",
 		"@types/marked": "^5.0.1",
 		"highlight.js": "^11.2.0",
 		"marked": "^5.1.1",
