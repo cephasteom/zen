@@ -260,8 +260,8 @@ export class Stream {
         const z = +(xyz[2] || this.z.get(t, s) || 0)
         
         const { id } = this;
-        const mute = !!this.mute.value()
-        const solo = !!this.solo.value()
+        const mute = !!this.mute.get(t,q)
+        const solo = !!this.solo.get(t,q)
         const e = !mute && this.e.get(t, q)
         const m = !mute && this.m.get(t, q)
         const lag = (60000/bpm)/q // ms per division
