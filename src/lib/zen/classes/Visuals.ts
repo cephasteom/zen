@@ -24,10 +24,10 @@ export class Visuals {
 
     clear() {
         for (let i = 0; i < this._s * this._s; i++) {
-            this.data[i * 4 + 0] = 0;
-            this.data[i * 4 + 1] = 0;
-            this.data[i * 4 + 2] = 0;
-            this.data[i * 4 + 3] = 0;
+            this.data[i * 4 + 0] = 38;
+            this.data[i * 4 + 1] = 38;
+            this.data[i * 4 + 2] = 38;
+            this.data[i * 4 + 3] = 255;
         }
     }
 

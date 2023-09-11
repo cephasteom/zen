@@ -57,7 +57,7 @@
     --color-grey-mid: #555555;
     --color-grey-dark: #404040;
     --color-grey-darker: #333333;
-    --color-grey-darkest: #262626;
+    --color-grey-darkest: rgb(38, 38, 38);
     --color-box-shadow: rgba(38, 38, 38, 0.75);
     --max-width: 1600px;
 }
