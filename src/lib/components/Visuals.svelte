@@ -9,21 +9,22 @@
     let px: number = 16;
     
     const drawCanvas = (data: Uint8Array) => {
-        canvasCtx?.clearRect(0, 0, s*px, s*px);
+        canvasCtx && (canvasCtx.fillStyle = "#262626");
+        canvasCtx?.fillRect(0, 0, s*px, s*px);
         for(let i = 0; i < s*s; i++) {
-            const x = (i % s) * px;
+            const x = Math.floor((i % s) * px);
             const y = Math.floor(i / s) * px;
             const r = data[i*4];
             const g = data[i*4+1];
             const b = data[i*4+2];
             const a = data[i*4+3];
             canvasCtx && (canvasCtx.fillStyle = `rgba(${r},${g},${b},${a})`);
-            canvasCtx?.fillRect(x + 0.3, y + 0.2, px - 0.15, px - 0.15);
+            canvasCtx?.fillRect(x, y, px, px);
         }
     }
 
     onMount(() => {
-        canvasCtx = canvas.getContext('2d');
+        canvasCtx = canvas.getContext('2d', { alpha: false });
         
         visualsData.subscribe(data => {
             s = Math.sqrt(data.length / 4);
@@ -60,7 +61,6 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: var(--color-grey-darkest);
         }
 
         & #svg {
