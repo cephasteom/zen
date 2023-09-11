@@ -1072,6 +1072,16 @@ export class Pattern {
     }
 
     /**
+     * Convert the previous value from divisions of a bar to seconds, scaling by bpm
+     * @returns {Pattern}
+     * @example s0.p.set(q).ttms()
+     */
+    ttms(): Pattern {
+        this.stack.push(x => handle(x, x =>  x * (((60000/this._bpm) * 4) / this._q)))
+        return this
+    }
+
+    /**
      * Provide a callback function to the previous value in the pattern chain
      * @param cb callback function
      * @returns {Pattern}
