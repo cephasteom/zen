@@ -33,10 +33,10 @@ export class Visuals {
 
     blur() {
         for (let i = 0; i < this._s * this._s; i++) {
-            this.data[i * 4 + 0] = this.data[i * 4 + 0] > 1 ? Math.floor(this.data[i * 4 + 0]*0.75) : 0;
-            this.data[i * 4 + 1] = this.data[i * 4 + 1] > 1 ? Math.floor(this.data[i * 4 + 1]*0.75) : 0;
-            this.data[i * 4 + 2] = this.data[i * 4 + 2] > 1 ? Math.floor(this.data[i * 4 + 2]*0.75) : 0;
-            this.data[i * 4 + 3] = this.data[i * 4 + 3] > 1 ? Math.floor(this.data[i * 4 + 3]*0.75) : 0;
+            this.data[i * 4 + 0] = this.data[i * 4 + 0] > 38 ? Math.floor(this.data[i * 4 + 0]*0.5) : 38;
+            this.data[i * 4 + 1] = this.data[i * 4 + 1] > 38 ? Math.floor(this.data[i * 4 + 1]*0.5) : 38;
+            this.data[i * 4 + 2] = this.data[i * 4 + 2] > 38 ? Math.floor(this.data[i * 4 + 2]*0.5) : 38;
+            this.data[i * 4 + 3] = this.data[i * 4 + 3] > 255 ? Math.floor(this.data[i * 4 + 3]*0.5) : 255;
         }
     }
 
