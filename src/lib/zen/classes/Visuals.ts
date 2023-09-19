@@ -59,7 +59,7 @@ export class Visuals {
     }
 
     get(events: position[], mutations: position[]): Uint8Array {
-        this.interpolate();
+        this.clear();
         this.streams(events, true);
         this.streams(mutations, false);
 
