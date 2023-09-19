@@ -114,3 +114,7 @@ export function roundToNearest(n: number, arr: number[]) {
         return Math.abs(b - n) < Math.abs(a - n) ? b : a
     })
 }
+
+export function interpolate(a: number, b: number, t: number) {
+    return a + (b - a) * t
+}

@@ -12,7 +12,7 @@ import {
     odd, 
     even,
     handleArrayOrSingleValue as handle,
-
+    interpolate,
 } from '../utils/utils';
 import { getScale, getChord } from '../utils/musical';
 
@@ -72,6 +72,7 @@ export class Pattern {
         eq: 'eq',
         every: 'ev',
         if: 'i',
+        interpolate: 'intrp',
         inversion: 'inv',
         invert: 'in',
         layer: 'la',
@@ -120,6 +121,7 @@ export class Pattern {
         eq: 'eq',
         every: 'ev',
         if: 'i',
+        interpolate: 'intrp',
         inversion: 'inv',
         invert: 'in',
         layer: 'la',
@@ -1344,6 +1346,11 @@ export class Pattern {
      */ 
     sqrt(): Pattern {
         this.stack.push((x: patternValue) => handle(x, x => Math.sqrt(+x)))
+        return this
+    }
+
+    interpolate(val: number): Pattern {
+        this.stack.push((x: patternValue) => handle(x, x => interpolate(+x, val, 0.5)))
         return this
     }
 
