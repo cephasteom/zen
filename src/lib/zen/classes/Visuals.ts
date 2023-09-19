@@ -32,15 +32,6 @@ export class Visuals {
         }
     }
 
-    blur() {
-        for (let i = 0; i < this._s * this._s; i++) {
-            this.data[i * 4 + 0] = this.data[i * 4 + 0] > 38 ? Math.floor(this.data[i * 4 + 0]*0.5) : 38;
-            this.data[i * 4 + 1] = this.data[i * 4 + 1] > 38 ? Math.floor(this.data[i * 4 + 1]*0.5) : 38;
-            this.data[i * 4 + 2] = this.data[i * 4 + 2] > 38 ? Math.floor(this.data[i * 4 + 2]*0.5) : 38;
-            this.data[i * 4 + 3] = this.data[i * 4 + 3] > 255 ? Math.floor(this.data[i * 4 + 3]*0.5) : 255;
-        }
-    }
-
     streams(positions: {x: number, y: number}[], isEvent: boolean) {
         let streamID = 0;
         for (const { x, y } of positions) {
