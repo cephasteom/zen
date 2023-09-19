@@ -1349,6 +1349,12 @@ export class Pattern {
         return this
     }
 
+    /**
+     * Interpolate between a value and the previous value in the pattern chain
+     * @param val value to interpolate to
+     * @returns {Pattern}
+     * @example s0.y.sine(0,15,1).$intrp.sine(15,0,1,0.5)
+     */ 
     interpolate(val: number): Pattern {
         this.stack.push((x: patternValue) => handle(x, x => interpolate(+x, val, 0.5)))
         return this
