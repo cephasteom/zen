@@ -1,5 +1,5 @@
 import type { Stream } from './Stream'
-import type { stack, patternValue } from '../types'
+import type { stack, patternValue, patternable } from '../types'
 import { 
     mapToRange, 
     roundToFactor, 
@@ -210,26 +210,14 @@ export class Pattern {
 
     /**
      * Set a single value
-     * @param {patternValue | Pattern | string} value - a single string or number or array of strings or numbers, or a Pattern, or a Zen pattern string
+     * @param {patternable} value - a single string or number or array of strings or numbers, or a Pattern, or a Zen pattern string
      * @returns {Pattern}
      * @example s0.p.amp.set(1)
      * @example s1.e.set(s0.e)
      * @example s0.e.set('1?0*16')
      */
-    set(value: patternValue | Pattern | string): Pattern {
+    set(value: patternable): Pattern {
         this.stack = [t => handleTypes(value, +t, this._q)]
-        return this
-    }
-
-    /**
-     * Parse a Zen pattern string
-     * For full documentation, see the tutorial
-     * @param {string} pattern - a Zen pattern string
-     * @returns {Pattern}
-     * @example s0.p.e.parse('1?0*16')
-     */ 
-    parse(pattern: string): Pattern {
-        this.stack = [t => parsePattern(pattern, +t, this._q)]
         return this
     }
     
@@ -267,7 +255,7 @@ export class Pattern {
 
     /**
      * Negate the value passed as the first argument
-     * @param {boolean | Pattern} x - a boolean or pattern
+     * @param {patternable} x - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      * @example 
      * s0.e.every(3)
@@ -275,7 +263,7 @@ export class Pattern {
      * s2.e.not(!(t%3))
      * s3.e.not('1?0*16')
      */ 
-    not(x: patternValue | Pattern | string): Pattern {
+    not(x: patternable): Pattern {
         this.stack.push(t => handleTypes(x, +t, this._q) ? 0 : 1)
         return this
     }
@@ -295,17 +283,17 @@ export class Pattern {
     /**
      * Toggle on or off using the value passed as the first argument
      * A true value will toggle the pattern on, a false value will toggle it off
-     * Accepts a boolean or pattern as the first argument
-     * @param {boolean | Pattern} x - a boolean or pattern
+     * @param {patternable} x - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      * @example
      * s0.e.every(3)
      * s1.e.toggle(s0.e)
      * s2.e.toggle(!(t%3))
      */ 
-    toggle(x: boolean | Pattern): Pattern {
-        this.stack.push(() => {
-            const value = x instanceof Pattern ? x._value : x
+    // TODO: this._time is needed
+    toggle(x: patternable): Pattern {
+        this.stack.push(t => {
+            const value = handleTypes(x, +t, this._q)
             if (value) this._state.toggle = !this._state.toggle
             return this._state.toggle ? 1 : 0
         })

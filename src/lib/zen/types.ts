@@ -1,7 +1,9 @@
+import type { Pattern } from './classes/Pattern'
 
 export type Dictionary = { [key: string]: any }
 
 export type patternValue = number | number[]
+export type patternable = patternValue | Pattern | string
 
 export type stack = {(x: number | patternValue): patternValue}[]
 
