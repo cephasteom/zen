@@ -87,6 +87,7 @@ export class Pattern {
         ntbin: 'nb',
         or: 'o',
         often: 'of',
+        parse: 'p',
         pulse: 'pu',
         random: 'rd',
         range: 'ra',
@@ -136,6 +137,7 @@ export class Pattern {
         ntbin: 'nb',
         or: 'o',
         often: 'of',
+        parse: 'p',
         pulse: 'pu',
         random: 'rd',
         range: 'ra',
@@ -210,20 +212,25 @@ export class Pattern {
 
     /**
      * Set a single value
-     * @param {patternValue | Pattern} value - a single string or number or array of strings or numbers, or a Pattern
+     * @param {patternValue | Pattern | string} value - a single string or number or array of strings or numbers, or a Pattern, or a Zen pattern string
      * @returns {Pattern}
      * @example s0.p.amp.set(1)
-     * @example s1.p.set(s0.e)
+     * @example s1.e.set(s0.e)
+     * @example s0.e.set('1?0*16')
      */
-    set(value: patternValue | Pattern): Pattern {
-        this.stack = [() => value instanceof Pattern ? value.value() : value] 
+    set(value: patternValue | Pattern | string): Pattern {
+        this.stack = [t => {
+            if(value instanceof Pattern) return value.value()
+            if(typeof value === 'string') return parsePattern(value, +t, this._q)
+            return value
+        }]
         return this
     }
 
     /**
-     * Parse a string pattern
+     * Parse a Zen pattern string
      * For full documentation, see the tutorial
-     * @param {string} pattern - a string pattern
+     * @param {string} pattern - a Zen pattern string
      * @returns {Pattern}
      * @example s0.p.e.parse('1?0*16')
      */ 
