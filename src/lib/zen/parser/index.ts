@@ -33,6 +33,7 @@ const parser = peg.generate(`
         .map(({val, dur, type}) => {
             if (type === 'choices') return new Array(dur).fill(0).map(() => val[Math.floor(Math.random() * val.length)])
             if (type === 'alternatives') return new Array(dur).fill(0).map((_, i) => val[i % val.length])
+            if (type === 'rests') return new Array(dur || val.length).fill(0).map(() => 0)
             return event.val
         })
         .flat()
@@ -47,7 +48,7 @@ const parser = peg.generate(`
         = values:event+ divider? space* { return values; }
 
     event 
-        = sequence / choices / alternatives
+        = sequence / choices / alternatives / rests
 
     choices 
         = arr:choice+ dur:duration space* { return {val: arr, dur: dur || 1, type: 'choices'}; }
@@ -98,6 +99,12 @@ const parser = peg.generate(`
 
     divider 
         = "|"
+    
+    rests 
+        = arr:rest+ dur:duration space* { return {val: arr, dur, type: 'rests'}; }
+    
+    rest
+        = "~" 
 
     space 
         = " "
