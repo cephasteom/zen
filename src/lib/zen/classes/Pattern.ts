@@ -220,7 +220,14 @@ export class Pattern {
         return this
     }
 
-    parse(pattern: string) {
+    /**
+     * Parse a string pattern
+     * For full documentation, see the tutorial
+     * @param {string} pattern - a string pattern
+     * @returns {Pattern}
+     * @example s0.p.e.parse('1?0*16')
+     */ 
+    parse(pattern: string): Pattern {
         this.stack = [t => parsePattern(pattern, +t, this._q)]
         return this
     }
