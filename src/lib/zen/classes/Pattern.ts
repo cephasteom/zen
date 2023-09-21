@@ -165,22 +165,15 @@ export class Pattern {
         this.reset()
         this.combine = this.combine.bind(this);
     
-
-        // wrap all methods in a function that handles types
+        // make selected methods patternable
+        const wrap = this.makePatternable.bind(this)
         Object.getOwnPropertyNames(Pattern.prototype)
             .filter(method =>
                 method !== 'constructor' 
                 && method[0] !== '_' 
                 && method[0] !== '$' 
-                && !['combine', 'reset', 'value', 'get', 'has', 'use'].includes(method)
-            ).forEach(method => {
-                //@ts-ignore
-                const original = this[method].bind(this)
-                //@ts-ignore
-                this[method] = (...args) => original(...args.map(arg => handleTypes(arg, this._t, this._q)))
-                //@ts-ignore
-                this[method].bind(this)
-            })  
+                && !['combine', 'reset', 'value', 'get', 'has', 'use', 'makePatternable'].includes(method)
+            ).forEach(wrap)  
         
         // Set aliases
         Object.entries(this.aliases).forEach(([method, alias]) => {
@@ -196,6 +189,19 @@ export class Pattern {
                 }
             })
         });
+    }
+
+    /**
+     * Wrap a method in a function that handles types, allowing you to pass in a pattern, a value, or a Zen pattern string as any argument.
+     * @hidden
+     */ 
+    makePatternable(method: string) {
+        //@ts-ignore
+        const original = this[method].bind(this)
+        //@ts-ignore
+        this[method] = (...args) => original(...args.map(arg => handleTypes(arg, this._t, this._q)))
+        //@ts-ignore
+        this[method].bind(this)
     }
 
    /**
