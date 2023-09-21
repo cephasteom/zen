@@ -1,5 +1,7 @@
 import { Noise } from 'noisejs'
 import type { patternValue, Dictionary } from '../types'
+import { Pattern } from '../classes/Pattern'
+import { parsePattern } from '../parser'
 
 export const noise = new Noise(Math.random())
 
@@ -117,4 +119,10 @@ export function roundToNearest(n: number, arr: number[]) {
 
 export function interpolate(a: number, b: number, t: number) {
     return a + (b - a) * t
+}
+
+export function handleTypes(value: patternValue | Pattern | string, t: number, q: number) {
+    if(value instanceof Pattern) return value.value()
+    if(typeof value === 'string') return parsePattern(value, t, q)
+    return value
 }

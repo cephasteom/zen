@@ -16,6 +16,7 @@ import {
     even,
     handleArrayOrSingleValue as handle,
     interpolate,
+    handleTypes,
 } from '../utils/utils';
 import { getScale, getChord } from '../utils/musical';
 import { parsePattern } from '../parser'
@@ -219,11 +220,7 @@ export class Pattern {
      * @example s0.e.set('1?0*16')
      */
     set(value: patternValue | Pattern | string): Pattern {
-        this.stack = [t => {
-            if(value instanceof Pattern) return value.value()
-            if(typeof value === 'string') return parsePattern(value, +t, this._q)
-            return value
-        }]
+        this.stack = [t => handleTypes(value, +t, this._q)]
         return this
     }
 
