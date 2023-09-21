@@ -18,7 +18,7 @@ import {
     interpolate,
 } from '../utils/utils';
 import { getScale, getChord } from '../utils/musical';
-import { parse } from '../parser'
+import { parsePattern } from '../parser'
 
 /**
  * Patterns are the building blocks of Zen. They are used to generate patterns of values in interesting, concise ways. The first value passed to a pattern is either time `t` or a position in space `x`, `y`, or `z`, depending on whether the pattern is assigned to a stream's `p`, `px`, `py`, or `pz` property. Patterns methods can be chained together applying each new method to the value passed from the previous one in the chain.
@@ -221,13 +221,7 @@ export class Pattern {
     }
 
     parse(pattern: string) {
-        const array = parse(pattern)
-        this.stack = [t => {
-            let position = pos(t, this._q, 1, array.length)
-            let bar = Math.trunc(position)
-            let beat = Math.floor((position % 1) * array[bar].length)
-            return array[bar][beat]
-        }]
+        this.stack = [t => parsePattern(pattern, +t, this._q)]
         return this
     }
     

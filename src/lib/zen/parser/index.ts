@@ -1,5 +1,7 @@
 import peg from 'pegjs';
 import { memoize } from '../utils/utils'
+import { calculateNormalisedPosition as pos } from '../utils/utils'
+
 /*
 * Simple pattern parser for generating music patterns
 * @returns {any[]} Array of bars, each bar is an array of events
@@ -18,8 +20,6 @@ import { memoize } from '../utils/utils'
 * @example '3..0----' => [[3, 2, 1, 0]] // sequence from 3 to 0
 * @example '0..10?----' => [[1, 7, 6, 2]] // sequence with random choice
 */
-
-
 const parser = peg.generate(`
 result 
         = bs:bars {
@@ -97,4 +97,11 @@ result
         = " "
 `);
 
-export const parse = memoize((pattern: string): any[] => parser.parse(pattern))
+const parse = memoize((pattern: string): any[] => parser.parse(pattern))
+export const parsePattern = (pattern: string, t: number, q: number) => {
+    const array = parse(pattern)
+    let position = pos(t, q, 1, array.length)
+    let bar = Math.trunc(position)
+    let beat = Math.floor((position % 1) * array[bar].length)
+    return array[bar][beat]
+}
