@@ -20,6 +20,7 @@ import { calculateNormalisedPosition as pos } from '../utils/utils'
 * @example '[0,1,2,3],[4,5,6,7]----' => [[0,1,2,3],[4,5,6,7],[0,1,2,3],[4,5,6,7]] // can be used with alternate
 * @example '0..2----' => [[0, 1, 2, 0]] // sequence from 0 to 3
 * @example '3..0----' => [[3, 2, 1, 0]] // sequence from 3 to 0
+* @example '0..8' => [[0, 1, 2, 3, 4, 5, 6, 7, 8]] // takes the duration from the sequence
 * @example '0..10?----' => [[1, 7, 6, 2]] // sequence with random choice
 */
 const parser = peg.generate(`

@@ -617,15 +617,16 @@ export class Pattern {
 
     /**
      * Generate a sine wave between lo and hi. Use as the first call in a pattern chain.
-     * @param lo lowest value in range
-     * @param hi highest value in range
-     * @param step step size to round the output. Default is 0, which means no rounding.
-     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @param {patternable} lo lowest value in range
+     * @param {patternable} hi highest value in range
+     * @param {patternable} step step size to round the output. Default is 0, which means no rounding.
+     * @param {patternable} freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
      * @example s0.p.modi.sine(0, 10)
      */
-    sine(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1): Pattern {
+    sine(...args: patternable[]): Pattern {
         this.stack.push((x: patternValue) => {
+            const [lo=0, hi=1, step=0, freq=1] = args.map(arg => handleTypes(arg, this._t, this._q))
             const radians = pos(x, this._q, freq) * 360 * (Math.PI/180)
             const sin = Math.sin(radians)
             return mapToRange(sin, -1, 1, lo, hi, step)
@@ -635,15 +636,16 @@ export class Pattern {
 
     /**
      * Generate a cosine wave between lo and hi. Use as the first call in a pattern chain.
-     * @param lo lowest value in range
-     * @param hi highest value in range
-     * @param step step size to round the output. Default is 0, which means no rounding.
-     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @param {patternable} lo lowest value in range
+     * @param {patternable} hi highest value in range
+     * @param {patternable} step step size to round the output. Default is 0, which means no rounding.
+     * @param {patternable} freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
      * @example s0.p.modi.cosine(0, 10)
      */
-    cosine(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1): Pattern {
+    cosine(...args: patternable[]): Pattern {
         this.stack.push((x: patternValue) =>  {
+            const [lo=0, hi=1, step=0, freq=1] = args.map(arg => handleTypes(arg, this._t, this._q))
             const radians = pos(x, this._q, freq) * 360 * (Math.PI/180)
             const cos = Math.cos(radians)
             return mapToRange(cos, -1, 1, lo, hi, step)
@@ -653,26 +655,27 @@ export class Pattern {
 
     /**
      * Generate a saw wave between lo and hi. Alias of range. Use as the first call in a pattern chain.
-     * @param lo lowest value in range
-     * @param hi highest value in range
-     * @param step step size to round the output. Default is 0, which means no rounding.
-     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @param {patternable} lo lowest value in range
+     * @param {patternable} hi highest value in range
+     * @param {patternable} step step size to round the output. Default is 0, which means no rounding.
+     * @param {patternable} freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
      * @example s0.p.modi.saw(0, 10)
      */
-    saw(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1): Pattern {
-        return this.range(lo, hi, step, freq)
+    saw(...args: patternable[]): Pattern {
+        return this.range(...args)
     }
 
     /**
      * Generate a curve between lo and hi. Use as the first call in a pattern chain.
-     * @param lo lowest value in range
-     * @param hi highest value in range
-     * @param curve curve of the pattern. Default is 1, which means a linear curve.
-     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @param {patternable} lo lowest value in range
+     * @param {patternable} hi highest value in range
+     * @param {patternable} curve curve of the pattern. Default is 0.5, which means a linear curve.
+     * @param {patternable} freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      */
-    curve(lo: number = 0, hi: number = 1, curve: number = 0.5, freq: number = 1): Pattern {
+    curve(...args: patternable[]): Pattern {
         this.stack.push((x: patternValue) => {
+            const [lo=0, hi=1, curve=0.5, freq=1] = args.map(arg => handleTypes(arg, this._t, this._q))
             const value = Math.pow(pos(x, this._q, freq), curve) 
             return mapToRange(value, 0, 1, lo, hi)
         })
@@ -681,15 +684,16 @@ export class Pattern {
     
     /**
      * Generate a triangle wave between lo and hi. Use as the first call in a pattern chain.
-     * @param lo lowest value in range
-     * @param hi highest value in range
-     * @param step step size to round the output. Default is 0, which means no rounding.
-     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @param {patternable} lo lowest value in range
+     * @param {patternable} hi highest value in range
+     * @param {patternable} step step size to round the output. Default is 0, which means no rounding.
+     * @param {patternable} freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
      * @example s0.p.harm.tri(0, 4, 0.25)
      */
-    tri(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1): Pattern {
+    tri(...args: patternable[]): Pattern {
         this.stack.push((x: patternValue) => {
+            const [lo=0, hi=1, step=0, freq=1] = args.map(arg => handleTypes(arg, this._t, this._q))
             const tri = Math.abs(pos(x, this._q, freq) - 0.5) * 2
             return mapToRange(tri, 0, 1, lo, hi, step)
         })
@@ -698,15 +702,16 @@ export class Pattern {
 
     /**
      * Generate a pulse wave between lo and hi. Use as the first call in a pattern chain.
-     * @param lo - lowest value in range
-     * @param hi - highest value in range
-     * @param width - width of the pulse. Default is 0.5, which means a square wave.
-     * @param freq - number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @param {patternable} lo - lowest value in range
+     * @param {patternable} hi - highest value in range
+     * @param {patternable} width - width of the pulse. Default is 0.5, which means a square wave.
+     * @param {patternable} freq - number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
      * @example s0.p.modi.pulse(0, 10, 0.25)
     */
-    pulse(lo: number = 0, hi: number = 1, width: number = 0.5, freq: number = 1): Pattern {
+    pulse(...args: patternable[]): Pattern {
         this.stack.push((x: patternValue) => {
+            const [lo=0, hi=1, width=0.5, freq=1] = args.map(arg => handleTypes(arg, this._t, this._q))
             const pulse = (((pos(x, this._q, freq))%1) < width ? 1 : 0)
             return mapToRange(pulse, 0, 1, lo, hi)
         })
@@ -715,27 +720,31 @@ export class Pattern {
 
     /**
      * Generate a square wave between lo and hi. Use as the first call in a pattern chain. See also pulse.
-     * @param lo lowest value in range
-     * @param hi highest value in range
-     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @param {patternable} lo lowest value in range
+     * @param {patternable} hi highest value in range
+     * @param {patternable} freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
      * @example s0.p.modi.square(0, 10)
     */
-    square(lo: number = 0, hi: number = 1, freq: number = 1): Pattern {
+    square(...args: patternable[]): Pattern {
+        const [lo=0, hi=1, freq=1] = args.map(arg => handleTypes(arg, this._t, this._q))
         this.pulse(lo, hi, 0.5, freq)
         return this
     }
 
     /**
      * Generate a random number between lo and hi.
-     * @param lo lowest value in range
-     * @param hi highest value in range
-     * @param step step size to round the output. Default is 0, which means no rounding.
+     * @param {patternable} lo lowest value in range
+     * @param {patternable} hi highest value in range
+     * @param {patternable} step step size to round the output. Default is 0, which means no rounding.
      * @returns {Pattern}
      * @example s0.p.n.random(60,72,1)
      */
-    random(lo: number = 0, hi: number = 1, step: number = 0): Pattern {
-        this.stack = [() => mapToRange(Math.random(), 0, 1, lo, hi, step)]
+    random(...args: patternable[]): Pattern {
+        this.stack = [() => {
+            const [lo=0, hi=1, step=0] = args.map(arg => handleTypes(arg, this._t, this._q))
+            return mapToRange(Math.random(), 0, 1, lo, hi, step)
+        }]
         return this
     }
 
