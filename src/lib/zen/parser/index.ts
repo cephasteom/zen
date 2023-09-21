@@ -46,13 +46,13 @@ const parser = peg.generate(`
         = sequence / choices / alternatives
 
     choices 
-        = arr:choice+ dur:duration space* { return {val: arr, dur, type: 'choices'}; }
+        = arr:choice+ dur:duration space* { return {val: arr, dur: dur || 1, type: 'choices'}; }
 
     choice
         = !alternate val:value !alternate choose? { return val }
 
     alternatives
-        = arr:alternative+ dur:duration space* { return {val: arr, dur, type: 'alternatives'}; }
+        = arr:alternative+ dur:duration space* { return {val: arr, dur: dur || 1, type: 'alternatives'}; }
 
     alternative
         = !choose val:value !choose alternate? { return val }
@@ -61,12 +61,12 @@ const parser = peg.generate(`
         = $[a-zA-Z0-9@]+ / $number+ / array
 
     sequence
-        = start:$[0-9]+ ".." end:$[0-9]+ type:(choose?) dur:duration space* { 
+        = start:$[0-9]+ ".." end:$[0-9]+ type:(choose?) dur:duration? space* { 
         let step = +start < +end ? 1 : -1
         let size = Math.abs(+end - +start + step)
         return {
         val: new Array(size).fill(0).map((_, i) => +start + i * step), 
-        dur, 
+        dur: dur || size, 
         type: type === '?' ? 'choices' : 'alternatives'
         }
     }
@@ -78,7 +78,7 @@ const parser = peg.generate(`
         = "-"? (([0-9]+ "." [0-9]*) / ("."? [0-9]+)) { return +text(); }
 
     duration
-        = count:(ticks / tick) { return count || 1 }
+        = count:(ticks / tick) { return count }
 
     ticks 
         = "*" t:$[0-9]+ { return parseInt(t); }
@@ -99,7 +99,11 @@ const parser = peg.generate(`
         = " "
 `);
 
-const parse = memoize((pattern: string): string|number|[][] => parser.parse(pattern))
+// TODO: is this worth it?
+// Not memoizing will create a lot of garbage
+// const parse = memoize((pattern: string): string|number|[][] => parser.parse(pattern))
+const parse = (pattern: string) => parser.parse(pattern)
+
 export const parsePattern = (pattern: string, t: number, q: number) => {
     const array = parse(pattern)
     let position = pos(t, q, 1, array.length)

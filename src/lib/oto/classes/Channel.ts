@@ -12,7 +12,6 @@ class Channel {
 
         this._fx = new CtFXChain()
         this._fx.connect(split)
-
         this.input = this._fx.input
     }
 

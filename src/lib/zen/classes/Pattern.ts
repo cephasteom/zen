@@ -60,7 +60,7 @@ export class Pattern {
      * Shorthand aliases for pattern methods.
      * @example
      * {
-        add: 'ad',
+        add: 'a',
         and: 'an',
         bin: 'b',
         btms: 'bm',
@@ -70,8 +70,8 @@ export class Pattern {
         coin: 'c',
         cosine: 'co',
         curve: 'cu',
-        div: 'di',
-        divr: 'dir',
+        div: 'd',
+        divr: 'dr',
         else: 'e',
         eq: 'eq',
         every: 'ev',
@@ -81,7 +81,7 @@ export class Pattern {
         invert: 'in',
         layer: 'la',
         mod: 'mo',
-        mul: 'mu',
+        mul: 'm',
         not: 'n',
         noise: 'no',
         ntbin: 'nb',
@@ -95,13 +95,13 @@ export class Pattern {
         saw: 'sa',
         scales: 'sc',
         seq: 'se',
-        set: 's',
+        set: 'v',
         sine: 'si',
         square: 'sq',
         step: 'st',
         sometimes: 'so',
-        sub: 'su',
-        subr: 'sur',
+        sub: 's',
+        subr: 'sr',
         toggle: 't',
         tri: 'tr',
         tune: 'tu',
@@ -110,7 +110,7 @@ export class Pattern {
     }
     */ 
     aliases = {
-        add: 'ad',
+        add: 'a',
         and: 'an',
         bin: 'b',
         btms: 'bm',
@@ -120,8 +120,8 @@ export class Pattern {
         coin: 'c',
         cosine: 'co',
         curve: 'cu',
-        div: 'di',
-        divr: 'dir',
+        div: 'd',
+        divr: 'dr',
         else: 'e',
         eq: 'eq',
         every: 'ev',
@@ -131,7 +131,7 @@ export class Pattern {
         invert: 'in',
         layer: 'la',
         mod: 'mo',
-        mul: 'mu',
+        mul: 'm',
         not: 'n',
         noise: 'no',
         ntbin: 'nb',
@@ -145,13 +145,13 @@ export class Pattern {
         saw: 'sa',
         scales: 'sc',
         seq: 'se',
-        set: 's',
+        set: 'v',
         sine: 'si',
         square: 'sq',
         step: 'st',
         sometimes: 'so',
-        sub: 'su',
-        subr: 'sur',
+        sub: 's',
+        subr: 'sr',
         toggle: 't',
         tri: 'tr',
         tune: 'tu',
@@ -341,11 +341,11 @@ export class Pattern {
     /**
      * Test if the previous value in the pattern chain is a truthy or falsy value
      * If false return new value, if true, simply pass on the previous value
-     * @param value value to return when false
+     * @param  {patternable} value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      */ 
-    else(value: number = 1): Pattern {
-        this.stack.push(x => [x].flat().every(x => !x) ? value : x)
+    else(value: patternable): Pattern {
+        this.stack.push(x => [x].flat().every(x => !x) ? handleTypes(value, this._t, this._q) : x)
         return this
     }
 
@@ -366,12 +366,13 @@ export class Pattern {
     // MATHS
     /**
      * Add a value to the previous value in the pattern chain.
-     * @param value value to add
+     * @param  {patternable} value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      * @example s0.p.n.noise(60,72,1).add(12)
+     * @example s0.p.n.noise(60,72,1).add('0?12*16')
      */
-    add(value: number = 0): Pattern {
-        this.stack.push(x => handlePolyphony(x, x => x + value))
+    add(value: patternable): Pattern {
+        this.stack.push(x => handlePolyphony(x, x => x + handleTypes(value, this._t, this._q)))
         return this
     }
 
@@ -388,12 +389,12 @@ export class Pattern {
 
     /**
      * Subtract a value from the previous value in the pattern chain.
-     * @param value value to subtract
+     * @param  {patternable} value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      * @example s0.p.n.noise(60,72,1).sub(12)
      */
-    sub(value: number = 0): Pattern {
-        this.stack.push(x => handlePolyphony(x, x => x - value))
+    sub(value: patternable): Pattern {
+        this.stack.push(x => handlePolyphony(x, x => x - handleTypes(value, this._t, this._q)))
         return this
     }    
 
@@ -410,12 +411,12 @@ export class Pattern {
 
     /**
      * Reverse subtract. Subtract the previous value in the pattern chain from a value.
-     * @param value value to subtract
+     * @param  {patternable} value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      * @example s0.p.amp.noise(0.5,0.25).subr(1)
      */
-    subr(value: number = 0): Pattern {
-        this.stack.push(x => handlePolyphony(x, x => value - x))
+    subr(value: patternable): Pattern {
+        this.stack.push(x => handlePolyphony(x, x => handleTypes(value, this._t, this._q) - x))
         return this
     }
 
@@ -432,12 +433,12 @@ export class Pattern {
 
     /**
      * Multiply the previous value in the pattern chain by a value.
-     * @param value value to multiply by
+     * @param  {patternable} value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      * @example s0.p.n.noise(60,72,1).mul(2)
      */ 
-    mul(value: number = 1): Pattern {
-        this.stack.push(x => handlePolyphony(x, x => x * value))
+    mul(value: patternable): Pattern {
+        this.stack.push(x => handlePolyphony(x, x => x * handleTypes(value, this._t, this._q)))
         return this
     }
 
@@ -454,14 +455,14 @@ export class Pattern {
 
     /**
      * Divide the previous value in the pattern chain by a value.
-     * @param value value to divide by
+     * @param  {patternable} value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      * @example s0.p.n.noise(60,72,1).div(2)
      * Or, use $div to create a new pattern and divide it by the previous pattern in the chain.
      * @example s0.p.n.noise(60,72,1).$div.noise(0,12,1)
      */
-    div(value: number = 1): Pattern {
-        this.stack.push(x => handlePolyphony(x, x => x / value))
+    div(value: patternable): Pattern {
+        this.stack.push(x => handlePolyphony(x, x => x / handleTypes(value, this._t, this._q)))
         return this
     }
 
@@ -478,14 +479,14 @@ export class Pattern {
 
     /**
      * Reverse divide the previous value in the pattern chain by a value.
-     * @param value value to divide by
+     * @param  {patternable} value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      * @example s0.p.modi.noise(1,2).divr(2)
      * Or, use $divr to create a new pattern and divide it by the previous pattern in the chain.
      * @example s0.p.n.noise(0,12,1).$divr.noise(60,72,1)
      */ 
-    divr(value: number = 1): Pattern {
-        this.stack.push(x => handlePolyphony(x, x => value / x))
+    divr(value: patternable): Pattern {
+        this.stack.push(x => handlePolyphony(x, x => handleTypes(value, this._t, this._q) / x))
         return this
     }   
 
@@ -503,13 +504,16 @@ export class Pattern {
     /**
      * Modulo the previous value in the pattern chain by a value.
      * Or, use $mod to pass the outcome of a pattern to the function
-     * @param value value to modulo by
+     * @param  {patternable} value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      * @example s0.n.set(t).mod(12).add(36)
      * @example s0.n.set(t).$mod.set(12)
      */ 
-    mod(value: number = 1): Pattern {
-        this.stack.push(x => handlePolyphony(x, x => ((x % value) + value) % value))
+    mod(value: patternable): Pattern {
+        this.stack.push(x => {
+            const val = handleTypes(value, this._t, this._q)
+            return handlePolyphony(x, x => ((x % val) + val) % val)
+        })
         return this
     }
 
@@ -527,14 +531,14 @@ export class Pattern {
     // COMPARISON
     /**
      * Compare the previous value in the pattern chain with a value.
-     * @param value value to compare with
+     * @param  {patternable} value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      * @example s0.e.every(3).add(t%2)
      * Or, use $and to create a new pattern and compare it with the previous pattern in the chain.
      * @example s0.e.every(3).$and.every(2)
      */ 
-    and(value: number = 1): Pattern {
-        this.stack.push(x => handlePolyphony(x, x => x && value))
+    and(value: patternable): Pattern {
+        this.stack.push(x => handlePolyphony(x, x => x && handleTypes(value, this._t, this._q)))
         return this
     }
 
@@ -551,12 +555,12 @@ export class Pattern {
 
     /**
      * Compare the previous value in the pattern chain with a value.
-     * @param value value to compare with
+     * @param  {patternable} value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      * @example s0.e.every(3).or(t%2)
      */ 
-    or(value: number = 1): Pattern {
-        this.stack.push(x => handlePolyphony(x, x => x || value))
+    or(value: patternable): Pattern {
+        this.stack.push(x => handlePolyphony(x, x => x || handleTypes(value, this._t, this._q)))
         return this
     }
 
@@ -573,12 +577,12 @@ export class Pattern {
 
     /**
      * Compare the previous value in the pattern chain with a value.
-     * @param value value to compare with
+     * @param {patternable} value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      * @example s0.e.every(3).xor(t%2)
      */ 
-    xor(value: number = 1): Pattern {
-        this.stack.push(x => handlePolyphony(x, x => x ^ value))
+    xor(value: patternable): Pattern {
+        this.stack.push(x => handlePolyphony(x, x => x ^ handleTypes(value, this._t, this._q)))
         return this
     }
 
@@ -596,15 +600,18 @@ export class Pattern {
     // Generators
     /**
      * Generate a range of values between lo and hi. Use as the first call in a pattern chain.
-     * @param lo lowest value in range
-     * @param hi highest value in range
-     * @param step step size to round the output. Default is 0, which means no rounding.
-     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @param {patternable} lo lowest value in range
+     * @param {patternable} hi highest value in range
+     * @param {patternable} step step size to round the output. Default is 0, which means no rounding.
+     * @param {patternable} freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
      * @example s0.p.modi.range(0, 10, 1, 2)
      */
-    range(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1): Pattern {
-        this.stack.push((x: patternValue) => mapToRange(pos(x, this._q, freq), 0, 1, lo, hi, step))
+    range(...args: patternable[]): Pattern {
+        this.stack.push((x: patternValue) => {
+            const [lo=0, hi=1, step=0, freq=1] = args.map(arg => handleTypes(arg, this._t, this._q))
+            return mapToRange(pos(x, this._q, freq), 0, 1, lo, hi, step)
+        })
         return this
     }
 

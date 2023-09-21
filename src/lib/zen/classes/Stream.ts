@@ -241,7 +241,7 @@ export class Stream {
      * @example
      * s0.set({amp: 1, n: 60, reverb: 0.5})
      */ 
-    set(ps: Dictionary) {
+    set(ps: Dictionary): this {
         Object.entries(ps).forEach(([key, value]) => {
             this.p[key].set(value)
         })
