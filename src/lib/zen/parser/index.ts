@@ -23,6 +23,9 @@ import { calculateNormalisedPosition as pos } from '../utils/utils'
 * @example '0..8' => [[0, 1, 2, 3, 4, 5, 6, 7, 8]] // takes the duration from the sequence
 * @example '0..10?----' => [[1, 7, 6, 2]] // sequence with random choice
 */
+
+
+
 const parser = peg.generate(`
     result 
         = bs:bars {
@@ -100,10 +103,7 @@ const parser = peg.generate(`
         = " "
 `);
 
-// TODO: is this worth it?
-// Not memoizing will create a lot of garbage
 const parse = memoize((pattern: string, _: string): string|number|[][] => parser.parse(pattern))
-// const parse = (pattern: string) => parser.parse(pattern)
 
 export const parsePattern = (pattern: string, t: number, q: number, id: string) => {
     const array = parse(pattern, id)
