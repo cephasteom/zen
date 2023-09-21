@@ -1,6 +1,3 @@
-// TODO: check every argument passed to pattern methods. 
-// Parse strings, extract value() from Patterns, and pass numbers through.
-
 import type { Stream } from './Stream'
 import type { stack, patternValue } from '../types'
 import { 

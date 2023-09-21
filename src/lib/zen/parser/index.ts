@@ -2,6 +2,7 @@ import peg from 'pegjs';
 import { memoize } from '../utils/utils'
 import { calculateNormalisedPosition as pos } from '../utils/utils'
 
+// TODO: is there a way we can write nicer JS using DRY principles?
 /*
 * Simple pattern parser for generating music patterns
 * @returns {any[]} Array of bars, each bar is an array of events
@@ -21,7 +22,7 @@ import { calculateNormalisedPosition as pos } from '../utils/utils'
 * @example '0..10?----' => [[1, 7, 6, 2]] // sequence with random choice
 */
 const parser = peg.generate(`
-result 
+    result 
         = bs:bars {
         return bs.map(bar => bar
         .map(({val, dur, type}) => {
@@ -30,7 +31,7 @@ result
             return event.val
         })
         .flat()
-        .map(s => !isNaN(+s) ? +s : s)
+        .map(s => Array.isArray(s) ? s.map(s => !isNaN(+s) ? +s : s) : !isNaN(+s) ? +s : s)
         )
     }
 
@@ -97,7 +98,7 @@ result
         = " "
 `);
 
-const parse = memoize((pattern: string): any[] => parser.parse(pattern))
+const parse = memoize((pattern: string): string|number|[][] => parser.parse(pattern))
 export const parsePattern = (pattern: string, t: number, q: number) => {
     const array = parse(pattern)
     let position = pos(t, q, 1, array.length)
