@@ -43,6 +43,9 @@ export class Pattern {
     private stack: stack = []
 
     /** @hidden */
+    private _t: number = 0
+
+    /** @hidden */
     private _q: number = 16 // divisions per cycle
 
     /** @hidden */
@@ -264,7 +267,7 @@ export class Pattern {
      * s3.e.not('1?0*16')
      */ 
     not(x: patternable): Pattern {
-        this.stack.push(t => handleTypes(x, +t, this._q) ? 0 : 1)
+        this.stack.push(() => handleTypes(x, this._t, this._q) ? 0 : 1)
         return this
     }
 
@@ -1413,6 +1416,7 @@ export class Pattern {
 
     /** @hidden */
     get(t: number, q: number, bpm?: number): patternValue | null {
+        this._t = t
         this._q = q
         this._bpm = bpm || this._bpm
 
