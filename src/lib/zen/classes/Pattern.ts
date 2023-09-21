@@ -16,7 +16,6 @@ import {
     handleTypes,
 } from '../utils/utils';
 import { getScale, getChord } from '../utils/musical';
-import { parsePattern } from '../parser'
 
 /**
  * Patterns are the building blocks of Zen. They are used to generate patterns of values in interesting, concise ways. The first value passed to a pattern is either time `t` or a position in space `x`, `y`, or `z`, depending on whether the pattern is assigned to a stream's `p`, `px`, `py`, or `pz` property. Patterns methods can be chained together applying each new method to the value passed from the previous one in the chain.
@@ -61,7 +60,7 @@ export class Pattern {
      * Shorthand aliases for pattern methods.
      * @example
      * {
-        add: 'a',
+        add: 'ad',
         and: 'an',
         bin: 'b',
         btms: 'bm',
@@ -71,8 +70,8 @@ export class Pattern {
         coin: 'c',
         cosine: 'co',
         curve: 'cu',
-        div: 'd',
-        divr: 'dr',
+        div: 'di',
+        divr: 'dir',
         else: 'e',
         eq: 'eq',
         every: 'ev',
@@ -82,7 +81,7 @@ export class Pattern {
         invert: 'in',
         layer: 'la',
         mod: 'mo',
-        mul: 'm',
+        mul: 'mu',
         not: 'n',
         noise: 'no',
         ntbin: 'nb',
@@ -96,13 +95,13 @@ export class Pattern {
         saw: 'sa',
         scales: 'sc',
         seq: 'se',
-        set: 'v',
+        set: 's',
         sine: 'si',
         square: 'sq',
         step: 'st',
         sometimes: 'so',
-        sub: 's',
-        subr: 'sr',
+        sub: 'su',
+        subr: 'sur',
         toggle: 't',
         tri: 'tr',
         tune: 'tu',
@@ -111,7 +110,7 @@ export class Pattern {
     }
     */ 
     aliases = {
-        add: 'a',
+        add: 'ad',
         and: 'an',
         bin: 'b',
         btms: 'bm',
@@ -121,8 +120,8 @@ export class Pattern {
         coin: 'c',
         cosine: 'co',
         curve: 'cu',
-        div: 'd',
-        divr: 'dr',
+        div: 'di',
+        divr: 'dir',
         else: 'e',
         eq: 'eq',
         every: 'ev',
@@ -132,7 +131,7 @@ export class Pattern {
         invert: 'in',
         layer: 'la',
         mod: 'mo',
-        mul: 'm',
+        mul: 'mu',
         not: 'n',
         noise: 'no',
         ntbin: 'nb',
@@ -146,13 +145,13 @@ export class Pattern {
         saw: 'sa',
         scales: 'sc',
         seq: 'se',
-        set: 'v',
+        set: 's',
         sine: 'si',
         square: 'sq',
         step: 'st',
         sometimes: 'so',
-        sub: 's',
-        subr: 'sr',
+        sub: 'su',
+        subr: 'sur',
         toggle: 't',
         tri: 'tr',
         tune: 'tu',
@@ -292,11 +291,11 @@ export class Pattern {
      * s0.e.every(3)
      * s1.e.toggle(s0.e)
      * s2.e.toggle(!(t%3))
+     * s3.e.toggle('1?0*16')
      */ 
-    // TODO: this._time is needed
     toggle(x: patternable): Pattern {
-        this.stack.push(t => {
-            const value = handleTypes(x, +t, this._q)
+        this.stack.push(() => {
+            const value = handleTypes(x, this._t, this._q)
             if (value) this._state.toggle = !this._state.toggle
             return this._state.toggle ? 1 : 0
         })
@@ -317,11 +316,11 @@ export class Pattern {
     /**
      * Test if the previous value in the pattern chain is a truthy or falsy value
      * If true return new value, if false, simply pass on the previous value
-     * @param value value to return when true
+     * @param  {patternable} value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      */ 
-    if(value: number = 1): Pattern {
-        this.stack.push(x => [x].flat().every(x => !!x) ? value : x)
+    if(value: patternable): Pattern {
+        this.stack.push(x => [x].flat().every(x => !!x) ? handleTypes(value, this._t, this._q) : x)
         return this
     }
 

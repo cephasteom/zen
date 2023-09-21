@@ -3,6 +3,7 @@ import { memoize } from '../utils/utils'
 import { calculateNormalisedPosition as pos } from '../utils/utils'
 
 // TODO: is there a way we can write nicer JS using DRY principles?
+// TODO: for event triggering it would be nice to have shorthand for rests. e.g. '1/1/1/1'
 /*
 * Simple pattern parser for generating music patterns
 * @returns {any[]} Array of bars, each bar is an array of events
