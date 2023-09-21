@@ -11,8 +11,8 @@ import {
     calculateNormalisedPosition as pos, 
     odd, 
     even,
-    handleArrayOrSingleValue as handle,
     interpolate,
+    handleArrayOrSingleValue as handlePolyphony,
     handleTypes,
 } from '../utils/utils';
 import { getScale, getChord } from '../utils/musical';
@@ -273,12 +273,10 @@ export class Pattern {
      * s0.e.every(3)
      * s1.e.not(s0.e)
      * s2.e.not(!(t%3))
+     * s3.e.not('1?0*16')
      */ 
-    not(x: boolean | Pattern): Pattern {
-        this.stack.push(() => {
-            const value = x instanceof Pattern ? x._value : x
-            return !value ? 1 : 0
-        })
+    not(x: patternValue | Pattern | string): Pattern {
+        this.stack.push(t => handleTypes(x, +t, this._q) ? 0 : 1)
         return this
     }
 
@@ -383,7 +381,7 @@ export class Pattern {
      * @example s0.p.n.noise(60,72,1).add(12)
      */
     add(value: number = 0): Pattern {
-        this.stack.push(x => handle(x, x => x + value))
+        this.stack.push(x => handlePolyphony(x, x => x + value))
         return this
     }
 
@@ -405,7 +403,7 @@ export class Pattern {
      * @example s0.p.n.noise(60,72,1).sub(12)
      */
     sub(value: number = 0): Pattern {
-        this.stack.push(x => handle(x, x => x - value))
+        this.stack.push(x => handlePolyphony(x, x => x - value))
         return this
     }    
 
@@ -427,7 +425,7 @@ export class Pattern {
      * @example s0.p.amp.noise(0.5,0.25).subr(1)
      */
     subr(value: number = 0): Pattern {
-        this.stack.push(x => handle(x, x => value - x))
+        this.stack.push(x => handlePolyphony(x, x => value - x))
         return this
     }
 
@@ -449,7 +447,7 @@ export class Pattern {
      * @example s0.p.n.noise(60,72,1).mul(2)
      */ 
     mul(value: number = 1): Pattern {
-        this.stack.push(x => handle(x, x => x * value))
+        this.stack.push(x => handlePolyphony(x, x => x * value))
         return this
     }
 
@@ -473,7 +471,7 @@ export class Pattern {
      * @example s0.p.n.noise(60,72,1).$div.noise(0,12,1)
      */
     div(value: number = 1): Pattern {
-        this.stack.push(x => handle(x, x => x / value))
+        this.stack.push(x => handlePolyphony(x, x => x / value))
         return this
     }
 
@@ -497,7 +495,7 @@ export class Pattern {
      * @example s0.p.n.noise(0,12,1).$divr.noise(60,72,1)
      */ 
     divr(value: number = 1): Pattern {
-        this.stack.push(x => handle(x, x => value / x))
+        this.stack.push(x => handlePolyphony(x, x => value / x))
         return this
     }   
 
@@ -521,7 +519,7 @@ export class Pattern {
      * @example s0.n.set(t).$mod.set(12)
      */ 
     mod(value: number = 1): Pattern {
-        this.stack.push(x => handle(x, x => ((x % value) + value) % value))
+        this.stack.push(x => handlePolyphony(x, x => ((x % value) + value) % value))
         return this
     }
 
@@ -546,7 +544,7 @@ export class Pattern {
      * @example s0.e.every(3).$and.every(2)
      */ 
     and(value: number = 1): Pattern {
-        this.stack.push(x => handle(x, x => x && value))
+        this.stack.push(x => handlePolyphony(x, x => x && value))
         return this
     }
 
@@ -568,7 +566,7 @@ export class Pattern {
      * @example s0.e.every(3).or(t%2)
      */ 
     or(value: number = 1): Pattern {
-        this.stack.push(x => handle(x, x => x || value))
+        this.stack.push(x => handlePolyphony(x, x => x || value))
         return this
     }
 
@@ -590,7 +588,7 @@ export class Pattern {
      * @example s0.e.every(3).xor(t%2)
      */ 
     xor(value: number = 1): Pattern {
-        this.stack.push(x => handle(x, x => x ^ value))
+        this.stack.push(x => handlePolyphony(x, x => x ^ value))
         return this
     }
 
@@ -840,7 +838,7 @@ export class Pattern {
      * @returns {Pattern}
      */
     step(value: number): Pattern {
-        this.stack.push(x => handle(x, x => roundToFactor(x, value)))
+        this.stack.push(x => handlePolyphony(x, x => roundToFactor(x, value)))
         return this
     }
 
@@ -866,7 +864,7 @@ export class Pattern {
         const max = Math.max(...array)
         const octaves = Math.floor((max - min) / 12) + 1
 
-        this.stack.push(x => handle(x, x => roundToNearest(
+        this.stack.push(x => handlePolyphony(x, x => roundToNearest(
                 Math.round(x) % (octaves * 12), 
                 array.map(x => (x - min) + (min % 12))
             ) + Math.floor(x / 12) * 12
@@ -894,7 +892,7 @@ export class Pattern {
      * @returns {Pattern}
      */ 
     clamp(min: number, max: number): Pattern {
-        this.stack.push(x => handle(x, x => clamp(x, min, max)))
+        this.stack.push(x => handlePolyphony(x, x => clamp(x, min, max)))
         return this
     }
 
@@ -1076,7 +1074,7 @@ export class Pattern {
      * @example s0.p.dur(1).bts().mul(1000)
      */ 
     bts(): Pattern {
-        this.stack.push(x => handle(x, x => x * (60/this._bpm)))
+        this.stack.push(x => handlePolyphony(x, x => x * (60/this._bpm)))
         return this
     }
 
@@ -1086,7 +1084,7 @@ export class Pattern {
      * @example s0.p.dur(1).btms()
      */ 
     btms(): Pattern {
-        this.stack.push(x => handle(x, x => x * (60000/this._bpm)))
+        this.stack.push(x => handlePolyphony(x, x => x * (60000/this._bpm)))
         return this
     }
 
@@ -1096,7 +1094,7 @@ export class Pattern {
      * @example s0.p.set(q).ttms()
      */
     ttms(): Pattern {
-        this.stack.push(x => handle(x, x =>  x * (((60000/this._bpm) * 4) / this._q)))
+        this.stack.push(x => handlePolyphony(x, x =>  x * (((60000/this._bpm) * 4) / this._q)))
         return this
     }
 
@@ -1214,7 +1212,7 @@ export class Pattern {
      * @returns {Pattern}
      */ 
     sin(): Pattern {
-        this.stack.push((x: patternValue) => handle(x, x => Math.sin(+x))) 
+        this.stack.push((x: patternValue) => handlePolyphony(x, x => Math.sin(+x))) 
         return this
     }
 
@@ -1223,7 +1221,7 @@ export class Pattern {
      * @returns {Pattern}
      */ 
     cos(): Pattern {
-        this.stack.push((x: patternValue) => handle(x, x => Math.cos(+x)))
+        this.stack.push((x: patternValue) => handlePolyphony(x, x => Math.cos(+x)))
         return this
     }
 
@@ -1232,7 +1230,7 @@ export class Pattern {
      * @returns {Pattern}
      */ 
     tan(): Pattern {
-        this.stack.push((x: patternValue) => handle(x, x => Math.tan(+x)))
+        this.stack.push((x: patternValue) => handlePolyphony(x, x => Math.tan(+x)))
         return this
     }
 
@@ -1241,7 +1239,7 @@ export class Pattern {
      * @returns {Pattern}
      */ 
     asin(): Pattern {
-        this.stack.push((x: patternValue) => handle(x, x => Math.asin(+x)))
+        this.stack.push((x: patternValue) => handlePolyphony(x, x => Math.asin(+x)))
         return this
     }
 
@@ -1250,7 +1248,7 @@ export class Pattern {
      * @returns {Pattern}
      */ 
     acos(): Pattern {
-        this.stack.push((x: patternValue) => handle(x, x => Math.acos(+x)))
+        this.stack.push((x: patternValue) => handlePolyphony(x, x => Math.acos(+x)))
         return this
     }
 
@@ -1259,7 +1257,7 @@ export class Pattern {
      * @returns {Pattern}
      */ 
     atan(): Pattern {
-        this.stack.push((x: patternValue) => handle(x, x => Math.atan(+x)))
+        this.stack.push((x: patternValue) => handlePolyphony(x, x => Math.atan(+x)))
         return this
     }
 
@@ -1269,7 +1267,7 @@ export class Pattern {
      * @returns {Pattern}
      */ 
     atan2(y: number): Pattern {
-        this.stack.push((x: patternValue) => handle(x, x => Math.atan2(+x, y)))
+        this.stack.push((x: patternValue) => handlePolyphony(x, x => Math.atan2(+x, y)))
         return this
     }
 
@@ -1278,7 +1276,7 @@ export class Pattern {
      * @returns {Pattern}
      */ 
     abs(): Pattern {
-        this.stack.push((x: patternValue) => handle(x, x => Math.abs(+x)))
+        this.stack.push((x: patternValue) => handlePolyphony(x, x => Math.abs(+x)))
         return this
     }
 
@@ -1287,7 +1285,7 @@ export class Pattern {
      * @returns {Pattern}
      */ 
     ceil(): Pattern {
-        this.stack.push((x: patternValue) => handle(x, x => Math.ceil(+x)))
+        this.stack.push((x: patternValue) => handlePolyphony(x, x => Math.ceil(+x)))
         return this
     }
 
@@ -1296,7 +1294,7 @@ export class Pattern {
      * @returns {Pattern}
      */ 
     floor(): Pattern {
-        this.stack.push((x: patternValue) => handle(x, x => Math.floor(+x)))
+        this.stack.push((x: patternValue) => handlePolyphony(x, x => Math.floor(+x)))
         return this
     }
 
@@ -1305,7 +1303,7 @@ export class Pattern {
      * @returns {Pattern}
      */ 
     round(): Pattern {
-        this.stack.push((x: patternValue) => handle(x, x => Math.round(+x)))
+        this.stack.push((x: patternValue) => handlePolyphony(x, x => Math.round(+x)))
         return this
     }
 
@@ -1314,7 +1312,7 @@ export class Pattern {
      * @returns {Pattern}
      */ 
     exp(): Pattern {
-        this.stack.push((x: patternValue) => handle(x, x => Math.exp(+x)))
+        this.stack.push((x: patternValue) => handlePolyphony(x, x => Math.exp(+x)))
         return this
     }
 
@@ -1323,7 +1321,7 @@ export class Pattern {
      * @returns {Pattern}
      */ 
     log(): Pattern {
-        this.stack.push((x: patternValue) => handle(x, x => Math.log(+x)))
+        this.stack.push((x: patternValue) => handlePolyphony(x, x => Math.log(+x)))
         return this
     }
 
@@ -1333,7 +1331,7 @@ export class Pattern {
      * @returns {Pattern}
      */ 
     max(compare: number = 0): Pattern {
-        this.stack.push((x: patternValue) => handle(x, x => Math.max(+x, compare)))
+        this.stack.push((x: patternValue) => handlePolyphony(x, x => Math.max(+x, compare)))
         return this
     }
 
@@ -1343,7 +1341,7 @@ export class Pattern {
      * @returns {Pattern}
      */ 
     min(compare: number = 0): Pattern {
-        this.stack.push((x: patternValue) => handle(x, x => Math.min(+x, compare)))
+        this.stack.push((x: patternValue) => handlePolyphony(x, x => Math.min(+x, compare)))
         return this
     }
 
@@ -1353,7 +1351,7 @@ export class Pattern {
      * @returns {Pattern}
      */ 
     pow(exponent: number = 2): Pattern {
-        this.stack.push((x: patternValue) => handle(x, x => Math.pow(+x, exponent)))
+        this.stack.push((x: patternValue) => handlePolyphony(x, x => Math.pow(+x, exponent)))
         return this
     }
 
@@ -1362,7 +1360,7 @@ export class Pattern {
      * @returns {Pattern}
      */ 
     sqrt(): Pattern {
-        this.stack.push((x: patternValue) => handle(x, x => Math.sqrt(+x)))
+        this.stack.push((x: patternValue) => handlePolyphony(x, x => Math.sqrt(+x)))
         return this
     }
 
@@ -1373,7 +1371,7 @@ export class Pattern {
      * @example s0.y.sine(0,15,1).$intrp.sine(15,0,1,0.5)
      */ 
     interpolate(val: number): Pattern {
-        this.stack.push((x: patternValue) => handle(x, x => interpolate(+x, val, 0.5)))
+        this.stack.push((x: patternValue) => handlePolyphony(x, x => interpolate(+x, val, 0.5)))
         return this
     }
 
