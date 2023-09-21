@@ -758,8 +758,9 @@ export class Pattern {
      * @returns {Pattern}
      * @example s0.p.pan.noise(0, 1)
     */
-    noise(lo: number = 0, hi: number = 1, step: number = 0, freq: number = 1, cycles: number = 4): Pattern {
+    noise(...args: patternable[]): Pattern {
         this.stack = [(x: patternValue) => {
+            const [lo=0, hi=1, step=0, freq=1, cycles=4] = args.map(arg => handleTypes(arg, this._t, this._q))
             return mapToRange(noise.simplex2(pos(x, this._q, freq, cycles), 0), -1, 1, lo, hi, step)
         }]
         return this
@@ -774,8 +775,11 @@ export class Pattern {
      * @example s0.e.every(4) // return 1 every 4 divisions, 0 otherwise
      * @example s0.p.n.every(2, 60, 72) // return 60 every 2 divisions, 72 otherwise
      */
-    every(n: number, a: number = 1, b: number = 0): Pattern {
-        this.stack.push(x => !(+x % n) ? a : b)
+    every(...args: patternable[]): Pattern {
+        this.stack.push(x => {
+            const [n=1, a=1, b=0] = args.map(arg => handleTypes(arg, this._t, this._q))
+            return !(+x % n) ? a : b
+        })
         return this
     }
 
@@ -799,7 +803,8 @@ export class Pattern {
      * @returns {Pattern}
      * @example s0.p.n.bin('1111') // output depends on the number of division per cycle / canvas. If 16, returns 1 every 4 divisions, 0 otherwise
     */
-    bin(n: string = '10000000', freq: number = 1, a: number = 1, b: number = 0): Pattern {
+    bin(n: string = '10000000', ...rest: patternable[]): Pattern {
+        const [freq=1, a=1, b=0] = rest.map(arg => handleTypes(arg, this._t, this._q))
         const arr = n.replace(/\s+/g, '').split('').map(x => !!parseInt(x))
         const divisions = this._q / freq
 
@@ -820,7 +825,8 @@ export class Pattern {
      * @returns {Pattern}
      * @example s0.p.n.ntbin(9, 8) // 9 in binary is 1001, padded out to 8 digits. Passes 00001001 to .bin()
      */
-    ntbin(n: number = 8, q: number = 16, freq: number = 1, a: number = 1, b: number = 0): Pattern {
+    ntbin(...args: patternable[]): Pattern {
+        const [n=0, q=8, freq=1, a=1, b=0] = args.map(arg => handleTypes(arg, this._t, this._q))
         return this.bin(numberToBinary(+n, q), freq, a, b)
     }
 
