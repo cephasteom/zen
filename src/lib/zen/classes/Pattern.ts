@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid'
 import type { Stream } from './Stream'
 import type { stack, patternValue, patternable } from '../types'
 import { 
@@ -30,6 +31,9 @@ export class Pattern {
      * @hidden 
      */
     private _parent: Pattern | Stream | null = null
+    
+    /** @hidden */
+    private _id: string = ''
     
     /**
      * The value of the pattern after get() has been called
@@ -161,6 +165,7 @@ export class Pattern {
 
     /** @hidden */
     constructor(parent: Pattern | Stream | null = null) {
+        this._id = nanoid()
         this._parent = parent
         this.reset()
         this.combine = this.combine.bind(this);
@@ -172,7 +177,7 @@ export class Pattern {
                 method !== 'constructor' 
                 && method[0] !== '_' 
                 && method[0] !== '$' 
-                && !['combine', 'reset', 'value', 'get', 'has', 'use', 'makePatternable'].includes(method)
+                && !['makePatternable', 'combine', 'reset', 'value', 'get', 'has', 'use', 'scales', 'chords'].includes(method)
             ).forEach(wrap)  
         
         // Set aliases
@@ -180,7 +185,8 @@ export class Pattern {
             // @ts-ignore
             this[alias] = this[method]
             
-            // create dollar method for alias
+            
+            // create dollar method for alias, TODO: do we have to create a new pattern for this?
             Object.defineProperty(this, `$${alias}`, {
                 get: () => {
                     const pattern = new Pattern(this)
@@ -195,13 +201,13 @@ export class Pattern {
      * Wrap a method in a function that handles types, allowing you to pass in a pattern, a value, or a Zen pattern string as any argument.
      * @hidden
      */ 
-    makePatternable(method: string) {
+    makePatternable(key: string) {
         //@ts-ignore
-        const original = this[method].bind(this)
+        const original = this[key].bind(this)
         //@ts-ignore
-        this[method] = (...args) => original(...args.map(arg => handleTypes(arg, this._t, this._q)))
+        this[key] = (...args) => original(...args.map(arg => handleTypes(arg, this._t, this._q, this._id)))
         //@ts-ignore
-        this[method].bind(this)
+        this[key].bind(this)
     }
 
    /**

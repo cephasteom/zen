@@ -102,11 +102,11 @@ const parser = peg.generate(`
 
 // TODO: is this worth it?
 // Not memoizing will create a lot of garbage
-// const parse = memoize((pattern: string): string|number|[][] => parser.parse(pattern))
-const parse = (pattern: string) => parser.parse(pattern)
+const parse = memoize((pattern: string, _: string): string|number|[][] => parser.parse(pattern))
+// const parse = (pattern: string) => parser.parse(pattern)
 
-export const parsePattern = (pattern: string, t: number, q: number) => {
-    const array = parse(pattern)
+export const parsePattern = (pattern: string, t: number, q: number, id: string) => {
+    const array = parse(pattern, id)
     let position = pos(t, q, 1, array.length)
     let bar = Math.trunc(position)
     let beat = Math.floor((position % 1) * array[bar].length)

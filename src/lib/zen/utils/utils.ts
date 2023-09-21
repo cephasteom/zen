@@ -45,14 +45,14 @@ export const beatsToSeconds = (beats: number, bpm: number) => beats * (60 / bpm)
 
 export const wrap = (i: number, max: number) => i % max
 
-// memoize single argument function
-export function memoize(fn: (x: any) => any) {
+// memoize multiple argument function - use sparingly as we're creating strings as keys
+export function memoize(fn: (...args: any[]) => any) {
     let cache: Dictionary = {};
-    return (value: any) => {
-        let n = value;
+    return (...args: any[]) => {
+        let n = args.map(a => JSON.stringify(a)).join('-');
         return n in cache 
             ? cache[n]
-            : (cache[n] = fn(n));
+            : (cache[n] = fn(...args));
         }
 }
 
@@ -121,8 +121,8 @@ export function interpolate(a: number, b: number, t: number) {
     return a + (b - a) * t
 }
 
-export function handleTypes(value: patternValue | Pattern | string, t: number, q: number) {
+export function handleTypes(value: patternValue | Pattern | string, t: number, q: number, id: string = '') {
     if(value instanceof Pattern) return value.value()
-    if(typeof value === 'string') return parsePattern(value, t, q)
+    if(typeof value === 'string') return parsePattern(value, t, q, id)
     return value
 }
