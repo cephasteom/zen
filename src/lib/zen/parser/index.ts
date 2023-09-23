@@ -48,7 +48,7 @@ const parser = peg.generate(`
         = values:event+ divider? space* { return values; }
 
     event 
-        = sequence / choices / alternatives / rests
+        = sequence / choices / alternatives
 
     choices 
         = arr:choice+ dur:duration space* { return {val: arr, dur: dur || 1, type: 'choices'}; }
@@ -98,13 +98,7 @@ const parser = peg.generate(`
         = "," { return text(); }
 
     divider 
-        = "|"
-    
-    rests 
-        = arr:rest+ dur:duration space* { return {val: arr, dur, type: 'rests'}; }
-    
-    rest
-        = "~" 
+        = "|" 
 
     space 
         = " "

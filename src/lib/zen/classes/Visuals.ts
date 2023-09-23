@@ -33,6 +33,7 @@ export class Visuals {
     }
 
     streams(positions: {x: number, y: number}[], isEvent: boolean) {
+        // TODO: colour needs to be based off streamID not position
         let streamID = 0;
         for (const { x, y } of positions) {
             const i = ((Math.floor(y) * this._s) + Math.floor(x)) * 4;

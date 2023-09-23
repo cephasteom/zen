@@ -17,6 +17,7 @@ import {
     handleTypes,
 } from '../utils/utils';
 import { getScale, getChord } from '../utils/musical';
+import { parsePattern } from '../parser';
 
 /**
  * Patterns are the building blocks of Zen. They are used to generate patterns of values in interesting, concise ways. The first value passed to a pattern is either time `t` or a position in space `x`, `y`, or `z`, depending on whether the pattern is assigned to a stream's `p`, `px`, `py`, or `pz` property. Patterns methods can be chained together applying each new method to the value passed from the previous one in the chain.
@@ -170,15 +171,15 @@ export class Pattern {
         this.reset()
         this.combine = this.combine.bind(this);
     
-        // make selected methods patternable
-        const wrap = this.makePatternable.bind(this)
-        Object.getOwnPropertyNames(Pattern.prototype)
-            .filter(method =>
-                method !== 'constructor' 
-                && method[0] !== '_' 
-                && method[0] !== '$' 
-                && !['makePatternable', 'combine', 'reset', 'value', 'get', 'has', 'use', 'scales', 'chords'].includes(method)
-            ).forEach(wrap)  
+        // // make selected methods patternable
+        // const wrap = this.makePatternable.bind(this)
+        // Object.getOwnPropertyNames(Pattern.prototype)
+        //     .filter(method =>
+        //         method !== 'constructor' 
+        //         && method[0] !== '_' 
+        //         && method[0] !== '$' 
+        //         && !['makePatternable', 'combine', 'reset', 'value', 'get', 'has', 'use', 'scales', 'chords'].includes(method)
+        //     ).forEach(wrap)  
         
         // Set aliases
         Object.entries(this.aliases).forEach(([method, alias]) => {
@@ -208,6 +209,12 @@ export class Pattern {
         this[key] = (...args) => original(...args.map(arg => handleTypes(arg, this._t, this._q, this._id)))
         //@ts-ignore
         this[key].bind(this)
+    }
+
+    handleTypes(value: patternValue | Pattern | string) : patternValue {
+        if(value instanceof Pattern) return value.value()
+        if(typeof value === 'string') return parsePattern(value, this._t, this._q, this._id)
+        return value
     }
 
    /**
@@ -247,8 +254,8 @@ export class Pattern {
      * @example s1.e.set(s0.e)
      * @example s0.e.set('1?0*16')
      */
-    set(value: patternValue): Pattern {
-        this.stack = [() => value]
+    set(value: patternable): Pattern {
+        this.stack = [() => this.handleTypes(value)]
         return this
     }
     
@@ -294,8 +301,8 @@ export class Pattern {
      * s2.e.not(!(t%3))
      * s3.e.not('1?0*16')
      */ 
-    not(x: number = 0): Pattern {
-        this.stack.push(() => x ? 0 : 1)
+    not(x: patternable): Pattern {
+        this.stack.push(() => this.handleTypes(x) ? 0 : 1)
         return this
     }
 
@@ -324,7 +331,7 @@ export class Pattern {
      */ 
     toggle(x: patternable): Pattern {
         this.stack.push(() => {
-            if (x) this._state.toggle = !this._state.toggle
+            if (this.handleTypes(x)) this._state.toggle = !this._state.toggle
             return this._state.toggle ? 1 : 0
         })
         return this
@@ -347,8 +354,8 @@ export class Pattern {
      * @param  {patternable} value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      */ 
-    if(value: patternValue): Pattern {
-        this.stack.push(x => [x].flat().every(x => !!x) ? value : x)
+    if(value: patternable): Pattern {
+        this.stack.push(x => [x].flat().every(x => !!x) ? this.handleTypes(value) : x)
         return this
     }
 
@@ -372,8 +379,8 @@ export class Pattern {
      * @param  {patternable} value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      */ 
-    else(value: patternValue): Pattern {
-        this.stack.push(x => [x].flat().every(x => !x) ? value : x)
+    else(value: patternable): Pattern {
+        this.stack.push(x => [x].flat().every(x => !x) ? this.handleTypes(value) : x)
         return this
     }
 
@@ -399,8 +406,8 @@ export class Pattern {
      * @example s0.p.n.noise(60,72,1).add(12)
      * @example s0.p.n.noise(60,72,1).add('0?12*16')
      */
-    add(value: number): Pattern {
-        this.stack.push(x => handlePolyphony(x, x => x + value))
+    add(value: patternable): Pattern {
+        this.stack.push(x => handlePolyphony(x, x => x + +this.handleTypes(value)))
         return this
     }
 
@@ -421,8 +428,8 @@ export class Pattern {
      * @returns {Pattern}
      * @example s0.p.n.noise(60,72,1).sub(12)
      */
-    sub(value: number): Pattern {
-        this.stack.push(x => handlePolyphony(x, x => x - value))
+    sub(value: patternable): Pattern {
+        this.stack.push(x => handlePolyphony(x, x => x - +this.handleTypes(value)))
         return this
     }    
 
@@ -443,8 +450,8 @@ export class Pattern {
      * @returns {Pattern}
      * @example s0.p.amp.noise(0.5,0.25).subr(1)
      */
-    subr(value: number): Pattern {
-        this.stack.push(x => handlePolyphony(x, x => value - x))
+    subr(value: patternable): Pattern {
+        this.stack.push(x => handlePolyphony(x, x => +this.handleTypes(value) - x))
         return this
     }
 
@@ -465,8 +472,8 @@ export class Pattern {
      * @returns {Pattern}
      * @example s0.p.n.noise(60,72,1).mul(2)
      */ 
-    mul(value: number): Pattern {
-        this.stack.push(x => handlePolyphony(x, x => x * value))
+    mul(value: patternable): Pattern {
+        this.stack.push(x => handlePolyphony(x, x => x * +this.handleTypes(value)))
         return this
     }
 
@@ -489,8 +496,8 @@ export class Pattern {
      * Or, use $div to create a new pattern and divide it by the previous pattern in the chain.
      * @example s0.p.n.noise(60,72,1).$div.noise(0,12,1)
      */
-    div(value: number): Pattern {
-        this.stack.push(x => handlePolyphony(x, x => x / value))
+    div(value: patternable): Pattern {
+        this.stack.push(x => handlePolyphony(x, x => x / +this.handleTypes(value)))
         return this
     }
 
@@ -513,8 +520,8 @@ export class Pattern {
      * Or, use $divr to create a new pattern and divide it by the previous pattern in the chain.
      * @example s0.p.n.noise(0,12,1).$divr.noise(60,72,1)
      */ 
-    divr(value: number): Pattern {
-        this.stack.push(x => handlePolyphony(x, x => value / x))
+    divr(value: patternable): Pattern {
+        this.stack.push(x => handlePolyphony(x, x => +this.handleTypes(value) / x))
         return this
     }   
 
@@ -537,9 +544,10 @@ export class Pattern {
      * @example s0.n.set(t).mod(12).add(36)
      * @example s0.n.set(t).$mod.set(12)
      */ 
-    mod(value: number): Pattern {
+    mod(value: patternable): Pattern {
         this.stack.push(x => {
-            return handlePolyphony(x, x => ((x % value) + value) % value)
+            const m = +this.handleTypes(value)
+            return handlePolyphony(x, x => ((x % m) + m) % m)
         })
         return this
     }
@@ -564,8 +572,8 @@ export class Pattern {
      * Or, use $and to create a new pattern and compare it with the previous pattern in the chain.
      * @example s0.e.every(3).$and.every(2)
      */ 
-    and(value: number): Pattern {
-        this.stack.push(x => handlePolyphony(x, x => x && value))
+    and(value: patternable): Pattern {
+        this.stack.push(x => handlePolyphony(x, x => x && +this.handleTypes(value)))
         return this
     }
 
@@ -586,8 +594,8 @@ export class Pattern {
      * @returns {Pattern}
      * @example s0.e.every(3).or(t%2)
      */ 
-    or(value: number): Pattern {
-        this.stack.push(x => handlePolyphony(x, x => x || value))
+    or(value: patternable): Pattern {
+        this.stack.push(x => handlePolyphony(x, x => x || +this.handleTypes(value)))
         return this
     }
 
@@ -608,8 +616,8 @@ export class Pattern {
      * @returns {Pattern}
      * @example s0.e.every(3).xor(t%2)
      */ 
-    xor(value: number): Pattern {
-        this.stack.push(x => handlePolyphony(x, x => x ^ value))
+    xor(value: patternable): Pattern {
+        this.stack.push(x => handlePolyphony(x, x => x ^ +this.handleTypes(value)))
         return this
     }
 
@@ -634,8 +642,11 @@ export class Pattern {
      * @returns {Pattern}
      * @example s0.p.modi.range(0, 10, 1, 2)
      */
-    range(lo=0, hi=1, step=0, freq=1): Pattern {
-        this.stack.push((x: patternValue) => mapToRange(pos(x, this._q, freq), 0, 1, lo, hi, step))
+    range(...args: patternable[]): Pattern {
+        this.stack.push((x: patternValue) => {
+            const [lo=0, hi=1, step=0, freq=1] = args.map(arg => this.handleTypes(arg))
+            return mapToRange(pos(x, this._q, +freq), 0, 1, +lo, +hi, +step)
+        })
         return this
     }
 
@@ -648,11 +659,12 @@ export class Pattern {
      * @returns {Pattern}
      * @example s0.p.modi.sine(0, 10)
      */
-    sine(lo=0, hi=1, step=0, freq=1): Pattern {
+    sine(...args: number[]): Pattern {
         this.stack.push((x: patternValue) => {
-            const radians = pos(x, this._q, freq) * 360 * (Math.PI/180)
+            const [lo=0, hi=1, step=0, freq=1] = args.map(arg => this.handleTypes(arg))
+            const radians = pos(x, this._q, +freq) * 360 * (Math.PI/180)
             const sin = Math.sin(radians)
-            return mapToRange(sin, -1, 1, lo, hi, step)
+            return mapToRange(sin, -1, 1, +lo, +hi, +step)
         })
         return this
     }
@@ -666,11 +678,12 @@ export class Pattern {
      * @returns {Pattern}
      * @example s0.p.modi.cosine(0, 10)
      */
-    cosine(lo=0, hi=1, step=0, freq=1): Pattern {
+    cosine(...args: number[]): Pattern {
         this.stack.push((x: patternValue) =>  {
-            const radians = pos(x, this._q, freq) * 360 * (Math.PI/180)
+            const [lo=0, hi=1, step=0, freq=1] = args.map(arg => this.handleTypes(arg))
+            const radians = pos(x, this._q, +freq) * 360 * (Math.PI/180)
             const cos = Math.cos(radians)
-            return mapToRange(cos, -1, 1, lo, hi, step)
+            return mapToRange(cos, -1, 1, +lo, +hi, +step)
         })
         return this
     }
@@ -695,10 +708,11 @@ export class Pattern {
      * @param {patternable} curve curve of the pattern. Default is 0.5, which means a linear curve.
      * @param {patternable} freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      */
-    curve(lo=0, hi=1, curve=0.5, freq=1): Pattern {
+    curve(...args: patternable[]): Pattern {
         this.stack.push((x: patternValue) => {
-            const value = Math.pow(pos(x, this._q, freq), curve) 
-            return mapToRange(value, 0, 1, lo, hi)
+            const [lo=0, hi=1, curve=0.5, freq=1] = args.map(arg => this.handleTypes(arg))
+            const value = Math.pow(pos(x, this._q, +freq), +curve) 
+            return mapToRange(value, 0, 1, +lo, +hi)
         })
         return this
     }
@@ -712,10 +726,11 @@ export class Pattern {
      * @returns {Pattern}
      * @example s0.p.harm.tri(0, 4, 0.25)
      */
-    tri(lo=0, hi=1, step=0, freq=1): Pattern {
+    tri(...args: patternable[]): Pattern {
         this.stack.push((x: patternValue) => {
-            const tri = Math.abs(pos(x, this._q, freq) - 0.5) * 2
-            return mapToRange(tri, 0, 1, lo, hi, step)
+            const [lo=0, hi=1, step=0, freq=1] = args.map(arg => this.handleTypes(arg))
+            const tri = Math.abs(pos(x, this._q, +freq) - 0.5) * 2
+            return mapToRange(tri, 0, 1, +lo, +hi, +step)
         })
         return this
     }
@@ -729,10 +744,11 @@ export class Pattern {
      * @returns {Pattern}
      * @example s0.p.modi.pulse(0, 10, 0.25)
     */
-    pulse(lo=0, hi=1, width=0.5, freq=1): Pattern {
+    pulse(...args: patternable[]): Pattern {
         this.stack.push((x: patternValue) => {
-            const pulse = (((pos(x, this._q, freq))%1) < width ? 1 : 0)
-            return mapToRange(pulse, 0, 1, lo, hi)
+            const [lo=0, hi=1, width=0.5, freq=1] = args.map(arg => this.handleTypes(arg))
+            const pulse = (((pos(x, this._q, +freq))%1) < +width ? 1 : 0)
+            return mapToRange(pulse, 0, 1, +lo, +hi)
         })
         return this
     }
@@ -758,8 +774,11 @@ export class Pattern {
      * @returns {Pattern}
      * @example s0.p.n.random(60,72,1)
      */
-    random(lo=0, hi=1, step=0): Pattern {
-        this.stack = [() => mapToRange(Math.random(), 0, 1, lo, hi, step)]
+    random(...args: patternable[]): Pattern {
+        this.stack = [() => {
+            const [lo=0, hi=1, step=0] = args.map(arg => this.handleTypes(arg))
+            return mapToRange(Math.random(), 0, 1, +lo, +hi, +step)
+        }]
         return this
     }
 
@@ -773,9 +792,10 @@ export class Pattern {
      * @returns {Pattern}
      * @example s0.p.pan.noise(0, 1)
     */
-    noise(lo=0, hi=1, step=0, freq=1, cycles=4): Pattern {
+    noise(...args: patternable[]): Pattern {
         this.stack = [(x: patternValue) => {
-            return mapToRange(noise.simplex2(pos(x, this._q, freq, cycles), 0), -1, 1, lo, hi, step)
+            const [lo=0, hi=1, step=0, freq=1, cycles=4] = args.map(arg => this.handleTypes(arg))
+            return mapToRange(noise.simplex2(pos(x, this._q, +freq, +cycles), 0), -1, 1, +lo, +hi, +step)
         }]
         return this
     }
@@ -789,8 +809,11 @@ export class Pattern {
      * @example s0.e.every(4) // return 1 every 4 divisions, 0 otherwise
      * @example s0.p.n.every(2, 60, 72) // return 60 every 2 divisions, 72 otherwise
      */
-    every(n: number = 1, a: number = 1, b: number = 0): Pattern {
-        this.stack.push(x => !(+x % n) ? a : b)
+    every(...args: patternable[]): Pattern {
+        this.stack.push(x => {
+            const [n=1, a=1, b=0] = args.map(arg => this.handleTypes(arg))
+            return !(+x % +n) ? a : b
+        })
         return this
     }
 
@@ -814,11 +837,12 @@ export class Pattern {
      * @returns {Pattern}
      * @example s0.p.n.bin('1111') // output depends on the number of division per cycle / canvas. If 16, returns 1 every 4 divisions, 0 otherwise
     */
-    bin(n: string = '10000000', freq: number = 1, a: number = 1, b: number = 0): Pattern {
+    bin(n: string = '10000000', ...rest: patternable[]): Pattern {
         const arr = n.replace(/\s+/g, '').split('').map(x => !!parseInt(x))
-        const divisions = this._q / freq
-
+        
         this.stack = [(x: patternValue) => {
+            const [freq=1, a=1, b=0] = rest.map(arg => this.handleTypes(arg))
+            const divisions = this._q / +freq
             const result = arr[ (+x%divisions) / (divisions/arr.length) ] ? a : b
             return result
         }]
@@ -835,7 +859,7 @@ export class Pattern {
      * @returns {Pattern}
      * @example s0.p.n.ntbin(9, 8) // 9 in binary is 1001, padded out to 8 digits. Passes 00001001 to .bin()
      */
-    ntbin(n: number = 0, q: number = 8, freq: number = 1, a: number = 1, b: number = 0): Pattern {
+    ntbin(n: patternable = 0, q: number = 8, freq: patternable = 1, a: patternable = 1, b: patternable = 0): Pattern {
         return this.bin(numberToBinary(+n, q), freq, a, b)
     }
 
@@ -846,9 +870,10 @@ export class Pattern {
      * @returns {Pattern}
      * @example s0.p.n.seq([60,72,74,76])
      */
-    seq(values: number[] = [], freq: number = 1): Pattern {
+    seq(values: number[] = [], freq: patternable = 1): Pattern {
         this.stack.push((x: patternValue) => {
-            return values[Math.floor((pos(x, this._q, freq)*values.length)%values.length)]
+            const f = this.handleTypes(freq)
+            return values[Math.floor((pos(x, this._q, +f)*values.length)%values.length)]
         })
         return this
     }
@@ -858,8 +883,8 @@ export class Pattern {
      * @param value value to round to
      * @returns {Pattern}
      */
-    step(value: number): Pattern {
-        this.stack.push(x => handlePolyphony(x, x => roundToFactor(x, value)))
+    step(value: patternable): Pattern {
+        this.stack.push(x => handlePolyphony(x, x => roundToFactor(x, +this.handleTypes(value))))
         return this
     }
 
@@ -880,17 +905,19 @@ export class Pattern {
      * @returns {Pattern}
      * @example s0.p.n.noise(0,12).tune([0,2,4,5,7,9,11,12]).add(36)
      */ 
-    tune(array: []): Pattern {
-        const min = Math.min(...array)
-        const max = Math.max(...array)
-        const octaves = Math.floor((max - min) / 12) + 1
+    tune(array: patternable): Pattern {
+        this.stack.push(x => {
+            const arr = this.handleTypes(array)
+            if(!Array.isArray(arr)) return x
 
-        this.stack.push(x => handlePolyphony(x, x => roundToNearest(
+            const min = Math.min(...arr)
+            const max = Math.max(...arr)
+            const octaves = Math.floor((max - min) / 12) + 1
+            return handlePolyphony(x, x => roundToNearest(
                 Math.round(x) % (octaves * 12), 
-                array.map(x => (x - min) + (min % 12))
-            ) + Math.floor(x / 12) * 12
-        ))
-
+                arr.map(x => (x - min) + (min % 12))
+            ) + Math.floor(x / 12) * 12)
+        })
         return this
     }
 
@@ -912,8 +939,11 @@ export class Pattern {
      * @param max maximum value
      * @returns {Pattern}
      */ 
-    clamp(min: number, max: number): Pattern {
-        this.stack.push(x => handlePolyphony(x, x => clamp(x, min, max)))
+    clamp(...args: patternable[]): Pattern {
+        this.stack.push(x => { 
+            const [min=0, max=1] = args.map(arg => this.handleTypes(arg))
+            return handlePolyphony(x, x => clamp(x, +min, +max))
+        })
         return this
     }
 
@@ -925,8 +955,11 @@ export class Pattern {
      * @returns {Pattern}
      * @example s0.p.n.noise(0,1).gt(0.3, 60, 72)
      */ 
-    gt(n: number, a: number = 1, b: number = 0): Pattern {
-        this.stack.push(x => [x].flat().every(x => x > n) ? a : b)
+    gt(...args: patternable[]): Pattern {
+        this.stack.push(x => {
+            const [n=1, a=1, b=0] = args.map(arg => this.handleTypes(arg))
+            return [x].flat().every(x => x > +n) ? a : b
+        })
         return this
     }
 
@@ -948,8 +981,11 @@ export class Pattern {
      * @param b value to return when false
      * @returns {Pattern}
      */ 
-    lt(n: number, a: number = 1, b: number = 0): Pattern {
-        this.stack.push(x => [x].flat().every(x => x < n) ? a : b)
+    lt(...args: patternable[]): Pattern {
+        this.stack.push(x => {
+            const [n=1, a=1, b=0] = args.map(arg => this.handleTypes(arg))
+            return [x].flat().every(x => x < +n) ? a : b
+        })
         return this
     }
 
@@ -972,8 +1008,11 @@ export class Pattern {
      * @returns {Pattern}
      * @example s0.p.n.noise(0,1).gte(0.3, 60, 72)
      */ 
-    gte(n: number, a: number = 1, b: number = 0): Pattern {
-        this.stack.push(x => [x].flat().every(x => x >= n) ? a : b)
+    gte(...args: patternable[]): Pattern {
+        this.stack.push(x => {
+            const [n=1, a=1, b=0] = args.map(arg => this.handleTypes(arg))
+            return [x].flat().every(x => x >= +n) ? a : b
+        })
         return this
     }
 
@@ -995,8 +1034,11 @@ export class Pattern {
      * @param b value to return when false
      * @returns {Pattern}
      */
-    lte(n: number, a: number = 1, b: number = 0): Pattern {
-        this.stack.push(x => [x].flat().every(x => x <= n) ? a : b)
+    lte(...args: patternable[]): Pattern {
+        this.stack.push(x => {
+            const [n=1, a=1, b=0] = args.map(arg => this.handleTypes(arg))
+            return [x].flat().every(x => x <= +n) ? a : b
+        })
         return this
     }
 
@@ -1018,8 +1060,11 @@ export class Pattern {
      * @param b value to return when false
      * @returns {Pattern}
      */ 
-    eq(n: number = 1, a: number = 1, b: number = 0): Pattern {
-        this.stack.push(x => [x].flat().every(x => x == n) ? a : b)
+    eq(...args: patternable[]): Pattern {
+        this.stack.push(x => { 
+            const [n=1, a=1, b=0] = args.map(arg => this.handleTypes(arg))
+            return [x].flat().every(x => x == n) ? a : b
+        })
         return this
     }
 
@@ -1041,8 +1086,11 @@ export class Pattern {
      * @param b value to return when false
      * @returns {Pattern}
      */ 
-    neq(n: number = 1, a: number = 1, b: number = 0): Pattern {
-        this.stack.push(x => [x].flat().every(x => x != n) ? a : b)
+    neq(...args: patternable[]): Pattern {
+        this.stack.push(x => {
+            const [n=1, a=1, b=0] = args.map(arg => this.handleTypes(arg))
+            return [x].flat().every(x => x != n) ? a : b
+        })
         return this
     }
 
@@ -1073,8 +1121,11 @@ export class Pattern {
      * @param b value to return when false
      * @returns {Pattern}
      */ 
-    odd(a: number = 1, b: number = 0): Pattern {
-        this.stack.push(x => [x].flat().every(odd) ? a : b)
+    odd(...args: patternable[]): Pattern {
+        this.stack.push(x => {
+            const [a=1, b=0] = args.map(arg => this.handleTypes(arg))
+            return [x].flat().every(odd) ? a : b
+        })
         return this
     }
 
@@ -1084,8 +1135,11 @@ export class Pattern {
      * @param b value to return when false
      * @returns {Pattern}
      */ 
-    even(a: number = 1, b: number = 0): Pattern {
-        this.stack.push(x => [x].flat().every(even) ? a : b)
+    even(...args: patternable[]): Pattern {
+        this.stack.push(x => {
+            const [a=1, b=0] = args.map(arg => this.handleTypes(arg))
+            return [x].flat().every(even) ? a : b
+        })
         return this
     }
     
@@ -1140,6 +1194,7 @@ export class Pattern {
      * @returns {Pattern}
      * @example s0.p.n.scales('c-dorian', 16)
      */ 
+    // TODO: can we replace this with a pattern string?
     scales(names: string | string[], length: number = 8, freq: number = 1, asArray: boolean = false): Pattern {
         const scales = [names].flat().map(name => {
             const scale = getScale(name)
@@ -1158,6 +1213,7 @@ export class Pattern {
      * @returns {Pattern}
      * @example s0.p.n.chords(['d-min7', 'g-dom7'])
      */ 
+    // TODO: can we replace this with a pattern string?
     chords(names: string | string[], freq: number = 1, octave: number = 4): Pattern {
         this.seq([names].flat().map(name => getChord(name)), freq).add(octave * 12)
         return this
@@ -1165,18 +1221,19 @@ export class Pattern {
 
     /**
      * Invert the previous chord in the pattern chain
-     * @param i inversion
+     * @param n inversion
      * @returns {Pattern}
      * @example s0.p.n.chords('d-dorian', 16).inversion(1)
      * @example s0.p.n.chords('d-dorian', 16).$inversion.range(0,8,1)
      */ 
-    inversion(i: number): Pattern {
+    inversion(n: patternable): Pattern {
         this.stack.push((x: patternValue) => {
+            const i = this.handleTypes(n)
             const chord = [x].flat()
             const length = chord.length
-            const head = chord.slice(0, i%length)
-            const tail = chord.slice(i%length)
-            return [...tail, ...head.map(n => n + 12)].map(n => n + (12 * Math.floor((i%(length*4))/length)))
+            const head = chord.slice(0, +i%length)
+            const tail = chord.slice(+i%length)
+            return [...tail, ...head.map(n => n + 12)].map(n => n + (12 * Math.floor((+i%(length*4))/length)))
         })
         return this
     }
@@ -1188,8 +1245,8 @@ export class Pattern {
      * @returns {Pattern}
      * @example s0.p.n.scales('d-dorian',16,1,1).at(t%16)
      */ 
-    at(n: number): Pattern {
-        this.stack.push(x => [x].flat()[n])
+    at(n: patternable): Pattern {
+        this.stack.push(x => [x].flat()[+this.handleTypes(n)])
         return this
     }
 
@@ -1211,8 +1268,8 @@ export class Pattern {
      * @returns 
      * @example s0.p.n.scales('d-dorian',16).layer(12)
      */
-    layer(n: number): Pattern {
-        this.stack.push(x => [x].flat().concat(n))
+    layer(n: patternable): Pattern {
+        this.stack.push(x => [x].flat().concat(this.handleTypes(n)))
         return this
     }
 
@@ -1287,8 +1344,8 @@ export class Pattern {
      * @param y value to divide by
      * @returns {Pattern}
      */ 
-    atan2(y: number): Pattern {
-        this.stack.push((x: patternValue) => handlePolyphony(x, x => Math.atan2(+x, y)))
+    atan2(y: patternable): Pattern {
+        this.stack.push((x: patternValue) => handlePolyphony(x, x => Math.atan2(+x, +this.handleTypes(y))))
         return this
     }
 
@@ -1351,8 +1408,8 @@ export class Pattern {
      * @param compare value to compare to
      * @returns {Pattern}
      */ 
-    max(compare: number = 0): Pattern {
-        this.stack.push((x: patternValue) => handlePolyphony(x, x => Math.max(+x, compare)))
+    max(compare: patternable = 0): Pattern {
+        this.stack.push((x: patternValue) => handlePolyphony(x, x => Math.max(+x, +this.handleTypes(compare))))
         return this
     }
 
@@ -1361,8 +1418,8 @@ export class Pattern {
      * @param compare value to compare to
      * @returns {Pattern}
      */ 
-    min(compare: number = 0): Pattern {
-        this.stack.push((x: patternValue) => handlePolyphony(x, x => Math.min(+x, compare)))
+    min(compare: patternable = 0): Pattern {
+        this.stack.push((x: patternValue) => handlePolyphony(x, x => Math.min(+x, +this.handleTypes(compare))))
         return this
     }
 
@@ -1371,8 +1428,8 @@ export class Pattern {
      * @param exponent value to multiply by
      * @returns {Pattern}
      */ 
-    pow(exponent: number = 2): Pattern {
-        this.stack.push((x: patternValue) => handlePolyphony(x, x => Math.pow(+x, exponent)))
+    pow(exponent: patternable = 2): Pattern {
+        this.stack.push((x: patternValue) => handlePolyphony(x, x => Math.pow(+x, +this.handleTypes(exponent))))
         return this
     }
 
@@ -1391,8 +1448,8 @@ export class Pattern {
      * @returns {Pattern}
      * @example s0.y.sine(0,15,1).$intrp.sine(15,0,1,0.5)
      */ 
-    interpolate(val: number): Pattern {
-        this.stack.push((x: patternValue) => handlePolyphony(x, x => interpolate(+x, val, 0.5)))
+    interpolate(val: patternable): Pattern {
+        this.stack.push((x: patternValue) => handlePolyphony(x, x => interpolate(+x, +this.handleTypes(val), 0.5)))
         return this
     }
 
@@ -1405,16 +1462,22 @@ export class Pattern {
      * @example
      * s0.e.sometimes()
      */ 
-    sometimes(a: number = 1, b: number = 0): Pattern {
-        this.stack.push(() => Math.random() < 0.5 ? a : b)
+    sometimes(...args: patternable[]): Pattern {
+        this.stack.push(() => {
+            const [a=1, b=0] = args.map(arg => this.handleTypes(arg))
+            return Math.random() < 0.5 ? a : b
+        })
         return this
     }
 
     /**
      * Alias for `sometimes`
      */ 
-    coin(a: number = 1, b: number = 0): Pattern {
-        this.stack.push(() => Math.random() < 0.5 ? a : b)
+    coin(...args: patternable[]): Pattern {
+        this.stack.push(() => { 
+            const [a=1, b=0] = args.map(arg => this.handleTypes(arg))
+            return Math.random() < 0.5 ? a : b
+        })
         return this
     }  
 
@@ -1426,8 +1489,11 @@ export class Pattern {
      * @example
      * s0.e.rarely()
      */ 
-    rarely(a: number = 1, b: number = 0): Pattern {
-        this.stack.push(() => Math.random() < 0.25 ? a : b)
+    rarely(...args: patternable[]): Pattern {
+        this.stack.push(() => {
+            const [a=1, b=0] = args.map(arg => this.handleTypes(arg))
+            return Math.random() < 0.25 ? a : b
+        })
         return this
     }
 
@@ -1439,8 +1505,11 @@ export class Pattern {
      * @example
      * s0.e.often()
      */ 
-    often(a: number = 1, b: number = 0): Pattern {
-        this.stack.push(() => Math.random() < 0.75 ? a : b)
+    often(...args: patternable[]): Pattern {
+        this.stack.push(() => {
+            const [a=1, b=0] = args.map(arg => this.handleTypes(arg))
+            return Math.random() < 0.75 ? a : b
+        })
         return this
     }
 
