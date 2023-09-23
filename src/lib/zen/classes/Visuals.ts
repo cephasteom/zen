@@ -1,5 +1,5 @@
 import { Pattern } from "./Pattern";
-type position = {x: number, y: number}
+type position = {x: number, y: number, id: string}
 
 export class Visuals {
     _s: number = 16;
@@ -32,19 +32,17 @@ export class Visuals {
         }
     }
 
-    streams(positions: {x: number, y: number}[], isEvent: boolean) {
-        // TODO: colour needs to be based off streamID not position
-        let streamID = 0;
-        for (const { x, y } of positions) {
+    streams(positions: {x: number, y: number, id: string}[], isEvent: boolean) {
+        for (const { x, y, id } of positions) {
+            const eColourI = +id.replace('s', '')%this.colours.length;
             const i = ((Math.floor(y) * this._s) + Math.floor(x)) * 4;
             const colour = isEvent 
-                ? this.colours[streamID%this.colours.length]
+                ? this.colours[eColourI]
                 : this.mColour;
             for (let j = 0; j < 4; j++) {
                 this.data[i + j] = colour[j];
             }
             this.data[i + 3] = 255;
-            streamID++;
         }
     }
 

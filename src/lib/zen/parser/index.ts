@@ -3,7 +3,8 @@ import { memoize } from '../utils/utils'
 import { calculateNormalisedPosition as pos } from '../utils/utils'
 
 // TODO: is there a way we can write nicer JS using DRY principles?
-// TODO: for event triggering it would be nice to have shorthand for rests. e.g. '1/1/1/1'
+// TODO: groups e.g. '(1 0*3)*4' => [[1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]]
+// TODO: parse chords and scales e.g. 'Cmaj7' => [0, 4, 7, 11] e.g. Clydian => [0, 2, 4, 5, 7, 9, 11]
 /*
 * Simple pattern parser for generating music patterns
 * @returns {any[]} Array of bars, each bar is an array of events
