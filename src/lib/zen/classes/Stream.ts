@@ -132,7 +132,7 @@ export class Stream {
      * s0.e.bin('1000 1001') // use a binary pattern to trigger events
      */ 
     get e() {
-        this._ePattern = this._ePattern || new Pattern(this)
+        this._ePattern = this._ePattern || new Pattern(this, true)
         return this._ePattern
     }
 
@@ -145,7 +145,7 @@ export class Stream {
      * s0.m.every(4) // mutate all active events every 4 divisions
      */ 
     get m() {
-        this._mPattern = this._mPattern || new Pattern(this)
+        this._mPattern = this._mPattern || new Pattern(this, true)
         return this._mPattern
     }
     

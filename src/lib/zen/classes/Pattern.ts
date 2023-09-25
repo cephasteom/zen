@@ -108,6 +108,7 @@ export class Pattern {
         subr: 'sr',
         toggle: 't',
         tri: 'tr',
+        trigger: 'trig',
         tune: 'tu',
         use: 'u',
         xor: 'x',
@@ -158,23 +159,24 @@ export class Pattern {
         subr: 'sr',
         toggle: 't',
         tri: 'tr',
+        trigger: 'trig',
         tune: 'tu',
         use: 'u',
         xor: 'x',
     }
 
     /** @hidden */
-    constructor(parent: Pattern | Stream | null = null) {
+    constructor(parent: Pattern | Stream | null = null, isTrigger=false) {
         this._id = nanoid()
         this._parent = parent
         this.reset()
         this.combine = this.combine.bind(this);
+        isTrigger && (this.set = this.trigger)
         
         // Set aliases
         Object.entries(this.aliases).forEach(([method, alias]) => {
             // @ts-ignore
             this[alias] = this[method]
-            
             
             // create dollar method for alias, TODO: do we have to create a new pattern for this?
             Object.defineProperty(this, `$${alias}`, {
