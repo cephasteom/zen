@@ -1,11 +1,18 @@
 import peg from 'pegjs';
 import { memoize } from '../utils/utils'
 import { calculateNormalisedPosition as pos } from '../utils/utils'
+import { getPattern } from './euclidean-rhythms'
+
+// Add to window for so that it can be accessed by parser syntax
+// @ts-ignore
+window.getPattern = getPattern
 
 // TODO: is there a way we can write nicer JS using DRY principles?
 // TODO: parse chords and scales e.g. 'Cmaj7' => [0, 4, 7, 11] e.g. Clydian => [0, 2, 4, 5, 7, 9, 11]
 // TODO: parse note names e.g. 'C4' => 60
 // TODO: binary patterns e.g. '(^1000)*4' => [[1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]]
+// TODO: Rewrite Zen so it can handle notes that fall between the evaluations...
+
 /*
 * Simple pattern parser for generating music patterns
 * @returns {any[]} Array of bars, each bar is an array of events
@@ -24,6 +31,7 @@ import { calculateNormalisedPosition as pos } from '../utils/utils'
 * @example '3..0----' => [[3, 2, 1, 0]] // sequence from 3 to 0
 * @example '0..8' => [[0, 1, 2, 3, 4, 5, 6, 7, 8]] // takes the duration from the sequence
 * @example '0..10?----' => [[1, 7, 6, 2]] // sequence with random choice
+* @example '^10001010*2' => [[1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0]] // binary pattern
 * @example '(1 0*3)*4' => [[1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]] // group any of the above together, specify how many times the group should repeat in its entirety
 */
 
@@ -52,10 +60,10 @@ const parser = peg.generate(`
         = values:(group+ / event+) divider? space* { return values; }
     
     group
-        = "(" space* val:event+ space* ")" count:duration? { return {val, repeats: count || 1, type: 'group'}; }
+        = "(" space* val:event+ space* ")" count:duration? space* { return {val, repeats: count || 1, type: 'group'}; }
 
     event 
-        = single / sequence / choices / alternatives
+        = single / binary / euclidean / sequence / choices / alternatives
 
     choices 
         = arr:choice+ dur:duration space* { return {val: arr, dur: dur || 1, type: 'choices'}; }
@@ -70,13 +78,13 @@ const parser = peg.generate(`
         = !choose val:value !choose alternate? { return val }
 
     single
-        = !choose !alternate !iterate val:value dur:duration? !choose !alternate !iterate space* { return {val, dur: dur || 1, type: 'single'}; }
+        = !choose !alternate !seq !"^" !":" val:value dur:duration? !choose !alternate !seq !"^" !":" space* { return {val, dur: dur || 1, type: 'single'}; }
 
     value 
         = $[a-zA-Z0-9@]+ / $number+ / array 
 
     sequence
-        = start:$[0-9]+ iterate end:$[0-9]+ type:(choose?) dur:duration? space* { 
+        = start:$[0-9]+ seq end:$[0-9]+ type:(choose?) dur:duration? space* { 
         let step = +start < +end ? 1 : -1
         let size = Math.abs(+end - +start + step)
         return {
@@ -85,6 +93,27 @@ const parser = peg.generate(`
             type: type === '?' ? 'choices' : 'alternatives'
         }
     }
+
+    euclidean
+        = pulses:$[0-9]+ ":" steps:$[0-9]+ dur:duration? space* { 
+            const val = getPattern(+pulses, +steps).map(v => ({val: v, dur: 1, type: 'single'}))
+            return {
+                val,
+                repeats: dur || 1,
+                type: 'group'
+            }
+            return e
+        }
+
+    binary
+        = "^" val:(number+) dur:duration? space* { 
+            const bin = val[0].toString().split('')
+            return {
+                val: bin.map(v => ({val: +v > 0 ? 1 : 0, dur: 1, type: 'single'})),
+                repeats: dur || 1,
+                type: 'group'
+            }
+        }
 
     array 
         = "[" val:$(space* v:value space* ","?)+ "]" { return val.split(',').map(s => s.trim()) }
@@ -100,8 +129,8 @@ const parser = peg.generate(`
 
     tick 
         = "-"* { return text().length; }
-
-    iterate
+        
+    seq
         = ".." { return text(); }
 
     choose
