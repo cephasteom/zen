@@ -13,8 +13,7 @@ import {
     odd, 
     even,
     interpolate,
-    handleArrayOrSingleValue as handlePolyphony,
-    handleTypes,
+    handleArrayOrSingleValue as handlePolyphony
 } from '../utils/utils';
 import { getScale, getChord } from '../utils/musical';
 import { parsePattern } from '../parser';
@@ -193,9 +192,9 @@ export class Pattern {
      * Used to format the arguments passed to pattern methods
      * @hidden 
      */ 
-    handleTypes(value: patternValue | Pattern | string) : patternValue {
+    handleTypes(value: patternValue | Pattern | string, t: number | null = null, round=true) : patternValue {
         if(value instanceof Pattern) return value.value()
-        if(typeof value === 'string') return parsePattern(value, this._t, this._q, this._id)
+        if(typeof value === 'string') return parsePattern(value, t || this._t, this._q, this._id, round)
         return value
     }
 
@@ -228,6 +227,16 @@ export class Pattern {
         this[method] && this[method](pattern.value())
     }
 
+    /** @hidden */
+    reset() {
+        this.stack = []
+        this._value = 0
+
+        // TODO: this is unfortunate as all Patterns stored here will be garbage collected rather than reused...
+        this._state.$ = []
+        return this
+    }    
+
     /**
      * Set a single value
      * @param {patternable} value - a single string or number or array of strings or numbers, or a Pattern, or a Zen pattern string
@@ -237,19 +246,26 @@ export class Pattern {
      * @example s0.e.set('1?0*16')
      */
     set(value: patternable): Pattern {
-        this.stack = [() => this.handleTypes(value)]
+        this.stack.push(t => this.handleTypes(value, +t))
+        return this
+    }
+
+    /**
+     * Trigger a value in pattern, only if it fall directly onto a division
+     * Best used to trigger events or mutations
+     * @param {patternable} value - a single string or number or array of strings or numbers, or a Pattern, or a Zen pattern string
+     * @returns {Pattern}
+     * @example 
+     * // compare with s0.e.set('1*4')
+     * s0.e.trigger('1*4')
+     * @example s0.e.trigger('1*4')
+     */ 
+    trigger(value: patternable): Pattern {
+        this.stack.push(t => this.handleTypes(value, +t, false))
         return this
     }
     
-    /** @hidden */
-    reset() {
-        this.stack = []
-        this._value = 0
 
-        // TODO: this is unfortunate as all Patterns stored here will be garbage collected rather than reused...
-        this._state.$ = []
-        return this
-    }
 
     /**
      * Inset another pattern's stack into the current pattern's stack

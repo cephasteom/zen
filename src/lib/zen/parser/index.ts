@@ -32,6 +32,8 @@ window.getPattern = getPattern
 * @example '0..8' => [[0, 1, 2, 3, 4, 5, 6, 7, 8]] // takes the duration from the sequence
 * @example '0..10?----' => [[1, 7, 6, 2]] // sequence with random choice
 * @example '^10001010*2' => [[1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0]] // binary pattern
+* @example '4:16' => [[1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]] // euclidean rhythm
+* @example '3:8*2' => [[1, 0, 0, 1, 0, 0, 1, 0, 0], [1, 0, 0, 1, 0, 0, 1, 0, 0]] // euclidean rhythm
 * @example '(1 0*3)*4' => [[1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]] // group any of the above together, specify how many times the group should repeat in its entirety
 */
 
@@ -60,7 +62,7 @@ const parser = peg.generate(`
         = values:(group+ / event+) divider? space* { return values; }
     
     group
-        = "(" space* val:event+ space* ")" count:duration? space* { return {val, repeats: count || 1, type: 'group'}; }
+        = "(" space* val:event+ space* ")" repeats:duration? space* { return {val, repeats: repeats || 1, type: 'group'}; }
 
     event 
         = single / binary / euclidean / sequence / choices / alternatives
@@ -148,10 +150,13 @@ const parser = peg.generate(`
 
 const parse = memoize((pattern: string, _: string): string|number|[][] => parser.parse(pattern))
 
-export const parsePattern = (pattern: string, t: number, q: number, id: string) => {
+export const parsePattern = (pattern: string, t: number, q: number, id: string, round=true) => {
     const array = parse(pattern, id)
     let position = pos(t, q, 1, array.length)
     let bar = Math.trunc(position)
-    let beat = Math.floor((position % 1) * array[bar].length)
-    return array[bar][beat]
+    let beat = (position % 1) * array[bar].length
+    // if round is true, round the beat down to the nearest integer so that it always returns a value
+    // if round is false, return the value at the exact beat, or return a 0
+    beat = round ? Math.floor(beat) : beat
+    return array[bar][beat] || 0
 }
