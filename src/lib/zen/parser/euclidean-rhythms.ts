@@ -6,11 +6,11 @@
  *  Returns the calculated pattern of equally distributed pulses in total steps
  *  based on the euclidean rhythms algorithm described by Godfried Toussaint
  *
- *  @method  getPattern
+ *  @method  euclidean
  *  @param {Number} pulses Number of pulses in the pattern
  *  @param {Number} steps  Number of steps in the pattern (pattern length)
  */
-export function getPattern(pulses: number, steps: number) {
+export function euclidean(pulses: number, steps: number) {
     if (pulses < 0 || steps < 0 || steps < pulses) {
       return [];
     }

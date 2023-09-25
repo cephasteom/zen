@@ -4,13 +4,10 @@ import {
     calculateNormalisedPosition as pos,
     loopArray,
 } from '../utils/utils'
-import { getPattern } from './euclidean-rhythms'
+import { euclidean } from './euclidean-rhythms'
 
-// Add to window for so that it can be accessed by parser syntax
-// @ts-ignore
-window.getPattern = getPattern
-// @ts-ignore
-window.loopArray = loopArray
+// Add functions to window for so that it can be accessed by parser syntax
+[euclidean, loopArray].forEach((fn: any) => window[fn.name] = fn)
 
 // TODO: parse chords and scales e.g. 'Cmaj7' => [0, 4, 7, 11] e.g. Clydian => [0, 2, 4, 5, 7, 9, 11]
 // TODO: number of unique bars to fill
@@ -108,7 +105,7 @@ const parser = peg.generate(`
 
     euclidean
         = pulses:$[0-9]+ ":" steps:$[0-9]+ dur:duration? space* { 
-            const val = getPattern(+pulses, +steps).map(v => ({val: v, dur: 1, type: 'single'}))
+            const val = euclidean(+pulses, +steps).map(v => ({val: v, dur: 1, type: 'single'}))
             return {
                 val,
                 repeats: dur || 1,
@@ -165,6 +162,7 @@ export const parsePattern = (pattern: string, t: number, q: number, id: string, 
     let position = pos(t, q, 1, array.length)
     let bar = Math.trunc(position)
     let beat = (position % 1) * array[bar].length
+    
     // if round is true, round the beat down to the nearest integer so that it always returns a value
     // if round is false, return the value at the exact beat, or return a 0
     beat = round ? Math.floor(beat) : beat
