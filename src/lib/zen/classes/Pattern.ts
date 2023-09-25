@@ -254,13 +254,12 @@ export class Pattern {
 
     /**
      * Trigger a value in pattern, only if it fall directly onto a division
-     * Best used to trigger events or mutations
+     * Events and Mutations use this method instead of set()
      * @param {patternable} value - a single string or number or array of strings or numbers, or a Pattern, or a Zen pattern string
      * @returns {Pattern}
-     * @example 
+     * @hidden
      * // compare with s0.e.set('1*4')
      * s0.e.trigger('1*4')
-     * @example s0.e.trigger('1*4')
      */ 
     trigger(value: patternable): Pattern {
         this.stack.push(t => this.handleTypes(value, +t, false))
