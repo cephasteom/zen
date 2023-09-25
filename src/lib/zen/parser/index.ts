@@ -23,17 +23,14 @@ import { calculateNormalisedPosition as pos } from '../utils/utils'
 * @example '3..0----' => [[3, 2, 1, 0]] // sequence from 3 to 0
 * @example '0..8' => [[0, 1, 2, 3, 4, 5, 6, 7, 8]] // takes the duration from the sequence
 * @example '0..10?----' => [[1, 7, 6, 2]] // sequence with random choice
-* 
+* @example '(1 0*3)*4' => [[1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]] // group any of the above together, specify how many times the group should repeat in its entirety
 */
 
 const parser = peg.generate(`
     result 
         = bs:bars {
             const format = ({val, dur, type, repeats}) => {
-                if (type === 'group') { 
-                    const group = val.map(format).flat()
-                    return new Array(repeats).fill(0).map((_, i) => group).flat()
-                }
+                if (type === 'group') return new Array(repeats).fill(0).map(() => val.map(format).flat()).flat()
                 if (type === 'choices') return new Array(dur).fill(0).map(() => val[Math.floor(Math.random() * val.length)])
                 if (type === 'alternatives') return new Array(dur).fill(0).map((_, i) => val[i % val.length])
                 if (type === 'single') return new Array(dur).fill(0).map(() => val)
@@ -123,8 +120,6 @@ const parse = memoize((pattern: string, _: string): string|number|[][] => parser
 
 export const parsePattern = (pattern: string, t: number, q: number, id: string) => {
     const array = parse(pattern, id)
-    console.log(array)
-    return 0
     let position = pos(t, q, 1, array.length)
     let bar = Math.trunc(position)
     let beat = Math.floor((position % 1) * array[bar].length)
