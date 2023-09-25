@@ -127,7 +127,7 @@ const parser = peg.generate(`
         = note / $[a-zA-Z0-9@]+ / $number+ / array         
     
     note
-        = note:[a-gA-G] accidental:("s" / "f")? octave:$[0-9]+ { return ntom(note + (accidental || ''), +octave) }        
+        = note:[a-gA-G] accidental:("s" / "f")? octave:$[0-9]+ { return ntom(note + (accidental || ''), +octave) }   
 
     array 
         = "[" val:$(space* v:value space* ","?)+ "]" { return val.split(',').map(s => s.trim()) }
