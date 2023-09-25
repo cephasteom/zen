@@ -23,33 +23,41 @@ import { calculateNormalisedPosition as pos } from '../utils/utils'
 * @example '3..0----' => [[3, 2, 1, 0]] // sequence from 3 to 0
 * @example '0..8' => [[0, 1, 2, 3, 4, 5, 6, 7, 8]] // takes the duration from the sequence
 * @example '0..10?----' => [[1, 7, 6, 2]] // sequence with random choice
+* 
 */
-
-
 
 const parser = peg.generate(`
     result 
         = bs:bars {
-        return bs.map(bar => bar
-        .map(({val, dur, type}) => {
-            if (type === 'choices') return new Array(dur).fill(0).map(() => val[Math.floor(Math.random() * val.length)])
-            if (type === 'alternatives') return new Array(dur).fill(0).map((_, i) => val[i % val.length])
-            if (type === 'rests') return new Array(dur || val.length).fill(0).map(() => 0)
-            return event.val
-        })
-        .flat()
-        .map(s => Array.isArray(s) ? s.map(s => !isNaN(+s) ? +s : s) : !isNaN(+s) ? +s : s)
-        )
+            const format = ({val, dur, type, repeats}) => {
+                if (type === 'group') { 
+                    const group = val.map(format).flat()
+                    return new Array(repeats).fill(0).map((_, i) => group).flat()
+                }
+                if (type === 'choices') return new Array(dur).fill(0).map(() => val[Math.floor(Math.random() * val.length)])
+                if (type === 'alternatives') return new Array(dur).fill(0).map((_, i) => val[i % val.length])
+                if (type === 'single') return new Array(dur).fill(0).map(() => val)
+                
+                return event.val
+            }
+
+            return bs.map(bar => bar
+                .map(format).flat()
+                .map(s => Array.isArray(s) ? s.map(s => !isNaN(+s) ? +s : s) : !isNaN(+s) ? +s : s)
+            )
     }
 
     bars 
         = bar+
-
+    
     bar 
-        = values:event+ divider? space* { return values; }
+        = values:(group+ / event+) divider? space* { return values; }
+    
+    group
+        = "(" space* val:event+ space* ")" count:duration? { return {val, repeats: count || 1, type: 'group'}; }
 
     event 
-        = sequence / choices / alternatives
+        = single / sequence / choices / alternatives
 
     choices 
         = arr:choice+ dur:duration space* { return {val: arr, dur: dur || 1, type: 'choices'}; }
@@ -63,17 +71,20 @@ const parser = peg.generate(`
     alternative
         = !choose val:value !choose alternate? { return val }
 
+    single
+        = !choose !alternate !iterate val:value dur:duration? !choose !alternate !iterate space* { return {val, dur: dur || 1, type: 'single'}; }
+
     value 
-        = $[a-zA-Z0-9@]+ / $number+ / array
+        = $[a-zA-Z0-9@]+ / $number+ / array 
 
     sequence
-        = start:$[0-9]+ ".." end:$[0-9]+ type:(choose?) dur:duration? space* { 
+        = start:$[0-9]+ iterate end:$[0-9]+ type:(choose?) dur:duration? space* { 
         let step = +start < +end ? 1 : -1
         let size = Math.abs(+end - +start + step)
         return {
-        val: new Array(size).fill(0).map((_, i) => +start + i * step), 
-        dur: dur || size, 
-        type: type === '?' ? 'choices' : 'alternatives'
+            val: new Array(size).fill(0).map((_, i) => +start + i * step), 
+            dur: dur || size, 
+            type: type === '?' ? 'choices' : 'alternatives'
         }
     }
 
@@ -92,6 +103,9 @@ const parser = peg.generate(`
     tick 
         = "-"* { return text().length; }
 
+    iterate
+        = ".." { return text(); }
+
     choose
         = "?" { return text(); }
 
@@ -109,6 +123,8 @@ const parse = memoize((pattern: string, _: string): string|number|[][] => parser
 
 export const parsePattern = (pattern: string, t: number, q: number, id: string) => {
     const array = parse(pattern, id)
+    console.log(array)
+    return 0
     let position = pos(t, q, 1, array.length)
     let bar = Math.trunc(position)
     let beat = Math.floor((position % 1) * array[bar].length)

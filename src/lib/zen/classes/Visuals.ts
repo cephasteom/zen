@@ -1,4 +1,3 @@
-import { Pattern } from "./Pattern";
 type position = {x: number, y: number, id: string}
 
 export class Visuals {

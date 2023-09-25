@@ -49,7 +49,6 @@ export const wrap = (i: number, max: number) => i % max
 export function memoize(fn: (...args: any[]) => any) {
     let cache: Dictionary = {};
     return (...args: any[]) => {
-        console.log(cache)
         let n = args.map(a => JSON.stringify(a)).join('-');
         return n in cache 
             ? cache[n]
