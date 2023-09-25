@@ -1,16 +1,20 @@
 import peg from 'pegjs';
-import { memoize } from '../utils/utils'
-import { calculateNormalisedPosition as pos } from '../utils/utils'
+import { 
+    memoize,
+    calculateNormalisedPosition as pos,
+    loopArray,
+} from '../utils/utils'
 import { getPattern } from './euclidean-rhythms'
 
 // Add to window for so that it can be accessed by parser syntax
 // @ts-ignore
 window.getPattern = getPattern
+// @ts-ignore
+window.loopArray = loopArray
 
-// TODO: is there a way we can write nicer JS using DRY principles?
 // TODO: parse chords and scales e.g. 'Cmaj7' => [0, 4, 7, 11] e.g. Clydian => [0, 2, 4, 5, 7, 9, 11]
+// TODO: number of unique bars to fill
 // TODO: parse note names e.g. 'C4' => 60
-// TODO: binary patterns e.g. '(^1000)*4' => [[1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]]
 // TODO: Rewrite Zen so it can handle notes that fall between the evaluations...
 
 /*
@@ -35,11 +39,12 @@ window.getPattern = getPattern
 * @example '4:16' => [[1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]] // euclidean rhythm
 * @example '3:8*2' => [[1, 0, 0, 1, 0, 0, 1, 0, 0], [1, 0, 0, 1, 0, 0, 1, 0, 0]] // euclidean rhythm
 * @example '(1 0*3)*4' => [[1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]] // group any of the above together, specify how many times the group should repeat in its entirety
+* @example '1 1 1?0--; b:8' // set the amount of bars generated to 8. Default is 1 or length of your pattern.
 */
 
 const parser = peg.generate(`
     result 
-        = bs:bars {
+        = bs:bars args:args? {
             const format = ({val, dur, type, repeats}) => {
                 if (type === 'group') return new Array(repeats).fill(0).map(() => val.map(format).flat()).flat()
                 if (type === 'choices') return new Array(dur).fill(0).map(() => val[Math.floor(Math.random() * val.length)])
@@ -49,11 +54,16 @@ const parser = peg.generate(`
                 return event.val
             }
 
-            return bs.map(bar => bar
+            const patternLength = args?.bars || bs.length || 1
+
+            return loopArray(bs, patternLength).map(bar => bar
                 .map(format).flat()
                 .map(s => Array.isArray(s) ? s.map(s => !isNaN(+s) ? +s : s) : !isNaN(+s) ? +s : s)
             )
     }
+
+    args
+        = space* ";"? space* bars:("b:" number)? space* ";"? space* { return {bars: bars && (bars[1])}; }
 
     bars 
         = bar+

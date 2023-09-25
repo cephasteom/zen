@@ -126,3 +126,13 @@ export function handleTypes(value: patternValue | Pattern | string, t: number, q
     if(typeof value === 'string') return parsePattern(value, t, q, id)
     return value
 }
+
+// loop items in array until array is of length n
+export function loopArray(arr: any[], n: number) {
+    let i = 0
+    while(arr.length < n) {
+        arr.push(arr[i])
+        i++
+    }
+    return arr
+}
