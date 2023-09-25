@@ -4,11 +4,13 @@ import {
     calculateNormalisedPosition as pos,
     loopArray,
 } from '../utils/utils'
+import { ntom } from '../utils/musical'
 import { euclidean } from './euclidean-rhythms'
 
 // Add functions to window for so that it can be accessed by parser syntax
-[euclidean, loopArray].forEach((fn: any) => window[fn.name] = fn)
+[euclidean, loopArray, ntom].forEach((fn: any) => window[fn.name] = fn)
 
+// TODO: test tasks using jest
 // TODO: parse chords and scales e.g. 'Cmaj7' => [0, 4, 7, 11] e.g. Clydian => [0, 2, 4, 5, 7, 9, 11]
 // TODO: number of unique bars to fill
 // TODO: parse note names e.g. 'C4' => 60
@@ -66,7 +68,7 @@ const parser = peg.generate(`
         = bar+
     
     bar 
-        = values:(group+ / event+) divider? space* { return values; }
+        = space* values:(group+ / event+) divider? space* { return values; }
     
     group
         = "(" space* val:event+ space* ")" repeats:duration? space* { return {val, repeats: repeats || 1, type: 'group'}; }
@@ -88,9 +90,7 @@ const parser = peg.generate(`
 
     single
         = !choose !alternate !seq !"^" !":" val:value dur:duration? !choose !alternate !seq !"^" !":" space* { return {val, dur: dur || 1, type: 'single'}; }
-
-    value 
-        = $[a-zA-Z0-9@]+ / $number+ / array 
+        
 
     sequence
         = start:$[0-9]+ seq end:$[0-9]+ type:(choose?) dur:duration? space* { 
@@ -111,7 +111,6 @@ const parser = peg.generate(`
                 repeats: dur || 1,
                 type: 'group'
             }
-            return e
         }
 
     binary
@@ -123,6 +122,12 @@ const parser = peg.generate(`
                 type: 'group'
             }
         }
+    
+    value 
+        = note / $[a-zA-Z0-9@]+ / $number+ / array         
+    
+    note
+        = note:[a-gA-G] accidental:("s" / "f")? octave:$[0-9]+ { return ntom(note + (accidental || ''), +octave) }        
 
     array 
         = "[" val:$(space* v:value space* ","?)+ "]" { return val.split(',').map(s => s.trim()) }

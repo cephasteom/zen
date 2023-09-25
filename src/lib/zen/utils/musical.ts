@@ -4,19 +4,25 @@ import { chords } from '../data/chords'
 
 export function letterToInteger(letter: string) {
     return { 
+        cf: -1,
         c: 0, 
         cs: 1, df: 1, 
         d: 2, 
         ds: 3, ef: 3, 
-        e: 4,
-        f: 5, 
+        e: 4, 
+        es: 5, f: 5, 
         fs: 6, gf:6, 
         g: 7, 
         gs: 8, af: 8,
         a: 9,
         as: 10, bf: 10,
-        b: 11
+        b: 11, bs: 12
     }[letter] || 0
+}
+
+// note name to midi number
+export function ntom(letter: string, octave: number = 4) {
+    return letterToInteger(letter) + (+octave * 12)
 }
 
 export const getScale = memoize((name: string) => {
