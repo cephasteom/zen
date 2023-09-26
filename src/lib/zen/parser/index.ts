@@ -15,6 +15,7 @@ import { euclidean } from './euclidean-rhythms'
 // TODO: number of unique bars to fill
 // TODO: parse note names e.g. 'C4' => 60
 // TODO: Rewrite Zen so it can handle notes that fall between the evaluations...
+// TODO: be able to handle sequences, binaries, euclidean rhythms, etc. in alteratives and choices
 
 /*
 * Simple pattern parser for generating music patterns
@@ -124,7 +125,7 @@ const parser = peg.generate(`
         }
     
     value 
-        = note / $[a-zA-Z0-9@]+ / $number+ / array         
+        = note / $[a-zA-Z0-9@]+ / $number+ / array
     
     note
         = note:[a-gA-G] accidental:("s" / "f")? octave:$[0-9]+ { return ntom(note + (accidental || ''), +octave) }   
