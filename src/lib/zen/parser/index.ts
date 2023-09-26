@@ -43,6 +43,7 @@ import { euclidean } from './euclidean-rhythms'
 */
 
 const parser = peg.generate(`
+    // PARSING
     result 
         = bs:bars args:args? {
             const format = ({val, dur, type, repeats}) => {
@@ -61,19 +62,12 @@ const parser = peg.generate(`
                 .map(s => Array.isArray(s) ? s.map(s => !isNaN(+s) ? +s : s) : !isNaN(+s) ? +s : s)
             )
     }
-
-    args
-        = space* ";"? space* bars:("b:" number)? space* ";"? space* { return {bars: bars && (bars[1])}; }
-
-    bars 
-        = bar+
     
-    bar 
-        = space* values:(group+ / event+) divider? space* { return values; }
-    
+    // GROUPING
     group
         = "(" space* val:event+ space* ")" repeats:duration? space* { return {val, repeats: repeats || 1, type: 'group'}; }
 
+    // COMPLEX TYPES
     event 
         = single / binary / euclidean / sequence / choices / alternatives
 
@@ -92,7 +86,6 @@ const parser = peg.generate(`
     single
         = !choose !alternate !seq !"^" !":" val:value dur:duration? !choose !alternate !seq !"^" !":" space* { return {val, dur: dur || 1, type: 'single'}; }
         
-
     sequence
         = start:$[0-9]+ seq end:$[0-9]+ type:(choose?) dur:duration? space* { 
         let step = +start < +end ? 1 : -1
@@ -124,18 +117,7 @@ const parser = peg.generate(`
             }
         }
     
-    value 
-        = note / $[a-zA-Z0-9@]+ / $number+ / array
-    
-    note
-        = note:[a-gA-G] accidental:("s" / "f")? octave:$[0-9]+ { return ntom(note + (accidental || ''), +octave) }   
-
-    array 
-        = "[" val:$(space* v:value space* ","?)+ "]" { return val.split(',').map(s => s.trim()) }
-
-    number 
-        = "-"? (([0-9]+ "." [0-9]*) / ("."? [0-9]+)) { return +text(); }
-
+    // TIME
     duration
         = count:(ticks / tick) { return count }
 
@@ -144,7 +126,33 @@ const parser = peg.generate(`
 
     tick 
         = "-"* { return text().length; }
+
+    // BASIC TYPES
+    args
+        = space* ";"? space* bars:("b:" number)? space* ";"? space* { return {bars: bars && (bars[1])}; }
+
+    bars 
+        = bar+
+    
+    bar 
+        = space* values:(group+ / event+) divider? space* { return values; }
+            
+    value 
+        = note / string / $number+ / array 
+
+    note
+        = n:[a-gA-G] a:("s" / "f")? o:$[0-9]+ { return ntom(n + (a || ''), +o) }   
+
+    array 
+        = "[" val:$(space* v:value space* ","?)+ "]" { return val.split(',').map(s => s.trim()) }
+
+    number 
+        = "-"? (([0-9]+ "." [0-9]*) / ("."? [0-9]+)) { return +text(); }
+
+    string
+        = $[a-zA-Z0-9@]+        
         
+    // SYMBOLS
     seq
         = ".." { return text(); }
 
