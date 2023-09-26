@@ -11,11 +11,8 @@ import { euclidean } from './euclidean-rhythms'
 [euclidean, loopArray, ntom].forEach((fn: any) => window[fn.name] = fn)
 
 // TODO: test tasks using jest
-// TODO: parse chords and scales e.g. 'Cmaj7' => [0, 4, 7, 11] e.g. Clydian => [0, 2, 4, 5, 7, 9, 11]
-// TODO: number of unique bars to fill
-// TODO: parse note names e.g. 'C4' => 60
 // TODO: Rewrite Zen so it can handle notes that fall between the evaluations...
-// TODO: be able to handle sequences, binaries, euclidean rhythms, etc. in alteratives and choices
+// TODO: scales/modes clydian. Be able to return entire scale/mode by wrapping in []
 
 /*
 * Simple pattern parser for generating music patterns
@@ -38,6 +35,8 @@ import { euclidean } from './euclidean-rhythms'
 * @example '^10001010*2' => [[1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0]] // binary pattern
 * @example '4:16' => [[1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]] // euclidean rhythm
 * @example '3:8*2' => [[1, 0, 0, 1, 0, 0, 1, 0, 0], [1, 0, 0, 1, 0, 0, 1, 0, 0]] // euclidean rhythm
+* @example 'd4 e4 f#4 g4 a4 b4 c#5 d5' => [[62, 64, 66, 67, 69, 71, 73, 74]] // notes
+* @example 'cmaj7' => [[60, 64, 67, 71]] // chords - root,type (maj,min,dim,aug),extension (7,#7,b9,9)
 * @example '(1 0*3)*4' => [[1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]] // group any of the above together, specify how many times the group should repeat in its entirety
 * @example '1 1 1?0--; b:8' // set the amount of bars generated to 8. Default is 1 or length of your pattern.
 */
