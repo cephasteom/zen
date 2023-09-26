@@ -172,6 +172,7 @@ export class Pattern {
         isTrigger && (this.set = this.trigger)
 
         // handle aliases
+        // TODO: aliases for dollar methods
         return new Proxy(this, {
             get: (target, prop) => {
                 // @ts-ignore
@@ -1230,6 +1231,17 @@ export class Pattern {
             return [...tail, ...head.map(n => n + 12)].map(n => n + (12 * Math.floor((+i%(length*4))/length)))
         })
         return this
+    }
+
+    /**
+     * Instantiate a new Pattern and use the resulting value to invert the previous chord in the pattern chain
+     * @returns {Pattern}
+     * @example s0.p.n.chords('d-dorian', 16).$inversion.saw(0,16,1)
+     */ 
+    get $inversion(): Pattern {
+        const pattern = new Pattern(this)
+        this._state.$.push({method: 'inversion', pattern})
+        return pattern
     }
 
     /**

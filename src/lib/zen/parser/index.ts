@@ -127,6 +127,67 @@ const parser = peg.generate(`
     tick 
         = "-"* { return text().length; }
 
+    // HARMONY
+    absolute_chord = base:note chord:chord_extended {
+        var result = [];
+        for (var e of chord) {
+            result.push(base + e);
+        }
+        return result;
+    }
+    
+    chord_extended = chord:chord variants:chord_variant* {
+        var last = chord[2];
+        for (var v of variants) {
+            chord.push(last + v);
+        }
+        return chord;
+    }
+    
+    chord_variant 
+        = "7" { return 3; }
+        / "#7" { return 4; }
+        / "b9" { return 6; }
+        / "9" { return 7; }
+    
+    chord
+        = "min" { return [0, 3, 7]; }
+        / "maj" { return [0, 4, 7]; }
+        / "dim" { return [0, 3, 6]; }
+        / "sus" { return [0, 5, 7]; } 
+        / "aug" { return [0, 4, 8]; }
+    
+    note = c:chroma a1:accidental a2:accidental o:octave { return c + a1 + a2 + o; }
+    
+    chroma = c:[a-gA-G] ![a-gA-G] { 
+        // return MIDI note offset from C:
+        switch(c.toUpperCase()) {
+            case "C": return 0; 
+            case "D": return 2; 
+            case "E": return 4; 
+            case "F": return 5; 
+            case "G": return 7; 
+            case "A": return 9; 
+            case "B": return 11; 
+        }
+    }
+    
+    // sharps and flats
+    accidental = a:[#b]? {
+        // return MIDI note offset:
+        switch(a) {
+            case "#": return +1;
+            case "b": return -1;
+            default: return 0;
+        }
+    }
+    
+    octave = n:$("-"? [0-9]+)? { 
+        return n 
+            ? 12 + (+n) * 12
+            : 60; // default to middle C
+    }
+
     // BASIC TYPES
     args
         = space* ";"? space* bars:("b:" number)? space* ";"? space* { return {bars: bars && (bars[1])}; }
@@ -138,10 +199,7 @@ const parser = peg.generate(`
         = space* values:(group+ / event+) divider? space* { return values; }
             
     value 
-        = note / string / $number+ / array 
-
-    note
-        = n:[a-gA-G] a:("s" / "f")? o:$[0-9]+ { return ntom(n + (a || ''), +o) }   
+        = absolute_chord / note / string / $number+ / array 
 
     array 
         = "[" val:$(space* v:value space* ","?)+ "]" { return val.split(',').map(s => s.trim()) }
