@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid'
 import type { Stream } from './Stream'
-import type { stack, patternValue, patternable } from '../types'
+import type { stack, patternValue, patternable, Dictionary } from '../types'
 import { 
     mapToRange, 
     roundToFactor, 
@@ -64,105 +64,105 @@ export class Pattern {
      * Shorthand aliases for pattern methods.
      * @example
      * {
-        add: 'a',
-        and: 'an',
-        bin: 'b',
-        btms: 'bm',
-        bts: 'bs',
-        chords: 'ch',
-        clamp: 'cl',
-        coin: 'c',
-        cosine: 'co',
-        curve: 'cu',
-        div: 'd',
-        divr: 'dr',
-        else: 'e',
+        a: 'add',
+        an: 'and',
+        b: 'bin',
+        bm: 'btms',
+        bs: 'bts',
+        ch: 'chords',
+        cl: 'clamp',
+        c: 'coin',
+        co: 'cosine',
+        cu: 'curve',
+        d: 'div',
+        dr: 'divr',
+        e: 'else',
         eq: 'eq',
-        every: 'ev',
-        if: 'i',
-        interpolate: 'intrp',
-        inversion: 'inv',
-        invert: 'in',
-        layer: 'la',
-        mod: 'mo',
-        mul: 'm',
-        not: 'n',
-        noise: 'no',
-        ntbin: 'nb',
-        or: 'o',
-        often: 'of',
-        parse: 'p',
-        pulse: 'pu',
-        random: 'rd',
-        range: 'ra',
-        rarely: 'r',
-        saw: 'sa',
-        scales: 'sc',
-        seq: 'se',
-        set: 'v',
-        sine: 'si',
-        square: 'sq',
-        step: 'st',
-        sometimes: 'so',
-        sub: 's',
-        subr: 'sr',
-        toggle: 't',
-        tri: 'tr',
-        trigger: 'trig',
-        tune: 'tu',
-        use: 'u',
-        xor: 'x',
-    }
+        ev: 'every',
+        i: 'if',
+        intrp: 'interpolate',
+        inv: 'inversion',
+        in: 'invert',
+        la: 'layer',
+        mo: 'mod',
+        m: 'mul',
+        n: 'not',
+        no: 'noise',
+        nb: 'ntbin',
+        o: 'or',
+        of: 'often',
+        p: 'parse',
+        pu: 'pulse',
+        rd: 'random',
+        ra: 'range',
+        r: 'rarely',
+        sa: 'saw',
+        sc: 'scales',
+        se: 'seq',
+        v: 'set',
+        si: 'sine',
+        sq: 'square',
+        st: 'step',
+        so: 'sometimes',
+        s: 'sub',
+        sr: 'subr',
+        t: 'toggle',
+        tr: 'tri',
+        trig: 'trigger',
+        tu: 'tune',
+        u: 'use',
+        x: 'xor'
+        }
     */ 
     aliases = {
-        add: 'a',
-        and: 'an',
-        bin: 'b',
-        btms: 'bm',
-        bts: 'bs',
-        chords: 'ch',
-        clamp: 'cl',
-        coin: 'c',
-        cosine: 'co',
-        curve: 'cu',
-        div: 'd',
-        divr: 'dr',
-        else: 'e',
+        a: 'add',
+        an: 'and',
+        b: 'bin',
+        bm: 'btms',
+        bs: 'bts',
+        ch: 'chords',
+        cl: 'clamp',
+        c: 'coin',
+        co: 'cosine',
+        cu: 'curve',
+        d: 'div',
+        dr: 'divr',
+        e: 'else',
         eq: 'eq',
-        every: 'ev',
-        if: 'i',
-        interpolate: 'intrp',
-        inversion: 'inv',
-        invert: 'in',
-        layer: 'la',
-        mod: 'mo',
-        mul: 'm',
-        not: 'n',
-        noise: 'no',
-        ntbin: 'nb',
-        or: 'o',
-        often: 'of',
-        parse: 'p',
-        pulse: 'pu',
-        random: 'rd',
-        range: 'ra',
-        rarely: 'r',
-        saw: 'sa',
-        scales: 'sc',
-        seq: 'se',
-        set: 'v',
-        sine: 'si',
-        square: 'sq',
-        step: 'st',
-        sometimes: 'so',
-        sub: 's',
-        subr: 'sr',
-        toggle: 't',
-        tri: 'tr',
-        trigger: 'trig',
-        tune: 'tu',
-        use: 'u',
-        xor: 'x',
+        ev: 'every',
+        i: 'if',
+        intrp: 'interpolate',
+        inv: 'inversion',
+        in: 'invert',
+        la: 'layer',
+        mo: 'mod',
+        m: 'mul',
+        n: 'not',
+        no: 'noise',
+        nb: 'ntbin',
+        o: 'or',
+        of: 'often',
+        p: 'parse',
+        pu: 'pulse',
+        rd: 'random',
+        ra: 'range',
+        r: 'rarely',
+        sa: 'saw',
+        sc: 'scales',
+        se: 'seq',
+        v: 'set',
+        si: 'sine',
+        sq: 'square',
+        st: 'step',
+        so: 'sometimes',
+        s: 'sub',
+        sr: 'subr',
+        t: 'toggle',
+        tr: 'tri',
+        trig: 'trigger',
+        tu: 'tune',
+        u: 'use',
+        x: 'xor',
     }
 
     /** @hidden */
@@ -172,21 +172,18 @@ export class Pattern {
         this.reset()
         this.combine = this.combine.bind(this);
         isTrigger && (this.set = this.trigger)
-        
-        // Set aliases
-        Object.entries(this.aliases).forEach(([method, alias]) => {
-            // @ts-ignore
-            this[alias] = this[method]
-            
-            // create dollar method for alias, TODO: do we have to create a new pattern for this?
-            Object.defineProperty(this, `$${alias}`, {
-                get: () => {
-                    const pattern = new Pattern(this)
-                    this._state.$.push({method: alias, pattern})
-                    return pattern
-                }
-            })
-        });
+
+        // handle aliases
+        return new Proxy(this, {
+            get: (target, prop) => {
+                // @ts-ignore
+                if (prop in target) return target[prop]
+                // @ts-ignore
+                if (prop in this.aliases) return target[this.aliases[prop]]
+                // @ts-ignore
+                return target[prop]
+            },
+        })
     }
 
     /**
