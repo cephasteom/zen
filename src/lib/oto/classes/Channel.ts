@@ -19,8 +19,11 @@ class Channel {
     }
 
     set(params: Dictionary, time: number) {
-        // TODO: replace params.dist with a reduce function
-        !this._fx && this._activity > 2 && params.dist > 0 && this.initFX()
+        if(!this._fx && this._activity > 2) {
+            const { dist = 0, ring = 0, chorus = 0, hicut = 0, locut = 0 } = params;
+            [dist, ring, chorus, hicut, locut].reduce((a, b) => a + b, 0) > 0 
+                && this.initFX()
+        }
         // Stagger the initialization of reverb and delay
         if(this._activity > 3) {
             params.reverb > 0 && !this._reverb && this.initReverb()
@@ -65,9 +68,7 @@ class Channel {
         input.connect(first?.input || _output)
         last?.connect(_output)
 
-        console.log(fx)
-        // TODO: connect existing fx in order
-        fx.reduce((prev, curr) => {
+        fx.filter(Boolean).reduce((prev, curr) => {
             prev && curr && prev.connect(curr.input)
             return curr
         }, null)
