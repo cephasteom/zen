@@ -13,7 +13,6 @@ import { euclidean } from './euclidean-rhythms'
 // TODO: test tasks using jest
 // TODO: Rewrite Zen so it can handle notes that fall between the evaluations...
 // TODO: scales/modes clydian. Be able to return entire scale/mode by wrapping in []
-// TODO: s2.v({in:1,ba:'gmsine',v:1}) not working - clash between note, chords and strings...
 
 /*
 * Simple pattern parser for generating music patterns
@@ -61,6 +60,15 @@ const parser = peg.generate(`
                 .map(s => Array.isArray(s) ? s.map(s => !isNaN(+s) ? +s : s) : !isNaN(+s) ? +s : s)
             )
     }
+
+    args
+        = space* ";"? space* bars:("b:" number)? space* ";"? space* { return {bars: bars && (bars[1])}; }
+
+    bars 
+        = bars:bar+ { return bars.map(bar => new Array(bar.repeats).fill(0).map(() => bar.bar)).flat() }
+    
+    bar 
+        = space* values:(group+ / event+) divider? repeats:duration? space* { return {bar: values, repeats: repeats || 1}; }    
     
     // GROUPING
     group
@@ -179,15 +187,6 @@ const parser = peg.generate(`
     }
 
     // BASIC TYPES
-    args
-        = space* ";"? space* bars:("b:" number)? space* ";"? space* { return {bars: bars && (bars[1])}; }
-
-    bars 
-        = bar+
-    
-    bar 
-        = space* values:(group+ / event+) divider? space* { return values; }
-            
     value 
         = absolute_chord / note / string / $number+ / array 
 
