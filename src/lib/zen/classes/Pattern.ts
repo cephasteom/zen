@@ -175,12 +175,12 @@ export class Pattern {
         // TODO: aliases for dollar methods
         return new Proxy(this, {
             get: (target, prop) => {
+                const isDollarMethod = prop.toString().startsWith('$')
+                const p = prop.toString().replace('$', '')
                 // @ts-ignore
-                if (prop in target) return target[prop]
+                const name = (isDollarMethod ? '$' : '') + this.aliases[p] || p
                 // @ts-ignore
-                if (prop in this.aliases) return target[this.aliases[prop]]
-                // @ts-ignore
-                return target[prop]
+                return target[name]
             },
         })
     }
