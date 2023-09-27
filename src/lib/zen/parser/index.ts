@@ -31,7 +31,7 @@ import { euclidean } from './euclidean-rhythms'
 * @example '[0,1,2,3],[4,5,6,7]----' => [[0,1,2,3],[4,5,6,7],[0,1,2,3],[4,5,6,7]] // can be used with alternate
 * @example '0..2----' => [[0, 1, 2, 0]] // sequence from 0 to 3
 * @example '3..0----' => [[3, 2, 1, 0]] // sequence from 3 to 0
-* @example '0..8' => [[0, 1, 2, 3, 4, 5, 6, 7, 8]] // takes the duration from the sequence
+* @example '0..8' => [[0, 1, 2, 3, 4, 5, 6, 7, 8]] // doesn't take the duration from the sequence, you need to specify a duration
 * @example '0..10?----' => [[1, 7, 6, 2]] // sequence with random choice
 * @example '4:16' => [[1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]] // euclidean rhythm
 * @example '3:8*2' => [[1, 0, 0, 1, 0, 0, 1, 0, 0], [1, 0, 0, 1, 0, 0, 1, 0, 0]] // euclidean rhythm
