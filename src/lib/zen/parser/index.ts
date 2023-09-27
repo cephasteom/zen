@@ -13,6 +13,7 @@ import { euclidean } from './euclidean-rhythms'
 // TODO: test tasks using jest
 // TODO: Rewrite Zen so it can handle notes that fall between the evaluations...
 // TODO: scales/modes clydian. Be able to return entire scale/mode by wrapping in []
+// TODO: s2.v({in:1,ba:'gmsine',v:1}) not working - clash between note, chords and strings...
 
 /*
 * Simple pattern parser for generating music patterns
@@ -35,8 +36,8 @@ import { euclidean } from './euclidean-rhythms'
 * @example '^10001010*2' => [[1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0]] // binary pattern
 * @example '4:16' => [[1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]] // euclidean rhythm
 * @example '3:8*2' => [[1, 0, 0, 1, 0, 0, 1, 0, 0], [1, 0, 0, 1, 0, 0, 1, 0, 0]] // euclidean rhythm
-* @example 'd4 e4 f#4 g4 a4 b4 c#5 d5' => [[62, 64, 66, 67, 69, 71, 73, 74]] // notes
-* @example 'cmaj7' => [[60, 64, 67, 71]] // chords - root,type (maj,min,dim,aug),extension (7,#7,b9,9)
+* @example 'D4 E4 F#4 G4 A4 B4 C#5 D5' => [[62, 64, 66, 67, 69, 71, 73, 74]] // notes - always use capital letters for notes to distinguish them from sample names
+* @example 'Cmaj7' => [[60, 64, 67, 71]] // chords - root,type (maj,min,dim,aug),extension (7,#7,b9,9). Again, always capitalise the root note
 * @example '(1 0*3)*4' => [[1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]] // group any of the above together, specify how many times the group should repeat in its entirety
 * @example '1 1 1?0--; b:8' // set the amount of bars generated to 8. Default is 1 or length of your pattern.
 */
@@ -158,9 +159,10 @@ const parser = peg.generate(`
     
     note = c:chroma a1:accidental a2:accidental o:octave { return c + a1 + a2 + o; }
     
-    chroma = c:[a-gA-G] ![a-gA-G] { 
+    // notes/chords roots are always capitalised, to distinguish them from sample names
+    chroma = c:[A-G] { 
         // return MIDI note offset from C:
-        switch(c.toUpperCase()) {
+        switch(c) {
             case "C": return 0; 
             case "D": return 2; 
             case "E": return 4; 
@@ -207,7 +209,7 @@ const parser = peg.generate(`
         = "-"? (([0-9]+ "." [0-9]*) / ("."? [0-9]+)) { return +text(); }
 
     string
-        = $[a-zA-Z0-9@]+        
+        = [a-zA-Z0-9@]+ { return text(); }
         
     // SYMBOLS
     seq
@@ -233,7 +235,6 @@ export const parsePattern = (pattern: string, t: number, q: number, id: string, 
     let position = pos(t, q, 1, array.length)
     let bar = Math.trunc(position)
     let beat = (position % 1) * array[bar].length
-    
     // if round is true, round the beat down to the nearest integer so that it always returns a value
     // if round is false, return the value at the exact beat, or return a 0
     beat = round ? Math.floor(beat) : beat
