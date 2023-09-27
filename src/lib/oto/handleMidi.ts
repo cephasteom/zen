@@ -28,8 +28,6 @@ export function handleMidiEvent(delta: number, id: string, params: Dictionary) {
         midiStreams[`s${id}`]?.cut(delta);
     });
 
-    console.log(midi)
-
     // handle multiple midi devices
     midi !== undefined && [midi].flat().forEach((midi: string, instIndex: number) => {
         // handle multiple notes

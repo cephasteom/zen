@@ -1,6 +1,6 @@
 import type { Dictionary } from "../types";
 import { Split, context } from 'tone'
-import { CtFXChain } from "../ct-synths"
+import { CtFXChannel } from "../ct-synths"
 
 class Channel {
     _fx
@@ -10,7 +10,7 @@ class Channel {
         split.connect(destination, 0, channel)
         split.connect(destination, 1, channel+1)
 
-        this._fx = new CtFXChain()
+        this._fx = new CtFXChannel()
         this._fx.connect(split)
         this.input = this._fx.input
     }
