@@ -100,9 +100,9 @@ z.t.sine(0,128,1) // t is an instance of Pattern, so you can have some serious f
     <section class="Midi">
         <h2>Midi <button on:click={() => handleExpand('midi')}><Icon data="{faCaretDown}" /></button></h2>
         <div class="expandable{expanded === 'midi' ? '--expanded' : ''}">
-            <p>Midi is simple to use in Zen. On page load, all available midi inputs and outputs are printed in your console for reference. These strings can be assigned to a stream's <code class="inline-code">midi</code> parameter in order to send messages to that device. The following parameters control midi routing in Zen:</p>
+            <p>Midi is simple to use in Zen. On page load, all available midi inputs and outputs are printed in your console for reference. These index of the device you wish to use should be assigned to a stream's <code class="inline-code">midi</code> parameter. The following parameters control midi routing in Zen:</p>
             <ul>
-                <li><code class="inline-code">midi</code> the midi device to send messages to.</li>
+                <li><code class="inline-code">midi</code> the midi device to send messages to (passed as an index).</li>
                 <li><code class="inline-code">midichan</code> the midi channel to send messages to. Sends to all channels if not included.</li>
                 <li><code class="inline-code">mididelay</code> delay midi messages by n milliseconds. Useful for synchronising midi and audio.</li>
                 <li><code class="inline-code">cc1</code>, <code class="inline-code">cc2</code> etc. Send control change messages. If you wish to use more memorable names, you can map keys to other keys using a stream's map property. See Classes > Stream > map. CC values are normalised (0 - 1).</li>

@@ -1,6 +1,6 @@
 import { WebMidi, Output } from "webmidi";
 import { mapToStepRange } from '../utils/utils'
-import type { params, Dictionary } from '../types'
+import type { params } from '../types'
 
 class Midi {
     history: any = {}
@@ -47,12 +47,12 @@ class Midi {
     trigger(params: { [key: string]: number | string } = {}, delta: number) {
         const { midi, midichan, mididelay = 0, n, dur = 1000, amp = 0.5, nudge = 0 } = params;
 
-        // ignore nonexistent devices
-        if(!this.outputs.includes(midi.toString())) return;
+        const name = this.outputs[midi]
+        if(!name) return;
 
         const note = n || 60;
         const channels = midichan ? (Array.isArray(midichan) ? midichan : [+midichan]) : undefined;
-        const device = WebMidi.getOutputByName(midi.toString());
+        const device = WebMidi.getOutputByName(name);
         const timestamp = (delta * 1000) + +mididelay + +nudge
 
         const options = {
