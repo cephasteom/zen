@@ -206,10 +206,11 @@ const parser = peg.generate(`
         = "[" val:$(space* v:value space* ","?)+ "]" { return val.split(',').map(s => s.trim()) }
 
     number 
-        = "-"? (([0-9]+ "." [0-9]*) / ("."? [0-9]+)) { return +text(); }
+        = "-"? (([0-9]+ !seq "." [0-9]*) / ("."? [0-9]+)) { return +text() }
 
+    // must start with a letter, can contain numbers
     string
-        = [a-zA-Z0-9@]+ { return text(); }
+        = [a-zA-Z]+ [a-zA-Z0-9]* { return text(); }
         
     // SYMBOLS
     seq
