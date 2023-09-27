@@ -180,7 +180,9 @@ export class Pattern {
                 // @ts-ignore
                 const name = (isDollarMethod ? '$' : '') + this.aliases[p] || p
                 // @ts-ignore
-                return target[name]
+                if (name in target) return target[name]
+                // @ts-ignore
+                return target[prop]
             },
         })
     }
