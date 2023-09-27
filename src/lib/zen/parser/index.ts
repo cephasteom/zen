@@ -33,7 +33,6 @@ import { euclidean } from './euclidean-rhythms'
 * @example '3..0----' => [[3, 2, 1, 0]] // sequence from 3 to 0
 * @example '0..8' => [[0, 1, 2, 3, 4, 5, 6, 7, 8]] // takes the duration from the sequence
 * @example '0..10?----' => [[1, 7, 6, 2]] // sequence with random choice
-* @example '^10001010*2' => [[1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0]] // binary pattern
 * @example '4:16' => [[1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]] // euclidean rhythm
 * @example '3:8*2' => [[1, 0, 0, 1, 0, 0, 1, 0, 0], [1, 0, 0, 1, 0, 0, 1, 0, 0]] // euclidean rhythm
 * @example 'D4 E4 F#4 G4 A4 B4 C#5 D5' => [[62, 64, 66, 67, 69, 71, 73, 74]] // notes - always use capital letters for notes to distinguish them from sample names
@@ -69,7 +68,7 @@ const parser = peg.generate(`
 
     // COMPLEX TYPES
     event 
-        = single / binary / euclidean / sequence / choices / alternatives
+        = single / euclidean / sequence / choices / alternatives
 
     choices 
         = arr:choice+ dur:duration space* { return {val: arr, dur: dur || 1, type: 'choices'}; }
@@ -92,7 +91,7 @@ const parser = peg.generate(`
         let size = Math.abs(+end - +start + step)
         return {
             val: new Array(size).fill(0).map((_, i) => +start + i * step), 
-            dur: dur || size, 
+            dur: dur || 1, 
             type: type === '?' ? 'choices' : 'alternatives'
         }
     }
@@ -102,16 +101,6 @@ const parser = peg.generate(`
             const val = euclidean(+pulses, +steps).map(v => ({val: v, dur: 1, type: 'single'}))
             return {
                 val,
-                repeats: dur || 1,
-                type: 'group'
-            }
-        }
-
-    binary
-        = "^" val:(number+) dur:duration? space* { 
-            const bin = val[0].toString().split('')
-            return {
-                val: bin.map(v => ({val: +v > 0 ? 1 : 0, dur: 1, type: 'single'})),
                 repeats: dur || 1,
                 type: 'group'
             }
