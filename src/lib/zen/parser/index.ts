@@ -208,9 +208,9 @@ const parser = peg.generate(`
     number 
         = "-"? (([0-9]+ !seq "." [0-9]*) / ("."? [0-9]+)) { return +text() }
 
-    // must start with a letter, can contain numbers
+    // must start with a letter, can contain numbers, ., -, _
     string
-        = [a-zA-Z]+ [a-zA-Z0-9]* { return text(); }
+        = [a-zA-Z]+ [a-zA-Z0-9.-_]* { return text(); }
         
     // SYMBOLS
     seq
