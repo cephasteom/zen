@@ -7,6 +7,7 @@ class Channel {
     _delay
     input
     _output
+    _activity = 0
     constructor(destination: any, channel: number) {
         this._output = new Split({context, channels: 2})
         this._output.connect(destination, 0, channel)
@@ -20,11 +21,15 @@ class Channel {
     }
 
     set(params: Dictionary, time: number) {
-        params.reverb > 0 && !this._reverb && this.initReverb()
-        params.delay > 0 && !this._delay && this.initDelay()
+        // Stagger the initialization of reverb and delay
+        if(this._activity > 3) {
+            params.reverb > 0 && !this._reverb && this.initReverb()
+            params.delay > 0 && !this._delay && this.initDelay()
+        }
         this._fx.set(params, time)
         this._reverb && this._reverb.set(params, time)
         this._delay && this._delay.set(params, time)
+        this._activity <= 3 && this._activity++
     }
 
     mutate(params: Dictionary, time: number, lag: number) {
@@ -32,7 +37,6 @@ class Channel {
     }
 
     initDelay() {
-        console.log('init delay')
         this._delay = new CtFXDelay()
         this._fx.connect(this._delay.input)
         this._reverb
