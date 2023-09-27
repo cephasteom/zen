@@ -8,7 +8,14 @@ const instMap = [ 'synth', 'sampler', 'granular', 'additive', 'acid', 'drone', '
 
 const channelCount = output.numberOfInputs
 const channels: Dictionary = {
-    0: new Channel(output, 0%channelCount)
+    0: new Channel(output, 0%channelCount),
+    2: new Channel(output, 2%channelCount),
+    4: new Channel(output, 4%channelCount),
+    6: new Channel(output, 6%channelCount),
+    8: new Channel(output, 8%channelCount),
+    10: new Channel(output, 10%channelCount),
+    12: new Channel(output, 12%channelCount),
+    14: new Channel(output, 14%channelCount),
 }
 
 // const synths: Dictionary = {}
