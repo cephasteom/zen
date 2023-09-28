@@ -1,8 +1,11 @@
 import type { Dictionary } from '../types'
 
+
+// N.B. maj, min, dim, and aug are reserved for chord names. 
+// Therefore, ma, mi, di, au should be used instead.
 const aliases: Dictionary = {
-    minpen: 'minpent',
-    majpen: 'majpent',
+    mpent: 'minpent',
+    pent: 'majpent',
     rit: 'ritusen',
     egy: 'egyptian',
     kum: 'kumai',
@@ -146,6 +149,14 @@ const list: Dictionary = {
 
 export const scales: Dictionary = { 
     ...list, 
+    ...Object.entries(aliases).reduce((acc, [key, value]) => ({
+        ...acc,
+        [key]: list[value]
+    }), {})
+}
+
+// For use in the parser
+export const modes: Dictionary = {
     ...Object.entries(aliases).reduce((acc, [key, value]) => ({
         ...acc,
         [key]: list[value]

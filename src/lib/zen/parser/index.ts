@@ -6,9 +6,14 @@ import {
 } from '../utils/utils'
 import { ntom } from '../utils/musical'
 import { euclidean } from './euclidean-rhythms'
+import { modes } from '../data/scales'
 
 // Add functions to window for so that it can be accessed by parser syntax
 [euclidean, loopArray, ntom].forEach((fn: any) => window[fn.name] = fn)
+
+const scaleTypes: string = Object.entries(modes).reduce((grammar: string, [key, scale], i, arr) => {
+    return grammar + `"${key}" { return [${scale.join()}]; } ` + (i === arr.length - 1 ? '' : '/ ')
+},'')
 
 // TODO: test tasks using jest
 // TODO: Rewrite Zen so it can handle notes that fall between the evaluations...
@@ -76,7 +81,7 @@ const parser = peg.generate(`
 
     // COMPLEX TYPES
     event 
-        = single / euclidean / sequence / choices / alternatives
+        = scale / single  / euclidean / sequence / choices / alternatives
 
     choices 
         = arr:choice+ dur:duration space* { return {val: arr, dur: dur || 1, type: 'choices'}; }
@@ -153,6 +158,26 @@ const parser = peg.generate(`
         / "dim" { return [0, 3, 6]; }
         / "sus" { return [0, 5, 7]; } 
         / "aug" { return [0, 4, 8]; }
+
+    scale
+        = base:note scaleprefix scale:scale_type seq:seq? type:(choose?) dur:duration? space* { 
+            const arr = scale.map(n => n + base)
+            console.log(arr, base)
+            return seq ? 
+            {
+                val: arr, 
+                dur: dur || 1, 
+                type: type === '?' ? 'choices' : 'alternatives'
+            }
+            : {
+                val: arr, 
+                dur: dur || 1, 
+                type: 'single'
+            }
+        }
+
+    scale_type
+        = ` + scaleTypes + `
     
     note = c:chroma a1:accidental a2:accidental o:octave { return c + a1 + a2 + o; }
     
@@ -201,6 +226,9 @@ const parser = peg.generate(`
         = [a-zA-Z]+ [a-zA-Z0-9.-_]* { return text(); }
         
     // SYMBOLS
+    scaleprefix
+        = "~" { return text(); }
+
     seq
         = ".." { return text(); }
 
@@ -221,6 +249,7 @@ const parse = memoize((pattern: string, _: string): string|number|[][] => parser
 
 export const parsePattern = (pattern: string, t: number, q: number, id: string, round=true) => {
     const array = parse(pattern, id)
+    console.log(array)
     let position = pos(t, q, 1, array.length)
     let bar = Math.trunc(position)
     let beat = (position % 1) * array[bar].length
