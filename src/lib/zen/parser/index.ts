@@ -81,7 +81,7 @@ const parser = peg.generate(`
 
     // COMPLEX TYPES
     event 
-        = scale / single  / euclidean / sequence / choices / alternatives
+        = absolute_chord / scale / single  / euclidean / sequence / choices / alternatives
 
     choices 
         = arr:choice+ dur:duration space* { return {val: arr, dur: dur || 1, type: 'choices'}; }
@@ -130,12 +130,19 @@ const parser = peg.generate(`
         = "-"* { return text().length; }
 
     // HARMONY
-    absolute_chord = base:note chord:chord_extended {
-        var result = [];
-        for (var e of chord) {
-            result.push(base + e);
+    absolute_chord = base:note chord:chord_extended seq:seq? type:(choose?) dur:duration? space*  {
+        const arr = chord.map(n => n + base)
+        return seq ? 
+        {
+            val: arr, 
+            dur: dur || 1, 
+            type: type === '?' ? 'choices' : 'alternatives'
         }
-        return result;
+        : {
+            val: arr, 
+            dur: dur || 1, 
+            type: 'single'
+        }
     }
     
     chord_extended = chord:chord variants:chord_variant* {
@@ -153,16 +160,15 @@ const parser = peg.generate(`
         / "9" { return 7; }
     
     chord
-        = "min" { return [0, 3, 7]; }
-        / "maj" { return [0, 4, 7]; }
-        / "dim" { return [0, 3, 6]; }
-        / "sus" { return [0, 5, 7]; } 
-        / "aug" { return [0, 4, 8]; }
+        = "mi" { return [0, 3, 7]; }
+        / "ma" { return [0, 4, 7]; }
+        / "di" { return [0, 3, 6]; }
+        / "su" { return [0, 5, 7]; } 
+        / "au" { return [0, 4, 8]; }
 
     scale
         = base:note scaleprefix scale:scale_type seq:seq? type:(choose?) dur:duration? space* { 
             const arr = scale.map(n => n + base)
-            console.log(arr, base)
             return seq ? 
             {
                 val: arr, 
@@ -213,7 +219,7 @@ const parser = peg.generate(`
 
     // BASIC TYPES
     value 
-        = absolute_chord / note / string / $number+ / array 
+        = note / string / $number+ / array 
 
     array 
         = "[" val:$(space* v:value space* ","?)+ "]" { return val.split(',').map(s => s.trim()) }

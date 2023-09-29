@@ -1254,7 +1254,10 @@ export class Pattern {
      * @example s0.p.n.scales('d-dorian',16,1,1).at(t%16)
      */ 
     at(n: patternable): Pattern {
-        this.stack.push(x => [x].flat()[+this.handleTypes(n)])
+        this.stack.push(x => {
+            const arr = [x].flat()
+            return arr[+this.handleTypes(n)%arr.length]
+        })
         return this
     }
 
