@@ -4,12 +4,12 @@ import {
     calculateNormalisedPosition as pos,
     loopArray,
 } from '../utils/utils'
-import { ntom } from '../utils/musical'
+import { ntom, repeatScale } from '../utils/musical'
 import { euclidean } from './euclidean-rhythms'
 import { modes } from '../data/scales'
 
 // Add functions to window for so that it can be accessed by parser syntax
-[euclidean, loopArray, ntom].forEach((fn: any) => window[fn.name] = fn)
+[euclidean, loopArray, ntom, repeatScale].forEach((fn: any) => window[fn.name] = fn)
 
 const scaleTypes: string = Object.entries(modes).reduce((grammar: string, [key, scale], i, arr) => {
     return grammar + `"${key}" { return [${scale.join()}]; } ` + (i === arr.length - 1 ? '' : '/ ')
@@ -17,7 +17,6 @@ const scaleTypes: string = Object.entries(modes).reduce((grammar: string, [key, 
 
 // TODO: test tasks using jest
 // TODO: Rewrite Zen so it can handle notes that fall between the evaluations...
-// TODO: scales/modes clydian. Be able to return entire scale/mode by wrapping in []
 
 /*
 * Simple pattern parser for generating music patterns
@@ -40,7 +39,9 @@ const scaleTypes: string = Object.entries(modes).reduce((grammar: string, [key, 
 * @example '4:16' => [[1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]] // euclidean rhythm
 * @example '3:8*2' => [[1, 0, 0, 1, 0, 0, 1, 0, 0], [1, 0, 0, 1, 0, 0, 1, 0, 0]] // euclidean rhythm
 * @example 'D4 E4 F#4 G4 A4 B4 C#5 D5' => [[62, 64, 66, 67, 69, 71, 73, 74]] // notes - always use capital letters for notes to distinguish them from sample names
-* @example 'Cmaj7' => [[60, 64, 67, 71]] // chords - root,type (maj,min,dim,aug),extension (7,#7,b9,9). Again, always capitalise the root note
+* @example 'Cma7' => [[60, 64, 67, 71]] // chords - root,type (ma,mi,di,au,su),extension (7,#7,b9,9). Again, always capitalise the root note
+* @example 'Cma7..*16' => [[60, 64, 67, 71, 60, 64, 67, 71, 60, 64, 67, 71, 60, 64, 67, 71]] // turn chord into a sequence and specify duration
+* @example 'Cma7..*16?----' => [[60, 64, 67, 71, 60, 64, 67, 71, 60, 64, 67, 71, 60, 64, 67, 71]] // turn chord into a sequence and specify duration and random choice
 * @example '(1 0*3)*4' => [[1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]] // group any of the above together, specify how many times the group should repeat in its entirety
 * @example '1 1 1?0--; b:8' // set the amount of bars generated to 8. Default is 1 or length of your pattern.
 */
@@ -81,7 +82,7 @@ const parser = peg.generate(`
 
     // COMPLEX TYPES
     event 
-        = absolute_chord / scale / single  / euclidean / sequence / choices / alternatives
+        = scale / absolute_chord / single  / euclidean / sequence / choices / alternatives
 
     choices 
         = arr:choice+ dur:duration space* { return {val: arr, dur: dur || 1, type: 'choices'}; }
@@ -130,8 +131,8 @@ const parser = peg.generate(`
         = "-"* { return text().length; }
 
     // HARMONY
-    absolute_chord = base:note chord:chord_extended seq:seq? type:(choose?) dur:duration? space*  {
-        const arr = chord.map(n => n + base)
+    absolute_chord = base:note chord:chord_extended l:length? seq:seq? type:(choose?) dur:duration? space*  {
+        const arr = repeatScale(chord.map(n => n + base), l || chord.length)
         return seq ? 
         {
             val: arr, 
@@ -167,8 +168,8 @@ const parser = peg.generate(`
         / "au" { return [0, 4, 8]; }
 
     scale
-        = base:note scaleprefix scale:scale_type seq:seq? type:(choose?) dur:duration? space* { 
-            const arr = scale.map(n => n + base)
+        = base:note scale:scale_type l:length? seq:seq? type:(choose?) dur:duration? space* { 
+            const arr = repeatScale(scale.map(n => n + base), l || scale.length)
             return seq ? 
             {
                 val: arr, 
@@ -232,9 +233,8 @@ const parser = peg.generate(`
         = [a-zA-Z]+ [a-zA-Z0-9.-_]* { return text(); }
         
     // SYMBOLS
-    scaleprefix
-        = "~" { return text(); }
-
+    length
+        = "%" l:number { return l; }
     seq
         = ".." { return text(); }
 
@@ -255,7 +255,8 @@ const parse = memoize((pattern: string, _: string): string|number|[][] => parser
 
 export const parsePattern = (pattern: string, t: number, q: number, id: string, round=true) => {
     const array = parse(pattern, id)
-    console.log(array)
+    // console.log(array)
+    // return 0
     let position = pos(t, q, 1, array.length)
     let bar = Math.trunc(position)
     let beat = (position % 1) * array[bar].length

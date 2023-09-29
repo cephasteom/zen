@@ -40,3 +40,12 @@ export const getChord = memoize((name: string) => {
     const rootIndex = letterToInteger(root)
     return notes.map((n: number) => n + rootIndex)
 })
+
+// when passed an array containing 1 octave of a scale, repeat the scale until it reaches the specified length
+export function repeatScale(arr: number[], n: number): number[] {
+    const repetitions = Math.ceil(n / arr.length);
+    return Array(repetitions)
+        .fill(arr)
+        .map((arr: number[], i: number) => arr.map((n: number) => n + (i * 12)))
+        .flat().slice(0, n);
+  }
