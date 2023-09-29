@@ -19,7 +19,8 @@
     const drawCanvas = (data: Uint8Array) => {
         
         for(let i = 0; i < s*s; i++) {
-            if(isEqual(data, i*4)) continue;
+            // TODO: fix this so we don't have to redraw every pixel
+            // if(isEqual(data, i*4)) continue;
             const x = Math.floor((i % s) * px);
             const y = Math.floor(i / s) * px;
             const r = data[i*4];
@@ -38,10 +39,7 @@
         canvasCtx && (canvasCtx.fillStyle = "#262626");
         canvasCtx?.fillRect(0, 0, s*px, s*px);
         
-        visualsData.subscribe(data => {
-            s = Math.sqrt(data.length / 4);
-            drawCanvas(data);
-        });
+        visualsData.subscribe(drawCanvas);
     })
 </script>
 
