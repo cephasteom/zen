@@ -1,7 +1,5 @@
-import { writable, derived, get } from 'svelte/store';
-import { addAction, addErrorAction } from '../zen';
-import { handleEvent, handleMutation } from '../oto';
-import type { ActionArgs } from '../zen/types';
+import { writable, get } from 'svelte/store';
+import '../oto';
 
 export const editorValue = writable('');
 export const t = writable(0); // time
@@ -13,8 +11,12 @@ export const isPlaying = writable(false);
 
 export const visualsData = writable<Uint8Array>(new Uint8Array(16 * 16 * 4));
 
-addAction((args: ActionArgs) => {
-    const { t: time, c: cycle, q: quant, s: size, events, mutations, delta, v } = args;
+const channel = new BroadcastChannel('zen');
+
+// Listen for error messages from Zen
+channel.onmessage = ({data: {error: message, action}}) => {
+    if(message && (get(error) !== message)) return error.set(message);
+    const { t: time, c: cycle, q: quant, s: size, delta, v } = action;
     setTimeout(() => {
         t.set(time);
         c.set(cycle);
@@ -22,20 +24,4 @@ addAction((args: ActionArgs) => {
         s.set(size);
         visualsData.set(v);
     }, delta * 1000);
-})
-
-addAction((args: ActionArgs) => {
-    const { time, delta, events, mutations } = args;
-    events.forEach(({id, eparams}) => {
-        handleEvent(time, delta, id, eparams);
-    })
-
-    mutations.forEach(({id, mparams}) => {
-        handleMutation(time, delta, id, mparams);
-    }
-)})
-
-addErrorAction((message: string) => {
-    // if error does not equal message, set error
-    get(error) !== message && error.set(message);
-})
+}

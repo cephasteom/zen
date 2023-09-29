@@ -14,15 +14,7 @@ export const setCode = (str: string) => {
     code.set(str)
 };
 
-export const actions = writable<action[]>([])
-export const addAction = (cb: action) => {
-    actions.update((arr: action[]) => [...arr, cb])
-}
-
-export const errorActions = writable<{(message: string) : void}[]>([])
-export const addErrorAction = (cb: (message: string) => void) => {
-    errorActions.update((arr: {(message: string) : void}[]) => [...arr, cb])
-}
+const channel = new BroadcastChannel('zen')
 
 // Fetch data
 let d: any = {}
@@ -74,7 +66,7 @@ const loop = new Loop(time => {
         eval(thisCode)
         lastCode.set(thisCode)
     } catch (e: any) {
-        get(errorActions).forEach(cb => cb(e.message))
+        channel.postMessage({ error: e.message })
         eval(get(lastCode))
     }
     
@@ -105,7 +97,7 @@ const loop = new Loop(time => {
     // call actions
     const delta = (time - immediate())
     const args = { time, delta, t, s, q, c, events, mutations, v: vis }
-    get(actions).forEach((cb: action) => cb(args))
+    channel.postMessage({ action: args })
 
 }, `${z.q}n`).start(0)
 
