@@ -41,7 +41,10 @@ const scaleTypes: string = Object.entries(modes).reduce((grammar: string, [key, 
 * @example 'D4 E4 F#4 G4 A4 B4 C#5 D5' => [[62, 64, 66, 67, 69, 71, 73, 74]] // notes - always use capital letters for notes to distinguish them from sample names
 * @example 'Cma7' => [[60, 64, 67, 71]] // chords - root,type (ma,mi,di,au,su),extension (7,#7,b9,9). Again, always capitalise the root note
 * @example 'Cma7..*16' => [[60, 64, 67, 71, 60, 64, 67, 71, 60, 64, 67, 71, 60, 64, 67, 71]] // turn chord into a sequence and specify duration
-* @example 'Cma7..*16?----' => [[60, 64, 67, 71, 60, 64, 67, 71, 60, 64, 67, 71, 60, 64, 67, 71]] // turn chord into a sequence and specify duration and random choice
+* @example 'Cma7..?*16' => [[60, 64, 67, 71, 60, 64, 67, 71, 60, 64, 67, 71, 60, 64, 67, 71]] // turn chord into a sequence and specify duration and random choice
+* @example 'Cma69' => you can use any combination of extensions
+* @example 'Clyd..*16' => [[60, 62, 64, 66, 67, 69, 71, 73, 60, 62, 64, 66, 67, 69, 71, 73]] // turn scale into a sequence and specify duration. Treat scales and chords the same, both return an array which can be turned into a sequence or played in unison
+* @example 'Clyd%4..?*16' => take first 4 notes from scale, turn into a sequence, random choice, repeat 16 times. You can do the same with chords
 * @example '(1 0*3)*4' => [[1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]] // group any of the above together, specify how many times the group should repeat in its entirety
 * @example '1 1 1?0--; b:8' // set the amount of bars generated to 8. Default is 1 or length of your pattern.
 */
@@ -147,18 +150,23 @@ const parser = peg.generate(`
     }
     
     chord_extended = chord:chord variants:chord_variant* {
-        var last = chord[2];
+        const root = chord[0]
         for (var v of variants) {
-            chord.push(last + v);
+            chord.push(root + v);
         }
         return chord;
     }
     
     chord_variant 
-        = "7" { return 3; }
-        / "#7" { return 4; }
-        / "b9" { return 6; }
-        / "9" { return 7; }
+        = "6" { return 9; }
+        / "7" { return 10; }
+        / "#7" { return 11; }
+        / "b9" { return 13; }
+        / "9" { return 14; }
+        / "11" { return 17; }
+        / "#11" { return 18; }
+        / "13" { return 21; }
+        / "#13" { return 22; } 
     
     chord
         = "mi" { return [0, 3, 7]; }

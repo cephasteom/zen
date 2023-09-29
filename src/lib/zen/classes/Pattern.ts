@@ -172,9 +172,11 @@ export class Pattern {
         isTrigger && (this.set = this.trigger)
 
         // handle aliases
-        // TODO: aliases for dollar methods
         return new Proxy(this, {
             get: (target, prop) => {
+                // @ts-ignore
+                if (prop in target) return target[prop]
+
                 const isDollarMethod = prop.toString().startsWith('$')
                 const p = prop.toString().replace('$', '')
                 // @ts-ignore
