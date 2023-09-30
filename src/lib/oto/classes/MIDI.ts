@@ -31,8 +31,8 @@ class Midi {
         this.history = history
     }
 
-    getCCsFromParams(params: { [key: string]: number | string } = {}): {}[] {
-        return Object.keys(params).reduce((arr: {}[], key: string) => {
+    getCCsFromParams(params: { [key: string]: number | string } = {}): {cc: number, value: number}[] {
+        return Object.keys(params).reduce((arr: {cc: number, value: number}[], key: string) => {
             const isCC = key.startsWith('cc')
             return isCC
                 ? [...arr, {
@@ -47,7 +47,7 @@ class Midi {
     trigger(params: { [key: string]: number | string } = {}, delta: number) {
         const { midi, midichan, mididelay = 0, n, dur = 1000, amp = 0.5, nudge = 0 } = params;
 
-        const name = this.outputs[midi]
+        const name = this.outputs[+midi]
         if(!name) return;
 
         const note = n || 60;
@@ -124,7 +124,7 @@ class Midi {
             this.history.device.sendControlChange(cc, !prev[value] ? 0 : value, options)
         })
 
-        this.storeHistory([], ccs);
+        this.storeHistory(0, ccs);
     }
 }
 export default Midi;

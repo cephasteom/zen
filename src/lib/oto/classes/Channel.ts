@@ -3,9 +3,9 @@ import { Split, Gain, context } from 'tone'
 import { CtFXChannel, CtFXReverb, CtFXDelay } from "../ct-synths"
 class Channel {
     input
-    _fx
-    _reverb
-    _delay
+    _fx: any
+    _reverb: any
+    _delay: any
     _output
     _activity = 0
     constructor(destination: any, channel: number) {
@@ -36,7 +36,7 @@ class Channel {
     }
 
     mutate(params: Dictionary, time: number, lag: number) {
-        this._fx.mutate(params, time, lag)
+        this._fx?.mutate(params, time, lag)
     }
 
     initFX() {

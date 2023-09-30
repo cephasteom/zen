@@ -8,10 +8,12 @@ const channel = new BroadcastChannel('zen');
 channel.onmessage = ({data: {type, data}}) => {
     if(type !== 'action') return
     const { time, delta, events, mutations } = data;
+    // @ts-ignore
     events.forEach(({id, eparams}) => {
         handleEvent(time, delta, id, eparams);
     })
-
+    
+    // @ts-ignore
     mutations.forEach(({id, mparams}) => {
         handleMutation(time, delta, id, mparams);
     })
