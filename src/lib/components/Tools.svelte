@@ -1,14 +1,19 @@
 <script lang="ts">
     import Icon from 'svelte-awesome';
-    import { faPlay, faStop, faFloppyDisk, faCode } from '@fortawesome/free-solid-svg-icons';
+    import { faPlay, faStop, faFloppyDisk, faCode, faBorderAll } from '@fortawesome/free-solid-svg-icons';
     import { play, stop } from '$lib/zen';
-    import { isPlaying } from '$lib/stores/zen';
+    import { isPlaying, isDrawing } from '$lib/stores/zen';
     import Dialog from './Dialog.svelte'
     import Save from './Save.svelte'
     import Load from './Load.svelte'
     
     let save: HTMLDialogElement;
     let load: HTMLDialogElement;
+    
+    function toggleVisuals() {
+        console.log('toggle visuals', $isDrawing)
+        isDrawing.set(!$isDrawing)
+    }
 
 </script>
 
@@ -17,6 +22,7 @@
     <button on:click={() => { stop(), isPlaying.set(false)}}><Icon data="{faStop}" /></button>
     <button on:click={() => save.showModal()} class:active={false}><Icon data="{faFloppyDisk}" /></button>
     <button on:click={() => load.showModal()} class:active={false}><Icon data="{faCode}" /></button>
+    <button on:click={() => toggleVisuals()} class:active={$isDrawing}><Icon data="{faBorderAll}" /></button>
 </div>
 
 <Dialog bind:dialog={save} on:close={() => save.close()}>

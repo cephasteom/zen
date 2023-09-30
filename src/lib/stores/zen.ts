@@ -8,6 +8,7 @@ export const q = writable(16); // quantization (frames per cycle)
 export const s = writable(16); // size of canvas
 export const error = writable('');
 export const isPlaying = writable(false);
+export const isDrawing = writable(false);
 
 export const visualsData = writable<Uint8Array>(new Uint8Array(16 * 16 * 4));
 
@@ -22,6 +23,6 @@ channel.onmessage = ({data: {error: message, action}}) => {
         c.set(cycle);
         q.set(quant);
         s.set(size);
-        visualsData.set(v);
+        get(isDrawing) && visualsData.set(v);
     }, delta * 1000);
 }
