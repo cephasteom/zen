@@ -27,10 +27,10 @@ const zenChannel = new BroadcastChannel('zen');
 const otoChannel = new BroadcastChannel('oto')
 
 // Listen for error messages from Zen
-zenChannel.onmessage = ({data: {error: message, action}}) => {
-    if(message && (get(error) !== message)) return error.set(message);
-    if(!action) return
-    const { t: time, c: cycle, q: quant, s: size, delta, v } = action;
+zenChannel.onmessage = ({data: {error: message, type, data}}) => {
+    if(type === 'error' && (get(error) !== message)) return error.set(message);
+    if(type !== 'action') return
+    const { t: time, c: cycle, q: quant, s: size, delta, v } = data;
     setTimeout(() => {
         t.set(time);
         c.set(cycle);

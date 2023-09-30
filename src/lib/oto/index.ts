@@ -5,9 +5,9 @@ import type { Dictionary } from "./types";
 const channel = new BroadcastChannel('zen');
 
 // Listen for actions from Zen
-channel.onmessage = ({data: {action}}) => {
-    if(!action) return
-    const { time, delta, events, mutations } = action;
+channel.onmessage = ({data: {type, data}}) => {
+    if(type !== 'action') return
+    const { time, delta, events, mutations } = data;
     events.forEach(({id, eparams}) => {
         handleEvent(time, delta, id, eparams);
     })

@@ -98,7 +98,7 @@ const loop = new Loop(time => {
     // call actions
     const delta = (time - immediate())
     const args = { time, delta, t, s, q, c, events, mutations, v: vis }
-    channel.postMessage({ action: args })
+    channel.postMessage({ type: 'action', data: args })
 
 }, `${z.q}n`).start(0)
 
