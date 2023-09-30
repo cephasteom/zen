@@ -15,6 +15,7 @@ export const print = (type: string, message: string) => {
     // if last message does not match, add to messages
     const last = get(messages).slice(-1)[0];
     if(last && last.message === message) return
+    type === 'pattern' && messages.update(arr => arr.filter(m => m.type !== 'pattern'))
     messages.update(arr => [...arr, {type, message}])
     type === 'error' && get(isDrawing) && error.set(message)
 }
@@ -27,8 +28,11 @@ const zenChannel = new BroadcastChannel('zen');
 const otoChannel = new BroadcastChannel('oto')
 
 // Listen for error messages from Zen
-zenChannel.onmessage = ({data: {error: message, type, data}}) => {
+zenChannel.onmessage = ({data: {message, type, data}}) => {
     if(type === 'error' && (get(error) !== message)) return error.set(message);
+    
+    ['error', 'info', 'pattern'].includes(type) && print(type, message.toString())
+    
     if(type !== 'action') return
     const { t: time, c: cycle, q: quant, s: size, delta, v } = data;
     setTimeout(() => {

@@ -1528,6 +1528,18 @@ export class Pattern {
         return this
     }
 
+    /**
+     * Post the current value to the console
+     * @returns 
+     */
+    print(): Pattern {
+        this.stack.push(x => {
+            channel.postMessage({type: 'pattern', message: x})
+            return x
+        })
+        return this
+    }
+
     /** @hidden */
     get(t: number, q: number, bpm?: number): patternValue | null {
         this._t = t
