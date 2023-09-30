@@ -4,6 +4,8 @@ import type { Dictionary } from './types'
 import Channel from './classes/Channel'
 import { output } from './destination';
 
+const channel = new BroadcastChannel('oto')
+
 const instMap = [ 'synth', 'sampler', 'granular', 'additive', 'acid', 'drone', 'sub' ]
 
 const channelCount = output.numberOfInputs
@@ -112,6 +114,7 @@ const fetchSamples = (url: string) => {
         .then(json => {
             if(!json) return
             console.log('Loaded samples from ' + url)
+            channel.postMessage({ type: 'success', message: 'Loaded samples from ' + url})
             samples.update((samples: Dictionary) => ({...samples, ...json}))
             
         })
@@ -128,4 +131,7 @@ synths.subscribe((synths: Dictionary) => {
         ))
 })
 
-samples.subscribe((samples: Dictionary) => console.log(...Object.keys(samples)))
+samples.subscribe((samples: Dictionary) => {
+    channel.postMessage({ type: 'info', message: 'Loaded sample banks ->\n' + Object.keys(samples).join(', ')})
+    console.log(...Object.keys(samples))
+})

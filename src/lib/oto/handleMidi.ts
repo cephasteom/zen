@@ -2,12 +2,23 @@ import { WebMidi } from "webmidi";
 import Midi from './classes/MIDI';
 import type { Dictionary } from "./types";
 
+const channel = new BroadcastChannel('oto')
+
 // Enable Midi and log available devices
 async function enableMidi() {
     await WebMidi.enable().then(() => {
+        channel.postMessage({ type: 'success', message: 'MIDI enabled' })
+        
+        const inputs = WebMidi.inputs.reduce((str, input, i) => `${str}${i}: ${input.name}, `, '')
+        const outputs = WebMidi.outputs.reduce((str, output, i) => `${str}${i}: ${output.name}, `, '')
+        
+        channel.postMessage({ type: 'info', message: 'MIDI inputs ->' })
+        channel.postMessage({ type: 'info', message: inputs })
+        channel.postMessage({ type: 'info', message: 'MIDI outputs ->' })
+        channel.postMessage({ type: 'info', message: outputs })
         console.log('MIDI enabled')
-        console.log('Available MIDI inputs: ' + WebMidi.inputs.map(i => i.name))
-        console.log('Available MIDI outputs: ' + WebMidi.outputs.map(i => i.name))
+        console.log(inputs)
+        console.log(outputs)
     })
 }
 enableMidi();

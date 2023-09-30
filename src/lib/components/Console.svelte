@@ -4,8 +4,10 @@
 
 <div class="console">
     <ul>
-        {#each $messages as message}
-            <li>{message}</li>
+        {#each $messages as {type, message}}
+            {#each message.split("\n") as line}
+                <li class={type}>{line}</li>
+            {/each}
         {/each}
     </ul>
 </div>
@@ -23,6 +25,7 @@
         width: 100%;
         padding: 0;
         overflow-y: scroll;
+        max-height: 100%;
     }
 
     li {
@@ -40,5 +43,13 @@
             color: #d4d4d4;
             margin-right: 0.5rem;
         }
+    }
+
+    .success {
+        color: var(--color-theme-3);
+    }
+
+    .error {
+        color: var(--color-theme-1);
     }
 </style>

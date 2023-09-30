@@ -5,7 +5,6 @@
     import { setCode, play, stop } from '$lib/zen';
     import { error, isPlaying, editorValue } from '$lib/stores/zen';
     import { activePreset, presets } from '$lib/stores/presets';
-    import { examples } from '../examples/examples';
 
     let editor: Monaco.editor.IStandaloneCodeEditor;
     let monaco: typeof Monaco;

@@ -4,9 +4,9 @@ import { Zen } from './classes/Zen';
 import { Stream } from './classes/Stream';
 import { Visuals } from './classes/Visuals';
 import { createCount } from './utils/utils';
-import type { action } from './types';
 import { helpers } from './utils/helpers';
 import keymap from './data/keymapping'
+import { print, isDrawing } from "$lib/stores/zen";
 
 export const lastCode = writable('');
 export const code = writable('');
@@ -66,7 +66,9 @@ const loop = new Loop(time => {
         eval(thisCode)
         lastCode.set(thisCode)
     } catch (e: any) {
-        channel.postMessage({ error: e.message })
+        get(isDrawing) 
+            ? channel.postMessage({ error: e.message })
+            : print('error', e.message)
         eval(get(lastCode))
     }
     
@@ -114,6 +116,7 @@ export const stop = () => {
 export async function startAudio() {
     await start()    
     console.log('started audio')
+    print('success', 'Started audio')
     window.removeEventListener('keydown', startAudio)
     window.removeEventListener('click', startAudio)
     window.removeEventListener('touchstart', startAudio)

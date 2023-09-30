@@ -9,16 +9,24 @@ export const s = writable(16); // size of canvas
 export const error = writable('');
 export const isPlaying = writable(false);
 export const isDrawing = writable(false);
-export const messages = writable<string[]>([]);
-messages.set(['Welcome to Zen!']);
+export const messages = writable<{type: string, message: string}[]>([]);
+
+export const print = (type: string, message: string) => {
+    // if last message does not match, add to messages
+    const last = get(messages).slice(-1)[0];
+    if(last && last.message === message) return
+    messages.update(arr => [...arr, {type, message}])
+}
 
 export const visualsData = writable<Uint8Array>(new Uint8Array(16 * 16 * 4));
 
-const channel = new BroadcastChannel('zen');
+const zenChannel = new BroadcastChannel('zen');
+const otoChannel = new BroadcastChannel('oto')
 
 // Listen for error messages from Zen
-channel.onmessage = ({data: {error: message, action}}) => {
+zenChannel.onmessage = ({data: {error: message, action}}) => {
     if(message && (get(error) !== message)) return error.set(message);
+    if(!action) return
     const { t: time, c: cycle, q: quant, s: size, delta, v } = action;
     setTimeout(() => {
         t.set(time);
@@ -27,4 +35,8 @@ channel.onmessage = ({data: {error: message, action}}) => {
         s.set(size);
         get(isDrawing) && visualsData.set(v);
     }, delta * 1000);
+}
+
+otoChannel.onmessage = ({data: {type, message}}) => {
+    print(type, message)
 }

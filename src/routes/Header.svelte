@@ -11,7 +11,7 @@
                 class="mr-3 h-6 sm:h-6"
                 alt="Zen Logo"
             />
-            Zen
+            <span>zen</span>
         </a>
         <ul class="menu">
             <li class="menu__item"><a class={$page.url.pathname === '/about' ? 'active' : ''} href="/about">About</a></li>
@@ -57,13 +57,18 @@
         height: 1.25rem;
         display: flex;
         align-items: center;
-        color: var(--color-yellow);
+        color: white;
+        font-size: var(--text-sm);
         img {
             width: 100%;
             height: 100%;
             object-fit: contain;
             filter: invert(1);
             margin-right: 0.5rem;
+        }
+        span {
+            position: relative;
+            top: -1.5px;
         }
     }
 
