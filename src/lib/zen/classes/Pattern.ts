@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid'
 import type { Stream } from './Stream'
-import type { stack, patternValue, patternable, Dictionary } from '../types'
+import type { stack, patternValue, patternable } from '../types'
 import { 
     mapToRange, 
     roundToFactor, 
@@ -17,6 +17,8 @@ import {
 } from '../utils/utils';
 import { getScale, getChord } from '../utils/musical';
 import { parsePattern } from '../parser';
+
+const channel = new BroadcastChannel('zen')
 
 /**
  * Patterns are the building blocks of Zen. They are used to generate patterns of values in interesting, concise ways. The first value passed to a pattern is either time `t` or a position in space `x`, `y`, or `z`, depending on whether the pattern is assigned to a stream's `p`, `px`, `py`, or `pz` property. Patterns methods can be chained together applying each new method to the value passed from the previous one in the chain.

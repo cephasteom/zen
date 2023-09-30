@@ -9,13 +9,14 @@ export const s = writable(16); // size of canvas
 export const error = writable('');
 export const isPlaying = writable(false);
 export const isDrawing = writable(false);
-export const messages = writable<{type: string, message: string}[]>([]);
+export const messages = writable<{type: string, message: string}[]>([{type: 'success', message: 'Welcome to Zen!'}]);
 
 export const print = (type: string, message: string) => {
     // if last message does not match, add to messages
     const last = get(messages).slice(-1)[0];
     if(last && last.message === message) return
     messages.update(arr => [...arr, {type, message}])
+    type === 'error' && get(isDrawing) && error.set(message)
 }
 
 export const clear = () => messages.set([]);

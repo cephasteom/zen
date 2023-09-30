@@ -52,6 +52,8 @@
                 <li><code class="inline-code">esc</code> stops playback. Pressing <code class="inline-code">esc</code> twice resets <code class="inline-code">t</code> to 0.</li>
                 <li><code class="inline-code">cmd + o</code> opens a list of presets.</li>
                 <li><code class="inline-code">cmd + s</code> saves your code.</li>
+                <li><code class="inline-code">print('..')</code> to print to the console.</li>
+                <li><code class="inline-code">clear()</code> to clear the console.</li>
             </ul>
         </div>
     </section>

@@ -6,7 +6,7 @@ import { Visuals } from './classes/Visuals';
 import { createCount } from './utils/utils';
 import { helpers } from './utils/helpers';
 import keymap from './data/keymapping'
-import { print as post, clear, isDrawing } from "$lib/stores/zen";
+import { print as post, clear } from "$lib/stores/zen";
 
 export const lastCode = writable('');
 export const code = writable('');
@@ -67,9 +67,7 @@ const loop = new Loop(time => {
         eval(thisCode)
         lastCode.set(thisCode)
     } catch (e: any) {
-        get(isDrawing) 
-            ? channel.postMessage({ error: e.message })
-            : post('error', e.message)
+        post('error', e.message)
         eval(get(lastCode))
     }
     
