@@ -65,6 +65,7 @@
         height: 0;
         padding-bottom: 80%;
         position: relative;
+        margin: 1rem;
         & #canvas {
             position: absolute;
             top: 0;

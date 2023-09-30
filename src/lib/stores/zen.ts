@@ -9,6 +9,8 @@ export const s = writable(16); // size of canvas
 export const error = writable('');
 export const isPlaying = writable(false);
 export const isDrawing = writable(false);
+export const messages = writable<string[]>([]);
+messages.set(['Welcome to Zen!']);
 
 export const visualsData = writable<Uint8Array>(new Uint8Array(16 * 16 * 4));
 

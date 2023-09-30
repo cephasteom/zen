@@ -3,7 +3,9 @@
     import Visuals from '$lib/components/Visuals.svelte';
     import Data from '$lib/components/Data.svelte';
     import Tools from '$lib/components/Tools.svelte';
+    import Console from '$lib/components/Console.svelte';
     import { startAudio } from '$lib/zen/index';
+    import { isDrawing } from '$lib/stores/zen';
 </script>
 
 <svelte:head>
@@ -24,8 +26,12 @@
     <div class="tools">
         <Tools />
     </div>
-    <div class="visuals">
-        <Visuals />
+    <div class="info">
+        {#if $isDrawing}
+            <Visuals />
+        {:else}
+            <Console />
+        {/if}
     </div>
     <div class="data">
         <Data />
@@ -72,7 +78,7 @@
         padding: 1rem;
     }
 
-    .visuals {
+    .info {
         display: none;
         @media (min-width: 600px) {
             grid-column: 2;
@@ -82,7 +88,6 @@
             align-items: center;
         }
         background-color: var(--color-grey-dark);
-        padding: 1rem;
     }
 
     .data {

@@ -9,11 +9,6 @@
     
     let save: HTMLDialogElement;
     let load: HTMLDialogElement;
-    
-    function toggleVisuals() {
-        console.log('toggle visuals', $isDrawing)
-        isDrawing.set(!$isDrawing)
-    }
 
 </script>
 
@@ -22,7 +17,7 @@
     <button on:click={() => { stop(), isPlaying.set(false)}}><Icon data="{faStop}" /></button>
     <button on:click={() => save.showModal()} class:active={false}><Icon data="{faFloppyDisk}" /></button>
     <button on:click={() => load.showModal()} class:active={false}><Icon data="{faCode}" /></button>
-    <button on:click={() => toggleVisuals()} class:active={$isDrawing}><Icon data="{faBorderAll}" /></button>
+    <button on:click={() => isDrawing.set(!$isDrawing)} class:active={$isDrawing}><Icon data="{faBorderAll}" /></button>
 </div>
 
 <Dialog bind:dialog={save} on:close={() => save.close()}>

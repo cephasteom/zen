@@ -13,6 +13,7 @@
     let options: Monaco.editor.IStandaloneEditorConstructionOptions = {
         language: 'javascript',
         theme: 'vs-dark',
+        fontSize: 14,
         lineNumbers: {
             type: 'off'
         },
