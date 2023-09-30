@@ -18,6 +18,8 @@ export const print = (type: string, message: string) => {
     messages.update(arr => [...arr, {type, message}])
 }
 
+export const clear = () => messages.set([]);
+
 export const visualsData = writable<Uint8Array>(new Uint8Array(16 * 16 * 4));
 
 const zenChannel = new BroadcastChannel('zen');

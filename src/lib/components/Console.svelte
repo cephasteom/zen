@@ -1,9 +1,16 @@
 <script lang="ts">
+    import { onMount } from "svelte";
     import { messages } from "$lib/stores/zen";
+
+    let console: HTMLUListElement;
+
+    onMount(() => {
+        messages.subscribe(() => console && (console.scrollTop = console.scrollHeight));
+    });
 </script>
 
 <div class="console">
-    <ul>
+    <ul bind:this={console}>
         {#each $messages as {type, message}}
             {#each message.split("\n") as line}
                 <li class={type}>{line}</li>
@@ -18,6 +25,8 @@
         padding: 1.5rem 2rem;
         height: calc(100% - 3rem);
         width: 100%;
+        max-height: 75vh;
+        overflow: hidden;
     }
 
     ul {
