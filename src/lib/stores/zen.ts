@@ -9,7 +9,13 @@ export const s = writable(16); // size of canvas
 export const error = writable('');
 export const isPlaying = writable(false);
 export const isDrawing = writable(false);
-export const messages = writable<{type: string, message: string}[]>([{type: 'success', message: 'Welcome to Zen!'}]);
+export const messages = writable<{type: string, message: string}[]>([
+    {type: 'success', message: 'Welcome to Zen!'},
+    {type: 'info', message: 'shift + enter to play.'},
+    {type: 'info', message: 'esc to stop.'},
+    {type: 'info', message: 'Instruments ->\n 0: synth\n 1: sampler\n 2: granular\n 3: additive\n 4: acid\n 5: drone\n 6: sub'},
+
+]);
 
 export const print = (type: string, message: string) => {
     // if last message does not match, add to messages
