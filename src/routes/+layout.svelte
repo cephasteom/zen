@@ -11,9 +11,8 @@
     </main>
 
     <footer class="footer container">
-        <span>Something wrong? <a target="_blank" href="https://github.com/cephasteom/zen-3/issues">Open an issue</a>.</span>
-        <span>© <a target="_blank" href="https://cephasteom.co.uk">Cephas Teom</a> {new Date().getFullYear()}</span>
-
+        <span class="footer__issues">Something wrong? <a target="_blank" href="https://github.com/cephasteom/zen-3/issues">Open an issue</a>.</span>
+        <span class="footer__copyright">© <a target="_blank" href="https://cephasteom.co.uk">Cephas Teom</a> {new Date().getFullYear()}</span>
     </footer>
 </div>
 
@@ -32,7 +31,7 @@
         background-color: var(--color-grey-mid);
     }
 
-    footer {
+    .footer {
         width: calc(100% - 2rem);
         padding: 1rem;
         margin: 0 auto;
@@ -53,6 +52,19 @@
 
         span {
             font-size: var(--text-sm);
+        }
+
+        &__issues {
+            display: none;
+            @media (min-width: 550px) {
+                display: inline-block;
+            }
+        }
+
+        &__copyright {
+            @media (max-width: 549px) {
+                width: 100%;
+            }
         }
     }
 
