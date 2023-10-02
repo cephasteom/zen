@@ -24,7 +24,7 @@
         background-color: var(--color-grey-darkest);
         padding: 1.5rem 2rem;
         height: calc(100% - 3rem);
-        width: 100%;
+        position: absolute;
         overflow: hidden;
     }
 

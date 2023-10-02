@@ -46,6 +46,7 @@
         grid-gap: 1rem;
         padding: 1rem;
         user-select: none;
+        min-height: calc(100vh - 9rem);
         
         @media (min-width: 600px) {
             grid-template-columns: 1fr 1fr;
@@ -80,14 +81,15 @@
 
     .info {
         display: none;
+        position: relative;
         @media (min-width: 600px) {
             grid-column: 2;
             grid-row: 1;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
         }
-        background-color: var(--color-grey-dark);
+        background-color: var(--color-grey-darkest);
     }
 
     .data {

@@ -127,10 +127,7 @@
     }
     .editor {
         width: calc(100% - 1rem);
-        height: 60vh!important;
-        @media (min-width: 500px) {
-            height: 75vh!important;
-        }
+        height: 100%!important;
     }
 
     .notices {

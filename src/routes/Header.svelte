@@ -31,7 +31,6 @@
 
         @media all and (display-mode: fullscreen) {
             background-color: var(--color-grey-darker);
-            padding-top: 1rem;
             & > nav > .menu { display: none }
         }
 	}
