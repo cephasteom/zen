@@ -17,7 +17,7 @@
     <button on:click={() => { stop(), isPlaying.set(false)}}><Icon data="{faStop}" /></button>
     <button on:click={() => save.showModal()} class:active={false}><Icon data="{faFloppyDisk}" /></button>
     <button on:click={() => load.showModal()} class:active={false}><Icon data="{faCode}" /></button>
-    <button on:click={() => isDrawing.set(!$isDrawing)} class:active={$isDrawing}><Icon data="{faBorderAll}" /></button>
+    <button class="tools__drawing" on:click={() => isDrawing.set(!$isDrawing)} class:active={$isDrawing}><Icon data="{faBorderAll}" /></button>
 </div>
 
 <Dialog bind:dialog={save} on:close={() => save.close()}>
@@ -55,6 +55,12 @@
             }
             &.active {
                 color: var(--color-theme-1);
+            }
+        }
+
+        &__drawing {
+            @media (max-width: 449px) {
+                display: none;
             }
         }
     }
