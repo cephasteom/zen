@@ -25,6 +25,8 @@
         padding: 1.5rem 2rem;
         height: calc(100% - 3rem);
         position: absolute;
+        left: 0;
+        right: 0;
         overflow: hidden;
     }
 
