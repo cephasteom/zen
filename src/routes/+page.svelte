@@ -87,9 +87,9 @@
             grid-row: 1;
             display: flex;
             justify-content: center;
-            align-items: flex-start;
+            align-items: center;
         }
-        background-color: var(--color-grey-darkest);
+        background-color: var(--color-grey-dark);
     }
 
     .data {
