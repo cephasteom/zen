@@ -32,9 +32,11 @@ export class Visuals {
     }
 
     streams(positions: {x: number, y: number, id: string}[], isEvent: boolean) {
+        const maxRow = this._s - 1;
         for (const { x, y, id } of positions) {
             const eColourI = +id.replace('s', '')%this.colours.length;
-            const i = ((Math.floor(y) * this._s) + Math.floor(x)) * 4;
+            const row = maxRow - Math.floor(y);
+            const i = ((row * this._s) + Math.floor(x)) * 4;
             const colour = isEvent 
                 ? this.colours[eColourI]
                 : this.mColour;
