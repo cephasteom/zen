@@ -54,7 +54,7 @@
     }
     
     .icon {
-        height: 1.25rem;
+        height: 1.5rem;
         display: flex;
         align-items: center;
         color: white;
@@ -63,7 +63,7 @@
             height: 100%;
             object-fit: contain;
             filter: invert(1);
-            margin-right: 0.5rem;
+            margin-right: 0.25rem;
         }
         span {
             position: relative;
