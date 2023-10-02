@@ -59,7 +59,7 @@
         }
 
         &__drawing {
-            @media (max-width: 449px) {
+            @media (max-width: 599px) {
                 display: none;
             }
         }

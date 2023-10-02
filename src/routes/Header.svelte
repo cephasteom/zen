@@ -109,7 +109,7 @@
             color: #FFF;
         }
 
-        @media (min-width: 450px) {
+        @media (min-width: 600px) {
             position: relative;
             height: auto;
             width: auto;
@@ -162,7 +162,7 @@
         cursor: pointer;
         z-index: 200;
 
-        @media (min-width: 450px) {
+        @media (min-width: 600px) {
             display: none;
         }
     }
