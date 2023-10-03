@@ -1,4 +1,14 @@
-// TODO: link to a video tutorial
+const intro = `# Tutorial
+Welcome to Zen, a live coding tool for the browser that allows you to generate complex musical patterns with a small amount of code. Familiarity with JavaScript or another programming language is helpful, but not essential; with a little patience, you'll be making music in no time. 
+
+This is a tutorial to help you get started. It's not meant to be comprehensive, but it should give you a good idea of how to use Zen. For more information, check out the [documentation](/docs) and the code examples in the [code editor](/). We recommend that you <a href="https://zen.cephasteom.co.uk" target="_blank">open the code editor in a separate tab</a> so that you can try out the examples whilst working through this guide.
+`
+
+const getting_started = `## What am I looking at?
+On desktop, the Zen app has a code editor on the left hand side, a pattern visualiser on the right and, below that, a list of useful values. \`t\` represents the current time, \`c\` shows the current cycle number, \`q\` represents the number of steps per cycle (how many time \`t\` increments each cycle), and \`s\` represents the size of the canvas. 
+`
+
+export const chapters = { intro, getting_started }
 
 export const tutorial = `# Tutorial
 Welcome to Zen, a live coding tool for the browser that allows you to generate complex musical patterns with a small amount of code. Familiarity with JavaScript or another programming language is helpful, but not essential; with a little patience, you'll be making music in no time. 

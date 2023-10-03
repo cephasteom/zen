@@ -7,16 +7,16 @@
     import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
 
     let showMobileMenu = false;
-    let mobileMenu: HTMLUListElement;
+    let menu: HTMLUListElement;
 
     const toggleMenu = () => {
         showMobileMenu = !showMobileMenu;
-        mobileMenu && (mobileMenu.style.display = showMobileMenu ? 'flex' : 'none');
+        menu && (menu.style.display = showMobileMenu ? 'flex' : 'none');
     }
 
     const closeMenu = () => {
         showMobileMenu = false;
-        mobileMenu && (mobileMenu.style.display = 'none');
+        menu && (menu.style.display = 'none');
     }
 </script>
 
@@ -33,9 +33,9 @@
         <button on:click={toggleMenu} class="menu-toggle">
             <Icon data="{showMobileMenu ? faXmark : faBars}" />
         </button>
-        <ul class="menu" bind:this={mobileMenu}>
+        <ul class="menu" bind:this={menu}>
             <li class="menu__item"><a on:click={closeMenu} class={$page.url.pathname === '/about' ? 'active' : ''} href="/about">About</a></li>
-            <li class="menu__item"><a on:click={closeMenu} class={$page.url.pathname === '/learn' ? 'active' : ''} href="/learn">Learn</a></li>
+            <li class="menu__item"><a on:click={closeMenu} class={$page.url.pathname === '/learn/intro' ? 'active' : ''} href="/learn/intro">Learn</a></li>
             <li class="menu__item"><a on:click={closeMenu} class={$page.url.pathname === '/docs' ? 'active' : ''} href="/docs">Docs</a></li>
         </ul>
     
@@ -103,7 +103,7 @@
         padding: 0;
         background-color: var(--color-grey-darkest);
         z-index: 100;
-        display: none;
+        // display: none;
         align-items: center;
         justify-content: center;
         flex-direction: column;
