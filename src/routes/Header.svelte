@@ -164,7 +164,7 @@
         border: none;
         cursor: pointer;
         color: var(--color-grey-light);
-        width: 2rem;
+        height: 2rem;
         font-family: var(--font-family);
         padding: 0;
         cursor: pointer;

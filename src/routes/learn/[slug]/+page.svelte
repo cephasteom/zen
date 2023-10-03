@@ -1,6 +1,9 @@
 <script>
     import { marked } from "marked";
-	export let data;
+    import Icon from 'svelte-awesome';
+    import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+	
+    export let data;
     const { markdown } = data.chapter;
     const next = data.next?.slug;
     const prev = data.prev?.slug;
@@ -12,16 +15,24 @@
 </svelte:head>
 
 <section class="content">
-    <div>
+    <div class="markdown">
         {@html marked.parse(markdown)}
     </div>
-    <nav>
-        {#if prev}
-            <a href="/learn/{prev}">Previous</a>
-        {/if}
-        {#if next}
-            <a href="/learn/{next}">Next</a>
-        {/if}
+    <nav class="pagination">
+        <div class="pagination__prev">
+            {#if prev}
+                <a href="/learn/{prev}">
+                    <Icon data="{faArrowLeft}" />
+                </a>
+            {/if}
+        </div>
+        <div class="pagination__next">
+            {#if next}
+                <a href="/learn/{next}">
+                    <Icon data="{faArrowRight}" />        
+                </a>
+            {/if}
+        </div>
     </nav>
 </section>
 
@@ -30,5 +41,18 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+    }
+
+    .markdown {
+        margin-bottom: 2rem;
+    }
+
+    .pagination {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        &__next, &__prev {
+            width: 2rem;
+        }
     }
 </style>
