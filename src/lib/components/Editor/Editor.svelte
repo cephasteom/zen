@@ -6,6 +6,7 @@
     import { error, isPlaying, editorValue } from '$lib/stores/zen';
     import { activePreset, presets } from '$lib/stores/presets';
     import { options } from './options';
+    import { example } from './example';
 
     let editor: Monaco.editor.IStandaloneCodeEditor;
     let monaco: typeof Monaco;
@@ -28,7 +29,7 @@
 
         const model = monaco.editor.createModel(
             localStorage.getItem("z.code") || 
-            "// Welcome to Zen! \n// Press Shift + Enter to run your code. \n// Press Esc to stop. \n// Press Ctrl + S to save your code. \n// Press Ctrl + O to open saved code. \n// Click on the snippets button below to try a few examples. \n// Follow the tutorial to start composing with Zen.",
+            example,
             undefined,
             monaco.Uri.file('sample.js')
         );
