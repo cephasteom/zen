@@ -132,6 +132,6 @@ synths.subscribe((synths: Dictionary) => {
 })
 
 samples.subscribe((samples: Dictionary) => {
-    channel.postMessage({ type: 'info', message: 'Loaded sample banks ->\n' + Object.keys(samples).join(', ')})
+    channel.postMessage({ type: 'info', message: 'Sample banks ->\n' + Object.keys(samples).join(', ')})
     console.log(...Object.keys(samples))
 })

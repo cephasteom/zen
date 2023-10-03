@@ -16,7 +16,10 @@ export const setCode = (str: string) => {
     code.set(str)
 };
 
+let samplesMessage = ''
 const channel = new BroadcastChannel('zen')
+const otoChannel = new BroadcastChannel('oto')
+otoChannel.onmessage = ({data: {message}}) => message.includes('Sample banks') && (samplesMessage = message)
 
 // Fetch data
 let d: any = {}
@@ -41,8 +44,9 @@ let bpm = 120
 const { bts: initBts, btms: initBtms, clamp } = helpers;
 const { abs, acos, acosh, asin, asinh, atan, atan2, atanh, cbrt, ceil, clz32, cos, cosh, exp, expm1, floor, fround, hypot, imul, log, log10, log1p, log2, max, min, pow, random, round, sign, sin, sinh, sqrt, tan, tanh, trunc, E, LN10, LN2, LOG10E, LOG2E, PI, SQRT1_2, SQRT2 } = Math;
 const print = (message: any) => post('info', message.toString())
-const scales = () => post('info', Object.keys(modes).join(', '))
-const chords = () => post('info', Object.keys(triads).join(', '))
+const scales = () => post('info', 'Scales ->\n' + Object.keys(modes).join(', '))
+const chords = () => post('info', 'Chords ->\n' + Object.keys(triads).join(', '))
+const samples = () => post('info', samplesMessage)
 
 // Main application loop
 const loop = new Loop(time => {
@@ -64,7 +68,7 @@ const loop = new Loop(time => {
     const map = keymap
     try {
         // prevent unused variable errors
-        [bts, btms, ms, clamp, print, clear, scales, chords];
+        [bts, btms, ms, clamp, print, clear, scales, chords, samples];
         [abs, acos, acosh, asin, asinh, atan, atan2, atanh, cbrt, ceil, clz32, cos, cosh, exp, expm1, floor, fround, hypot, imul, log, log10, log1p, log2, max, min, pow, random, round, sign, sin, sinh, sqrt, tan, tanh, trunc, E, LN10, LN2, LOG10E, LOG2E, PI, SQRT1_2, SQRT2];
         [s0, s1, s2, s3, s4, s5, s6, s7]; map; d;
         const thisCode = !(t%z.update) ? get(code) : get(lastCode) // only eval code on the beat
