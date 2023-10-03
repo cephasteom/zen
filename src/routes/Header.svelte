@@ -15,6 +15,7 @@
     }
 
     const closeMenu = () => {
+        if(window.innerWidth > 599) return;
         showMobileMenu = false;
         menu && (menu.style.display = 'none');
     }
