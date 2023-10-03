@@ -4,9 +4,6 @@
     import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 	
     export let data;
-    const { markdown } = data.chapter;
-    const next = data.next?.slug;
-    const prev = data.prev?.slug;
 </script>
 
 <svelte:head>
@@ -16,19 +13,19 @@
 
 <section class="content">
     <div class="markdown">
-        {@html marked.parse(markdown)}
+        {@html marked.parse(data.chapter.markdown)}
     </div>
     <nav class="pagination">
         <div class="pagination__prev">
-            {#if prev}
-                <a href="/learn/{prev}">
+            {#if data.prev}
+                <a href="/learn/{data.prev?.slug}">
                     <Icon data="{faArrowLeft}" />
                 </a>
             {/if}
         </div>
         <div class="pagination__next">
-            {#if next}
-                <a href="/learn/{next}">
+            {#if data.next}
+                <a href="/learn/{data.next?.slug}">
                     <Icon data="{faArrowRight}" />        
                 </a>
             {/if}
