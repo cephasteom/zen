@@ -28,8 +28,7 @@
         editor = monaco.editor.create(editorContainer, options);
 
         const model = monaco.editor.createModel(
-            localStorage.getItem("z.code") || 
-            example,
+            localStorage.getItem("z.code") || example,
             undefined,
             monaco.Uri.file('sample.js')
         );
