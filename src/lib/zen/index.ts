@@ -7,6 +7,8 @@ import { createCount } from './utils/utils';
 import { helpers } from './utils/helpers';
 import keymap from './data/keymapping'
 import { print as post, clear } from "$lib/stores/zen";
+import { modes } from './data/scales'
+import { triads } from './data/chords'
 
 export const lastCode = writable('');
 export const code = writable('');
@@ -39,6 +41,8 @@ let bpm = 120
 const { bts: initBts, btms: initBtms, clamp } = helpers;
 const { abs, acos, acosh, asin, asinh, atan, atan2, atanh, cbrt, ceil, clz32, cos, cosh, exp, expm1, floor, fround, hypot, imul, log, log10, log1p, log2, max, min, pow, random, round, sign, sin, sinh, sqrt, tan, tanh, trunc, E, LN10, LN2, LOG10E, LOG2E, PI, SQRT1_2, SQRT2 } = Math;
 const print = (message: any) => post('info', message.toString())
+const scales = () => post('info', Object.keys(modes).join(', '))
+const chords = () => post('info', Object.keys(triads).join(', '))
 
 // Main application loop
 const loop = new Loop(time => {
@@ -60,7 +64,7 @@ const loop = new Loop(time => {
     const map = keymap
     try {
         // prevent unused variable errors
-        [bts, btms, ms, clamp, print, clear];
+        [bts, btms, ms, clamp, print, clear, scales, chords];
         [abs, acos, acosh, asin, asinh, atan, atan2, atanh, cbrt, ceil, clz32, cos, cosh, exp, expm1, floor, fround, hypot, imul, log, log10, log1p, log2, max, min, pow, random, round, sign, sin, sinh, sqrt, tan, tanh, trunc, E, LN10, LN2, LOG10E, LOG2E, PI, SQRT1_2, SQRT2];
         [s0, s1, s2, s3, s4, s5, s6, s7]; map; d;
         const thisCode = !(t%z.update) ? get(code) : get(lastCode) // only eval code on the beat

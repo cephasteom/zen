@@ -54,6 +54,10 @@
                 <li><code class="inline-code">cmd + s</code> saves your code.</li>
                 <li><code class="inline-code">print('..')</code> to print to the console.</li>
                 <li><code class="inline-code">clear()</code> to clear the console.</li>
+                <li><code class="inline-code">samples()</code> print available sample banks.</li>
+                <li><code class="inline-code">scales()</code> print available scales.</li>
+                <li><code class="inline-code">chords()</code> print available chords.</li>
+
             </ul>
         </div>
     </section>
@@ -119,7 +123,7 @@ s0.e.every(4)`,
         </div>
     </section>
 
-    <section class="data">
+    <!-- <section class="data">
         <h2>Scales and Chords <button on:click={() => handleExpand('data')}><Icon data="{faCaretDown}" /></button></h2>
         <div class="expandable{expanded === 'data' ? '--expanded' : ''}">
             <p>Scales use the following syntax <code class="inline-code">root-scale</code>, as in <code class="inline-code">d-major</code></p>
@@ -130,7 +134,7 @@ s0.e.every(4)`,
             <p>All of the chords that you can use in the <code class="inline-code">chords</code> pattern method (exported from TidalCycles - with thanks.):</p>
             <p class="chords">{ Object.keys(chords).sort().join(', ') }</p>
 
-    </section>
+    </section> -->
 </div>
 
 <style lang="scss">

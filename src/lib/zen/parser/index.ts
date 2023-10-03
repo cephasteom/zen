@@ -7,12 +7,17 @@ import {
 import { ntom, repeatScale } from '../utils/musical'
 import { euclidean } from './euclidean-rhythms'
 import { modes } from '../data/scales'
+import { triads } from '../data/chords'
 
 // Add functions to window for so that it can be accessed by parser syntax
 [euclidean, loopArray, ntom, repeatScale].forEach((fn: any) => window[fn.name] = fn)
 
 const scaleTypes: string = Object.entries(modes).reduce((grammar: string, [key, scale], i, arr) => {
     return grammar + `"${key}" { return [${scale.join()}]; } ` + (i === arr.length - 1 ? '' : '/ ')
+},'')
+
+const chordTypes: string = Object.entries(triads).reduce((grammar: string, [key, chord], i, arr) => {
+    return grammar + `"${key}" { return [${chord.join()}]; } ` + (i === arr.length - 1 ? '' : '/ ')
 },'')
 
 // TODO: test tasks using jest
@@ -169,11 +174,7 @@ const parser = peg.generate(`
         / "#13" { return 22; } 
     
     chord
-        = "mi" { return [0, 3, 7]; }
-        / "ma" { return [0, 4, 7]; }
-        / "di" { return [0, 3, 6]; }
-        / "su" { return [0, 5, 7]; } 
-        / "au" { return [0, 4, 8]; }
+        = ` + chordTypes + `
 
     scale
         = base:note scale:scale_type l:length? seq:seq? type:(choose?) dur:duration? space* { 

@@ -162,3 +162,11 @@ export const chords: Dictionary = {
     m11sharp: list['minor11sharp'],
     m11s: list['minor11shar']
 }
+
+export const triads: Dictionary = {
+    mi:  [0, 3, 7],
+    ma:  [0, 4, 7],
+    di:  [0, 3, 6],
+    su:  [0, 5, 7],
+    au:  [0, 4, 8],
+}
