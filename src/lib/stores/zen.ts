@@ -8,6 +8,7 @@ export const q = writable(16); // quantization (frames per cycle)
 export const s = writable(16); // size of canvas
 export const error = writable('');
 export const isPlaying = writable(false);
+
 export const isDrawing = writable(false);
 export const messages = writable<{type: string, message: string}[]>([
     {type: 'success', message: 'Welcome to Zen!'},

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Editor from '$lib/components/Editor.svelte';
+    import Editor from '$lib/components/Editor/Editor.svelte';
     import Visuals from '$lib/components/Visuals.svelte';
     import Data from '$lib/components/Data.svelte';
     import Tools from '$lib/components/Tools.svelte';

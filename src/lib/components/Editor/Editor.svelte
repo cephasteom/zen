@@ -5,56 +5,27 @@
     import { setCode, play, stop } from '$lib/zen';
     import { error, isPlaying, editorValue } from '$lib/stores/zen';
     import { activePreset, presets } from '$lib/stores/presets';
+    import { options } from './options';
 
     let editor: Monaco.editor.IStandaloneCodeEditor;
     let monaco: typeof Monaco;
     let editorContainer: HTMLElement;
-    let options: Monaco.editor.IStandaloneEditorConstructionOptions = {
-        language: 'javascript',
-        theme: 'vs-dark',
-        fontSize: 14,
-        lineNumbers: {
-            type: 'off'
-        },
-        minimap: {
-            enabled: false
-        },
-        automaticLayout: true,
-        renderLineHighlight: 'none',
-        quickSuggestions: false,
-        wordWrap: "on",
-        gutter: "off",
-        scrollbar: {
-            vertical: "hidden",
-            horizontal: "hidden",
-            verticalScrollbarSize: 0,
-            horizontalScrollbarSize: 0,
-            useShadows: false,
-            verticalHasArrows: false,
-            horizontalHasArrows: false,
-            arrowSize: 0
-        },
-        suggestOnTriggerCharacters: false,
-        acceptSuggestionOnEnter: "off",
-        acceptSuggestionOnCommitCharacter: false,
-        wordBasedSuggestions: false,
-        snippetSuggestions: 'none',
-        roundedSelection: false,
-        tabSize: 2,
-    };
     let flash = false
 
+    function setAndPlay() {
+        error.set('');
+        setCode(editor.getValue());
+        localStorage.setItem("z.code", editor.getValue());
+        play();
+        isPlaying.set(true);
+        flash = true;
+        setTimeout(() => flash = false, 400);        
+    }
+
     onMount(async () => {
-
-        // Remove the next two lines to load the monaco editor from a CDN
-        // see https://www.npmjs.com/package/@monaco-editor/loader#config
-        // const monacoEditor = await import('monaco-editor');
-        // loader.config({ monaco: monacoEditor.default });
-
         monaco = await loader.init();
+        editor = monaco.editor.create(editorContainer, options);
 
-        // Your monaco instance is ready, let's display some code!
-        const editor = monaco.editor.create(editorContainer, options);
         const model = monaco.editor.createModel(
             localStorage.getItem("z.code") || 
             "// Welcome to Zen! \n// Press Shift + Enter to run your code. \n// Press Esc to stop. \n// Press Ctrl + S to save your code. \n// Press Ctrl + O to open saved code. \n// Click on the snippets button below to try a few examples. \n// Follow the tutorial to start composing with Zen.",
@@ -73,13 +44,7 @@
             }
             if(e.keyCode === 3 && e.shiftKey) {
                 e.preventDefault();
-                error.set('');
-                setCode(editor.getValue());
-                localStorage.setItem("z.code", editor.getValue());
-                play();
-                isPlaying.set(true);
-                flash = true;
-                setTimeout(() => flash = false, 400);
+                setAndPlay();
             } 
         })
 
@@ -90,6 +55,7 @@
             }
         })
 
+        isPlaying.subscribe(playing => playing ? setAndPlay() : stop());
     });
 
     onDestroy(() => {
