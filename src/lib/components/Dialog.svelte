@@ -1,8 +1,22 @@
 <script lang="ts">
     export let dialog: HTMLDialogElement;
 </script>
-<dialog bind:this={dialog} on:close>
-    <slot/>
+
+<dialog 
+    on:click={() => { 
+        dialog?.close();
+    }}
+    on:keydown|preventDefault|stopPropagation={(event) => {
+        if (event.key === 'Escape') {
+            dialog?.close();
+        }
+    }}
+    bind:this={dialog} 
+    on:close
+>
+    <div on:click|stopPropagation>
+        <slot/>
+    </div>
 </dialog>
 
 <style lang="scss">

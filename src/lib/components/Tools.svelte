@@ -26,12 +26,14 @@
     <Load on:load={() => load.close()}/>
 </Dialog>
 
-<svelte:window on:keydown={e => { 
-    if(!e.metaKey || !['s', 'o'].includes(e.key)) return
-    e.preventDefault()
-    e.key === 's' && save.showModal();
-    e.key === 'o' && load.showModal();
-}} />
+<svelte:window 
+    on:keydown={e => { 
+        if(!e.metaKey || !['s', 'o'].includes(e.key)) return
+        e.preventDefault()
+        e.key === 's' && save.showModal();
+        e.key === 'o' && load.showModal();
+    }} 
+/>
 
 <style lang="scss">
     .tools {
