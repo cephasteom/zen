@@ -21,15 +21,15 @@
         expanded = expanded === section 
             ? false 
             : section
-        const route = $page.url.searchParams.has('route') && $page.url.searchParams.get('route').split(',')
+        const route = $page.url.searchParams.has('route') && $page.url?.searchParams.get('route')?.split(',')
         if(!route) return
         route[0] = expanded || ''
         window.history.pushState({}, '', `?route=${route.join(',')}`)
     }
 
     onMount(() => {
-        const route = $page.url.searchParams.has('route') && $page.url.searchParams.get('route').split(',')
-        route.length > 0 && handleExpand(route[0])
+        const route = $page.url.searchParams.has('route') && $page.url.searchParams.get('route')?.split(',')
+        route && route.length > 0 && handleExpand(route[0])
     })
 </script>
 
@@ -40,7 +40,7 @@
 
 <div class="content">
 	<h1>Documentation</h1>
-    <p>The following documentation provides a comprehensive list of all Zen variables, classes and methods. It is intended as a reference whilst using Zen. If you are new to Zen, we recommend that you follow the <a href="/learn">tutorial</a> or load some examples in the <a href="/">code editor</a> first.</p>
+    <p>The following documentation provides a comprehensive list of all Zen variables, classes and methods. It is intended as a reference whilst using Zen. If you are new to Zen, we recommend that you follow the <a href="/learn/intro">tutorial</a> or load some examples in the <a href="/">code editor</a> first.</p>
     
     <section class="controls">
         <h2>Controls <button on:click={() => handleExpand('controls')}><Icon data="{faCaretDown}" /></button></h2>
