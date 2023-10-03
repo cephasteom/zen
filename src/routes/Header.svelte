@@ -1,5 +1,7 @@
 <script lang="ts">
+    // @ts-ignore
     import { page } from '$app/stores';
+    // @ts-ignore
     import logo from '$lib/images/karma.png';
     import Icon from 'svelte-awesome';
     import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -71,7 +73,10 @@
     }
     
     .icon {
-        height: 2rem;
+        height: 2.5rem;
+        @media(min-width: 600px) {
+            height: 2rem;
+        }
         display: flex;
         align-items: center;
         color: white;

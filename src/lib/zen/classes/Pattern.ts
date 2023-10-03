@@ -15,7 +15,6 @@ import {
     interpolate,
     handleArrayOrSingleValue as handlePolyphony
 } from '../utils/utils';
-import { getScale, getChord } from '../utils/musical';
 import { parsePattern } from '../parser';
 
 const channel = new BroadcastChannel('zen')
@@ -71,7 +70,6 @@ export class Pattern {
         b: 'bin',
         bm: 'btms',
         bs: 'bts',
-        ch: 'chords',
         cl: 'clamp',
         c: 'coin',
         co: 'cosine',
@@ -98,7 +96,6 @@ export class Pattern {
         ra: 'range',
         r: 'rarely',
         sa: 'saw',
-        sc: 'scales',
         se: 'seq',
         v: 'set',
         si: 'sine',
@@ -121,7 +118,6 @@ export class Pattern {
         b: 'bin',
         bm: 'btms',
         bs: 'bts',
-        ch: 'chords',
         cl: 'clamp',
         c: 'coin',
         co: 'cosine',
@@ -148,7 +144,6 @@ export class Pattern {
         ra: 'range',
         r: 'rarely',
         sa: 'saw',
-        sc: 'scales',
         se: 'seq',
         v: 'set',
         si: 'sine',
@@ -1186,46 +1181,11 @@ export class Pattern {
     }
 
     /**
-     * Use the previous value in the pattern chain as an index to retrieve a value from an array of musical scales
-     * @param names name of scale or array of scale names. Scales follow root-scale format, e.g. 'c-major'.
-     * @todo show link to available scales
-     * @param length length of each scale
-     * @param freq number of iterations of the pattern
-     * @param asArray return the entire scale as an array. Default is false.
-     * @returns {Pattern}
-     * @example s0.p.n.scales('c-dorian', 16)
-     */ 
-    // TODO: can we replace this with a pattern string?
-    scales(names: string | string[], length: number = 8, freq: number = 1, asArray: boolean = false): Pattern {
-        const scales = [names].flat().map(name => {
-            const scale = getScale(name)
-            return scale.slice(0, min(length, scale.length))
-        })
-        this.seq(asArray ? scales : scales.flat(), freq).add(48)
-        return this
-    }
-
-    /**
-     * Use the previous value in the pattern chain as an index to retrieve a chord from an array of musical chords
-     * @param names name of chord or array of chord names. Chords follow root-chord format, e.g. 'd-min7'.
-     * @param octave octave to start chord. Default is 4.
-     * @todo show link to available chords
-     * @param freq number of iterations of the pattern
-     * @returns {Pattern}
-     * @example s0.p.n.chords(['d-min7', 'g-dom7'])
-     */ 
-    // TODO: can we replace this with a pattern string?
-    chords(names: string | string[], freq: number = 1, octave: number = 4): Pattern {
-        this.seq([names].flat().map(name => getChord(name)), freq).add(octave * 12)
-        return this
-    }
-
-    /**
      * Invert the previous chord in the pattern chain
      * @param n inversion
      * @returns {Pattern}
-     * @example s0.p.n.chords('d-dorian', 16).inversion(1)
-     * @example s0.p.n.chords('d-dorian', 16).$inversion.range(0,8,1)
+     * @example s0.p.n.set('Cmin7').inversion(1)
+     * @example s0.p.n.set('Cmin7').$inversion.range(0,8,1)
      */ 
     inversion(n: patternable): Pattern {
         this.stack.push((x: patternValue) => {

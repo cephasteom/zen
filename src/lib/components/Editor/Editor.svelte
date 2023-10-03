@@ -63,7 +63,10 @@
     });
 </script>
 
-<svelte:window on:resize={() => editor?.layout({})} />
+<svelte:window on:resize={() => {
+    // @ts-ignore
+    editor?.layout({})
+}} />
 
 <div class="container" class:flash={flash}>
     <div class="editor" bind:this={editorContainer} />
