@@ -15,11 +15,13 @@
     }
 
     const closeMenu = () => {
-        if(window.innerWidth > 599) return;
+        if(window.innerWidth > 599) return (menu.style.display = 'flex');
         showMobileMenu = false;
         menu && (menu.style.display = 'none');
     }
 </script>
+
+<svelte:window on:resize={closeMenu} />
 
 <header>
     <nav class="container">
