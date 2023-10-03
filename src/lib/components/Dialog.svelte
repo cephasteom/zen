@@ -3,9 +3,7 @@
 </script>
 
 <dialog 
-    on:click={() => { 
-        dialog?.close();
-    }}
+    on:click={() => dialog?.close()}
     on:keydown|preventDefault|stopPropagation={(event) => {
         if (event.key === 'Escape') {
             dialog?.close();

@@ -103,7 +103,7 @@
         padding: 0;
         background-color: var(--color-grey-darkest);
         z-index: 100;
-        // display: none;
+        display: none;
         align-items: center;
         justify-content: center;
         flex-direction: column;
