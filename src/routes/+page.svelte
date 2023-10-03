@@ -46,7 +46,7 @@
         grid-gap: 1rem;
         padding: 1rem;
         user-select: none;
-        min-height: calc(100vh - 9rem);
+        min-height: calc(100vh - 10rem);
         
         @media (min-width: 600px) {
             grid-template-columns: 1fr 1fr;
