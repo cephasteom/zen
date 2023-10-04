@@ -17,6 +17,7 @@
     }
 
     const drawCanvas = (data: Uint8Array) => {
+        s = Math.sqrt(data.length / 4);
         
         for(let i = 0; i < s*s; i++) {
             // TODO: fix this so we don't have to redraw every pixel
