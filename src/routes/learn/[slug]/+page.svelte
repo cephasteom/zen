@@ -14,17 +14,20 @@
 </svelte:head>
 
 <section class="content">
+    <div class="breadcrumb">
+        <a href="/learn">Learn</a> > <span>{chapter.title}</span>
+    </div>
     <div class="markdown">
         {@html marked.parse(chapter.markdown)}
     </div>
     <nav class="pagination">
         <div class="pagination__prev">
-                <a href="/learn/{prev?.slug || ''}">
-                    <span>
-                        <Icon data="{faArrowLeft}" />
-                    </span>
-                </a>
-                <p>{prev?.title || 'Home'}</p>
+            <a href="/learn/{prev?.slug || ''}">
+                <span>
+                    <Icon data="{faArrowLeft}" />
+                </span>
+            </a>
+            <p>{prev?.title || 'Home'}</p>
         </div>
         <div class="pagination__next">
             {#if next}
