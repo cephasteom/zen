@@ -14,11 +14,15 @@
     "include": [
         "src/lib/zen/", 
         "src/lib/oto/ct-synths/rnbo/Synth.ts", 
-        "src/lib/oto/ct-synths/rnbo/FXChain.ts", 
         "src/lib/oto/ct-synths/rnbo/AcidSynth.ts",
         "src/lib/oto/ct-synths/rnbo/Granular.ts",
         "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
         "src/lib/oto/ct-synths/rnbo/Sampler.ts",
+        "src/lib/oto/ct-synths/rnbo/Additive.ts",
+        "src/lib/oto/ct-synths/rnbo/DroneSynth.ts",
+        "src/lib/oto/ct-synths/rnbo/FXChain.ts", 
+        "src/lib/oto/ct-synths/rnbo/FXReverb.ts", 
+        "src/lib/oto/ct-synths/rnbo/FXDelay.ts", 
     ],
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
 	//

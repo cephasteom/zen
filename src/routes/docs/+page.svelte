@@ -1,7 +1,8 @@
 <script lang="ts">
     const chapters = [
         { title: "Classes", slug: "classes"},
-        { title: "Synths", slug: "synths"}
+        { title: "Synths", slug: "synths"},
+        { title: "FX", slug: "fx"},
     ]
 </script>
 
