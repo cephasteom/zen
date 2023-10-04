@@ -4,13 +4,13 @@ import {
     calculateNormalisedPosition as pos,
     loopArray,
 } from '../utils/utils'
-import { ntom, repeatScale } from '../utils/musical'
+import { ntom, repeatScale, stretchBar } from '../utils/musical'
 import { euclidean } from './euclidean-rhythms'
 import { modes } from '../data/scales'
 import { triads } from '../data/chords'
 
 // Add functions to window for so that it can be accessed by parser syntax
-[euclidean, loopArray, ntom, repeatScale].forEach((fn: any) => window[fn.name] = fn)
+[euclidean, loopArray, ntom, repeatScale, stretchBar].forEach((fn: any) => window[fn.name] = fn)
 
 const scaleTypes: string = Object.entries(modes).reduce((grammar: string, [key, scale], i, arr) => {
     return grammar + `"${key}" { return [${scale.join()}]; } ` + (i === arr.length - 1 ? '' : '/ ')
@@ -76,13 +76,21 @@ const parser = peg.generate(`
     }
 
     args
-        = space* ";"? space* bars:("b:" number)? space* ";"? space* { return {bars: bars && (bars[1])}; }
+        = space* ";"? space* bars:("b:" number)? space* ";"? space* { return {
+            bars: bars && (bars[1])
+        }; }
 
     bars 
-        = bars:bar+ { return bars.map(bar => new Array(bar.repeats).fill(0).map(() => bar.bar)).flat() }
+        = bars:bar+ { 
+            return bars.map(({bar, repeats, stretch}) => 
+                new Array(repeats).fill(0)
+                    .map(() => stretchBar(bar, stretch))
+                    .flat()
+            ).flat() 
+        }
     
     bar 
-        = space* values:(group+ / event+) divider? repeats:duration? space* { return {bar: values, repeats: repeats || 1}; }    
+        = space* values:(group+ / event+) divider? repeats:duration? stretch:stretch? space* { return {bar: values, repeats: repeats || 1, stretch: stretch || 1}; }    
     
     // GROUPING
     group
@@ -129,6 +137,9 @@ const parser = peg.generate(`
         }
     
     // TIME
+    stretch
+        = "^" val:number { return val; }
+
     duration
         = count:(ticks / tick) { return count }
 

@@ -48,4 +48,13 @@ export function repeatScale(arr: number[], n: number): number[] {
         .fill(arr)
         .map((arr: number[], i: number) => arr.map((n: number) => n + (i * 12)))
         .flat().slice(0, n);
-  }
+}
+
+// Take a bar of values and return an array of sub-bars, with the original bar stretched to fit the specified number of bars
+export function stretchBar(bar: number[], numBars: number): number[][] {
+    const beats = bar.length;
+    const lcd = beats * numBars;
+    const arr = new Array(lcd).fill(0).map((_, i) => bar[Math.floor(i / numBars)]);
+    return new Array(numBars).fill(0)
+        .map((_, i) => arr.slice(i * beats, (i + 1) * beats));
+}
