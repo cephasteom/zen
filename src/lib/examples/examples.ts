@@ -1,39 +1,40 @@
+const example1 = `z.bpm.set(160);
+
+[s0,s1,s2,s3].map((st,i) => st.x.set(t)._.y.set(s/4 * i))
+
+let sc = 'Cpent%15|Empent%10|Dmpent%12|Gpent%8'
+let bass = 'A2|G2|F2|G2'
+
+s0.set({inst:1,bank:'breaks',snap: q,dur:ms(1),cut:[0,1,2]})
+s0.e.set('1')
+
+s1.set({inst:1,ba:'breaks',snap:q,cut:[0,1],dur:ms(8),loop:1,cutr:ms(0.5),re:0.125,rs:0.1})
+s1.px.begin.v('1|*3 0').$if.saw(0,1,1/32,1/16)._.$else.random(0,0.75,1/16)
+s1.px.i.v('0|*3 1')
+s1.e.not(s0.e).$and.every('8|*4 4|*4')
+
+s2.set({in:0,v:0.75,cu:2,modi:1.5,harm:0.5})
+s2.px.n.set(bass)
+s2.e.set('8:16').and('1 1?0*8|*4')
+
+s3.set({inst:0,vol:0.5,cut:3,modi:1.1,harm:2,moda:1,de:0.5,dtime:ms(0.5),reverb:0.5,rsize:0.75,mods:0.1,dcolour:0.25})
+s3.px.n.set(sc).at('0..15*16|*4 0..15?*16|*4').sub(12)
+.$add.set('3:16').mul(12)
+s3.p.pa.noise(0.25,0.75)
+s3.p.amp.set('3:8').div(2).add(0.5)
+s3.e.set(1)`
+
+const example2 = `s0.set({in:0,reverb:0.5,cut:0,dur:10,r:100,v:0.5})
+s0.p.n.set('Clyd%16..?*16')
+s0.e.set('1*16')`
+
+const example3 = `s0.set({inst:'synth',cut:0,re:0.25,rdecay:0.75,de:0.25,lag:ms(2),locut:0.3,vol:0.5})
+s0.p._n.set('Dpro%16..?*16|*4').sub('0?12*16')
+s0.e.every('1?2*16')
+s0.m.not(s0.e)`
+
 export const examples = {
-    "Dorian Noodles": 
-`// Press Shift + Enter to run your code. 
-// Press Esc to stop.
-z.s = (t%q)+4
-z.q = z.s
-z.set({inst: 'synth', reverb: 0.75, vol: 0.25, lag: 1000, s: 0.25, r: 2000, cut: [0,1,2,3]})
-z.p.n.scales('d-dorian', 16)
-z.p.dur.saw(0.25,4,1/32).btms()
-z.p.hicut.saw(0.5,0,1/32)
-
-s0.p.n.use(z.p.n).add(12)
-s0.px._modi.range().mul((c%16)).div(4)
-s0.x.noise(0,s)
-s0.e.every((c%4) + 3)
-s0.m.every(2)
-
-s1.set({cut: 1, rsize: 0.75})
-s1.p.n.use(z.p.n)
-s1.px._modi.range()
-s1.py._harm.range(1,2,0.25)
-s1.x.eval(s0.x).subr(s)
-s1.y.noise(0, s-1)
-s1.e.use(s0.e).neq(1)
-s0.m.set(1)
-
-s2.set({reverb: 1})
-s2.p.n.use(z.p.n).add(12)
-s2.xyz.set([t,s/3])
-s2.e.every(4)
-s2.m.every(6)
-
-s3.set({rsize: 1, s: 0.1, dtime: 500, dfb: 0.75})
-s3.p.delay.saw(0,1,0,0.125)
-s3.p._n.use(z.p.n).add(19)
-s2.xyz.set([s-t, s*(2/3)])
-s3.e.eval(s2.e)
-s3.m.every(4)`
+    example1,
+    example2,
+    example3
 }

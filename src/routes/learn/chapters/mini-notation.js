@@ -1,5 +1,5 @@
 export default `# Mini-notation
-Inspired by the Tidal Cycle pattern language, Zen includes a mini-notation for expressing patterns. Zen parses strings into arrays of values, then maps the result over a time, or space, depending on where they are used. Turn on the pattern visualiser when running the following examples.
+Inspired by the [Tidal Cycles](https://tidalcycles.org/) pattern language, and guided by this [excellent tutorial](http://alicelab.world/workshop_nime_2017/) from the writers of [Gibber](https://gibber.cc/), Zen includes a mini-notation for expressing patterns. Zen parses strings into arrays of values, then maps the result over time, or space, depending on where they are used. Turn on the pattern visualiser when running the following examples.
 
 ## Basic syntax
 Create an array of length 16, fill with 1s, then use it to trigger a stream:
@@ -87,7 +87,7 @@ s0.e.set('9:16')
 \`\`\`
 
 ## Chords and scales
-Chords and scales both return an array of note values.
+Chords and scales both return an array of note values. Scales were adapted from Tidal Cycle's [scale library](https://github.com/tidalcycles/Tidal/blob/fcc4c5d53a72dcf2b8f4c00cc1c1b3c75eef172d/src/Sound/Tidal/Scales.hs#L4). Many thanks!
 
 Chords are notated as \`<root><triad><extension?>\`, where the root is a capitalised letter, the triad is one of \`ma\`, \`mi\`, \`di\`, \`au\`, \`su\` (major, minor, diminished, augmented, suspended), and the (optional) extension is one of \`6\`, \`7\`, \`#7\`, \`b9\`, \`9\`, \`11\`, \`#11\`, \`13\`, \`#13\`:
 \`\`\`js
