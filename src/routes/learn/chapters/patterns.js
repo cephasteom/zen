@@ -1,5 +1,5 @@
 export default `# Patterns
-As we have seen, the Pattern class is used to set parameters that change over time, and to trigger patterns of musical events. They are also used for moving streams around the canvas, mutating parameters, and warping time. We’ll cover these topics in a later chapter.
+As we have seen, the [Pattern class](/docs/classes#pattern) is used to set parameters that change over time, and to trigger patterns of musical events. They are also used for moving streams around the canvas, mutating parameters, and warping time. We’ll cover these topics in a later chapter.
 
 As in a Stream, the \`.set()\` method is used to set a constant value. For example, \`s0.p.amp.set(1)\` sets the amplitude of Stream 0 to a constant value of 1.
 
@@ -33,5 +33,5 @@ s0.e.every(4).$or.every(3)
 \`\`\`
 Almost all Pattern methods can be prefixed with a \`$\` and used in this way.
 
-For a full list of Pattern methods and their arguments, see [docs](/docs).
+For a full list of Pattern methods and their arguments, see the [Pattern docs](/docs/classes#pattern).
 `

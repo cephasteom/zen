@@ -1,5 +1,5 @@
 export default `# Streams
-Zen is organised into Streams, which refer to different musical layers. Streams are represented by the letter \`s\` and an index, as in \`s0\`, \`s1\`, \`s2\` etc. Think of them as separate musicians playing the different parts of your composition. Each stream is an instance of a [Stream class](/docs/classes/Stream). The ones you’ll use the most are:
+Zen is organised into Streams, which refer to different musical layers. Streams are represented by the letter \`s\` and an index, as in \`s0\`, \`s1\`, \`s2\` etc. Think of them as separate musicians playing the different parts of your composition. Each stream is an instance of a [Stream class](/docs/classes#stream). The ones you’ll use the most are:
 - \`.set()\`
 - \`.p\`
 - \`.e\`
@@ -8,7 +8,7 @@ Zen is organised into Streams, which refer to different musical layers. Streams 
 The \`.set()\` method is used to set parameters that remain constant. It accepts an object literal: a list of key/value pairs. For example, \`s0.set({inst:’synth’,vol:0.5})\` tells stream 0 to use the synth instrument at half volume. 
 
 ## .p
-The \`.p\` property is used to set parameters that should change over time. These are written as, for example, \`s0.p.vol\`, or \`s0.p.amp\`, or even \`s0.p.banana\`. Zen doesn’t care what parameter names you use here, invalid parameters are simply ignored by the synth engine. All parameters are instances of the [Pattern class](/docs/classes/pattern), which has a plethora of methods to help make interesting patterns. We’ll learn more about these in the next chapter.
+The \`.p\` property is used to set parameters that should change over time. These are written as, for example, \`s0.p.vol\`, or \`s0.p.amp\`, or even \`s0.p.banana\`. Zen doesn’t care what parameter names you use here, invalid parameters are simply ignored by the synth engine. All parameters are instances of the [Pattern class](/docs/classes#pattern), which has a plethora of methods to help make interesting patterns. We’ll learn more about these in the next chapter.
 
 For now, here’s an example of setting parameters using the \`.p\` property:
 \`\`\`js

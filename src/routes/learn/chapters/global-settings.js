@@ -1,9 +1,9 @@
 export default `# Global Settings
 
 ## BPM, time and space
-Global settings can be set using the \`z\` object, an instance of the Zen class. 
-- \`z.bpm\` sets the tempo of the piece in beats per minute. It is an instance of the Pattern class.
-- \`z.t\` sets the global time of the piece. It is an instance of the Pattern class.
+Global settings can be set using the \`z\` object, an instance of the [Zen class](/docs/classes#zen). 
+- \`z.bpm\` sets the tempo of the piece in beats per minute. It is an instance of the [Pattern class](/docs/classes#pattern).
+- \`z.t\` sets the global time of the piece. It is an instance of the [Pattern class](/docs/classes#pattern).
 - \`z.s\` sets the size of the canvas.
 - \`z.q\` sets the the amount of divisions per cycle. In other words, how many times your code evaluates per bar.
 

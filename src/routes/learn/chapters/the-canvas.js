@@ -2,7 +2,7 @@ export default `# The Canvas
 So far we’ve mapped all parameters across time using the \`.p\` property. Zen also maps parameters across space, allowing you to compose in 4 dimensions.
 
 ## .x .y .z
-The \`.x\`, \`.y\`, and \`.z\` properties of a stream allow you to move a stream around a virtual space and are all instances of the Pattern class. This movement is represented in 2 dimensions (xy) on the pattern visualiser.
+The \`.x\`, \`.y\`, and \`.z\` properties of a stream allow you to move a stream around a virtual space and are all instances of the [Pattern class](/docs/classes#pattern). This movement is represented in 2 dimensions (xy) on the pattern visualiser.
 \`\`\`js
 s0.e.every(1)
 s0.x.saw(0,16)
