@@ -1,8 +1,9 @@
 import { chapters } from '../tutorial.js';
-import { formatSlug } from "$lib/utils/utils";
+import { formatSlug, formatTitle } from "$lib/utils/utils";
 import { error } from '@sveltejs/kit';
 
 const data = Object.entries(chapters).map(([key, markdown]) => ({
+    title: formatTitle(key),
     slug: formatSlug(key),
     markdown
 }))

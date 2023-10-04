@@ -4,6 +4,8 @@
     import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 	
     export let data;
+    let { chapter, next, prev } = data;
+
 </script>
 
 <svelte:head>
@@ -13,21 +15,25 @@
 
 <section class="content">
     <div class="markdown">
-        {@html marked.parse(data.chapter.markdown)}
+        {@html marked.parse(chapter.markdown)}
     </div>
     <nav class="pagination">
         <div class="pagination__prev">
-            {#if data.prev}
-                <a href="/learn/{data.prev?.slug}">
-                    <Icon data="{faArrowLeft}" />
+                <a href="/learn/{prev?.slug || ''}">
+                    <span>
+                        <Icon data="{faArrowLeft}" />
+                    </span>
                 </a>
-            {/if}
+                <p>{prev?.title || 'Home'}</p>
         </div>
         <div class="pagination__next">
-            {#if data.next}
-                <a href="/learn/{data.next?.slug}">
-                    <Icon data="{faArrowRight}" />        
+            {#if next}
+                <a href="/learn/{next.slug}">
+                    <span>
+                        <Icon data="{faArrowRight}" />        
+                    </span>
                 </a>
+                <p>{next.title}</p>
             {/if}
         </div>
     </nav>
@@ -49,7 +55,19 @@
         display: flex;
         justify-content: space-between;
         &__next, &__prev {
-            width: 2rem;
+            width: 50%;
+            span { 
+                display: block;
+                width: 2rem ;
+            }
+            p { margin: 0}
+        }
+
+        &__next {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
         }
     }
 </style>
