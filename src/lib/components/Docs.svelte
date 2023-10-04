@@ -1,27 +1,13 @@
 <script lang="ts">
     import { parseTSDocsText } from "$lib/utils/parsing";
     export let json: any;
-    let selectedSection: string;
     let selectedChild: string;
 
-    const handleSelectSection = (section: string) => {
-        selectedSection = section;
-        selectedChild = '';
-    }
 </script>
 
 <div>
-    <div class="quick-links">
-        {#each json.children as section}
-            <button 
-                class="quick-link {selectedSection === section.name && 'active'}" 
-                on:click={() => handleSelectSection(section.name)}>
-                    {section.name}
-            </button>
-        {/each}
-    </div>
     {#each json.children as section}
-        <div class="class {section.name !== selectedSection && 'hidden'}">
+        <div class="class">
             <h3 id={section.name.toLowerCase()}>{section.name}</h3>
             <p class="path">Defined in <a href={section.sources[0]?.url} target="_blank">{section.sources[0]?.fileName}</a></p>
 
