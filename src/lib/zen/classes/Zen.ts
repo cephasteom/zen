@@ -3,7 +3,7 @@ import { Pattern } from './Pattern'
 import { clamp } from '../utils/utils'
 
 /**
- * The Zen class allows you to set global parameters. It is available within your code as `z`.
+ * The Zen class allows you to set global parameters. It is available within Zen as `z`.
  * @example
  * z.t.range(0, 16, 1) // pattern time
  * z.bpm.range(60, 120, 1) // pattern bpm

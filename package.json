@@ -8,8 +8,8 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"docs:classes": "npx typedoc --json src/lib/docs/classes.json --entryPoints src/lib/zen/classes/Pattern.ts --entryPoints src/lib/zen/classes/Zen.ts --entryPoints src/lib/zen/classes/Stream.ts",
-		"docs:synths": "npx typedoc --json src/lib/docs/synths.json --entryPoints src/lib/oto/ct-synths/rnbo/Synth.ts --entryPoints src/lib/oto/ct-synths/rnbo/FXChain.ts --entryPoints src/lib/oto/ct-synths/rnbo/AcidSynth.ts --entryPoints src/lib/oto/ct-synths/rnbo/Granular.ts --entryPoints src/lib/oto/ct-synths/rnbo/SubSynth.ts --entryPoints src/lib/oto/ct-synths/rnbo/Sampler.ts --entryPoints src/lib/oto/ct-synths/rnbo/Additive.ts --entryPoints src/lib/oto/ct-synths/rnbo/DroneSynth.ts",
-		"docs:fx": "npx typedoc --json src/lib/docs/fx.json --entryPoints src/lib/oto/ct-synths/rnbo/FXChain.ts --entryPoints src/lib/oto/ct-synths/rnbo/FXReverb.ts --entryPoints src/lib/oto/ct-synths/rnbo/FXDelay.ts"
+		"docs:synths": "npx typedoc --json src/lib/docs/synths.json --entryPoints src/lib/oto/ct-synths/rnbo/Synth.ts --entryPoints src/lib/oto/ct-synths/rnbo/AcidSynth.ts --entryPoints src/lib/oto/ct-synths/rnbo/Granular.ts --entryPoints src/lib/oto/ct-synths/rnbo/SubSynth.ts --entryPoints src/lib/oto/ct-synths/rnbo/Sampler.ts --entryPoints src/lib/oto/ct-synths/rnbo/Additive.ts --entryPoints src/lib/oto/ct-synths/rnbo/DroneSynth.ts",
+		"docs:fx": "npx typedoc --json src/lib/docs/fx.json --entryPoints src/lib/oto/ct-synths/rnbo/FXChain.ts --entryPoints src/lib/oto/ct-synths/rnbo/Reverb.ts --entryPoints src/lib/oto/ct-synths/rnbo/Delay.ts"
 	},
 	"devDependencies": {
 		"@fontsource/fira-mono": "^4.5.10",

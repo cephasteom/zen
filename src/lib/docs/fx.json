@@ -6,6 +6,1031 @@
 	"flags": {},
 	"children": [
 		{
+			"id": 333,
+			"name": "Delay",
+			"variant": "declaration",
+			"kind": 2,
+			"flags": {},
+			"children": [
+				{
+					"id": 334,
+					"name": "default",
+					"variant": "declaration",
+					"kind": 128,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "The delay chained to the end of each stream. Is initialised only when delay parameter is greater than 0."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\ns0.p.delay.set(0.5)\n```"
+									}
+								]
+							}
+						]
+					},
+					"children": [
+						{
+							"id": 389,
+							"name": "defaults",
+							"variant": "declaration",
+							"kind": 1024,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "RNBODevice.ts",
+									"line": 9,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/RNBODevice.ts#L9"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "src/lib/oto/ct-synths/types.ts",
+									"qualifiedName": "Dictionary"
+								},
+								"name": "Dictionary",
+								"package": "zen-3"
+							},
+							"defaultValue": "{}",
+							"inheritedFrom": {
+								"type": "reference",
+								"target": -1,
+								"name": "RNBODevice.defaults"
+							}
+						},
+						{
+							"id": 377,
+							"name": "_dcolour",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Delay.ts",
+									"line": 105,
+									"character": 4
+								}
+							],
+							"signatures": [
+								{
+									"id": 378,
+									"name": "_dcolour",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Mutate the delay colour"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "Delay.ts",
+											"line": 105,
+											"character": 4
+										}
+									],
+									"parameters": [
+										{
+											"id": 379,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "0 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "0.25"
+										},
+										{
+											"id": 380,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									}
+								}
+							]
+						},
+						{
+							"id": 345,
+							"name": "_delay",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Delay.ts",
+									"line": 57,
+									"character": 4
+								}
+							],
+							"signatures": [
+								{
+									"id": 346,
+									"name": "_delay",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Mutate the delay amount"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "Delay.ts",
+											"line": 57,
+											"character": 4
+										}
+									],
+									"parameters": [
+										{
+											"id": 347,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "0 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "0"
+										},
+										{
+											"id": 348,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									}
+								}
+							]
+						},
+						{
+							"id": 361,
+							"name": "_dfb",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Delay.ts",
+									"line": 81,
+									"character": 4
+								}
+							],
+							"signatures": [
+								{
+									"id": 362,
+									"name": "_dfb",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Mutate the delay feedback"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "Delay.ts",
+											"line": 81,
+											"character": 4
+										}
+									],
+									"parameters": [
+										{
+											"id": 363,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "0 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "0.5"
+										},
+										{
+											"id": 364,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									}
+								}
+							]
+						},
+						{
+							"id": 385,
+							"name": "_dfilter",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Delay.ts",
+									"line": 118,
+									"character": 4
+								}
+							],
+							"signatures": [
+								{
+									"id": 386,
+									"name": "_dfilter",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Mutate the delay filter"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "Delay.ts",
+											"line": 118,
+											"character": 4
+										}
+									],
+									"parameters": [
+										{
+											"id": 387,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "0 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "0"
+										},
+										{
+											"id": 388,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									}
+								}
+							]
+						},
+						{
+							"id": 369,
+							"name": "_dspread",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Delay.ts",
+									"line": 93,
+									"character": 4
+								}
+							],
+							"signatures": [
+								{
+									"id": 370,
+									"name": "_dspread",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Mutate the delay spread"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "Delay.ts",
+											"line": 93,
+											"character": 4
+										}
+									],
+									"parameters": [
+										{
+											"id": 371,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "0 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "0"
+										},
+										{
+											"id": 372,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									}
+								}
+							]
+						},
+						{
+							"id": 353,
+							"name": "_dtime",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Delay.ts",
+									"line": 69,
+									"character": 4
+								}
+							],
+							"signatures": [
+								{
+									"id": 354,
+									"name": "_dtime",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Mutate the delay time - may cause clicks"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "Delay.ts",
+											"line": 69,
+											"character": 4
+										}
+									],
+									"parameters": [
+										{
+											"id": 355,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "in ms"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "500"
+										},
+										{
+											"id": 356,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									}
+								}
+							]
+						},
+						{
+							"id": 373,
+							"name": "dcolour",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Delay.ts",
+									"line": 99,
+									"character": 4
+								}
+							],
+							"signatures": [
+								{
+									"id": 374,
+									"name": "dcolour",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Delay colour"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "Delay.ts",
+											"line": 99,
+											"character": 4
+										}
+									],
+									"parameters": [
+										{
+											"id": 375,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "0 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "0.25"
+										},
+										{
+											"id": 376,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									}
+								}
+							]
+						},
+						{
+							"id": 341,
+							"name": "delay",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Delay.ts",
+									"line": 51,
+									"character": 4
+								}
+							],
+							"signatures": [
+								{
+									"id": 342,
+									"name": "delay",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Delay amount"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "Delay.ts",
+											"line": 51,
+											"character": 4
+										}
+									],
+									"parameters": [
+										{
+											"id": 343,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "0 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "0"
+										},
+										{
+											"id": 344,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									}
+								}
+							]
+						},
+						{
+							"id": 357,
+							"name": "dfb",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Delay.ts",
+									"line": 75,
+									"character": 4
+								}
+							],
+							"signatures": [
+								{
+									"id": 358,
+									"name": "dfb",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Delay feedback"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "Delay.ts",
+											"line": 75,
+											"character": 4
+										}
+									],
+									"parameters": [
+										{
+											"id": 359,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "0 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "0.5"
+										},
+										{
+											"id": 360,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									}
+								}
+							]
+						},
+						{
+							"id": 381,
+							"name": "dfilter",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Delay.ts",
+									"line": 112,
+									"character": 4
+								}
+							],
+							"signatures": [
+								{
+									"id": 382,
+									"name": "dfilter",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Delay filter"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "Delay.ts",
+											"line": 112,
+											"character": 4
+										}
+									],
+									"parameters": [
+										{
+											"id": 383,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "0 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "0"
+										},
+										{
+											"id": 384,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									}
+								}
+							]
+						},
+						{
+							"id": 365,
+							"name": "dspread",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Delay.ts",
+									"line": 87,
+									"character": 4
+								}
+							],
+							"signatures": [
+								{
+									"id": 366,
+									"name": "dspread",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Delay spread"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "Delay.ts",
+											"line": 87,
+											"character": 4
+										}
+									],
+									"parameters": [
+										{
+											"id": 367,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "0 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "0"
+										},
+										{
+											"id": 368,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									}
+								}
+							]
+						},
+						{
+							"id": 349,
+							"name": "dtime",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "Delay.ts",
+									"line": 63,
+									"character": 4
+								}
+							],
+							"signatures": [
+								{
+									"id": 350,
+									"name": "dtime",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Delay time"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "Delay.ts",
+											"line": 63,
+											"character": 4
+										}
+									],
+									"parameters": [
+										{
+											"id": 351,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "in ms"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "500"
+										},
+										{
+											"id": 352,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									}
+								}
+							]
+						}
+					],
+					"groups": [
+						{
+							"title": "Properties",
+							"children": [
+								389
+							]
+						},
+						{
+							"title": "Methods",
+							"children": [
+								377,
+								345,
+								361,
+								385,
+								369,
+								353,
+								373,
+								341,
+								357,
+								381,
+								365,
+								349
+							]
+						}
+					],
+					"sources": [
+						{
+							"fileName": "Delay.ts",
+							"line": 13,
+							"character": 6
+						}
+					],
+					"extendedTypes": [
+						{
+							"type": "reference",
+							"target": {
+								"sourceFileName": "src/lib/oto/ct-synths/rnbo/RNBODevice.ts",
+								"qualifiedName": "RNBODevice"
+							},
+							"name": "RNBODevice",
+							"package": "zen-3"
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Classes",
+					"children": [
+						334
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "Delay.ts",
+					"line": 1,
+					"character": 0
+				}
+			]
+		},
+		{
 			"id": 1,
 			"name": "FXChain",
 			"variant": "declaration",
@@ -4177,1059 +5202,8 @@
 			]
 		},
 		{
-			"id": 333,
-			"name": "FXDelay",
-			"variant": "declaration",
-			"kind": 2,
-			"flags": {},
-			"children": [
-				{
-					"id": 334,
-					"name": "default",
-					"variant": "declaration",
-					"kind": 128,
-					"flags": {},
-					"comment": {
-						"summary": [
-							{
-								"kind": "text",
-								"text": "The delay chained to the end of each stream. Is initialised only when delay parameter is greater than 0."
-							}
-						],
-						"blockTags": [
-							{
-								"tag": "@example",
-								"content": [
-									{
-										"kind": "code",
-										"text": "```ts\ns0.p.reverb.set(0.5)\n```"
-									}
-								]
-							}
-						]
-					},
-					"children": [
-						{
-							"id": 389,
-							"name": "defaults",
-							"variant": "declaration",
-							"kind": 1024,
-							"flags": {},
-							"sources": [
-								{
-									"fileName": "RNBODevice.ts",
-									"line": 9,
-									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/RNBODevice.ts#L9"
-								}
-							],
-							"type": {
-								"type": "reference",
-								"target": {
-									"sourceFileName": "src/lib/oto/ct-synths/types.ts",
-									"qualifiedName": "Dictionary"
-								},
-								"name": "Dictionary",
-								"package": "zen-3"
-							},
-							"defaultValue": "{}",
-							"inheritedFrom": {
-								"type": "reference",
-								"target": -1,
-								"name": "RNBODevice.defaults"
-							}
-						},
-						{
-							"id": 377,
-							"name": "_dcolour",
-							"variant": "declaration",
-							"kind": 2048,
-							"flags": {},
-							"sources": [
-								{
-									"fileName": "FXDelay.ts",
-									"line": 105,
-									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXDelay.ts#L105"
-								}
-							],
-							"signatures": [
-								{
-									"id": 378,
-									"name": "_dcolour",
-									"variant": "signature",
-									"kind": 4096,
-									"flags": {},
-									"comment": {
-										"summary": [
-											{
-												"kind": "text",
-												"text": "Mutate the delay colour"
-											}
-										]
-									},
-									"sources": [
-										{
-											"fileName": "FXDelay.ts",
-											"line": 105,
-											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXDelay.ts#L105"
-										}
-									],
-									"parameters": [
-										{
-											"id": 379,
-											"name": "value",
-											"variant": "param",
-											"kind": 32768,
-											"flags": {},
-											"comment": {
-												"summary": [
-													{
-														"kind": "text",
-														"text": "0 to 1"
-													}
-												]
-											},
-											"type": {
-												"type": "intrinsic",
-												"name": "number"
-											},
-											"defaultValue": "0.25"
-										},
-										{
-											"id": 380,
-											"name": "time",
-											"variant": "param",
-											"kind": 32768,
-											"flags": {},
-											"type": {
-												"type": "intrinsic",
-												"name": "number"
-											}
-										}
-									],
-									"type": {
-										"type": "intrinsic",
-										"name": "void"
-									}
-								}
-							]
-						},
-						{
-							"id": 345,
-							"name": "_delay",
-							"variant": "declaration",
-							"kind": 2048,
-							"flags": {},
-							"sources": [
-								{
-									"fileName": "FXDelay.ts",
-									"line": 57,
-									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXDelay.ts#L57"
-								}
-							],
-							"signatures": [
-								{
-									"id": 346,
-									"name": "_delay",
-									"variant": "signature",
-									"kind": 4096,
-									"flags": {},
-									"comment": {
-										"summary": [
-											{
-												"kind": "text",
-												"text": "Mutate the delay amount"
-											}
-										]
-									},
-									"sources": [
-										{
-											"fileName": "FXDelay.ts",
-											"line": 57,
-											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXDelay.ts#L57"
-										}
-									],
-									"parameters": [
-										{
-											"id": 347,
-											"name": "value",
-											"variant": "param",
-											"kind": 32768,
-											"flags": {},
-											"comment": {
-												"summary": [
-													{
-														"kind": "text",
-														"text": "0 to 1"
-													}
-												]
-											},
-											"type": {
-												"type": "intrinsic",
-												"name": "number"
-											},
-											"defaultValue": "0"
-										},
-										{
-											"id": 348,
-											"name": "time",
-											"variant": "param",
-											"kind": 32768,
-											"flags": {},
-											"type": {
-												"type": "intrinsic",
-												"name": "number"
-											}
-										}
-									],
-									"type": {
-										"type": "intrinsic",
-										"name": "void"
-									}
-								}
-							]
-						},
-						{
-							"id": 361,
-							"name": "_dfb",
-							"variant": "declaration",
-							"kind": 2048,
-							"flags": {},
-							"sources": [
-								{
-									"fileName": "FXDelay.ts",
-									"line": 81,
-									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXDelay.ts#L81"
-								}
-							],
-							"signatures": [
-								{
-									"id": 362,
-									"name": "_dfb",
-									"variant": "signature",
-									"kind": 4096,
-									"flags": {},
-									"comment": {
-										"summary": [
-											{
-												"kind": "text",
-												"text": "Mutate the delay feedback"
-											}
-										]
-									},
-									"sources": [
-										{
-											"fileName": "FXDelay.ts",
-											"line": 81,
-											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXDelay.ts#L81"
-										}
-									],
-									"parameters": [
-										{
-											"id": 363,
-											"name": "value",
-											"variant": "param",
-											"kind": 32768,
-											"flags": {},
-											"comment": {
-												"summary": [
-													{
-														"kind": "text",
-														"text": "0 to 1"
-													}
-												]
-											},
-											"type": {
-												"type": "intrinsic",
-												"name": "number"
-											},
-											"defaultValue": "0.5"
-										},
-										{
-											"id": 364,
-											"name": "time",
-											"variant": "param",
-											"kind": 32768,
-											"flags": {},
-											"type": {
-												"type": "intrinsic",
-												"name": "number"
-											}
-										}
-									],
-									"type": {
-										"type": "intrinsic",
-										"name": "void"
-									}
-								}
-							]
-						},
-						{
-							"id": 385,
-							"name": "_dfilter",
-							"variant": "declaration",
-							"kind": 2048,
-							"flags": {},
-							"sources": [
-								{
-									"fileName": "FXDelay.ts",
-									"line": 118,
-									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXDelay.ts#L118"
-								}
-							],
-							"signatures": [
-								{
-									"id": 386,
-									"name": "_dfilter",
-									"variant": "signature",
-									"kind": 4096,
-									"flags": {},
-									"comment": {
-										"summary": [
-											{
-												"kind": "text",
-												"text": "Mutate the delay filter"
-											}
-										]
-									},
-									"sources": [
-										{
-											"fileName": "FXDelay.ts",
-											"line": 118,
-											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXDelay.ts#L118"
-										}
-									],
-									"parameters": [
-										{
-											"id": 387,
-											"name": "value",
-											"variant": "param",
-											"kind": 32768,
-											"flags": {},
-											"comment": {
-												"summary": [
-													{
-														"kind": "text",
-														"text": "0 to 1"
-													}
-												]
-											},
-											"type": {
-												"type": "intrinsic",
-												"name": "number"
-											},
-											"defaultValue": "0"
-										},
-										{
-											"id": 388,
-											"name": "time",
-											"variant": "param",
-											"kind": 32768,
-											"flags": {},
-											"type": {
-												"type": "intrinsic",
-												"name": "number"
-											}
-										}
-									],
-									"type": {
-										"type": "intrinsic",
-										"name": "void"
-									}
-								}
-							]
-						},
-						{
-							"id": 369,
-							"name": "_dspread",
-							"variant": "declaration",
-							"kind": 2048,
-							"flags": {},
-							"sources": [
-								{
-									"fileName": "FXDelay.ts",
-									"line": 93,
-									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXDelay.ts#L93"
-								}
-							],
-							"signatures": [
-								{
-									"id": 370,
-									"name": "_dspread",
-									"variant": "signature",
-									"kind": 4096,
-									"flags": {},
-									"comment": {
-										"summary": [
-											{
-												"kind": "text",
-												"text": "Mutate the delay spread"
-											}
-										]
-									},
-									"sources": [
-										{
-											"fileName": "FXDelay.ts",
-											"line": 93,
-											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXDelay.ts#L93"
-										}
-									],
-									"parameters": [
-										{
-											"id": 371,
-											"name": "value",
-											"variant": "param",
-											"kind": 32768,
-											"flags": {},
-											"comment": {
-												"summary": [
-													{
-														"kind": "text",
-														"text": "0 to 1"
-													}
-												]
-											},
-											"type": {
-												"type": "intrinsic",
-												"name": "number"
-											},
-											"defaultValue": "0"
-										},
-										{
-											"id": 372,
-											"name": "time",
-											"variant": "param",
-											"kind": 32768,
-											"flags": {},
-											"type": {
-												"type": "intrinsic",
-												"name": "number"
-											}
-										}
-									],
-									"type": {
-										"type": "intrinsic",
-										"name": "void"
-									}
-								}
-							]
-						},
-						{
-							"id": 353,
-							"name": "_dtime",
-							"variant": "declaration",
-							"kind": 2048,
-							"flags": {},
-							"sources": [
-								{
-									"fileName": "FXDelay.ts",
-									"line": 69,
-									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXDelay.ts#L69"
-								}
-							],
-							"signatures": [
-								{
-									"id": 354,
-									"name": "_dtime",
-									"variant": "signature",
-									"kind": 4096,
-									"flags": {},
-									"comment": {
-										"summary": [
-											{
-												"kind": "text",
-												"text": "Mutate the delay time - may cause clicks"
-											}
-										]
-									},
-									"sources": [
-										{
-											"fileName": "FXDelay.ts",
-											"line": 69,
-											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXDelay.ts#L69"
-										}
-									],
-									"parameters": [
-										{
-											"id": 355,
-											"name": "value",
-											"variant": "param",
-											"kind": 32768,
-											"flags": {},
-											"comment": {
-												"summary": [
-													{
-														"kind": "text",
-														"text": "in ms"
-													}
-												]
-											},
-											"type": {
-												"type": "intrinsic",
-												"name": "number"
-											},
-											"defaultValue": "500"
-										},
-										{
-											"id": 356,
-											"name": "time",
-											"variant": "param",
-											"kind": 32768,
-											"flags": {},
-											"type": {
-												"type": "intrinsic",
-												"name": "number"
-											}
-										}
-									],
-									"type": {
-										"type": "intrinsic",
-										"name": "void"
-									}
-								}
-							]
-						},
-						{
-							"id": 373,
-							"name": "dcolour",
-							"variant": "declaration",
-							"kind": 2048,
-							"flags": {},
-							"sources": [
-								{
-									"fileName": "FXDelay.ts",
-									"line": 99,
-									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXDelay.ts#L99"
-								}
-							],
-							"signatures": [
-								{
-									"id": 374,
-									"name": "dcolour",
-									"variant": "signature",
-									"kind": 4096,
-									"flags": {},
-									"comment": {
-										"summary": [
-											{
-												"kind": "text",
-												"text": "Delay colour"
-											}
-										]
-									},
-									"sources": [
-										{
-											"fileName": "FXDelay.ts",
-											"line": 99,
-											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXDelay.ts#L99"
-										}
-									],
-									"parameters": [
-										{
-											"id": 375,
-											"name": "value",
-											"variant": "param",
-											"kind": 32768,
-											"flags": {},
-											"comment": {
-												"summary": [
-													{
-														"kind": "text",
-														"text": "0 to 1"
-													}
-												]
-											},
-											"type": {
-												"type": "intrinsic",
-												"name": "number"
-											},
-											"defaultValue": "0.25"
-										},
-										{
-											"id": 376,
-											"name": "time",
-											"variant": "param",
-											"kind": 32768,
-											"flags": {},
-											"type": {
-												"type": "intrinsic",
-												"name": "number"
-											}
-										}
-									],
-									"type": {
-										"type": "intrinsic",
-										"name": "void"
-									}
-								}
-							]
-						},
-						{
-							"id": 341,
-							"name": "delay",
-							"variant": "declaration",
-							"kind": 2048,
-							"flags": {},
-							"sources": [
-								{
-									"fileName": "FXDelay.ts",
-									"line": 51,
-									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXDelay.ts#L51"
-								}
-							],
-							"signatures": [
-								{
-									"id": 342,
-									"name": "delay",
-									"variant": "signature",
-									"kind": 4096,
-									"flags": {},
-									"comment": {
-										"summary": [
-											{
-												"kind": "text",
-												"text": "Delay amount"
-											}
-										]
-									},
-									"sources": [
-										{
-											"fileName": "FXDelay.ts",
-											"line": 51,
-											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXDelay.ts#L51"
-										}
-									],
-									"parameters": [
-										{
-											"id": 343,
-											"name": "value",
-											"variant": "param",
-											"kind": 32768,
-											"flags": {},
-											"comment": {
-												"summary": [
-													{
-														"kind": "text",
-														"text": "0 to 1"
-													}
-												]
-											},
-											"type": {
-												"type": "intrinsic",
-												"name": "number"
-											},
-											"defaultValue": "0"
-										},
-										{
-											"id": 344,
-											"name": "time",
-											"variant": "param",
-											"kind": 32768,
-											"flags": {},
-											"type": {
-												"type": "intrinsic",
-												"name": "number"
-											}
-										}
-									],
-									"type": {
-										"type": "intrinsic",
-										"name": "void"
-									}
-								}
-							]
-						},
-						{
-							"id": 357,
-							"name": "dfb",
-							"variant": "declaration",
-							"kind": 2048,
-							"flags": {},
-							"sources": [
-								{
-									"fileName": "FXDelay.ts",
-									"line": 75,
-									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXDelay.ts#L75"
-								}
-							],
-							"signatures": [
-								{
-									"id": 358,
-									"name": "dfb",
-									"variant": "signature",
-									"kind": 4096,
-									"flags": {},
-									"comment": {
-										"summary": [
-											{
-												"kind": "text",
-												"text": "Delay feedback"
-											}
-										]
-									},
-									"sources": [
-										{
-											"fileName": "FXDelay.ts",
-											"line": 75,
-											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXDelay.ts#L75"
-										}
-									],
-									"parameters": [
-										{
-											"id": 359,
-											"name": "value",
-											"variant": "param",
-											"kind": 32768,
-											"flags": {},
-											"comment": {
-												"summary": [
-													{
-														"kind": "text",
-														"text": "0 to 1"
-													}
-												]
-											},
-											"type": {
-												"type": "intrinsic",
-												"name": "number"
-											},
-											"defaultValue": "0.5"
-										},
-										{
-											"id": 360,
-											"name": "time",
-											"variant": "param",
-											"kind": 32768,
-											"flags": {},
-											"type": {
-												"type": "intrinsic",
-												"name": "number"
-											}
-										}
-									],
-									"type": {
-										"type": "intrinsic",
-										"name": "void"
-									}
-								}
-							]
-						},
-						{
-							"id": 381,
-							"name": "dfilter",
-							"variant": "declaration",
-							"kind": 2048,
-							"flags": {},
-							"sources": [
-								{
-									"fileName": "FXDelay.ts",
-									"line": 112,
-									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXDelay.ts#L112"
-								}
-							],
-							"signatures": [
-								{
-									"id": 382,
-									"name": "dfilter",
-									"variant": "signature",
-									"kind": 4096,
-									"flags": {},
-									"comment": {
-										"summary": [
-											{
-												"kind": "text",
-												"text": "Delay filter"
-											}
-										]
-									},
-									"sources": [
-										{
-											"fileName": "FXDelay.ts",
-											"line": 112,
-											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXDelay.ts#L112"
-										}
-									],
-									"parameters": [
-										{
-											"id": 383,
-											"name": "value",
-											"variant": "param",
-											"kind": 32768,
-											"flags": {},
-											"comment": {
-												"summary": [
-													{
-														"kind": "text",
-														"text": "0 to 1"
-													}
-												]
-											},
-											"type": {
-												"type": "intrinsic",
-												"name": "number"
-											},
-											"defaultValue": "0"
-										},
-										{
-											"id": 384,
-											"name": "time",
-											"variant": "param",
-											"kind": 32768,
-											"flags": {},
-											"type": {
-												"type": "intrinsic",
-												"name": "number"
-											}
-										}
-									],
-									"type": {
-										"type": "intrinsic",
-										"name": "void"
-									}
-								}
-							]
-						},
-						{
-							"id": 365,
-							"name": "dspread",
-							"variant": "declaration",
-							"kind": 2048,
-							"flags": {},
-							"sources": [
-								{
-									"fileName": "FXDelay.ts",
-									"line": 87,
-									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXDelay.ts#L87"
-								}
-							],
-							"signatures": [
-								{
-									"id": 366,
-									"name": "dspread",
-									"variant": "signature",
-									"kind": 4096,
-									"flags": {},
-									"comment": {
-										"summary": [
-											{
-												"kind": "text",
-												"text": "Delay spread"
-											}
-										]
-									},
-									"sources": [
-										{
-											"fileName": "FXDelay.ts",
-											"line": 87,
-											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXDelay.ts#L87"
-										}
-									],
-									"parameters": [
-										{
-											"id": 367,
-											"name": "value",
-											"variant": "param",
-											"kind": 32768,
-											"flags": {},
-											"comment": {
-												"summary": [
-													{
-														"kind": "text",
-														"text": "0 to 1"
-													}
-												]
-											},
-											"type": {
-												"type": "intrinsic",
-												"name": "number"
-											},
-											"defaultValue": "0"
-										},
-										{
-											"id": 368,
-											"name": "time",
-											"variant": "param",
-											"kind": 32768,
-											"flags": {},
-											"type": {
-												"type": "intrinsic",
-												"name": "number"
-											}
-										}
-									],
-									"type": {
-										"type": "intrinsic",
-										"name": "void"
-									}
-								}
-							]
-						},
-						{
-							"id": 349,
-							"name": "dtime",
-							"variant": "declaration",
-							"kind": 2048,
-							"flags": {},
-							"sources": [
-								{
-									"fileName": "FXDelay.ts",
-									"line": 63,
-									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXDelay.ts#L63"
-								}
-							],
-							"signatures": [
-								{
-									"id": 350,
-									"name": "dtime",
-									"variant": "signature",
-									"kind": 4096,
-									"flags": {},
-									"comment": {
-										"summary": [
-											{
-												"kind": "text",
-												"text": "Delay time"
-											}
-										]
-									},
-									"sources": [
-										{
-											"fileName": "FXDelay.ts",
-											"line": 63,
-											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXDelay.ts#L63"
-										}
-									],
-									"parameters": [
-										{
-											"id": 351,
-											"name": "value",
-											"variant": "param",
-											"kind": 32768,
-											"flags": {},
-											"comment": {
-												"summary": [
-													{
-														"kind": "text",
-														"text": "in ms"
-													}
-												]
-											},
-											"type": {
-												"type": "intrinsic",
-												"name": "number"
-											},
-											"defaultValue": "500"
-										},
-										{
-											"id": 352,
-											"name": "time",
-											"variant": "param",
-											"kind": 32768,
-											"flags": {},
-											"type": {
-												"type": "intrinsic",
-												"name": "number"
-											}
-										}
-									],
-									"type": {
-										"type": "intrinsic",
-										"name": "void"
-									}
-								}
-							]
-						}
-					],
-					"groups": [
-						{
-							"title": "Properties",
-							"children": [
-								389
-							]
-						},
-						{
-							"title": "Methods",
-							"children": [
-								377,
-								345,
-								361,
-								385,
-								369,
-								353,
-								373,
-								341,
-								357,
-								381,
-								365,
-								349
-							]
-						}
-					],
-					"sources": [
-						{
-							"fileName": "FXDelay.ts",
-							"line": 13,
-							"character": 6,
-							"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXDelay.ts#L13"
-						}
-					],
-					"extendedTypes": [
-						{
-							"type": "reference",
-							"target": {
-								"sourceFileName": "src/lib/oto/ct-synths/rnbo/RNBODevice.ts",
-								"qualifiedName": "RNBODevice"
-							},
-							"name": "RNBODevice",
-							"package": "zen-3"
-						}
-					]
-				}
-			],
-			"groups": [
-				{
-					"title": "Classes",
-					"children": [
-						334
-					]
-				}
-			],
-			"sources": [
-				{
-					"fileName": "FXDelay.ts",
-					"line": 1,
-					"character": 0,
-					"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXDelay.ts#L1"
-				}
-			]
-		},
-		{
 			"id": 247,
-			"name": "FXReverb",
+			"name": "Reverb",
 			"variant": "declaration",
 			"kind": 2,
 			"flags": {},
@@ -5298,10 +5272,9 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "FXReverb.ts",
+									"fileName": "Reverb.ts",
 									"line": 83,
-									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXReverb.ts#L83"
+									"character": 4
 								}
 							],
 							"signatures": [
@@ -5321,10 +5294,9 @@
 									},
 									"sources": [
 										{
-											"fileName": "FXReverb.ts",
+											"fileName": "Reverb.ts",
 											"line": 83,
-											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXReverb.ts#L83"
+											"character": 4
 										}
 									],
 									"parameters": [
@@ -5375,10 +5347,9 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "FXReverb.ts",
+									"fileName": "Reverb.ts",
 									"line": 119,
-									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXReverb.ts#L119"
+									"character": 4
 								}
 							],
 							"signatures": [
@@ -5398,10 +5369,9 @@
 									},
 									"sources": [
 										{
-											"fileName": "FXReverb.ts",
+											"fileName": "Reverb.ts",
 											"line": 119,
-											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXReverb.ts#L119"
+											"character": 4
 										}
 									],
 									"parameters": [
@@ -5452,10 +5422,9 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "FXReverb.ts",
+									"fileName": "Reverb.ts",
 									"line": 95,
-									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXReverb.ts#L95"
+									"character": 4
 								}
 							],
 							"signatures": [
@@ -5475,10 +5444,9 @@
 									},
 									"sources": [
 										{
-											"fileName": "FXReverb.ts",
+											"fileName": "Reverb.ts",
 											"line": 95,
-											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXReverb.ts#L95"
+											"character": 4
 										}
 									],
 									"parameters": [
@@ -5529,10 +5497,9 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "FXReverb.ts",
+									"fileName": "Reverb.ts",
 									"line": 57,
-									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXReverb.ts#L57"
+									"character": 4
 								}
 							],
 							"signatures": [
@@ -5552,10 +5519,9 @@
 									},
 									"sources": [
 										{
-											"fileName": "FXReverb.ts",
+											"fileName": "Reverb.ts",
 											"line": 57,
-											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXReverb.ts#L57"
+											"character": 4
 										}
 									],
 									"parameters": [
@@ -5606,10 +5572,9 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "FXReverb.ts",
+									"fileName": "Reverb.ts",
 									"line": 107,
-									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXReverb.ts#L107"
+									"character": 4
 								}
 							],
 							"signatures": [
@@ -5629,10 +5594,9 @@
 									},
 									"sources": [
 										{
-											"fileName": "FXReverb.ts",
+											"fileName": "Reverb.ts",
 											"line": 107,
-											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXReverb.ts#L107"
+											"character": 4
 										}
 									],
 									"parameters": [
@@ -5683,10 +5647,9 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "FXReverb.ts",
+									"fileName": "Reverb.ts",
 									"line": 71,
-									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXReverb.ts#L71"
+									"character": 4
 								}
 							],
 							"signatures": [
@@ -5706,10 +5669,9 @@
 									},
 									"sources": [
 										{
-											"fileName": "FXReverb.ts",
+											"fileName": "Reverb.ts",
 											"line": 71,
-											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXReverb.ts#L71"
+											"character": 4
 										}
 									],
 									"parameters": [
@@ -5760,10 +5722,9 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "FXReverb.ts",
+									"fileName": "Reverb.ts",
 									"line": 77,
-									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXReverb.ts#L77"
+									"character": 4
 								}
 							],
 							"signatures": [
@@ -5783,10 +5744,9 @@
 									},
 									"sources": [
 										{
-											"fileName": "FXReverb.ts",
+											"fileName": "Reverb.ts",
 											"line": 77,
-											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXReverb.ts#L77"
+											"character": 4
 										}
 									],
 									"parameters": [
@@ -5837,10 +5797,9 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "FXReverb.ts",
+									"fileName": "Reverb.ts",
 									"line": 113,
-									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXReverb.ts#L113"
+									"character": 4
 								}
 							],
 							"signatures": [
@@ -5860,10 +5819,9 @@
 									},
 									"sources": [
 										{
-											"fileName": "FXReverb.ts",
+											"fileName": "Reverb.ts",
 											"line": 113,
-											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXReverb.ts#L113"
+											"character": 4
 										}
 									],
 									"parameters": [
@@ -5914,10 +5872,9 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "FXReverb.ts",
+									"fileName": "Reverb.ts",
 									"line": 89,
-									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXReverb.ts#L89"
+									"character": 4
 								}
 							],
 							"signatures": [
@@ -5937,10 +5894,9 @@
 									},
 									"sources": [
 										{
-											"fileName": "FXReverb.ts",
+											"fileName": "Reverb.ts",
 											"line": 89,
-											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXReverb.ts#L89"
+											"character": 4
 										}
 									],
 									"parameters": [
@@ -5991,10 +5947,9 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "FXReverb.ts",
+									"fileName": "Reverb.ts",
 									"line": 51,
-									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXReverb.ts#L51"
+									"character": 4
 								}
 							],
 							"signatures": [
@@ -6014,10 +5969,9 @@
 									},
 									"sources": [
 										{
-											"fileName": "FXReverb.ts",
+											"fileName": "Reverb.ts",
 											"line": 51,
-											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXReverb.ts#L51"
+											"character": 4
 										}
 									],
 									"parameters": [
@@ -6068,10 +6022,9 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "FXReverb.ts",
+									"fileName": "Reverb.ts",
 									"line": 101,
-									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXReverb.ts#L101"
+									"character": 4
 								}
 							],
 							"signatures": [
@@ -6091,10 +6044,9 @@
 									},
 									"sources": [
 										{
-											"fileName": "FXReverb.ts",
+											"fileName": "Reverb.ts",
 											"line": 101,
-											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXReverb.ts#L101"
+											"character": 4
 										}
 									],
 									"parameters": [
@@ -6145,10 +6097,9 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "FXReverb.ts",
+									"fileName": "Reverb.ts",
 									"line": 63,
-									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXReverb.ts#L63"
+									"character": 4
 								}
 							],
 							"signatures": [
@@ -6168,10 +6119,9 @@
 									},
 									"sources": [
 										{
-											"fileName": "FXReverb.ts",
+											"fileName": "Reverb.ts",
 											"line": 63,
-											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXReverb.ts#L63"
+											"character": 4
 										}
 									],
 									"parameters": [
@@ -6242,10 +6192,9 @@
 					],
 					"sources": [
 						{
-							"fileName": "FXReverb.ts",
+							"fileName": "Reverb.ts",
 							"line": 13,
-							"character": 6,
-							"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXReverb.ts#L13"
+							"character": 6
 						}
 					],
 					"extendedTypes": [
@@ -6271,10 +6220,9 @@
 			],
 			"sources": [
 				{
-					"fileName": "FXReverb.ts",
+					"fileName": "Reverb.ts",
 					"line": 1,
-					"character": 0,
-					"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXReverb.ts#L1"
+					"character": 0
 				}
 			]
 		}
@@ -6283,8 +6231,8 @@
 		{
 			"title": "Modules",
 			"children": [
-				1,
 				333,
+				1,
 				247
 			]
 		}
@@ -7142,203 +7090,203 @@
 			"qualifiedName": "RNBODevice.defaults"
 		},
 		"247": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": ""
 		},
 		"248": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb"
 		},
 		"255": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb.reverb"
 		},
 		"256": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb.reverb"
 		},
 		"257": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "value"
 		},
 		"258": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "time"
 		},
 		"259": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb._reverb"
 		},
 		"260": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb._reverb"
 		},
 		"261": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "value"
 		},
 		"262": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "time"
 		},
 		"263": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb.rsize"
 		},
 		"264": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb.rsize"
 		},
 		"265": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "value"
 		},
 		"266": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "time"
 		},
 		"267": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb._rsize"
 		},
 		"268": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb._rsize"
 		},
 		"269": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "value"
 		},
 		"270": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "time"
 		},
 		"271": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb.rdamp"
 		},
 		"272": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb.rdamp"
 		},
 		"273": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "value"
 		},
 		"274": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "time"
 		},
 		"275": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb._rdamp"
 		},
 		"276": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb._rdamp"
 		},
 		"277": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "value"
 		},
 		"278": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "time"
 		},
 		"279": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb.rdiff"
 		},
 		"280": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb.rdiff"
 		},
 		"281": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "value"
 		},
 		"282": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "time"
 		},
 		"283": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb._rdiff"
 		},
 		"284": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb._rdiff"
 		},
 		"285": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "value"
 		},
 		"286": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "time"
 		},
 		"287": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb.rjitter"
 		},
 		"288": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb.rjitter"
 		},
 		"289": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "value"
 		},
 		"290": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "time"
 		},
 		"291": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb._rjitter"
 		},
 		"292": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb._rjitter"
 		},
 		"293": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "value"
 		},
 		"294": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "time"
 		},
 		"295": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb.rdecay"
 		},
 		"296": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb.rdecay"
 		},
 		"297": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "value"
 		},
 		"298": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "time"
 		},
 		"299": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb._rdecay"
 		},
 		"300": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb._rdecay"
 		},
 		"301": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "value"
 		},
 		"302": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXReverb.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "time"
 		},
 		"303": {
@@ -7346,203 +7294,203 @@
 			"qualifiedName": "RNBODevice.defaults"
 		},
 		"333": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": ""
 		},
 		"334": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay"
 		},
 		"341": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay.delay"
 		},
 		"342": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay.delay"
 		},
 		"343": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "value"
 		},
 		"344": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "time"
 		},
 		"345": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay._delay"
 		},
 		"346": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay._delay"
 		},
 		"347": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "value"
 		},
 		"348": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "time"
 		},
 		"349": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay.dtime"
 		},
 		"350": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay.dtime"
 		},
 		"351": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "value"
 		},
 		"352": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "time"
 		},
 		"353": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay._dtime"
 		},
 		"354": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay._dtime"
 		},
 		"355": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "value"
 		},
 		"356": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "time"
 		},
 		"357": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay.dfb"
 		},
 		"358": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay.dfb"
 		},
 		"359": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "value"
 		},
 		"360": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "time"
 		},
 		"361": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay._dfb"
 		},
 		"362": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay._dfb"
 		},
 		"363": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "value"
 		},
 		"364": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "time"
 		},
 		"365": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay.dspread"
 		},
 		"366": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay.dspread"
 		},
 		"367": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "value"
 		},
 		"368": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "time"
 		},
 		"369": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay._dspread"
 		},
 		"370": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay._dspread"
 		},
 		"371": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "value"
 		},
 		"372": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "time"
 		},
 		"373": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay.dcolour"
 		},
 		"374": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay.dcolour"
 		},
 		"375": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "value"
 		},
 		"376": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "time"
 		},
 		"377": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay._dcolour"
 		},
 		"378": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay._dcolour"
 		},
 		"379": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "value"
 		},
 		"380": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "time"
 		},
 		"381": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay.dfilter"
 		},
 		"382": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay.dfilter"
 		},
 		"383": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "value"
 		},
 		"384": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "time"
 		},
 		"385": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay._dfilter"
 		},
 		"386": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay._dfilter"
 		},
 		"387": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "value"
 		},
 		"388": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXDelay.ts",
+			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "time"
 		},
 		"389": {

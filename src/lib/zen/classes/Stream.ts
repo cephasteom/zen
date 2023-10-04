@@ -5,9 +5,11 @@ import { formatEventParams, formatMutationParams } from '../utils/syntax';
 import type { Dictionary } from '../types'
 
 /**
- * A stream is a collection of patterns that can be mapped across time and space. A stream's position can be moved around time and space. When a stream triggers an event, musical parameters are determined by the stream's position in time and space. Similarly, when a stream mutates an event, all active events are mutated based on the stream's position in time and space.
+ * A stream is a musical layer. You can use a stream to map musical parameters across time and space. 
+ * When a stream triggers an event, musical parameters are determined by the stream's position in time and space.
+ * When a stream triggers a mutation, all active events are mutated based on the stream's position in time and space.
  * 
- * Streams are available within your code as `s0`, `s1`, `s2`, `s3`, `s4`, `s5`, `s6`, `s7`.
+ * Streams are available within Zen as `s0`, `s1`, `s2`, `s3`, `s4`, `s5`, `s6`, `s7`.
  * @example
  * s0.set({inst: 'synth', n: 60}) // set the stream's default parameters
  * s0.p.lag.set(1).btms()
@@ -15,8 +17,8 @@ import type { Dictionary } from '../types'
  * s0.py._harm.range(0,10,1) // map the synth's harmonic series across the y axis
  * s0.x.range(0,16,1) // move the stream across the x axis of the canvas
  * s0.y.noise(0,16,1,0.5) // move the stream across the y axis of the canvas
- * s0.e.every(4) // trigger a middle C every 4 divisions
- * s0.m.eval(s0.e).neq(1)
+ * s0.e.every(4) // trigger an event every 4 divisions
+ * s0.m.not(s0.e)
  */ 
 export class Stream {
     /** @hidden */
