@@ -1,4 +1,4 @@
-import { chapters } from '../tutorial.js';
+import { chapters } from '../chapters';
 import { formatSlug, formatTitle } from "$lib/utils/utils";
 import { error } from '@sveltejs/kit';
 

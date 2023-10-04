@@ -1,142 +1,18 @@
-const intro = `# Intro
-Welcome to Zen, a tool for composing music in the browser. Zen allows you to generate complex musical patterns using a simple JavaScript API. It comes with a number of high-quality instruments and effects - including synths, samplers, delay and reverb - as well as integrating with your existing studio through MIDI.
+import intro from './intro'
+import getting_started from './getting-started'
+import the_editor from './the-editor'
+import streams from './streams'
+import patterns from './patterns'
+import custom_samples from './custom-samples'
 
-This is a tutorial to help you get started. It's not meant to be comprehensive, but it should give you a good idea of how to use Zen. For more information, check out the reference documentation. We recommend that you open the code editor in a separate tab and turn on the pattern visualiser so that you can see and hear the patterns in the examples that follow.
-
-Zen will work in most browsers but, for best performance, we recommend Google Chrome.
-
-Enjoy!
-`
-
-const getting_started = `# Getting Started
-Before we get into Zen’s nuts and bolts, simply copy the following example into the editor and press shift + enter. Change some values, comment out a few lines and see if you can work out what each part does. When you’ve finished, press esc to stop playback.
-
-\`\`\`js
-z.bpm.set(160);
-
-[s0,s1,s2,s3].map((st,i) => st.x.set(t)._.y.set(s/4 * i))
-
-let sc = 'Cpent%15|Empent%10|Dmpent%12|Gpent%8'
-let bass = 'A2|G2|F2|G2'
-
-s0.set({inst:1,bank:'breaks',snap: q,dur:ms(1),cut:[0,1,2]})
-s0.e.set('1')
-
-s1.set({inst:1,ba:'breaks',snap:q,cut:[0,1],dur:ms(8),loop:1,cutr:ms(0.5),re:0.125,rs:0.1})
-s1.px.begin.v('1|*3 0').$if.saw(0,1,1/32,1/16)._.$else.random(0,0.75,1/16)
-s1.px.i.v('0|*3 1')
-s1.e.not(s0.e).$and.every('8|*4 4|*4')
-
-s2.set({in:0,v:0.75,cu:2,modi:1.5,harm:0.5})
-s2.px.n.set(bass)
-s2.e.set('8:16').and('1 1?0*8|*4')
-
-s3.set({inst:0,vol:0.5,cut:3,modi:1.1,harm:2,moda:1,de:0.5,dtime:ms(0.5),reverb:0.5,rsize:0.75,mods:0.1,dcolour:0.25})
-s3.px.n.set(sc).at('0..15*16|*4 0..15?*16|*4').sub(12)
-.$add.set('3:16').mul(12)
-s3.p.pa.noise(0.25,0.75)
-s3.p.amp.set('3:8').div(2).add(0.5)
-s3.e.set(1)
-\`\`\`
-`
-
-const the_editor = `# The Editor
-Zen is available as a standalone package, allowing you to integrate it into your own apps and web pages. However, the best place to start is by using the editor on the homepage in this app. On the left, you should see a code editor and on the right, a console for communicating errors and debugging your code.
-
-The icons along the bottom provide controls for play, stop, save and load. The final icon toggles between the console and a pattern visualiser. We recommend that you turn on the latter whilst learning Zen as it clearly illustrates a number of key concepts.
-
-Below the console/visualiser, you can see the current time \`t\`, the current cycle \`c\`, the number of divisions per cycle \`q\` and the size of the visualiser canvas \`s\`. More on these values later.
-
-Editor commands:
-- \`shift + enter\` executes the code and starts playback
-- \`esc\` stops playback. Pressing esc twice resets t to 0
-- \`cmd + o\` opens a list of presets and saved files
-- \`cmd + s\` saves your code
-`
-
-const streams = `# Streams
-Streams refer to different musical layers and are represented by the letter \`s\` and an index, as in \`s0\`, \`s1\`, \`s2\` etc. Think of them as separate musicians playing the different parts of your composition. Each stream is an instance of a Stream class and has the same properties and methods. The ones you’ll use the most are:
-- \`.set()\`
-- \`.p\`
-- \`.e\`
-
-## .set()
-The \`.set()\` method is used to set parameters that, in most cases, will remain constant. It accepts an object of key/value pairs; the key being a valid parameter on the chosen instrument. For example, \`s0.set({inst:’synth’,vol:0.5})\` tells stream 0 to use the synth instrument at half volume. 
-
-## .p
-The \`.p\` property is used to set parameters that should change over time; written as \`s0.p.vol\`, or \`s0.p.amp\`, or even \`s0.p.banana\`. Zen doesn’t care what parameter names you use here, invalid parameters are simply ignored by the synth engine. All parameters are instances of the Pattern class and have a range of methods for making interesting patterns. We’ll learn more about these in the next chapter.
-
-For now, here’s an example of setting parameters using the \`.p\` property:
-\`\`\`js
-s0.set({inst:0,cut:0,mods:0.1,reverb:0.5})
-s0.p.n.saw(0,32,2).add(48)
-s0.p.modi.sine(0,4,0,0.5)
-s0.p.harm.tri(1,2)
-s0.p.pan.noise()
-s0.e.set(1)
-\`\`\`
-
-## .e
-In the previous example, note the \`.e\` property at the end. \`e\` stands for events and is used to trigger the stream. \`.e\` is also an instance of a Pattern. If \`.e\` returns 0, the stream is ignored, if it returns a value greater than 0, an event is triggered. Many Pattern methods simply return 1s and 0s.
-
-Here are some different ways you could trigger a stream. Try replacing the final line of the previous example with one of the following:
-\`\`\`js
-s0.e.every(4)
-\`\`\`
-
-\`\`\`js
-s0.e.every(4).$or.every(3)
-\`\`\`
-
-\`\`\`js
-s0.e.sine(0,1,1)
-\`\`\`
-
-\`\`\`js
-s0.e.set('1?0*16')
-\`\`\`
-
-\`\`\`js
-s0.e.set('3:8*2')
-\`\`\`
-We’ll explore Patterns in the next chapter.
-`
-
-const patterns = `# Patterns
-As we have seen, the Pattern class is used to set parameters that change over time, and to trigger patterns of musical events. They are also used for moving streams around the canvas, mutating parameters, and warping time. We’ll cover these topics in a later chapter.
-
-The \`.set()\` method returns a constant value, for example \`s0.p.amp.set(1)\`.
-
-Wave functions, such as \`.sine()\`, \`.tri()\`, \`.square()\` etc. change their value as time passes. Many methods accept arguments to scale and round their output. For example, \`s0.p.n.sine(48,64,1)\` returns numbers between 48 and 64, rounded to a step value of 1, creating a pattern of ascending and descending semitones. A final frequency argument determines how fast the pattern runs. Compare the following two examples:
-\`\`\`js
-s0.set({in:0,cu:0,ms:0.1,re:0.5})
-s0.p.n.sine(48,64,1,0.5)
-s0.e.set(1)
-\`\`\`
-
-\`\`\`js
-s0.set({in:0,cu:0,ms:0.1,re:0.5})
-s0.p.n.sine(48,64,1,2)
-s0.e.set(1)
-\`\`\`
-
-Pattern methods can be chained:
-\`\`\`js
-s0.set({in:0,cu:0,re:0.5})
-s0.p.n.sine(48,64,2).add(12)
-s0.e.every(1)
-\`\`\`
-
-Prefixing a Pattern method with a \`$\` creates a new Pattern instance and combines the returned value with the first pattern, as in this example:
-\`\`\`js
-s0.set({in:0,cu:0,re:0.5})
-s0.p.n.sine(48,64,2).$add.square(0,12,0.5)
-s0.e.every(4).$or.every(3)
-\`\`\`
-For a full list of Pattern methods and their arguments, see the docs.
-`
-
-export const chapters = { intro, getting_started, the_editor, streams, patterns };
+export const chapters = { 
+    intro, 
+    getting_started, 
+    the_editor, 
+    streams, 
+    patterns,
+    custom_samples,
+};
 
 // export const tutorial = `# Tutorial
 // Welcome to Zen, a live coding tool for the browser that allows you to generate complex musical patterns with a small amount of code. Familiarity with JavaScript or another programming language is helpful, but not essential; with a little patience, you'll be making music in no time. 

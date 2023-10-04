@@ -151,7 +151,8 @@ li {
 pre > code {
     font-family: var(--font-mono);
     font-size: var(--text-sm);
-    color: var(--color-grey-dark)
+    color: var(--color-grey-dark);
+    line-height: 1.5;
 }
 
 code {

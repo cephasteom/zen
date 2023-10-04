@@ -4,8 +4,6 @@
     import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 	
     export let data;
-    let { chapter, next, prev } = data;
-
 </script>
 
 <svelte:head>
@@ -14,35 +12,44 @@
 </svelte:head>
 
 <section class="content">
-    <div class="breadcrumb">
-        <a href="/learn">Learn</a> > <span>{chapter.title}</span>
-    </div>
     <div class="markdown">
-        {@html marked.parse(chapter.markdown)}
+        <div class="breadcrumb">
+            <a href="/learn">Learn</a> <span>&gt; {data.chapter.title}</span>
+        </div>
+        {@html marked.parse(data.chapter.markdown)}
     </div>
     <nav class="pagination">
         <div class="pagination__prev">
-            <a href="/learn/{prev?.slug || ''}">
+            <a href="/learn/{data.prev?.slug || ''}">
                 <span>
                     <Icon data="{faArrowLeft}" />
                 </span>
             </a>
-            <p>{prev?.title || 'Home'}</p>
+            <p>{data.prev?.title || 'Learn'}</p>
         </div>
         <div class="pagination__next">
-            {#if next}
-                <a href="/learn/{next.slug}">
+            {#if data.next}
+                <a href="/learn/{data.next.slug}">
                     <span>
                         <Icon data="{faArrowRight}" />        
                     </span>
                 </a>
-                <p>{next.title}</p>
+                <p>{data.next.title}</p>
             {/if}
         </div>
     </nav>
 </section>
 
 <style lang="scss">
+    .breadcrumb {
+        margin-top: 1rem;
+        & a:hover {
+            color: var(--color-yellow);
+        }
+        & span {
+            color: var(--color-yellow);
+        }
+    }
     .content {
         display: flex;
         flex-direction: column;
