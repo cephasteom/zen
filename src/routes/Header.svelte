@@ -38,7 +38,7 @@
         </button>
         <ul class="menu" bind:this={menu}>
             <li class="menu__item"><a on:click={closeMenu} class={$page.url.pathname === '/about' ? 'active' : ''} href="/about">About</a></li>
-            <li class="menu__item"><a on:click={closeMenu} class={$page.url.pathname === '/learn/intro' ? 'active' : ''} href="/learn/intro">Learn</a></li>
+            <li class="menu__item"><a on:click={closeMenu} class={$page.url.pathname.includes('/learn') ? 'active' : ''} href="/learn">Learn</a></li>
             <li class="menu__item"><a on:click={closeMenu} class={$page.url.pathname === '/docs' ? 'active' : ''} href="/docs">Docs</a></li>
         </ul>
     
