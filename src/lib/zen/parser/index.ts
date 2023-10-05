@@ -1,5 +1,4 @@
-// TODO: stretch. Stretch a bar, stretch a group of bars, stretch other entities?
-// TODO: repeat. Repeat a group of bars
+// TODO: Grouping - be able to group anything, from beats to bars to events. Be able to repeat and stretch
 // TODO: test tasks using jest
 
 import peg from 'pegjs';
@@ -51,8 +50,9 @@ const chordTypes: string = Object.entries(triads).reduce((grammar: string, [key,
 * @example 'Cma69' => you can use any combination of extensions
 * @example 'Clyd..*16' => [[60, 62, 64, 66, 67, 69, 71, 73, 60, 62, 64, 66, 67, 69, 71, 73]] // turn scale into a sequence and specify duration. Treat scales and chords the same, both return an array which can be turned into a sequence or played in unison
 * @example 'Clyd%4..?*16' => take first 4 notes from scale, turn into a sequence, random choice, repeat 16 times. You can do the same with chords
-* @example '(1 0*3)*4' => [[1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]] // group any of the above together, specify how many times the group should repeat in its entirety
+* @example '(1 0*3)*4' => [[1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]] // group any of the above together, specify how many times the group should repeat in its entirety. Grouping needs more work
 * @example '1 1 1?0--; b:8' // set the amount of bars generated to 8. Default is 1 or length of your pattern.
+* @example 'Dlyd..*16 |^3' // stretch a bar over 3 bars
 */
 const parser = peg.generate(`
     // PARSING

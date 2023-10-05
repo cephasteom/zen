@@ -49,11 +49,23 @@ s0.x.set('0..15*16 |*2 15..0*16 |*3')
 s0.e.set('1*16')
 \`\`\`
 
-Group events:
+Stretch bars:
 \`\`\`js
-s0.x.set('(0,6,12*8)*2')
+s0.x.set('0..15*16 |^3')
 s0.e.set('1*16')
 \`\`\`
+
+You can repeat bars, then stretch them, but not the other way around:
+\`\`\`js
+s0.x.set('0..15?*16 |*2^3')
+s0.e.set('1*16')
+\`\`\`
+
+// Group events:
+// \`\`\`js
+// s0.x.set('(0,6,12*8)*2')
+// s0.e.set('1*16')
+// \`\`\`
 
 ## Euclidean rhythms
 

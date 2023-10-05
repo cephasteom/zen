@@ -44,7 +44,7 @@
         & button {
             height: 1.5rem;
             @media(min-width: 600px) {
-                height: 100%;
+                height: 1rem;
             }
             background: none;
             border: none;
