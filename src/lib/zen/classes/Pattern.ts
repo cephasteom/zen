@@ -22,11 +22,12 @@ const channel = new BroadcastChannel('zen')
 /**
  * Patterns are the building blocks of Zen. They are used to generate patterns of values in interesting, concise ways. 
  * Pattern methods can be chained together.
- * Pattern methods can be prefixed with a $ to create a new pattern, which is combined with the previous pattern.
+ * Pattern methods can be prefixed with a $ to create a new pattern; for example, $add. The results of each pattern are combined together.
  * @example
  * s0.p.amp.range(0,1)
  * s0.px.drive.sine(0,1)
  * s0.py.modi.range(0,10).mul((t%q)/q)
+ * s0.e.every(3).$and.every(4)
  */
 export class Pattern {
     /** 
