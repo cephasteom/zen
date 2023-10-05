@@ -1,3 +1,5 @@
+// TODO: grouping
+
 export default `# Mini-notation
 Inspired by the [Tidal Cycles](https://tidalcycles.org/) pattern language, and guided by this [excellent tutorial](http://alicelab.world/workshop_nime_2017/) from the writers of [Gibber](https://gibber.cc/), Zen includes a mini-notation for expressing patterns. Zen parses strings into arrays of values, then maps the result over time, or space, depending on where they are used. Turn on the pattern visualiser when running the following examples.
 
@@ -60,12 +62,6 @@ You can repeat bars, then stretch them, but not the other way around:
 s0.x.set('0..15?*16 |*2^3')
 s0.e.set('1*16')
 \`\`\`
-
-// Group events:
-// \`\`\`js
-// s0.x.set('(0,6,12*8)*2')
-// s0.e.set('1*16')
-// \`\`\`
 
 ## Euclidean rhythms
 
