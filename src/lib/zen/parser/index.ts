@@ -1,3 +1,7 @@
+// TODO: stretch. Stretch a bar, stretch a group of bars, stretch other entities?
+// TODO: repeat. Repeat a group of bars
+// TODO: test tasks using jest
+
 import peg from 'pegjs';
 import { 
     memoize,
@@ -19,9 +23,6 @@ const scaleTypes: string = Object.entries(modes).reduce((grammar: string, [key, 
 const chordTypes: string = Object.entries(triads).reduce((grammar: string, [key, chord], i, arr) => {
     return grammar + `"${key}" { return [${chord.join()}]; } ` + (i === arr.length - 1 ? '' : '/ ')
 },'')
-
-// TODO: test tasks using jest
-// TODO: Rewrite Zen so it can handle notes that fall between the evaluations...
 
 /*
 * Simple pattern parser for generating music patterns
@@ -53,24 +54,13 @@ const chordTypes: string = Object.entries(triads).reduce((grammar: string, [key,
 * @example '(1 0*3)*4' => [[1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]] // group any of the above together, specify how many times the group should repeat in its entirety
 * @example '1 1 1?0--; b:8' // set the amount of bars generated to 8. Default is 1 or length of your pattern.
 */
-
 const parser = peg.generate(`
     // PARSING
     result 
         = bs:bars args:args? {
-            const format = ({val, dur, type, repeats}) => {
-                if (type === 'group') return new Array(repeats).fill(0).map(() => val.map(format).flat()).flat()
-                if (type === 'choices') return new Array(dur).fill(0).map(() => val[Math.floor(Math.random() * val.length)])
-                if (type === 'alternatives') return new Array(dur).fill(0).map((_, i) => val[i % val.length])
-                if (type === 'single') return new Array(dur).fill(0).map(() => val)
-                
-                return event.val
-            }
-
             const patternLength = args?.bars || bs.length || 1
 
             return loopArray(bs, patternLength).map(bar => bar
-                .map(format).flat()
                 .map(s => Array.isArray(s) ? s.map(s => !isNaN(+s) ? +s : s) : !isNaN(+s) ? +s : s)
             )
     }
@@ -82,11 +72,21 @@ const parser = peg.generate(`
 
     bars 
         = bars:bar+ { 
-            return bars.map(({bar, repeats, stretch}) => 
-                new Array(repeats).fill(0)
-                    .map(() => stretchBar(bar, stretch))
-                    .flat()
-            ).flat() 
+            const format = ({val, dur, type, repeats}) => {
+                if (type === 'group') return new Array(repeats).fill(0).map(() => val.map(format).flat()).flat()
+                if (type === 'choices') return new Array(dur).fill(0).map(() => val[Math.floor(Math.random() * val.length)])
+                if (type === 'alternatives') return new Array(dur).fill(0).map((_, i) => val[i % val.length])
+                if (type === 'single') return new Array(dur).fill(0).map(() => val)
+                
+                return val
+            }
+
+            return bars.map(({bar, repeats, stretch}) => {
+                return new Array(repeats).fill(0)
+                    .map(() => bar.map(format).flat())
+                    .map(bar => stretch ? stretchBar(bar, stretch) : [bar]).flat()
+            })
+            .flat()
         }
     
     bar 
@@ -275,8 +275,6 @@ const parse = memoize((pattern: string, _: string): string|number|[][] => parser
 
 export const parsePattern = (pattern: string, t: number, q: number, id: string, round=true) => {
     const array = parse(pattern, id)
-    // console.log(array)
-    // return 0
     let position = pos(t, q, 1, array.length)
     let bar = Math.trunc(position)
     let beat = (position % 1) * array[bar].length
