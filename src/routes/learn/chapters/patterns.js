@@ -1,5 +1,5 @@
 export default `# Patterns
-As we have seen, the [Pattern class](/docs/classes#pattern) is used to set parameters that change over time, and to trigger patterns of musical events. They are also used for moving streams around the canvas, mutating parameters, and warping time. We’ll cover these topics in a later chapter.
+As we have seen, the [Pattern class](/docs/classes#pattern) is used to set parameters that change over time, and to trigger patterns of musical events. They are also used for moving streams around the canvas, mutating parameters, and warping time. We’ll cover these topics in a later chapter. For now, it's good to realise that almost everything in Zen is a Pattern. Once you've mastered Patterns, you've mastered Zen.
 
 As in a Stream, the \`.set()\` method is used to set a constant value. For example, \`s0.p.amp.set(1)\` sets the amplitude of Stream 0 to a constant value of 1.
 
