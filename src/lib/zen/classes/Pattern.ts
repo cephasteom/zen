@@ -1220,8 +1220,11 @@ x: 'xor'
      */ 
     at(n: patternable): Pattern {
         this.stack.push(x => {
+            const indexes = this.handleTypes(n); 
             const arr = [x].flat()
-            return arr[+this.handleTypes(n)%arr.length]
+            return [indexes].flat().map(i => {
+                return arr[+i%arr.length]
+            })
         })
         return this
     }
