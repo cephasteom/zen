@@ -9,12 +9,12 @@ async function enableMidi() {
     await WebMidi.enable().then(() => {
         channel.postMessage({ type: 'success', message: 'MIDI enabled' })
         
-        const inputs = WebMidi.inputs.reduce((str, input, i) => `${str}${i}: ${input.name}, `, '')
-        const outputs = WebMidi.outputs.reduce((str, output, i) => `${str}${i}: ${output.name}, `, '')
+        const inputs = WebMidi.inputs.reduce((str, input, i) => `${str}${i}: ${input.name},\n`, '')
+        const outputs = WebMidi.outputs.reduce((str, output, i) => `${str}${i}: ${output.name},\n`, '')
         
-        channel.postMessage({ type: 'info', message: 'MIDI inputs ->' })
+        channel.postMessage({ type: 'error', message: 'MIDI inputs ->' })
         channel.postMessage({ type: 'info', message: inputs })
-        channel.postMessage({ type: 'info', message: 'MIDI outputs ->' })
+        channel.postMessage({ type: 'error', message: 'MIDI outputs ->' })
         channel.postMessage({ type: 'info', message: outputs })
         console.log('MIDI enabled')
         console.log(inputs)
