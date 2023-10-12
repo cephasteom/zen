@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { onMount } from 'svelte';
     import Editor from '$lib/components/Editor/Editor.svelte';
     import Visuals from '$lib/components/Visuals.svelte';
     import Data from '$lib/components/Data.svelte';
@@ -6,6 +7,9 @@
     import Console from '$lib/components/Console.svelte';
     import { startAudio } from '$lib/zen/index';
     import { isDrawing } from '$lib/stores/zen';
+    import { useOsc, connectOsc } from '$lib/osc';
+
+    onMount(() => useOsc && connectOsc())
 </script>
 
 <svelte:head>
