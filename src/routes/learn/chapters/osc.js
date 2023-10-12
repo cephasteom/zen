@@ -1,0 +1,3 @@
+export default `# OSC
+Zen can send OSC messages, a simple, more flexible format than MIDI, allowing you to integrate Zen into a much wider range of applications. The browser can't send OSC messages directly, so we'll use a simple Node.js server to forward messages from the browser to your OSC application. Download and install this [simple package](https://github.com/cephasteom/zen-connect) and follow the instructions in the README.md. Then refresh Zen with \`?osc=true\` added to the end of the url. You should see a message in the console confirming that the server is running. Now all Zen events and mutations will be sent as an osc message.
+`

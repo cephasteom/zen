@@ -38,7 +38,7 @@ const otoChannel = new BroadcastChannel('oto')
 zenChannel.onmessage = ({data: {message, type, data}}) => {
     if(type === 'error' && (get(error) !== message)) return error.set(message);
     
-    ['error', 'info', 'pattern'].includes(type) && print(type, message.toString())
+    ['error', 'info', 'pattern', 'success'].includes(type) && print(type, message.toString())
     
     if(type !== 'action') return
     const { t: time, c: cycle, q: quant, s: size, delta, v } = data;

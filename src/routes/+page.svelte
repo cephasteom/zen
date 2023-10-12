@@ -7,7 +7,7 @@
     import Console from '$lib/components/Console.svelte';
     import { startAudio } from '$lib/zen/index';
     import { isDrawing } from '$lib/stores/zen';
-    import { useOsc, connectOsc } from '$lib/osc';
+    import { useOsc, connectOsc } from '$lib/zen/osc/index';
 
     onMount(() => useOsc && connectOsc())
 </script>

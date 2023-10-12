@@ -12,6 +12,7 @@ import instruments from './instruments'
 import shorthand from './shorthand'
 import the_canvas from './the-canvas'
 import midi from './midi'
+import osc from './osc'
 import global_settings from './global-settings'
 import networking from './networking'
 
@@ -29,6 +30,7 @@ const content = {
     shorthand,
     global_settings,
     midi,
+    osc,
     networking
 };
 

@@ -1,6 +1,7 @@
 import { start, Loop, Transport, immediate } from 'tone'
 import { writable, get } from 'svelte/store';
 import { Zen } from './classes/Zen';
+import { sendOsc } from './osc/index';
 import { Stream } from './classes/Stream';
 import { Visuals } from './classes/Visuals';
 import { createCount } from './utils/utils';
@@ -107,6 +108,7 @@ const loop = new Loop(time => {
     const delta = (time - immediate())
     const args = { time, delta, t, s, q, c, events, mutations, v: vis }
     channel.postMessage({ type: 'action', data: args })
+    sendOsc(args)
 
 }, `${z.q}n`).start(0)
 
