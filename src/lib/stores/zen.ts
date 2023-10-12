@@ -14,7 +14,8 @@ export const messages = writable<{type: string, message: string}[]>([
     {type: 'success', message: 'Welcome to Zen!'},
     {type: 'info', message: 'shift + enter to play.'},
     {type: 'info', message: 'esc to stop.'},
-    {type: 'info', message: 'Instruments ->\n 0: synth\n 1: sampler\n 2: granular\n 3: additive\n 4: acid\n 5: drone\n 6: sub'},
+    {type: 'error', message: 'Instruments ->'},
+    {type: 'info', message: '0: synth\n1: sampler\n2: granular\n3: additive\n4: acid\n5: drone\n6: sub\n'},
 
 ]);
 

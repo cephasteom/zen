@@ -26,15 +26,18 @@ export function sendOsc(data: any) {
     
     // @ts-ignore
     events.forEach(({id, eparams}) => {
-        const args = formatArgsForOsc(time, eparams)
-        oscSocket.send({address: `/zen/${id}/event`, args})
+        const [_, i] = id.split('')
+        oscSocket.send({address: `/zen/${+i+1}/volume`, args: [{type: 'f', value: eparams.vol}]})
+        // Object.entries(eparams).forEach(([key, value]) => {
+        //     oscSocket.send({address: `/zen/${+i+1}/${key}`, args: [{type: 'f', value}]})
+        // })
     })
     
     // @ts-ignore
-    mutations.forEach(({id, mparams}) => {
-        const args = formatArgsForOsc(time, mparams)
-        oscSocket.send({address: `/zen/${id}/mutation`, args})
-    })   
+    // mutations.forEach(({id, mparams}) => {
+    //     const args = formatArgsForOsc(time, mparams)
+    //     oscSocket.send({address: `/zen/${id}/mutation`, args})
+    // })   
 }
 
 function formatArgsForOsc(time: number, params: any) {
