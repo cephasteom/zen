@@ -19,10 +19,11 @@ export function connectOsc() {
     });
 }
 
-export function sendOsc(data) {
+export function sendOsc(data: any) {
     if(!useOsc || !oscSocketIsConnected) return
     
     const { time, delta, events, mutations } = data;
+    
     // @ts-ignore
     events.forEach(({id, eparams}) => {
         const args = formatArgsForOsc(time, eparams)
