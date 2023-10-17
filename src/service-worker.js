@@ -33,8 +33,9 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
     // ignore POST requests etc
     if (event.request.method !== 'GET') return;
-    // ignore requests to http://localhost:5000
-    if (event.request.url.startsWith('http://localhost:5000')) return;
+
+    // ignore request to samples.json
+    if (event.request.url === 'http://localhost:5000/samples.json') return;
 
     async function respond() {
         const url = new URL(event.request.url);
@@ -43,6 +44,12 @@ self.addEventListener('fetch', (event) => {
         // `build`/`files` can always be served from the cache
         if (ASSETS.includes(url.pathname)) {
             return cache.match(url.pathname);
+        }
+
+        // media files can always be served from the cache, if they exist
+        if (url.pathname.match(/\.(wav|mp3|ogg|aac|m4a|flac|aiff|opus|webm|caf)$/)) {
+            const match = await cache.match(url.pathname);
+            if (match) return match;
         }
 
         // for everything else, try the network first, but
