@@ -1,5 +1,5 @@
 export default `# Streams
-Zen is organised into Streams, which refer to different musical layers. Streams are represented by the letter \`s\` and an index, as in \`s0\`, \`s1\`, \`s2\` etc. Think of them as separate musicians playing the different parts of your composition. Each Stream is an instance of a [Stream class](/docs/classes#stream). The ones you’ll use the most are:
+Zen is organised into Streams, which refer to different musical layers. Streams are represented by the letter \`s\` and an index, as in \`s0\`, \`s1\`, \`s2\` etc. Think of them as separate tracks on a mixing desk, each with their own instruments and effects. Each Stream is an instance of a [Stream class](/docs/classes#stream). The ones you’ll use the most are:
 - \`.set()\`
 - \`.p\`
 - \`.e\`
@@ -44,4 +44,29 @@ s0.e.set('1?0*16')
 s0.e.set('3:8*2')
 \`\`\`
 We’ll explore Patterns in the next chapter.
+
+## Extras
+### Track
+A few extras before moving on. By default, each Stream sits on its own track, controlling a separate channel strip of instruments and fx. This can be quite expensive, especially when running Zen in the browser. To save on CPU, you can set multiple Streams to the same track using the \`track\` parameter. For example, \`s0.set({track:0})\` and \`s1.set({track:0})\` will both play on track 0, sharing any instruments and fx.
+
+Listen to the following example then comment out the track parameter:
+\`\`\`js
+z.v({
+    in:0,du:ms(4),re:0.5,rde:0.5,v:1,r:1000,co:1000,res:0.1,ra:1,
+    track:0, // comment out this line to hear the difference
+  });
+  
+  streams
+    .map((st,i) => st
+      .v({v:0.25})
+      .p._n.v('Clyd%16..?*16')._
+      .p._harm.saw(0.5,1.5,0.25)._
+      .e.v('1*16')._
+      .m.v('1*16')
+    )
+\`\`\`
+Without the track parameter, we hear 8 synths with 8 reverbs. With the track parameter set to the same value, all streams control the same synth and reverb, saving on CPU.
+
+### Cut
+Cut is a special parameter that allows you to cut active events in any stream short. It accepts an integer or array of integers which reference the index of a stream. For example, \`s0.set({cut:1})\` will cut any active events in stream 0 short. \`s0.set({cut:[1,2]})\` will cut any active events in streams 1 and 2 short. By default, cut fades out the event over 5ms. You can set the fade time using the \`cutr\` parameter. For example, \`s0.set({cut:1,cutr:500})\` will cut any active events in stream 0 short over 500ms. 
 `
