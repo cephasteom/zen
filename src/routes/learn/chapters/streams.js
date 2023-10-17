@@ -1,5 +1,5 @@
 export default `# Streams
-Zen is organised into Streams, which refer to different musical layers. Streams are represented by the letter \`s\` and an index, as in \`s0\`, \`s1\`, \`s2\` ... \`s63\' Think of them as separate tracks on a mixing desk, each track with its own instruments and effects. A Stream is an instance of a [Stream class](/docs/classes#stream). The methods and properties you’ll use the most are:
+Zen is organised into Streams, which refer to different musical layers. Streams are represented by the letter \`s\` and an index, as in \`s0\`, \`s1\`, \`s2\` ... \`s63\` Think of them as separate tracks on a mixing desk, each track with its own instruments and effects. A Stream is an instance of a [Stream class](/docs/classes#stream). The methods and properties you’ll use the most are:
 - \`.set()\`
 - \`.p\`
 - \`.e\`
