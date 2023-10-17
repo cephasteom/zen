@@ -37,7 +37,7 @@ let counter = createCount(0);
 
 // initialise Zen and Streams within the scope of the loop
 const z = new Zen();
-const streams: Stream[] = Array(8).fill(0).map((_, i) => new Stream('s' + i))
+const streams: Stream[] = Array(64).fill(0).map((_, i) => new Stream('s' + i))
 const v = new Visuals(16)
 let bpm = 120
 
@@ -65,13 +65,24 @@ const loop = new Loop(time => {
     v.resize(s)
     
     // evaluate the user's code, using fallback if it fails
-    const [ s0, s1, s2, s3, s4, s5, s6, s7 ] = streams;
+    // deconstruct streams from s0, to s127 in entirey
+    const [ 
+        s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15,
+        s16, s17, s18, s19, s20, s21, s22, s23, s24, s25, s26, s27, s28, s29, s30, s31,
+        s32, s33, s34, s35, s36, s37, s38, s39, s40, s41, s42, s43, s44, s45, s46, s47,
+        s48, s49, s50, s51, s52, s53, s54, s55, s56, s57, s58, s59, s60, s61, s62, s63,
+    ] = streams   
     const map = keymap
     try {
         // prevent unused variable errors
         [bts, btms, ms, clamp, print, clear, scales, chords, samples];
         [abs, acos, acosh, asin, asinh, atan, atan2, atanh, cbrt, ceil, clz32, cos, cosh, exp, expm1, floor, fround, hypot, imul, log, log10, log1p, log2, max, min, pow, random, round, sign, sin, sinh, sqrt, tan, tanh, trunc, E, LN10, LN2, LOG10E, LOG2E, PI, SQRT1_2, SQRT2];
-        [s0, s1, s2, s3, s4, s5, s6, s7]; map; d;
+        [
+            s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15,
+            s16, s17, s18, s19, s20, s21, s22, s23, s24, s25, s26, s27, s28, s29, s30, s31,
+            s32, s33, s34, s35, s36, s37, s38, s39, s40, s41, s42, s43, s44, s45, s46, s47,
+            s48, s49, s50, s51, s52, s53, s54, s55, s56, s57, s58, s59, s60, s61, s62, s63
+        ]; map; d;
         const thisCode = !(t%z.update) ? get(code) : get(lastCode) // only eval code on the beat
         eval(thisCode)
         lastCode.set(thisCode)

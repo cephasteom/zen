@@ -132,7 +132,7 @@ synths.subscribe((synths: Dictionary) => {
 })
 
 samples.subscribe((samples: Dictionary) => {
-    channel.postMessage({ type: 'error', message: 'Sample banks ->'})
-    channel.postMessage({ type: 'info', message: Object.keys(samples).join(', ')})
+    channel.postMessage({ type: 'success', message: 'Sample banks ->'})
+    channel.postMessage({ type: 'info', message: Object.keys(samples).join(', ') + '\n'})
     console.log(...Object.keys(samples))
 })

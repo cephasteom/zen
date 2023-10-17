@@ -13,8 +13,8 @@ export const isDrawing = writable(false);
 export const messages = writable<{type: string, message: string}[]>([
     {type: 'success', message: 'Welcome to Zen!'},
     {type: 'info', message: 'shift + enter to play.'},
-    {type: 'info', message: 'esc to stop.'},
-    {type: 'error', message: 'Instruments ->'},
+    {type: 'info', message: 'esc to stop.\n'},
+    {type: 'success', message: 'Instruments ->'},
     {type: 'info', message: '0: synth\n1: sampler\n2: granular\n3: additive\n4: acid\n5: drone\n6: sub\n'},
 
 ]);
