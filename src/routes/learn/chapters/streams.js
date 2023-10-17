@@ -47,7 +47,7 @@ We’ll explore Patterns in the next chapter.
 
 ## Additional features
 ### Track
-A few extras before moving on. By default, each Stream sits on its own track, and controls a separate channel strip of containing instruments and fx. These are instantiated as you use them, meaning most tracks are dormant. As soon as you use more than 8 streams, particularly if you use reverb on each, things get a little expensive, especially when running Zen in the browser. To save on CPU, you can point multiple Streams at the same track, using the \`track\` parameter. For example, \`s0.set({track:0})\` and \`s1.set({track:0})\` will both play on track 0, sharing instruments and fx.
+A few extras before moving on. By default, each Stream sits on its own track, and controls a separate channel strip containing instruments and fx. These are instantiated as you use them, meaning most tracks, and their associated instruments and fx, are dormant. As soon as you use more than 8 streams, particularly if you use reverb on each, things get a little expensive, especially when running Zen in the browser. To save on CPU, you can point multiple Streams at the same track, using the \`track\` parameter. For example, \`s0.set({track:0})\` and \`s1.set({track:0})\` will both play on track 0, sharing their instruments and fx.
 
 Listen to the following example then comment out the track parameter:
 \`\`\`js
