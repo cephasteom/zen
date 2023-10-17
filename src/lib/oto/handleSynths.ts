@@ -52,8 +52,8 @@ const connect = (synth: any, channel: number, type: string) => {
 }
 
 export const handleSynthEvent = (time: number, id: string, params: Dictionary) => {
-    const { cut, n = 60, strum = 0, inst, cutr = 5 } = params;
-    const channel = +id.slice(1) * 2
+    const { cut, n = 60, strum = 0, inst, cutr = 5, track } = params;
+    const channel = track * 2
 
     // Handle cut notes
     const toCut = cut !== undefined ? [cut].flat() : []
