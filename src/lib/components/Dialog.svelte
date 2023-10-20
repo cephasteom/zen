@@ -3,9 +3,12 @@
 </script>
 
 <dialog 
-    on:click={() => dialog?.close()}
-    on:keydown={(event) => event.key === 'Escape' && dialog?.close()}
     bind:this={dialog} 
+    on:click={() => dialog?.close()}
+    on:keydown={(event) => {
+        event.key === 'Enter' && event.preventDefault()
+        event.key === 'Escape' && dialog?.close()
+    }}
     on:close
 >
     <div on:click|stopPropagation>
