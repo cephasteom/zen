@@ -17,7 +17,7 @@ export class Data {
                 channel.postMessage({ type: 'success', message: 'Data keys ->'})
                 channel.postMessage({ type: 'info', message: this.keys.join(',') + '\n'})
             })
-            .catch(_ => channel.postMessage({type: 'error', message: 'No data available from ' + 'http://localhost:5000/data.json'}))
+            .catch(_ => channel.postMessage({type: 'error', message: 'No data from ' + 'http://localhost:5000/data.json'}))
 
         return new Proxy(this, {
             get: (target, prop) => {
