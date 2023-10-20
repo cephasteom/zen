@@ -1,6 +1,7 @@
 import { start, Loop, Transport, immediate } from 'tone'
 import { writable, get } from 'svelte/store';
 import { Zen } from './classes/Zen';
+import { Data } from './classes/Data'
 // import { sendOsc } from './osc/index';
 import { Stream } from './classes/Stream';
 import { Visuals } from './classes/Visuals';
@@ -23,6 +24,8 @@ const otoChannel = new BroadcastChannel('oto')
 otoChannel.onmessage = ({data: {message}}) => message.includes('Sample banks') && (samplesMessage = message)
 
 // Fetch data
+// refactor this so that we fetch data then store it as json in the browser. 
+// then provide an interface for using it, so that it doesn't block the main thread.
 let d: any = {}
 fetch('http://localhost:5000/data.json')
     .then(res => res.json())
@@ -32,6 +35,8 @@ fetch('http://localhost:5000/data.json')
         d = json
     })
     .catch(_ => console.log('No data available at ' + 'http://localhost:5000/data.json'))
+
+new Data();
 
 let counter = createCount(0);
 

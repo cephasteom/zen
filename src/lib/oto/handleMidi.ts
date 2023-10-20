@@ -16,9 +16,6 @@ async function enableMidi() {
         channel.postMessage({ type: 'info', message: inputs })
         channel.postMessage({ type: 'success', message: 'MIDI outputs ->' })
         channel.postMessage({ type: 'info', message: outputs })
-        console.log('MIDI enabled')
-        console.log(inputs)
-        console.log(outputs)
     })
 }
 enableMidi();

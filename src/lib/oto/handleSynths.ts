@@ -113,7 +113,6 @@ const fetchSamples = (url: string) => {
         .then(res => res.json())
         .then(json => {
             if(!json) return
-            console.log('Loaded samples from ' + url)
             channel.postMessage({ type: 'success', message: 'Loaded samples from ' + url})
             samples.update((samples: Dictionary) => ({...samples, ...json}))
             
@@ -134,5 +133,4 @@ synths.subscribe((synths: Dictionary) => {
 samples.subscribe((samples: Dictionary) => {
     channel.postMessage({ type: 'success', message: 'Sample banks ->'})
     channel.postMessage({ type: 'info', message: Object.keys(samples).join(', ') + '\n'})
-    console.log(...Object.keys(samples))
 })
