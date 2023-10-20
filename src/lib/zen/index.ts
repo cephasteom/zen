@@ -26,17 +26,18 @@ otoChannel.onmessage = ({data: {message}}) => message.includes('Sample banks') &
 // Fetch data
 // refactor this so that we fetch data then store it as json in the browser. 
 // then provide an interface for using it, so that it doesn't block the main thread.
-let d: any = {}
-fetch('http://localhost:5000/data.json')
-    .then(res => res.json())
-    .then(json => {
-        if(!json) return
-        console.log('Loaded data from ' + 'http://localhost:5000/data.json')
-        d = json
-    })
-    .catch(_ => console.log('No data available at ' + 'http://localhost:5000/data.json'))
+// let d: any = {}
+// fetch('http://localhost:5000/data.json')
+//     .then(res => res.json())
+//     .then(json => {
+//         if(!json) return
+//         console.log('Loaded data from ' + 'http://localhost:5000/data.json')
+//         d = json
+//     })
+//     .catch(_ => console.log('No data available at ' + 'http://localhost:5000/data.json'))
 
-new Data();
+const d = new Data();
+
 
 let counter = createCount(0);
 
