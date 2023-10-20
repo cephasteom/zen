@@ -4,11 +4,7 @@
 
 <dialog 
     on:click={() => dialog?.close()}
-    on:keydown|preventDefault|stopPropagation={(event) => {
-        if (event.key === 'Escape') {
-            dialog?.close();
-        }
-    }}
+    on:keydown={(event) => event.key === 'Escape' && dialog?.close()}
     bind:this={dialog} 
     on:close
 >
