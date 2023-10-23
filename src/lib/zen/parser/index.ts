@@ -1,19 +1,24 @@
 // TODO: Grouping - be able to group anything, from beats to bars to events. Be able to repeat and stretch
+// TODO: arrays
 // TODO: test tasks using jest
-
 import peg from 'pegjs';
+import { get } from 'svelte/store';
 import { 
     memoize,
     calculateNormalisedPosition as pos,
     loopArray,
 } from '../utils/utils'
+import { randomSequence, seedValue } from '../stores'
 import { ntom, repeatScale, stretchBar } from '../utils/musical'
 import { euclidean } from './euclidean-rhythms'
 import { modes } from '../data/scales'
 import { triads } from '../data/chords'
 
+let time = 0
+function rng() { return get(randomSequence)[time++] || Math.random() }
+
 // Add functions to window for so that it can be accessed by parser syntax
-[euclidean, loopArray, ntom, repeatScale, stretchBar].forEach((fn: any) => window[fn.name] = fn)
+[euclidean, loopArray, ntom, repeatScale, stretchBar, rng].forEach((fn: any) => window[fn.name] = fn)
 
 const scaleTypes: string = Object.entries(modes).reduce((grammar: string, [key, scale], i, arr) => {
     return grammar + `"${key}" { return [${scale.join()}]; } ` + (i === arr.length - 1 ? '' : '/ ')
@@ -74,7 +79,7 @@ const parser = peg.generate(`
         = bars:bar+ { 
             const format = ({val, dur, type, repeats}) => {
                 if (type === 'group') return new Array(repeats).fill(0).map(() => val.map(format).flat()).flat()
-                if (type === 'choices') return new Array(dur).fill(0).map(() => val[Math.floor(Math.random() * val.length)])
+                if (type === 'choices') return new Array(dur).fill(0).map((_,i) => val[Math.floor(rng() * val.length)])
                 if (type === 'alternatives') return new Array(dur).fill(0).map((_, i) => val[i % val.length])
                 if (type === 'single') return new Array(dur).fill(0).map(() => val)
                 
@@ -271,9 +276,12 @@ const parser = peg.generate(`
         = " "
 `);
 
-const parse = memoize((pattern: string, _: string): string|number|[][] => parser.parse(pattern))
+let parse = memoize((pattern: string, _: string): string|number|[][] => parser.parse(pattern))
+// clear parser memory when seed changes
+seedValue.subscribe(() => parse = memoize((pattern: string, _: string): string|number|[][] => parser.parse(pattern)))
 
 export const parsePattern = (pattern: string, t: number, q: number, id: string, round=true) => {
+    time = 0
     const array = parse(pattern, id)
     let position = pos(t, q, 1, array.length)
     let bar = Math.trunc(position)

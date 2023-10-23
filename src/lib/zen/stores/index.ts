@@ -2,7 +2,7 @@ import seedRandom from 'seedrandom'
 import { Noise } from 'noisejs'
 import { writable } from 'svelte/store';
 
-const seedValue = writable('')
+export const seedValue = writable('')
 export const noise = writable(new Noise(Math.random()))
 
 export const seed = (str: string) => {
