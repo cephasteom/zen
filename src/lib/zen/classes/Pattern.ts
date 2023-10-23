@@ -7,8 +7,7 @@ import {
     roundToNearest,
     clamp, 
     noise, 
-    numberToBinary, 
-    min, 
+    numberToBinary,
     calculateNormalisedPosition as pos, 
     odd, 
     even,
@@ -16,6 +15,7 @@ import {
     handleArrayOrSingleValue as handlePolyphony
 } from '../utils/utils';
 import { parsePattern } from '../parser';
+import { seedValue } from '../stores'
 
 const channel = new BroadcastChannel('zen')
 
@@ -162,6 +162,8 @@ x: 'xor'
         x: 'xor',
     }
 
+    rng = (t: number) => Math.random()
+
     /** @hidden */
     constructor(parent: Pattern | Stream | null = null, isTrigger=false) {
         this._id = nanoid()
@@ -169,6 +171,14 @@ x: 'xor'
         this.reset()
         this.combine = this.combine.bind(this);
         isTrigger && (this.set = this.trigger)
+
+        seedValue.subscribe(seed => {
+            if(!seed) return
+            this.rng = (t: number) => {
+                const arr = localStorage.getItem('z.seed') || []
+                return +arr[t % arr.length] || Math.random()
+            }
+        })
 
         // handle aliases
         return new Proxy(this, {
@@ -775,7 +785,7 @@ x: 'xor'
     random(...args: patternable[]): Pattern {
         this.stack = [() => {
             const [lo=0, hi=1, step=0] = args.map(arg => this.handleTypes(arg))
-            return mapToRange(Math.random(), 0, 1, +lo, +hi, +step)
+            return mapToRange(this.rng(this._t), 0, 1, +lo, +hi, +step)
         }]
         return this
     }
@@ -1444,7 +1454,7 @@ x: 'xor'
     sometimes(...args: patternable[]): Pattern {
         this.stack.push(() => {
             const [a=1, b=0] = args.map(arg => this.handleTypes(arg))
-            return Math.random() < 0.5 ? a : b
+            return this.rng(this._t) < 0.5 ? a : b
         })
         return this
     }
@@ -1455,7 +1465,7 @@ x: 'xor'
     coin(...args: patternable[]): Pattern {
         this.stack.push(() => { 
             const [a=1, b=0] = args.map(arg => this.handleTypes(arg))
-            return Math.random() < 0.5 ? a : b
+            return this.rng(this._t) < 0.5 ? a : b
         })
         return this
     }  
@@ -1471,7 +1481,7 @@ x: 'xor'
     rarely(...args: patternable[]): Pattern {
         this.stack.push(() => {
             const [a=1, b=0] = args.map(arg => this.handleTypes(arg))
-            return Math.random() < 0.25 ? a : b
+            return this.rng(this._t) < 0.25 ? a : b
         })
         return this
     }
@@ -1487,7 +1497,7 @@ x: 'xor'
     often(...args: patternable[]): Pattern {
         this.stack.push(() => {
             const [a=1, b=0] = args.map(arg => this.handleTypes(arg))
-            return Math.random() < 0.75 ? a : b
+            return this.rng(this._t) < 0.75 ? a : b
         })
         return this
     }

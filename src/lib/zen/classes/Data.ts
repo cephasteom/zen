@@ -1,4 +1,9 @@
 const channel = new BroadcastChannel('zen')
+
+/**
+ * Class for fetching data from remote source
+ * Store data in localStorage for better performance
+ */
 export class Data {
     data: any = {}
     key = ''
@@ -17,7 +22,7 @@ export class Data {
                 channel.postMessage({ type: 'success', message: 'Data keys ->'})
                 channel.postMessage({ type: 'info', message: this.keys.join(',') + '\n'})
             })
-            .catch(_ => channel.postMessage({type: 'error', message: 'No data from ' + 'http://localhost:5000/data.json'}))
+            .catch(_ => channel.postMessage({type: 'info', message: 'No data from ' + 'http://localhost:5000/data.json\n'}))
 
         return new Proxy(this, {
             get: (target, prop) => {

@@ -354,6 +354,11 @@
   resolved "https://registry.yarnpkg.com/@types/pug/-/pug-2.0.6.tgz#f830323c88172e66826d0bde413498b61054b5a6"
   integrity sha512-SnHmG9wN1UVmagJOnyo/qkk0Z7gejYxOYYmaAwr5u2yFYfsupN3sg10kyzN8Hep/2zbHxCnsumxOoRIRMBwKCg==
 
+"@types/seedrandom@^3.0.7":
+  version "3.0.7"
+  resolved "https://registry.yarnpkg.com/@types/seedrandom/-/seedrandom-3.0.7.tgz#679f6bc26bb59245662398a3770bcbf9d29c5af4"
+  integrity sha512-2kwVU6ijXQblfsC8uqhBxslJC2wJfgTE1hINNkj29TL37fc8Uli5Ew43xTv2tShH3FeoKv8jkH2WgeVLd5QWzA==
+
 "@types/webmidi@^2.0.7":
   version "2.0.7"
   resolved "https://registry.yarnpkg.com/@types/webmidi/-/webmidi-2.0.7.tgz#db6bc2e5fbf2ece44265b0a4fafde6573acd5210"

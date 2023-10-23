@@ -23,21 +23,7 @@ const channel = new BroadcastChannel('zen')
 const otoChannel = new BroadcastChannel('oto')
 otoChannel.onmessage = ({data: {message}}) => message.includes('Sample banks') && (samplesMessage = message)
 
-// Fetch data
-// refactor this so that we fetch data then store it as json in the browser. 
-// then provide an interface for using it, so that it doesn't block the main thread.
-// let d: any = {}
-// fetch('http://localhost:5000/data.json')
-//     .then(res => res.json())
-//     .then(json => {
-//         if(!json) return
-//         console.log('Loaded data from ' + 'http://localhost:5000/data.json')
-//         d = json
-//     })
-//     .catch(_ => console.log('No data available at ' + 'http://localhost:5000/data.json'))
-
 const d = new Data();
-
 
 let counter = createCount(0);
 
@@ -48,7 +34,7 @@ const v = new Visuals(16)
 let bpm = 120
 
 // helper functions and constants
-const { bts: initBts, btms: initBtms, clamp } = helpers;
+const { bts: initBts, btms: initBtms, clamp, seed } = helpers;
 const { abs, acos, acosh, asin, asinh, atan, atan2, atanh, cbrt, ceil, clz32, cos, cosh, exp, expm1, floor, fround, hypot, imul, log, log10, log1p, log2, max, min, pow, random, round, sign, sin, sinh, sqrt, tan, tanh, trunc, E, LN10, LN2, LOG10E, LOG2E, PI, SQRT1_2, SQRT2 } = Math;
 const print = (message: any) => post('info', message.toString())
 const scales = () => post('info', 'Scales ->\n' + Object.keys(modes).join(', '))
@@ -81,7 +67,7 @@ const loop = new Loop(time => {
     const map = keymap
     try {
         // prevent unused variable errors
-        [bts, btms, ms, clamp, print, clear, scales, chords, samples];
+        [bts, btms, ms, clamp, print, clear, scales, chords, samples, seed];
         [abs, acos, acosh, asin, asinh, atan, atan2, atanh, cbrt, ceil, clz32, cos, cosh, exp, expm1, floor, fround, hypot, imul, log, log10, log1p, log2, max, min, pow, random, round, sign, sin, sinh, sqrt, tan, tanh, trunc, E, LN10, LN2, LOG10E, LOG2E, PI, SQRT1_2, SQRT2];
         [
             s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15,
