@@ -12,9 +12,10 @@ import instruments from './instruments'
 import shorthand from './shorthand'
 import the_canvas from './the-canvas'
 import midi from './midi'
-import osc from './osc'
 import global_settings from './global-settings'
-import networking from './networking'
+import utilities from "./utilities";
+// import osc from './osc'
+// import networking from './networking'
 
 const content = { 
     intro, 
@@ -30,8 +31,9 @@ const content = {
     shorthand,
     global_settings,
     midi,
-    osc,
-    networking
+    utilities,
+    // osc,
+    // networking
 };
 
 export const chapters = Object.entries(content).map(([key, markdown]) => ({
