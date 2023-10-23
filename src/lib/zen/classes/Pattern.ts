@@ -15,7 +15,7 @@ import {
     handleArrayOrSingleValue as handlePolyphony
 } from '../utils/utils';
 import { parsePattern } from '../parser';
-import { seedValue, noise } from '../stores'
+import { noise, randomSequence } from '../stores'
 
 const channel = new BroadcastChannel('zen')
 
@@ -162,7 +162,9 @@ x: 'xor'
         x: 'xor',
     }
 
-    rng = (t: number) => Math.random()
+    rng(t: number) {
+        return get(randomSequence)[t % 256] || Math.random()
+    }
 
     /** @hidden */
     constructor(parent: Pattern | Stream | null = null, isTrigger=false) {
@@ -171,14 +173,6 @@ x: 'xor'
         this.reset()
         this.combine = this.combine.bind(this);
         isTrigger && (this.set = this.trigger)
-
-        seedValue.subscribe(seed => {
-            if(!seed) return
-            this.rng = (t: number) => {
-                const arr = localStorage.getItem('z.seed') || []
-                return +arr[t % arr.length] || Math.random()
-            }
-        })
 
         // handle aliases
         return new Proxy(this, {
