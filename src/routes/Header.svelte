@@ -104,7 +104,7 @@
         width: 100vw;
         height: 100vh;
         padding: 0;
-        background-color: var(--color-grey-darkest);
+        // background-color: var(--color-grey-darkest);
         z-index: 100;
         display: none;
         align-items: center;
