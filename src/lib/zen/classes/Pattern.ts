@@ -244,7 +244,7 @@ x: 'xor'
 
     /**
      * Set a single value
-     * @param {patternable} value - a single string or number or array of strings or numbers, or a Pattern, or a Zen pattern string
+     * @param value - a single string or number or array of strings or numbers, or a Pattern, or a Zen pattern string
      * @returns {Pattern}
      * @example s0.p.amp.set(1)
      * @example s1.e.set(s0.e)
@@ -258,7 +258,7 @@ x: 'xor'
     /**
      * Trigger a value in pattern, only if it fall directly onto a division
      * Events and Mutations use this method instead of set()
-     * @param {patternable} value - a single string or number or array of strings or numbers, or a Pattern, or a Zen pattern string
+     * @param value - a single string or number or array of strings or numbers, or a Pattern, or a Zen pattern string
      * @returns {Pattern}
      * @hidden
      * // compare with s0.e.set('1*4')
@@ -295,7 +295,7 @@ x: 'xor'
 
     /**
      * Negate the value passed as the first argument
-     * @param {patternable} x - a value, instance of Pattern, or Zen pattern string
+     * @param x - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      * @example 
      * s0.e.every(3)
@@ -323,7 +323,7 @@ x: 'xor'
     /**
      * Toggle on or off using the value passed as the first argument
      * A true value will toggle the pattern on, a false value will toggle it off
-     * @param {patternable} x - a value, instance of Pattern, or Zen pattern string
+     * @param x - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      * @example
      * s0.e.every(3)
@@ -353,7 +353,7 @@ x: 'xor'
     /**
      * Test if the previous value in the pattern chain is a truthy or falsy value
      * If true return new value, if false, simply pass on the previous value
-     * @param  {patternable} value - a value, instance of Pattern, or Zen pattern string
+     * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      */ 
     if(value: patternable): Pattern {
@@ -378,7 +378,7 @@ x: 'xor'
     /**
      * Test if the previous value in the pattern chain is a truthy or falsy value
      * If false return new value, if true, simply pass on the previous value
-     * @param  {patternable} value - a value, instance of Pattern, or Zen pattern string
+     * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      */ 
     else(value: patternable): Pattern {
@@ -403,7 +403,7 @@ x: 'xor'
     // MATHS
     /**
      * Add a value to the previous value in the pattern chain.
-     * @param  {patternable} value - a value, instance of Pattern, or Zen pattern string
+     * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      * @example s0.p.n.noise(60,72,1).add(12)
      * @example s0.p.n.noise(60,72,1).add('0?12*16')
@@ -426,7 +426,7 @@ x: 'xor'
 
     /**
      * Subtract a value from the previous value in the pattern chain.
-     * @param  {patternable} value - a value, instance of Pattern, or Zen pattern string
+     * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      * @example s0.p.n.noise(60,72,1).sub(12)
      */
@@ -448,7 +448,7 @@ x: 'xor'
 
     /**
      * Reverse subtract. Subtract the previous value in the pattern chain from a value.
-     * @param  {patternable} value - a value, instance of Pattern, or Zen pattern string
+     * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      * @example s0.p.amp.noise(0.5,0.25).subr(1)
      */
@@ -470,7 +470,7 @@ x: 'xor'
 
     /**
      * Multiply the previous value in the pattern chain by a value.
-     * @param  {patternable} value - a value, instance of Pattern, or Zen pattern string
+     * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      * @example s0.p.n.noise(60,72,1).mul(2)
      */ 
@@ -492,7 +492,7 @@ x: 'xor'
 
     /**
      * Divide the previous value in the pattern chain by a value.
-     * @param  {patternable} value - a value, instance of Pattern, or Zen pattern string
+     * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      * @example s0.p.n.noise(60,72,1).div(2)
      * Or, use $div to create a new pattern and divide it by the previous pattern in the chain.
@@ -516,7 +516,7 @@ x: 'xor'
 
     /**
      * Reverse divide the previous value in the pattern chain by a value.
-     * @param  {patternable} value - a value, instance of Pattern, or Zen pattern string
+     * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      * @example s0.p.modi.noise(1,2).divr(2)
      * Or, use $divr to create a new pattern and divide it by the previous pattern in the chain.
@@ -541,7 +541,7 @@ x: 'xor'
     /**
      * Modulo the previous value in the pattern chain by a value.
      * Or, use $mod to pass the outcome of a pattern to the function
-     * @param  {patternable} value - a value, instance of Pattern, or Zen pattern string
+     * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      * @example s0.n.set(t).mod(12).add(36)
      * @example s0.n.set(t).$mod.set(12)
@@ -568,7 +568,7 @@ x: 'xor'
     // COMPARISON
     /**
      * Compare the previous value in the pattern chain with a value.
-     * @param  {patternable} value - a value, instance of Pattern, or Zen pattern string
+     * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      * @example s0.e.every(3).add(t%2)
      * Or, use $and to create a new pattern and compare it with the previous pattern in the chain.
@@ -592,7 +592,7 @@ x: 'xor'
 
     /**
      * Compare the previous value in the pattern chain with a value.
-     * @param  {patternable} value - a value, instance of Pattern, or Zen pattern string
+     * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      * @example s0.e.every(3).or(t%2)
      */ 
@@ -614,7 +614,7 @@ x: 'xor'
 
     /**
      * Compare the previous value in the pattern chain with a value.
-     * @param {patternable} value - a value, instance of Pattern, or Zen pattern string
+     * @param value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      * @example s0.e.every(3).xor(t%2)
      */ 
@@ -637,10 +637,10 @@ x: 'xor'
     // Generators
     /**
      * Generate a range of values between lo and hi. Use as the first call in a pattern chain.
-     * @param {patternable} lo lowest value in range
-     * @param {patternable} hi highest value in range
-     * @param {patternable} step step size to round the output. Default is 0, which means no rounding.
-     * @param {patternable} freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @param lo lowest value in range
+     * @param hi highest value in range
+     * @param step step size to round the output. Default is 0, which means no rounding.
+     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
      * @example s0.p.modi.range(0, 10, 1, 2)
      */
@@ -654,10 +654,10 @@ x: 'xor'
 
     /**
      * Generate a sine wave between lo and hi. Use as the first call in a pattern chain.
-     * @param {patternable} lo lowest value in range
-     * @param {patternable} hi highest value in range
-     * @param {patternable} step step size to round the output. Default is 0, which means no rounding.
-     * @param {patternable} freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @param lo lowest value in range
+     * @param hi highest value in range
+     * @param step step size to round the output. Default is 0, which means no rounding.
+     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
      * @example s0.p.modi.sine(0, 10)
      */
@@ -673,10 +673,10 @@ x: 'xor'
 
     /**
      * Generate a cosine wave between lo and hi. Use as the first call in a pattern chain.
-     * @param {patternable} lo lowest value in range
-     * @param {patternable} hi highest value in range
-     * @param {patternable} step step size to round the output. Default is 0, which means no rounding.
-     * @param {patternable} freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @param lo lowest value in range
+     * @param hi highest value in range
+     * @param step step size to round the output. Default is 0, which means no rounding.
+     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
      * @example s0.p.modi.cosine(0, 10)
      */
@@ -692,10 +692,10 @@ x: 'xor'
 
     /**
      * Generate a saw wave between lo and hi. Alias of range. Use as the first call in a pattern chain.
-     * @param {patternable} lo lowest value in range
-     * @param {patternable} hi highest value in range
-     * @param {patternable} step step size to round the output. Default is 0, which means no rounding.
-     * @param {patternable} freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @param lo lowest value in range
+     * @param hi highest value in range
+     * @param step step size to round the output. Default is 0, which means no rounding.
+     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
      * @example s0.p.modi.saw(0, 10)
      */
@@ -705,10 +705,10 @@ x: 'xor'
 
     /**
      * Generate a curve between lo and hi. Use as the first call in a pattern chain.
-     * @param {patternable} lo lowest value in range
-     * @param {patternable} hi highest value in range
-     * @param {patternable} curve curve of the pattern. Default is 0.5, which means a linear curve.
-     * @param {patternable} freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @param lo lowest value in range
+     * @param hi highest value in range
+     * @param curve curve of the pattern. Default is 0.5, which means a linear curve.
+     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      */
     curve(...args: patternable[]): Pattern {
         this.stack.push((x: patternValue) => {
@@ -721,10 +721,10 @@ x: 'xor'
     
     /**
      * Generate a triangle wave between lo and hi. Use as the first call in a pattern chain.
-     * @param {patternable} lo lowest value in range
-     * @param {patternable} hi highest value in range
-     * @param {patternable} step step size to round the output. Default is 0, which means no rounding.
-     * @param {patternable} freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @param lo lowest value in range
+     * @param hi highest value in range
+     * @param step step size to round the output. Default is 0, which means no rounding.
+     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
      * @example s0.p.harm.tri(0, 4, 0.25)
      */
@@ -739,10 +739,10 @@ x: 'xor'
 
     /**
      * Generate a pulse wave between lo and hi. Use as the first call in a pattern chain.
-     * @param {patternable} lo - lowest value in range
-     * @param {patternable} hi - highest value in range
-     * @param {patternable} width - width of the pulse. Default is 0.5, which means a square wave.
-     * @param {patternable} freq - number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @param lo - lowest value in range
+     * @param hi - highest value in range
+     * @param width - width of the pulse. Default is 0.5, which means a square wave.
+     * @param freq - number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
      * @example s0.p.modi.pulse(0, 10, 0.25)
     */
@@ -757,9 +757,9 @@ x: 'xor'
 
     /**
      * Generate a square wave between lo and hi. Use as the first call in a pattern chain. See also pulse.
-     * @param {patternable} lo lowest value in range
-     * @param {patternable} hi highest value in range
-     * @param {patternable} freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @param lo lowest value in range
+     * @param hi highest value in range
+     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
      * @example s0.p.modi.square(0, 10)
     */
@@ -770,9 +770,9 @@ x: 'xor'
 
     /**
      * Generate a random number between lo and hi.
-     * @param {patternable} lo lowest value in range
-     * @param {patternable} hi highest value in range
-     * @param {patternable} step step size to round the output. Default is 0, which means no rounding.
+     * @param lo lowest value in range
+     * @param hi highest value in range
+     * @param step step size to round the output. Default is 0, which means no rounding.
      * @returns {Pattern}
      * @example s0.p.n.random(60,72,1)
      */
