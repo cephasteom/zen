@@ -1,3 +1,4 @@
+import { get } from 'svelte/store';
 import { nanoid } from 'nanoid'
 import type { Stream } from './Stream'
 import type { stack, patternValue, patternable } from '../types'
@@ -5,8 +6,7 @@ import {
     mapToRange, 
     roundToFactor, 
     roundToNearest,
-    clamp, 
-    noise, 
+    clamp,
     numberToBinary,
     calculateNormalisedPosition as pos, 
     odd, 
@@ -15,7 +15,7 @@ import {
     handleArrayOrSingleValue as handlePolyphony
 } from '../utils/utils';
 import { parsePattern } from '../parser';
-import { seedValue } from '../stores'
+import { seedValue, noise } from '../stores'
 
 const channel = new BroadcastChannel('zen')
 
@@ -803,7 +803,7 @@ x: 'xor'
     noise(...args: patternable[]): Pattern {
         this.stack = [(x: patternValue) => {
             const [lo=0, hi=1, step=0, freq=1, cycles=4] = args.map(arg => this.handleTypes(arg))
-            return mapToRange(noise.simplex2(pos(x, this._q, +freq, +cycles), 0), -1, 1, +lo, +hi, +step)
+            return mapToRange(get(noise).simplex2(pos(x, this._q, +freq, +cycles), 0), -1, 1, +lo, +hi, +step)
         }]
         return this
     }

@@ -1,9 +1,6 @@
-import { Noise } from 'noisejs'
 import type { patternValue, Dictionary } from '../types'
 import { Pattern } from '../classes/Pattern'
 import { parsePattern } from '../parser'
-
-export const noise = new Noise(Math.random())
 
 export const max = (a: number, b: number) => a >= b ? a : b
 export const min = (a: number, b: number) =>  a <= b ? a : b

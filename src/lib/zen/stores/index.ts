@@ -1,6 +1,9 @@
 import seedRandom from 'seedrandom'
+import { Noise } from 'noisejs'
 import { writable } from 'svelte/store';
 export const seedValue = writable('')
+export const noise = writable(new Noise(Math.random()))
+
 export const seed = (str: string) => {
     seedValue.set(str)
 }
@@ -12,4 +15,9 @@ seedValue.subscribe(value => {
     const arr = Array(256).fill(0).map(_ => rng())
     // store in localStorage
     localStorage.setItem('z.seed', JSON.stringify(arr))
+
+    // update noise generator
+    noise.set(new Noise(rng()))
 })
+
+
