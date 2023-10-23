@@ -40,6 +40,7 @@
 		"noisejs": "^2.1.0",
 		"osc": "^2.4.4",
 		"pegjs": "^0.10.0",
+		"seedrandom": "^3.0.5",
 		"svelte-awesome": "^3.2.1",
 		"tone": "^14.7.77",
 		"webmidi": "^3.1.6"
