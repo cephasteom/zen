@@ -4,7 +4,7 @@ Before we get into Zen’s nuts and bolts, simply copy the following example int
 \`\`\`js
 z.bpm.set(160);
 
-[s0,s1,s2,s3].map((st,i) => st.x.set(t)._.y.set(s/4 * i))
+[s0,s1,s2,s3].map((st,i) => st.x.t()._.y.set(s/4 * i))
 
 let sc = 'Cpent%15|Empent%10|Dmpent%12|Gpent%8'
 let bass = 'A2|G2|F2|G2'
