@@ -58,12 +58,6 @@ export class Pattern {
     /** @hidden */
     private _bpm: number = 120
 
-    /** @hidden */
-    _state: any = {
-        $: [],
-        toggle: false,
-    }
-
     /**
      * Shorthand aliases for pattern methods.
      * @example
@@ -174,6 +168,18 @@ x: 'xor'
         this.combine = this.combine.bind(this);
         isTrigger && (this.set = this.trigger)
 
+        // handle dollar methods
+        Object.getOwnPropertyNames(Pattern.prototype).forEach(method => {
+            Object.defineProperty(this, `$${method}`, {
+                get: () => {
+                    const pattern = new Pattern(this, ['and', 'or', 'xor', 'not'].includes(method))
+                    // @ts-ignore
+                    this[method](pattern)
+                    return pattern
+                },
+            })
+        })
+            
         // handle aliases
         return new Proxy(this, {
             get: (target, prop) => {
@@ -236,7 +242,6 @@ x: 'xor'
     reset() {
         this.stack = []
         this._value = 0
-        this._state.$ = []
         return this
     }   
     
@@ -315,18 +320,6 @@ x: 'xor'
     }
 
     /**
-     * Instantiate a new Pattern and negate the outcome of the pattern
-     * @returns {Pattern}
-     * @example
-     * s0.e.$not.square(0,1,1)
-     */ 
-    get $not(): Pattern {
-        const pattern = new Pattern(this)
-        this._state.$.push({method: 'not', pattern})
-        return pattern
-    }
-
-    /**
      * Toggle on or off using the value passed as the first argument
      * A true value will toggle the pattern on, a false value will toggle it off
      * @param x - a value, instance of Pattern, or Zen pattern string
@@ -345,16 +338,6 @@ x: 'xor'
         return this
     }
 
-    /**
-     * See toggle.
-     * @returns {Pattern}
-     */ 
-    get $toggle(): Pattern {
-        const pattern = new Pattern(this)
-        this._state.$.push({method: 'toggle', pattern})
-        return pattern
-    }
-
     // CONDITIONALS
     /**
      * Test if the previous value in the pattern chain is a truthy or falsy value
@@ -368,20 +351,6 @@ x: 'xor'
     }
 
     /**
-     * Instantiate a new Pattern and test if the previous value in the pattern chain is a truthy or falsy value
-     * If true return outcome of pattern
-     * @returns {Pattern}
-     * @example 
-     * s0.x.coin().$if.set(4)._.$else.set(12)
-     * s0.e.set(1)
-     */ 
-    get $if(): Pattern {
-        const pattern = new Pattern(this)
-        this._state.$.push({method: 'if', pattern})
-        return pattern
-    }
-
-    /**
      * Test if the previous value in the pattern chain is a truthy or falsy value
      * If false return new value, if true, simply pass on the previous value
      * @param  value - a value, instance of Pattern, or Zen pattern string
@@ -390,20 +359,6 @@ x: 'xor'
     else(value: patternable): Pattern {
         this.stack.push(x => [x].flat().every(x => !x) ? this.handleTypes(value) : x)
         return this
-    }
-
-    /**
-     * Instantiate a new Pattern and test if the previous value in the pattern chain is a truthy or falsy value
-     * If false return outcome of pattern
-     * @returns {Pattern}
-     * @example
-     * s0.x.coin().$if.set(4)._.$else.set(12)
-     * s0.e.set(0)
-     */ 
-    get $else(): Pattern {
-        const pattern = new Pattern(this)
-        this._state.$.push({method: 'else', pattern})
-        return pattern
     }
 
     // MATHS
@@ -420,17 +375,6 @@ x: 'xor'
     }
 
     /**
-     * Instantiate a new Pattern and add the result to the previous value in the pattern chain
-     * @example s0.p.n.noise(60,72,1).$add.noise(0,12,1)
-     * @returns {Pattern}
-     */
-    get $add(): Pattern {
-        const pattern = new Pattern(this)
-        this._state.$.push({method: 'add', pattern})
-        return pattern
-    }
-
-    /**
      * Subtract a value from the previous value in the pattern chain.
      * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
@@ -440,17 +384,6 @@ x: 'xor'
         this.stack.push(x => handlePolyphony(x, x => x - +this.handleTypes(value)))
         return this
     }    
-
-    /**
-     * Instantiate a new Pattern and subtract the result from the previous value in the pattern chain
-     * @example s0.p.n.noise(60,72,1).$sub.noise(0,12,1)
-     * @returns {Pattern}
-     */ 
-    get $sub(): Pattern {
-        const pattern = new Pattern(this)
-        this._state.$.push({method: 'sub', pattern})
-        return pattern
-    }
 
     /**
      * Reverse subtract. Subtract the previous value in the pattern chain from a value.
@@ -464,17 +397,6 @@ x: 'xor'
     }
 
     /**
-     * Instantiate a new Pattern and subtract the previous value in the pattern chain
-     * @example s0.p.n.noise(0,12,1).$subr.noise(60,72,1)
-     * @returns {Pattern}
-     */ 
-    get $subr(): Pattern {
-        const pattern = new Pattern(this)
-        this._state.$.push({method: 'subr', pattern})
-        return pattern
-    }
-
-    /**
      * Multiply the previous value in the pattern chain by a value.
      * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
@@ -483,17 +405,6 @@ x: 'xor'
     mul(value: patternable): Pattern {
         this.stack.push(x => handlePolyphony(x, x => x * +this.handleTypes(value)))
         return this
-    }
-
-    /**
-     * Instantiate a new Pattern and multiply the previous value in the pattern chain
-     * @example s0.p.n.noise(60,72,1).$mul.noise(0,12,1)
-     * @returns {Pattern}
-     */ 
-    get $mul(): Pattern {
-        const pattern = new Pattern(this)
-        this._state.$.push({method: 'mul', pattern})
-        return pattern
     }
 
     /**
@@ -510,17 +421,6 @@ x: 'xor'
     }
 
     /**
-     * Instantiate a new Pattern and divide the previous value in the pattern chain
-     * @example s0.p.n.noise(60,72,1).$div.noise(0,12,1)
-     * @returns {Pattern}
-     */ 
-    get $div(): Pattern {
-        const pattern = new Pattern(this)
-        this._state.$.push({method: 'div', pattern})
-        return pattern
-    }
-
-    /**
      * Reverse divide the previous value in the pattern chain by a value.
      * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
@@ -532,17 +432,6 @@ x: 'xor'
         this.stack.push(x => handlePolyphony(x, x => +this.handleTypes(value) / x))
         return this
     }   
-
-    /**
-     * Instantiate a new Pattern and divide the previous value in the pattern chain
-     * @example s0.p.n.noise(0,12,1).$divr.noise(60,72,1)
-     * @returns {Pattern}
-     */ 
-    get $divr(): Pattern {
-        const pattern = new Pattern(this)
-        this._state.$.push({method: 'divr', pattern})
-        return pattern
-    }
 
     /**
      * Modulo the previous value in the pattern chain by a value.
@@ -558,18 +447,7 @@ x: 'xor'
             return handlePolyphony(x, x => ((x % m) + m) % m)
         })
         return this
-    }
-
-    /**
-     * Instantiate a new Pattern and modulo the previous value in the pattern chain
-     * @example s0.p.n.noise(0,12,1).$mod.noise(60,72,1)
-     * @returns {Pattern}
-     */ 
-    get $mod(): Pattern {
-        const pattern = new Pattern(this)
-        this._state.$.push({method: 'mod', pattern})
-        return pattern
-    }    
+    }   
     
     // COMPARISON
     /**
@@ -586,17 +464,6 @@ x: 'xor'
     }
 
     /**
-     * Instantiate a new Pattern and compare the previous value in the pattern chain with a value.
-     * @return {Pattern}
-     * @example s0.e.every(3).$and.every(2)
-     */ 
-    get $and(): Pattern {
-        const pattern = new Pattern(this, true)
-        this.and(pattern)
-        return pattern
-    }
-
-    /**
      * Compare the previous value in the pattern chain with a value.
      * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
@@ -608,17 +475,6 @@ x: 'xor'
     }
 
     /**
-     * Instantiate a new Pattern and compare the previous value in the pattern chain with a value.
-     * @return {Pattern}
-     * @example s0.e.every(3).$or.every(2)
-     */ 
-    get $or(): Pattern {
-        const pattern = new Pattern(this, true)
-        this.or(pattern)
-        return pattern
-    }
-
-    /**
      * Compare the previous value in the pattern chain with a value.
      * @param value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
@@ -627,17 +483,6 @@ x: 'xor'
     xor(value: patternable): Pattern {
         this.stack.push(x => handlePolyphony(x, x => x ^ +this.handleTypes(value, this._t, false)))
         return this
-    }
-
-    /**
-     * Instantiate a new Pattern and compare the previous value in the pattern chain with a value.
-     * @return {Pattern}
-     * @example s0.e.every(3).$xor.every(2)
-     */ 
-    get $xor(): Pattern {
-        const pattern = new Pattern(this)
-        this._state.$.push({method: 'xor', pattern})
-        return pattern
     }
 
     // Generators
@@ -826,17 +671,6 @@ x: 'xor'
     }
 
     /**
-     * Instantiate a new Pattern and generate truthy or falsy values every n divisions, where n is a number generated by the new Pattern.
-     * @returns {Pattern}
-     * @example s0.p.$every.sine(1,16,1)
-     */ 
-    get $every(): Pattern {
-        const pattern = new Pattern(this)
-        this._state.$.push({method: 'every', pattern})
-        return pattern
-    }
-
-    /**
      * Generate truthy or falsy values from a binary string.
      * @param n binary string
      * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
@@ -897,17 +731,6 @@ x: 'xor'
     }
 
     /**
-     * Instantiate a new Pattern and round the previous value in the pattern chain to the step value, where the step value is a number generated by the new Pattern.
-     * @returns {Pattern}
-     * @example s0.p.n.noise(0,1).$step.noise(0,12,1)
-     */ 
-    get $step(): Pattern {
-        const pattern = new Pattern(this)
-        this._state.$.push({method: 'step', pattern})
-        return pattern
-    }
-
-    /**
      * Round the previous value in the pattern chain to the nearest value in an array.
      * @param array array of values to round to
      * @returns {Pattern}
@@ -927,17 +750,6 @@ x: 'xor'
             ) + Math.floor(x / 12) * 12)
         })
         return this
-    }
-
-    /**
-     * Instantiate a new Pattern and round the previous value in the pattern chain to the nearest value in an array, where the array is generated by the pattern.
-     * @returns {Pattern}
-     * @example s0.p.n.noise(0,24,1,2).tune('Cdor').add(48)
-     */ 
-    get $tune(): Pattern {
-        const pattern = new Pattern(this)
-        this._state.$.push({method: 'tune', pattern})
-        return pattern
     }
 
     /**
@@ -971,17 +783,6 @@ x: 'xor'
     }
 
     /**
-     * Instantiate a new Pattern and test if the previous value in the pattern chain is greater than the Pattern's value.
-     * @returns {Pattern}
-     * @example s0.e.noise(0,16).$gt.square(0,12)
-     */ 
-    get $gt(): Pattern {
-        const pattern = new Pattern(this)
-        this._state.$.push({method: 'gt', pattern})
-        return pattern
-    }
-
-    /**
      * Test if the previous value in the pattern chain is less than a value.
      * @param value value to test against
      * @param a value to return when true
@@ -994,17 +795,6 @@ x: 'xor'
             return [x].flat().every(x => x < +n) ? a : b
         })
         return this
-    }
-
-    /**
-     * Instantiate a new Pattern and test if the previous value in the pattern chain is less than the Pattern's value.
-     * @returns {Pattern}
-     * @example s0.e.noise(0,16).$lt.square(0,12)
-     */ 
-    get $lt(): Pattern {
-        const pattern = new Pattern(this)
-        this._state.$.push({method: 'lt', pattern})
-        return pattern
     }
 
     /**
@@ -1024,17 +814,6 @@ x: 'xor'
     }
 
     /**
-     * Instantiate a new Pattern and test if the previous value in the pattern chain is greater than or equal to the Pattern's value.
-     * @returns {Pattern}
-     * @example s0.e.noise(0,16).$gte.square(0,12)
-     */ 
-    get $gte(): Pattern {
-        const pattern = new Pattern(this)
-        this._state.$.push({method: 'gte', pattern})
-        return pattern
-    }
-
-    /**
      * Test if the previous value in the pattern chain is less than or equal to a value.
      * @param value value to test against
      * @param a value to return when true
@@ -1047,17 +826,6 @@ x: 'xor'
             return [x].flat().every(x => x <= +n) ? a : b
         })
         return this
-    }
-
-    /**
-     * Instantiate a new Pattern and test if the previous value in the pattern chain is less than or equal to the Pattern's value.
-     * @returns {Pattern}
-     * @example s0.e.noise(0,16).$lte.square(0,12)
-     */ 
-    get $lte(): Pattern {
-        const pattern = new Pattern(this)
-        this._state.$.push({method: 'lte', pattern})
-        return pattern
     }
 
     /**
@@ -1076,17 +844,6 @@ x: 'xor'
     }
 
     /**
-     * Instantiate a new Pattern and test if the previous value in the pattern chain is equal to the Pattern's value, using ==.
-     * @returns {Pattern}
-     * @example s0.e.noise(0,16).$eq.square(0,12)
-     */ 
-    get $eq(): Pattern {
-        const pattern = new Pattern(this)
-        this._state.$.push({method: 'eq', pattern})
-        return pattern
-    }
-
-    /**
      * Test if the previous value in the pattern chain is not equal to a value using !=.
      * @param value value to test against
      * @param a value to return when true
@@ -1099,17 +856,6 @@ x: 'xor'
             return [x].flat().every(x => x != n) ? a : b
         })
         return this
-    }
-
-    /**
-     * Instantiate a new Pattern and test if the previous value in the pattern chain is not equal to the Pattern's value, using !=.
-     * @returns {Pattern}
-     * @example s0.e.noise(0,16).$neq.square(0,12)
-     */ 
-    get $neq(): Pattern {
-        const pattern = new Pattern(this)
-        this._state.$.push({method: 'neq', pattern})
-        return pattern
     }
 
     /**
@@ -1211,17 +957,6 @@ x: 'xor'
     }
 
     /**
-     * Instantiate a new Pattern and use the resulting value to invert the previous chord in the pattern chain
-     * @returns {Pattern}
-     * @example s0.p.n.set('Dmi7').$inversion.noise(0,8,1)
-     */ 
-    get $inversion(): Pattern {
-        const pattern = new Pattern(this)
-        this._state.$.push({method: 'inversion', pattern})
-        return pattern
-    }
-
-    /**
      * Get a value from the previous value in the pattern chain, at index n
      * Expects the previous value to be an array
      * @param n index of value to retrieve
@@ -1238,18 +973,6 @@ x: 'xor'
         })
         return this
     }
-
-    /**
-     * Instantiate a new Pattern and use the resulting value to get a value from the previous value in the pattern chain, at index n
-     * Expects the previous value to be an array
-     * @returns {Pattern}
-     * @example s0.p.n.set('Ddor%16').$at.saw(0,16,1)
-     */ 
-    get $at(): Pattern {
-        const pattern = new Pattern(this)
-        this._state.$.push({method: 'at', pattern})
-        return pattern
-    }
     
     /**
      * Layer a value on top of the previous value in the pattern chain, forming an array of values
@@ -1260,17 +983,6 @@ x: 'xor'
     layer(n: patternable): Pattern {
         this.stack.push(x => [x].flat().concat(this.handleTypes(n)))
         return this
-    }
-
-    /**
-     * Instantiate a new Pattern and use the resulting value to layer a value on top of the previous value in the pattern chain, forming an array of values
-     * @returns {Pattern}
-     * @example s0.p.n.set('Ddor%16..*16').$layer.set('Flyd%12..*16')
-     */ 
-    get $layer(): Pattern {
-        const pattern = new Pattern(this)
-        this._state.$.push({method: 'layer', pattern})
-        return pattern
     }
 
     // Maths
@@ -1520,11 +1232,6 @@ x: 'xor'
         this._q = q
         this._bpm = bpm || this._bpm
 
-        // evaluate all $ patterns stored in the state
-        this._state.$.forEach(({pattern} : {pattern: Pattern}) => pattern.get(t, q, bpm))
-        // combine all $ patterns into the stack
-        this._state.$.forEach(this.combine)
-        
         const value = this.stack.length 
             ? this.stack.reduce((val: patternValue, fn) => fn(val), t) 
             : null
