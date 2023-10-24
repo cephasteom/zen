@@ -12,16 +12,22 @@ import { print as post, clear } from "$lib/stores/zen";
 import { modes } from './data/scales'
 import { triads } from './data/chords'
 
+// Broadcast channels
+const channel = new BroadcastChannel('zen')
+const otoChannel = new BroadcastChannel('oto')
+
+// Expect message about sample banks
+const samplesMessage = writable('');
+otoChannel.onmessage = ({data: {message}}) => message.includes('Sample banks') && samplesMessage.set(message)
+
+// Code
 export const lastCode = writable('');
 export const code = writable('');
 export const setCode = (str: string) => {
     code.set(str)
 };
 
-let samplesMessage = ''
-const channel = new BroadcastChannel('zen')
-const otoChannel = new BroadcastChannel('oto')
-otoChannel.onmessage = ({data: {message}}) => message.includes('Sample banks') && (samplesMessage = message)
+
 
 const d = new Data();
 
@@ -39,15 +45,16 @@ const { abs, acos, acosh, asin, asinh, atan, atan2, atanh, cbrt, ceil, clz32, co
 const print = (message: any) => post('info', message.toString())
 const scales = () => post('info', 'Scales ->\n' + Object.keys(modes).join(', '))
 const chords = () => post('info', 'Chords ->\n' + Object.keys(triads).join(', '))
-const samples = () => post('info', samplesMessage)
+const samples = () => post('info', get(samplesMessage))
 
-// Main application loop
-const loop = new Loop(time => {
-    let t = counter()
+// parse code when it changes
+code.subscribe(code => {
+    // let t = counter()
 
     streams.forEach(stream => stream.reset())
+    // TODO: overide z.reset
     z.reset()
-    z.resetGlobals(t)
+    z.resetGlobals()
 
     // global variables
     let { q, s, c } = z
@@ -75,22 +82,27 @@ const loop = new Loop(time => {
             s32, s33, s34, s35, s36, s37, s38, s39, s40, s41, s42, s43, s44, s45, s46, s47,
             s48, s49, s50, s51, s52, s53, s54, s55, s56, s57, s58, s59, s60, s61, s62, s63
         ]; map; d;
-        const thisCode = !(t%z.update) ? get(code) : get(lastCode) // only eval code on the beat
-        eval(thisCode)
-        lastCode.set(thisCode)
+        // TODO
+        // const thisCode = !(t%z.update) ? code : get(lastCode) // only eval code on the beat
+        eval(code)
+        lastCode.set(code)
     } catch (e: any) {
         post('error', e.message)
         eval(get(lastCode))
     }
-    
-    // reassign global variables in case the user has changed them
-    t = z.getTime()
-    s = z.s
-    q = z.q
-    c = z.c
+})
+
+// Main application loop
+const loop = new Loop(time => { 
+    const t = counter()
+    // TODO: improve this suntax
+    z._t = t
+    const s = z.s
+    const q = z.q
+    const c = z.c
 
     // update loop and transport
-    loop.interval = `${q}n`
+    loop.interval = `${z.q}n`
     const newBpm = z.getBpm()
     if(newBpm !== bpm) {
         Transport.bpm.setValueAtTime(newBpm, time)

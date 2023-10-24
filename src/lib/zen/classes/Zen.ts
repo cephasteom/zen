@@ -105,12 +105,12 @@ export class Zen extends Stream {
     }
 
     /** @hidden */
-    getTime() : number {
-        const localT = this.t.get(this._t, this._q)
-        const globalT = this._t
-        this._t = localT !== null ? Array.isArray(localT) ? localT[0] : localT : globalT
-        return Math.floor(this._t)
-    }
+    // getTime() : number {
+    //     const localT = this.t.get(this._t, this._q)
+    //     const globalT = this._t
+    //     this._t = localT !== null ? Array.isArray(localT) ? localT[0] : localT : globalT
+    //     return Math.floor(this._t)
+    // }
 
     /** @hidden */
     getBpm() : number {
@@ -119,9 +119,9 @@ export class Zen extends Stream {
     }
 
     /** @hidden */
-    resetGlobals(t: number) {
-        this._t = t;
-        this._update = 1;
+    resetGlobals() {
+        // this._t = t;
+        // this._update = 1;
         [this._bpmPattern, this._tPattern].forEach(p => p?.reset())
     }
 }
