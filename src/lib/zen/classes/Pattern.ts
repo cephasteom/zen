@@ -58,6 +58,9 @@ export class Pattern {
     /** @hidden */
     private _bpm: number = 120
 
+    /** @hidden */
+    private _state = {} as any
+
     /**
      * Shorthand aliases for pattern methods.
      * @example
@@ -165,7 +168,6 @@ x: 'xor'
         this._id = nanoid()
         this._parent = parent
         this.reset()
-        this.combine = this.combine.bind(this);
         isTrigger && (this.set = this.trigger)
 
         // handle dollar methods
@@ -227,17 +229,6 @@ x: 'xor'
         return this._parent || this
     }
 
-    /**
-     * Pass the value of a pattern to a method on the previous pattern
-     * @param pattern 
-     * @param method 
-     * @hidden
-     */
-    combine({pattern, method} : {pattern: Pattern, method: string}) {
-        // @ts-ignore
-        this[method] && this[method](pattern.value())
-    }
-
     /** @hidden */
     reset() {
         this.stack = []
@@ -292,7 +283,6 @@ x: 'xor'
      */
     use(pattern: Pattern): Pattern {
         this.stack.push(...pattern.stack)
-        this._state.$.push(...pattern._state.$)
         return this
     }
 
