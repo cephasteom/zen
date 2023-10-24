@@ -198,7 +198,7 @@ x: 'xor'
      * @hidden 
      */ 
     handleTypes(value: patternValue | Pattern | string, t: number | null = null, round=true) : patternValue {
-        if(value instanceof Pattern) return value.value()
+        if(value instanceof Pattern) return value.get(t || this._t, this._q) || 0
         if(typeof value === 'string') return parsePattern(value, t || this._t, this._q, this._id, round)
         return value
     }
@@ -236,8 +236,6 @@ x: 'xor'
     reset() {
         this.stack = []
         this._value = 0
-
-        // TODO: this is unfortunate as all Patterns stored here will be garbage collected rather than reused...
         this._state.$ = []
         return this
     }   
