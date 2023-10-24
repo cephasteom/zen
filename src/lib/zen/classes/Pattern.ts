@@ -240,7 +240,17 @@ x: 'xor'
         // TODO: this is unfortunate as all Patterns stored here will be garbage collected rather than reused...
         this._state.$ = []
         return this
-    }    
+    }   
+    
+    /**
+     * Return the current time
+     * @example s0.x.t()
+     * @returns {Pattern}
+     */
+    t(): Pattern {
+        this.stack.push(t => t)
+        return this
+    }
 
     /**
      * Set a single value
@@ -268,8 +278,6 @@ x: 'xor'
         this.stack.push(t => this.handleTypes(value, +t, false))
         return this
     }
-    
-
 
     /**
      * Inset another pattern's stack into the current pattern's stack
