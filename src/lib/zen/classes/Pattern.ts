@@ -591,8 +591,8 @@ x: 'xor'
      * @example s0.e.every(3).$and.every(2)
      */ 
     get $and(): Pattern {
-        const pattern = new Pattern(this)
-        this._state.$.push({method: 'and', pattern})
+        const pattern = new Pattern(this, true)
+        this.and(pattern)
         return pattern
     }
 
@@ -613,8 +613,8 @@ x: 'xor'
      * @example s0.e.every(3).$or.every(2)
      */ 
     get $or(): Pattern {
-        const pattern = new Pattern(this)
-        this._state.$.push({method: 'or', pattern})
+        const pattern = new Pattern(this, true)
+        this.or(pattern)
         return pattern
     }
 
