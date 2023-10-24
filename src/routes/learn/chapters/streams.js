@@ -45,7 +45,7 @@ s0.e.set('3:8*2')
 \`\`\`
 We’ll explore Patterns in the next chapter.
 
-## Additional features
+## Additional Features
 ### Track
 A few extras before moving on. By default, each Stream sits on its own track, and controls a separate channel strip containing instruments and fx. These are instantiated as you use them, meaning most tracks, and their associated instruments and fx, are dormant. As soon as you use more than 8 streams, particularly if you use reverb on each, things get a little expensive, especially when running Zen in the browser. To save on CPU, you can point multiple Streams at the same track, using the \`track\` parameter. For example, \`s0.set({track:0})\` and \`s1.set({track:0})\` will both play on track 0, sharing their instruments and fx.
 
@@ -69,4 +69,9 @@ Without the track parameter, we hear 8 synths with 8 reverbs. With the track par
 
 ### Cut
 Cut is a special parameter that allows you to cut active events in any stream short. It accepts an integer or array of integers which reference the index of a stream. For example, \`s0.set({cut:1})\` will cut any active events in stream 0 short. \`s0.set({cut:[1,2]})\` will cut any active events in streams 1 and 2 short. By default, cut fades out the event over 5ms. You can set the fade time using the \`cutr\` parameter. For example, \`s0.set({cut:1,cutr:500})\` will cut any active events in stream 0 short over 500ms. 
+
+### Solo and Mute
+Solo and mute are both instances of a Pattern. They are used to solo or mute a stream. For example, \`s0.solo.set(1)\` will solo stream 0. \`s0.mute.set(1)\` will mute stream 0.
+
+They can be patterned in the usual way, for example, \`s0.solo.set('1?0*16')\` will randomly solo stream 0. 
 `
