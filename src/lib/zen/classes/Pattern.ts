@@ -581,7 +581,7 @@ x: 'xor'
      * @example s0.e.every(3).$and.every(2)
      */ 
     and(value: patternable): Pattern {
-        this.stack.push(x => handlePolyphony(x, x => x && +this.handleTypes(value)))
+        this.stack.push(x => handlePolyphony(x, x => x && +this.handleTypes(value, this._t, false)))
         return this
     }
 
@@ -603,7 +603,7 @@ x: 'xor'
      * @example s0.e.every(3).or(t%2)
      */ 
     or(value: patternable): Pattern {
-        this.stack.push(x => handlePolyphony(x, x => x || +this.handleTypes(value)))
+        this.stack.push(x => handlePolyphony(x, x => x || +this.handleTypes(value, this._t, false)))
         return this
     }
 
@@ -625,7 +625,7 @@ x: 'xor'
      * @example s0.e.every(3).xor(t%2)
      */ 
     xor(value: patternable): Pattern {
-        this.stack.push(x => handlePolyphony(x, x => x ^ +this.handleTypes(value)))
+        this.stack.push(x => handlePolyphony(x, x => x ^ +this.handleTypes(value, this._t, false)))
         return this
     }
 
