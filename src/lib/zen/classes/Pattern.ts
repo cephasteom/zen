@@ -238,7 +238,8 @@ x: 'xor'
     
     /**
      * Return the current time
-     * @example s0.x.t()
+     * @example 
+     * s0.x.t().mul(2)
      * @returns {Pattern}
      */
     t(): Pattern {
