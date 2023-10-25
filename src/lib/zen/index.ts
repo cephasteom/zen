@@ -49,10 +49,7 @@ const samples = () => post('info', get(samplesMessage))
 
 // parse code when it changes
 code.subscribe(code => {
-    // let t = counter()
-
     streams.forEach(stream => stream.reset())
-    // TODO: overide z.reset
     z.reset()
     z.resetGlobals()
 
@@ -94,9 +91,9 @@ code.subscribe(code => {
 
 // Main application loop
 const loop = new Loop(time => { 
-    const t = counter()
-    // TODO: improve this suntax
-    z._t = t
+    const count = counter()
+    
+    const t = z.getTime(count)
     const s = z.s
     const q = z.q
     const c = z.c
