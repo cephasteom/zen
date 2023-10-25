@@ -205,8 +205,9 @@ x: 'xor'
      * Used to format the arguments passed to pattern methods
      * @hidden 
      */ 
-    handleTypes(value: patternValue | Pattern | string, t: number | null = null, round=true) : patternValue {
+    handleTypes(value: patternValue | Pattern | string | Function, t: number | null = null, round=true) : patternValue {
         if(value instanceof Pattern) return value.get(t || this._t, this._q) || 0
+        if(typeof value === 'function') return value(t || this._t, this._q)
         if(typeof value === 'string') return parsePattern(value, t || this._t, this._q, this._id, round)
         return value
     }
