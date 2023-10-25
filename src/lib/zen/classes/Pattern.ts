@@ -255,6 +255,7 @@ x: 'xor'
      * @example s0.p.amp.set(1)
      * @example s1.e.set(s0.e)
      * @example s0.e.set('1?0*16')
+     * @example s0.x.set(t => t) // run a function, with the first argument being the current time
      */
     set(value: patternable): Pattern {
         this.stack.push(t => this.handleTypes(value, +t))
