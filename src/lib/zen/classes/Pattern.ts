@@ -249,6 +249,18 @@ x: 'xor'
     }
 
     /**
+     * Return the current cycle
+     * @example 
+     * s0.e.v(1)
+     * s0.x.c()
+     * @returns {Pattern}
+     */
+    c(): Pattern {
+        this.stack.push(() => Math.floor(this._t / this._q))
+        return this
+    }
+
+    /**
      * Set a single value
      * @param value - a single string or number or array of strings or numbers, or a Pattern, or a Zen pattern string
      * @returns {Pattern}
