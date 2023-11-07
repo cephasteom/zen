@@ -1,6 +1,9 @@
 export default `# Instruments
 Zen has an internal synth engine, called Oto, giving you access to a range of high-quality instruments and effects within your browser. Full documentation for all instruments and effects can be found in the docs. This chapter gives you a flavour of what’s possible.
 
+## Generic Parameters
+Most instruments share a common set of parameters. Envelope parameters are \`a\` (attack), \`d\` (decay), \`s\` (sustain), \`r\` (release). The \`dur\` parameter controls the duration of the note, the \`amp\` parameter controls the amplitude of the note, and the \`vol\` parameter controls the overall volume of the instrument. \`lag\` determines the time in ms it takes for a stream to mutate (ms), whilst \`nudge\` allows you to delay a stream's events by a given amount of time (ms).
+
 ## Synth
 An all purpose synth with filters and FM:
 \`\`\`js
