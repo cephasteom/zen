@@ -1,12 +1,12 @@
 import { writable, get } from "svelte/store";
-import { CtSynth, CtSampler, CtGranulator, CtAdditive, CtAcidSynth, CtDroneSynth, CtSubSynth } from "./ct-synths"
+import { CtSynth, CtSynth2, CtSampler, CtGranulator, CtAdditive, CtAcidSynth, CtDroneSynth, CtSubSynth } from "./ct-synths"
 import type { Dictionary } from './types'
 import Channel from './classes/Channel'
 import { output } from './destination';
 
 const channel = new BroadcastChannel('oto')
 
-const instMap = [ 'synth', 'sampler', 'granular', 'additive', 'acid', 'drone', 'sub' ]
+const instMap = [ 'synth', 'sampler', 'granular', 'additive', 'acid', 'drone', 'sub', 'synth2' ]
 
 const channelCount = output.numberOfInputs
 const channels: Dictionary = {
@@ -23,10 +23,11 @@ const channels: Dictionary = {
 // const synths: Dictionary = {}
 const synths = writable<Dictionary>({});
 
-const synthTypes = ['synth', 'sampler', 'granular', 'additive', 'acid', 'drone', 'sub']
+const synthTypes = ['synth', 'sampler', 'granular', 'additive', 'acid', 'drone', 'sub', 'synth2']
 const makeSynth = (type: string) => {
     switch(type) {
         case 'synth': return new CtSynth({lite: true})
+        case 'synth2': return new CtSynth2()
         case 'sampler': return new CtSampler()
         case 'granular': return new CtGranulator()
         case 'additive': return new CtAdditive()
