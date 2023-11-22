@@ -1227,11 +1227,10 @@ x: 'xor'
      * @returns {Pattern}
      * @example s0.p.vol.midi(1,0)
      */
-    midicc(...args: patternable[]): Pattern {
+    midicc(cc: patternable, device: patternable): Pattern {
         this.stack.push(() => {
             // TODO: channel?
-            const [cc, device=0] = args.map(arg => this.handleTypes(arg))
-            return getCC(+cc, +device)
+            return getCC(+this.handleTypes(cc), +this.handleTypes(device))
         })
         return this
     }
@@ -1239,13 +1238,11 @@ x: 'xor'
     /**
      * Use the currently pressed key(s) on the selected device
      * @param device midi device index (default is 0)
-     * @returns 
+     * @returns {Pattern}
+     * @example s0.p.n.midinote()
      */
-    midinote(...args: patternable[]): Pattern {
-        this.stack.push(() => {
-            const [device=0] = args.map(arg => this.handleTypes(arg))
-            return getNotes(+device)
-        })
+    midinote(device: patternable): Pattern {
+        this.stack.push(() => getNotes(+this.handleTypes(device)))
         return this
     }
 
