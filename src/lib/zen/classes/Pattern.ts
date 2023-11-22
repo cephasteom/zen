@@ -16,6 +16,7 @@ import {
 } from '../utils/utils';
 import { parsePattern } from '../parser';
 import { noise, randomSequence } from '../stores'
+import { getCC } from '../stores/midi'
 
 const channel = new BroadcastChannel('zen')
 
@@ -1215,6 +1216,22 @@ x: 'xor'
         this.stack.push(() => {
             const [a=1, b=0] = args.map(arg => this.handleTypes(arg))
             return this.rng(this._t) < 0.75 ? a : b
+        })
+        return this
+    }
+
+    /**
+     * Use a midi cc in the pattern chain
+     * @param cc control change number
+     * @param device midi device index (default is 0)
+     * @returns {Pattern}
+     * @example s0.p.vol.midi(1,0)
+     */
+    midi(...args: patternable[]): Pattern {
+        this.stack.push(() => {
+            // TODO: channel?
+            const [cc, device=0] = args.map(arg => this.handleTypes(arg))
+            return getCC(+cc, +device)
         })
         return this
     }
