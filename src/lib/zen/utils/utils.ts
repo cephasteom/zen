@@ -133,3 +133,12 @@ export function loopArray(arr: any[], n: number) {
     }
     return arr
 }
+
+export function debounce<F extends (...args: any[]) => any>(callback: F, wait: number): (...args: Parameters<F>) => void {
+    let timerId: NodeJS.Timeout | null = null;
+  
+    return (...args: Parameters<F>): void => {
+        timerId && clearTimeout(timerId);
+        timerId = setTimeout(() => callback(...args), wait);
+    };
+}
