@@ -16,7 +16,7 @@ import {
 } from '../utils/utils';
 import { parsePattern } from '../parser';
 import { noise, randomSequence } from '../stores'
-import { getCC } from '../stores/midi'
+import { getCC, getNotes } from '../stores/midi'
 
 const channel = new BroadcastChannel('zen')
 
@@ -1221,17 +1221,30 @@ x: 'xor'
     }
 
     /**
-     * Use a midi cc in the pattern chain
+     * Use a midi cc on the selected device
      * @param cc control change number
      * @param device midi device index (default is 0)
      * @returns {Pattern}
      * @example s0.p.vol.midi(1,0)
      */
-    midi(...args: patternable[]): Pattern {
+    midicc(...args: patternable[]): Pattern {
         this.stack.push(() => {
             // TODO: channel?
             const [cc, device=0] = args.map(arg => this.handleTypes(arg))
             return getCC(+cc, +device)
+        })
+        return this
+    }
+
+    /**
+     * Use the currently pressed key(s) on the selected device
+     * @param device midi device index (default is 0)
+     * @returns 
+     */
+    midinote(...args: patternable[]): Pattern {
+        this.stack.push(() => {
+            const [device=0] = args.map(arg => this.handleTypes(arg))
+            return getNotes(+device)
         })
         return this
     }
