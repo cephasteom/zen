@@ -1,6 +1,6 @@
 import type { Dictionary } from "../types";
 import { Split, Gain, context } from 'tone'
-import { CtFXChannel, CtFXReverb, CtFXDelay } from "../ct-synths"
+import { CtFXChannel, CtReverbGen, CtFXDelay } from "../ct-synths"
 class Channel {
     input
     _fx: any
@@ -50,7 +50,7 @@ class Channel {
     }
 
     initReverb() {
-        this._reverb = new CtFXReverb()
+        this._reverb = new CtReverbGen()
         this.handleRouting()
     }
 
