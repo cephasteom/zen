@@ -6,8 +6,6 @@ import { output } from './destination';
 
 const bchannel = new BroadcastChannel('oto')
 
-const instMap = [ 'synth', 'sampler', 'granular', 'additive', 'acid', 'drone', 'sub', 'synth2' ]
-
 const channelCount = output.numberOfInputs
 const channels: Dictionary = {
     0: new Channel(output, 0%channelCount),
@@ -20,7 +18,6 @@ const channels: Dictionary = {
     14: new Channel(output, 14%channelCount),
 }
 
-// const synths: Dictionary = {}
 const synths = writable<Dictionary>({});
 
 const synthTypes = ['synth', 'sampler', 'granular', 'additive', 'acid', 'drone', 'sub', 'synth2']
@@ -66,7 +63,7 @@ export const handleSynthEvent = (time: number, id: string, params: Dictionary) =
 
     // handle multiple insts
     [inst].flat().forEach((inst: string | number, instIndex: number) => {
-        inst = typeof(inst) === 'number' ? instMap[inst] : inst;
+        inst = typeof(inst) === 'number' ? synthTypes[inst] : inst;
         // ignore instruments that don't exist
         if(!synthTypes.includes(inst)) return
     
