@@ -4,7 +4,7 @@ import type { Dictionary } from './types'
 import Channel from './classes/Channel'
 import { output } from './destination';
 
-const channel = new BroadcastChannel('oto')
+const bchannel = new BroadcastChannel('oto')
 
 const instMap = [ 'synth', 'sampler', 'granular', 'additive', 'acid', 'drone', 'sub', 'synth2' ]
 
@@ -114,7 +114,7 @@ const fetchSamples = (url: string) => {
         .then(res => res.json())
         .then(json => {
             if(!json) return
-            channel.postMessage({ type: 'success', message: 'Loaded samples from ' + url})
+            bchannel.postMessage({ type: 'success', message: 'Loaded samples from ' + url})
             samples.update((samples: Dictionary) => ({...samples, ...json}))
             
         })
@@ -132,6 +132,6 @@ synths.subscribe((synths: Dictionary) => {
 })
 
 samples.subscribe((samples: Dictionary) => {
-    channel.postMessage({ type: 'success', message: 'Sample banks ->'})
-    channel.postMessage({ type: 'info', message: Object.keys(samples).join(', ') + '\n'})
+    bchannel.postMessage({ type: 'success', message: 'Sample banks ->'})
+    bchannel.postMessage({ type: 'info', message: Object.keys(samples).join(', ') + '\n'})
 })
