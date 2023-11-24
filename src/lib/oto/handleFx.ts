@@ -19,7 +19,6 @@ Object.values(channels).forEach((channel, i) => buses[i].connect(channel.input))
 
 export const handleFxEvent = (time: number, id: string, params: Dictionary) => {
     if(!['fx0', 'fx1', 'fx2', 'fx3'].includes(id)) return
-    console.log('handleFxEvent', id, params)
     
     const { track } = params;
     const channel = track || +id.replace('fx', '') || 0
