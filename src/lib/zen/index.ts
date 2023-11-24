@@ -36,6 +36,7 @@ let counter = createCount(0);
 // initialise Zen and Streams within the scope of the loop
 const z = new Zen();
 const streams: Stream[] = Array(64).fill(0).map((_, i) => new Stream('s' + i))
+const fxstreams: Stream[] = Array(2).fill(0).map((_, i) => new Stream('s' + i))
 const v = new Visuals(16)
 let bpm = 120
 
@@ -50,6 +51,7 @@ const samples = () => post('info', get(samplesMessage))
 // parse code when it changes
 code.subscribe(code => {
     streams.forEach(stream => stream.reset())
+    fxstreams.forEach(stream => stream.reset())
     z.reset()
     z.resetGlobals()
 
@@ -68,6 +70,9 @@ code.subscribe(code => {
         s32, s33, s34, s35, s36, s37, s38, s39, s40, s41, s42, s43, s44, s45, s46, s47,
         s48, s49, s50, s51, s52, s53, s54, s55, s56, s57, s58, s59, s60, s61, s62, s63,
     ] = streams   
+    const [
+        fx0, fx1
+    ] = fxstreams
     const map = keymap
     try {
         // prevent unused variable errors
@@ -78,7 +83,9 @@ code.subscribe(code => {
             s16, s17, s18, s19, s20, s21, s22, s23, s24, s25, s26, s27, s28, s29, s30, s31,
             s32, s33, s34, s35, s36, s37, s38, s39, s40, s41, s42, s43, s44, s45, s46, s47,
             s48, s49, s50, s51, s52, s53, s54, s55, s56, s57, s58, s59, s60, s61, s62, s63
-        ]; map; d;
+        ]; 
+        [fx0, fx1];
+        map; d;
         // TODO
         // const thisCode = !(t%z.update) ? code : get(lastCode) // only eval code on the beat
         eval(code)

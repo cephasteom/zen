@@ -87,7 +87,7 @@ export const handleSynthEvent = (time: number, id: string, params: Dictionary) =
         })
     })
 
-    // handle FX
+    // handle stream FX
     channels[channel]?.set(params, time)
 }
 
