@@ -1,8 +1,10 @@
 import { writable, get } from "svelte/store";
+
 import { CtSynth, CtSynth2, CtSampler, CtGranulator, CtAdditive, CtAcidSynth, CtDroneSynth, CtSubSynth } from "./ct-synths"
 import type { Dictionary } from './types'
 import Channel from './classes/Channel'
 import { output } from './destination';
+import { buses } from './buses'
 
 const bchannel = new BroadcastChannel('oto')
 
@@ -37,8 +39,17 @@ const makeSynth = (type: string) => {
 
 const connect = (synth: any, channel: number, type: string) => {
     if(!synth) return
+
+    // if channel doesn't exist, create it
     !channels[channel] && (channels[channel] = new Channel(output, channel%channelCount))
+
+    // connect synth to channel
     synth.connect(channels[channel].input)
+
+    // connect synth to buses
+    buses.forEach((bus, i) => synth.connect(bus))
+
+    // add synth to store
     synths.update((obj: Dictionary) => ({
         ...obj,
         [channel]: {
@@ -85,7 +96,14 @@ export const handleSynthEvent = (time: number, id: string, params: Dictionary) =
     })
 
     // handle stream FX
-    channels[channel]?.set(params, time)
+    channels[channel]?.set(params, time);
+
+    // handle buses
+    [params.fx0, params.fx1, params.fx2, params.fx3]
+        .forEach((gain: number = 0, i: number) => {
+            // TODO: reinstate
+            // buses[i].gain.setValueAtTime(gain, time)
+        })
 }
 
 export const handleSynthMutation = (time: number, id: string, params: Dictionary) => {

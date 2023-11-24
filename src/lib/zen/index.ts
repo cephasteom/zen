@@ -27,16 +27,14 @@ export const setCode = (str: string) => {
     code.set(str)
 };
 
-
-
 const d = new Data();
 
 let counter = createCount(0);
 
 // initialise Zen and Streams within the scope of the loop
 const z = new Zen();
-const streams: Stream[] = Array(64).fill(0).map((_, i) => new Stream('s' + i))
-const fxstreams: Stream[] = Array(2).fill(0).map((_, i) => new Stream('s' + i))
+const streams: Stream[] = Array(64).fill(0).map((_, i) => new Stream('s' + i));
+const fxstreams: Stream[] = Array(2).fill(0).map((_, i) => new Stream('fx' + i));
 const v = new Visuals(16)
 let bpm = 120
 
@@ -114,14 +112,17 @@ const loop = new Loop(time => {
     }
 
     // compile parameters, events and mutations
-    const compiled = streams.map(stream => stream.get(t, q, s, bpm, z))
+    const compiled = [...streams, ...fxstreams].map(stream => stream.get(t, q, s, bpm, z))
     const soloed = compiled.filter(({solo}) => solo)
     const result = soloed.length ? soloed : compiled
     const events = result.filter(({e}) => e)
     const mutations = result.filter(({m}) => m)
     const ePositions = events.map(({x,y,id}) => ({x,y,id}))
     const mPositions = mutations.map(({x,y,id}) => ({x,y,id}))
-    const vis = v.get(ePositions, mPositions)
+    const vis = v.get(
+        ePositions.filter(({id}) => id.startsWith('s')),
+        mPositions.filter(({id}) => id.startsWith('s'))
+    )
 
     // call actions
     const delta = (time - immediate())
