@@ -1,5 +1,6 @@
 import { handleMidiEvent, handleMidiMutation } from "./handleMidi";
 import { handleSynthEvent, handleSynthMutation } from "./handleSynths";
+import { handleFxEvent, handleFxMutation } from "./handleFx";
 import type { Dictionary } from "./types";
 
 const channel = new BroadcastChannel('zen');
@@ -22,9 +23,11 @@ channel.onmessage = ({data: {type, data}}) => {
 export function handleEvent(time: number, delta: number, id: string, params: Dictionary) {
     handleMidiEvent(delta, id, params);
     handleSynthEvent(time, id, params);
+    handleFxEvent(time, id, params);
 }
 
 export function handleMutation(time: number, delta: number, id: string, params: Dictionary) {
     params.midi && handleMidiMutation(delta, id, params);
     handleSynthMutation(time, id, params);
+    handleFxMutation(time, id, params);
 }
