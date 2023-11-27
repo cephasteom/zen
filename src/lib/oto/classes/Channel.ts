@@ -37,6 +37,8 @@ class Channel {
 
     mutate(params: Dictionary, time: number, lag: number) {
         this._fx?.mutate(params, time, lag)
+        this._reverb?.mutate(params, time, lag)
+        this._delay?.mutate(params, time, lag)
     }
 
     initFX() {

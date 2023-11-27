@@ -28,8 +28,9 @@ export const handleFxEvent = (time: number, id: string, params: Dictionary) => {
 }
 
 export const handleFxMutation = (time: number, id: string, params: Dictionary) => {
+    if(!['fx0', 'fx1', 'fx2', 'fx3'].includes(id)) return
     const { track } = params;
-    const channel = track * 2
+    const channel = track || +id.replace('fx', '') || 0
 
     // mutate fx params on that channel
     channels[channel]?.mutate(params, time)
