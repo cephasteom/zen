@@ -1,6 +1,12 @@
 import type { Dictionary } from "../types";
-import { Split, Gain, context } from 'tone'
+import { Split, Gain, context, Oscillator, LFO } from 'tone'
 import { CtFXChannel, CtReverbGen, CtFXDelay } from "../ct-synths"
+
+// const dummy = new Oscillator({volume: 0.1, frequency: 100, type: 'sine1'}).start()
+// new LFO("4n", 400, 4000).start().connect(dummy.frequency)
+
+
+
 class Channel {
     input
     _busses
@@ -88,6 +94,7 @@ class Channel {
         // disconnect chain
         fx.forEach(fx => fx && fx.disconnect())
         input.disconnect()
+        input.fan(...this._busses)
 
         const first = fx.find(Boolean)
         const last = [...fx].reverse().find(Boolean)

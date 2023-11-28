@@ -34,6 +34,7 @@ export const getChannel = (channel: number) => {
         })
         
     }
+    
     return channels[channel]
 }
 
