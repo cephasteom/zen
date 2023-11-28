@@ -1,24 +1,10 @@
 // TODO: move synths and busses to store
 import { writable, get } from "svelte/store";
-
 import { CtSynth, CtSynth2, CtSampler, CtGranulator, CtAdditive, CtAcidSynth, CtDroneSynth, CtSubSynth } from "./ct-synths"
 import type { Dictionary } from './types'
-import Channel from './classes/Channel'
-import { output } from './destination';
+import { getChannel } from './routing';
 
 const bchannel = new BroadcastChannel('oto')
-
-const channelCount = output.numberOfInputs
-const channels: Dictionary = {
-    0: new Channel(output, 0%channelCount),
-    2: new Channel(output, 2%channelCount),
-    4: new Channel(output, 4%channelCount),
-    6: new Channel(output, 6%channelCount),
-    8: new Channel(output, 8%channelCount),
-    10: new Channel(output, 10%channelCount),
-    12: new Channel(output, 12%channelCount),
-    14: new Channel(output, 14%channelCount),
-}
 
 const synths = writable<Dictionary>({});
 
@@ -40,11 +26,10 @@ const makeSynth = (type: string) => {
 const connect = (synth: any, channel: number, type: string) => {
     if(!synth) return
 
-    // if channel doesn't exist, create it
-    !channels[channel] && (channels[channel] = new Channel(output, channel%channelCount))
+    const ch = getChannel(channel)
 
     // connect synth to channel
-    synth.connect(channels[channel].input)
+    synth.connect(ch.input)
 
     // add synth to store
     synths.update((obj: Dictionary) => ({
@@ -92,14 +77,15 @@ export const handleSynthEvent = (time: number, id: string, params: Dictionary) =
         })
     })
 
-    // handle stream FX
-    channels[channel]?.set(params, time);
+    // set fx params on that channel
+    const ch = getChannel(channel)
+    ch.set(params, time);
 
     // handle buses
-    [params.fx0, params.fx1, params.fx2, params.fx3]
-        .forEach((gain: number = 0, i: number) => {
-            channels[channel]?.send(i, gain, time)
-        })
+    // [params.fx0, params.fx1, params.fx2, params.fx3]
+    //     .forEach((gain: number = 0, i: number) => {
+    //         channels[channel]?.send(i, gain, time)
+    //     })
 }
 
 export const handleSynthMutation = (time: number, id: string, params: Dictionary) => {
@@ -114,7 +100,9 @@ export const handleSynthMutation = (time: number, id: string, params: Dictionary
     const store = get(synths)
     Object.values(store[channel] || {}).forEach((s: any) => s.mutate(ps, time, lag))
     
-    channels[channel]?.mutate(ps, time, lag)
+    // mutate fx params on that channel
+    const ch = getChannel(channel)
+    ch.mutate(ps, time, lag)
 }
 
 // Fetch samples lists

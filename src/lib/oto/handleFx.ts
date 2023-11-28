@@ -1,7 +1,7 @@
 // TODO: handle routing, connect and disconnect
 // All handling of separate fx streams
 import type { Dictionary } from './types'
-import { output } from './destination';
+import { output } from './routing';
 import Channel from './classes/Channel'
 
 // create a Dict of channels
