@@ -3,7 +3,6 @@
 import type { Dictionary } from './types'
 import { output } from './destination';
 import Channel from './classes/Channel'
-import { buses } from './buses'
 
 // create a Dict of channels
 const channelCount = output.numberOfInputs
@@ -14,14 +13,13 @@ const channels: Dictionary = {
     6: new Channel(output, 6%channelCount),
 }
 
-// connect buses to channels
-Object.values(channels).forEach((channel, i) => buses[i].connect(channel.input))
-
 export const handleFxEvent = (time: number, id: string, params: Dictionary) => {
     if(!['fx0', 'fx1', 'fx2', 'fx3'].includes(id)) return
     
     const { track } = params;
-    const channel = track || +id.replace('fx', '') || 0
+    const channel = (track || +id.replace('fx', '') || 0) * 2
+
+    channels[channel]?.routeOut(channel%channelCount)
 
     // set fx params on that channel
     channels[channel]?.set(params, time)
@@ -30,7 +28,9 @@ export const handleFxEvent = (time: number, id: string, params: Dictionary) => {
 export const handleFxMutation = (time: number, id: string, params: Dictionary) => {
     if(!['fx0', 'fx1', 'fx2', 'fx3'].includes(id)) return
     const { track } = params;
-    const channel = track || +id.replace('fx', '') || 0
+    const channel = (track || +id.replace('fx', '') || 0) * 2
+
+    channels[channel]?.routeOut(channel%channelCount)
 
     // mutate fx params on that channel
     channels[channel]?.mutate(params, time)

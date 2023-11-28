@@ -1,10 +1,10 @@
+// TODO: move synths and busses to store
 import { writable, get } from "svelte/store";
 
 import { CtSynth, CtSynth2, CtSampler, CtGranulator, CtAdditive, CtAcidSynth, CtDroneSynth, CtSubSynth } from "./ct-synths"
 import type { Dictionary } from './types'
 import Channel from './classes/Channel'
 import { output } from './destination';
-import { buses } from './buses'
 
 const bchannel = new BroadcastChannel('oto')
 
@@ -45,9 +45,6 @@ const connect = (synth: any, channel: number, type: string) => {
 
     // connect synth to channel
     synth.connect(channels[channel].input)
-
-    // connect synth to buses
-    buses.forEach((bus, i) => synth.connect(bus))
 
     // add synth to store
     synths.update((obj: Dictionary) => ({
@@ -101,8 +98,7 @@ export const handleSynthEvent = (time: number, id: string, params: Dictionary) =
     // handle buses
     [params.fx0, params.fx1, params.fx2, params.fx3]
         .forEach((gain: number = 0, i: number) => {
-            // TODO: reinstate
-            // buses[i].gain.setValueAtTime(gain, time)
+            channels[channel]?.send(i, gain, time)
         })
 }
 

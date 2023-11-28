@@ -3,19 +3,45 @@ import { Split, Gain, context } from 'tone'
 import { CtFXChannel, CtReverbGen, CtFXDelay } from "../ct-synths"
 class Channel {
     input
+    _busses
+    _destination
+    _channel: number
     _fx: any
     _reverb: any
     _delay: any
     _output
     _activity = 0
     constructor(destination: any, channel: number) {
+        this._destination = destination
+        this._channel = channel
+
         this.input = new Gain(1)
+        this._busses = Array.from({length: 4}, () => new Gain(0))
         this._output = new Split({context, channels: 2})
         
-        this.input.connect(this._output)
+        this.input.fan(this._output, ...this._busses)
         
         this._output.connect(destination, 0, channel)
         this._output.connect(destination, 1, channel+1)
+    }
+
+    routeOut(channel: number) {
+        if(channel === this._channel) return
+
+        this._output.disconnect()
+        this._output.connect(this._destination, 0, channel)
+        this._output.connect(this._destination, 1, channel+1)
+
+        this._channel = channel
+    }
+
+    routeBus(bus: number, destination: any) {
+        this._busses[bus].connect(destination)
+    }
+
+    send(channel: number, gain: number, time: number = 0) {
+        this._busses[channel].gain.setValueAtTime(gain, time)
+        this._busses[channel].connect(this._destination)
     }
 
     set(params: Dictionary, time: number) {
@@ -43,20 +69,20 @@ class Channel {
 
     initFX() {
         this._fx = new CtFXChannel()
-        this.handleRouting()
+        this._handleInternalRouting()
     }
 
     initDelay() {
         this._delay = new CtFXDelay()
-        this.handleRouting()
+        this._handleInternalRouting()
     }
 
     initReverb() {
         this._reverb = new CtReverbGen()
-        this.handleRouting()
+        this._handleInternalRouting()
     }
 
-    handleRouting() {
+    _handleInternalRouting() {
         const { _fx, _reverb, _delay, input, _output } = this
         const fx = [_fx, _delay, _reverb]
         
