@@ -39,9 +39,8 @@ class Channel {
         this._busses[bus].connect(destination)
     }
 
-    send(channel: number, gain: number, time: number = 0) {
-        this._busses[channel].gain.setValueAtTime(gain, time)
-        this._busses[channel].connect(this._destination)
+    send(bus: number, gain: number, time: number = 0) {
+        this._busses[bus].gain.setValueAtTime(gain, time)
     }
 
     set(params: Dictionary, time: number) {

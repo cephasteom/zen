@@ -1,4 +1,3 @@
-// TODO: move synths and busses to store
 import { writable, get } from "svelte/store";
 import { CtSynth, CtSynth2, CtSampler, CtGranulator, CtAdditive, CtAcidSynth, CtDroneSynth, CtSubSynth } from "./ct-synths"
 import type { Dictionary } from './types'
@@ -82,10 +81,10 @@ export const handleSynthEvent = (time: number, id: string, params: Dictionary) =
     ch.set(params, time);
 
     // handle buses
-    // [params.fx0, params.fx1, params.fx2, params.fx3]
-    //     .forEach((gain: number = 0, i: number) => {
-    //         channels[channel]?.send(i, gain, time)
-    //     })
+    [params.fx0, params.fx1, params.fx2, params.fx3]
+        .forEach((gain: number = 0, i: number) => {
+            gain !== undefined && ch.send(i, gain, time)
+        })
 }
 
 export const handleSynthMutation = (time: number, id: string, params: Dictionary) => {
@@ -103,6 +102,8 @@ export const handleSynthMutation = (time: number, id: string, params: Dictionary
     // mutate fx params on that channel
     const ch = getChannel(channel)
     ch.mutate(ps, time, lag)
+
+    // TODO: mutate send levels
 }
 
 // Fetch samples lists
