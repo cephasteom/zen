@@ -45,8 +45,8 @@ class Channel {
         this._busses[bus].connect(destination)
     }
 
-    send(bus: number, gain: number, time: number = 0) {
-        this._busses[bus].gain.setValueAtTime(gain, time)
+    send(bus: number, gain: number, time: number = 0, lag: number = 10) {
+        this._busses[bus].gain.rampTo(gain, lag, time)
     }
 
     set(params: Dictionary, time: number) {

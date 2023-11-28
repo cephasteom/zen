@@ -101,9 +101,13 @@ export const handleSynthMutation = (time: number, id: string, params: Dictionary
     
     // mutate fx params on that channel
     const ch = getChannel(channel)
-    ch.mutate(ps, time, lag)
+    ch.mutate(ps, time, lag);
 
-    // TODO: mutate send levels
+    // handle buses
+    [params.fx0, params.fx1, params.fx2, params.fx3]
+        .forEach((gain: number = 0, i: number) => {
+            gain !== undefined && ch.send(i, gain, time, lag)
+        })
 }
 
 // Fetch samples lists
