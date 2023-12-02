@@ -344,6 +344,25 @@ x: 'xor'
         return this
     }
 
+    /**
+     * On/off. Returns 1 when on, 0 when off.
+     * True values passed to the first argument will turn the pattern on, false values are ignored.
+     * True values passed to the second argument will turn the pattern off, false values are ignored.
+     * @param on - a value, instance of Pattern, or Zen pattern string
+     * @param off - a value, instance of Pattern, or Zen pattern string
+     * @returns {Pattern}
+     * @example
+     * s0.e.io(s1.e, s2.e)
+     */ 
+    io(i: patternable, o: patternable): Pattern {
+        this.stack.push(() => {
+            if (this.handleTypes(i)) this._state.io = true
+            if (this.handleTypes(o)) this._state.io = false
+            return this._state.io ? 1 : 0
+        })
+        return this
+    }
+
     // CONDITIONALS
     /**
      * Test if the previous value in the pattern chain is a truthy or falsy value
