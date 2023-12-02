@@ -29,5 +29,8 @@ s0.e.set(1)
 s1.set({inst: 0, reverb: 0}) // override global reverb setting
 s1.x.saw(16,1)
 s1.e.set(1)
+
+## Seeding randomness
+You can seed the random number generator using \`z.seed\`. Seed is an instance of a pattern, so you can use any pattern method to set it, for example \`z.seed.set(256)\`.
 \`\`\`
 `
