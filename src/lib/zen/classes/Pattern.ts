@@ -14,7 +14,7 @@ import {
     interpolate,
     handleArrayOrSingleValue as handlePolyphony
 } from '../utils/utils';
-import { parsePattern } from '../parser';
+import { parsePattern } from '../parsing/mininotation';
 import { noise, randomSequence } from '../stores'
 import { getCC, getNotes } from '../stores/midi'
 

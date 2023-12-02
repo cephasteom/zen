@@ -11,6 +11,7 @@ import keymap from './data/keymapping'
 import { print as post, clear } from "$lib/stores/zen";
 import { modes } from './data/scales'
 import { triads } from './data/chords'
+import { parseCode } from './parsing/syntactic-sugar'
 
 // Broadcast channels
 const channel = new BroadcastChannel('zen')
@@ -24,7 +25,8 @@ otoChannel.onmessage = ({data: {message}}) => message.includes('Sample banks') &
 export const lastCode = writable('');
 export const code = writable('');
 export const setCode = (str: string) => {
-    code.set(str)
+    // parse code
+    code.set(parseCode(str))
 };
 
 const d = new Data();

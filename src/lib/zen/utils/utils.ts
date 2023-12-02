@@ -1,6 +1,6 @@
 import type { patternValue, Dictionary } from '../types'
 import { Pattern } from '../classes/Pattern'
-import { parsePattern } from '../parser'
+import { parsePattern } from '../parsing/mininotation'
 
 export const max = (a: number, b: number) => a >= b ? a : b
 export const min = (a: number, b: number) =>  a <= b ? a : b
