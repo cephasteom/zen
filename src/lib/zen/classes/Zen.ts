@@ -45,6 +45,18 @@ export class Zen extends Stream {
         return this._bpmPattern
     }
 
+    /** @hidden */
+    _seedPattern: null | Pattern = null
+    /**
+     * A Pattern for setting the global seeding
+     * @example
+     * z.seed.saw(0,1,0.5) // set the global seed with a saw wave between 0 and 1, over 2 cycles
+     */
+    get seed() {
+        this._seedPattern = this._seedPattern || new Pattern()
+        return this._seedPattern
+    }
+
     // when to update the executed code, ie at the next division, on the next beat, etc
     /** @hidden */
     private _update: number = 1
@@ -119,7 +131,12 @@ export class Zen extends Stream {
     }
 
     /** @hidden */
+    getSeed(): any {
+        return this.seed.get(this._t, this._q)
+    }
+
+    /** @hidden */
     resetGlobals() {
-        [this._bpmPattern, this._tPattern].forEach(p => p?.reset())
+        [this._bpmPattern, this._tPattern, this._seedPattern].forEach(p => p?.reset())
     }
 }

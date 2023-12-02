@@ -103,6 +103,9 @@ const loop = new Loop(time => {
     const q = z.q
     const c = z.c
 
+    // get seed value
+    const seedValue = z.getSeed()
+    seedValue !== null && seed(seedValue)
     // update loop and transport
     loop.interval = `${z.q}n`
     const newBpm = z.getBpm()
