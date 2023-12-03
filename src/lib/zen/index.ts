@@ -1,4 +1,4 @@
-import { start, Loop, Transport, immediate } from 'tone'
+import { start, Loop, Transport, immediate, context } from 'tone'
 import { writable, get } from 'svelte/store';
 import { Zen } from './classes/Zen';
 import { Data } from './classes/Data'
@@ -105,6 +105,11 @@ const loop = new Loop(time => {
     // get seed value
     const seedValue = z.getSeed()
     seedValue !== null && seed(seedValue)
+
+    // get latency value
+    const latencyValue = z.getLatency()
+    latencyValue !== null && (context.latencyHint = Math.floor(latencyValue/1000))
+    
     // update loop and transport
     loop.interval = `${z.q}n`
     const newBpm = z.getBpm()
