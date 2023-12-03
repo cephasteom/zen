@@ -57,6 +57,18 @@ export class Zen extends Stream {
         return this._seedPattern
     }
 
+    /** @hidden */
+    _latencyPattern: null | Pattern = null
+    /**
+     * A Pattern for setting the global latency
+     * @example
+     * z.latency.saw(0,1,0.5) // set the global latency with a saw wave between 0 and 1, over 2 cycles
+     */
+    get latency() {
+        this._latencyPattern = this._latencyPattern || new Pattern()
+        return this._latencyPattern
+    }
+
     // when to update the executed code, ie at the next division, on the next beat, etc
     /** @hidden */
     private _update: number = 1
@@ -133,6 +145,11 @@ export class Zen extends Stream {
     /** @hidden */
     getSeed(): any {
         return this.seed.get(this._t, this._q)
+    }
+
+    /** @hidden */
+    getLatency(): any {
+        return this.latency.get(this._t, this._q)
     }
 
     /** @hidden */
