@@ -62,7 +62,7 @@ export class Zen extends Stream {
     /**
      * A Pattern for setting the global latency
      * @example
-     * z.latency.saw(0,1,0.5) // set the global latency with a saw wave between 0 and 1, over 2 cycles
+     * z.latency.set(500) // set the global latency to 500ms
      */
     get latency() {
         this._latencyPattern = this._latencyPattern || new Pattern()
