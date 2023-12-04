@@ -24,7 +24,7 @@ export const parseCode = (code: string) => {
         // replace z() etc. with z.set()
         (code: string) => code.replace(/z\(/g, 'z.set('),
         // replace z.banana() etc. with z.banana.set()
-        (code: string) => code.replace(/z\.(\w+)\(/g, 'z.$1.set('),
+        (code: string) => code.replace(/z\.(?!set|v)(\w+)\(/g, 'z.$1.set('),
 
     )(code)
 }
