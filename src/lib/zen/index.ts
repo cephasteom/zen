@@ -108,7 +108,7 @@ const loop = new Loop(time => {
 
     // get latency value
     const latencyValue = z.getLatency()
-    latencyValue !== null && (context.latencyHint = Math.floor(latencyValue/1000))
+    latencyValue !== null && (context.lookAhead = Math.floor(latencyValue/1000))
     
     // update loop and transport
     loop.interval = `${z.q}n`
