@@ -1242,14 +1242,16 @@ x: 'xor'
     /**
      * Use a midi cc on the selected device
      * @param cc control change number
+     * @param value initial value
      * @param device midi device index (default is 0)
      * @returns {Pattern}
-     * @example s0.p.vol.midi(1,0)
+     * @example s0.p.vol.midicc(1,0.5,0)
      */
-    midicc(cc: patternable, device: patternable): Pattern {
+    midicc(cc: patternable, value: patternable, device: patternable): Pattern {
         this.stack.push(() => {
             // TODO: channel?
-            return getCC(+this.handleTypes(cc), +this.handleTypes(device))
+            const ccValue = getCC(+this.handleTypes(cc), +this.handleTypes(device))
+            return ccValue !== undefined ? ccValue : +this.handleTypes(value)
         })
         return this
     }

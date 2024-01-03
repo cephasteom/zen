@@ -21,7 +21,7 @@ inputs.subscribe(inputs => {
 
 export const getCC = (cc: number, deviceIndex = 0) => {
     const device = get(inputs)[deviceIndex] || get(inputs)[0]
-    return get(CCsIn)[device]?.[cc] || 0
+    return get(CCsIn)[device]?.[cc]
 }
 
 export const getNotes = (deviceIndex = 0) => {
