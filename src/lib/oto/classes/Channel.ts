@@ -41,7 +41,7 @@ class Channel {
     }
 
     send(bus: number, gain: number, time: number = 0, lag: number = 10) {
-        this._busses[bus].gain.rampTo(gain, lag, time)
+        this._busses[bus].gain.rampTo(gain, lag/1000, time)
     }
 
     set(params: Dictionary, time: number) {
