@@ -1,12 +1,12 @@
 import { pipe } from '../utils/utils'
 
 export const parseCode = (code: string) => {
-    return pipe(
+    const result = pipe(
         // replace p.banana() with p.banana.set()
         (code: string) => code.replace(/\.p\.(\w+)\(/g, '.p.$1.set('),
         (code: string) => code.replace(/\.px\.(\w+)\(/g, '.px.$1.set('),
-        (code: string) => code.replace(/\.py\.(\w+)/g, '.py.$1.set('),
-        (code: string) => code.replace(/\.pz\.(\w+)/g, '.pz.$1.set('),
+        (code: string) => code.replace(/\.py\.(\w+)\(/g, '.py.$1.set('),
+        (code: string) => code.replace(/\.pz\.(\w+)\(/g, '.pz.$1.set('),
         // replace .e() with .e.set()
         (code: string) => code.replace(/\.e\(/g, '.e.set('),
         // replace .m() with .m.set()
@@ -27,4 +27,7 @@ export const parseCode = (code: string) => {
         (code: string) => code.replace(/z\.(?!set|v)(\w+)\(/g, 'z.$1.set('),
 
     )(code)
+
+    console.log(result)
+    return result
 }
