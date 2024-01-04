@@ -1,11 +1,6 @@
 import type { Dictionary } from "../types";
-import { Split, Gain, context, Oscillator, LFO } from 'tone'
+import { Split, Gain, context } from 'tone'
 import { CtFXChannel, CtReverbGen, CtFXDelay } from "../ct-synths"
-
-// const dummy = new Oscillator({volume: 0.1, frequency: 100, type: 'sine1'}).start()
-// new LFO("4n", 400, 4000).start().connect(dummy.frequency)
-
-
 
 class Channel {
     input
