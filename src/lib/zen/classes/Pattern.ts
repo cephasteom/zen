@@ -390,6 +390,21 @@ x: 'xor'
 
     // MATHS
     /**
+     * Map the preceding value in the chain to a new range.
+     * @param outMin - the new minimum value
+     * @param outMax - the new maximum value 
+     * @param inLo - the minimum value of the input range. Default is 0.
+     * @param inHi - the maximum value of the input range. Default is 1.
+     * @returns 
+     */
+    mtr(outMin: patternable, outMax: patternable, inMin: patternable = 0, inMax: patternable = 1): Pattern {
+        this.stack.push(x => {
+            const [l=0, h=1, il=0, ih=1] = [outMin, outMax, inMin, inMax].map(arg => this.handleTypes(arg))
+            return mapToRange(+x, +il, +ih, +l, +h, 0)
+        })
+        return this
+    }
+    /**
      * Add a value to the previous value in the pattern chain.
      * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
