@@ -28,6 +28,5 @@ export const parseCode = (code: string) => {
 
     )(code)
 
-    console.log(result)
     return result
 }
