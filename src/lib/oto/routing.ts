@@ -32,7 +32,6 @@ export const getChannel = (channel: number) => {
         ['fx0', 'fx1', 'fx2', 'fx3'].forEach((id: string, i: number) => {
             channels[channel].routeBus(i, fxChannels[id].input)
         })
-        
     }
     
     return channels[channel]

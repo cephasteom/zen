@@ -88,9 +88,8 @@ export const handleSynthEvent = (time: number, id: string, params: Dictionary) =
 }
 
 export const handleSynthMutation = (time: number, id: string, params: Dictionary) => {
-    // TODO: fix tracks not mutating
-    const { lag=500 } = params;
-    const channel = +id.slice(1) * 2
+    const { lag=500, track } = params;
+    const channel = track * 2
 
     const { n } = params
     const ps = n !== undefined
