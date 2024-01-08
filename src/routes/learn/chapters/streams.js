@@ -74,4 +74,7 @@ Cut is a special parameter that allows you to cut active events in any stream sh
 Solo and mute are both instances of a Pattern. They are used to solo or mute a stream. For example, \`s0.solo.set(1)\` will solo stream 0. \`s0.mute.set(1)\` will mute stream 0.
 
 They can be patterned in the usual way, for example, \`s0.solo.set('1?0*16')\` will randomly solo stream 0. 
+
+### Level
+Level is a special parameter that allows you to control the level of the track used by the Stream. It accepts a float between 0 and 1. For example, \`s0.set({level:0.5})\` will set the level of stream 0 to 0.5. Think of it as the fader on a mixing desk channel strip.
 `
