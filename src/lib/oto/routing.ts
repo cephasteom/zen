@@ -15,10 +15,10 @@ output.connect(destination)
 
 // FX channel strips, connected by a bus from all channels
 export const fxChannels: Dictionary = {
-    0: new Channel(output, 0 % output.numberOfInputs),
-    2: new Channel(output, 2 % output.numberOfInputs),
-    4: new Channel(output, 4 % output.numberOfInputs),
-    6: new Channel(output, 6 % output.numberOfInputs),
+    fx0: new Channel(output, 0 % output.numberOfInputs),
+    fx1: new Channel(output, 2 % output.numberOfInputs),
+    fx3: new Channel(output, 4 % output.numberOfInputs),
+    fx4: new Channel(output, 6 % output.numberOfInputs),
 }
 
 // instrument channels strips, placed at the head of each stream
@@ -29,8 +29,8 @@ export const getChannel = (channel: number) => {
         channels[channel] = new Channel(output, channel % output.numberOfInputs);
 
         // connect all buses to the input of the fx channels
-        [0,1,2,3].forEach((i: number) => {
-            channels[channel].routeBus(i, fxChannels[i*2].input)
+        ['fx0', 'fx1', 'fx2', 'fx3'].forEach((id: string, i: number) => {
+            channels[channel].routeBus(i, fxChannels[id].input)
         })
         
     }
