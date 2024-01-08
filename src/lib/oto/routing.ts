@@ -17,8 +17,8 @@ output.connect(destination)
 export const fxChannels: Dictionary = {
     fx0: new Channel(output, 0 % output.numberOfInputs),
     fx1: new Channel(output, 2 % output.numberOfInputs),
-    fx3: new Channel(output, 4 % output.numberOfInputs),
-    fx4: new Channel(output, 6 % output.numberOfInputs),
+    fx2: new Channel(output, 4 % output.numberOfInputs),
+    fx3: new Channel(output, 6 % output.numberOfInputs),
 }
 
 // instrument channels strips, placed at the head of each stream
