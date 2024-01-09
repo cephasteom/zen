@@ -10,19 +10,19 @@ export class Data {
     _keys: string[] = []
 
     constructor() {
-        fetch('http://localhost:5000/data.json')
-            .then(res => {
-                return res.json()
-            })
-            .then(json => {
-                if(!json) return
-                this._keys = Object.keys(json)
-                this._keys.forEach(key => localStorage.setItem(`z.data.${key}`, JSON.stringify(json[key])))
-                channel.postMessage({type: 'success', message: 'Loaded data from ' + 'http://localhost:5000/data.json'})
-                channel.postMessage({ type: 'success', message: 'Data keys ->'})
-                channel.postMessage({ type: 'info', message: this.keys.join(',') + '\n'})
-            })
-            .catch(_ => channel.postMessage({type: 'info', message: 'No data from ' + 'http://localhost:5000/data.json\n'}))
+        const worker = new Worker(new URL('../workers/data.js', import.meta.url));
+        worker.postMessage('start');
+    
+        worker.addEventListener('message', (e) => {
+            if (e.data.type === 'data') {
+                const keys = Object.keys(e.data.data);
+                keys.forEach(key => localStorage.setItem(`z.data.${key}`, JSON.stringify(e.data.data[key])));
+                channel.postMessage({type: 'info', message: 'Data fetched from ' + 'http://localhost:5000/data.json\n'});
+            } else {
+                const { type, message } = e.data;
+                channel.postMessage({ type, message });
+            }
+        });
 
         return new Proxy(this, {
             get: (target, prop) => {
