@@ -16,15 +16,20 @@ export class Data {
     
         this._worker.addEventListener('message', (e) => {
             const { message, data } = e.data;
-            data && localStorage.setItem(`z.data.${data.key}`, JSON.stringify(data.data));
             channel.postMessage({type: 'info', message});
+            
+            if(data) { 
+                localStorage.setItem(`z.data.${data.key}`, JSON.stringify(data.data));
+                this._keys = this._keys.includes(data.key) ? this._keys : [...this._keys, data.key]
+            }
         });
 
         return new Proxy(this, {
             get: (target, prop) => {
                 const key = String(prop)
 
-                if(key === 'fetch') this._worker.postMessage('start');
+                if(key === 'fetch') this._worker.postMessage('last');
+                if(key === 'all') this._worker.postMessage('all');
                 
                 // @ts-ignore
                 if (key in target) return target[key]
