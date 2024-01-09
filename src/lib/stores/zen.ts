@@ -6,7 +6,7 @@ export const t = writable(0); // time
 export const c = writable(0); // cycle
 export const q = writable(16); // quantization (frames per cycle)
 export const s = writable(16); // size of canvas
-export const editorConsole = writable('');
+export const editorConsole = writable<{type?: string, message?: string}>({});
 export const isPlaying = writable(false);
 
 export const isDrawing = writable(false);
@@ -25,7 +25,7 @@ export const print = (type: string, message: string) => {
     if(last && last.message === message) return
     type === 'pattern' && messages.update(arr => arr.filter(m => m.type !== 'pattern'))
     messages.update(arr => [...arr, {type, message}]);
-    (get(isDrawing) || window.innerWidth < 600) && editorConsole.set(message)
+    (get(isDrawing) || window.innerWidth < 600) && editorConsole.set({type, message})
 }
 
 export const clear = () => messages.set([]);
@@ -37,7 +37,7 @@ const otoChannel = new BroadcastChannel('oto')
 
 // Listen for error messages from Zen
 zenChannel.onmessage = ({data: {message, type, data}}) => {
-    if(type === 'error' && (get(editorConsole) !== message)) return editorConsole.set(message);
+    if(type === 'error' && (get(editorConsole) !== message)) return editorConsole.set({type, message});
     
     ['error', 'info', 'pattern', 'success'].includes(type) && print(type, message.toString())
     

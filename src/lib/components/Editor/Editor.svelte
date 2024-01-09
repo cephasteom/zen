@@ -14,7 +14,7 @@
     let flash = false
 
     function setAndPlay() {
-        editorConsole.set('');
+        editorConsole.set({});
         setCode(editor.getValue());
         localStorage.setItem("z.code", editor.getValue());
         play();
@@ -61,6 +61,10 @@
     onDestroy(() => {
         monaco?.editor.getModels().forEach((model) => model.dispose());
     });
+
+    $: type = $editorConsole.type 
+        ? $editorConsole.type.charAt(0).toUpperCase() + $editorConsole.type.slice(1) 
+        : null;
 </script>
 
 <svelte:window on:resize={() => {
@@ -72,7 +76,10 @@
     <div class="editor" bind:this={editorContainer} />
     <div class="notices">
         <ul>
-            <li class:hidden={!$editorConsole}>Error: <span>{$editorConsole}</span></li>
+            <li class:hidden={!type} >
+                <span class={type}>{type}:</span> 
+                <span>{$editorConsole.message}</span>
+            </li>
         </ul>
     </div>
 </div>
@@ -114,8 +121,16 @@
             padding: 0;
         }
 
-        span {
+        .Info {
+            color: var(--color-theme-3);
+        }
+
+        .Error {
             color: var(--color-theme-1);
+        }
+
+        .Success {
+            color: var(--color-theme-3);
         }
     }
 
