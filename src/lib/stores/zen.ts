@@ -24,8 +24,8 @@ export const print = (type: string, message: string) => {
     const last = get(messages).slice(-1)[0];
     if(last && last.message === message) return
     type === 'pattern' && messages.update(arr => arr.filter(m => m.type !== 'pattern'))
-    messages.update(arr => [...arr, {type, message}])
-    type === 'error' && (get(isDrawing) || window.innerWidth < 600) && error.set(message)
+    messages.update(arr => [...arr, {type, message}]);
+    (get(isDrawing) || window.innerWidth < 600) && error.set(message)
 }
 
 export const clear = () => messages.set([]);

@@ -11,8 +11,7 @@ export class Data {
     _worker: Worker
 
     constructor() {
-        this._worker = new Worker(new URL('../workers/data.js', import.meta.url));
-        // this._worker.postMessage('start');
+        this._worker = new Worker(new URL('../workers/data.ts', import.meta.url));
     
         this._worker.addEventListener('message', (e) => {
             const { message, data } = e.data;
