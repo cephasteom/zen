@@ -3,7 +3,7 @@
     import { onDestroy, onMount } from 'svelte';
     import type * as Monaco from 'monaco-editor/esm/vs/editor/editor.api';
     import { setCode, play, stop } from '$lib/zen';
-    import { error, isPlaying, editorValue } from '$lib/stores/zen';
+    import { editorConsole, isPlaying, editorValue } from '$lib/stores/zen';
     import { activePreset, presets } from '$lib/stores/presets';
     import { options } from './options';
     import { example } from './example';
@@ -14,7 +14,7 @@
     let flash = false
 
     function setAndPlay() {
-        error.set('');
+        editorConsole.set('');
         setCode(editor.getValue());
         localStorage.setItem("z.code", editor.getValue());
         play();
@@ -72,7 +72,7 @@
     <div class="editor" bind:this={editorContainer} />
     <div class="notices">
         <ul>
-            <li class:hidden={!$error}>Error: <span>{$error}</span></li>
+            <li class:hidden={!$editorConsole}>Error: <span>{$editorConsole}</span></li>
         </ul>
     </div>
 </div>
