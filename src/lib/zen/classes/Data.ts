@@ -8,25 +8,23 @@ export class Data {
     data: any = {}
     key = ''
     _keys: string[] = []
+    _worker: Worker
 
     constructor() {
-        const worker = new Worker(new URL('../workers/data.js', import.meta.url));
-        worker.postMessage('start');
+        this._worker = new Worker(new URL('../workers/data.js', import.meta.url));
+        // this._worker.postMessage('start');
     
-        worker.addEventListener('message', (e) => {
-            if (e.data.type === 'data') {
-                const keys = Object.keys(e.data.data);
-                keys.forEach(key => localStorage.setItem(`z.data.${key}`, JSON.stringify(e.data.data[key])));
-                channel.postMessage({type: 'info', message: 'Data fetched from ' + 'http://localhost:5000/data.json\n'});
-            } else {
-                const { type, message } = e.data;
-                channel.postMessage({ type, message });
-            }
+        this._worker.addEventListener('message', (e) => {
+            const { message, data } = e.data;
+            data && localStorage.setItem(`z.data.${data.key}`, JSON.stringify(data.data));
+            channel.postMessage({type: 'info', message});
         });
 
         return new Proxy(this, {
             get: (target, prop) => {
                 const key = String(prop)
+
+                if(key === 'fetch') this._worker.postMessage('start');
                 
                 // @ts-ignore
                 if (key in target) return target[key]

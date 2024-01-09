@@ -1,8 +1,16 @@
+/**
+ * @type {string | any[]}
+ */
+const storedKeys = []
+
 self.addEventListener('message', (e) => {
-    fetch('http://localhost:5000/data.json')
+    fetch('https://zendata.cephasteom.co.uk/api/packet')
         .then(res => res.json())
-        .then(json => {
-            self.postMessage({type: 'data', data: json});
+        .then(data => {
+            storedKeys.includes(data.key) 
+                ? self.postMessage({message: 'No new data available'}) 
+                : self.postMessage({data, message: 'Data received from ' + 'https://zendata.cephasteom.co.uk/api/packet\n' + 'Key: ' + data.key});
+            storedKeys.push(data.key);
         })
-        .catch(_ => self.postMessage({type: 'info', message: 'No data from ' + 'http://localhost:5000/data.json\n'}));
+        .catch(_ => self.postMessage({message: 'Data unavailable from ' + 'https://zendata.cephasteom.co.uk/api/packet\n'}));
 });
