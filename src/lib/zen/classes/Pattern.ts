@@ -237,6 +237,7 @@ x: 'xor'
     reset() {
         this.stack = []
         this._value = 0
+        this._state = {}
         return this
     }   
     
@@ -1281,6 +1282,20 @@ x: 'xor'
      */
     midinote(device: patternable): Pattern {
         this.stack.push(() => getNotes(+this.handleTypes(device)))
+        return this
+    }
+
+    /**
+     * Returns a 1 the first time it is called, and 0 thereafter
+     * @returns {Pattern}
+     * @example s0.e.once()
+     */
+    once(): Pattern {
+        this.stack.push(() => {
+            const value = this._state.once ? 0 : 1
+            this._state.once = true
+            return value
+        })
         return this
     }
 

@@ -24,7 +24,7 @@ otoChannel.onmessage = ({data: {message}}) => message.includes('Sample banks') &
 // Code
 export const lastCode = writable('');
 export const code = writable('');
-export const setCode = (str: string) => code.set(parseCode(str));
+export const setCode = (str: string) => code.set(parseCode(str) + '\n' + Date.now());
 
 const d = new Data();
 
