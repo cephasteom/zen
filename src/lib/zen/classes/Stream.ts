@@ -271,6 +271,7 @@ export class Stream {
         // compile all parameters
         const compiled = (e || m) ? {
             track: +id.slice(1),
+            _track: +id.slice(1),
             ...this.evaluateGroup(global.p, t, q, bpm), // calculate based on position in cycle, 0 - 1
             ...this.evaluateGroup(global.px, x, s, bpm), // calculate based on position in space, 0 - 1
             ...this.evaluateGroup(global.py, y, s, bpm), // ...
