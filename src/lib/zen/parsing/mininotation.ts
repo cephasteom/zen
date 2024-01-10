@@ -255,7 +255,7 @@ const parser = peg.generate(`
 
     // must start with a letter, can contain numbers, ., -, _
     string
-        = [a-zA-Z]+ [a-zA-Z0-9.-_]* { return text(); }
+        = [a-zA-Z]+ [a-zA-Z0-9._-]* { return text(); }
         
     // SYMBOLS
     length
