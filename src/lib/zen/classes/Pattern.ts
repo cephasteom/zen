@@ -603,12 +603,12 @@ x: 'xor'
      * @param hi highest value in range
      * @param curve curve of the pattern. Default is 0.5, which means a linear curve.
      * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @returns {Pattern}
      */
-    curve(...args: patternable[]): Pattern {
+    curve(lo: patternable, hi: patternable, curve: patternable, freq: patternable ): Pattern {
         this.stack.push((x: patternValue) => {
-            const [lo=0, hi=1, curve=0.5, freq=1] = args.map(arg => this.handleTypes(arg))
-            const value = Math.pow(pos(x, this._q, +freq), +curve) 
-            return mapToRange(value, 0, 1, +lo, +hi)
+            const value = Math.pow(pos(x, this._q, +this.handleTypes(freq)), +this.handleTypes(curve)) 
+            return mapToRange(value, 0, 1, +this.handleTypes(lo), +this.handleTypes(hi))
         })
         return this
     }
