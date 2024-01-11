@@ -66,6 +66,10 @@
                 width: 100%;
             }
         }
+        
+        @media all and (display-mode: fullscreen) {
+            display: none;
+        }
     }
 
 </style>

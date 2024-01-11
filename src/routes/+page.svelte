@@ -60,6 +60,12 @@
         @media (min-width: 1200px) {
             padding: 1rem 2rem;
         }
+
+        @media all and (display-mode: fullscreen) {
+            height: calc(100vh - 4rem);
+            padding: 2rem;
+            grid-template-columns: 2fr 3fr;
+        }
     }
 
     .editor {

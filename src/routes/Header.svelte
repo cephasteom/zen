@@ -54,7 +54,7 @@
 
         @media all and (display-mode: fullscreen) {
             background-color: var(--color-grey-darker);
-            & > nav > .menu { display: none }
+            & > nav { display: none }
         }
 	}
     nav {
