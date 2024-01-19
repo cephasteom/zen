@@ -14,6 +14,17 @@
     function handleKeydown(e: KeyboardEvent) {
         const key = Object.keys($presets)[index]
         
+        // handle number keys
+        if(!isNaN(Number(e.key))) {
+            e.preventDefault()
+            const i = Number(e.key)
+            index = i % Object.keys($presets).length
+            activePreset.set(Object.keys($presets)[index])
+            dispatch('load')
+            return
+        }
+        
+        console.log(e.key)
         switch (e.key) {
             case 'ArrowDown':
                 index = Math.min(index + 1, Object.keys($presets).length - 1)
@@ -27,6 +38,7 @@
                 dispatch('load')
                 break;
             case 'Backspace':
+                e.preventDefault()
                 deletePreset(key)
                 break;
         }
