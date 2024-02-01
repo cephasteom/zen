@@ -199,10 +199,10 @@
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.23.tgz#498e41218ab3b6a1419c735e5c6ae2c5ed609b6c"
   integrity sha512-C16M+IYz0rgRhWZdCmK+h58JMv8vijAA61gmz2rspCSwKwzBebpdcsiUmwrtJRdphuY30i6BSLEOP8ppbNLyLg==
 
-"@rnbo/js@^1.1.2":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@rnbo/js/-/js-1.2.1.tgz#f5bf60711981ae719f0f34b6859a6167d9ceb3d7"
-  integrity sha512-PC6LKNi82UgAGay+JKyOZsTrlsj2NU2qz/qdhMH9Yz9sZQJiJnjyJJMKTGwSujiM+Soe6yDyzXNQ5hVjvyTZsQ==
+"@rnbo/js@^1.2.4":
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/@rnbo/js/-/js-1.2.4.tgz#595c0ebd869da5adbc23bb5bc57d213ba5b8592d"
+  integrity sha512-NYz7rLU9tgQwXK5kjusaVgO4WI9zL+4QTBwuodQ8O0v49KYXE7D9nUdb5oJedabrCb+RbZ/PrETr4k8WHClwXw==
 
 "@serialport/binding-mock@10.2.2":
   version "10.2.2"
