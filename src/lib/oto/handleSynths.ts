@@ -1,5 +1,5 @@
 import { writable, get } from "svelte/store";
-import { CtSynth, CtSampler, CtGranulator, CtAdditive, CtAcidSynth, CtDroneSynth, CtSubSynth, CtSuperFM } from "./ct-synths"
+import { CtSynth, CtSampler, CtGranulator, CtAdditive, CtAcidSynth, CtDroneSynth, CtSubSynth, CtSuperFM, CtWavetable } from "./ct-synths"
 import type { Dictionary } from './types'
 import { getChannel } from './routing';
 
@@ -7,7 +7,7 @@ const bchannel = new BroadcastChannel('oto')
 
 const synths = writable<Dictionary>({});
 
-const synthTypes = ['synth', 'sampler', 'granular', 'additive', 'acid', 'drone', 'sub', 'superfm']
+const synthTypes = ['synth', 'sampler', 'granular', 'additive', 'acid', 'drone', 'sub', 'superfm', 'wavetable']
 const makeSynth = (type: string) => {
     switch(type) {
         case 'synth': return new CtSynth({lite: true})
@@ -18,6 +18,7 @@ const makeSynth = (type: string) => {
         case 'drone': return new CtDroneSynth()
         case 'sub': return new CtSubSynth()
         case 'superfm': return new CtSuperFM()
+        case 'wavetable': return new CtWavetable()
         default: return null
     }
 }
@@ -129,8 +130,8 @@ fetchSamples('/samples/samples.json')
 fetchSamples('http://localhost:5000/samples.json')
 
 synths.subscribe((synths: Dictionary) => {
-    Object.values(synths).forEach(({sampler, granular}) => 
-        [sampler, granular].forEach(synth => 
+    Object.values(synths).forEach(({sampler, granular, wavetable}) => 
+        [sampler, granular, wavetable].forEach(synth => 
             synth && (synth.banks = {...synth.banks, ...get(samples)})
         ))
 })
