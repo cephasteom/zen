@@ -1,5 +1,5 @@
 import { writable, get } from "svelte/store";
-import { CtSynth, CtSampler, CtGranulator, CtAdditive, CtAcidSynth, CtDroneSynth, CtSubSynth } from "./ct-synths"
+import { CtSynth, CtSampler, CtGranulator, CtAdditive, CtAcidSynth, CtDroneSynth, CtSubSynth, CtSuperFM } from "./ct-synths"
 import type { Dictionary } from './types'
 import { getChannel } from './routing';
 
@@ -17,6 +17,7 @@ const makeSynth = (type: string) => {
         case 'acid': return new CtAcidSynth()
         case 'drone': return new CtDroneSynth()
         case 'sub': return new CtSubSynth()
+        case 'superfm': return new CtSuperFM()
         default: return null
     }
 }
