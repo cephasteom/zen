@@ -36,9 +36,4 @@ export function deletePreset(key: string) {
 
     presets.set({...stored})
     localStorage.setItem('z.presets', JSON.stringify(stored));
-    // // const stored = JSON.parse(localStorage.getItem('z.presets') || "{}");
-    // // delete stored[key];
-    
-    // localStorage.setItem('z.presets', JSON.stringify(stored));
-    // presets.update(presets => ({...presets, ...stored}))
 }

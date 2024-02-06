@@ -24,7 +24,6 @@
             return
         }
         
-        console.log(e.key)
         switch (e.key) {
             case 'ArrowDown':
                 index = Math.min(index + 1, Object.keys($presets).length - 1)
