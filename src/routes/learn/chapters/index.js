@@ -14,6 +14,7 @@ import the_canvas from './the-canvas'
 import midi from './midi'
 import global_settings from './global-settings'
 import utilities from "./utilities";
+import effects from './effects'
 // import osc from './osc'
 // import networking from './networking'
 
@@ -27,6 +28,7 @@ const content = {
     mutations,
     the_canvas,
     instruments,
+    effects,
     custom_samples,
     shorthand,
     global_settings,

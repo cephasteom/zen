@@ -1,6 +1,4 @@
 export default `# Instruments
-Zen has an internal synth engine, called Oto, giving you access to a range of high-quality instruments and effects within your browser. Full documentation for all instruments and effects can be found in the docs. This chapter gives you a flavour of what’s possible.
-
 ## Track FX and FX Streams
 
 Track FX are applied to the output of a track. By default, each stream is routed to its own track, with \`s0\` using track 0 (channels 1 and 2), \`s1\` using track 1 (channels 3 and 4), and so on. You can change the track a stream is routed to by setting the \`track\` parameter. Each track has a chain of effects attached to it, including reverb, delay, distortion and high and low cut filters. For efficiency, these are only instantiated when you use them, so you might hear a small glitch whilst they are being created.
