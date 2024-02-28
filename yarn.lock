@@ -201,8 +201,8 @@
 
 "@rnbo/js@^1.2.5":
   version "1.2.5"
-  resolved "https://npm.cycling74.com/@rnbo%2fjs/-/js-1.2.5.tgz#dfcfab5ed260059cb50e62278b338372f502e859"
-  integrity sha512-ztROO9z9vDnbidLtTdJjrZ3vEdZMCAqmuJW+kMM5Jjfn4PItS5OHTpX+Elt6uPwglwWyhl4QkPBJv9sAQ3Z8sQ==
+  resolved "https://registry.yarnpkg.com/@rnbo/js/-/js-1.2.5.tgz#71ccd62ef5594951b7d606fbe79944c21ae80465"
+  integrity sha512-0dI9MTSlhoKz46fRZIzwWsajBTvpW4pb3X5W/8UOraWHmhO3mIAxFco7DY4g1ZqiIrzQ0a/4xNjV6qcAlGv22Q==
 
 "@serialport/binding-mock@10.2.2":
   version "10.2.2"
