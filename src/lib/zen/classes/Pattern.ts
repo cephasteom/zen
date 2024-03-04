@@ -1010,7 +1010,6 @@ x: 'xor'
     at(n: patternable): Pattern {
         this.stack.push(data => {
             const type = typeof data
-            console.log(type, data)
             const key = this.handleTypes(n)
             return type === 'object'
                 // @ts-ignore
