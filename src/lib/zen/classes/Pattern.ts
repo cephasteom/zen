@@ -1001,18 +1001,22 @@ x: 'xor'
 
     /**
      * Get a value from the previous value in the pattern chain, at index n
-     * Expects the previous value to be an array
+     * The previous value can be either an array - so n must be an integer...
+     * ...or an object - so n must be a string
      * @param n index of value to retrieve
      * @returns {Pattern}
      * @example s0.p.n.set('Ddor%16').at(t%16)
      */ 
     at(n: patternable): Pattern {
-        this.stack.push(x => {
-            const indexes = this.handleTypes(n); 
-            const arr = [x].flat()
-            return [indexes].flat().map(i => {
-                return arr[+i%arr.length]
-            })
+        this.stack.push(data => {
+            const type = typeof data
+            console.log(type, data)
+            const key = this.handleTypes(n)
+            return type === 'object'
+                // @ts-ignore
+                ? data[key] 
+                // @ts-ignore
+                : data[Math.floor(+key) % data.length]
         })
         return this
     }
