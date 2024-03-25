@@ -15,7 +15,6 @@ import midi from './midi'
 import global_settings from './global-settings'
 import utilities from "./utilities";
 import effects from './effects'
-// import osc from './osc'
 // import networking from './networking'
 
 const content = { 
@@ -34,7 +33,6 @@ const content = {
     global_settings,
     midi,
     utilities,
-    // osc,
     // networking
 };
 
