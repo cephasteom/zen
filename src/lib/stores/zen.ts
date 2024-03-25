@@ -1,5 +1,6 @@
 import { writable, get } from 'svelte/store';
 import '../oto';
+import type { vector } from '../zen/types'
 
 export const editorValue = writable('');
 export const t = writable(0); // time
@@ -29,7 +30,7 @@ export const print = (type: string, message: string) => {
 
 export const clear = () => messages.set([]);
 
-export const visualsData = writable<Uint8Array>(new Uint8Array(16 * 16 * 4));
+export const visualsData = writable<vector[]>([]);
 
 const zenChannel = new BroadcastChannel('zen');
 const otoChannel = new BroadcastChannel('oto')

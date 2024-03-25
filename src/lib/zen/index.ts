@@ -10,7 +10,6 @@ import keymap from './data/keymapping'
 import { print as post, clear } from "$lib/stores/zen";
 import { modes } from './data/scales'
 import { triads } from './data/chords'
-import { parseCode } from './parsing/syntactic-sugar'
 
 // Broadcast channels
 const channel = new BroadcastChannel('zen')
@@ -23,7 +22,7 @@ otoChannel.onmessage = ({data: {message}}) => message.includes('Sample banks') &
 // Code
 export const lastCode = writable('');
 export const code = writable('');
-export const setCode = (str: string) => code.set(parseCode(str) + '\n' + Date.now());
+export const setCode = (str: string) => code.set(str + '\n' + Date.now());
 
 const d = new Data();
 
@@ -33,7 +32,7 @@ let counter = createCount(0);
 const z = new Zen();
 const streams: Stream[] = Array(64).fill(0).map((_, i) => new Stream('s' + i));
 const fxstreams: Stream[] = Array(2).fill(0).map((_, i) => new Stream('fx' + i));
-const v = new Visuals(16)
+const v = new Visuals()
 let bpm = 120
 
 // helper functions and constants
@@ -56,7 +55,6 @@ code.subscribe(code => {
     const bts = initBts(bpm)
     const btms = initBtms(bpm)
     const ms = btms
-    v.resize(s)
     
     // evaluate the user's code, using fallback if it fails
     // deconstruct streams from s0, to s127 in entirey
@@ -123,8 +121,8 @@ const loop = new Loop(time => {
     const result = soloed.length ? soloed : compiled
     const events = result.filter(({e}) => e)
     const mutations = result.filter(({m}) => m)
-    const ePositions = events.map(({x,y,id}) => ({x,y,id}))
-    const mPositions = mutations.map(({x,y,id}) => ({x,y,id}))
+    const ePositions = events.map(({x,y,z,id}) => ({x,y,z,id}))
+    const mPositions = mutations.map(({x,y,z,id}) => ({x,y,z,id}))
     const vis = v.get(
         ePositions.filter(({id}) => id.startsWith('s')),
         mPositions.filter(({id}) => id.startsWith('s'))

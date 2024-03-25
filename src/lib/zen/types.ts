@@ -19,3 +19,5 @@ export interface ActionArgs {
     v: Uint8Array
 }
 export type action = { (input: ActionArgs): void }
+
+export type vector = {phi: number, theta: number, lambda: number, colour: number[]}

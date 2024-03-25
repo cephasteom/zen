@@ -28,7 +28,8 @@ export class Stream {
     _t: number = 0
 
     /** @hidden */
-    _s: number = 16
+    // TODO: check this works OK
+    _s: number = 1
     
     /** @hidden */
     _q: number = 16
