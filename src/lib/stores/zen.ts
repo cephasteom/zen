@@ -9,7 +9,7 @@ export const s = writable(16); // size of canvas
 export const editorConsole = writable<{type?: string, message?: string}>({});
 export const isPlaying = writable(false);
 
-export const isDrawing = writable(false);
+export const isDrawing = writable(true);
 export const messages = writable<{type: string, message: string}[]>([
     {type: 'success', message: 'Welcome to Zen!'},
     {type: 'info', message: 'shift + enter to play.'},

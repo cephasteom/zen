@@ -45,43 +45,20 @@
 </script>
 
 <div class="visuals">
-    <!-- <canvas bind:this={canvas} id="canvas" width={px * s} height={px * s}></canvas> -->
-    
-    <!-- <svg id="svg" width={px * s} height={px * s} viewBox={`0 0 ${px * s} ${px * s}`} xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <pattern id="smallGrid" width={px} height={px} patternUnits="userSpaceOnUse">
-                <path d={`M ${px} 0 L 0 0 0 ${px}`} fill="none" stroke="var(--color-grey-dark)" stroke-width="0.5" />
-            </pattern>
-            <pattern id="grid" width={px * s - 0.25} height={px * s - 0.25} patternUnits="userSpaceOnUse">
-                <rect width={px * s} height={px * s} fill="url(#smallGrid)" />
-            </pattern>
-        </defs>
-        <rect width={px * s} height={px * s} fill="url(#grid)" />
-    </svg> -->
+    <canvas bind:this={canvas} id="canvas" width={px * s} height={px * s}></canvas>
 </div>
 
 <style lang="scss">
     .visuals {
-        width: 80%;
-        height: 0;
-        padding-bottom: 80%;
-        position: relative;
+        width: 100%;
+        height: 30rem;
         margin: 1rem;
         & #canvas {
-            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-        }
-
-        & #svg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: transparent;
+            object-fit: contain;
         }
     }
 </style>
