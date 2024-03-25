@@ -49,7 +49,7 @@
         min-height: calc(100vh - 10rem);
         
         @media (min-width: 600px) {
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 2fr 3fr;
             grid-template-rows: 11fr 1fr;
         }
         
@@ -77,6 +77,8 @@
     .tools {
         grid-column: 1;
         grid-row: 1;
+        border-radius: 10px;
+
         @media (min-width: 600px) {
             grid-column: 1;
             grid-row: 2;
@@ -88,6 +90,8 @@
     .info {
         display: none;
         position: relative;
+        border-radius: 10px;
+        // max-height: 75vh;
         @media (min-width: 600px) {
             grid-column: 2;
             grid-row: 1;
@@ -101,6 +105,8 @@
     .data {
         grid-column: 1;
         grid-row: 3;
+        border-radius: 10px;
+
         @media (min-width: 600px) {
             grid-column: 2;
             grid-row: 2;

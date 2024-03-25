@@ -29,6 +29,8 @@
         right: 0;
         overflow: hidden;
         user-select: text;
+        border-radius: 10px;
+
     }
 
     ul {

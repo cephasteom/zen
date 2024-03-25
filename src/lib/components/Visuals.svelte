@@ -45,9 +45,9 @@
 </script>
 
 <div class="visuals">
-    <canvas bind:this={canvas} id="canvas" width={px * s} height={px * s}></canvas>
+    <!-- <canvas bind:this={canvas} id="canvas" width={px * s} height={px * s}></canvas> -->
     
-    <svg id="svg" width={px * s} height={px * s} viewBox={`0 0 ${px * s} ${px * s}`} xmlns="http://www.w3.org/2000/svg">
+    <!-- <svg id="svg" width={px * s} height={px * s} viewBox={`0 0 ${px * s} ${px * s}`} xmlns="http://www.w3.org/2000/svg">
         <defs>
             <pattern id="smallGrid" width={px} height={px} patternUnits="userSpaceOnUse">
                 <path d={`M ${px} 0 L 0 0 0 ${px}`} fill="none" stroke="var(--color-grey-dark)" stroke-width="0.5" />
@@ -57,7 +57,7 @@
             </pattern>
         </defs>
         <rect width={px * s} height={px * s} fill="url(#grid)" />
-    </svg>
+    </svg> -->
 </div>
 
 <style lang="scss">

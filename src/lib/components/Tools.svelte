@@ -41,6 +41,7 @@
         justify-content: space-around;
         align-items: center;
         height: 100%;
+
         & button {
             height: 1.5rem;
             @media(min-width: 600px) {
