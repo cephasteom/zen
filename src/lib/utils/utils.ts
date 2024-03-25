@@ -9,3 +9,7 @@ export function formatTitle(title: string) {
 export function formatSlug(slug: string) {
     return slug.replace(/_/g, '-').toLowerCase()
 }
+
+export function min(a: number, b: number) {
+    return a < b ? a : b
+}

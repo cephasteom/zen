@@ -16,7 +16,6 @@ export const messages = writable<{type: string, message: string}[]>([
     {type: 'info', message: 'esc to stop.\n'},
     {type: 'success', message: 'Instruments ->'},
     {type: 'info', message: '0: synth\n1: sampler\n2: granular\n3: additive\n4: acid\n5: drone\n6: sub\n7: superfm\n8: wavetable\n'},
-
 ]);
 
 export const print = (type: string, message: string) => {

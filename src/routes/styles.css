@@ -239,3 +239,7 @@ button:focus:not(:focus-visible) {
 dialog::backdrop {
     background: rgba(255, 105, 90, 0.5);
 }
+
+canvas {
+    contain: paint;
+}

@@ -830,6 +830,18 @@ osc@^2.4.4:
   optionalDependencies:
     serialport "10.5.0"
 
+p5-svelte@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/p5-svelte/-/p5-svelte-3.1.2.tgz#2ba72c2ad549612bb1ad58bbb75a021a34295d02"
+  integrity sha512-lcfWh+cJ1/wRdIXHnjpYmDgj2h3TCy1QJVQnf/cBcFWS8CSkvyAN5F8u8H2U8qBUtZ4XaD3nd+1NoYUMHaMExQ==
+  dependencies:
+    p5 "^1.4.1"
+
+p5@^1.4.1:
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/p5/-/p5-1.9.2.tgz#34f9fa4b2d72aa8bc23c1efd7ffc97831f8145bd"
+  integrity sha512-fV8Td9Q1qlYXRXPLNrclRsgzXxPp/EuDlJUteV1XEtsy0JwjjCVteCrv7TTCU71BSoEtmuQ/51BIVRUJi/0gEw==
+
 parent-module@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/parent-module/-/parent-module-1.0.1.tgz#691d2709e78c79fae3a156622452d00762caaaa2"

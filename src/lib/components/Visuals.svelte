@@ -1,59 +1,76 @@
 <script lang="ts">
     import { onMount } from 'svelte';
+    import P5 from 'p5-svelte'
+    import type { p5, Sketch } from 'p5-svelte';
+    import { min } from '$lib/zen/utils/utils';
     import { visualsData } from "$lib/stores/zen";
 
-    let history: Uint8Array = new Uint8Array(0);
-    let canvas: HTMLCanvasElement;
-    let canvasCtx: CanvasRenderingContext2D | null;
-
-    let s: number = 16;
-    let px: number = 16;
+    let container: HTMLElement;
+    let p5Instance: p5;
+    let resize: any;
     
-    const isEqual = (data: Uint8Array, index: number) => {
-        for(let i = index; i < index + 4; i++) {
-            if(history[i] !== data[i]) return true;
+
+    const sketch : Sketch = (p5: p5)=> {
+        p5.size = 100;
+
+        const getSize = (): void => {
+            const dimensions = container.getBoundingClientRect()
+            p5.size = min(dimensions.width, dimensions.height) - 50
         }
-        return false
+
+        p5.drawSphere = () => {
+            p5.ambientMaterial(194);
+            let c = p5.color('rgb(209, 206, 199)')
+            
+            c.setAlpha(50)
+            p5.stroke(c)
+            p5.noFill()
+            p5.stroke('white')
+            p5.strokeWeight(0.125)
+            p5.sphere((p5.size*0.4) - 2, 20, 20);
+        }
+
+        p5.resize = () => {
+            getSize()
+            p5.resizeCanvas(p5.size, p5.size)
+        }
+
+        p5.setup = () => {
+            getSize()
+            p5.createCanvas(p5.size, p5.size, p5.WEBGL)
+            p5.smooth()
+            p5.noLoop()
+            p5.drawSphere()
+      
+            resize = p5.resize
+        }
     }
 
-    const drawCanvas = (data: Uint8Array) => {
-        s = Math.sqrt(data.length / 4);
-        
-        for(let i = 0; i < s*s; i++) {
-            // TODO: fix this so we don't have to redraw every pixel
-            // if(isEqual(data, i*4)) continue;
-            const x = Math.floor((i % s) * px);
-            const y = Math.floor(i / s) * px;
-            const r = data[i*4];
-            const g = data[i*4+1];
-            const b = data[i*4+2];
-            const a = data[i*4+3];
-            canvasCtx && (canvasCtx.fillStyle = `rgba(${r},${g},${b},${a})`);
-            canvasCtx?.fillRect(x, y, px, px);
-        }
-
-        history = data;
+    const handleInstance = (e: CustomEvent<p5>) => {
+        p5Instance = e.detail
     }
 
     onMount(() => {
-        canvasCtx = canvas.getContext('2d', { alpha: false });
-        canvasCtx && (canvasCtx.fillStyle = "#262626");
-        canvasCtx?.fillRect(0, 0, s*px, s*px);
-        
-        visualsData.subscribe(drawCanvas);
+        // visualsData.subscribe();
     })
 </script>
 
-<div class="visuals">
-    <canvas bind:this={canvas} id="canvas" width={px * s} height={px * s}></canvas>
+<svelte:window on:resize={() => resize()} />
+
+<div bind:this={container} class="visuals">
+    <P5 {sketch} on:instance={handleInstance} />
 </div>
 
 <style lang="scss">
     .visuals {
         width: 100%;
-        height: 30rem;
+        height: 100%;
+        // max-height: 30rem;
         margin: 1rem;
-        & #canvas {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        & canvas {
             top: 0;
             left: 0;
             width: 100%;
