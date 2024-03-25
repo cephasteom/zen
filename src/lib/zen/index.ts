@@ -123,6 +123,7 @@ const loop = new Loop(time => {
     const mutations = result.filter(({m}) => m)
     const ePositions = events.map(({x,y,z,id}) => ({x,y,z,id}))
     const mPositions = mutations.map(({x,y,z,id}) => ({x,y,z,id}))
+    console.log(ePositions, mPositions)
     const vis = v.get(
         ePositions.filter(({id}) => id.startsWith('s')),
         mPositions.filter(({id}) => id.startsWith('s'))
