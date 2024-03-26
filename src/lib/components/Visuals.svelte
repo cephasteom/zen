@@ -9,20 +9,20 @@
 
     let container: HTMLElement;
     let p5Instance: p5;
-    let resize: any;
+    let handleResize: any;
     let draw: any;
 
     const sketch : Sketch = (p5: p5)=> {
-        p5.size = 100;
-        p5.radius = p5.size / 3;
+        let size = 100;
+        let radius = size / 3;
 
         const getSize = (): void => {
             const dimensions = container.getBoundingClientRect()
-            p5.size = min(dimensions.width, dimensions.height) - 50
-            p5.radius = p5.size / 3;
+            size = min(dimensions.width, dimensions.height) - 50
+            radius = size / 3;
         }
 
-        p5.drawSphere = () => {
+        const drawSphere = () => {
             p5.ambientMaterial(194);
             let c = p5.color('rgb(209, 206, 199)')
             
@@ -31,33 +31,33 @@
             p5.noFill()
             p5.stroke('white')
             p5.strokeWeight(0.125)
-            p5.sphere((p5.radius) - 2, 20, 20);
+            p5.sphere((radius) - 2, 20, 20);
         }
 
-        p5.resize = () => {
+        const resize = () => {
             getSize()
-            p5.resizeCanvas(p5.size, p5.size)
+            p5.resizeCanvas(size, size)
         }
 
         p5.setup = () => {
             getSize()
-            p5.createCanvas(p5.size, p5.size, p5.WEBGL)
+            p5.createCanvas(size, size, p5.WEBGL)
             p5.smooth()
             p5.noLoop()
-            p5.drawSphere()
+            drawSphere()
       
-            resize = p5.resize
+            handleResize = resize
             draw = p5.draw
         }
 
         p5.draw = () => {
             const data = get(visualsData)
             p5.clear()
-            p5.drawSphere()
+            drawSphere()
             data.forEach((p, i) => {
                 p5.push()
                 const { phi, theta } = p
-                const vector = Vector.fromAngles(p5.radians(theta * 180), p5.radians(phi * 180), p5.radius)
+                const vector = Vector.fromAngles(p5.radians(theta * 180), p5.radians(phi * 180), radius)
                 p5.stroke('white')
                 p5.translate(vector.x, vector.y, vector.z)
                 p5.sphere(4);
@@ -70,7 +70,7 @@
                 p5.strokeWeight(4)
                 p5.rotateY(p5.radians(90))
                 p5.rotateY(p5.radians(phi * 180))
-                p5.circle(0, 0, (p5.radius * 2));
+                p5.circle(0, 0, (radius * 2));
                 p5.pop()
 
                 // inclination ring
@@ -80,7 +80,7 @@
                 p5.strokeWeight(4)
                 p5.rotateX(p5.radians(90))
                 p5.translate(0, 0, -vector.y)
-                p5.circle(0, 0, (p5.sin(p5.radians(theta * 180)) * p5.radius * 2));
+                p5.circle(0, 0, (p5.sin(p5.radians(theta * 180)) * radius * 2));
                 p5.pop()
             })
         }
@@ -97,7 +97,7 @@
     })
 </script>
 
-<svelte:window on:resize={() => resize()} />
+<svelte:window on:resize={() => handleResize()} />
 
 <div bind:this={container} class="visuals">
     <P5 {sketch} on:instance={handleInstance} />
