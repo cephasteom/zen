@@ -11,6 +11,7 @@
     let p5Instance: p5;
     let handleResize: any;
     let draw: any;
+    let rotationAngle = 0;
 
     const sketch : Sketch = (p5: p5)=> {
         let size = 100;
@@ -23,15 +24,17 @@
         }
 
         const drawSphere = () => {
-            p5.ambientMaterial(194);
-            let c = p5.color('rgb(209, 206, 199)')
             
-            c.setAlpha(50)
-            p5.stroke(c)
+            p5.push()
+            // Rotate the sphere
+            // rotationAngle += 0.1;
+            p5.rotateY(rotationAngle);
+            
             p5.noFill()
-            p5.stroke('white')
+            p5.stroke(185,185,185)
             p5.strokeWeight(1/8)
-            p5.sphere((radius) - 20, 20, 20);
+            p5.sphere((radius)*0.9, 20, 20);
+            p5.pop()
         }
 
         const resize = () => {

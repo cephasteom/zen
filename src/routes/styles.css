@@ -48,6 +48,7 @@
 	--column-margin-top: 4rem;
 	font-family: var(--font-body);
 	color: var(--color-text);
+    
     --color-theme-1: #FF695A;
     --color-theme-2: #E5007F;
     --color-theme-3: #00A399;
