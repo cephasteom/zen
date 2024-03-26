@@ -14,12 +14,12 @@
 
     const sketch : Sketch = (p5: p5)=> {
         let size = 100;
-        let radius = size / 3;
+        let radius = size * 0.4;
 
         const getSize = (): void => {
             const dimensions = container.getBoundingClientRect()
             size = min(dimensions.width, dimensions.height) - 50
-            radius = size / 3;
+            radius = size * 0.4;
         }
 
         const drawSphere = () => {
@@ -31,7 +31,7 @@
             p5.noFill()
             p5.stroke('white')
             p5.strokeWeight(1/8)
-            p5.sphere((radius) - 2, 20, 20);
+            p5.sphere((radius) - 20, 20, 20);
         }
 
         const resize = () => {
@@ -44,7 +44,7 @@
             p5.createCanvas(size, size, p5.WEBGL)
             p5.smooth()
             p5.noLoop()
-            p5.ambientLight(255)
+            p5.ambientLight(128)
             drawSphere()
       
             handleResize = resize
@@ -54,21 +54,22 @@
         p5.draw = () => {
             const data = get(visualsData)
             p5.clear()
-            // drawSphere()
+            drawSphere()
             data.forEach((p, i) => {
                 p5.push()
                 const { phi, theta, colour } = p
                 const vector = Vector.fromAngles(p5.radians(theta * 180), p5.radians(phi * 180), radius)
-                p5.stroke(colour)
                 p5.translate(vector.x, vector.y, vector.z)
-                p5.sphere(6);
+                p5.stroke(colour)
+                p5.strokeWeight(p.weight * 30)
+                p5.circle(0,0,2);
                 p5.pop()
 
                 // azimuth ring
                 p5.push()
                 p5.noFill()
                 p5.stroke(colour)
-                p5.strokeWeight(2)
+                p5.strokeWeight(3)
                 p5.rotateY(p5.radians(90))
                 p5.rotateY(p5.radians(phi * 180))
                 p5.circle(0, 0, (radius * 2));
@@ -78,7 +79,7 @@
                 p5.push()
                 p5.noFill()
                 p5.stroke(colour)
-                p5.strokeWeight(2)
+                p5.strokeWeight(3)
                 p5.rotateX(p5.radians(90))
                 p5.translate(0, 0, -vector.y)
                 p5.circle(0, 0, (p5.sin(p5.radians(theta * 180)) * radius * 2));
@@ -108,11 +109,11 @@
     .visuals {
         width: 100%;
         height: 100%;
-        // max-height: 30rem;
         margin: 1rem;
         display: flex;
         justify-content: center;
         align-items: center;
+        
         & canvas {
             top: 0;
             left: 0;

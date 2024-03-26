@@ -91,7 +91,7 @@
         display: none;
         position: relative;
         border-radius: 10px;
-        // max-height: 75vh;
+        
         @media (min-width: 600px) {
             grid-column: 2;
             grid-row: 1;
@@ -99,7 +99,8 @@
             justify-content: center;
             align-items: center;
         }
-        background-color: var(--color-grey-dark);
+        
+        background: linear-gradient(35deg, var(--color-grey-darker), var(--color-grey-darkest));
     }
 
     .data {

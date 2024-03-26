@@ -19,7 +19,8 @@ export class Visuals {
             lambda: position.x,
             colour: position.e 
                 ? this.colours[i%this.colours.length]
-                : [...this.colours[i%this.colours.length], 128]
+                : [...this.colours[i%this.colours.length], 128],
+            weight: position.e ? 1 : 0.5
         }
     }
 

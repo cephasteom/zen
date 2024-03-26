@@ -121,8 +121,6 @@ const loop = new Loop(time => {
     const result = soloed.length ? soloed : compiled
     const events = result.filter(({e}) => e)
     const mutations = result.filter(({m}) => m)
-    // const ePositions = events.map(({x,y,z,id}) => ({x,y,z,id}))
-    // const mPositions = mutations.map(({x,y,z,id}) => ({x,y,z,id}))
 
     const vis = v.get(
         result
