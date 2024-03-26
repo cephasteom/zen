@@ -30,7 +30,7 @@ let counter = createCount(0);
 
 // initialise Zen and Streams within the scope of the loop
 const z = new Zen();
-const streams: Stream[] = Array(64).fill(0).map((_, i) => new Stream('s' + i));
+const streams: Stream[] = Array(12).fill(0).map((_, i) => new Stream('s' + i));
 const fxstreams: Stream[] = Array(2).fill(0).map((_, i) => new Stream('fx' + i));
 const v = new Visuals()
 let bpm = 120
@@ -121,12 +121,13 @@ const loop = new Loop(time => {
     const result = soloed.length ? soloed : compiled
     const events = result.filter(({e}) => e)
     const mutations = result.filter(({m}) => m)
-    const ePositions = events.map(({x,y,z,id}) => ({x,y,z,id}))
-    const mPositions = mutations.map(({x,y,z,id}) => ({x,y,z,id}))
-    console.log(ePositions, mPositions)
+    // const ePositions = events.map(({x,y,z,id}) => ({x,y,z,id}))
+    // const mPositions = mutations.map(({x,y,z,id}) => ({x,y,z,id}))
+
     const vis = v.get(
-        ePositions.filter(({id}) => id.startsWith('s')),
-        mPositions.filter(({id}) => id.startsWith('s'))
+        result
+            .filter(({id}) => id.startsWith('s'))
+            .map(({x,y,z,id,e,m}, i) => ({x,y,z,id,e: !!e,m: !!m}))
     )
 
     // call actions

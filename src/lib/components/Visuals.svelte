@@ -30,7 +30,7 @@
             p5.stroke(c)
             p5.noFill()
             p5.stroke('white')
-            p5.strokeWeight(0.125)
+            p5.strokeWeight(1/8)
             p5.sphere((radius) - 2, 20, 20);
         }
 
@@ -44,6 +44,7 @@
             p5.createCanvas(size, size, p5.WEBGL)
             p5.smooth()
             p5.noLoop()
+            p5.ambientLight(255)
             drawSphere()
       
             handleResize = resize
@@ -53,21 +54,21 @@
         p5.draw = () => {
             const data = get(visualsData)
             p5.clear()
-            drawSphere()
+            // drawSphere()
             data.forEach((p, i) => {
                 p5.push()
-                const { phi, theta } = p
+                const { phi, theta, colour } = p
                 const vector = Vector.fromAngles(p5.radians(theta * 180), p5.radians(phi * 180), radius)
-                p5.stroke('white')
+                p5.stroke(colour)
                 p5.translate(vector.x, vector.y, vector.z)
-                p5.sphere(4);
+                p5.sphere(6);
                 p5.pop()
 
                 // azimuth ring
                 p5.push()
                 p5.noFill()
-                p5.stroke('#FF695A')
-                p5.strokeWeight(4)
+                p5.stroke(colour)
+                p5.strokeWeight(2)
                 p5.rotateY(p5.radians(90))
                 p5.rotateY(p5.radians(phi * 180))
                 p5.circle(0, 0, (radius * 2));
@@ -76,8 +77,8 @@
                 // inclination ring
                 p5.push()
                 p5.noFill()
-                p5.stroke('#E5007F')
-                p5.strokeWeight(4)
+                p5.stroke(colour)
+                p5.strokeWeight(2)
                 p5.rotateX(p5.radians(90))
                 p5.translate(0, 0, -vector.y)
                 p5.circle(0, 0, (p5.sin(p5.radians(theta * 180)) * radius * 2));
