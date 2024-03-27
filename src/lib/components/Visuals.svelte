@@ -11,7 +11,6 @@
     let p5Instance: p5;
     let handleResize: any;
     let draw: any;
-    let rotationAngle = 0;
 
     const sketch : Sketch = (p5: p5)=> {
         let size = 100;
@@ -26,9 +25,6 @@
         const drawSphere = () => {
             
             p5.push()
-            // Rotate the sphere
-            // rotationAngle += 0.1;
-            p5.rotateY(rotationAngle);
             
             p5.noFill()
             p5.stroke(185,185,185)

@@ -14,9 +14,9 @@ export class Visuals {
 
     convertPositionToVector(position: position, i: number): vector {
         return {
-            phi: position.y,
-            theta: position.z,
-            lambda: position.x,
+            phi: position.x,
+            theta: position.y,
+            lambda: position.z,
             colour: position.e 
                 ? this.colours[i%this.colours.length]
                 : [...this.colours[i%this.colours.length], 128],
