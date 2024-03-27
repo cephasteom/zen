@@ -17,9 +17,7 @@ export class Visuals {
             phi: position.x,
             theta: position.y,
             lambda: position.z,
-            colour: position.e 
-                ? this.colours[i%this.colours.length]
-                : [...this.colours[i%this.colours.length], 128],
+            colour: this.colours[i%this.colours.length],
             weight: position.e ? 1 : 0.5
         }
     }

@@ -55,14 +55,8 @@
             p5.clear()
             drawSphere()
             data.forEach((p, i) => {
-                p5.push()
-                const { phi, theta, colour } = p
-                const vector = Vector.fromAngles(p5.radians(theta * 180), p5.radians(phi * 180), radius)
-                p5.translate(vector.x, vector.y, vector.z)
-                p5.stroke(colour)
-                p5.strokeWeight(p.weight * 30)
-                p5.circle(0,0,2);
-                p5.pop()
+                const { phi, theta, lambda, colour } = p
+                const vector = Vector.fromAngles(p5.radians(theta * 180), p5.radians(phi * 180), radius * lambda)
 
                 // azimuth ring
                 p5.push()
@@ -71,7 +65,7 @@
                 p5.strokeWeight(3)
                 p5.rotateY(p5.radians(90))
                 p5.rotateY(p5.radians(phi * 180))
-                p5.circle(0, 0, (radius * 2));
+                p5.circle(0, 0, ((radius * lambda) * 2));
                 p5.pop()
 
                 // inclination ring
@@ -81,7 +75,15 @@
                 p5.strokeWeight(3)
                 p5.rotateX(p5.radians(90))
                 p5.translate(0, 0, -vector.y)
-                p5.circle(0, 0, (p5.sin(p5.radians(theta * 180)) * radius * 2));
+                p5.circle(0, 0, p5.sin(p5.radians(theta * 180)) * ((radius * lambda) * 2));
+                p5.pop()
+
+                // point
+                p5.push()
+                p5.translate(vector.x, vector.y, vector.z)
+                p5.stroke(colour)
+                p5.strokeWeight(p.weight * 30)
+                p5.circle(0,0,1);
                 p5.pop()
             })
         }
