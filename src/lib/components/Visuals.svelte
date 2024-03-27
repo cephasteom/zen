@@ -54,9 +54,13 @@
             const data = get(visualsData)
             p5.clear()
             drawSphere()
-            data.forEach((p, i) => {
+            data.forEach(p => {
                 const { phi, theta, lambda, colour } = p
-                const vector = Vector.fromAngles(p5.radians(theta * 180), p5.radians(phi * 180), radius * lambda)
+                const vector = Vector.fromAngles(
+                    p5.radians(theta * 180), 
+                    p5.radians(phi * 180), 
+                    radius * lambda
+                )
 
                 // azimuth ring
                 p5.push()
