@@ -12,6 +12,9 @@ export class Wire {
     constructor(row: number) {
         this.row = row;        
 
+        // TODO: patternable params
+        // TODO: improve syntax so that you have to pass as little as possible to each method
+        // TODO: increasing the order should affect all that follow
         Object.entries(circuit.basicGates).forEach(([key, gate]: [string, any]) => {
             // add a method for each gate
             // @ts-ignore
@@ -28,7 +31,6 @@ export class Wire {
                 circuit.addGate(key, column, [this.row, ...controlQubits])
                 
                 const options = params.filter((_, i) => i < gate.params.length)
-
 
                 // if there are options, add a function to the stack to set them dynamically on each frame
                 this._stack.push(() => {
