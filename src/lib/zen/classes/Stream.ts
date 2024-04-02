@@ -1,5 +1,6 @@
 import { Pattern } from './Pattern'
 import type { Zen } from './Zen'
+import { Wire } from './Wire'
 import { mod } from '../utils/utils'
 import { formatEventParams, formatMutationParams } from '../utils/syntax';
 import type { Dictionary } from '../types'
@@ -35,6 +36,12 @@ export class Stream {
 
     /** @hidden */
     _bpm: number = 120
+
+    /**
+     * The wire is used to add gates to a quantum circuit
+     * see Wire class documentation for more information
+     */
+    wire: Wire;
     
     /**
      * Patterns to be mapped across time
@@ -201,6 +208,7 @@ export class Stream {
     /** @hidden */
     constructor(id: string) {
         this.id = id;
+        this.wire = new Wire(+id.slice(1))
 
         // catch all calls to this.p, this.px, this.py, this.pz and return a new Pattern if the key doesn't exist
         const handler = {
@@ -299,6 +307,7 @@ export class Stream {
         const { _tPattern, _xPattern, _yPattern, _zPattern, _xyzPattern, _ePattern, _mPattern, _soloPattern, _mutePattern } = this;
         [_tPattern, _xPattern, _yPattern, _zPattern, _xyzPattern, _ePattern, _mPattern, _soloPattern, _mutePattern].forEach(p => p?.reset())
 
+        this.wire.clear()
         Object.values(this.p).forEach(p => p.reset())
         Object.values(this.px).forEach(p => p.reset())
         Object.values(this.py).forEach(p => p.reset())

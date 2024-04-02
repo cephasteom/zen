@@ -44,6 +44,7 @@
 		"p5": "^1.9.2",
 		"p5-svelte": "^3.1.2",
 		"pegjs": "^0.10.0",
+		"quantum-circuit": "^0.9.221",
 		"seedrandom": "^3.0.5",
 		"svelte-awesome": "^3.2.1",
 		"tone": "^14.7.77",

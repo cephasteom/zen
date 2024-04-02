@@ -3,6 +3,7 @@ import { writable, get } from 'svelte/store';
 import { Zen } from './classes/Zen';
 import { Data } from './classes/Data'
 import { Stream } from './classes/Stream';
+import { circuit } from './classes/Circuit';
 import { Visuals } from './classes/Visuals';
 import { createCount } from './utils/utils';
 import { helpers } from './utils/helpers';
@@ -10,6 +11,8 @@ import keymap from './data/keymapping'
 import { print as post, clear } from "$lib/stores/zen";
 import { modes } from './data/scales'
 import { triads } from './data/chords'
+
+console.log(circuit)
 
 // Broadcast channels
 const channel = new BroadcastChannel('zen')
@@ -49,6 +52,7 @@ code.subscribe(code => {
     fxstreams.forEach(stream => stream.reset())
     z.reset()
     z.resetGlobals()
+    circuit.clear()
 
     // global variables
     let { q, s, c } = z
@@ -127,6 +131,9 @@ const loop = new Loop(time => {
             .filter(({id}) => id.startsWith('s'))
             .map(({x,y,z,id,e,m}, i) => ({x,y,z,id,e: !!e,m: !!m}))
     )
+
+    // build gates
+    streams.forEach(stream => stream.wire.build())
 
     // call actions
     const delta = (time - immediate())
