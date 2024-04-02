@@ -15,22 +15,32 @@ export class Wire {
         Object.entries(circuit.basicGates).forEach(([key, gate]: [string, any]) => {
             // add a method for each gate
             // @ts-ignore
-            this[key] = (column: number | null = null, params: patternable[] = []) => {
-                // when called, push a function to the stack
-                // i is its position in the stack
-                this._stack.push((i: number) => {
+            this[key] = (params: patternable[] = [], connections: [] | number = [], order: number | null = null) => {
+                // format connections so that it is an appropriate list of control qubits
+                const controlQubits =  [connections].flat()
+                    .filter((qubit, i) => qubit !== this.row)
+                    .filter((_, i) => i < gate.numControlQubits)
+                
+                // use the order if it is provided, otherwise use the length of the stack
+                const column = order || this._stack.length
+                
+                // intialise the gate
+                circuit.addGate(key, column, [this.row, ...controlQubits])
+                
+                const options = params.filter((_, i) => i < gate.params.length)
+
+
+                // if there are options, add a function to the stack to set them dynamically on each frame
+                this._stack.push(() => {
+                    if(options.length === 0) return
+
                     // create an object of options from the params
-                    const options = params
-                        .filter((_, i) => i < gate.params.length)
+                    circuit.gates[this.row][column].options = options
                         .reduce((obj, value, i) => ({
                             ...obj,
                             // TODO: convert value from patternable to number
                             [gate.params[i]]: value
                         }), {})
-                    
-                    // add the gate to the circuit
-                    // use the column if provided, otherwise use its position in the stack
-                    circuit.addGate(key, column || i, this.row, options)
                 })
                 return this
             }
@@ -45,7 +55,7 @@ export class Wire {
      * Build the gates in the stack
      */
     build() {
-        this._stack.forEach((fn, i) => fn(i))
+        this._stack.forEach((fn) => fn())
         console.log(circuit)
     }
 }
