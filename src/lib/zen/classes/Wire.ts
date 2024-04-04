@@ -1,10 +1,8 @@
 import { circuit } from './Circuit';
-import type { patternable } from '../types'
 /**
  * Wire
  * Represents a single wire in a quantum circuit
  */
-
 export class Wire {
     row: number;
     private _stack: any[] = []
@@ -13,7 +11,6 @@ export class Wire {
         this.row = row;        
 
         // TODO: patternable params
-        // TODO: improve syntax so that you have to pass as little as possible to each method
         Object.entries(circuit.basicGates).forEach(([key, gate]: [string, any]) => {
             // add a method for each gate
             // variable order of arguments

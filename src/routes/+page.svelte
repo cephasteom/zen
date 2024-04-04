@@ -1,6 +1,7 @@
 <script lang="ts">
     import Editor from '$lib/components/Editor/Editor.svelte';
     import Visuals from '$lib/components/Visuals.svelte';
+    import Circuit from '$lib/components/Circuit.svelte';
     import Data from '$lib/components/Data.svelte';
     import Tools from '$lib/components/Tools.svelte';
     import Console from '$lib/components/Console.svelte';
@@ -28,7 +29,8 @@
     </div>
     <div class="info">
         {#if $isDrawing}
-            <Visuals />
+            <!-- <Visuals /> -->
+            <Circuit />
         {:else}
             <Console />
         {/if}

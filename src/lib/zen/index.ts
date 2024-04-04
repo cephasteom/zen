@@ -129,7 +129,7 @@ const loop = new Loop(time => {
     const vis = v.get(
         result
             .filter(({id}) => id.startsWith('s'))
-            .map(({x,y,z,id,e,m}, i) => ({x,y,z,id,e: !!e,m: !!m}))
+            .map(({x,y,z,id,e,m}) => ({x,y,z,id,e: !!e,m: !!m}))
     )
 
     // build gates
@@ -139,6 +139,7 @@ const loop = new Loop(time => {
     const delta = (time - immediate())
     const args = { time, delta, t, s, q, c, events, mutations, v: vis }
     channel.postMessage({ type: 'action', data: args })
+    channel.postMessage({ type: 'circuit', data: {delta, gates: circuit.gates} })
 
 }, `${z.q}n`).start(0)
 
