@@ -22,20 +22,24 @@
                     <span class="label__stream">s{i}</span>
                 </p>
             </div>
-            {#each row as cell, i}
-                <div 
-                    class="col"
-                    style="grid-column: {i + 2};"
-                >
-                    <span class="wire"/>
-                    {#if cell}
-                        <Gate
-                            type={cell.name}
-                            params={cell.options.params}
-                        />
-                    {/if}
-                </div>
-            {/each}
+            <div class="gates">
+                <span class="wire"/>
+
+                {#each row as cell, i}
+                    <div 
+                        class="col"
+                        style="grid-column: {i + 2};"
+                    >
+                        <!-- <span class="wire"/> -->
+                        {#if cell}
+                            <Gate
+                                type={cell.name}
+                                params={cell.options.params}
+                            />
+                        {/if}
+                    </div>
+                {/each}
+            </div>
             <div 
                     class="col"
                     style="grid-column: 9;"
@@ -62,10 +66,8 @@
     }
 
     .row {
-        // display: grid;
-        // grid-template-columns: 0.25fr repeat(7, 1fr) 0.25fr;
-        // grid-template-rows: 1fr;
         display: flex;
+        justify-content: space-between;
         width: 100%;
     }
 
@@ -74,7 +76,9 @@
         align-items: center;
         justify-content: center;
         position: relative;
-        width: 4rem;
+        width: 3rem;
+
+        
     }
 
     .label {
@@ -82,16 +86,28 @@
         display: flex;
         position: relative;
         color: var(--color-theme-1);
+        font-size: var(--text-xs);
         &__stream {
-            font-size: 0.75rem;
+            font-size: var(--text-xxs);
+
             position: absolute;
-            right: -1.25rem;
+            right: -0.5rem;
             top: -0.5rem;
         }
 
         &__output {
             margin-left: 0.3rem;
-            border-left: 1px solid white;
+        }
+    }
+
+
+    .gates {
+        display: flex;
+        width: 100%;
+        overflow-x: scroll;
+        position: relative;
+        & .col:first-of-type {
+            margin-left: 1rem;
         }
     }
 
@@ -99,6 +115,8 @@
         width: 100%;
         height: 1px;
         background-color: var(--color-theme-1);
+        position: absolute;
+        top: calc(50% + 0.5px)
     }
 </style>
 
