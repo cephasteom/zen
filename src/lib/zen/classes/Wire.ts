@@ -74,6 +74,5 @@ export class Wire {
      */
     build() {
         this._stack.forEach((fn) => fn())
-        console.log(circuit.gates)
     }
 }

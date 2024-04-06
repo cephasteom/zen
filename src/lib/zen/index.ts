@@ -134,12 +134,12 @@ const loop = new Loop(time => {
 
     // build gates
     streams.forEach(stream => stream.wire.build())
+    const gates = circuit.gates
 
     // call actions
     const delta = (time - immediate())
-    const args = { time, delta, t, s, q, c, events, mutations, v: vis }
+    const args = { time, delta, t, s, q, c, events, mutations, gates, v: vis }
     channel.postMessage({ type: 'action', data: args })
-    channel.postMessage({ type: 'circuit', data: {delta, gates: circuit.gates} })
 
 }, `${z.q}n`).start(0)
 
