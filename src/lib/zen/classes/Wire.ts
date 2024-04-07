@@ -8,14 +8,14 @@ export class Wire {
     private _stack: any[] = []
     
     constructor(row: number) {
-        this.row = row;        
-
+        this.row = row;    
         // TODO: patternable params
         Object.entries(circuit.basicGates).forEach(([key, gate]: [string, any]) => {
             // add a method for each gate
             // variable order of arguments
             // @ts-ignore
             this[key] = (arg1: number[] | number, arg2: number[] | number, arg3: number[] | number) => {
+
                 const hasControlQubits = gate.numControlQubits > 0
                 const hasParams = gate.params.length > 0
 
@@ -27,20 +27,21 @@ export class Wire {
                     : [])].flat() || []
                 const offset = [(hasParams
                     ? hasControlQubits ? arg3 : arg2
-                    : hasControlQubits ? arg2 : arg1)].flat()[0] || 0
+                    : hasControlQubits ? arg2 : arg1)].flat()[0] || 0                
 
                 // format connections so that they are appropriate list of control qubits
                 const controlQubits =  connections
                     .filter(qubit => qubit !== this.row)
                     .filter((_, i) => i < gate.numControlQubits)
                 
-                // determine the column the gate should be placed in
-                const column = circuit.gates[this.row].length + offset
+                const gates = circuit.gates[this.row] || [];
+                const lastNonNullIndex = gates.slice().reverse().findIndex((gate: any) => gate !== null);
+                const column = lastNonNullIndex !== -1 ? gates.length - lastNonNullIndex + offset : offset;
                 
                 // intialise the gate without options
                 hasControlQubits
                     ? circuit.insertGate(key, column, [this.row, ...controlQubits])
-                    : circuit.addGate(key, column, [this.row])
+                    : circuit.addGate(key, column, this.row)
                 
                 // add a function to the stack to set params dynamically on each frame
                 this._stack.push(() => {

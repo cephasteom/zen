@@ -12,8 +12,6 @@ import { print as post, clear } from "$lib/stores/zen";
 import { modes } from './data/scales'
 import { triads } from './data/chords'
 
-console.log(circuit)
-
 // Broadcast channels
 const channel = new BroadcastChannel('zen')
 const otoChannel = new BroadcastChannel('oto')

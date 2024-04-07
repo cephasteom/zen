@@ -1,13 +1,6 @@
 <script lang="ts">
     import { gates } from "$lib/stores/zen";
-    import { onMount } from "svelte";
     import Gate from "./Gate.svelte";
-    
-    onMount(() => {
-        gates.subscribe((value) => {
-            console.log(value);
-        });
-    });
 </script>
 
 <div class="circuit">
