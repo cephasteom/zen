@@ -1,11 +1,14 @@
 
 <script lang="ts">
     export let type: string;
-    export let params: mnumber[];
+    export let params: number[] = [];
 </script>
 
-<div class="gate">
+<div 
+    class="gate"
+>
     <p class="type">{type}</p>
+    <p class="params">{params.join(',')}</p>
 </div>
 
 <style lang="scss">
@@ -26,6 +29,11 @@
             transform: translateX(0.75px);
             font-size: var(--text-xxs);
             color: var(--color-theme-1);
+
+            &.params {
+                position: absolute;
+                bottom: -1rem;
+            }
         }
     }
 </style>

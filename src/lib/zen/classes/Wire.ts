@@ -35,8 +35,8 @@ export class Wire {
                     .filter((_, i) => i < gate.numControlQubits)
                 
                 const gates = circuit.gates[this.row] || [];
-                const lastNonNullIndex = gates.slice().reverse().findIndex((gate: any) => gate !== null);
-                const column = lastNonNullIndex !== -1 ? gates.length - lastNonNullIndex + offset : offset;
+                const firstNullIndex = gates.findIndex((gate: any) => gate === null);
+                const column = firstNullIndex !== -1 ? firstNullIndex + offset : gates.length + offset;
                 
                 // intialise the gate without options
                 hasControlQubits

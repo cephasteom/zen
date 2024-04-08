@@ -23,11 +23,10 @@
                         class="col"
                         style="grid-column: {i + 2};"
                     >
-                        <!-- <span class="wire"/> -->
                         {#if cell}
                             <Gate
                                 type={cell.name}
-                                params={cell.options.params}
+                                params={Object.values(cell.options?.params || {})}
                             />
                         {/if}
                     </div>
