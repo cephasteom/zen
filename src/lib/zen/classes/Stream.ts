@@ -259,7 +259,7 @@ export class Stream {
     }
 
     /** @hidden */
-    get(time: number, q: number, s: number, bpm: number, global: Zen) {
+    get(time: number, q: number, s: number, bpm: number, global: Zen, measurement: number = 0) {
         // use stream t, if set, or global t
         const t = +(this.t.has() ? this.t.get(time, q) || 0 : time);
         
@@ -272,8 +272,8 @@ export class Stream {
         const { id } = this;
         const mute = !!this.mute.get(t,q)
         const solo = !!this.solo.get(t,q)
-        const e = !mute && this.e.get(t, q)
-        const m = !mute && this.m.get(t, q)
+        const e = !mute && this.e.get(t, q, bpm, measurement)
+        const m = !mute && this.m.get(t, q, bpm, measurement)
         const lag = (60000/bpm)/q // ms per division
 
         // compile all parameters

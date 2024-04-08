@@ -60,6 +60,9 @@ export class Pattern {
     private _bpm: number = 120
 
     /** @hidden */
+    private _measure: number = 0
+
+    /** @hidden */
     private _state = {} as any
 
     /**
@@ -237,6 +240,7 @@ x: 'xor'
     reset() {
         this.stack = []
         this._value = 0
+        this._measure = 0
         this._state = {}
         return this
     }   
@@ -1303,6 +1307,16 @@ x: 'xor'
     }
 
     /**
+     * Return the value of the measured qubit
+     * @returns {Pattern}
+     * @example s0.e.once()
+     */
+    measure(): Pattern {
+        this.stack.push(() => this._measure)
+        return this
+    }
+
+    /**
      * Post the current value to the console
      * @returns 
      */
@@ -1315,10 +1329,11 @@ x: 'xor'
     }
 
     /** @hidden */
-    get(t: number, q: number, bpm?: number): patternValue | null {
+    get(t: number, q: number, bpm?: number, measure: number = 0): patternValue | null {
         this._t = t
         this._q = q
         this._bpm = bpm || this._bpm
+        this._measure = measure
 
         const value = this.stack.length 
             ? this.stack.reduce((val: patternValue, fn) => fn(val), t) 
