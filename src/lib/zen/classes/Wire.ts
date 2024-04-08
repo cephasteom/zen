@@ -1,9 +1,13 @@
 import { circuit } from './Circuit';
+import { handleTypes } from '../utils/handleTypes'; 
 /**
  * Wire
  * Represents a single wire in a quantum circuit
  */
 export class Wire {
+    private _t: number = 0;
+    private _q: number = 16;
+    private _s: number = 16;
     row: number;
     private _offset: number = 0;
     private _stack: any[] = []
@@ -26,7 +30,7 @@ export class Wire {
                 const params = [(hasParams ? arg1 : [])].flat() || []
                 const connections = [(hasControlQubits 
                     ? hasParams ? arg2 : arg1
-                    : [])].flat() || []
+                    : [])].flat().map(i => i % 8) || []
                 const offset = [(hasParams
                     ? hasControlQubits ? arg3 : arg2
                     : hasControlQubits ? arg2 : arg1)].flat()[0] || 0      
@@ -56,8 +60,7 @@ export class Wire {
                             .filter((_, i) => i < gate.params.length)
                             .reduce((obj, value, i) => ({
                                 ...obj,
-                                // TODO: convert value from patternable to number
-                                [gate.params[i]]: value
+                                [gate.params[i]]: handleTypes(value, this._t, this._q, `${this.row}`)
                             }), {})
                     }
 
@@ -79,7 +82,10 @@ export class Wire {
     /**
      * Build the gates in the stack
      */
-    build() {
+    build(t: number, q: number, s: number) {
+        this._t = t
+        this._q = q
+        this._s = s
         this._stack.forEach((fn) => fn())
     }
 }

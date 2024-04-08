@@ -4,9 +4,8 @@
     export let row: number;
     export let connectTo: number | null = null;
 
-    console.log(row, connectTo)
-
-    $: params = Object.values(gate.options?.params || {});
+    // @ts-ignore
+    $: params = Object.values(gate.options?.params || {}).map(p => (p*Math.PI/2).toFixed(2));
 
     $: ellipse = (gate.name === 'cx' && gate.connector === 1)
         || (gate.name === 'ccx' && gate.connector === 2);

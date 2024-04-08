@@ -117,6 +117,11 @@ const loop = new Loop(time => {
         bpm = newBpm
     }
 
+    // build gates
+    streams.forEach(stream => stream.wire.build(t, q, s))
+    const gates = circuit.gates
+    console.log(gates)
+
     // compile parameters, events and mutations
     const compiled = [...streams, ...fxstreams].map(stream => stream.get(t, q, s, bpm, z))
     const soloed = compiled.filter(({solo}) => solo)
@@ -130,10 +135,7 @@ const loop = new Loop(time => {
             .map(({x,y,z,id,e,m}) => ({x,y,z,id,e: !!e,m: !!m}))
     )
 
-    // build gates
-    streams.forEach(stream => stream.wire.build())
-    const gates = circuit.gates
-    console.log(gates)
+    
 
     // call actions
     const delta = (time - immediate())
