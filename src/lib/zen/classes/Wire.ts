@@ -60,7 +60,7 @@ export class Wire {
                             .filter((_, i) => i < gate.params.length)
                             .reduce((obj, value, i) => ({
                                 ...obj,
-                                [gate.params[i]]: +handleTypes(value, this._t, this._q, `${this.row}`) * (Math.PI/2)
+                                [gate.params[i]]: +handleTypes(value, this._t, this._q, `${this.row}`) * Math.PI
                             }), {})
                     }
 
