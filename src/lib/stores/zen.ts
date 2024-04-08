@@ -10,6 +10,7 @@ export const s = writable(16); // size of canvas
 export const editorConsole = writable<{type?: string, message?: string}>({});
 export const isPlaying = writable(false);
 export const gates = writable<any[]>([]); // circuit gates
+export const measurements = writable<any[]>([]); // circuit measurements
 
 export const isDrawing = writable(true);
 export const messages = writable<{type: string, message: string}[]>([
@@ -43,13 +44,15 @@ zenChannel.onmessage = ({data: {message, type, data}}) => {
     ['error', 'info', 'pattern', 'success'].includes(type) && print(type, message.toString())
     
     if(type !== 'action') return
-    const { t: time, c: cycle, q: quant, s: size, delta, v, gates: gs } = data;
+    const { t: time, c: cycle, q: quant, s: size, delta, v, gates: gs, measurements: ms } = data;
     setTimeout(() => {
         t.set(time);
         c.set(cycle);
         q.set(quant);
         s.set(size);
         gates.set(gs);
+        measurements.set(ms);
+
         get(isDrawing) && visualsData.set(v);
     }, delta * 1000);
 }

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { gates } from "$lib/stores/zen";
+    import { gates, measurements } from "$lib/stores/zen";
     import Gate from "./Gate.svelte";
 
     const getConnectedRow = (currentRow: number, currentCol: number) => {
@@ -49,7 +49,7 @@
                 class="col"
             >
                 <p class="label">
-                    <span class="label__output">|0⟩</span>
+                    <span class="label__output">|{$measurements[row]}⟩</span>
                 </p>
             </div>
         </div>

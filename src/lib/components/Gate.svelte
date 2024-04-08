@@ -5,7 +5,7 @@
     export let connectTo: number | null = null;
 
     // @ts-ignore
-    $: params = Object.values(gate.options?.params || {}).map(p => (p*Math.PI/2).toFixed(2));
+    $: params = Object.values(gate.options?.params || {}).map(p => p.toFixed(2));
 
     $: ellipse = (gate.name === 'cx' && gate.connector === 1)
         || (gate.name === 'ccx' && gate.connector === 2);
