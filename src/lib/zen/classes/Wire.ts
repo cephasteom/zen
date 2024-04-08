@@ -5,6 +5,7 @@ import { circuit } from './Circuit';
  */
 export class Wire {
     row: number;
+    private _offset: number = 0;
     private _stack: any[] = []
     
     constructor(row: number) {
@@ -15,6 +16,7 @@ export class Wire {
             // variable order of arguments
             // @ts-ignore
             this[key] = (arg1: number[] | number, arg2: number[] | number, arg3: number[] | number) => {
+                this._offset > 0 && this._offset++
 
                 const hasControlQubits = gate.numControlQubits > 0
                 const hasParams = gate.params.length > 0
@@ -27,7 +29,10 @@ export class Wire {
                     : [])].flat() || []
                 const offset = [(hasParams
                     ? hasControlQubits ? arg3 : arg2
-                    : hasControlQubits ? arg2 : arg1)].flat()[0] || 0                
+                    : hasControlQubits ? arg2 : arg1)].flat()[0] || 0      
+                    
+                this._offset += offset
+                
 
                 // format connections so that they are appropriate list of control qubits
                 const controlQubits =  connections
@@ -36,7 +41,7 @@ export class Wire {
                 
                 const gates = circuit.gates[this.row] || [];
                 const firstNullIndex = gates.findIndex((gate: any) => gate === null);
-                const column = firstNullIndex !== -1 ? firstNullIndex + offset : gates.length + offset;
+                const column = firstNullIndex !== -1 ? firstNullIndex + this._offset : gates.length + this._offset;
                 
                 // intialise the gate without options
                 hasControlQubits
@@ -68,6 +73,7 @@ export class Wire {
 
     clear() {
         this._stack = []
+        this._offset = 0
     }
 
     /**
