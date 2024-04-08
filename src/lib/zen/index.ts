@@ -133,6 +133,7 @@ const loop = new Loop(time => {
     // build gates
     streams.forEach(stream => stream.wire.build())
     const gates = circuit.gates
+    console.log(gates)
 
     // call actions
     const delta = (time - immediate())

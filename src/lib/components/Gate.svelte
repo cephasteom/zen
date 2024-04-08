@@ -1,13 +1,32 @@
 
 <script lang="ts">
-    export let type: string;
-    export let params: number[] = [];
+    export let gate: any;
+    export let row: number;
+    export let connectTo: number | null = null;
+
+    console.log(row, connectTo)
+
+    $: params = Object.values(gate.options?.params || {});
+
+    $: ellipse = (gate.name === 'cx' && gate.connector === 1)
+        || (gate.name === 'ccx' && gate.connector === 2);
+
+    $: circle = ['cx', 'ccx'].includes(gate.name) && !ellipse;
 </script>
+
+{#if connectTo !== null}
+    <div 
+        class="connection"
+        style={`transform: translateY(${row > connectTo ? -50 : 50}%); height: ${Math.abs(connectTo - row) * 100}%`}
+    />
+{/if}
 
 <div 
     class="gate"
+    class:ellipse={ellipse}
+    class:circle={circle}
 >
-    <p class="type">{type}</p>
+    <p class="type">{gate.name}</p>
     <p class="params">{params.join(',')}</p>
 </div>
 
@@ -21,6 +40,7 @@
         height: 25px;
         border: 1px solid var(--color-theme-1);
         background-color: var(--color-grey-darker);
+        z-index: 10;
 
         & p {
             margin: 0;
@@ -35,5 +55,53 @@
                 bottom: -1rem;
             }
         }
+    }
+
+    .ellipse {
+        border-radius: 50%;
+        & p {
+            display: none;
+        }
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            background-color: var(--color-theme-1);
+        }
+    
+        &::before {
+            left: 50%;
+            width: 1px;
+            height: 100%;
+            transform: translateX(-50%);
+            
+        }
+    
+        &::after {
+            top: 50%;
+            width: 100%;
+            height: 1px;
+            transform: translateY(-50%);
+        }
+    }
+
+
+    .circle {
+        border-radius: 50%;
+        width: 7.5px;
+        height: 7.5px;
+        background-color: var(--color-theme-1);
+        & p {
+            display: none;
+        }
+    }
+
+    .connection {
+        position: absolute;
+        left: 50%;
+        height: 100%;
+        width: 1px; 
+        background-color: var(--color-theme-1);
+        transform: translateX(-50%);
     }
 </style>
