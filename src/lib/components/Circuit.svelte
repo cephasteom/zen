@@ -61,10 +61,10 @@
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: repeat(8, 1fr);
-        width: 100%;
+        width: calc(100% - 4rem);
         height: calc(100% - 2rem);
         border-radius: 10px;
-        padding: 2rem;
+        padding: 1rem 2rem;
         overflow-x: scroll;
         position: relative;
     }
@@ -81,8 +81,6 @@
         justify-content: center;
         position: relative;
         width: 3rem;
-
-        
     }
 
     .label {

@@ -29,15 +29,15 @@
     </div>
     <div class="info">
         {#if $isDrawing}
-            <!-- <Visuals /> -->
+            <Visuals />
             <Circuit />
         {:else}
             <Console />
         {/if}
     </div>
-    <div class="data">
+    <!-- <div class="data">
         <Data />
-    </div>
+    </div> -->
 </section>
 
 <style lang="scss">
@@ -96,13 +96,14 @@
         
         @media (min-width: 600px) {
             grid-column: 2;
-            grid-row: 1;
+            grid-row: 1 / 3;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
         }
         
-        background: linear-gradient(35deg, var(--color-grey-darker), var(--color-grey-darkest));
+        background: var(--color-grey-darkest);
     }
 
     .data {

@@ -18,7 +18,7 @@
 
         const getSize = (): void => {
             const dimensions = container.getBoundingClientRect()
-            size = min(dimensions.width, dimensions.height) - 50
+            size = min(dimensions.width, dimensions.height) - 100
             radius = size * 0.4;
         }
 
@@ -112,9 +112,9 @@
 
 <style lang="scss">
     .visuals {
+        position: absolute;
         width: 100%;
         height: 100%;
-        margin: 1rem;
         display: flex;
         justify-content: center;
         align-items: center;
