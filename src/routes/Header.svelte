@@ -76,9 +76,9 @@
     }
     
     .icon {
-        height: 2.5rem;
+        height: 2rem;
         @media(min-width: 600px) {
-            height: 2rem;
+            height: 1.5rem;
         }
         display: flex;
         align-items: center;
@@ -89,7 +89,8 @@
             height: 100%;
             object-fit: contain;
             filter: invert(1);
-            margin-right: 0.25rem;
+            margin-right: 0.125rem;
+            transform: rotate(-45deg);
         }
         p {
             position: relative;
@@ -111,7 +112,6 @@
         width: 100vw;
         height: 100vh;
         padding: 0;
-        // background-color: var(--color-grey-darkest);
         z-index: 100;
         display: none;
         align-items: center;
@@ -122,6 +122,7 @@
             text-transform: uppercase;
             text-decoration: none;
             color: #FFF;
+            font-size: var(--text-xs);
         }
 
         @media (min-width: 600px) {
