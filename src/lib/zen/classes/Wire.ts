@@ -1,3 +1,4 @@
+import type { Pattern } from './Pattern';
 import { circuit } from './Circuit';
 import { handleTypes } from '../utils/handleTypes'; 
 /**
@@ -8,6 +9,9 @@ export class Wire {
     private _t: number = 0;
     private _q: number = 16;
     private _s: number = 16;
+    private _theta: Pattern | null = null;
+    private _phi: Pattern | null = null;
+    private _lam: Pattern | null = null;
     row: number;
     private _offset: number = 0;
     private _stack: any[] = []
@@ -77,15 +81,21 @@ export class Wire {
     clear() {
         this._stack = []
         this._offset = 0
+        this._theta = null
+        this._phi = null
+        this._lam = null
     }
 
     /**
      * Build the gates in the stack
      */
-    build(t: number, q: number, s: number) {
+    build(t: number, q: number, s: number, theta: Pattern, phi: Pattern, lam: Pattern) {
         this._t = t
         this._q = q
         this._s = s
+        this._theta = theta
+        this._phi = phi
+        this._lam = lam
         this._stack.forEach((fn) => fn())
     }
 }
