@@ -35,9 +35,9 @@
             <Console />
         {/if}
     </div>
-    <!-- <div class="data">
+    <div class="data">
         <Data />
-    </div> -->
+    </div>
 </section>
 
 <style lang="scss">
@@ -112,6 +112,7 @@
         border-radius: 10px;
 
         @media (min-width: 600px) {
+            display: none;
             grid-column: 2;
             grid-row: 2;
         }
