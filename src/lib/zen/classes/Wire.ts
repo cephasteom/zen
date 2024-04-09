@@ -9,9 +9,9 @@ export class Wire {
     private _t: number = 0;
     private _q: number = 16;
     private _s: number = 16;
-    private _theta: Pattern | null = null;
-    private _phi: Pattern | null = null;
-    private _lam: Pattern | null = null;
+    private theta: Pattern | null = null;
+    private phi: Pattern | null = null;
+    private lambda: Pattern | null = null;
     row: number;
     private _offset: number = 0;
     private _stack: any[] = []
@@ -31,7 +31,7 @@ export class Wire {
 
                 // determine which argument is which
                 // important for live coding so we don't have to pass all arguments
-                const params = [(hasParams ? arg1 : [])].flat() || []
+                const params = [(hasParams ? arg1 : [])].flat().filter(Boolean)
                 const connections = [(hasControlQubits 
                     ? hasParams ? arg2 : arg1
                     : [])].flat().map(i => i % 8) || []
@@ -40,7 +40,6 @@ export class Wire {
                     : hasControlQubits ? arg2 : arg1)].flat()[0] || 0      
                     
                 this._offset += offset
-                
 
                 // format connections so that they are appropriate list of control qubits
                 const controlQubits =  connections
@@ -58,13 +57,21 @@ export class Wire {
                 
                 // add a function to the stack to set params dynamically on each frame
                 this._stack.push(() => {
-                    if(params.length === 0) return
+                    if(!hasParams) return
+
                     const options = {
-                        params: params
-                            .filter((_, i) => i < gate.params.length)
-                            .reduce((obj, value, i) => ({
-                                ...obj,
-                                [gate.params[i]]: +handleTypes(value, this._t, this._q, `${this.row}`) * Math.PI
+                        params: params.length
+                            ? params
+                                .filter((_, i) => i < gate.params.length)
+                                .reduce((obj, value, i) => ({
+                                    ...obj,
+                                    [gate.params[i]]: +handleTypes(value, this._t, this._q, `${this.row}`) * Math.PI
+                                }), {})
+                            : gate.params.reduce((obj: {}, key: string) => ({
+                                ...obj, 
+                                // use theta, phi, lambda if they are defined
+                                // @ts-ignore
+                                [key]: +handleTypes(this[key] || 0, this._t, this._q, `${this.row}`) * Math.PI
                             }), {})
                     }
 
@@ -81,21 +88,21 @@ export class Wire {
     clear() {
         this._stack = []
         this._offset = 0
-        this._theta = null
-        this._phi = null
-        this._lam = null
+        this.theta = null
+        this.phi = null
+        this.lambda = null
     }
 
     /**
      * Build the gates in the stack
      */
-    build(t: number, q: number, s: number, theta: Pattern, phi: Pattern, lam: Pattern) {
+    build(t: number, q: number, s: number, theta: Pattern, phi: Pattern, lambda: Pattern) {
         this._t = t
         this._q = q
         this._s = s
-        this._theta = theta
-        this._phi = phi
-        this._lam = lam
+        this.theta = theta
+        this.phi = phi
+        this.lambda = lambda
         this._stack.forEach((fn) => fn())
     }
 }
