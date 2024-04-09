@@ -9,17 +9,25 @@ export const q = writable(16); // quantization (frames per cycle)
 export const s = writable(16); // size of canvas
 export const editorConsole = writable<{type?: string, message?: string}>({});
 export const isPlaying = writable(false);
-export const gates = writable<any[]>([]); // circuit gates
-export const measurements = writable<any[]>([]); // circuit measurements
+export const gates = writable<any[]>([[],[],[],[],[],[],[],[]]); // circuit gates
+export const measurements = writable<any[]>([0,0,0,0,0,0,0,0]); // circuit measurements
 
 export const isDrawing = writable(true);
-export const messages = writable<{type: string, message: string}[]>([
+export const messages = writable<{type: string, message: string}[]>([]);
+
+const initialMessages = [
     {type: 'success', message: 'Welcome to Zen!'},
     {type: 'info', message: 'shift + enter to play.'},
     {type: 'info', message: 'esc to stop.\n'},
-    {type: 'success', message: 'Instruments ->'},
-    {type: 'info', message: '0: synth\n1: sampler\n2: granular\n3: additive\n4: acid\n5: drone\n6: sub\n7: superfm\n8: wavetable\n'},
-]);
+    {type: 'success', message: 'Commands ->'},
+    {type: 'info', message: 'instruments()\nmidi()\nsamples()\nscales()\nchords()\nprint()\nclear()\n'},
+];
+
+initialMessages.forEach((message, index) => {
+    setTimeout(() => {
+        messages.update(arr => [...arr, message]);
+    }, (index+1) * 300); // simulate loading
+});
 
 export const print = (type: string, message: string) => {
     // if last message does not match, add to messages
@@ -35,7 +43,6 @@ export const clear = () => messages.set([]);
 export const visualsData = writable<vector[]>([]);
 
 const zenChannel = new BroadcastChannel('zen');
-const otoChannel = new BroadcastChannel('oto')
 
 // Listen for error messages from Zen
 zenChannel.onmessage = ({data: {message, type, data}}) => {
@@ -55,8 +62,4 @@ zenChannel.onmessage = ({data: {message, type, data}}) => {
 
         get(isDrawing) && visualsData.set(v);
     }, delta * 1000);
-}
-
-otoChannel.onmessage = ({data: {type, message}}) => {
-    print(type, message)
 }

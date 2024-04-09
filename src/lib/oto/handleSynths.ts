@@ -3,7 +3,7 @@ import { CtSynth, CtSampler, CtGranulator, CtAdditive, CtAcidSynth, CtDroneSynth
 import type { Dictionary } from './types'
 import { getChannel } from './routing';
 
-const bchannel = new BroadcastChannel('oto')
+const otoChannel = new BroadcastChannel('oto')
 
 const synths = writable<Dictionary>({});
 
@@ -119,7 +119,7 @@ const fetchSamples = (url: string) => {
         .then(res => res.json())
         .then(json => {
             if(!json) return
-            bchannel.postMessage({ type: 'success', message: 'Loaded samples from ' + url})
+            otoChannel.postMessage({ type: 'success', message: 'Loaded samples from ' + url})
             samples.update((samples: Dictionary) => ({...samples, ...json}))
             
         })
@@ -137,6 +137,5 @@ synths.subscribe((synths: Dictionary) => {
 })
 
 samples.subscribe((samples: Dictionary) => {
-    bchannel.postMessage({ type: 'success', message: 'Sample banks ->'})
-    bchannel.postMessage({ type: 'info', message: Object.keys(samples).join(', ') + '\n'})
+    otoChannel.postMessage({ type: 'info', message: 'Sample banks ->\n' + Object.keys(samples).join(', ') + '\n'})
 })

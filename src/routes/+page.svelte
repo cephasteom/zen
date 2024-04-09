@@ -6,7 +6,7 @@
     import Tools from '$lib/components/Tools.svelte';
     import Console from '$lib/components/Console.svelte';
     import { startAudio } from '$lib/zen/index';
-    import { isDrawing } from '$lib/stores/zen';
+    
 </script>
 
 <svelte:head>

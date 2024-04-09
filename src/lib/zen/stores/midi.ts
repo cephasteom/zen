@@ -1,4 +1,4 @@
-import { writable, derived, get } from 'svelte/store';
+import { writable, get } from 'svelte/store';
 import { WebMidi } from "webmidi";
 import { debounce } from '../utils/utils';
 
