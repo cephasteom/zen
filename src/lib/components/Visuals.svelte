@@ -18,7 +18,7 @@
 
         const getSize = (): void => {
             const dimensions = container.getBoundingClientRect()
-            size = min(dimensions.width, dimensions.height) - 100
+            size = min(dimensions.width, dimensions.height) - 20
             radius = size * 0.4;
         }
 

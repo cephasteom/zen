@@ -61,10 +61,10 @@
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: repeat(8, 1fr);
-        width: calc(100% - 4rem);
+        width: calc(100% - 2rem);
         height: calc(100% - 2rem);
         border-radius: 10px;
-        padding: 1rem 2rem;
+        padding: 1rem;
         overflow-x: scroll;
         position: relative;
     }

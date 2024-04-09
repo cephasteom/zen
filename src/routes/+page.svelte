@@ -27,14 +27,27 @@
     <div class="tools">
         <Tools />
     </div>
-    <div class="info">
-        {#if $isDrawing}
-            <Visuals />
-            <Circuit />
-        {:else}
-            <Console />
-        {/if}
+    <!-- <div class="info"> -->
+        <!-- {#if $isDrawing} -->
+            <!-- <Visuals /> -->
+            <!-- <Circuit /> -->
+        <!-- {:else} -->
+            <!-- <Console /> -->
+        <!-- {/if} -->
+    <!-- </div> -->
+
+    <div class="circuit">
+        <Circuit />
     </div>
+    
+    <div class="visuals">
+        <Visuals />
+    </div>
+
+    <div class="console">
+        <Console />
+    </div>
+
     <div class="data">
         <Data />
     </div>
@@ -51,11 +64,12 @@
         min-height: calc(100vh - 10rem);
         
         @media (min-width: 600px) {
-            grid-template-columns: 2fr 3fr;
-            grid-template-rows: 11fr 1fr;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 6fr 5fr 1fr;
         }
         
         @media (min-width: 1200px) {
+            grid-template-columns: 2fr 1.5fr 1.5fr;
             padding: 1rem 2rem;
         }
 
@@ -72,7 +86,7 @@
         grid-row: 2;
         @media (min-width: 600px) {
             grid-column: 1;
-            grid-row: 1;
+            grid-row: 1 / 3;
         }
     }
 
@@ -83,28 +97,60 @@
 
         @media (min-width: 600px) {
             grid-column: 1;
-            grid-row: 2;
+            grid-row: 3;
         }
         background-color: var(--color-grey-dark);
         padding: 1rem;
     }
 
-    .info {
-        display: none;
-        position: relative;
+    .circuit {
+        grid-column: 2 / 4;
+        grid-row: 1;
         border-radius: 10px;
-        
+        position: relative;
+        display: none;
+
         @media (min-width: 600px) {
-            grid-column: 2;
-            grid-row: 1 / 3;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            display: block;
         }
-        
-        background: var(--color-grey-darkest);
+
+        background-color: var(--color-grey-darker);
     }
+
+    .visuals {
+        grid-column: 3 / 4;
+        grid-row: 2 / 4;
+        border-radius: 10px;
+        position: relative;
+
+        background-color: var(--color-grey-dark);
+    }
+
+    .console {
+        grid-column: 2 / 3;
+        grid-row: 2 / 4;
+        border-radius: 10px;
+        position: relative;
+
+        background-color: var(--color-grey-dark);
+    }
+
+    // .info {
+    //     display: none;
+    //     position: relative;
+    //     border-radius: 10px;
+        
+    //     @media (min-width: 600px) {
+    //         grid-column: 2;
+    //         grid-row: 1 / 3;
+    //         display: flex;
+    //         flex-direction: column;
+    //         justify-content: center;
+    //         align-items: center;
+    //     }
+        
+    //     background: var(--color-grey-darkest);
+    // }
 
     .data {
         grid-column: 1;
