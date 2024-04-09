@@ -236,9 +236,9 @@ export class Stream {
      * @returns object of formatted key/value pairs
      * @hidden
      */
-    evaluateGroup(group: Dictionary, count: number, divisions: number, bpm: number) : { [key: string]: any } {
+    evaluateGroup(group: Dictionary, count: number, divisions: number, bpm: number, measurement: number) : { [key: string]: any } {
         return Object.entries(group)
-            .map(([key, pattern]) => [key, pattern.get(count, divisions, bpm)])
+            .map(([key, pattern]) => [key, pattern.get(count, divisions, bpm, measurement)])
             .filter(([_, value]) => value !== undefined && value !== null)
             .reduce((obj, [key, value]) => ({...obj, [key]: value}), {})
     }
@@ -265,13 +265,13 @@ export class Stream {
         
         // use stream x, y, z, if set, or 0
         const xyz = [this.xyz.get(t, s)].flat()
-        const x = +(xyz[0] || this.x.get(t, s) || 0)
-        const y = +(xyz[1] || this.y.get(t, s) || 0)
-        const z = +(xyz[2] || this.z.get(t, s) || 0)
+        const x = +(xyz[0] || this.x.get(t, s, bpm, measurement) || 0)
+        const y = +(xyz[1] || this.y.get(t, s, bpm, measurement) || 0)
+        const z = +(xyz[2] || this.z.get(t, s, bpm, measurement) || 0)
         
         const { id } = this;
-        const mute = !!this.mute.get(t,q)
-        const solo = !!this.solo.get(t,q)
+        const mute = !!this.mute.get(t,q, bpm, measurement)
+        const solo = !!this.solo.get(t,q, bpm, measurement)
         const e = !mute && this.e.get(t, q, bpm, measurement)
         const m = !mute && this.m.get(t, q, bpm, measurement)
         const lag = (60000/bpm)/q // ms per division
@@ -280,14 +280,14 @@ export class Stream {
         const compiled = (e || m) ? {
             track: +id.slice(1),
             _track: +id.slice(1),
-            ...this.evaluateGroup(global.p, t, q, bpm), // calculate based on position in cycle, 0 - 1
-            ...this.evaluateGroup(global.px, x, s, bpm), // calculate based on position in space, 0 - 1
-            ...this.evaluateGroup(global.py, y, s, bpm), // ...
-            ...this.evaluateGroup(global.pz, z, s, bpm), // ...
-            ...this.evaluateGroup(this.p, t, q, bpm), // calculate based on position in cycle, 0 - 1
-            ...this.evaluateGroup(this.px, x, s, bpm), // calculate based on position in space, 0 - 1
-            ...this.evaluateGroup(this.py, y, s, bpm), // ...
-            ...this.evaluateGroup(this.pz, z, s, bpm), // ...
+            ...this.evaluateGroup(global.p, t, q, bpm, measurement), // calculate based on position in cycle, 0 - 1
+            ...this.evaluateGroup(global.px, x, s, bpm, measurement), // calculate based on position in space, 0 - 1
+            ...this.evaluateGroup(global.py, y, s, bpm, measurement), // ...
+            ...this.evaluateGroup(global.pz, z, s, bpm, measurement), // ...
+            ...this.evaluateGroup(this.p, t, q, bpm, measurement), // calculate based on position in cycle, 0 - 1
+            ...this.evaluateGroup(this.px, x, s, bpm, measurement), // calculate based on position in space, 0 - 1
+            ...this.evaluateGroup(this.py, y, s, bpm, measurement), // ...
+            ...this.evaluateGroup(this.pz, z, s, bpm, measurement), // ...
             bpm, // bpm
             q, // divisions
         } : {}
