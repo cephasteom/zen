@@ -15,7 +15,7 @@
     <button on:click={() => { isPlaying.set(!$isPlaying)}} ><Icon data="{$isPlaying ? faStop : faPlay}" /></button>
     <button on:click={() => save.showModal()} class:active={false}><Icon data="{faFloppyDisk}" /></button>
     <button on:click={() => load.showModal()} class:active={false}><Icon data="{faCode}" /></button>
-    <button class="tools__drawing" on:click={() => isDrawing.set(!$isDrawing)} class:active={$isDrawing}><Icon data="{faBorderAll}" /></button>
+    <!-- <button class="tools__drawing" on:click={() => isDrawing.set(!$isDrawing)} class:active={$isDrawing}><Icon data="{faBorderAll}" /></button> -->
 </div>
 
 <Dialog bind:dialog={save} on:close={() => save.close()}>

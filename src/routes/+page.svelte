@@ -63,9 +63,9 @@
         user-select: none;
         min-height: calc(100vh - 10rem);
         
-        @media (min-width: 600px) {
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 6fr 5fr 1fr;
+        @media (min-width: 800px) {
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 8fr 5fr 1fr;
         }
         
         @media (min-width: 1200px) {
@@ -84,7 +84,7 @@
         height: 100%;
         grid-column: 1;
         grid-row: 2;
-        @media (min-width: 600px) {
+        @media (min-width: 800px) {
             grid-column: 1;
             grid-row: 1 / 3;
         }
@@ -95,7 +95,7 @@
         grid-row: 1;
         border-radius: 10px;
 
-        @media (min-width: 600px) {
+        @media (min-width: 800px) {
             grid-column: 1;
             grid-row: 3;
         }
@@ -110,7 +110,7 @@
         position: relative;
         display: none;
 
-        @media (min-width: 600px) {
+        @media (min-width: 800px) {
             display: block;
         }
 
@@ -124,6 +124,12 @@
         position: relative;
 
         background-color: var(--color-grey-dark);
+
+        display: none;
+
+        @media (min-width: 800px) {
+            display: block;
+        }
     }
 
     .console {
@@ -133,31 +139,20 @@
         position: relative;
 
         background-color: var(--color-grey-dark);
-    }
 
-    // .info {
-    //     display: none;
-    //     position: relative;
-    //     border-radius: 10px;
-        
-    //     @media (min-width: 600px) {
-    //         grid-column: 2;
-    //         grid-row: 1 / 3;
-    //         display: flex;
-    //         flex-direction: column;
-    //         justify-content: center;
-    //         align-items: center;
-    //     }
-        
-    //     background: var(--color-grey-darkest);
-    // }
+        display: none;
+
+        @media (min-width: 800px) {
+            display: block;
+        }
+    }
 
     .data {
         grid-column: 1;
         grid-row: 3;
         border-radius: 10px;
 
-        @media (min-width: 600px) {
+        @media (min-width: 800px) {
             display: none;
             grid-column: 2;
             grid-row: 2;
