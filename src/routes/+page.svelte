@@ -10,7 +10,8 @@
 </script>
 
 <svelte:head>
-	<title>Zen | App</title>
+    
+	<title>Zenq</title>
 	<meta name="description" content="A musical live coding language that runs in your browser" />
 </svelte:head>
 
