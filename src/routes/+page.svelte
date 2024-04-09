@@ -76,7 +76,6 @@
         @media all and (display-mode: fullscreen) {
             height: calc(100vh - 4rem);
             padding: 2rem;
-            grid-template-columns: 2fr 3fr;
         }
     }
 

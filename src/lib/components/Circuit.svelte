@@ -20,7 +20,7 @@
     {#each $gates as gates, row}
         <div class="row">
             <div 
-                    class="col"
+                    class="col col--first"
                     style="grid-column: 1;"
             >
                 <p class="label">
@@ -46,7 +46,7 @@
                 {/each}
             </div>
             <div 
-                class="col"
+                class="col col--last"
             >
                 <p class="label">
                     <span class="label__output">|{$measurements[row]}⟩</span>
@@ -61,10 +61,10 @@
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: repeat(8, 1fr);
-        width: calc(100% - 2rem);
+        width: calc(100% - 4rem);
         height: calc(100% - 2rem);
         border-radius: 10px;
-        padding: 1rem;
+        padding: 1rem 2rem;
         overflow-x: scroll;
         position: relative;
     }
@@ -81,6 +81,13 @@
         justify-content: center;
         position: relative;
         width: 3rem;
+        &--first {
+            justify-content: flex-start;
+        }
+
+        &--last {
+            justify-content: flex-end;
+        }
     }
 
     .label {
