@@ -65,7 +65,7 @@
         
         @media (min-width: 800px) {
             grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 8fr 5fr 1fr;
+            grid-template-rows: 6fr 7fr 1fr;
         }
         
         @media (min-width: 1200px) {
@@ -104,7 +104,7 @@
 
     .circuit {
         grid-column: 2 / 4;
-        grid-row: 1;
+        grid-row: 2 / 4;
         border-radius: 10px;
         position: relative;
         display: none;
@@ -118,7 +118,7 @@
 
     .visuals {
         grid-column: 3 / 4;
-        grid-row: 2 / 4;
+        grid-row: 1;
         border-radius: 10px;
         position: relative;
 
@@ -133,7 +133,7 @@
 
     .console {
         grid-column: 2 / 3;
-        grid-row: 2 / 4;
+        grid-row: 1;
         border-radius: 10px;
         position: relative;
 
