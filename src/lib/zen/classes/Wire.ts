@@ -31,7 +31,7 @@ export class Wire {
 
                 // determine which argument is which
                 // important for live coding so we don't have to pass all arguments
-                const params = [(hasParams ? arg1 : [])].flat().filter(Boolean)
+                const params = [(hasParams ? arg1 : [])].flat().filter(v => v!== undefined)
                 const connections = [(hasControlQubits 
                     ? hasParams ? arg2 : arg1
                     : [])].flat().map(i => i % 8) || []
