@@ -14,7 +14,7 @@ import midi from './midi'
 import global_settings from './global-settings'
 import utilities from "./utilities";
 import effects from './effects'
-// import networking from './networking'
+import zen_quantum from './quantum'
 
 const content = { 
     intro, 
@@ -25,6 +25,7 @@ const content = {
     mini_notation,
     mutations,
     the_canvas,
+    zen_quantum,
     instruments,
     effects,
     custom_samples,

@@ -60,6 +60,7 @@ export class Wire {
                 this._stack.push(() => {
                     if(!hasParams) return
 
+                    // TODO: scale phi to 0-2pi
                     const options = {
                         params: params.length
                             ? params

@@ -28,15 +28,6 @@
     <div class="tools">
         <Tools />
     </div>
-    <!-- <div class="info"> -->
-        <!-- {#if $isDrawing} -->
-            <!-- <Visuals /> -->
-            <!-- <Circuit /> -->
-        <!-- {:else} -->
-            <!-- <Console /> -->
-        <!-- {/if} -->
-    <!-- </div> -->
-
     <div class="circuit">
         <Circuit />
     </div>
@@ -66,7 +57,7 @@
         
         @media (min-width: 800px) {
             grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 6fr 7fr 1fr;
+            grid-template-rows: 6fr 6fr 1fr;
         }
         
         @media (min-width: 1200px) {
