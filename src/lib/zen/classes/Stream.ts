@@ -202,7 +202,10 @@ export class Stream {
     _aliases = {
         solo: 'so',
         mute: 'mu',
-        set: 'v'
+        set: 'v',
+        x: 'theta',
+        y: 'phi',
+        z: 'lambda',
     }
 
     /** @hidden */
