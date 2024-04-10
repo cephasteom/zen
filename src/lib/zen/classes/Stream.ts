@@ -16,8 +16,8 @@ import type { Dictionary } from '../types'
  * s0.p.lag.set(1).btms()
  * s0.px._modi.saw(1,10) // map the synth's modulation index across the x axis
  * s0.py._harm.range(0,10,1) // map the synth's harmonic series across the y axis
- * s0.x.range(0,16,1) // move the stream across the x axis of the canvas
- * s0.y.noise(0,16,1,0.5) // move the stream across the y axis of the canvas
+ * s0.x.saw() // move the stream across the x axis of the canvas
+ * s0.y.noise(0,1,0,0.5) // move the stream across the y axis of the canvas
  * s0.e.every(4) // trigger an event every 4 divisions
  * s0.m.not(s0.e)
  */ 
@@ -88,7 +88,7 @@ export class Stream {
     /**
      * A Pattern for setting the stream's position in space
      * @example
-     * s0.x.saw(0,16,1) // move the stream across the x axis of the canvas with a saw wave between 0 and 16
+     * s0.x.saw() // move the stream across the x axis of the canvas with a saw wave
      */ 
     get x() {
         this._xPattern = this._xPattern || new Pattern(this)
@@ -100,7 +100,7 @@ export class Stream {
     /**
      * A Pattern for setting the stream's position in space
      * @example
-     * s0.y.saw(0,16,1) // move the stream across the y axis of the canvas with a saw wave between 0 and 16
+     * s0.y.saw() // move the stream across the y axis of the canvas with a saw wave
      */ 
     get y() {
         this._yPattern = this._yPattern || new Pattern(this)
@@ -112,7 +112,7 @@ export class Stream {
     /**
      * A Pattern for setting the stream's position in space
      * @example
-     * s0.z.saw(0,16,1) // move the stream across the z axis of the canvas with a saw wave between 0 and 16
+     * s0.z.saw() // move the stream across the z axis of the canvas with a saw wave
      */ 
     get z() {
         this._zPattern = this._zPattern || new Pattern(this)
@@ -124,7 +124,7 @@ export class Stream {
     /**
      * A Pattern for setting all axes of the stream's position at the same time. Expects an array of values
      * @example
-     * s0.xyz.set([t,8,0])
+     * s0.xyz.set([0,0.5,0])
      */ 
     get xyz() {
         this._xyzPattern = this._xyzPattern || new Pattern(this)

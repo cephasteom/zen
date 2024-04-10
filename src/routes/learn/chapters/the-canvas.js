@@ -5,8 +5,8 @@ So far we’ve mapped all parameters across time using the \`.p\` property. Zen 
 The \`.x\`, \`.y\`, and \`.z\` properties of a stream allow you to move a stream around a virtual space and are all instances of the [Pattern class](/docs/classes#pattern). This movement is represented in 3 dimensions (xyz) on the visualiser using the concept of a sphere. We have chosen to use the x axis as the horizontal rotation of the sphere, the y axis as the vertical rotation, and the z axis as the distance from the centre of the sphere.
 \`\`\`js
 s0.e.every(1)
-s0.x.saw(0,16)
-s0.y.noise(0,16)
+s0.x.saw()
+s0.y.noise()
 \`\`\`
 
 ## .px .py .pz
@@ -18,8 +18,8 @@ s0.px.n.set('Dlyd%12..*16')
 s0.px.modi.saw(1,10)
 s0.py.harm.saw(0.5,3,0.25)
 
-s0.x.saw(0,16)
-s0.y.noise(0,16)
+s0.x.saw()
+s0.y.noise()
 
 s0.e.every(1)
 \`\`\`

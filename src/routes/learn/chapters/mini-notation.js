@@ -28,14 +28,14 @@ s0.e.set('1*16')
 
 Alternate between values:
 \`\`\`js
-s0.x.set('0,8*2')
+s0.x.set('0,0.5*2')
 s0.e.set('1*16')
 \`\`\`
 
 Alternate between values:
 \`\`\`js
-s0.x.set('0,4,6,12*4')
-s0.y.set('0,4,6,12*16')
+s0.x.set('0,0.25,0.5,0.75*4')
+s0.y.set('0,0.25,0.5,0.75*16')
 s0.e.set('1*16')
 \`\`\`
 

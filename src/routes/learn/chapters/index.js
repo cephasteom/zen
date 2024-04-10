@@ -9,7 +9,6 @@ import mini_notation from './mini-notation'
 import mutations from './mutations'
 import custom_samples from './custom-samples'
 import instruments from './instruments'
-import shorthand from './shorthand'
 import the_canvas from './the-canvas'
 import midi from './midi'
 import global_settings from './global-settings'
@@ -29,7 +28,6 @@ const content = {
     instruments,
     effects,
     custom_samples,
-    shorthand,
     global_settings,
     midi,
     utilities,

@@ -230,7 +230,7 @@ x: 'xor'
      *  .$else.set('Ddor..*16')
      * s1.e.every(1)
      * @example
-     * s0.x.set(8)._.y.set(8)
+     * s0.x.set(0.5)._.y.set(0.5)
      */ 
     get _(): Pattern | Stream {
         return this._parent || this
@@ -1197,7 +1197,7 @@ x: 'xor'
      * Interpolate between a value and the previous value in the pattern chain
      * @param val value to interpolate to
      * @returns {Pattern}
-     * @example s0.y.sine(0,15,1).$intrp.sine(15,0,1,0.5)
+     * @example s0.y.sine().$intrp.sine(1,0,0,0.5)
      */ 
     interpolate(val: patternable): Pattern {
         this.stack.push((x: patternValue) => handlePolyphony(x, x => interpolate(+x, +this.handleTypes(val), 0.5)))
