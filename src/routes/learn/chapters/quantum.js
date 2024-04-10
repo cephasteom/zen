@@ -20,7 +20,11 @@ Some gates require additional parameters. For example, the u3 gate requires thre
 \`\`\`js
 s0.wire.u3([0.1,0.2,0.3])
 \`\`\`
-For simplicity, param values should be normalised (0-1). These are scaled to the appropriate range internally.
+For simplicity, param values should be normalised (0-1). These are scaled to the appropriate range internally. Values can be numbers, mini-notation strings, or other patterns. The following will work:
+\`\`\`js
+s0.lambda.sine()
+s0.wire.u3([0.5,'0.25?0.5?0.75?1*16',s0.lambda])
+\`\`\`
 
 If you omit the parameters, these angles are taken from the position of the stream in the pattern. For example:
 \`\`\`js
@@ -30,7 +34,10 @@ s0.lambda.set(0.5) // lambda is an alias of s0.z
 s0.wire.u3()
 \`\`\`
 
-To map musical parameters to these axes, use \`.px\`, \`.py\`, and \`.pz\` or their aliases \`.pphi\`, \`.ptheta\`, and \`.plambda\` respectively. Use the \`measure()\` method to use the measurement of a qubit as to trigger an event. For example:
+To map musical parameters to these axes, use \`.px\`, \`.py\`, and \`.pz\` or their aliases \`.pphi\`, \`.ptheta\`, and \`.plambda\` respectively. 
+
+## .measure()
+Use the \`measure()\` method to use the measurement of a qubit as to trigger an event. For example:
 \`\`\`js
 s0.set({inst:0,reverb:0.25,rtail:0.25,cut:0,cutr:250})
 
