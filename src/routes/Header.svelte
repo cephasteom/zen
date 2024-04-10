@@ -82,7 +82,6 @@
         }
         display: flex;
         align-items: center;
-        color: white;
         font-size: var(--text-sm);
         z-index: 200;
         img {
@@ -97,6 +96,8 @@
             top: -1.5px;
             margin: 0;
             font-size: var(--text-sm);
+            color: white;
+
             & span {
                 font-size: var(--text-xxs);
                 position: relative;

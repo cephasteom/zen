@@ -123,7 +123,7 @@
         border-radius: 10px;
         position: relative;
 
-        background-color: var(--color-grey-dark);
+        background: linear-gradient(45deg, var(--color-grey-dark), var(--color-grey-darker));
 
         display: none;
 

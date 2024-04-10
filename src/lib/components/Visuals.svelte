@@ -43,7 +43,7 @@
             p5.createCanvas(size, size, p5.WEBGL)
             p5.smooth()
             p5.noLoop()
-            p5.ambientLight(128)
+
             drawSphere()
       
             handleResize = resize
