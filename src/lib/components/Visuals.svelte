@@ -55,7 +55,8 @@
             p5.clear()
             drawSphere()
             data.forEach(p => {
-                const { phi, theta, lambda, colour } = p
+                const { phi, theta, lambda: l, colour } = p
+                const lambda = Math.abs(1 - l)
                 const vector = Vector.fromAngles(
                     p5.radians(theta * 180), 
                     p5.radians(phi * 180), 

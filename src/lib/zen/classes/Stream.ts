@@ -203,9 +203,12 @@ export class Stream {
         solo: 'so',
         mute: 'mu',
         set: 'v',
-        x: 'theta',
-        y: 'phi',
+        y: 'theta',
+        x: 'phi',
         z: 'lambda',
+        py: 'ptheta',
+        px: 'pphi',
+        pz: 'plambda',
     }
 
     /** @hidden */

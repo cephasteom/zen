@@ -122,7 +122,7 @@ const loop = new Loop(time => {
     }
 
     // build gates
-    streams.forEach(stream => stream.wire.build(t, q, s, stream.x, stream.y, stream.z))
+    streams.forEach(stream => stream.wire.build(t, q, s, stream.y, stream.x, stream.z))
     circuit.run()
     const gates = circuit.gates
     const measurements = circuit.measureAll()
