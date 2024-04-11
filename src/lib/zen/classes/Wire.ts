@@ -60,20 +60,23 @@ export class Wire {
                 this._stack.push(() => {
                     if(!hasParams) return
 
-                    // TODO: scale phi to 0-2pi
                     const options = {
                         params: params.length
                             ? params
                                 .filter((_, i) => i < gate.params.length)
                                 .reduce((obj, value, i) => ({
                                     ...obj,
-                                    [gate.params[i]]: +handleTypes(value, this._t, this._q, `${this.row}`) * Math.PI * (gate.params[i] === 'phi' ? 2 : 1)
+                                    [gate.params[i]]: +handleTypes(value, this._t, this._q, `${this.row}`) 
+                                        * Math.PI 
+                                        * (gate.params[i] === 'phi' || gate.params[i] === 'lambda' ? 2 : 1)
                                 }), {})
                             : gate.params.reduce((obj: {}, key: string) => ({
                                 ...obj, 
                                 // use theta, phi, lambda if they are defined
                                 // @ts-ignore
-                                [key]: +handleTypes(this[key] || 0, this._t, this._q, `${this.row}`) * Math.PI * (key === 'phi' ? 2 : 1)
+                                [key]: +handleTypes(this[key] || 0, this._t, this._q, `${this.row}`) 
+                                    * Math.PI 
+                                    * (key === 'phi' || key === 'lambda' ? 2 : 1)
                             }), {})
                     }
 
