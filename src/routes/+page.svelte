@@ -57,7 +57,7 @@
         
         @media (min-width: 800px) {
             grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 6fr 6fr 1fr;
+            grid-template-rows: 6fr 5fr 1fr;
         }
         
         @media (min-width: 1200px) {

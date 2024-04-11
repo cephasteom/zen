@@ -67,13 +67,13 @@ export class Wire {
                                 .filter((_, i) => i < gate.params.length)
                                 .reduce((obj, value, i) => ({
                                     ...obj,
-                                    [gate.params[i]]: +handleTypes(value, this._t, this._q, `${this.row}`) * Math.PI
+                                    [gate.params[i]]: +handleTypes(value, this._t, this._q, `${this.row}`) * Math.PI * (gate.params[i] === 'phi' ? 2 : 1)
                                 }), {})
                             : gate.params.reduce((obj: {}, key: string) => ({
                                 ...obj, 
                                 // use theta, phi, lambda if they are defined
                                 // @ts-ignore
-                                [key]: +handleTypes(this[key] || 0, this._t, this._q, `${this.row}`) * Math.PI
+                                [key]: +handleTypes(this[key] || 0, this._t, this._q, `${this.row}`) * Math.PI * (key === 'phi' ? 2 : 1)
                             }), {})
                     }
 
