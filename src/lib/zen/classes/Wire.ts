@@ -15,10 +15,19 @@ export class Wire {
     row: number;
     private _offset: number = 0;
     private _stack: any[] = []
+
+    private _feedback: number = -1
+    get feedback() {
+        return this._feedback
+    }
+
+    set feedback(value: number) {
+        this._feedback = value
+    }
     
     constructor(row: number) {
         this.row = row;    
-        // TODO: patternable params
+
         Object.entries(circuit.basicGates).forEach(([key, gate]: [string, any]) => {
             // add a method for each gate
             // variable order of arguments
@@ -90,12 +99,23 @@ export class Wire {
         })
     }
 
+    /**
+     * Use the last measure as the initial state of the qubit
+     */
+    fb(stream: number = this.row) {
+        this._stack.push(() => {
+            this.feedback = +handleTypes(stream, this._t, this._q, `${this.row}`)
+        })
+        return this
+    }
+
     clear() {
         this._stack = []
         this._offset = 0
         this.theta = null
         this.phi = null
         this.lambda = null
+        this.feedback = -1
     }
 
     /**
@@ -108,6 +128,9 @@ export class Wire {
         this.theta = theta
         this.phi = phi
         this.lambda = lambda
+        
+        const lastMeasure = circuit.measure(this.row)
+        this.feedback !== -1 && lastMeasure !== null && circuit.resetQubit(this.feedback, lastMeasure)
         this._stack.forEach((fn) => fn())
     }
 }

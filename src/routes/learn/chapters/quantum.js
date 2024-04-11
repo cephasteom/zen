@@ -73,4 +73,14 @@ s0.e.measure()
 s0.m.not(s0.e)
 \`\`\`
 
+## .fb()
+Use the \`.fb()\` method to apply feedback to a stream. This will use the previous measurement as the initial state of the qubit before the circuit runs. If you have entangled qubits, this can lead to some unusual results. For example:
+\`\`\`js
+s0.wire.u3().fb()
+\`\`\`
+By default, feedback is applied to the same stream. You can specify a different stream as the input for feedback by passing it as an argument. For example:
+\`\`\`js
+z.bpm.set(20)
+s0.wire.h()
+s1.wire.fb(0) // uses the previous measurement of stream 0 as the initial state
 `

@@ -1,4 +1,4 @@
-import { writable, get } from 'svelte/store';
+import { writable, derived, get } from 'svelte/store';
 import '../oto';
 import type { vector } from '../zen/types'
 
@@ -9,8 +9,16 @@ export const q = writable(16); // quantization (frames per cycle)
 export const s = writable(16); // size of canvas
 export const editorConsole = writable<{type?: string, message?: string}>({});
 export const isPlaying = writable(false);
+
 export const gates = writable<any[]>([[],[],[],[],[],[],[],[]]); // circuit gates
 export const measurements = writable<any[]>([0,0,0,0,0,0,0,0]); // circuit measurements
+const lastMeasurements = writable<any[]>([0,0,0,0,0,0,0,0]); // circuit measurements
+const feedback = writable<number[]>([-1,-1,-1,-1,-1,-1,-1,-1]); // feedback
+export const inputs = derived([lastMeasurements, feedback], ([$lastMeasurements, $feedback]) => {
+    // return $lastMeasurements.map((m, i) => $feedback[i] ? m : 0);
+    return $feedback.map((wire) => wire === -1 ? 0 : $lastMeasurements[wire]);
+})
+
 
 export const isDrawing = writable(true);
 export const messages = writable<{type: string, message: string}[]>([]);
@@ -51,14 +59,16 @@ zenChannel.onmessage = ({data: {message, type, data}}) => {
     ['error', 'info', 'pattern', 'success'].includes(type) && print(type, message.toString())
     
     if(type !== 'action') return
-    const { t: time, c: cycle, q: quant, s: size, delta, v, gates: gs, measurements: ms } = data;
+    const { t: time, c: cycle, q: quant, s: size, delta, v, gates: gs, measurements: ms, feedback: fb } = data;
     setTimeout(() => {
         t.set(time);
         c.set(cycle);
         q.set(quant);
         s.set(size);
         gates.set(gs);
+        lastMeasurements.set(get(measurements));
         measurements.set(ms);
+        feedback.set(fb);
 
         get(isDrawing) && visualsData.set(v);
     }, delta * 1000);

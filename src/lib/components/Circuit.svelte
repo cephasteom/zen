@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { gates, measurements } from "$lib/stores/zen";
+    import { gates, measurements, inputs } from "$lib/stores/zen";
     import Gate from "./Gate.svelte";
 
     const getConnectedRow = (currentRow: number, currentCol: number) => {
@@ -24,7 +24,7 @@
                     style="grid-column: 1;"
             >
                 <p class="label">
-                    <span class="label__state">|0⟩</span>
+                    <span class="label__state">|{$inputs[row]}⟩</span>
                     <span class="label__stream">s{row}</span>
                 </p>
             </div>

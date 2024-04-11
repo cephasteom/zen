@@ -126,6 +126,8 @@ const loop = new Loop(time => {
     circuit.run()
     const gates = circuit.gates
     const measurements = circuit.measureAll()
+    // routing for how wires should feed their outputs back into the inputs, if at all
+    const feedback = streams.map(stream => stream.wire.feedback)
 
     // compile parameters, events and mutations
     const compiled = [...streams, ...fxstreams].map((stream, i) => stream.get(t, q, s, bpm, z, measurements[i]))
@@ -142,7 +144,7 @@ const loop = new Loop(time => {
 
     // call actions
     const delta = (time - immediate())
-    const args = { time, delta, t, s, q, c, events, mutations, gates, measurements, v: vis }
+    const args = { time, delta, t, s, q, c, events, mutations, gates, measurements, feedback, v: vis }
     channel.postMessage({ type: 'action', data: args })
 
 }, `${z.q}n`).start(0)
