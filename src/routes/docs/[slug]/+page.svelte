@@ -61,12 +61,21 @@
 
     .markdown {
         margin-bottom: 2rem;
+
+        max-width: 1200px;
+        
+        @media (min-width: 1200px){
+            margin: 0 auto 2rem;
+        }
     }
 
     .pagination {
         width: 100%;
         display: flex;
         justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto 2rem;
+        
         &__next, &__prev {
             width: 50%;
             span { 

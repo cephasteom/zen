@@ -20,12 +20,14 @@ s1.wire.x()
 \`\`\`
 Here, we use a Hadamard gate on stream 0, followed by a CNOT gate with stream 1 as the target. We then apply an X gate to stream 1. If you run this in the Zen editor, you will see the quantum circuit visualisation update in real time. Measurements are shown on the right.
 
+### Multi-qubit gates
 Multi-qubit gates require a target qubit, or target qubits. These are passed as the first argument to the gate method. For example, to apply a CCNOT gate to qubits 0 and 1:
 \`\`\`js
 s0.wire.ccx([1,2])
 \`\`\`
 Here, we supply an array of target qubits, in order to entangle qubits 0, 1 and 2.
 
+### Gate parameters
 Some gates require additional parameters. For example, the u3 gate requires three parameters: theta, phi, and lambda. These are passed as arguments to the gate method. For example, to apply a u3 gate to qubit 0 with parameters theta, phi, lambda:
 \`\`\`js
 s0.wire.u3([0.1,0.2,0.3])
@@ -44,7 +46,17 @@ s0.lambda.set(0.5)
 s0.wire.u3()
 \`\`\`
 
-To map musical parameters to these axes, use \`.px\`, \`.py\`, and \`.pz\` or their aliases \`.pphi\`, \`.ptheta\`, and \`.plambda\` respectively. 
+### Arguments
+By default, chaining gates will add them sequentially to the wire. You can offset the position and move the gate further along the wire. We therefore have three potential arguments for each gate: the target qubit(s), the parameters, and the position. Some gate require all three, some only require one or two. This being a live coding environment, we want to write as little code as possible. As a general rule, arguments are ordered as follows: target qubit(s), parameters, position. If a gate does not expect a target qubit, or parameters, these can be ommited. For example:
+\`\`\`js
+s0.wire.x(2) // no target qubit or parameters, so arguments are just [position]
+s0.wire.u3([0.1,0.2,0.3],2) // no target qubits but parameters can be specified, so arguments are [parameters, position]
+s0.wire.ccx([1,2],2) // target qubits and position can be specified, so arguments are [target qubits, position]
+s0.wire.xx(2,0.5,0) // a rare example of a gate that requires all three arguments [target qubits, parameters, position]
+\`\`\`
+
+## .ptheta, .pphi, .plambda
+To map musical parameters to these axes, use the \`.ptheta\`, \`.pphi\`, and \`.plambda\` properties of a stream. These are instances of the [Pattern class](/docs/classes#pattern), and are simply aliases of the y, x, and z properties of the stream, respectively.
 
 ## .measure()
 Use the \`measure()\` method to use the measurement of a qubit to trigger an event. For example:

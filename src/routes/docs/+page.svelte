@@ -12,17 +12,30 @@
 </svelte:head>
 
 <section class="content">
-    <h1>Docs</h1>
-    <nav>
-        <ul>
-            {#each chapters as {slug,title}}
-                <a href={'/docs/' + slug} class="chapter"><li>{title}</li></a>
-            {/each}
-        </ul>
-    </nav>
+    <div class="content__inner">
+        <h1>Docs</h1>
+        <nav>
+            <ul>
+                {#each chapters as {slug,title}}
+                    <a href={'/docs/' + slug} class="chapter"><li>{title}</li></a>
+                {/each}
+            </ul>
+        </nav>
+    </div>
 </section>
 
 <style lang="scss">
+    .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        &__inner {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+
+        }
+    }
     ul {
         padding: 0;
         & a {
