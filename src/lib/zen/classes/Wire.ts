@@ -129,8 +129,6 @@ export class Wire {
         this.phi = phi
         this.lambda = lambda
         
-        const lastMeasure = circuit.measure(this.row)
-        this.feedback !== -1 && lastMeasure !== null && circuit.resetQubit(this.feedback, lastMeasure)
         this._stack.forEach((fn) => fn())
     }
 }
