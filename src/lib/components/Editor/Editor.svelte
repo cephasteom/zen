@@ -3,7 +3,7 @@
     import { onDestroy, onMount } from 'svelte';
     import type * as Monaco from 'monaco-editor/esm/vs/editor/editor.api';
     import { setCode, play, stop } from '$lib/zen';
-    import { editorConsole, isPlaying, isDrawing, editorValue } from '$lib/stores/zen';
+    import { editorConsole, isPlaying, editorValue } from '$lib/stores/zen';
     import { activePreset, presets } from '$lib/stores/presets';
     import { options } from './options';
     import { example } from './example';
@@ -45,12 +45,7 @@
             if(e.keyCode === 3 && e.shiftKey) {
                 e.preventDefault();
                 setAndPlay();
-            } 
-            // alt + v toggle visuals
-            if(e.keyCode === 52 && e.altKey) {
-                e.preventDefault();
-                isDrawing.set(!$isDrawing);
-            } 
+            }
         })
 
         activePreset.subscribe(key => {

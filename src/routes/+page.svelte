@@ -6,6 +6,7 @@
     import Tools from '$lib/components/Tools.svelte';
     import Console from '$lib/components/Console.svelte';
     import { startAudio } from '$lib/zen/index';
+    import { isQuantum } from '$lib/stores/zen';
     
 </script>
 
@@ -21,22 +22,35 @@
     on:keydown={startAudio}
 />
 
-<section class="zen">
+<section 
+    class="zen"
+    class:zen--quantum={$isQuantum}    
+>
     <div class="editor">
         <Editor />
     </div>
+    
     <div class="tools">
         <Tools />
     </div>
-    <div class="circuit">
-        <Circuit />
-    </div>
+
+    {#if $isQuantum}
+        <div class="circuit">
+            <Circuit />
+        </div>
+    {/if}
     
-    <div class="visuals">
+    <div 
+        class="visuals"
+        class:visuals--quantum={$isQuantum}
+    >
         <Visuals />
     </div>
 
-    <div class="console">
+    <div 
+        class="console"
+        class:console--quantum={$isQuantum}
+    >
         <Console />
     </div>
 
@@ -56,13 +70,21 @@
         min-height: calc(100vh - 10rem);
         
         @media (min-width: 800px) {
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 6fr 5fr 1fr;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 8fr 3fr 1fr;
+            
+            &--quantum {
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-rows: 6fr 5fr 1fr;
+            }
         }
         
         @media (min-width: 1200px) {
-            grid-template-columns: 2fr 1.5fr 1.5fr;
+            grid-template-columns: 1fr 1fr;
             padding: 1rem 2rem;
+            &--quantum {
+                grid-template-columns: 2fr 1.5fr 1.5fr;
+            }
         }
 
         @media all and (display-mode: fullscreen) {
@@ -109,8 +131,13 @@
     }
 
     .visuals {
-        grid-column: 3 / 4;
+        grid-column: 2 / 3;
         grid-row: 1;
+
+        &--quantum {
+            grid-column: 3 / 4;
+            grid-row: 1;
+        }
         border-radius: 10px;
         position: relative;
 
@@ -125,7 +152,11 @@
 
     .console {
         grid-column: 2 / 3;
-        grid-row: 1;
+        grid-row: 2 / 4;
+        &--quantum {
+            grid-column: 2 / 3;
+            grid-row: 1;
+        }
         border-radius: 10px;
         position: relative;
 

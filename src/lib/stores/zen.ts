@@ -15,7 +15,7 @@ export const measurements = writable<any[]>([0,0,0,0,0,0,0,0]); // circuit measu
 export const inputs = writable<number[]>([0,0,0,0,0,0,0,0]); // initial state of qubits in circuit
 
 
-export const isDrawing = writable(true);
+export const isQuantum = writable(true);
 export const messages = writable<{type: string, message: string}[]>([]);
 
 const initialMessages = [
@@ -38,7 +38,6 @@ export const print = (type: string, message: string) => {
     if(last && last.message === message) return
     type === 'pattern' && messages.update(arr => arr.filter(m => m.type !== 'pattern'))
     messages.update(arr => [...arr, {type, message}]);
-    // (get(isDrawing) || window.innerWidth < 600) && editorConsole.set({type, message})
 }
 
 export const clear = () => messages.set([]);
@@ -63,7 +62,6 @@ zenChannel.onmessage = ({data: {message, type, data}}) => {
         gates.set(gs);
         measurements.set(ms);
         inputs.set(ins);
-
-        get(isDrawing) && visualsData.set(v);
+        visualsData.set(v);
     }, delta * 1000);
 }
