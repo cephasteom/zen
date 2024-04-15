@@ -15,7 +15,7 @@ export const measurements = writable<any[]>([0,0,0,0,0,0,0,0]); // circuit measu
 export const inputs = writable<number[]>([0,0,0,0,0,0,0,0]); // initial state of qubits in circuit
 
 
-export const isQuantum = writable(false);
+export const isQuantum = writable(true);
 export const messages = writable<{type: string, message: string}[]>([]);
 
 const initialMessages = [

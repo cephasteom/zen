@@ -6,7 +6,7 @@
     import { Vector } from 'p5';
     import { min } from '$lib/zen/utils/utils';
     import { visualsData, isQuantum } from "$lib/stores/zen";
-    import type { vector } from '$lib/zen/types';
+    import type { vector as v } from '$lib/zen/types';
 
     let container: HTMLElement;
     let p5Instance: p5;
@@ -71,9 +71,9 @@
             draw = p5.draw
         }
 
-        const sphereMode = (data: vector[]) => {
+        const sphereMode = (data: v[]) => {
             drawSphere()
-            data.forEach((p: vector) => {
+            data.forEach((p: v) => {
                 const { x: phi, y: theta, z: l, colour } = p
                 const lambda = Math.abs(1 - l)
                 const vector = Vector.fromAngles(
@@ -113,12 +113,12 @@
 
         }
         
-        const squareMode = (data: vector[]) => {
+        const squareMode = (data: v[]) => {
             drawSquare()
             const squareSize = (size / gridSize) * 0.9;
             const gridTotalSize = gridSize * squareSize;
 
-            data.forEach((p: vector) => {
+            data.forEach((p: v) => {
                 const { x, y, colour } = p
                 // Calculate the position of the square in the grid
                 const posX = Math.floor((x%1) * gridSize) * squareSize - gridTotalSize / 2;
