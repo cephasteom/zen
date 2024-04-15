@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
+    import { onMount, tick } from 'svelte';
     import { get } from 'svelte/store';
     import P5 from 'p5-svelte'
     import type { p5, Sketch } from 'p5-svelte';
@@ -148,8 +148,8 @@
     }
 
     onMount(() => {
-        const unsubscribeIsQuantum = isQuantum.subscribe(() => {
-            // TODO: needs to happen after the page has re-rendered
+        const unsubscribeIsQuantum = isQuantum.subscribe(async () => {
+            await tick()
             handleResize && handleResize()
         });
         const unsubscribeVisualsData = visualsData.subscribe(() => {
