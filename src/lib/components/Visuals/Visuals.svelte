@@ -148,9 +148,18 @@
     }
 
     onMount(() => {
-        visualsData.subscribe(() => {
+        const unsubscribeIsQuantum = isQuantum.subscribe(() => {
+            // TODO: needs to happen after the page has re-rendered
+            handleResize && handleResize()
+        });
+        const unsubscribeVisualsData = visualsData.subscribe(() => {
             draw && draw()
         });
+
+        return () => {
+            unsubscribeIsQuantum()
+            unsubscribeVisualsData()
+        }
     })
 </script>
 
