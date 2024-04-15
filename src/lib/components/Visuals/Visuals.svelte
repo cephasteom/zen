@@ -6,7 +6,7 @@
     import { Vector } from 'p5';
     import { min } from '$lib/zen/utils/utils';
     import { visualsData, isQuantum } from "$lib/stores/zen";
-    import { sphere } from './sketches';
+    import type { vector } from '$lib/zen/types';
 
     let container: HTMLElement;
     let p5Instance: p5;
@@ -24,14 +24,32 @@
         }
 
         const drawSphere = () => {
-            
             p5.push()
-            
             p5.noFill()
             p5.stroke(185,185,185)
             p5.strokeWeight(1/8)
             p5.sphere((radius)*0.9, 20, 20);
             p5.pop()
+        }
+
+        const drawSquare = () => {
+            p5.push();
+            p5.noFill();
+            p5.stroke(185,185,185);
+            p5.strokeWeight(1/8);
+
+            const gridSize = 16;
+            const squareSize = (size / gridSize) * 0.9;
+            const gridTotalSize = gridSize * squareSize;
+
+            for (let i = 0; i < gridSize; i++) {
+                for (let j = 0; j < gridSize; j++) {
+                    p5.rect(i * squareSize - gridTotalSize / 2, j * squareSize - gridTotalSize / 2, squareSize, squareSize);
+                }
+            }
+
+            p5.pop();
+            
         }
 
         const resize = () => {
@@ -45,17 +63,17 @@
             p5.smooth()
             p5.noLoop()
 
-            drawSphere()
+            get(isQuantum)
+                ? drawSphere()
+                : drawSquare()
       
             handleResize = resize
             draw = p5.draw
         }
 
-        p5.draw = () => {
-            const data = get(visualsData)
-            p5.clear()
+        const sphereMode = (data: vector[]) => {
             drawSphere()
-            data.forEach(p => {
+            data.forEach((p: vector) => {
                 const { x: phi, y: theta, z: l, colour } = p
                 const lambda = Math.abs(1 - l)
                 const vector = Vector.fromAngles(
@@ -92,6 +110,43 @@
                 p5.circle(0,0,1);
                 p5.pop()
             })
+
+        }
+        
+        const squareMode = (data: vector[]) => {
+            drawSquare()
+            const gridSize = 16;
+            const squareSize = (size / gridSize) * 0.9;
+            const gridTotalSize = gridSize * squareSize;
+
+            // for (let i = 0; i < gridSize; i++) {
+            //     for (let j = 0; j < gridSize; j++) {
+            //         p5.rect(i * squareSize - gridTotalSize / 2, j * squareSize - gridTotalSize / 2, squareSize, squareSize);
+            //     }
+            // }
+
+            data.forEach((p: vector) => {
+                const { x, y, colour } = p
+                // Calculate the position of the square in the grid
+                const posX = Math.floor((x%1) * gridSize) * squareSize - gridTotalSize / 2;
+                const posY = Math.floor((y%1) * gridSize) * squareSize - gridTotalSize / 2;
+
+                // Draw the square
+                p5.push();
+                p5.fill(colour);
+                p5.noStroke();
+                p5.rect(posX, posY, squareSize, squareSize);
+                p5.pop();
+            })
+        }
+
+        p5.draw = () => {
+            const data = get(visualsData)
+            p5.clear()
+            get(isQuantum)
+                ? sphereMode(data)
+                : squareMode(data)
+            
         }
     }
 
@@ -100,7 +155,7 @@
     }
 
     onMount(() => {
-        visualsData.subscribe(data => {
+        visualsData.subscribe(() => {
             draw && draw()
         });
     })

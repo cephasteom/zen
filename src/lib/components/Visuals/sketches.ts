@@ -1,5 +1,10 @@
+import { get } from 'svelte/store';
 import type { p5, Sketch } from 'p5-svelte';
 import { min } from '../../zen/utils/utils';
+import { Vector } from 'p5';
+import { visualsData } from "../../stores/zen";
+
+let handleResize = () => {}
 
 export const sphere : (container: HTMLElement) => Sketch = (container: HTMLElement) => (p5: p5) => {
     let size = 100;
