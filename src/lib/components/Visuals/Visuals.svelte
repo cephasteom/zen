@@ -12,6 +12,7 @@
     let p5Instance: p5;
     let handleResize: any;
     let draw: any;
+    let gridSize = 16;
 
     let sketch : Sketch = (p5: p5)=> {
         let size = 100;
@@ -38,7 +39,6 @@
             p5.stroke(185,185,185);
             p5.strokeWeight(1/8);
 
-            const gridSize = 16;
             const squareSize = (size / gridSize) * 0.9;
             const gridTotalSize = gridSize * squareSize;
 
@@ -115,15 +115,8 @@
         
         const squareMode = (data: vector[]) => {
             drawSquare()
-            const gridSize = 16;
             const squareSize = (size / gridSize) * 0.9;
             const gridTotalSize = gridSize * squareSize;
-
-            // for (let i = 0; i < gridSize; i++) {
-            //     for (let j = 0; j < gridSize; j++) {
-            //         p5.rect(i * squareSize - gridTotalSize / 2, j * squareSize - gridTotalSize / 2, squareSize, squareSize);
-            //     }
-            // }
 
             data.forEach((p: vector) => {
                 const { x, y, colour } = p
