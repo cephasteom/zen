@@ -1,6 +1,6 @@
 <script lang="ts">
     import Editor from '$lib/components/Editor/Editor.svelte';
-    import Visuals from '$lib/components/Visuals.svelte';
+    import Visuals from '$lib/components/Visuals/Visuals.svelte';
     import Circuit from '$lib/components/Circuit.svelte';
     import Data from '$lib/components/Data.svelte';
     import Tools from '$lib/components/Tools.svelte';

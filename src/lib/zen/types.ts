@@ -20,4 +20,4 @@ export interface ActionArgs {
 }
 export type action = { (input: ActionArgs): void }
 
-export type vector = {phi: number, theta: number, lambda: number, colour: number[], weight: number}
+export type vector = {x: number, y: number, z: number, colour: number[], weight: number}

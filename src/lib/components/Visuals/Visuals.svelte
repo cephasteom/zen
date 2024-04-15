@@ -5,14 +5,15 @@
     import type { p5, Sketch } from 'p5-svelte';
     import { Vector } from 'p5';
     import { min } from '$lib/zen/utils/utils';
-    import { visualsData } from "$lib/stores/zen";
+    import { visualsData, isQuantum } from "$lib/stores/zen";
+    import { sphere } from './sketches';
 
     let container: HTMLElement;
     let p5Instance: p5;
     let handleResize: any;
     let draw: any;
 
-    const sketch : Sketch = (p5: p5)=> {
+    let sketch : Sketch = (p5: p5)=> {
         let size = 100;
         let radius = size * 0.4;
 
@@ -55,7 +56,7 @@
             p5.clear()
             drawSphere()
             data.forEach(p => {
-                const { phi, theta, lambda: l, colour } = p
+                const { x: phi, y: theta, z: l, colour } = p
                 const lambda = Math.abs(1 - l)
                 const vector = Vector.fromAngles(
                     p5.radians(theta * 180), 
