@@ -77,7 +77,7 @@
         &::after {
             content: "";
             position: absolute;
-            background-color: var(--color-theme-1);
+            background-color: var(--color-theme-2);
         }
     
         &::before {
@@ -109,10 +109,10 @@
 
     .connection {
         position: absolute;
-        left: 50%;
+        left: calc(50% - 0.5px);
         height: 100%;
         width: 1px; 
         background-color: var(--color-theme-2);
-        transform: translateX(-50%);
+        // transform: translateX(-10px);
     }
 </style>

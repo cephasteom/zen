@@ -62,9 +62,9 @@
         grid-template-columns: 1fr;
         grid-template-rows: repeat(8, 1fr);
         width: calc(100% - 4rem);
-        height: calc(100% - 4rem);
+        height: calc(100% - 2rem);
         border-radius: 10px;
-        padding: 2rem;
+        padding: 1rem 2rem;
         overflow-x: scroll;
         position: relative;
     }
