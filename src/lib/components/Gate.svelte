@@ -6,15 +6,16 @@
 
     // @ts-ignore
     $: params = Object.values(gate.options?.params || {}).map((p: number) => {
-        if (p === Math.PI) return 'π';
-        if (p === 0) return '0';
-        return `${parseFloat((p/Math.PI).toFixed(2))}π`;
+        if (p === 0) return `0π`;
+        return `${(p/Math.PI).toFixed(1)}π`;
     });
 
     $: ellipse = (gate.name === 'cx' && gate.connector === 1)
         || (gate.name === 'ccx' && gate.connector === 2);
 
     $: circle = ['cx', 'ccx'].includes(gate.name) && !ellipse;
+
+    $: name = gate.name === 'measure' ? '?' : gate.name;
 </script>
 
 {#if connectTo !== null}
@@ -29,8 +30,12 @@
     class:ellipse={ellipse}
     class:circle={circle}
 >
-    <p class="type">{gate.name}</p>
-    <p class="params">{params.join(',')}</p>
+    <p class="type">{name}</p>
+    <div class="params">
+        {#each params as param}
+            <p>{param}</p>
+        {/each}
+    </div>
 </div>
 
 <style lang="scss">
@@ -41,7 +46,7 @@
         justify-content: center;
         width: 25px;
         height: 25px;
-        border: 1px solid var(--color-theme-1);
+        border: 1px solid var(--color-theme-2);
         background-color: var(--color-grey-darker);
         z-index: 10;
 
@@ -50,13 +55,18 @@
             text-transform: uppercase;
             text-align: center;
             transform: translateX(0.75px);
-            font-size: var(--text-xxs);
-            color: var(--color-theme-1);
+            font-size: var(--text-xs);
+            color: var(--color-theme-2);
+        }
 
-            &.params {
-                position: absolute;
-                bottom: -0.8rem;
-            }
+        .params {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            position: absolute;
+            left: calc(100% + 0.5rem);
+            background-color: var(--color-grey-darker);
         }
     }
 
@@ -69,7 +79,7 @@
         &::after {
             content: "";
             position: absolute;
-            background-color: var(--color-theme-1);
+            background-color: var(--color-theme-2);
         }
     
         &::before {
@@ -93,7 +103,7 @@
         border-radius: 50%;
         width: 7.5px;
         height: 7.5px;
-        background-color: var(--color-theme-1);
+        background-color: var(--color-theme-2);
         & p {
             display: none;
         }
@@ -101,10 +111,9 @@
 
     .connection {
         position: absolute;
-        left: 50%;
+        left: calc(50% - 0.5px);
         height: 100%;
         width: 1px; 
-        background-color: var(--color-theme-1);
-        transform: translateX(-50%);
+        background-color: var(--color-theme-2);
     }
 </style>

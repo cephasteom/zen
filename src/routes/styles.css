@@ -55,11 +55,24 @@
     --color-yellow: #FEF4E5;
     --color-grey-lighter: #D1CEC7;
     --color-grey-light: #B9B9B9;
+    --color-grey-light-mid: #909090;
     --color-grey-mid: #555555;
     --color-grey-dark: #404040;
     --color-grey-darker: #333333;
     --color-grey-darkest: rgb(38, 38, 38);
     --color-box-shadow: rgba(38, 38, 38, 0.75);
+
+    /* --color-theme-1: #808080; */
+    /* --color-theme-2: #A0A0A0; */
+    /* --color-theme-3: #C0C0C0; */
+    --color-yellow: #E0E0E0;
+    --color-grey-lighter: #FFF;
+    --color-grey-light: #FFF;
+    --color-grey-mid: #B0B0B0;
+    /* --color-grey-dark: #909090; */
+    /* --color-grey-darker: #707070; */
+    /* --color-grey-darkest: #606060; */
+    --color-box-shadow: rgba(50, 50, 50, 0.75);   
     --max-width: 1600px;
 }
 

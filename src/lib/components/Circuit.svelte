@@ -80,7 +80,7 @@
         align-items: center;
         justify-content: center;
         position: relative;
-        width: 3rem;
+        width: 4rem;
         &--first {
             justify-content: flex-start;
         }
@@ -94,7 +94,7 @@
         margin: 0;
         display: flex;
         position: relative;
-        color: var(--color-theme-1);
+        color: var(--color-theme-2);
         font-size: var(--text-xs);
         &__stream {
             font-size: var(--text-xxs);
@@ -124,7 +124,7 @@
     .wire {
         width: 100%;
         height: 1px;
-        background-color: var(--color-theme-1);
+        background-color: var(--color-theme-2);
         position: absolute;
         top: calc(50% - 0.5px);
         z-index: 10;

@@ -7,6 +7,7 @@
     import { activePreset, presets } from '$lib/stores/presets';
     import { options } from './options';
     import { example } from './example';
+    import { parseCode } from '$lib/zen/parsing';
 
     let editor: Monaco.editor.IStandaloneCodeEditor;
     let monaco: typeof Monaco;
@@ -15,7 +16,10 @@
 
     function setAndPlay() {
         editorConsole.set({});
-        setCode(editor.getValue());
+        const parsed = parseCode(editor.getValue());
+        setCode(parsed);
+        editor.setValue(parsed);
+
         localStorage.setItem("z.code", editor.getValue());
         play();
         isPlaying.set(true);
