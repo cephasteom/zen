@@ -18,7 +18,8 @@
         editorConsole.set({});
         const parsed = parseCode(editor.getValue());
         setCode(parsed);
-        editor.setValue(parsed);
+        // TODO: this is breaking some features
+        // editor.setValue(parsed);
 
         localStorage.setItem("z.code", editor.getValue());
         play();
