@@ -1,6 +1,23 @@
 export default `# Zen Quantum
 Zen uses the <a href="https://www.npmjs.com/package/quantum-circuit" target="_blank">Quantum Circuit</a> library by Quantastica to build and run quantum circuit simulations in the browser. In quantum mode, each stream represents a single wire in a quantum circuit. The position of the stream can be used to set the parameters of quantum gates, and the outcomes of measurements can be used to trigger events. This page outlines the basic syntax for building quantum circuits in Zen. A more detailed guide to the Quantum Circuit library can be found <a href="https://www.npmjs.com/package/quantum-circuit" target="_blank">here</a>.
 
+Run the following examples to get a feel for how quantum circuits work in Zen. Ensure qauntum mode is toggled by clicking on the qubit icon in the tool bar.
+\'\'\'js
+z.bpm.set(160)
+
+s0.wire.h().cx([1]).ccx([1,2])
+s1.wire.fb(0)
+s2.wire.fb(0)
+
+s0.e.measure()
+s1.e.measure()
+s2.e.measure()
+
+s0.set({inst: 1, bank: 'bd808', i: 3, cut: 1})
+s1.set({inst: 1, bank: 'sd808', i: '0..16?*16', cut: 0})
+s2.set({inst: 1, bank: 'hh', i: '0..16?*16', cut: 0, vol: 0.5})
+\'\'\'
+
 ## .theta, .phi, .lambda
 The \`.theta\`, \`.phi\`, and \`.lambda\` properties of a stream are used to set the parameters of quantum gates. They are represented on the sphere visualisation as the vertical (y), horizontal (x), and depth (z) axes respectively. These properties are instances of the [Pattern class](/docs/classes#pattern), and can be set using the same methods as other patterns. They are also simply aliases of the y, x, and z properties of the stream, respectively. For example:
 \`\`\`js

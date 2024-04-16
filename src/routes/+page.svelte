@@ -112,7 +112,7 @@
             grid-column: 1;
             grid-row: 3;
         }
-        background: linear-gradient(45deg, var(--color-grey-dark), var(--color-grey-darker));
+        background: linear-gradient(45deg, var(--color-grey-light-mid), var(--color-grey-darker));
         padding: 1rem;
     }
 
@@ -141,7 +141,7 @@
         border-radius: 10px;
         position: relative;
 
-        background: linear-gradient(45deg, var(--color-grey-dark), var(--color-grey-darker));
+        background: linear-gradient(45deg, var(--color-grey-light-mid), var(--color-grey-darker));
 
         display: none;
 
