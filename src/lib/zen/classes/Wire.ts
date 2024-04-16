@@ -59,17 +59,22 @@ export class Wire {
                 const gates = circuit.gates[this.row] || [];
                 const firstNullIndex = gates.findIndex((gate: any) => gate === null);
                 const column = firstNullIndex !== -1 ? firstNullIndex + this._offset : gates.length + this._offset;
+                const creg = key === 'measure' ? {
+                    name: "c",
+                    bit: this.row
+                } : {}
                 
                 // intialise the gate without options
                 hasControlQubits
-                    ? circuit.insertGate(key, column, [this.row, ...controlQubits])
-                    : circuit.addGate(key, column, this.row)
+                    ? circuit.insertGate(key, column, [this.row, ...controlQubits], { creg })
+                    : circuit.addGate(key, column, this.row, { creg })
                 
                 // add a function to the stack to set params dynamically on each frame
                 this._stack.push(() => {
                     if(!hasParams) return
 
                     const options = {
+                        creg,
                         params: params.length
                             ? params
                                 .filter((_, i) => i < gate.params.length)
