@@ -112,7 +112,7 @@
             grid-column: 1;
             grid-row: 3;
         }
-        background-color: var(--color-grey-dark);
+        background: linear-gradient(45deg, var(--color-grey-dark), var(--color-grey-darker));
         padding: 1rem;
     }
 
