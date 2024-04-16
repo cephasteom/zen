@@ -6,6 +6,7 @@
 
     // @ts-ignore
     $: params = Object.values(gate.options?.params || {}).map((p: number) => {
+        if (p === 0) return `0π`;
         return `${(p/Math.PI).toFixed(1)}π`;
     });
 
@@ -13,6 +14,8 @@
         || (gate.name === 'ccx' && gate.connector === 2);
 
     $: circle = ['cx', 'ccx'].includes(gate.name) && !ellipse;
+
+    $: name = gate.name === 'measure' ? '?' : gate.name;
 </script>
 
 {#if connectTo !== null}
@@ -27,7 +30,7 @@
     class:ellipse={ellipse}
     class:circle={circle}
 >
-    <p class="type">{gate.name}</p>
+    <p class="type">{name}</p>
     <div class="params">
         {#each params as param}
             <p>{param}</p>
@@ -52,7 +55,7 @@
             text-transform: uppercase;
             text-align: center;
             transform: translateX(0.75px);
-            font-size: var(--text-xxs);
+            font-size: var(--text-xs);
             color: var(--color-theme-2);
         }
 
@@ -64,7 +67,6 @@
             position: absolute;
             left: calc(100% + 0.5rem);
             background-color: var(--color-grey-darker);
-            // top: 0;
         }
     }
 
@@ -113,6 +115,5 @@
         height: 100%;
         width: 1px; 
         background-color: var(--color-theme-2);
-        // transform: translateX(-10px);
     }
 </style>
