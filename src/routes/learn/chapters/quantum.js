@@ -47,7 +47,7 @@ s0.wire.u3()
 \`\`\`
 
 ### Arguments
-By default, chaining gates will add them sequentially to the wire. You can offset the position and move the gate further along the wire. We therefore have three potential arguments for each gate: the target qubit(s), the parameters, and the position. Some gate require all three, some only require one or two. This being a live coding environment, we want to write as little code as possible. As a general rule, arguments are ordered as follows: target qubit(s), parameters, position. If a gate does not expect a target qubit, or parameters, these can be ommited. For example:
+By default, chaining gates will add them sequentially to the wire. You can offset the position and move the gate further along the wire. We therefore have three potential arguments for each gate: the target qubit(s), the parameters, and the position. Some gate require all three, some only require one or two. This being a live coding environment, we want to write as little code as possible. As a general rule, arguments are ordered as follows: target qubit(s), parameters, position. If a gate does not expect a target qubit, or parameters, these can be omitted. For example:
 \`\`\`js
 s0.wire.x(2) // no target qubit or parameters, so arguments are just [position]
 s0.wire.u3([0.1,0.2,0.3],2) // no target qubits but parameters can be specified, so arguments are [parameters, position]
