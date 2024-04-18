@@ -212,7 +212,7 @@ x: 'xor'
      * @hidden 
      */ 
     handleTypes(value: patternValue | Pattern | string | Function, t: number | null = null, round=true) : patternValue {
-        if(value instanceof Pattern) return value.get(t || this._t, this._q) || 0
+        if(value instanceof Pattern) return value.get(t || this._t, this._q, this._bpm, this._measurements) || 0
         if(typeof value === 'function') return value(t || this._t, this._q)
         if(typeof value === 'string') return parsePattern(value, t || this._t, this._q, this._id, round)
         return value
@@ -328,7 +328,10 @@ x: 'xor'
      * s3.e.not('1?0*16')
      */ 
     not(x: patternable): Pattern {
-        this.stack.push(() => this.handleTypes(x) ? 0 : 1)
+        this.stack.push(() => this.handleTypes(x) 
+            ? 0 
+            : 1
+        )
         return this
     }
 
