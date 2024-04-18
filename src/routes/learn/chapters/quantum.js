@@ -76,7 +76,7 @@ s0.wire.xx(2,0.5,0) // a rare example of a gate that requires all three argument
 To map musical parameters to these axes, use the \`.ptheta\`, \`.pphi\`, and \`.plambda\` properties of a stream. These are instances of the [Pattern class](/docs/classes#pattern), and are simply aliases of the y, x, and z properties of the stream, respectively.
 
 ## .measure()
-Use the \`measure()\` method to use the measurement of a qubit to trigger an event. For example:
+Use the \`measure()\` method to use the measurement of a qubit to trigger an event. It expects a single argument, the index of the qubit you wish to measure. For example:
 \`\`\`js
 s0.set({inst:0,reverb:0.125,rtail:0.2,cut:0,cutr:250,dur:100,mods:0.1})
 
@@ -86,7 +86,7 @@ s0.phi.sine(0,1,0,1/3)
 s0.ptheta._n.set('Cpro%16..*16 | Cpro%16..?*16').sub('0?12*16')
 s0.pphi.modi.saw()
 s0.wire.u3()
-s0.e.measure()
+s0.e.measure(0)
 s0.m.not(s0.e)
 \`\`\`
 
@@ -102,21 +102,21 @@ s0.wire.h()
 s1.wire.fb(0) // uses the previous measurement of stream 0 as the initial state
 \`\`\`
 
-// ## Qasm Strings
-// You can paste in a QASM 2.0 string to load a quantum circuit. This will be parsed and replaced with Zen code for you to edit. Be warned this is an experimental feature. QASM strings should start with a " and end with a \\n", and contain newlines and escaped quotes. For example, the first example should be formatted as per the second example:
-// \`\`\`js
-// OPENQASM 2.0;
-// include "qelib1.inc";
-// qreg q[2];
-// creg c[2];
-// h q[0];
-// cx q[0],q[1];
-// measure q[0] -> c[0];
-// measure q[1] -> c[1];
-// \`\`\`
-// \`\`\`js
-// "OPENQASM 2.0;\\ninclude \\"qelib1.inc\\";\\nqreg q[2];\\ncreg c[2];\\nh q[0];\\ncx q[0],q[1];\\nmeasure q[0] -> c[0];\\nmeasure q[1] -> c[1];\\n"
-// \`\`\`
+## Qasm Strings
+You can paste in a QASM 2.0 string to load a quantum circuit. This will be parsed and replaced with Zen code for you to edit. Be warned this is an experimental feature. QASM strings should start with a " and end with a \\n", and contain newlines and escaped quotes. For example, the first example should be formatted as per the second example:
+\`\`\`js
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[2];
+creg c[2];
+h q[0];
+cx q[0],q[1];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+\`\`\`
+\`\`\`js
+"OPENQASM 2.0;\\ninclude \\"qelib1.inc\\";\\nqreg q[2];\\ncreg c[2];\\nh q[0];\\ncx q[0],q[1];\\nmeasure q[0] -> c[0];\\nmeasure q[1] -> c[1];\\n"
+\`\`\`
 
 
 `

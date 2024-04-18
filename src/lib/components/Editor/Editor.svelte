@@ -18,8 +18,24 @@
         editorConsole.set({});
         const parsed = parseCode(editor.getValue());
         setCode(parsed);
-        // TODO: this is breaking some features
-        // editor.setValue(parsed);
+        
+        // Save the cursor position
+        const position = editor.getPosition();
+
+        // Update the code
+        const model = editor.getModel();
+        if (model) {
+            model.pushEditOperations(
+                [], 
+                [{ range: model.getFullModelRange(), text: parsed }],
+                () => null
+            );
+        }
+
+        // Restore the cursor position
+        if (position) {
+            editor.setPosition(position);
+        }
 
         localStorage.setItem("z.code", editor.getValue());
         play();

@@ -136,7 +136,7 @@ const loop = new Loop(time => {
     measurements = circuit.measureAll()
 
     // compile parameters, events and mutations
-    const compiled = [...streams, ...fxstreams].map((stream, i) => stream.get(t, q, s, bpm, z, measurements[i]))
+    const compiled = [...streams, ...fxstreams].map(stream => stream.get(t, q, s, bpm, z, measurements))
     const soloed = compiled.filter(({solo}) => solo)
     const result = soloed.length ? soloed : compiled
     const events = result.filter(({e}) => e)
