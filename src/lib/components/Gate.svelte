@@ -6,7 +6,6 @@
 
     // @ts-ignore
     $: params = Object.values(gate.options?.params || {}).map((p: number) => {
-        if (p === 0) return `0π`;
         return `${(p/Math.PI).toFixed(1)}π`;
     });
 

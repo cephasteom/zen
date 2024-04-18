@@ -76,7 +76,7 @@ s0.wire.xx(2,0.5,0) // a rare example of a gate that requires all three argument
 To map musical parameters to these axes, use the \`.ptheta\`, \`.pphi\`, and \`.plambda\` properties of a stream. These are instances of the [Pattern class](/docs/classes#pattern), and are simply aliases of the y, x, and z properties of the stream, respectively.
 
 ## .measure()
-Use the \`measure()\` method to use the measurement of a qubit to trigger an event. For example:
+Use the \`measure()\` method to use the measurement of a qubit to trigger an event. It expects a single argument, the index of the qubit you wish to measure. For example:
 \`\`\`js
 s0.set({inst:0,reverb:0.125,rtail:0.2,cut:0,cutr:250,dur:100,mods:0.1})
 
@@ -86,7 +86,7 @@ s0.phi.sine(0,1,0,1/3)
 s0.ptheta._n.set('Cpro%16..*16 | Cpro%16..?*16').sub('0?12*16')
 s0.pphi.modi.saw()
 s0.wire.u3()
-s0.e.measure()
+s0.e.measure(0)
 s0.m.not(s0.e)
 \`\`\`
 

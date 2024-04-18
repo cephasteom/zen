@@ -60,7 +60,7 @@ export class Pattern {
     private _bpm: number = 120
 
     /** @hidden */
-    private _measure: number = 0
+    private _measurements: number[] = [0,0,0,0,0,0,0,0]
 
     /** @hidden */
     private _state = {} as any
@@ -240,7 +240,7 @@ x: 'xor'
     reset() {
         this.stack = []
         this._value = 0
-        this._measure = 0
+        this._measurements = [0,0,0,0,0,0,0,0,0]
         this._state = {}
         return this
     }   
@@ -1311,8 +1311,11 @@ x: 'xor'
      * @returns {Pattern}
      * @example s0.e.once()
      */
-    measure(): Pattern {
-        this.stack.push(() => this._measure)
+    measure(qubit: patternable = 0): Pattern {
+        this.stack.push(() => {
+            const i = +this.handleTypes(qubit) % this._measurements.length
+            return this._measurements[i]
+        })
         return this
     }
 
@@ -1329,11 +1332,11 @@ x: 'xor'
     }
 
     /** @hidden */
-    get(t: number, q: number, bpm?: number, measure: number = 0): patternValue | null {
+    get(t: number, q: number, bpm?: number, measurements: number[] = [0,0,0,0,0,0,0,0]): patternValue | null {
         this._t = t
         this._q = q
         this._bpm = bpm || this._bpm
-        this._measure = measure
+        this._measurements = measurements
 
         const value = this.stack.length 
             ? this.stack.reduce((val: patternValue, fn) => fn(val), t) 
