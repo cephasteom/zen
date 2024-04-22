@@ -735,7 +735,7 @@ x: 'xor'
      * @param a value to return when true
      * @param b value to return when false
      * @returns {Pattern}
-     * @example s0.p.n.bin('1111') // output depends on the number of division per cycle / canvas. If 16, returns 1 every 4 divisions, 0 otherwise
+     * @example s0.e.bin('1111') // output depends on the number of division per cycle / canvas. If 16, returns 1 every 4 divisions, 0 otherwise
     */
     bin(n: string = '10000000', ...rest: patternable[]): Pattern {
         const arr = n.replace(/\s+/g, '').split('').map(x => !!parseInt(x))
