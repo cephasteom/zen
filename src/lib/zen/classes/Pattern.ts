@@ -60,8 +60,19 @@ export class Pattern {
     /** @hidden */
     private _bpm: number = 120
 
-    /** @hidden */
+    /**
+     * State object for pattern methods that require it
+     * Clears on reset()
+     * @hidden
+     */
     private _state = {} as any
+
+    /**
+     * State object for pattern methods that require it
+     * Does not clear on reset()
+     * @hidden
+     */
+    private _statePersist = {} as any
 
     /**
      * Shorthand aliases for pattern methods.
@@ -1317,8 +1328,8 @@ x: 'xor'
             const i = +this.handleTypes(qubit)
             const useState = +this.handleTypes(offset)
             const current = circuit.measure(i)
-            const previous = this._state.measure || 0
-            this._state.measure = current
+            const previous = this._statePersist.measure || 0
+            this._statePersist.measure = current
             return useState
                 ? previous
                 : current
@@ -1336,11 +1347,9 @@ x: 'xor'
         this.stack.push(() => {
             const i = +this.handleTypes(qubit)
             const useState = +this.handleTypes(offset)
-            console.log(useState)
             const current = circuit.probability(i)
-            const previous = this._state.probability || 0
-            console.log(current, previous)
-            this._state.probability = current
+            const previous = this._statePersist.probability || 0
+            this._statePersist.probability = clamp(current, 0, 1)
             return useState
                 ? previous
                 : current
