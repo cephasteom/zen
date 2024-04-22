@@ -123,7 +123,7 @@ const loop = new Loop(time => {
     }
 
     // build gates
-    streams.forEach(stream => stream.wire.build(t, q, s, stream.y, stream.x, stream.z))
+    streams.forEach(stream => stream.wire.build(t, q, s))
     // routing for how wires should feed their outputs back into the inputs, if at all
     const feedback = streams.map(stream => stream.wire.feedback)
     const inputs = feedback.map((i) => i > -1 && i < measurements.length 

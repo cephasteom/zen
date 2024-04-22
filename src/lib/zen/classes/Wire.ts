@@ -9,9 +9,6 @@ export class Wire {
     private _t: number = 0;
     private _q: number = 16;
     private _s: number = 16;
-    private theta: Pattern | null = null;
-    private phi: Pattern | null = null;
-    private lambda: Pattern | null = null;
     row: number;
     private _offset: number = 0;
     private _stack: any[] = []
@@ -80,18 +77,9 @@ export class Wire {
                                 .filter((_, i) => i < gate.params.length)
                                 .reduce((obj, value, i) => ({
                                     ...obj,
-                                    [gate.params[i]]: +handleTypes(value, this._t, this._q, `${this.row}`) 
-                                        * Math.PI 
-                                        * (gate.params[i] === 'phi' || gate.params[i] === 'lambda' ? 2 : 1)
+                                    [gate.params[i]]: +handleTypes(value, this._t, this._q, `${this.row}`) * Math.PI 
                                 }), {})
-                            : gate.params.reduce((obj: {}, key: string) => ({
-                                ...obj, 
-                                // use theta, phi, lambda if they are defined
-                                // @ts-ignore
-                                [key]: +handleTypes(this[key] || 0, this._t, this._q, `${this.row}`) 
-                                    * Math.PI 
-                                    * (key === 'phi' || key === 'lambda' ? 2 : 1)
-                            }), {})
+                            : [0,0,0]
                     }
 
                     // overwrite the gate with options
@@ -117,22 +105,16 @@ export class Wire {
     clear() {
         this._stack = []
         this._offset = 0
-        this.theta = null
-        this.phi = null
-        this.lambda = null
         this.feedback = -1
     }
 
     /**
      * Build the gates in the stack
      */
-    build(t: number, q: number, s: number, theta: Pattern, phi: Pattern, lambda: Pattern) {
+    build(t: number, q: number, s: number) {
         this._t = t
         this._q = q
         this._s = s
-        this.theta = theta
-        this.phi = phi
-        this.lambda = lambda
         
         this._stack.forEach((fn) => fn())
     }
