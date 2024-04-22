@@ -37,6 +37,7 @@ const fxstreams: Stream[] = Array(2).fill(0).map((_, i) => new Stream('fx' + i))
 const v = new Visuals()
 let bpm = 120
 let measurements = [0,0,0,0,0,0,0,0]
+let probabilities = [0,0,0,0,0,0,0,0]
 
 // helper functions and constants
 const { bts: initBts, btms: initBtms, clamp, seed } = helpers;
@@ -134,9 +135,10 @@ const loop = new Loop(time => {
     circuit.run(inputs)
     const gates = circuit.gates
     measurements = circuit.measureAll()
+    probabilities = circuit.probabilities()
 
     // compile parameters, events and mutations
-    const compiled = [...streams, ...fxstreams].map(stream => stream.get(t, q, s, bpm, z, measurements))
+    const compiled = [...streams, ...fxstreams].map(stream => stream.get(t, q, s, bpm, z, measurements, probabilities))
     const soloed = compiled.filter(({solo}) => solo)
     const result = soloed.length ? soloed : compiled
     const events = result.filter(({e}) => e)

@@ -63,6 +63,9 @@ export class Pattern {
     private _measurements: number[] = [0,0,0,0,0,0,0,0]
 
     /** @hidden */
+    private _probabilities: number[] = [0,0,0,0,0,0,0,0]
+
+    /** @hidden */
     private _state = {} as any
 
     /**
@@ -212,7 +215,7 @@ x: 'xor'
      * @hidden 
      */ 
     handleTypes(value: patternValue | Pattern | string | Function, t: number | null = null, round=true) : patternValue {
-        if(value instanceof Pattern) return value.get(t || this._t, this._q, this._bpm, this._measurements) || 0
+        if(value instanceof Pattern) return value.get(t || this._t, this._q, this._bpm, this._measurements, this._probabilities) || 0
         if(typeof value === 'function') return value(t || this._t, this._q)
         if(typeof value === 'string') return parsePattern(value, t || this._t, this._q, this._id, round)
         return value
@@ -241,6 +244,7 @@ x: 'xor'
         this.stack = []
         this._value = 0
         this._measurements = [0,0,0,0,0,0,0,0,0]
+        this._probabilities = [0,0,0,0,0,0,0,0,0]
         this._state = {}
         return this
     }   
@@ -1312,12 +1316,26 @@ x: 'xor'
     /**
      * Return the value of the measured qubit
      * @returns {Pattern}
-     * @example s0.e.once()
+     * @example s0.e.measure(0)
+     * @param qubit qubit to measure
      */
     measure(qubit: patternable = 0): Pattern {
         this.stack.push(() => {
             const i = +this.handleTypes(qubit) % this._measurements.length
             return this._measurements[i]
+        })
+        return this
+    }
+
+    /**
+     * Return the probability of the qubit being measured as 1
+     * @returns {Pattern}
+     * @example s0.x.pb(0)
+     */
+    pb(qubit: patternable = 0): Pattern {
+        this.stack.push(() => {
+            const i = +this.handleTypes(qubit) % this._probabilities.length
+            return this._probabilities[i]
         })
         return this
     }
@@ -1335,11 +1353,12 @@ x: 'xor'
     }
 
     /** @hidden */
-    get(t: number, q: number, bpm?: number, measurements: number[] = [0,0,0,0,0,0,0,0]): patternValue | null {
+    get(t: number, q: number, bpm?: number, measurements: number[] = [0,0,0,0,0,0,0,0], probabilities: number[] = [0,0,0,0,0,0,0,0]): patternValue | null {
         this._t = t
         this._q = q
         this._bpm = bpm || this._bpm
         this._measurements = measurements
+        this._probabilities = probabilities
 
         const value = this.stack.length 
             ? this.stack.reduce((val: patternValue, fn) => fn(val), t) 
