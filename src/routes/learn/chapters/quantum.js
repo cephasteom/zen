@@ -92,6 +92,9 @@ s0.e.measure(0)
 s0.m.not(s0.e)
 \`\`\`
 
+## .pb()
+Use the \`pb()\` method to get the probability of a qubit collapsing to |1⟩. It expects a single argument, the index of the qubit. For example:
+
 ## .fb()
 Use the \`.fb()\` method to apply feedback to a stream. This will use the previous measurement as the initial state of the qubit before the circuit runs. Be warned, if you have entangled qubits, this may lead to some unusual results. For example:
 \`\`\`js
