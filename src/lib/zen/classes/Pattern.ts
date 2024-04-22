@@ -1312,10 +1312,16 @@ x: 'xor'
      * @example s0.e.measure(0)
      * @param qubit qubit to measure
      */
-    measure(qubit: patternable = 0): Pattern {
+    measure(qubit: patternable = 0, offset: patternable = 0): Pattern {
         this.stack.push(() => {
             const i = +this.handleTypes(qubit)
-            return circuit.measure(i)
+            const useState = +this.handleTypes(offset)
+            const current = circuit.measure(i)
+            const previous = this._state.measure || 0
+            this._state.measure = current
+            return useState
+                ? previous
+                : current
         })
         return this
     }
@@ -1326,10 +1332,18 @@ x: 'xor'
      * @example s0.x.pb(0)
      * @param qubit qubit to query the probability of
      */
-    pb(qubit: patternable = 0): Pattern {
+    pb(qubit: patternable = 0, offset: patternable = 0): Pattern {
         this.stack.push(() => {
             const i = +this.handleTypes(qubit)
-            return circuit.probability(i)
+            const useState = +this.handleTypes(offset)
+            console.log(useState)
+            const current = circuit.probability(i)
+            const previous = this._state.probability || 0
+            console.log(current, previous)
+            this._state.probability = current
+            return useState
+                ? previous
+                : current
         })
         return this
     }
