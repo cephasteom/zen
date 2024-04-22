@@ -9,9 +9,9 @@ s0.wire.h().cx([1]).ccx([1,2])
 s1.wire.fb(0)
 s2.wire.fb(0)
 
-s0.e.measure()
-s1.e.measure()
-s2.e.measure()
+s0.e.measure(0)
+s1.e.measure(1)
+s2.e.measure(2)
 
 s0.set({inst: 1, bank: 'bd808', i: 3, cut: 1})
 s1.set({inst: 1, bank: 'sd808', i: '0..16?*16', cut: 0})

@@ -17,6 +17,7 @@ import {
 import { parsePattern } from '../parsing/mininotation';
 import { noise, randomSequence } from '../stores'
 import { getCC, getNotes } from '../stores/midi'
+import { circuit } from './Circuit'
 
 const channel = new BroadcastChannel('zen')
 
@@ -58,12 +59,6 @@ export class Pattern {
 
     /** @hidden */
     private _bpm: number = 120
-
-    /** @hidden */
-    private _measurements: number[] = [0,0,0,0,0,0,0,0]
-
-    /** @hidden */
-    private _probabilities: number[] = [0,0,0,0,0,0,0,0]
 
     /** @hidden */
     private _state = {} as any
@@ -215,7 +210,7 @@ x: 'xor'
      * @hidden 
      */ 
     handleTypes(value: patternValue | Pattern | string | Function, t: number | null = null, round=true) : patternValue {
-        if(value instanceof Pattern) return value.get(t || this._t, this._q, this._bpm, this._measurements, this._probabilities) || 0
+        if(value instanceof Pattern) return value.get(t || this._t, this._q, this._bpm) || 0
         if(typeof value === 'function') return value(t || this._t, this._q)
         if(typeof value === 'string') return parsePattern(value, t || this._t, this._q, this._id, round)
         return value
@@ -243,8 +238,6 @@ x: 'xor'
     reset() {
         this.stack = []
         this._value = 0
-        this._measurements = [0,0,0,0,0,0,0,0,0]
-        this._probabilities = [0,0,0,0,0,0,0,0,0]
         this._state = {}
         return this
     }   
@@ -1321,8 +1314,8 @@ x: 'xor'
      */
     measure(qubit: patternable = 0): Pattern {
         this.stack.push(() => {
-            const i = +this.handleTypes(qubit) % this._measurements.length
-            return this._measurements[i]
+            const i = +this.handleTypes(qubit)
+            return circuit.measure(i)
         })
         return this
     }
@@ -1334,8 +1327,8 @@ x: 'xor'
      */
     pb(qubit: patternable = 0): Pattern {
         this.stack.push(() => {
-            const i = +this.handleTypes(qubit) % this._probabilities.length
-            return this._probabilities[i]
+            const i = +this.handleTypes(qubit)
+            return circuit.probability(i)
         })
         return this
     }
@@ -1353,12 +1346,10 @@ x: 'xor'
     }
 
     /** @hidden */
-    get(t: number, q: number, bpm?: number, measurements: number[] = [0,0,0,0,0,0,0,0], probabilities: number[] = [0,0,0,0,0,0,0,0]): patternValue | null {
+    get(t: number, q: number, bpm?: number): patternValue | null {
         this._t = t
         this._q = q
         this._bpm = bpm || this._bpm
-        this._measurements = measurements
-        this._probabilities = probabilities
 
         const value = this.stack.length 
             ? this.stack.reduce((val: patternValue, fn) => fn(val), t) 

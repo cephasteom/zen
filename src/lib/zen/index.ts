@@ -138,7 +138,7 @@ const loop = new Loop(time => {
     probabilities = circuit.probabilities()
 
     // compile parameters, events and mutations
-    const compiled = [...streams, ...fxstreams].map(stream => stream.get(t, q, s, bpm, z, measurements, probabilities))
+    const compiled = [...streams, ...fxstreams].map(stream => stream.get(t, q, s, bpm, z))
     const soloed = compiled.filter(({solo}) => solo)
     const result = soloed.length ? soloed : compiled
     const events = result.filter(({e}) => e)
