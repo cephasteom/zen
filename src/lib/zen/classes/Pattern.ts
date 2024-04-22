@@ -1324,6 +1324,7 @@ x: 'xor'
      * Return the probability of the qubit being measured as 1
      * @returns {Pattern}
      * @example s0.x.pb(0)
+     * @param qubit qubit to query the probability of
      */
     pb(qubit: patternable = 0): Pattern {
         this.stack.push(() => {

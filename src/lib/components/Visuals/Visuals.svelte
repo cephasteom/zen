@@ -78,7 +78,7 @@
                 const lambda = Math.abs(1 - l)
                 const vector = Vector.fromAngles(
                     p5.radians(theta * 180), 
-                    p5.radians(phi * 180), 
+                    p5.radians(phi * 360), 
                     radius * lambda
                 )
 
