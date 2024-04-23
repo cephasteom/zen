@@ -98,6 +98,12 @@ You can also pass an optional second argument to determine whether to offset the
 s0.e.measure(0, 1)
 \`\`\`
 
+## .measures()
+Get the measurements of all qubits as an array. The first argument is the amount of qubits in the system, the second argument is whether to offset the measurements by one division of a cycle. For example:
+\`\`\`js
+s0.e.measures(3, 1).at(0)
+\`\`\`
+
 ## .pb()
 Use the \`pb()\` method to get the probability of a qubit collapsing to |1⟩. It expects the same arguments as \`measure()\`, the index of the qubit and whether to offset the probability outcome by one division of a cycle. This can be useful for creating feedback loops. For example:
 \`\`\`js
