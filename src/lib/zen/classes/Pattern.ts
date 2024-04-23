@@ -60,6 +60,12 @@ export class Pattern {
     /** @hidden */
     private _bpm: number = 120
 
+    /** @hidden */
+    private _measurements: number[] = [0,0,0,0,0,0,0,0]
+
+    /** @hidden */
+    private _probabilities: number[] = [0,0,0,0,0,0,0,0]
+
     /**
      * State object for pattern methods that require it
      * Clears on reset()
@@ -1327,7 +1333,7 @@ x: 'xor'
         this.stack.push(() => {
             const i = +this.handleTypes(qubit)
             const useState = +this.handleTypes(offset)
-            const current = circuit.measure(i)
+            const current = this._measurements[i] || 0
             const previous = this._statePersist.measure || 0
             this._statePersist.measure = current
             return useState
@@ -1347,7 +1353,8 @@ x: 'xor'
         this.stack.push(() => {
             const i = +this.handleTypes(qubit)
             const useState = +this.handleTypes(offset)
-            const current = circuit.probability(i)
+            const current = this._probabilities[i] || 0
+            console.log(current, i)
             const previous = this._statePersist.probability || 0
             this._statePersist.probability = clamp(current, 0, 1)
             return useState
@@ -1370,10 +1377,15 @@ x: 'xor'
     }
 
     /** @hidden */
-    get(t: number, q: number, bpm?: number): patternValue | null {
+    get(
+        t: number, q: number, bpm?: number,
+        measurements?: number[], probabilities?: number[]
+    ): patternValue | null {
         this._t = t
         this._q = q
         this._bpm = bpm || this._bpm
+        this._measurements = measurements || []
+        this._probabilities = probabilities || []
 
         const value = this.stack.length 
             ? this.stack.reduce((val: patternValue, fn) => fn(val), t) 

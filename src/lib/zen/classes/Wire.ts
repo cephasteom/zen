@@ -1,4 +1,3 @@
-import type { Pattern } from './Pattern';
 import { circuit } from './Circuit';
 import { handleTypes } from '../utils/handleTypes'; 
 /**
