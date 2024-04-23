@@ -78,7 +78,7 @@ s0.wire.xx(2,0.5,0) // a rare example of a gate that requires all three argument
 Again, see the [Quantum Circuit documentation](https://www.npmjs.com/package/quantum-circuit#implemented-gates) for a full list of gates and their arguments.
 
 ## .measure()
-Use the \`measure()\` method to use the measurement of a qubit to trigger an event. It expects a single argument, the index of the qubit you wish to measure. For example:
+Use the \`measure()\` method to use the measurement of a qubit to trigger an event. The first argument is the index of the qubit you wish to measure. For example:
 \`\`\`js
 s0.set({inst:0,reverb:0.125,rtail:0.2,cut:0,cutr:250,dur:100,mods:0.1})
 
@@ -91,9 +91,23 @@ s0.wire.u3([s0.y,s0.x,0])
 s0.e.measure(0)
 s0.m.not(s0.e)
 \`\`\`
+In this example, we measure qubit 0 of stream 0. The measurement is then used to trigger the event on stream 0.
+
+You can also pass an optional second argument to determine whether to offset the measurement by one division of a cycle. This will take the measurement from the previous division rather than the current division. By default, the second argument is 0. For example:
+\`\`\`js
+s0.e.measure(0, 1)
+\`\`\`
 
 ## .pb()
-Use the \`pb()\` method to get the probability of a qubit collapsing to |1⟩. It expects a single argument, the index of the qubit. For example:
+Use the \`pb()\` method to get the probability of a qubit collapsing to |1⟩. It expects the same arguments as \`measure()\`, the index of the qubit and whether to offset the probability outcome by one division of a cycle. This can be useful for creating feedback loops. For example:
+\`\`\`js
+z.bpm.set(20)
+
+s0.x.pb(0,1) // get the probability of qubit 0 collapsing to |1⟩, offset by one division
+s0.wire.rx(0.49) // run this like first to set the initial state of qubit 0
+// s0.wire.rx(s0.x) // the run this line to set the feedback loop
+s0.e.measure(0)
+\`\`\`
 
 ## .fb()
 Use the \`.fb()\` method to apply feedback to a stream. This will use the previous measurement as the initial state of the qubit before the circuit runs. Be warned, if you have entangled qubits, this may lead to some unusual results. For example:
