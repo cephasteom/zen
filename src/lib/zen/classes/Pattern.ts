@@ -61,10 +61,10 @@ export class Pattern {
     private _bpm: number = 120
 
     /** @hidden */
-    private _measurements: number[] = [0,0,0,0,0,0,0,0]
+    private _measurements: number[] = []
 
     /** @hidden */
-    private _probabilities: number[] = [0,0,0,0,0,0,0,0]
+    private _probabilities: number[] = []
 
     /**
      * State object for pattern methods that require it
@@ -1328,12 +1328,13 @@ x: 'xor'
      * @returns {Pattern}
      * @example s0.e.measure(0)
      * @param qubit qubit to measure
+     * @param offset whether to use the previous measurement, 0 or 1
      */
     measure(qubit: patternable = 0, offset: patternable = 0): Pattern {
         this.stack.push(() => {
             const i = +this.handleTypes(qubit)
             const useState = +this.handleTypes(offset)
-            const current = this._measurements[i] || 0
+            const current = this._measurements[i] || circuit.measure(i) || 0
             const previous = this._statePersist.measure || 0
             this._statePersist.measure = current
             return useState
@@ -1348,13 +1349,13 @@ x: 'xor'
      * @returns {Pattern}
      * @example s0.x.pb(0)
      * @param qubit qubit to query the probability of
+     * @param offset whether to use the probability from the previous measurement, 0 or 1
      */
     pb(qubit: patternable = 0, offset: patternable = 0): Pattern {
         this.stack.push(() => {
             const i = +this.handleTypes(qubit)
             const useState = +this.handleTypes(offset)
-            const current = this._probabilities[i] || 0
-            console.log(current, i)
+            const current = this._probabilities[i] || circuit.probability(i) || 0
             const previous = this._statePersist.probability || 0
             this._statePersist.probability = clamp(current, 0, 1)
             return useState

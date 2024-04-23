@@ -7,10 +7,11 @@ export function handleTypes(
         t: number, 
         q: number,
         id: string,
-        round=true
+        measurements?: number[],
+        probabilities?: number[]
     ) : patternValue {
-    if(value instanceof Pattern) return value.get(t, q) || 0
+    if(value instanceof Pattern) return value.get(t, q, 120, measurements, probabilities) || 0
     if(typeof value === 'function') return value(t, q)
-    if(typeof value === 'string') return parsePattern(value, t, q, id, round)
+    if(typeof value === 'string') return parsePattern(value, t, q, id, true)
     return value
 }

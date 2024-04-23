@@ -124,7 +124,7 @@ const loop = new Loop(time => {
     }
 
     // build gates
-    streams.forEach(stream => stream.wire.build(t, q, s))
+    streams.forEach(stream => stream.wire.build(t, q, s, measurements, probabilities))
     // routing for how wires should feed their outputs back into the inputs, if at all
     const feedback = streams.map(stream => stream.wire.feedback)
     const inputs = feedback.map((i) => i > -1 && i < measurements.length 
@@ -138,7 +138,7 @@ const loop = new Loop(time => {
     probabilities = circuit.probabilities()
 
     // compile parameters, events and mutations
-    const compiled = [...streams, ...fxstreams].map(stream => stream.get(t, q, s, bpm, z, measurements, probabilities))
+    const compiled = [...streams, ...fxstreams].map(stream => stream.get(t, q, s, bpm, z))
     const soloed = compiled.filter(({solo}) => solo)
     const result = soloed.length ? soloed : compiled
     const events = result.filter(({e}) => e)

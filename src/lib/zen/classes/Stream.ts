@@ -236,12 +236,9 @@ export class Stream {
      * @returns object of formatted key/value pairs
      * @hidden
      */
-    evaluateGroup(
-        group: Dictionary, count: number, divisions: number, bpm: number,
-        measurements: number[], probabilities: number[]
-    ) : { [key: string]: any } {
+    evaluateGroup(group: Dictionary, count: number, divisions: number, bpm: number) : { [key: string]: any } {
         return Object.entries(group)
-            .map(([key, pattern]) => [key, pattern.get(count, divisions, bpm, measurements, probabilities)])
+            .map(([key, pattern]) => [key, pattern.get(count, divisions, bpm)])
             .filter(([_, value]) => value !== undefined && value !== null)
             .reduce((obj, [key, value]) => ({...obj, [key]: value}), {})
     }
@@ -263,37 +260,36 @@ export class Stream {
 
     /** @hidden */
     get(
-        time: number, q: number, s: number, bpm: number, global: Zen,
-        measurements: number[], probabilities: number[]
+        time: number, q: number, s: number, bpm: number, global: Zen
     ) {
         // use stream t, if set, or global t
         const t = +(this.t.has() ? this.t.get(time, q) || 0 : time);
         
         // use stream x, y, z, if set, or 0
-        const xyz = [this.xyz.get(t, s, bpm, measurements, probabilities)].flat()
-        const x = +(xyz[0] || this.x.get(t, s, bpm, measurements, probabilities) || 0)
-        const y = +(xyz[1] || this.y.get(t, s, bpm, measurements, probabilities) || 0)
-        const z = +(xyz[2] || this.z.get(t, s, bpm, measurements, probabilities) || 0)
+        const xyz = [this.xyz.get(t, s, bpm)].flat()
+        const x = +(xyz[0] || this.x.get(t, s, bpm) || 0)
+        const y = +(xyz[1] || this.y.get(t, s, bpm) || 0)
+        const z = +(xyz[2] || this.z.get(t, s, bpm) || 0)
         
         const { id } = this;
-        const mute = !!this.mute.get(t, q, bpm, measurements, probabilities)
-        const solo = !!this.solo.get(t, q, bpm, measurements, probabilities)
-        const e = !mute && this.e.get(t, q, bpm, measurements, probabilities)
-        const m = !mute && this.m.get(t, q, bpm, measurements, probabilities)
+        const mute = !!this.mute.get(t, q, bpm)
+        const solo = !!this.solo.get(t, q, bpm)
+        const e = !mute && this.e.get(t, q, bpm)
+        const m = !mute && this.m.get(t, q, bpm)
         const lag = (60000/bpm)/q // ms per division
 
         // compile all parameters
         const compiled = (e || m) ? {
             track: +id.slice(1),
             _track: +id.slice(1),
-            ...this.evaluateGroup(global.p, t, q, bpm, measurements, probabilities), // calculate based on position in cycle, 0 - 1
-            ...this.evaluateGroup(global.px, x * s, s, bpm, measurements, probabilities), // calculate based on position in space, 0 - 1
-            ...this.evaluateGroup(global.py, y * s, s, bpm, measurements, probabilities), // ...
-            ...this.evaluateGroup(global.pz, z * s, s, bpm, measurements, probabilities), // ...
-            ...this.evaluateGroup(this.p, t, q, bpm, measurements, probabilities), // calculate based on position in cycle, 0 - 1
-            ...this.evaluateGroup(this.px, x * s, s, bpm, measurements, probabilities), // calculate based on position in space, 0 - 1
-            ...this.evaluateGroup(this.py, y * s, s, bpm, measurements, probabilities), // ...
-            ...this.evaluateGroup(this.pz, z * s, s, bpm, measurements, probabilities), // ...
+            ...this.evaluateGroup(global.p, t, q, bpm), // calculate based on position in cycle, 0 - 1
+            ...this.evaluateGroup(global.px, x * s, s, bpm), // calculate based on position in space, 0 - 1
+            ...this.evaluateGroup(global.py, y * s, s, bpm), // ...
+            ...this.evaluateGroup(global.pz, z * s, s, bpm), // ...
+            ...this.evaluateGroup(this.p, t, q, bpm), // calculate based on position in cycle, 0 - 1
+            ...this.evaluateGroup(this.px, x * s, s, bpm), // calculate based on position in space, 0 - 1
+            ...this.evaluateGroup(this.py, y * s, s, bpm), // ...
+            ...this.evaluateGroup(this.pz, z * s, s, bpm), // ...
             bpm, // bpm
             q, // divisions
         } : {}

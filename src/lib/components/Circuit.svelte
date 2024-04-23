@@ -80,7 +80,7 @@
         align-items: center;
         justify-content: center;
         position: relative;
-        width: 4rem;
+        width: 4.5rem;
         &--first {
             justify-content: flex-start;
         }
