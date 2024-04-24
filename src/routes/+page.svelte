@@ -141,7 +141,7 @@
         border-radius: 10px;
         position: relative;
 
-        background: linear-gradient(45deg, var(--color-grey-light-mid), var(--color-grey-darker));
+        background: var(--color-grey-dark);
 
         display: none;
 

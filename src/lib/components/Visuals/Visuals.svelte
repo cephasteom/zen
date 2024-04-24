@@ -37,7 +37,7 @@
             p5.push();
             p5.noFill();
             p5.stroke(255,255,255);
-            p5.strokeWeight(1/8);
+            p5.strokeWeight(1/4);
 
             const squareSize = (size / gridSize) * 0.9;
             const gridTotalSize = gridSize * squareSize;
