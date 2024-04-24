@@ -133,6 +133,8 @@ const loop = new Loop(time => {
     )
     
     circuit.run(inputs)
+    // TODO: parse this state value so that we can get the state vector as percentages
+    // console.log(circuit.stateAsString(true))
     const gates = circuit.gates
     measurements = circuit.measureAll()
     probabilities = circuit.probabilities()

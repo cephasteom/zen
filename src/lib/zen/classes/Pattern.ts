@@ -1358,7 +1358,6 @@ x: 'xor'
             const current = this._measurements.length
                 ? this._measurements.slice(0, q)
                 : circuit.measureAll().slice(0, q) || []
-            console.log(current)
             const previous = this._statePersist.measurements || []
             this._statePersist.measurements = current
             return useState
