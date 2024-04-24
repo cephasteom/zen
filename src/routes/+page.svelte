@@ -68,6 +68,8 @@
         padding: 1rem;
         user-select: none;
         min-height: calc(100vh - 10rem);
+        max-height: calc(100vh - 10rem);
+        overflow: scroll;
         
         @media (min-width: 800px) {
             grid-template-columns: 1fr 1fr;

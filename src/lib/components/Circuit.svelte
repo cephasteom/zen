@@ -19,10 +19,7 @@
 <div class="circuit">
     {#each $gates as gates, row}
         <div class="row">
-            <div 
-                    class="col col--first"
-                    style="grid-column: 1;"
-            >
+            <div class="col col--first">
                 <p class="label">
                     <span class="label__state">|{$inputs[row]}⟩</span>
                     <span class="label__stream">s{row}</span>
@@ -58,9 +55,6 @@
 
 <style lang="scss">
     .circuit {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(8, 1fr);
         width: calc(100% - 4rem);
         height: calc(100% - 2rem);
         border-radius: 10px;
@@ -73,6 +67,7 @@
         display: flex;
         justify-content: space-between;
         width: 100%;
+        min-height: 3rem;
     }
 
     .col {
@@ -80,7 +75,7 @@
         align-items: center;
         justify-content: center;
         position: relative;
-        width: 4.5rem;
+        width: 3rem;
         &--first {
             justify-content: flex-start;
         }
@@ -113,6 +108,7 @@
     .gates {
         display: flex;
         width: 100%;
+        // max-width: 40rem;
         overflow-x: scroll;
         position: relative;
         overflow: visible;

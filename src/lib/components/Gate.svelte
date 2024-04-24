@@ -6,7 +6,7 @@
 
     // @ts-ignore
     $: params = Object.values(gate.options?.params || {}).map((p: number) => {
-        return `${(p/Math.PI).toFixed(1)}π`;
+        return `${parseFloat((p/Math.PI).toFixed(2))}`;
     });
 
     $: ellipse = (gate.name === 'cx' && gate.connector === 1)
@@ -31,9 +31,7 @@
 >
     <p class="type">{name}</p>
     <div class="params">
-        {#each params as param}
-            <p>{param}</p>
-        {/each}
+        <p>{params.join(',')}</p>
     </div>
 </div>
 
@@ -54,17 +52,16 @@
             text-transform: uppercase;
             text-align: center;
             transform: translateX(0.75px);
-            font-size: var(--text-xs);
+            font-size: var(--text-xxs);
             color: var(--color-theme-2);
         }
 
         .params {
             display: flex;
-            flex-direction: column;
             align-items: flex-start;
             justify-content: center;
             position: absolute;
-            left: calc(100% + 0.5rem);
+            bottom: -1.1rem;
             background-color: var(--color-grey-darker);
         }
     }
@@ -86,7 +83,6 @@
             width: 1px;
             height: 100%;
             transform: translateX(-50%);
-            
         }
     
         &::after {
