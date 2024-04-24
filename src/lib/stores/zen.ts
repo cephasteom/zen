@@ -10,7 +10,7 @@ export const s = writable(16); // size of canvas
 export const editorConsole = writable<{type?: string, message?: string}>({});
 export const isPlaying = writable(false);
 
-export const gates = writable<any[]>([[],[],[],[],[],[],[],[]]); // circuit gates
+export const gates = writable<any[]>([[],[],[],[], [],[],[],[]]); // circuit gates
 export const measurements = writable<any[]>([0,0,0,0,0,0,0,0]); // circuit measurements
 export const inputs = writable<number[]>([0,0,0,0,0,0,0,0]); // initial state of qubits in circuit
 

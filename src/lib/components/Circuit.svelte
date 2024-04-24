@@ -16,51 +16,74 @@
     };
 </script>
 
-<div class="circuit">
-    {#each $gates as gates, row}
-        <div class="row">
-            <div class="col col--first">
-                <p class="label">
-                    <span class="label__state">|{$inputs[row]}⟩</span>
-                    <span class="label__stream">s{row}</span>
-                </p>
-            </div>
-            <div class="gates">
-                <span class="wire"/>
+<div 
+    class="circuit"
+    style={`justify-content: ${$gates.length === 6 ? 'flex-start' : 'center'};`}
+>
+    <div class="circuit__wires">
+        {#each $gates as gates, row}
+            <div class="row">
+                <div class="col col--first">
+                    <p class="label">
+                        <span class="label__state">|{$inputs[row]}⟩</span>
+                        <span class="label__stream">s{row}</span>
+                    </p>
+                </div>
+                <div class="gates">
+                    <span class="wire"/>
 
-                {#each gates as gate, col}
-                    <div 
-                        class="col"
-                    >
-                        {#if gate}
-                            <Gate
-                                gate={gate}
-                                row={row}
-                                connectTo={getConnectedRow(row, col)}
-                            />
-                        {/if}
-                    </div>
-                {/each}
+                    {#each gates as gate, col}
+                        <div 
+                            class="col"
+                        >
+                            {#if gate}
+                                <Gate
+                                    gate={gate}
+                                    row={row}
+                                    connectTo={getConnectedRow(row, col)}
+                                />
+                            {/if}
+                        </div>
+                    {/each}
+                </div>
+                <div 
+                    class="col col--last"
+                >
+                    <p class="label">
+                        <span class="label__output">|{$measurements[row]}⟩</span>
+                    </p>
+                </div>
             </div>
-            <div 
-                class="col col--last"
-            >
-                <p class="label">
-                    <span class="label__output">|{$measurements[row]}⟩</span>
-                </p>
-            </div>
-        </div>
-    {/each}
+        {/each}
+    </div>
 </div>
 
 <style lang="scss">
     .circuit {
         width: calc(100% - 4rem);
-        height: calc(100% - 2rem);
+        height: calc(100% - 3rem);
         border-radius: 10px;
-        padding: 1rem 2rem;
-        overflow-x: scroll;
+        padding: 1rem 2rem 2rem;
+        overflow: hidden;
         position: relative;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5rem; /* Adjust as needed */
+            background: linear-gradient(to bottom, transparent, var(--color-grey-darker));
+            pointer-events: none;
+            z-index:10;
+        }
+
+        &__wires {
+            width: 100%;
+            height: 100%;
+            overflow-x: scroll;
+        }
     }
 
     .row {
@@ -68,6 +91,9 @@
         justify-content: space-between;
         width: 100%;
         min-height: 3rem;
+        &:last-of-type {
+            margin-bottom: 2rem;
+        }
     }
 
     .col {

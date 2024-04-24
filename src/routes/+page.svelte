@@ -11,7 +11,6 @@
 </script>
 
 <svelte:head>
-    
 	<title>Zenq</title>
 	<meta name="description" content="A musical live coding language that runs in your browser" />
 </svelte:head>
