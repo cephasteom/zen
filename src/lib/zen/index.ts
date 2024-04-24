@@ -56,7 +56,7 @@ code.subscribe(code => {
     z.reset()
     z.resetGlobals()
     circuit.clear()
-    circuit.numQubits = 8
+    // circuit.numQubits = 8
 
     // global variables
     let { q, s, c } = z
@@ -134,7 +134,7 @@ const loop = new Loop(time => {
     
     circuit.run(inputs)
     // TODO: parse this state value so that we can get the state vector as percentages
-    // console.log(circuit.stateAsString(true))
+    console.log(circuit.stateAsString(true), circuit)
     const gates = circuit.gates
     measurements = circuit.measureAll()
     probabilities = circuit.probabilities()

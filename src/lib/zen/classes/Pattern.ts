@@ -129,7 +129,11 @@ tr: 'tri',
 trig: 'trigger',
 tu: 'tune',
 u: 'use',
-x: 'xor'
+x: 'xor',
+qm: 'qmeasure',
+qms: 'qmeasures',
+qpb: 'qprobability',
+qpbs: 'qprobabilities',
     */ 
     aliases = {
         a: 'add',
@@ -178,6 +182,10 @@ x: 'xor'
         tu: 'tune',
         u: 'use',
         x: 'xor',
+        qm: 'qmeasure',
+        qms: 'qmeasures',
+        qpb: 'qprobability',
+        qpbs: 'qprobabilities',
     }
 
     rng(t: number) {
@@ -1330,7 +1338,7 @@ x: 'xor'
      * @param qubit qubit to measure
      * @param offset whether to use the previous measurement, 0 or 1
      */
-    measure(qubit: patternable = 0, offset: patternable = 0): Pattern {
+    qmeasure(qubit: patternable = 0, offset: patternable = 0): Pattern {
         this.stack.push(() => {
             const i = +this.handleTypes(qubit)
             const useState = +this.handleTypes(offset)
@@ -1348,16 +1356,14 @@ x: 'xor'
      * Return all measurements of the system as an array
      * @returns {Pattern}
      * @example s0.e.measures(4)
-     * @param qubits number of qubits in the system
      * @param offset whether to use the previous measurement, 0 or 1
      */
-    measures(qubits: patternable = 8, offset: patternable = 0): Pattern {
+    qmeasures(offset: patternable = 0): Pattern {
         this.stack.push(() => {
-            const q = +this.handleTypes(qubits)
             const useState = +this.handleTypes(offset)
             const current = this._measurements.length
-                ? this._measurements.slice(0, q)
-                : circuit.measureAll().slice(0, q) || []
+                ? this._measurements
+                : circuit.measureAll() || []
             const previous = this._statePersist.measurements || []
             this._statePersist.measurements = current
             return useState
@@ -1370,17 +1376,37 @@ x: 'xor'
     /**
      * Return the probability of the qubit being measured as 1
      * @returns {Pattern}
-     * @example s0.x.pb(0)
-     * @param qubit qubit to query the probability of
+     * @example s0.x.pb()
      * @param offset whether to use the probability from the previous measurement, 0 or 1
      */
-    pb(qubit: patternable = 0, offset: patternable = 0): Pattern {
+    qprobability(qubit: patternable = 0, offset: patternable = 0): Pattern {
         this.stack.push(() => {
             const i = +this.handleTypes(qubit)
             const useState = +this.handleTypes(offset)
             const current = this._probabilities[i] || circuit.probability(i) || 0
             const previous = this._statePersist.probability || 0
             this._statePersist.probability = clamp(current, 0, 1)
+            return useState
+                ? previous
+                : current
+        })
+        return this
+    }
+
+    /**
+     * Return all probabilities of the system as an array
+     * @returns {Pattern}
+     * @example s0.x.pbs(4).at(0)
+     * @param offset whether to use the probabilities from the previous measurement, 0 or 1
+     */
+    qprobabilities(offset: patternable = 0): Pattern {
+        this.stack.push(() => {
+            const useState = +this.handleTypes(offset)
+            const current = this._probabilities.length
+                ? this._probabilities
+                : circuit.probabilities() || []
+            const previous = this._statePersist.probabilities || []
+            this._statePersist.probabilities = current
             return useState
                 ? previous
                 : current
