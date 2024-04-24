@@ -134,7 +134,6 @@
     .gates {
         display: flex;
         width: 100%;
-        // max-width: 40rem;
         overflow-x: scroll;
         position: relative;
         overflow: visible;
@@ -145,7 +144,7 @@
 
     .wire {
         width: 100%;
-        height: 1px;
+        height: 2px;
         background-color: var(--color-theme-2);
         position: absolute;
         top: calc(50% - 0.5px);
