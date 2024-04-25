@@ -55,6 +55,7 @@
             font-size: var(--text-xxs);
             color: var(--color-theme-2);
             font-weight: bold;
+            font-family: 'Lato Bold';
         }
 
         .params {
@@ -94,7 +95,6 @@
             top: 50%;
             width: 100%;
             height: 1px;
-            transform: translateY(-50%);
         }
     }
 

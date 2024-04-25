@@ -117,6 +117,7 @@
         position: relative;
         color: var(--color-theme-2);
         font-size: var(--text-xs);
+        font-family: 'Lato Bold';
         &__stream {
             font-size: var(--text-xxs);
 
