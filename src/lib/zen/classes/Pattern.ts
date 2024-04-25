@@ -69,17 +69,6 @@ export class Pattern {
     private _state = {} as any
 
     /**
-     * State object for pattern methods that require it
-     * Does not clear on reset()
-     * @hidden
-     */
-    private _statePersist = {
-        measure: [],
-        measurements: [],
-        probability: [],
-    } as any
-
-    /**
      * Shorthand aliases for pattern methods.
      * @example
      * 

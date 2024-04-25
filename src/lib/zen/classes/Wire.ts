@@ -3,23 +3,35 @@ import { handleTypes } from '../utils/handleTypes';
 /**
  * Wire
  * Represents a single wire in a quantum circuit
+ * Uses Quantum Circuit package to implements quantum gates 
+ * Some are documented here. See https://www.npmjs.com/package/quantum-circuit#implemented-gates for full documentation of all gates
+ * @example s0.wire.h().cx([1])
  */
 export class Wire {
+    /** @hidden */
     private _t: number = 0;
+    /** @hidden */
     private _q: number = 16;
+    /** @hidden */
     row: number;
+    /** @hidden */
     private _offset: number = 0;
+    /** @hidden */
     private _stack: any[] = []
-
+    
+    /** @hidden */
     private _feedback: number = -1
+
+    /** @hidden */
     get feedback() {
         return this._feedback
     }
-
+/** @hidden */
     set feedback(value: number) {
         this._feedback = value
     }
 
+    /** @hidden */
     configureGate(key: string, gate: any, arg1?: number[] | number, arg2?: number[] | number, arg3?: number[] | number)
     {
         this._offset > 0 && this._offset++
@@ -87,6 +99,7 @@ export class Wire {
         return this
     }
     
+    /** @hidden */
     constructor(row: number) {
         this.row = row;    
 
@@ -105,7 +118,7 @@ export class Wire {
 
     /**
      * PI rotation over X-axis, also known as NOT gate
-     * @param offset
+     * @param offset - number of columns to skip
      */
     x(offset: number = 0) {
         return this.configureGate('x', circuit.basicGates.x, offset)
@@ -113,7 +126,7 @@ export class Wire {
 
     /**
      * PI rotation over Y-axis
-     * @param offset
+     * @param offset - number of columns to skip
      */
     y(offset: number = 0) {
         return this.configureGate('y', circuit.basicGates.y, offset)
@@ -121,6 +134,7 @@ export class Wire {
 
     /**
      * PI rotation over Z-axis
+     * @param offset - number of columns to skip
      */
     z(offset: number = 0) {
         return this.configureGate('z', circuit.basicGates.z, offset)
@@ -128,7 +142,7 @@ export class Wire {
 
     /**
      * Hadamard gate
-     * @param offset
+     * @param offset - number of columns to skip
      */
     h(offset: number = 0) {
         return this.configureGate('h', circuit.basicGates.h, offset)
@@ -137,7 +151,7 @@ export class Wire {
     /**
      * Rotation around the X-axis by given angle
      * @param theta - multiple of PI
-     * @param offset
+     * @param offset - number of columns to skip
      */
     rx(theta: number = 0, offset: number = 0) {
         return this.configureGate('rx', circuit.basicGates.rx, theta, offset)
@@ -146,7 +160,7 @@ export class Wire {
     /**
      * Rotation around the Y-axis by given angle
      * @param theta - multiple of PI
-     * @param offset
+     * @param offset - number of columns to skip
      */
     ry(theta: number = 0, offset: number = 0) {
         return this.configureGate('ry', circuit.basicGates.ry, theta, offset)
@@ -155,7 +169,7 @@ export class Wire {
     /**
      * Rotation around the Z-axis by given angle
      * @param phi - multiple of PI
-     * @param offset
+     * @param offset - number of columns to skip
      */
     rz(phi: number = 0, offset: number = 0) {
         return this.configureGate('rz', circuit.basicGates.rz, phi, offset)
@@ -163,8 +177,8 @@ export class Wire {
 
     /**
      * Controlled NOT gate, or CNOT gate
-     * @param connectedQubits
-     * @param offset
+     * @param connectedQubits - index or array of indexes
+     * @param offset - number of columns to skip
      */
     cx(connectedQubits: number[] = [], offset: number = 0) {
         return this.configureGate('cx', circuit.basicGates.cx, connectedQubits, offset)
@@ -172,8 +186,8 @@ export class Wire {
 
     /**
      * Toffoli gate, or CCNOT gate
-     * @param connectedQubits
-     * @param offset
+     * @param connectedQubits - index or array of indexes
+     * @param offset - number of columns to skip
      */
     ccx(connectedQubits: number[] = [], offset: number = 0) {
         return this.configureGate('ccx', circuit.basicGates.ccx, connectedQubits, offset)
@@ -181,8 +195,8 @@ export class Wire {
 
     /**
      * Single qubit rotation with 3 Euler angles
-     * @param angles - [theta, phi, lambda]
-     * @param offset
+     * @param angles - [theta, phi, lambda] - multiples of PI
+     * @param offset - number of columns to skip
      */
     u3(angles: number[], offset: number = 0) {
         return this.configureGate('u3', circuit.basicGates.u3, angles, offset)
@@ -190,6 +204,7 @@ export class Wire {
 
     /**
      * Use the last measure as the initial state of the qubit
+     * @param stream - index of the stream to use
      */
     fb(stream: number = this.row) {
         this._stack.push(() => {
@@ -205,12 +220,15 @@ export class Wire {
 
     /**
      * Generate a random circuit
+     * @param numQubits - number of qubits
+     * @param numGates - number of gates
      */
     random(numQubits: number = 4, numGates: number = 8) {
         circuit.randomCircuit(numQubits, numGates)
         return this
     }
 
+    /** @hidden */
     clear() {
         this._stack = []
         this._offset = 0
@@ -219,6 +237,7 @@ export class Wire {
 
     /**
      * Build the gates in the stack
+     * @hidden
      */
     build(t: number, q: number) {
         this._t = t

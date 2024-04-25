@@ -2,7 +2,6 @@
     import { parseTSDocsText } from "$lib/utils/parsing";
     export let json: any;
     let selectedChild: string;
-
 </script>
 
 <div>

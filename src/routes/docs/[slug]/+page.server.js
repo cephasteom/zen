@@ -6,7 +6,7 @@ import { error } from '@sveltejs/kit';
 const data = [
     { title: "Classes", slug: "classes", data: classes },
     { title: "Synths", slug: "synths", data: synths },
-    { title: "FX", slug: "fx", data: fx }
+    { title: "FX", slug: "fx", data: fx },
 ]
 
 export function load({ params }) {
