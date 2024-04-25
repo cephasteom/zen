@@ -37,7 +37,6 @@ const fxstreams: Stream[] = Array(2).fill(0).map((_, i) => new Stream('fx' + i))
 const v = new Visuals()
 let bpm = 120
 let measurements: number[] = []
-let probabilities: number[] = []
 
 // helper functions and constants
 const { bts: initBts, btms: initBtms, clamp, seed } = helpers;
@@ -123,7 +122,7 @@ const loop = new Loop(time => {
     }
 
     // build gates
-    streams.forEach(stream => stream.wire.build(t, q, s, measurements, probabilities))
+    streams.forEach(stream => stream.wire.build(t, q))
     // routing for how wires should feed their outputs back into the inputs, if at all
     const feedback = streams.map(stream => stream.wire.feedback)
     const inputs = feedback.map((i) => i > -1 && i < measurements.length 
@@ -134,7 +133,6 @@ const loop = new Loop(time => {
     circuit.run(inputs)
     const gates = circuit.gates
     measurements = circuit.measureAll()
-    probabilities = circuit.probabilities()
 
     // compile parameters, events and mutations
     const compiled = [...streams, ...fxstreams].map(stream => stream.get(t, q, s, bpm, z))

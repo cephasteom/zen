@@ -7,9 +7,6 @@ import { handleTypes } from '../utils/handleTypes';
 export class Wire {
     private _t: number = 0;
     private _q: number = 16;
-    private _s: number = 16;
-    private _measurements: number[] = [];
-    private _probabilities: number[] = [];
     row: number;
     private _offset: number = 0;
     private _stack: any[] = []
@@ -130,16 +127,9 @@ export class Wire {
     /**
      * Build the gates in the stack
      */
-    build(
-        t: number, q: number, s: number, 
-        measurements: number[] = [], // previous measurements, in case we need to feed them back in
-        probabilities: number[] = [] // previous probabilities, in case we need to feed them back in
-    ) {
+    build(t: number, q: number) {
         this._t = t
         this._q = q
-        this._s = s
-        this._measurements = measurements
-        this._probabilities = probabilities
         
         this._stack.forEach((fn) => fn())
     }
