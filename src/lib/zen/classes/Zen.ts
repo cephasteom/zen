@@ -46,6 +46,30 @@ export class Zen extends Stream {
     }
 
     /** @hidden */
+    _swingPattern: null | Pattern = null
+    /**
+     * A Pattern for setting the global swing. A value between 0 and 1
+     * @example
+     * z.swing.set(0.1)
+     */ 
+    get swing() {
+        this._swingPattern = this._swingPattern || new Pattern()
+        return this._swingPattern
+    } 
+    
+    /** @hidden */
+    _swingnPattern: null | Pattern = null
+    /**
+     * A Pattern for setting the global swing subdivision, e.g. 8 for 1/8th notes, 16 for 1/16ths
+     * @example
+     * z.swingn.set(8)
+     */ 
+    get swingn() {
+        this._swingnPattern = this._swingnPattern || new Pattern()
+        return this._swingnPattern
+    } 
+
+    /** @hidden */
     _seedPattern: null | Pattern = null
     /**
      * A Pattern for setting the global seeding
@@ -140,6 +164,16 @@ export class Zen extends Stream {
     getBpm() : number {
         const value = this.bpm.get(this._t, this._q)
         return value !== null ? Array.isArray(value) ? value[0] : value : 120
+    }
+
+    getSwing() : number {
+        const value = this.swing.get(this._t, this._q)
+        return value !== null ? Array.isArray(value) ? value[0] : value : 0
+    }
+
+    getSwingN() : number {
+        const value = this.swingn.get(this._t, this._q)
+        return value !== null ? Array.isArray(value) ? value[0] : value : 16
     }
 
     /** @hidden */

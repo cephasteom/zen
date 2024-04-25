@@ -120,6 +120,9 @@ const loop = new Loop(time => {
         Transport.bpm.setValueAtTime(newBpm, time)
         bpm = newBpm
     }
+    Transport.swing = z.getSwing()
+    // @ts-ignore
+    Transport.swingSubdivision = `${z.getSwingN()}n`
 
     // build gates
     streams.forEach(stream => stream.wire.build(t, q))
