@@ -45,6 +45,7 @@
         height: 25px;
         border: 2px solid var(--color-theme-2);
         background-color: var(--color-grey-darker);
+        border-radius: 3px;
         z-index: 10;
 
         & p {
