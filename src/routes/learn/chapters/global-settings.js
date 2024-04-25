@@ -27,8 +27,17 @@ s0.e.set(1)
 s1.set({inst: 0, reverb: 0}) // override global reverb setting
 s1.x.saw()
 s1.e.set(1)
+\`\`\`
 
 ## Seeding randomness
 You can seed the random number generator using \`z.seed\`. Seed is an instance of a pattern, so you can use any pattern method to set it, for example \`z.seed.set(256)\`.
+
+## Swing
+Swing can be set globally using the \`z.swing\` property. Swing is a value between 0 and 1, with 0 being no swing and 1 being full swing. Swing is applied to all streams. Swing is an instance of the [Pattern class](/docs/classes#pattern).
+
+Additionally, set the subdivision of the swing using the \`z.swingn\` property. This is an instance of the [Pattern class](/docs/classes#pattern).
+\`\`\`js
+z.swing.set(0.25)
+z.swingn.set(16)
 \`\`\`
 `
