@@ -28,8 +28,8 @@
             p5.push()
             p5.noFill()
             p5.stroke(185,185,185)
-            p5.strokeWeight(1/8)
-            p5.sphere((radius)*0.9, 20, 20);
+            p5.strokeWeight(1/16)
+            p5.sphere(radius*0.85, 20, 20);
             p5.pop()
         }
 
