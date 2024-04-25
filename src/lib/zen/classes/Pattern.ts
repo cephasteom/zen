@@ -244,6 +244,32 @@ qr: 'qresult',
         return value
     }
 
+    /**
+     * Handle looping of values for any pattern function
+     * Used to store values in state and loop over them
+     * @hidden
+     */
+    handleLoop(
+        t: number,
+        key: string,
+        loopSize: number, 
+        currentValue: any, 
+    ): any {
+        // create item in state if it doesn't exist
+        !this._state[key] && (this._state[key] = [])
+
+        // if we are looping and we have a value, use it, otherwise use the current value
+        const result = loopSize > 0 && loopSize <= this._state[key].length
+            ? this._state[key][+t%loopSize]
+            : currentValue
+
+        // if we are looping and we don't have enough values, add the current one
+        loopSize > 0 && loopSize > this._state[key].length
+            && this._state[key].push(currentValue)
+
+        return result
+    }
+
    /**
      * Return to parent Pattern or Stream
      * Useful when using any of the dollar methods, which spawn new Patterns, allowing you to return to this original pattern.
@@ -1343,22 +1369,10 @@ qr: 'qresult',
      */
     qmeasure(qubit: patternable = 0, hits: patternable = 0): Pattern {
         this.stack.push((t: patternValue) => {
-            !this._state.measure && (this._state.measure = [])
-            // qubit to measure
             const q = +this.handleTypes(qubit)
-            // number of measurements to take before looping
             const loop = clamp(+this.handleTypes(hits), 0, 256)
             const current = circuit.measure(q) || 0
-            // if we are looping and we have a measurement, use it
-            const result = loop > 0 && loop <= this._state.measure.length
-                ? this._state.measure[+t%loop]
-                : current
-
-            // if we are looping and we don't have enough measurements, add the current one
-            loop > 0 && loop > this._state.measure.length 
-                && this._state.measure.push(current)
-            
-            return result
+            return this.handleLoop(+t, 'measure', loop, current)
         })
         return this
     }
@@ -1371,19 +1385,9 @@ qr: 'qresult',
      */
     qmeasures(hits: patternable = 0): Pattern {
         this.stack.push((t: patternValue) => {
-            !this._state.measures && (this._state.measures = [])
             const loop = clamp(+this.handleTypes(hits), 0, 256)
             const current = circuit.measureAll() || []
-            // if we are looping and we have a set of measurements, use them
-            const result = loop > 0 && loop <= this._statePersist.measures.length
-                ? this._statePersist.measures[+t%loop]
-                : current
-            
-            // if we are looping and we don't have enough measures, add the current set
-            loop > 0 && loop > this._statePersist.measures.length 
-                && this._statePersist.measures.push(current)
-            
-            return result
+            return this.handleLoop(+t, 'measures', loop, current)
         })
         return this
     }
@@ -1396,22 +1400,12 @@ qr: 'qresult',
      */
     qprobability(qubit: patternable = 0, hits: patternable = 0): Pattern {
         this.stack.push((t: patternValue) => {
-            !this._state.probability && (this._state.probability = [])
             // qubit to get probability of
             const q = +this.handleTypes(qubit)
-            // number of measurements to take before looping
             const loop = clamp(+this.handleTypes(hits), 0, 256)
             const current = circuit.probability(q) || 0
-            // if we are looping and we have a probability, use it
-            const result = loop > 0 && loop <= this._state.probability.length
-                ? this._state.probability[+t%loop]
-                : current
-
-            // if we are looping and we don't have enough probabilities, add the current one
-            loop > 0 && loop > this._state.probability.length 
-                && this._state.probability.push(current)
             
-            return result
+            return this.handleLoop(+t, 'probability', loop, current)
         })
         return this
     }
@@ -1424,20 +1418,10 @@ qr: 'qresult',
      */
     qprobabilities(hits: patternable = 0): Pattern {
         this.stack.push((t: patternValue) => {
-            !this._state.probabilities && (this._state.probabilities = [])
-            // number of measurements to take before looping
             const loop = clamp(+this.handleTypes(hits), 0, 256)
             const current = circuit.probabilities() || []
-            // if we are looping and we have a set of probabilities, use them
-            const result = loop > 0 && loop <= this._state.probabilities.length
-                ? this._state.probabilities[+t%loop]
-                : current
-
-            // if we are looping and we don't have enough sets of probabilities, add the current set
-            loop > 0 && loop > this._state.probabilities.length 
-                && this._state.probabilities.push(current)
             
-            return result
+            return this.handleLoop(+t, 'probabilities', loop, current)
         })
         return this
     }
@@ -1451,8 +1435,6 @@ qr: 'qresult',
      */
     qamp(state: patternable, hits: patternable = 0): Pattern {
         this.stack.push((t: patternValue) => {
-            !this._state.amplitude && (this._state.amplitude = [])
-
             const i = +this.handleTypes(state)
             const length = circuit.numAmplitudes()
             const loop = clamp(+this.handleTypes(hits), 0, 256)
@@ -1464,16 +1446,7 @@ qr: 'qresult',
                 })[i]
                 : 0
             
-            // if we are looping and we have an amplitude, use it
-            const result = loop > 0 && loop <= this._state.amplitude.length
-                ? this._state.amplitude[+t%loop]
-                : current
-
-            // if we are looping and we don't have enough amplitudes, add the current one
-            loop > 0 && loop > this._state.amplitude.length 
-                && this._state.amplitude.push(current)
-            
-            return result
+            return this.handleLoop(+t, 'amplitude', loop, current)
         })
         return this
     }
@@ -1486,8 +1459,6 @@ qr: 'qresult',
      */ 
     qamplitudes(hits: patternable = 0): Pattern {
         this.stack.push((t: patternValue) => {
-            !this._state.amplitude && (this._state.amplitude = [])
-
             const loop = clamp(+this.handleTypes(hits), 0, 256)
             const length = circuit.numAmplitudes()
             const current =  Array.from({length}, (_, i) => {
@@ -1496,16 +1467,7 @@ qr: 'qresult',
                 return parseFloat(result.toFixed(5))
             })
 
-            // if we are looping and we have a set of amplitudes, use them
-            const result = loop > 0 && loop <= this._state.amplitudes.length
-                ? this._state.amplitudes[+t%loop]
-                : current
-
-            // if we are looping and we don't have enough sets of amplitudes, add the current set
-            loop > 0 && loop > this._state.amplitudes.length 
-                && this._state.amplitudes.push(current)
-
-            return result
+            return this.handleLoop(+t, 'amplitudes', loop, current)
         })
         return this
     }
