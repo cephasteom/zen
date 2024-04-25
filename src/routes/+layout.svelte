@@ -59,6 +59,10 @@
             @media (min-width: 550px) {
                 display: inline-block;
             }
+         
+            @media all and (display-mode: fullscreen) {
+                display: none;
+            }
         }
 
         &__copyright {
@@ -66,10 +70,7 @@
                 width: 100%;
             }
         }
-        
-        @media all and (display-mode: fullscreen) {
-            display: none;
-        }
+
     }
 
 </style>
