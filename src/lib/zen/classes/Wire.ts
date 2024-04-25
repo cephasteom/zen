@@ -1,10 +1,9 @@
 import { circuit } from './Circuit';
 import { handleTypes } from '../utils/handleTypes'; 
 /**
- * Wire
- * Represents a single wire in a quantum circuit
- * Uses Quantum Circuit package to implements quantum gates 
- * Some are documented here. See https://www.npmjs.com/package/quantum-circuit#implemented-gates for full documentation of all gates
+ * The Wire class represents a single wire in a quantum circuit.
+ * It uses the Quantum Circuit package to implement quantum gates. 
+ * Some gates are documented here. See https://www.npmjs.com/package/quantum-circuit#implemented-gates for a list of all implemented gates. 
  * @example s0.wire.h().cx([1])
  */
 export class Wire {
