@@ -1345,23 +1345,24 @@ qr: 'qresult',
      * @returns {Pattern}
      * @example s0.e.measure(0)
      * @param qubit qubit to measure
-     * @param hits number of measurements to take before looping. Default is -1 (no looping). Max 256.
+     * @param hits number of measurements to take before looping. Default is 0 (no looping). Max 256.
      */
     qmeasure(qubit: patternable = 0, hits: patternable = 0): Pattern {
         this.stack.push((t: patternValue) => {
+            !this._state.measure && (this._state.measure = [])
             // qubit to measure
             const q = +this.handleTypes(qubit)
             // number of measurements to take before looping
             const loop = clamp(+this.handleTypes(hits), 0, 256)
             const current = circuit.measure(q) || 0
             // if we are looping and we have a measurement, use it
-            const result = loop > 0 && loop <= this._statePersist.measure.length
-                ? this._statePersist.measure[+t%loop]
+            const result = loop > 0 && loop <= this._state.measure.length
+                ? this._state.measure[+t%loop]
                 : current
 
             // if we are looping and we don't have enough measurements, add the current one
-            loop > 0 && loop > this._statePersist.measure.length 
-                && this._statePersist.measure.push(current)
+            loop > 0 && loop > this._state.measure.length 
+                && this._state.measure.push(current)
             
             return result
         })
@@ -1372,20 +1373,21 @@ qr: 'qresult',
      * Return all measurements of the system as an array
      * @returns {Pattern}
      * @example s0.e.measures(4)
-     * @param offset whether to use the previous measurement, 0 or 1
+     * @param hits number of measurements to take before looping. Default is 0 (no looping). Max 256.
      */
     qmeasures(hits: patternable = 0): Pattern {
         this.stack.push((t: patternValue) => {
+            !this._state.measures && (this._state.measures = [])
             const loop = clamp(+this.handleTypes(hits), 0, 256)
             const current = circuit.measureAll() || []
             // if we are looping and we have a set of measurements, use them
-            const result = loop > 0 && loop <= this._statePersist.measurements.length
-                ? this._statePersist.measurements[+t%loop]
+            const result = loop > 0 && loop <= this._statePersist.measures.length
+                ? this._statePersist.measures[+t%loop]
                 : current
             
-            // if we are looping and we don't have enough measurements, add the current set
-            loop > 0 && loop > this._statePersist.measurements.length 
-                && this._statePersist.measurements.push(current)
+            // if we are looping and we don't have enough measures, add the current set
+            loop > 0 && loop > this._statePersist.measures.length 
+                && this._statePersist.measures.push(current)
             
             return result
         })
@@ -1396,18 +1398,26 @@ qr: 'qresult',
      * Return the probability of the qubit being measured as 1
      * @returns {Pattern}
      * @example s0.x.pb()
-     * @param offset whether to use the probability from the previous measurement, 0 or 1
+     * @param hits number of measurements to take before looping. Default is 0 (no looping). Max 256.
      */
-    qprobability(qubit: patternable = 0, offset: patternable = 0): Pattern {
-        this.stack.push(() => {
-            const i = +this.handleTypes(qubit)
-            const useState = +this.handleTypes(offset)
-            const current = this._probabilities[i] || circuit.probability(i) || 0
-            const previous = this._statePersist.probability || 0
-            this._statePersist.probability = clamp(current, 0, 1)
-            return useState
-                ? previous
+    qprobability(qubit: patternable = 0, hits: patternable = 0): Pattern {
+        this.stack.push((t: patternValue) => {
+            !this._state.probability && (this._state.probability = [])
+            // qubit to get probability of
+            const q = +this.handleTypes(qubit)
+            // number of measurements to take before looping
+            const loop = clamp(+this.handleTypes(hits), 0, 256)
+            const current = circuit.probability(q) || 0
+            // if we are looping and we have a probability, use it
+            const result = loop > 0 && loop <= this._state.probability.length
+                ? this._state.probability[+t%loop]
                 : current
+
+            // if we are looping and we don't have enough probabilities, add the current one
+            loop > 0 && loop > this._state.probability.length 
+                && this._state.probability.push(current)
+            
+            return result
         })
         return this
     }
@@ -1416,19 +1426,24 @@ qr: 'qresult',
      * Return all probabilities of the system as an array
      * @returns {Pattern}
      * @example s0.x.pbs(4).at(0)
-     * @param offset whether to use the probabilities from the previous measurement, 0 or 1
+     * @param hits number of measurements to take before looping. Default is 0 (no looping). Max 256.
      */
-    qprobabilities(offset: patternable = 0): Pattern {
-        this.stack.push(() => {
-            const useState = +this.handleTypes(offset)
-            const current = this._probabilities.length
-                ? this._probabilities
-                : circuit.probabilities() || []
-            const previous = this._statePersist.probabilities || []
-            this._statePersist.probabilities = current
-            return useState
-                ? previous
+    qprobabilities(hits: patternable = 0): Pattern {
+        this.stack.push((t: patternValue) => {
+            !this._state.probabilities && (this._state.probabilities = [])
+            // number of measurements to take before looping
+            const loop = clamp(+this.handleTypes(hits), 0, 256)
+            const current = circuit.probabilities() || []
+            // if we are looping and we have a set of probabilities, use them
+            const result = loop > 0 && loop <= this._state.probabilities.length
+                ? this._state.probabilities[+t%loop]
                 : current
+
+            // if we are looping and we don't have enough sets of probabilities, add the current set
+            loop > 0 && loop > this._state.probabilities.length 
+                && this._state.probabilities.push(current)
+            
+            return result
         })
         return this
     }
@@ -1436,19 +1451,35 @@ qr: 'qresult',
     /**
      * Return the amplitude coefficient for a given state of the quantum system
      * @returns {Pattern}
+     * @param state state to get amplitude of, as an integer
+     * @param hits number of measurements to take before looping. Default is 0 (no looping). Max 256.
      * @example s0.p.amp.amplitude(0).print()
      */
-    qamp(state: patternable): Pattern {
-        this.stack.push(() => {
+    qamp(state: patternable, hits: patternable = 0): Pattern {
+        this.stack.push((t: patternValue) => {
+            !this._state.amplitude && (this._state.amplitude = [])
+
             const i = +this.handleTypes(state)
             const length = circuit.numAmplitudes()
-            return i < length
+            const loop = clamp(+this.handleTypes(hits), 0, 256)
+            const current = i < length
                 ? Array.from({length}, (_, i) => {
                     const state = round(circuit.state[i] || complex(0, 0), 14);
                     const result = +pow(abs(state), 2)
                     return parseFloat(result.toFixed(5))
                 })[i]
                 : 0
+            
+            // if we are looping and we have an amplitude, use it
+            const result = loop > 0 && loop <= this._state.amplitude.length
+                ? this._state.amplitude[+t%loop]
+                : current
+
+            // if we are looping and we don't have enough amplitudes, add the current one
+            loop > 0 && loop > this._state.amplitude.length 
+                && this._state.amplitude.push(current)
+            
+            return result
         })
         return this
     }
@@ -1456,16 +1487,31 @@ qr: 'qresult',
     /**
      * Returns an array of amplitude coefficients for all possible states of the quantum system
      * @returns {Pattern}
+     * @param hits number of measurements to take before looping. Default is 0 (no looping). Max 256.
      * @example s0.p.amps.amplitudes().print()
      */ 
-    qamplitudes(): Pattern {
-        this.stack.push(() => {
+    qamplitudes(hits: patternable = 0): Pattern {
+        this.stack.push((t: patternValue) => {
+            !this._state.amplitude && (this._state.amplitude = [])
+
+            const loop = clamp(+this.handleTypes(hits), 0, 256)
             const length = circuit.numAmplitudes()
-            return Array.from({length}, (_, i) => {
+            const current =  Array.from({length}, (_, i) => {
                 const state = round(circuit.state[i] || complex(0, 0), 14);
                 const result = +pow(abs(state), 2)
                 return parseFloat(result.toFixed(5))
             })
+
+            // if we are looping and we have a set of amplitudes, use them
+            const result = loop > 0 && loop <= this._state.amplitudes.length
+                ? this._state.amplitudes[+t%loop]
+                : current
+
+            // if we are looping and we don't have enough sets of amplitudes, add the current set
+            loop > 0 && loop > this._state.amplitudes.length 
+                && this._state.amplitudes.push(current)
+
+            return result
         })
         return this
     }

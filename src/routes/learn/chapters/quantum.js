@@ -122,22 +122,14 @@ s0.e.qmeasure(0) // ...this
 As with \`qmeasure()\`, you can pass an integer greater than 1 as the first argument to loop the measurements.
 
 ### Probability
-Use the \`qprobability()\`, or alias \`qpb\`, method to get the probability of a qubit collapsing to |1⟩. Similar to \`qmeasure()\`, the index of the qubit and whether to fetch the current or previous probability. This can be useful for creating feedback loops. For example:
-\`\`\`js
-z.bpm.set(20)
-
-s0.x.qpb(0,1) // get the probability of qubit 0 collapsing to |1⟩, offset by one division
-s0.wire.rx(0.49) // run this like first to set the initial state of qubit 0
-// s0.wire.rx(s0.x) // then, replace with this line to get the feedback loop running
-s0.e.qmeasure(0)
-\`\`\`
+Use the \`qprobability()\`, or alias \`qpb\`, method to get the probability of a qubit collapsing to |1⟩. Similar to \`qmeasure()\`, we can pass the index of the qubit we want the probability of, and the number of measurements to take before looping.
 
 ### Probabilities
-Use the \`qprobabilitys()\`, or alias \`qpbs\`, to get the probabilities of all qubits collapsing to |1⟩ as an array. The arguments are the same as for \`qmeasures()\`. For example:
+Use the \`qprobabilitys()\`, or alias \`qpbs\`, to get the probabilities of each qubit collapsing to |1⟩ as an array. The arguments are the same as for \`qmeasures()\`. For example:
 \`\`\`js
 s0.e.qpbs().at(0) // this is the same as...
 s0.e.qpb(0) // ...this
-s0.e.qpbs(1) // returns an array of probabilities from the previous division
+s0.e.qpbs(8) // take 8 measurements before looping
 \`\`\`
 
 ### Amplitude
@@ -168,6 +160,8 @@ s1.set({inst: 1, bank: 'sd808', i: '0..16?*16', cut: 0})
 s2.set({inst: 1, bank: 'hh', i: '0..16?*16', cut: 0, vol: 0.5})
 \`\`\`
 
+As with other methods, you can pass an integer greater than 1 as the second argument to loop the measurements and create repeated patterns of amplitude values.
+
 ### Amplitudes
 Use the \`qamplitudes()\`, or alias \`qamps\`, method to get an array of the amplitude coefficients for each possible result of a circuit. The length of the array is equal to 2 to the power of the number of qubits in the system. For example, a system with 2 qubits will have 4 possible states (|00⟩, |01⟩, |10⟩, |11⟩). Each amplitude coefficient is returned as a float to 5 decimal places, with the sum of all amplitudes adding up to 1. For example:
 \`\`\`js
@@ -177,6 +171,7 @@ s1.wire.rx(0.75)
 s0.p.amp.qamps().print() // print all amplitudes to the console
 s0.e.every(4)
 \`\`\`
+As with other methods, you can pass an integer greater than 1 as the first argument to loop the measurements and create repeated patterns of amplitude value sets.
 
 ### Result
 Return the state with the highest amplitude as an integer using the \`qresult()\`, or alias \`qr\`, method. For example:
