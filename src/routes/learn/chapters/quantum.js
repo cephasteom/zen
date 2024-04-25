@@ -147,11 +147,9 @@ s0.e.qpbs(1) // returns an array of probabilities from the previous division
 Be able to do qa(0) to get amplitude of first possible outcome, or perhaps qa('01') to get amplitude of a particular state?
 
 ### Amplitudes
-// TODO
-
-Use the \`qamplitudes()\`, or alias \`qas\`, method to get an array of the amplitude coefficients for each possible result of a circuit. The length of the array is equal to 2 to the power of the number of qubits in the system. For example, a system with 2 qubits will have 4 possible results (|00⟩, |01⟩, |10⟩, |11⟩). Each amplitude coefficient is a complex number, with a real and imaginary part. For example:
+Use the \`qamplitudes()\`, or alias \`qamps\`, method to get an array of the amplitude coefficients for each possible result of a circuit. The length of the array is equal to 2 to the power of the number of qubits in the system. For example, a system with 2 qubits will have 4 possible results (|00⟩, |01⟩, |10⟩, |11⟩). Each amplitude coefficient is returned as a float to 5 decimal places, with the sum of all amplitudes adding up to 1. For example:
 \`\`\`js
-s0.e.qas(2)
+s0.e.qamps()
 \`\`\`
 
 ### Result

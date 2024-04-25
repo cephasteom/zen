@@ -1,4 +1,5 @@
 import { get } from 'svelte/store';
+import { complex, round, pow, abs } from 'mathjs'
 import { nanoid } from 'nanoid'
 import type { Stream } from './Stream'
 import type { stack, patternValue, patternable } from '../types'
@@ -1410,6 +1411,23 @@ qpbs: 'qprobabilities',
             return useState
                 ? previous
                 : current
+        })
+        return this
+    }
+
+    /**
+     * Return an array amplitudes for all possible states of the system
+     * @returns {Pattern}
+     * @example s0.p.amps.amplitudes().print()
+     */ 
+    qamplitudes(): Pattern {
+        this.stack.push(() => {
+            const length = circuit.numAmplitudes()
+            return Array.from({length}, (_, i) => {
+                const state = round(circuit.state[i] || complex(0, 0), 14);
+                const result = +pow(abs(state), 2)
+                return parseFloat(result.toFixed(5))
+            })
         })
         return this
     }

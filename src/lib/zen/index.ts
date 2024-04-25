@@ -36,8 +36,8 @@ const streams: Stream[] = Array(12).fill(0).map((_, i) => new Stream('s' + i));
 const fxstreams: Stream[] = Array(2).fill(0).map((_, i) => new Stream('fx' + i));
 const v = new Visuals()
 let bpm = 120
-let measurements = [0,0,0,0,0,0,0,0]
-let probabilities = [0,0,0,0,0,0,0,0]
+let measurements: number[] = []
+let probabilities: number[] = []
 
 // helper functions and constants
 const { bts: initBts, btms: initBtms, clamp, seed } = helpers;
