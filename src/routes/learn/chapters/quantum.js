@@ -142,20 +142,39 @@ s0.e.qpbs(1) // returns an array of probabilities from the previous division
 \`\`\`
 
 ### Amplitude
-// TODO
+Use the \`qamplitude()\`, or alias \`qamp\`, method to get the amplitude coefficient for a given state. In a system with 2 qubits, there are 4 possible states (|00⟩, |01⟩, |10⟩, |11⟩). To get the amplitude of the state |01⟩, for example, pass in the integer 1:
+\`\`\`js
+s0.wire.rx(0.25)
+s1.wire.rx(0.75)
 
-Be able to do qa(0) to get amplitude of first possible outcome, or perhaps qa('01') to get amplitude of a particular state?
+s0.p.amp.qamp(1).print() // print the amplitude of the state |01⟩ to the console
+s0.e.every(4)
+\`\`\`
 
 ### Amplitudes
-Use the \`qamplitudes()\`, or alias \`qamps\`, method to get an array of the amplitude coefficients for each possible result of a circuit. The length of the array is equal to 2 to the power of the number of qubits in the system. For example, a system with 2 qubits will have 4 possible results (|00⟩, |01⟩, |10⟩, |11⟩). Each amplitude coefficient is returned as a float to 5 decimal places, with the sum of all amplitudes adding up to 1. For example:
+Use the \`qamplitudes()\`, or alias \`qamps\`, method to get an array of the amplitude coefficients for each possible result of a circuit. The length of the array is equal to 2 to the power of the number of qubits in the system. For example, a system with 2 qubits will have 4 possible states (|00⟩, |01⟩, |10⟩, |11⟩). Each amplitude coefficient is returned as a float to 5 decimal places, with the sum of all amplitudes adding up to 1. For example:
 \`\`\`js
 s0.e.qamps()
 \`\`\`
 
 ### Result
-// TODO
+Return the state with the highest amplitude as an integer using the \`qresult()\`, or alias \`qr\`, method. For example:
+\`\`\`js
+s0.wire.rx(0.25)
+s1.wire.rx(0.75)
 
-Return most likely result of circuit. This is the result that has the highest probability of occurring. For example:
+s0.p.result.qresult().print()
+s0.e.every(4)
+\`\`\`
+
+If there are multiple states with a joint highest amplitude, an index will be returned at random. For example:
+\`\`\`js
+s0.wire.rx(0.5)
+s1.wire.rx(0.5)
+
+s0.p.result.qresult().print()
+s0.e.every(4)
+\`\`\`
 
 ## Importing Code
 

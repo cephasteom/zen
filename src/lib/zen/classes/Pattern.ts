@@ -135,6 +135,8 @@ qm: 'qmeasure',
 qms: 'qmeasures',
 qpb: 'qprobability',
 qpbs: 'qprobabilities',
+qamps: 'qamplitudes',
+qr: 'qresult',
     */ 
     aliases = {
         a: 'add',
@@ -187,6 +189,8 @@ qpbs: 'qprobabilities',
         qms: 'qmeasures',
         qpb: 'qprobability',
         qpbs: 'qprobabilities',
+        qamps: 'qamplitudes',
+        qr: 'qresult',
     }
 
     rng(t: number) {
@@ -1416,7 +1420,27 @@ qpbs: 'qprobabilities',
     }
 
     /**
-     * Return an array amplitudes for all possible states of the system
+     * Return the amplitude coefficient for a given state of the quantum system
+     * @returns {Pattern}
+     * @example s0.p.amp.amplitude(0).print()
+     */
+    qamp(state: patternable): Pattern {
+        this.stack.push(() => {
+            const i = +this.handleTypes(state)
+            const length = circuit.numAmplitudes()
+            return i < length
+                ? Array.from({length}, (_, i) => {
+                    const state = round(circuit.state[i] || complex(0, 0), 14);
+                    const result = +pow(abs(state), 2)
+                    return parseFloat(result.toFixed(5))
+                })[i]
+                : 0
+        })
+        return this
+    }
+
+    /**
+     * Returns an array of amplitude coefficients for all possible states of the quantum system
      * @returns {Pattern}
      * @example s0.p.amps.amplitudes().print()
      */ 
@@ -1428,6 +1452,34 @@ qpbs: 'qprobabilities',
                 const result = +pow(abs(state), 2)
                 return parseFloat(result.toFixed(5))
             })
+        })
+        return this
+    }
+
+    /**
+     * Returns the index of the state with the highest amplitude
+     * If there are multiple states with the same amplitude, one is chosen at random
+     * @returns {Pattern}
+     * @example s0.p.res.qresult().print()
+     */
+    qresult(): Pattern {
+        this.stack.push(() => {
+            const length = circuit.numAmplitudes()
+            const amps = Array.from({length}, (_, i) => {
+                const state = round(circuit.state[i] || complex(0, 0), 14);
+                const result = +pow(abs(state), 2)
+                return parseFloat(result.toFixed(5))
+            })
+
+            const maxAmp = Math.max(...amps);
+
+            const maxIndices = amps.reduce((indices, amp, i) => {
+                return amp === maxAmp
+                    ? [...indices, i]
+                    : indices
+            }, [] as number[]);
+    
+            return maxIndices[Math.floor(Math.random() * maxIndices.length)];
         })
         return this
     }
