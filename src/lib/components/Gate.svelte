@@ -43,7 +43,7 @@
         justify-content: center;
         width: 25px;
         height: 25px;
-        border: 1px solid var(--color-theme-2);
+        border: 2px solid var(--color-theme-2);
         background-color: var(--color-grey-darker);
         z-index: 10;
 
@@ -52,8 +52,9 @@
             text-transform: uppercase;
             text-align: center;
             transform: translateX(0.75px);
-            font-size: var(--text-xxs);
+            font-size: var(--text-xs);
             color: var(--color-theme-2);
+            font-weight: bold;
         }
 
         .params {
@@ -63,6 +64,9 @@
             position: absolute;
             bottom: -1.1rem;
             background-color: var(--color-grey-darker);
+            & p {
+                font-size: var(--text-xxs);
+            }
         }
     }
 
@@ -70,6 +74,7 @@
         border-radius: 50%;
         & p {
             display: none;
+            font-weight: bold;
         }
         &::before,
         &::after {
@@ -101,6 +106,7 @@
         background-color: var(--color-theme-2);
         & p {
             display: none;
+            font-weight: bold;
         }
     }
 

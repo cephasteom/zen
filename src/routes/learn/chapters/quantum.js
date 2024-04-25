@@ -141,6 +141,11 @@ s0.e.qpb(0) // ...this
 s0.e.qpbs(1) // returns an array of probabilities from the previous division
 \`\`\`
 
+### Amplitude
+// TODO
+
+Be able to do qa(0) to get amplitude of first possible outcome, or perhaps qa('01') to get amplitude of a particular state?
+
 ### Amplitudes
 // TODO
 
@@ -148,6 +153,11 @@ Use the \`qamplitudes()\`, or alias \`qas\`, method to get an array of the ampli
 \`\`\`js
 s0.e.qas(2)
 \`\`\`
+
+### Result
+// TODO
+
+Return most likely result of circuit. This is the result that has the highest probability of occurring. For example:
 
 ## Importing Code
 
