@@ -117,6 +117,14 @@ export class Wire {
         return this
     }
 
+    /**
+     * Generate a random circuit
+     */
+    random(numQubits: number = 4, numGates: number = 8) {
+        circuit.randomCircuit(numQubits, numGates)
+        return this
+    }
+
     clear() {
         this._stack = []
         this._offset = 0

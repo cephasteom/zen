@@ -176,6 +176,9 @@ s0.p.result.qresult().print()
 s0.e.every(4)
 \`\`\`
 
+### Random
+// TODO
+
 ## Importing Code
 
 ### QASM Strings

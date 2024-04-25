@@ -52,7 +52,7 @@
             text-transform: uppercase;
             text-align: center;
             transform: translateX(0.75px);
-            font-size: var(--text-xs);
+            font-size: var(--text-xxs);
             color: var(--color-theme-2);
             font-weight: bold;
         }
