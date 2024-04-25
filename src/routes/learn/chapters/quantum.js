@@ -3,18 +3,16 @@ Zen uses the <a href="https://www.npmjs.com/package/quantum-circuit" target="_bl
 
 Run the following examples to get a feel for how quantum circuits work in Zen. Ensure quantum mode is toggled by clicking on the qubit icon in the tool bar:
 \`\`\`js
-z.bpm.set(160)
+z.bpm.set(120)
 
 s0.wire.h().cx([1]).ccx([1,2])
-s1.wire.fb(0)
-s2.wire.fb(0)
 
-s0.e.qmeasure(0)
-s1.e.qmeasure(1)
-s2.e.qmeasure(2)
+s0.e.qmeasure(0, 32)
+s1.e.qmeasure(1, 32)
+s2.e.qmeasure(2, 32)
 
 s0.set({inst: 1, bank: 'bd808', i: 3, cut: 1})
-s1.set({inst: 1, bank: 'sd808', i: '0..16?*16', cut: 0})
+s1.set({inst: 1, bank: 'sd808', i: '0..1?*16', cut: 0})
 s2.set({inst: 1, bank: 'hh', i: '0..16?*16', cut: 0, vol: 0.5})
 \`\`\`
 
@@ -95,7 +93,7 @@ s1.wire.fb(0) // uses the previous measurement of stream 0 as the initial state
 There are a number of Pattern methods that get and manipulate the results of running a quantum circuit. These can be used as data sources for sonification within Zen. All methods associated with Zen's quantum mode are prefixed with a 'q'.
 
 ### Measure
-Use \`qmeasure()\`, alias \`qm\`, to use the collapsed state of a qubit to decide whether an event should be triggered. The first argument is the index of the qubit you wish to measure, and the second (optional) argument offsets the measurement by one division. For example:
+Use \`qmeasure()\`, alias \`qm\`, to use the collapsed state of a qubit to decide whether an event should be triggered. The first argument is the index of the qubit you wish to measure, and the second argument determines how many measurements you should take before you loop. For example:
 \`\`\`js
 s0.set({inst:0,reverb:0.125,rtail:0.2,cut:0,cutr:250,dur:100,mods:0.1})
 
@@ -109,18 +107,19 @@ s0.e.qmeasure(0) // measure qubit 0. If it collapses to |1⟩, trigger the event
 s0.m.not(s0.e)
 \`\`\`
 
-The offset argument determines whether to use the current or preceding measurement. Omiting the offset argument, or passing a \`0\` will use the current measurement. A \`1\` will use the measurement from the preceding division of the cycle. For example:
+By default, measurements do not loop. However, repetition is musically useful. Passing an integer greater than 1 as the second argument will cause the measurement to loop. For example:
 \`\`\`js
-s0.e.qmeasure(0, 1) // measure qubit 0, offset by one division
+s0.e.qmeasure(0, 8) // measure qubit 0, after 8 measurements, loop
 \`\`\`
 
 ### Measures
-Use \`qmeasures()\`, alias \`qms\`, to get the measurements of all qubits as an array. By default, it returns the measurements from the current iteration of the circuit. Pass a 1 as the first argument to return measurements from the preceding division of the cycle. For example:
+Use \`qmeasures()\`, alias \`qms\`, to get the measurements of all qubits as an array.
 \`\`\`js
 s0.e.qmeasures().at(0) // this is the same as...
 s0.e.qmeasure(0) // ...this
-s0.e.qmeasures(1) // returns an array of results from the previous division
 \`\`\`
+
+As with \`qmeasure()\`, you can pass an integer greater than 1 as the first argument to loop the measurements.
 
 ### Probability
 Use the \`qprobability()\`, or alias \`qpb\`, method to get the probability of a qubit collapsing to |1⟩. Similar to \`qmeasure()\`, the index of the qubit and whether to fetch the current or previous probability. This can be useful for creating feedback loops. For example:
@@ -151,10 +150,32 @@ s0.p.amp.qamp(1).print() // print the amplitude of the state |01⟩ to the conso
 s0.e.every(4)
 \`\`\`
 
+Using an amplitude coefficient as the input for a gate creates interesting feedback loops. For example:
+\`\`\`js
+z.bpm.set(120)
+
+s0.wire.h().cx([1]).ccx([1,2])
+
+s1.y.qamp(0)
+s1.wire.fb(0).rx(s1.y)
+
+s0.e.qmeasure(0)
+s1.e.qmeasure(1)
+s2.e.qmeasure(2)
+
+s0.set({inst: 1, bank: 'bd808', i: 3, cut: 1})
+s1.set({inst: 1, bank: 'sd808', i: '0..16?*16', cut: 0})
+s2.set({inst: 1, bank: 'hh', i: '0..16?*16', cut: 0, vol: 0.5})
+\`\`\`
+
 ### Amplitudes
 Use the \`qamplitudes()\`, or alias \`qamps\`, method to get an array of the amplitude coefficients for each possible result of a circuit. The length of the array is equal to 2 to the power of the number of qubits in the system. For example, a system with 2 qubits will have 4 possible states (|00⟩, |01⟩, |10⟩, |11⟩). Each amplitude coefficient is returned as a float to 5 decimal places, with the sum of all amplitudes adding up to 1. For example:
 \`\`\`js
-s0.e.qamps()
+s0.wire.rx(0.25)
+s1.wire.rx(0.75)
+
+s0.p.amp.qamps().print() // print all amplitudes to the console
+s0.e.every(4)
 \`\`\`
 
 ### Result

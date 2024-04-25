@@ -79,7 +79,11 @@ export class Pattern {
      * Does not clear on reset()
      * @hidden
      */
-    private _statePersist = {} as any
+    private _statePersist = {
+        measure: [],
+        measurements: [],
+        probability: [],
+    } as any
 
     /**
      * Shorthand aliases for pattern methods.
@@ -1341,18 +1345,25 @@ qr: 'qresult',
      * @returns {Pattern}
      * @example s0.e.measure(0)
      * @param qubit qubit to measure
-     * @param offset whether to use the previous measurement, 0 or 1
+     * @param hits number of measurements to take before looping. Default is -1 (no looping). Max 256.
      */
-    qmeasure(qubit: patternable = 0, offset: patternable = 0): Pattern {
-        this.stack.push(() => {
-            const i = +this.handleTypes(qubit)
-            const useState = +this.handleTypes(offset)
-            const current = this._measurements[i] || circuit.measure(i) || 0
-            const previous = this._statePersist.measure || 0
-            this._statePersist.measure = current
-            return useState
-                ? previous
+    qmeasure(qubit: patternable = 0, hits: patternable = 0): Pattern {
+        this.stack.push((t: patternValue) => {
+            // qubit to measure
+            const q = +this.handleTypes(qubit)
+            // number of measurements to take before looping
+            const loop = clamp(+this.handleTypes(hits), 0, 256)
+            const current = circuit.measure(q) || 0
+            // if we are looping and we have a measurement, use it
+            const result = loop > 0 && loop <= this._statePersist.measure.length
+                ? this._statePersist.measure[+t%loop]
                 : current
+
+            // if we are looping and we don't have enough measurements, add the current one
+            loop > 0 && loop > this._statePersist.measure.length 
+                && this._statePersist.measure.push(current)
+            
+            return result
         })
         return this
     }
@@ -1363,17 +1374,20 @@ qr: 'qresult',
      * @example s0.e.measures(4)
      * @param offset whether to use the previous measurement, 0 or 1
      */
-    qmeasures(offset: patternable = 0): Pattern {
-        this.stack.push(() => {
-            const useState = +this.handleTypes(offset)
-            const current = this._measurements.length
-                ? this._measurements
-                : circuit.measureAll() || []
-            const previous = this._statePersist.measurements || []
-            this._statePersist.measurements = current
-            return useState
-                ? previous
+    qmeasures(hits: patternable = 0): Pattern {
+        this.stack.push((t: patternValue) => {
+            const loop = clamp(+this.handleTypes(hits), 0, 256)
+            const current = circuit.measureAll() || []
+            // if we are looping and we have a set of measurements, use them
+            const result = loop > 0 && loop <= this._statePersist.measurements.length
+                ? this._statePersist.measurements[+t%loop]
                 : current
+            
+            // if we are looping and we don't have enough measurements, add the current set
+            loop > 0 && loop > this._statePersist.measurements.length 
+                && this._statePersist.measurements.push(current)
+            
+            return result
         })
         return this
     }
