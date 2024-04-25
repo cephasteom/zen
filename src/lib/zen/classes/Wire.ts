@@ -82,9 +82,7 @@ export class Wire {
                                         value, 
                                         this._t, 
                                         this._q, 
-                                        `${this.row}`,
-                                        this._measurements,
-                                        this._probabilities
+                                        `${this.row}`
                                     ) * Math.PI 
                                 }), {})
                             : [0,0,0]
@@ -109,9 +107,7 @@ export class Wire {
                 stream, 
                 this._t, 
                 this._q, 
-                `${this.row}`,
-                this._measurements,
-                this._probabilities
+                `${this.row}`
             )
         })
         return this

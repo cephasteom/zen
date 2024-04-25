@@ -1,50 +1,54 @@
 export default `# Zen Quantum
-Zen uses the <a href="https://www.npmjs.com/package/quantum-circuit" target="_blank">Quantum Circuit</a> library by Quantastica to build and run quantum circuit simulations in the browser. In quantum mode, each stream represents a single wire in a quantum circuit. Gates can be added to each wire by chaining methods on the \`.wire\` property of a stream. Gate parameters can expressed as simple values, zen mini-notation or other Patterns. The results of running a circuit - including results, measurements, probabilities, and amplitude coefficients - can be used throughout your Zen code as the basis for further sonification. This page explains how to build quantum circuits in Zen and the methods available for accessing quantum data in your compositions. A more detailed guide to the Quantum Circuit library can be found <a href="https://www.npmjs.com/package/quantum-circuit" target="_blank">here</a>.
+Zen is a quantum programming inspired system. It integrates the [Quantum Circuit library](https://www.npmjs.com/package/quantum-circuit) developed by Quantastica to facilitate the construction and execution of quantum circuit simulations within the web browser. In quantum mode, each stream corresponds to a single wire within the quantum circuit. Gates are appended to individual wires by method chaining through the \`.wire\` property of a stream. Gate parameters may be passed as values, [mini-notation](/learn/mini-notation), or [Patterns](/learn/patterns).
 
-Run the following examples to get a feel for how quantum circuits work in Zen. Ensure quantum mode is toggled by clicking on the qubit icon in the tool bar:
+The outcomes of circuit executions, encompassing the state vector, individual qubit measurements, probabilities, and amplitude coefficients, can serve as data to be sonified within your Zen code. This document explains how to construct quantum circuits within Zen, and how to access the available quantum data within your compositions. For a more detailed explanation of quantum computer music, see [Miranda (2022)](https://link.springer.com/book/10.1007/978-3-031-13909-3).
+
+Run the following example to get a feel for quantum programming in Zen. Ensure quantum mode is toggled by clicking on the qubit icon in the tool bar:
 \`\`\`js
 z.bpm.set(120)
 
 s0.wire.h().cx([1]).ccx([1,2])
+s1.wire.fb(0)
+s2.wire.fb(1)
 
 s0.e.qmeasure(0, 32)
 s1.e.qmeasure(1, 32)
 s2.e.qmeasure(2, 32)
 
-s0.set({inst: 1, bank: 'bd808', i: 3, cut: 1})
-s1.set({inst: 1, bank: 'sd808', i: '0..1?*16', cut: 0})
-s2.set({inst: 1, bank: 'hh', i: '0..16?*16', cut: 0, vol: 0.5})
+s0.set({inst: 1, bank: 'bd808', i: 3, cut: 0})
+s1.set({inst: 1, bank: 'sd808', i: '0..1?*16', cut: [0,1]})
+s2.set({inst: 1, bank: 'hh', i: '0..16?*16', cut: [0,2], vol: 0.5})
 \`\`\`
 
 ## Building Circuits
-The \`.wire\` property of a stream is used to build the gates on a single wire of the quantum circuit. It is an instance of the [Wire class](/docs/classes#wire). Gates are added by chaining methods whose name corresponds to a gate: for example, \`.wire.u3().x()\`. A full list of implemented gates can be found in the [Quantum Circuit documentation](https://www.npmjs.com/package/quantum-circuit#implemented-gates). 
+The \`.wire\` property of a stream serves as the interface for constructing gates on a specific wire within the quantum circuit. This property is an instance of the [Wire class](/docs/classes#wire). Gates are appended by sequentially chaining methods, each corresponding to a specific gate. For instance, \`.wire.x().cx(1)\` applies an X gate followed by a CNOT gate to the wire. For a comprehensive inventory of implemented gates, refer to the [Quantum Circuit documentation](https://www.npmjs.com/package/quantum-circuit#implemented-gates).
 
 Here is an example of setting some gates using the \`.wire\` property:
 \`\`\`js
 s0.wire.h().cx(1)
 s1.wire.x()
 \`\`\`
-Here, we use a Hadamard gate on stream 0, followed by a CNOT gate with stream 1 as the target. We then apply an X gate to stream 1. If you run this in the Zen editor, you will see the quantum circuit visualisation update in real time. Measurements are shown on the right.
+In this example, we apply a Hadamard gate to stream 0, succeeded by a CNOT gate with stream 1 designated as the target. Subsequently, an X gate is applied to stream 1. When executed within the Zen editor, the circuit schematic is rendered, with measurements displayed as unit vectors on the right-hand side.
 
 ### Multi-qubit gates
-Multi-qubit gates allow us to entangle qubits. They require one or more control qubits, and a target qubit. The target qubit has a gate applied to it, only if the control qubit(s) are in a certain state. The wire that we add the gate to is always the first control qubit. Additional qubits are passed as the first argument of the gate method. This can be either a single index or array of indexes. For example, to apply a CNOT, or CX, gate to qubits 0 and 1:
+Multi-qubit gates facilitate entanglement. They connect one or more control qubits, and a target qubit. The target qubit has a gate applied to its wire only if the state(s) of the control qubit(s) meets certain conditions. The wire that we add the gate to is always the first control qubit. Additional qubits are passed as the first argument of the gate method. This can be either a single index or array of indexes. For example, to apply a CNOT, or CX, gate to qubits 0 and 1:
 \`\`\`js
 s0.wire.cx(1)
 \`\`\`
-Here, the control qubit is 0 and the target qubit is 1. Qubit 1 will have an X gate applied to it if qubit 0 is in the state |1⟩.
+Here, the control qubit is 0 and the target qubit is 1. Wire 1 will have an X gate applied to it only if qubit 0 is in the state |1⟩.
 
 To apply a CCNOT, or CCX, gate to qubits 0, 1 and 2:
 \`\`\`js
 s0.wire.ccx([1,2])
 \`\`\`
-Here, the control qubits are 0 and 1, and the target qubit is 2. Qubit 2 will have an X gate applied to it if qubits 0 and 1 are in the state |1⟩.
+Here, the control qubits are 0 and 1, and the target qubit is 2. Wire 2 will have an X gate applied to it only if qubits 0 and 1 are both in the state |1⟩.
 
 ### Gate parameters
-Some gates require additional parameters. For example, the U3 gate requires three parameters: theta, phi, and lambda. These are passed as arguments to the gate method. For example, to apply a U3 gate to qubit 0 with parameters theta, phi, lambda:
+Some gates require additional parameters. For example, the U3 gate requires three parameters - theta, phi, and lambda - passed as an array to the gate method. For example, to apply a U3 gate to qubit 0 with parameters theta, phi, lambda:
 \`\`\`js
 s0.wire.u3([0.1,0.2,0.3])
 \`\`\`
-Parameters are written as multiples of π, as in 0.5π, π, 2π etc. Values can be numbers, mini-notation strings, or other patterns. The following will work:
+Parameters are written as multiples of π, as in 0.5π, π, 2π etc. Values can be numbers, [mini-notation](/learn/mini-notation), or [Patterns](/learn/patterns). The following will work:
 \`\`\`js
 s0.x.sine()
 s0.wire.u3([0.5,'0.25?0.5?0.75?1*16',s0.x])
@@ -75,14 +79,14 @@ s0.wire.u3([0.1,0.2,0.3],2) // no target qubits but parameters can be specified,
 s0.wire.ccx([1,2],2) // target qubits and position can be specified, so arguments are [target qubits, position]
 s0.wire.xx(2,0.5,0) // a rare example of a gate that requires all three arguments [target qubits, parameters, position]
 \`\`\`
-Again, see the [Quantum Circuit documentation](https://www.npmjs.com/package/quantum-circuit#implemented-gates) for a full list of gates and their arguments.
+See the [Quantum Circuit documentation](https://www.npmjs.com/package/quantum-circuit#implemented-gates) for a full list of gates and their arguments.
 
 ### Feedback
-Use the \`.fb()\` method to apply feedback to a wire. This will use the previous measurement as the initial state of the qubit before the circuit runs. Be warned, if you have entangled qubits, this may lead to some unusual results. For example:
+Use the \`.fb()\` method to apply feedback to a wire. This will use the previous measurement as the initial state of the qubit before the circuit runs. For example:
 \`\`\`js
 s0.wire.x().fb()
 \`\`\`
-By default, feedback is applied to the same stream. You can specify a different stream as the input for feedback by passing it as an argument. For example:
+By default, prior results are taken from the same stream. However, you can specify a different stream as the input for feedback by passing it as an argument. For example:
 \`\`\`js
 z.bpm.set(20)
 s0.wire.h()
@@ -90,10 +94,10 @@ s1.wire.fb(0) // uses the previous measurement of stream 0 as the initial state
 \`\`\`
 
 ## Getting Results
-There are a number of Pattern methods that get and manipulate the results of running a quantum circuit. These can be used as data sources for sonification within Zen. All methods associated with Zen's quantum mode are prefixed with a 'q'.
+There are a number of Pattern methods that fetch and manipulate the results of running a quantum circuit. These can be used as data to be sonified. All methods associated with Zen's quantum mode are prefixed with a 'q'.
 
 ### Measure
-Use \`qmeasure()\`, alias \`qm\`, to use the collapsed state of a qubit to decide whether an event should be triggered. The first argument is the index of the qubit you wish to measure, and the second argument determines how many measurements you should take before you loop. For example:
+Use \`qmeasure()\`, alias \`qm()\`, to use the collapsed state of a qubit to determine whether to trigger an event. The first argument is the index of the qubit you wish to measure. For example:
 \`\`\`js
 s0.set({inst:0,reverb:0.125,rtail:0.2,cut:0,cutr:250,dur:100,mods:0.1})
 
@@ -107,9 +111,9 @@ s0.e.qmeasure(0) // measure qubit 0. If it collapses to |1⟩, trigger the event
 s0.m.not(s0.e)
 \`\`\`
 
-By default, measurements do not loop. However, repetition is musically useful. Passing an integer greater than 1 as the second argument will cause the measurement to loop. For example:
+By default, measurements are taken at each division of the cycle. However, repetition is musically useful. Passing an integer greater than 1 as the second argument will cause the measurement to loop. For example:
 \`\`\`js
-s0.e.qmeasure(0, 8) // measure qubit 0, after 8 measurements, loop
+s0.e.qmeasure(0, 8) // measure qubit 0, loop after 8 measurements
 \`\`\`
 
 ### Measures
@@ -119,13 +123,13 @@ s0.e.qmeasures().at(0) // this is the same as...
 s0.e.qmeasure(0) // ...this
 \`\`\`
 
-As with \`qmeasure()\`, you can pass an integer greater than 1 as the first argument to loop the measurements.
+You can pass an integer greater than 1 as the first argument to loop the measurements.
 
 ### Probability
 Use the \`qprobability()\`, or alias \`qpb\`, method to get the probability of a qubit collapsing to |1⟩. Similar to \`qmeasure()\`, we can pass the index of the qubit we want the probability of, and the number of measurements to take before looping.
 
 ### Probabilities
-Use the \`qprobabilitys()\`, or alias \`qpbs\`, to get the probabilities of each qubit collapsing to |1⟩ as an array. The arguments are the same as for \`qmeasures()\`. For example:
+Use the \`qprobabilitys()\`, or alias \`qpbs\`, to get the probabilities of each qubit collapsing to |1⟩ as an array. Similar to \`qmeasures()\`, we can pass a loop length as the first argument. For example:
 \`\`\`js
 s0.e.qpbs().at(0) // this is the same as...
 s0.e.qpb(0) // ...this
@@ -133,7 +137,7 @@ s0.e.qpbs(8) // take 8 measurements before looping
 \`\`\`
 
 ### Amplitude
-Use the \`qamplitude()\`, or alias \`qamp\`, method to get the amplitude coefficient for a given state. In a system with 2 qubits, there are 4 possible states (|00⟩, |01⟩, |10⟩, |11⟩). To get the amplitude of the state |01⟩, for example, pass in the integer 1:
+Use the \`qamplitude()\`, or alias \`qamp\`, method to get the amplitude coefficient for a given state. The number of states in a quantum system is 2 to the power of the number of qubits. In a system with 2 qubits, there are 4 possible states (|00⟩, |01⟩, |10⟩, |11⟩). To get the amplitude of the state |01⟩, for example, pass in the integer 1:
 \`\`\`js
 s0.wire.rx(0.25)
 s1.wire.rx(0.75)
@@ -151,19 +155,18 @@ s0.wire.h().cx([1]).ccx([1,2])
 s1.y.qamp(0)
 s1.wire.fb(0).rx(s1.y)
 
-s0.e.qmeasure(0)
-s1.e.qmeasure(1)
-s2.e.qmeasure(2)
+s0.e.qmeasure(0, 32)
+s1.e.qmeasure(1, 32)
+s2.e.qmeasure(2, 32)
 
-s0.set({inst: 1, bank: 'bd808', i: 3, cut: 1})
-s1.set({inst: 1, bank: 'sd808', i: '0..16?*16', cut: 0})
-s2.set({inst: 1, bank: 'hh', i: '0..16?*16', cut: 0, vol: 0.5})
+s0.set({inst: 1, bank: 'bd808', i: 3, cut: 0})
+s1.set({inst: 1, bank: 'sd808', i: '0..16?*16', cut: [0,1]})
+s2.set({inst: 1, bank: 'hh', i: '0..16?*16', cut: [0,1,2], vol: 0.5})
 \`\`\`
-
-As with other methods, you can pass an integer greater than 1 as the second argument to loop the measurements and create repeated patterns of amplitude values.
+Each amplitude coefficient is returned as a float to 5 decimal places. As with other methods, you can pass a loop length as the second argument.
 
 ### Amplitudes
-Use the \`qamplitudes()\`, or alias \`qamps\`, method to get an array of the amplitude coefficients for each possible result of a circuit. The length of the array is equal to 2 to the power of the number of qubits in the system. For example, a system with 2 qubits will have 4 possible states (|00⟩, |01⟩, |10⟩, |11⟩). Each amplitude coefficient is returned as a float to 5 decimal places, with the sum of all amplitudes adding up to 1. For example:
+Use the \`qamplitudes()\`, or alias \`qamps\`, method to get an array of the amplitude coefficients for each possible result of a circuit. For example:
 \`\`\`js
 s0.wire.rx(0.25)
 s1.wire.rx(0.75)
@@ -171,7 +174,7 @@ s1.wire.rx(0.75)
 s0.p.amp.qamps().print() // print all amplitudes to the console
 s0.e.every(4)
 \`\`\`
-As with other methods, you can pass an integer greater than 1 as the first argument to loop the measurements and create repeated patterns of amplitude value sets.
+As with other methods, you can pass a loop length as the first argument.
 
 ### Result
 Return the state with the highest amplitude as an integer using the \`qresult()\`, or alias \`qr\`, method. For example:

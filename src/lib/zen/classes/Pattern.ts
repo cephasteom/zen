@@ -61,12 +61,6 @@ export class Pattern {
     /** @hidden */
     private _bpm: number = 120
 
-    /** @hidden */
-    private _measurements: number[] = []
-
-    /** @hidden */
-    private _probabilities: number[] = []
-
     /**
      * State object for pattern methods that require it
      * Clears on reset()
@@ -1558,14 +1552,11 @@ qr: 'qresult',
 
     /** @hidden */
     get(
-        t: number, q: number, bpm?: number,
-        measurements?: number[], probabilities?: number[]
+        t: number, q: number, bpm?: number
     ): patternValue | null {
         this._t = t
         this._q = q
         this._bpm = bpm || this._bpm
-        this._measurements = measurements || []
-        this._probabilities = probabilities || []
 
         const value = this.stack.length 
             ? this.stack.reduce((val: patternValue, fn) => fn(val), t) 
