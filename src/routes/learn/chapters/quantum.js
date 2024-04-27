@@ -1,7 +1,7 @@
 export default `# Zen Quantum
 Zen is a quantum programming inspired system. It integrates the [Quantum Circuit library](https://www.npmjs.com/package/quantum-circuit) developed by Quantastica to facilitate the construction and execution of quantum circuit simulations within the web browser. In quantum mode, each stream corresponds to a single wire within the quantum circuit. Gates are appended to individual wires by method chaining through the \`.wire\` property of a stream. Gate parameters may be passed as values, [mini-notation](/learn/mini-notation), or [Patterns](/learn/patterns).
 
-The outcomes of circuit executions, encompassing the state vector, individual qubit measurements, probabilities, and amplitude coefficients, can serve as data to be sonified within your Zen code. This document explains how to construct quantum circuits within Zen, and how to access the available quantum data within your compositions. For a more detailed explanation of quantum computer music, see [Miranda (2022)](https://link.springer.com/book/10.1007/978-3-031-13909-3).
+The outcomes of circuit executions, encompassing the state vector, individual qubit measurements, basis states, probabilities, and amplitude coefficients, can serve as data to be sonified within your Zen code. This document explains how to construct quantum circuits within Zen, and how to access the available quantum data within your compositions. For a more detailed explanation of quantum computer music, see [Miranda (2022)](https://link.springer.com/book/10.1007/978-3-031-13909-3).
 
 Run the following example to get a feel for quantum programming in Zen. Ensure quantum mode is toggled by clicking on the qubit icon in the tool bar:
 \`\`\`js
@@ -93,11 +93,11 @@ s0.wire.h()
 s1.wire.fb(0) // uses the previous measurement of stream 0 as the initial state
 \`\`\`
 
-## Getting Results
-There are a number of Pattern methods that fetch and manipulate the results of running a quantum circuit. These can be used as data to be sonified. All methods associated with Zen's quantum mode are prefixed with a 'q'.
+## Sonifying Data
+There are a number of Pattern methods that can fetch and manipulate the results of running a quantum circuit. These can be used as data to be sonified. All methods associated with Zen's quantum mode are prefixed with a \`q\`.
 
 ### Measure
-Use \`qmeasure()\`, alias \`qm()\`, to use the collapsed state of a qubit to determine whether to trigger an event. The first argument is the index of the qubit you wish to measure. For example:
+\`qmeasure()\`, alias \`qm()\`, returns the collapsed state of a qubit: either a |0⟩ or |1⟩. This is useful for triggering events. The first argument is the index of the qubit you wish to measure. For example:
 \`\`\`js
 s0.set({inst:0,reverb:0.125,rtail:0.2,cut:0,cutr:250,dur:100,mods:0.1})
 
@@ -137,7 +137,7 @@ s0.e.qpbs(8) // take 8 measurements before looping
 \`\`\`
 
 ### Amplitude
-Use the \`qamplitude()\`, or alias \`qamp\`, method to get the amplitude coefficient for a given state. The number of states in a quantum system is 2 to the power of the number of qubits. In a system with 2 qubits, there are 4 possible states (|00⟩, |01⟩, |10⟩, |11⟩). To get the amplitude of the state |01⟩, for example, pass in the integer 1:
+Use the \`qamplitude()\`, or alias \`qamp\`, method to get the amplitude coefficient for a given basis state. The number of states in a quantum system is 2 to the power of the number of qubits. In a system with 2 qubits, there are 4 possible basis states (|00⟩, |01⟩, |10⟩, |11⟩). To get the amplitude of the state |01⟩, for example, pass in the integer 1:
 \`\`\`js
 s0.wire.rx(0.25)
 s1.wire.rx(0.75)
@@ -177,7 +177,7 @@ s0.e.every(4)
 As with other methods, you can pass a loop length as the first argument.
 
 ### Result
-Return the state with the highest amplitude as an integer using the \`qresult()\`, or alias \`qr\`, method. For example:
+Return the basis state with the highest amplitude as an integer using the \`qresult()\`, or alias \`qr\`, method. For example:
 \`\`\`js
 s0.wire.rx(0.25)
 s1.wire.rx(0.75)
@@ -194,6 +194,22 @@ s1.wire.rx(0.5)
 s0.p.result.qresult().print()
 s0.e.every(4)
 \`\`\`
+
+One application for this could be to trigger events based on whether a certain state has the highest amplitude. For example:
+\`\`\`js
+s2.wire.h()
+s3.wire.h()
+
+s0.set({inst:1,bank:'bd'})
+s0.e.qresult().eq(12)
+
+s1.set({inst:1,bank:'sd'})
+s1.e.qresult().eq(4)
+
+s2.set({inst:1,bank:'hh'})
+s2.e.qresult().eq(8)
+\`\`\`
+Here, we create a 4 qubit system with 16 possible basis states. Hadamard gates are applied to the 3rd and 4th wires which means that only the states |1100⟩, |0100⟩, and |1000⟩ will have the highest amplitude. We assign a sound to each state.
 
 ### Random
 // TODO

@@ -1467,8 +1467,9 @@ qr: 'qresult',
      * @returns {Pattern}
      * @example s0.p.res.qresult().print()
      */
-    qresult(): Pattern {
-        this.stack.push(() => {
+    qresult(hits: patternable = 0): Pattern {
+        this.stack.push((t: patternValue) => {
+            const loop = clamp(+this.handleTypes(hits), 0, 256)
             const length = circuit.numAmplitudes()
             const amps = Array.from({length}, (_, i) => {
                 const state = round(circuit.state[i] || complex(0, 0), 14);
@@ -1484,7 +1485,9 @@ qr: 'qresult',
                     : indices
             }, [] as number[]);
     
-            return maxIndices[Math.floor(Math.random() * maxIndices.length)];
+            const current = maxIndices[Math.floor(Math.random() * maxIndices.length)];
+            
+            return this.handleLoop(+t, 'result', loop, current)
         })
         return this
     }
