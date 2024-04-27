@@ -1465,6 +1465,7 @@ qr: 'qresult',
      * Returns the index of the state with the highest amplitude
      * If there are multiple states with the same amplitude, one is chosen at random
      * @returns {Pattern}
+     * @param hits number of measurements to take before looping. Default is 0 (no looping). Max 256.
      * @example s0.p.res.qresult().print()
      */
     qresult(hits: patternable = 0): Pattern {
