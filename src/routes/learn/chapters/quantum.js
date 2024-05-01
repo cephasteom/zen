@@ -176,6 +176,31 @@ s0.e.every(4)
 \`\`\`
 As with other methods, you can pass a loop length as the first argument.
 
+### Phase
+Use the \`qphase()\`, or alias \`qp\`, method to get the phase of a basis state. For example:
+\`\`\`js
+s0.wire.h()
+s1.wire.h().t()
+s2.wire.h().s()
+s3.wire.h().z()
+
+s0.y.qphase(5)
+s0.e.set(1)
+\`\`\`
+
+### Phases
+Use the \`qphases()\`, or alias \`qps\`, method to get an array of the phases of each basis state. For example:
+\`\`\`js
+s0.p.z.sine(0,1,0,1/16)
+s0.wire.h().rz(s0.p.z)
+s1.wire.h()
+s2.wire.h()
+s3.wire.h().z()
+
+s0.y.qphases().print().$at.t().mod(q)
+s0.e.set(1)
+\`\`\`
+
 ### Result
 Return the basis state with the highest amplitude as an integer using the \`qresult()\`, or alias \`qr\`, method. For example:
 \`\`\`js

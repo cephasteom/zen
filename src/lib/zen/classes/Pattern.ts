@@ -1457,13 +1457,41 @@ qr: 'qresult',
         return this
     }
 
-    // qphase(state: patternable, hits: patternable = 0): Pattern {
-    //     this.stack.push((t: patternValue) => {
-    //         const loop = clamp(+this.handleTypes(hits), 0, 256)
-    //         return 
-    //     })
-    //     return this
-    // }
+    /**
+     * Returns the phase of a given state of the quantum system
+     * @returns {Pattern}
+     * @param state state to get phase of, as an integer
+     * @param hits number of measurements to take before looping. Default is 0 (no looping). Max 256.
+     * @example s0.p.phase.qphase(0).print()
+     */
+    qphase(state: patternable, hits: patternable = 0): Pattern {
+        this.stack.push((t: patternValue) => {
+            const loop = clamp(+this.handleTypes(hits), 0, 256)
+            const states = circuit.stateAsArray()
+            const i = +this.handleTypes(state) % states.length
+            const current = states[i].phase
+            
+            return this.handleLoop(+t, 'phase', loop, current)
+        })
+        return this
+    }
+
+    /**
+     * Returns an array of phases for all possible states of the quantum system
+     * @returns {Pattern}
+     * @param hits number of measurements to take before looping. Default is 0 (no looping). Max 256.
+     * @example s0.p.phases.qphases().print()
+     */
+    qphases(hits: patternable = 0): Pattern {
+        this.stack.push((t: patternValue) => {
+            const loop = clamp(+this.handleTypes(hits), 0, 256)
+            const states = circuit.stateAsArray()
+            const current = states.map((state: any) => state.phase)
+            
+            return this.handleLoop(+t, 'phases', loop, current)
+        })
+        return this
+    }
 
     /**
      * Returns the index of the state with the highest amplitude
