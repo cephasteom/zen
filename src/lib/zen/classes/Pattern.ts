@@ -122,6 +122,7 @@ qm: 'qmeasure',
 qms: 'qmeasures',
 qpb: 'qprobability',
 qpbs: 'qprobabilities',
+qamp: 'qamplitude',
 qamps: 'qamplitudes',
 qr: 'qresult',
     */ 
@@ -176,6 +177,7 @@ qr: 'qresult',
         qms: 'qmeasures',
         qpb: 'qprobability',
         qpbs: 'qprobabilities',
+        qamp: 'qamplitude',
         qamps: 'qamplitudes',
         qr: 'qresult',
     }
@@ -1422,20 +1424,14 @@ qr: 'qresult',
      * @param hits number of measurements to take before looping. Default is 0 (no looping). Max 256.
      * @example s0.p.amp.amplitude(0).print()
      */
-    qamp(state: patternable, hits: patternable = 0): Pattern {
+    qamplitude(state: patternable, hits: patternable = 0): Pattern {
         this.stack.push((t: patternValue) => {
-            const i = +this.handleTypes(state)
             const length = circuit.numAmplitudes()
+            const i = +this.handleTypes(state) % length
             const loop = clamp(+this.handleTypes(hits), 0, 256)
-            const current = i < length
-                ? Array.from({length}, (_, i) => {
-                    const state = round(circuit.state[i] || complex(0, 0), 14);
-                    const result = +pow(abs(state), 2)
-                    return parseFloat(result.toFixed(5))
-                })[i]
-                : 0
+            const current = +pow(abs(round(circuit.state[i] || complex(0, 0), 14)), 2)
             
-            return this.handleLoop(+t, 'amplitude', loop, current)
+            return this.handleLoop(+t, 'amplitude', loop, parseFloat(current.toFixed(5)))
         })
         return this
     }
@@ -1461,6 +1457,14 @@ qr: 'qresult',
         return this
     }
 
+    // qphase(state: patternable, hits: patternable = 0): Pattern {
+    //     this.stack.push((t: patternValue) => {
+    //         const loop = clamp(+this.handleTypes(hits), 0, 256)
+    //         return 
+    //     })
+    //     return this
+    // }
+
     /**
      * Returns the index of the state with the highest amplitude
      * If there are multiple states with the same amplitude, one is chosen at random
@@ -1478,10 +1482,8 @@ qr: 'qresult',
                 return parseFloat(result.toFixed(5))
             })
 
-            const maxAmp = Math.max(...amps);
-
             const maxIndices = amps.reduce((indices, amp, i) => {
-                return amp === maxAmp
+                return amp === Math.max(...amps)
                     ? [...indices, i]
                     : indices
             }, [] as number[]);
