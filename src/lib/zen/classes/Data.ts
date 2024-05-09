@@ -14,12 +14,12 @@ export class Data {
         this._worker = new Worker(new URL('../workers/data.ts', import.meta.url));
     
         this._worker.addEventListener('message', (e) => {
-            const { message, data } = e.data;
+            const { message, data, key } = e.data;
             channel.postMessage({type: 'info', message});
             
             if(data) { 
-                localStorage.setItem(`z.data.${data.key}`, JSON.stringify(data.data));
-                this._keys = this._keys.includes(data.key) ? this._keys : [...this._keys, data.key]
+                localStorage.setItem(`z.data.${key}`, JSON.stringify(data));
+                this._keys = this._keys.includes(key) ? this._keys : [...this._keys, key]
             }
         });
 
@@ -27,8 +27,9 @@ export class Data {
             get: (target, prop) => {
                 const key = String(prop)
 
-                if(key === 'fetch') this._worker.postMessage('last');
-                if(key === 'all') this._worker.postMessage('all');
+                if(key === 'fetch') {
+                    return (endpoint: string, key: string) => this._worker.postMessage({endpoint, key});
+                }
                 
                 // @ts-ignore
                 if (key in target) return target[key]
