@@ -15,6 +15,7 @@ import global_settings from './global-settings'
 import utilities from "./utilities";
 import effects from './effects'
 import zen_quantum from './quantum'
+import data from './data'
 
 const content = { 
     intro, 
@@ -32,6 +33,7 @@ const content = {
     global_settings,
     midi,
     utilities,
+    data
     // networking
 };
 
