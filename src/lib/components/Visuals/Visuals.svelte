@@ -159,7 +159,7 @@
             if(get(isQuantum)) return sphereMode(get(visualsData))
 
             get(gridData) 
-                ? gridMode(get(gridData))
+                ? gridMode(get(gridData).flat())
                 : squareMode(get(visualsData))
             
         }

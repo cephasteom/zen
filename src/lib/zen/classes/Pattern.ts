@@ -1352,6 +1352,23 @@ qr: 'qresult',
     }
 
     /**
+     * Modify the value returned by a previous iteration of the pattern
+     * @returns {Pattern}
+     * @example z.grid.persist((t, prev) => prev ? [...prev, Math.random()] : [])
+     */
+    persist(fn: Function): Pattern {
+        this.stack.push(() => {
+            // call function passing in t and previous value
+            const result = fn(this._t, this._state.persist)
+            // set the result as the new persist value
+            this._state.persist = result
+            // return the result
+            return result
+        })
+        return this
+    }
+
+    /**
      * Return the value of the measured qubit
      * @returns {Pattern}
      * @example s0.e.measure(0)
