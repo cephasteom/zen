@@ -21,7 +21,8 @@
         display: flex;
         flex-direction: column;
         @media all and (display-mode: fullscreen) {
-            margin-top: 2rem;
+            margin: 2rem;
+            margin-bottom: 0;
         }
     }
 

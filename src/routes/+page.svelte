@@ -89,6 +89,8 @@
         }
 
         @media all and (display-mode: fullscreen) {
+            grid-template-columns: 2fr 3fr;
+            grid-template-rows: 8fr 1fr 1fr;
             height: calc(100vh - 4rem);
             padding: 2rem;
         }
