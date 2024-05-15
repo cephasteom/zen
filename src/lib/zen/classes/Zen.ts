@@ -93,6 +93,18 @@ export class Zen extends Stream {
         return this._latencyPattern
     }
 
+    /** @hidden */
+    _gridPattern: null | Pattern = null
+    /**
+     * A Pattern for displaying data on the grid. Expects an array of numbers between 0 and 1
+     * @example
+     * z.grid.set(Array.from({length: 16*16}, () => Math.random())) // random values between 0 and 1
+     */
+    get grid() {
+        this._gridPattern = this._gridPattern || new Pattern()
+        return this._gridPattern
+    }    
+
     // when to update the executed code, ie at the next division, on the next beat, etc
     /** @hidden */
     private _update: number = 1
@@ -188,6 +200,6 @@ export class Zen extends Stream {
 
     /** @hidden */
     resetGlobals() {
-        [this._bpmPattern, this._tPattern, this._seedPattern].forEach(p => p?.reset())
+        [this._bpmPattern, this._tPattern, this._seedPattern, this._gridPattern].forEach(p => p?.reset())
     }
 }

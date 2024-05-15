@@ -1,4 +1,4 @@
-import { writable, derived, get } from 'svelte/store';
+import { writable, get } from 'svelte/store';
 import '../oto';
 import type { vector } from '../zen/types'
 
@@ -15,7 +15,7 @@ export const measurements = writable<any[]>([0,0,0,0,0,0,0,0]); // circuit measu
 export const inputs = writable<number[]>([0,0,0,0,0,0,0,0]); // initial state of qubits in circuit
 
 
-export const isQuantum = writable(true);
+export const isQuantum = writable(false);
 export const messages = writable<{type: string, message: string}[]>([]);
 
 const initialMessages = [
@@ -43,6 +43,7 @@ export const print = (type: string, message: string) => {
 export const clear = () => messages.set([]);
 
 export const visualsData = writable<vector[]>([]);
+export const gridData = writable<number[]>([]);
 
 const zenChannel = new BroadcastChannel('zen');
 
@@ -53,7 +54,7 @@ zenChannel.onmessage = ({data: {message, type, data}}) => {
     ['error', 'info', 'pattern', 'success'].includes(type) && print(type, message.toString())
     
     if(type !== 'action') return
-    const { t: time, c: cycle, q: quant, s: size, delta, v, gates: gs, measurements: ms, feedback: fb, inputs: ins } = data;
+    const { t: time, c: cycle, q: quant, s: size, delta, v, grid, gates: gs, measurements: ms, feedback: fb, inputs: ins } = data;
     setTimeout(() => {
         t.set(time);
         c.set(cycle);
@@ -63,5 +64,6 @@ zenChannel.onmessage = ({data: {message, type, data}}) => {
         measurements.set(ms);
         inputs.set(ins);
         visualsData.set(v);
+        gridData.set(grid);
     }, delta * 1000);
 }

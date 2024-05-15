@@ -5,14 +5,14 @@
     import type { p5, Sketch } from 'p5-svelte';
     import { Vector } from 'p5';
     import { min } from '$lib/zen/utils/utils';
-    import { visualsData, isQuantum } from "$lib/stores/zen";
+    import { visualsData, gridData, isQuantum, s } from "$lib/stores/zen";
     import type { vector as v } from '$lib/zen/types';
 
     let container: HTMLElement;
     let p5Instance: p5;
     let handleResize: any;
     let draw: any;
-    let gridSize = 16;
+    let gridSize = 16; // TODO: replace with s
 
     let sketch : Sketch = (p5: p5)=> {
         let size = 100;
@@ -49,7 +49,6 @@
             }
 
             p5.pop();
-            
         }
 
         const resize = () => {
@@ -133,12 +132,35 @@
             })
         }
 
+        const gridMode = (data: number[]) => {
+            drawSquare()
+            const gridSize = Math.round(Math.sqrt(data.length));
+            const squareSize = (size / gridSize) * 0.9;
+            const gridTotalSize = gridSize * squareSize;
+            for (let i = 0; i < gridSize; i++) {
+                for (let j = 0; j < gridSize; j++) {
+                    const index = i * gridSize + j;
+                    const value = data[index];
+                    const posX = i * squareSize - gridTotalSize / 2;
+                    const posY = j * squareSize - gridTotalSize / 2;
+                    // Draw the square
+                    p5.push();
+                    p5.fill(Math.floor(value * 256));
+                    p5.noStroke();
+                    p5.rect(posX, posY, squareSize, squareSize);
+                    p5.pop();
+                }
+            }
+        }
+
         p5.draw = () => {
-            const data = get(visualsData)
             p5.clear()
-            get(isQuantum)
-                ? sphereMode(data)
-                : squareMode(data)
+            gridSize = get(s)
+            if(get(isQuantum)) return sphereMode(get(visualsData))
+
+            get(gridData) 
+                ? gridMode(get(gridData))
+                : squareMode(get(visualsData))
             
         }
     }

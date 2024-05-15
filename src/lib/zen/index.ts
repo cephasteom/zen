@@ -150,9 +150,11 @@ const loop = new Loop(time => {
             .map(({x,y,z,id,e,m}) => ({x,y,z,id,e: !!e,m: !!m}))
     )
 
+    const grid = z.grid.get(t, q)
+
     // call actions
     const delta = (time - immediate())
-    const args = { time, delta, t, s, q, c, events, mutations, gates, measurements, feedback, inputs, v: vis }
+    const args = { time, delta, t, s, q, c, events, mutations, gates, measurements, feedback, inputs, v: vis, grid }
     channel.postMessage({ type: 'action', data: args })
 
 }, `${z.q}n`).start(0)
