@@ -96,7 +96,7 @@ s1.wire.fb(0) // uses the previous measurement of stream 0 as the initial state
 ## Sonifying Data
 There are a number of Pattern methods that can fetch and manipulate the results of running a quantum circuit. These can be used as data to be sonified. All methods associated with Zen's quantum mode are prefixed with a \`q\`.
 
-### Measure
+### Measurement
 \`qmeasurement()\`, alias \`qm()\`, returns the collapsed state of a qubit: either a |0⟩ or |1⟩. This is useful for triggering events. The first argument is the index of the qubit you wish to measure. For example:
 \`\`\`js
 s0.set({inst:0,reverb:0.125,rtail:0.2,cut:0,cutr:250,dur:100,mods:0.1})
@@ -116,7 +116,7 @@ By default, measurements are taken at each division of the cycle. However, repet
 s0.e.qmeasurement(0, 8) // measure qubit 0, loop after 8 measurements
 \`\`\`
 
-### Measures
+### Measurements
 Use \`qmeasurements()\`, alias \`qms\`, to get the measurements of all qubits as an array.
 \`\`\`js
 s0.e.qmeasurements().at(0) // this is the same as...
@@ -126,27 +126,16 @@ s0.e.qmeasurement(0) // ...this
 You can pass an integer greater than 1 as the first argument to loop the measurements.
 
 ### Probability
-Use the \`qprobability()\`, or alias \`qpb\`, method to get the probability of a qubit collapsing to |1⟩. Similar to \`qmeasurement()\`, we can pass the index of the qubit we want the probability of, and the number of measurements to take before looping.
-
-### Probabilities
-Use the \`qprobabilitys()\`, or alias \`qpbs\`, to get the probabilities of each qubit collapsing to |1⟩ as an array. Similar to \`qmeasurements()\`, we can pass a loop length as the first argument. For example:
-\`\`\`js
-s0.e.qpbs().at(0) // this is the same as...
-s0.e.qpb(0) // ...this
-s0.e.qpbs(8) // take 8 measurements before looping
-\`\`\`
-
-### Amplitude
-Use the \`qamplitude()\`, or alias \`qamp\`, method to get the amplitude coefficient for a given basis state. The number of states in a quantum system is 2 to the power of the number of qubits. In a system with 2 qubits, there are 4 possible basis states (|00⟩, |01⟩, |10⟩, |11⟩). To get the amplitude of the state |01⟩, for example, pass in the integer 1:
+Use the \`qprobability()\`, or alias \`qpb\`, method to get the probability (squared amplitude coefficient) of a given basis state. The number of states in a quantum system is 2 to the power of the number of qubits. In a system with 2 qubits, there are 4 possible basis states (|00⟩, |01⟩, |10⟩, |11⟩). To get the probability for state |01⟩, for example, pass in the integer 1:
 \`\`\`js
 s0.wire.rx(0.25)
 s1.wire.rx(0.75)
 
-s0.p.amp.qamp(1).print() // print the amplitude of the state |01⟩ to the console
+s0.p.amp.qpb(1).print() // print the probability of the state |01⟩ to the console
 s0.e.every(4)
 \`\`\`
 
-Using an amplitude coefficient as the input for a gate creates interesting feedback loops. For example:
+Using the probability as the input for a gate creates interesting feedback loops. For example:
 \`\`\`js
 z.bpm.set(120)
 
@@ -163,15 +152,15 @@ s0.set({inst: 1, bank: 'bd808', i: 3, cut: 0})
 s1.set({inst: 1, bank: 'sd808', i: '0..16?*16', cut: [0,1]})
 s2.set({inst: 1, bank: 'hh', i: '0..16?*16', cut: [0,1,2], vol: 0.5})
 \`\`\`
-Each amplitude coefficient is returned as a float to 5 decimal places. As with other methods, you can pass a loop length as the second argument.
+Each probability is returned as a float to 5 decimal places. As with other methods, you can pass a loop length as the second argument.
 
-### Amplitudes
-Use the \`qamplitudes()\`, or alias \`qamps\`, method to get an array of the amplitude coefficients for each possible result of a circuit. For example:
+### Probabilities
+Use the \`qprobabilities()\`, or alias \`qamps\`, method to get an array of the probabilities for each possible result of a circuit. For example:
 \`\`\`js
 s0.wire.rx(0.25)
 s1.wire.rx(0.75)
 
-s0.p.amp.qamps().print() // print all amplitudes to the console
+s0.p.amp.pbs().print() // print all probabilities to the console
 s0.e.every(4)
 \`\`\`
 As with other methods, you can pass a loop length as the first argument.
