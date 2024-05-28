@@ -1371,11 +1371,11 @@ qr: 'qresult',
     /**
      * Return the value of the measured qubit
      * @returns {Pattern}
-     * @example s0.e.measure(0)
+     * @example s0.e.measurement(0)
      * @param qubit qubit to measure
      * @param hits number of measurements to take before looping. Default is 0 (no looping). Max 256.
      */
-    qmeasure(qubit: patternable = 0, hits: patternable = 0): Pattern {
+    qmeasurement(qubit: patternable = 0, hits: patternable = 0): Pattern {
         this.stack.push((t: patternValue) => {
             const q = +this.handleTypes(qubit)
             const loop = clamp(+this.handleTypes(hits), 0, 256)
@@ -1388,10 +1388,10 @@ qr: 'qresult',
     /**
      * Return all measurements of the system as an array
      * @returns {Pattern}
-     * @example s0.e.measures(4)
+     * @example s0.e.measurements(4)
      * @param hits number of measurements to take before looping. Default is 0 (no looping). Max 256.
      */
-    qmeasures(hits: patternable = 0): Pattern {
+    qmeasurements(hits: patternable = 0): Pattern {
         this.stack.push((t: patternValue) => {
             const loop = clamp(+this.handleTypes(hits), 0, 256)
             const current = circuit.measureAll() || []

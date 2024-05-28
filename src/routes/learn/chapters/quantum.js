@@ -11,9 +11,9 @@ s0.wire.h().cx([1]).ccx([1,2])
 s1.wire.fb(0)
 s2.wire.fb(1)
 
-s0.e.qmeasure(0, 32)
-s1.e.qmeasure(1, 32)
-s2.e.qmeasure(2, 32)
+s0.e.qmeasurement(0, 32)
+s1.e.qmeasurement(1, 32)
+s2.e.qmeasurement(2, 32)
 
 s0.set({inst: 1, bank: 'bd808', i: 3, cut: 0})
 s1.set({inst: 1, bank: 'sd808', i: '0..1?*16', cut: [0,1]})
@@ -97,7 +97,7 @@ s1.wire.fb(0) // uses the previous measurement of stream 0 as the initial state
 There are a number of Pattern methods that can fetch and manipulate the results of running a quantum circuit. These can be used as data to be sonified. All methods associated with Zen's quantum mode are prefixed with a \`q\`.
 
 ### Measure
-\`qmeasure()\`, alias \`qm()\`, returns the collapsed state of a qubit: either a |0⟩ or |1⟩. This is useful for triggering events. The first argument is the index of the qubit you wish to measure. For example:
+\`qmeasurement()\`, alias \`qm()\`, returns the collapsed state of a qubit: either a |0⟩ or |1⟩. This is useful for triggering events. The first argument is the index of the qubit you wish to measure. For example:
 \`\`\`js
 s0.set({inst:0,reverb:0.125,rtail:0.2,cut:0,cutr:250,dur:100,mods:0.1})
 
@@ -107,29 +107,29 @@ s0.x.sine(0,1,0,1/3)
 s0.py._n.set('Cpro%16..*16 | Cpro%16..?*16').sub('0?12*16')
 s0.px.modi.saw()
 s0.wire.u3([s0.y,s0.x,0])
-s0.e.qmeasure(0) // measure qubit 0. If it collapses to |1⟩, trigger the event
+s0.e.qmeasurement(0) // measure qubit 0. If it collapses to |1⟩, trigger the event
 s0.m.not(s0.e)
 \`\`\`
 
 By default, measurements are taken at each division of the cycle. However, repetition is musically useful. Passing an integer greater than 1 as the second argument will cause the measurement to loop. For example:
 \`\`\`js
-s0.e.qmeasure(0, 8) // measure qubit 0, loop after 8 measurements
+s0.e.qmeasurement(0, 8) // measure qubit 0, loop after 8 measurements
 \`\`\`
 
 ### Measures
-Use \`qmeasures()\`, alias \`qms\`, to get the measurements of all qubits as an array.
+Use \`qmeasurements()\`, alias \`qms\`, to get the measurements of all qubits as an array.
 \`\`\`js
-s0.e.qmeasures().at(0) // this is the same as...
-s0.e.qmeasure(0) // ...this
+s0.e.qmeasurements().at(0) // this is the same as...
+s0.e.qmeasurement(0) // ...this
 \`\`\`
 
 You can pass an integer greater than 1 as the first argument to loop the measurements.
 
 ### Probability
-Use the \`qprobability()\`, or alias \`qpb\`, method to get the probability of a qubit collapsing to |1⟩. Similar to \`qmeasure()\`, we can pass the index of the qubit we want the probability of, and the number of measurements to take before looping.
+Use the \`qprobability()\`, or alias \`qpb\`, method to get the probability of a qubit collapsing to |1⟩. Similar to \`qmeasurement()\`, we can pass the index of the qubit we want the probability of, and the number of measurements to take before looping.
 
 ### Probabilities
-Use the \`qprobabilitys()\`, or alias \`qpbs\`, to get the probabilities of each qubit collapsing to |1⟩ as an array. Similar to \`qmeasures()\`, we can pass a loop length as the first argument. For example:
+Use the \`qprobabilitys()\`, or alias \`qpbs\`, to get the probabilities of each qubit collapsing to |1⟩ as an array. Similar to \`qmeasurements()\`, we can pass a loop length as the first argument. For example:
 \`\`\`js
 s0.e.qpbs().at(0) // this is the same as...
 s0.e.qpb(0) // ...this
@@ -155,9 +155,9 @@ s0.wire.h().cx([1]).ccx([1,2])
 s1.y.qamp(0)
 s1.wire.fb(0).rx(s1.y)
 
-s0.e.qmeasure(0, 32)
-s1.e.qmeasure(1, 32)
-s2.e.qmeasure(2, 32)
+s0.e.qmeasurement(0, 32)
+s1.e.qmeasurement(1, 32)
+s2.e.qmeasurement(2, 32)
 
 s0.set({inst: 1, bank: 'bd808', i: 3, cut: 0})
 s1.set({inst: 1, bank: 'sd808', i: '0..16?*16', cut: [0,1]})
