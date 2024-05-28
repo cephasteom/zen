@@ -1,9 +1,19 @@
 <script>
+    import { onMount, afterUpdate } from 'svelte';
+
+    // Using ES6 import syntax
+    import hljs from 'highlight.js/lib/core';
+    import javascript from 'highlight.js/lib/languages/javascript';
+
+    // Then register the languages you need
     import { marked } from "marked";
     import Icon from 'svelte-awesome';
     import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 	
     export let data;
+
+    onMount(() => hljs.registerLanguage('javascript', javascript));
+    afterUpdate(() => hljs.highlightAll());
 </script>
 
 <svelte:head>
