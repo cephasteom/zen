@@ -85,7 +85,8 @@ export class Wire {
                                 this._t, 
                                 this._q, 
                                 `${this.row}`
-                            ) * Math.PI 
+                            // theta (0 - PI), phi (0 - 2PI), lambda (0 - 2PI)
+                            ) * (i === 0 ? 1 : 2) * Math.PI
                         }), {})
                     : [0,0,0]
             }

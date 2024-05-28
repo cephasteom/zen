@@ -6,7 +6,7 @@
 
     // @ts-ignore
     $: params = Object.values(gate.options?.params || {}).map((p: number) => {
-        return `${parseFloat((p/Math.PI).toFixed(2))}`;
+        return `${parseFloat(p.toFixed(2))}π`;
     });
 
     $: ellipse = (gate.name === 'cx' && gate.connector === 1)
