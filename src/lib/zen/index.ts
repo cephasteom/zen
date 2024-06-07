@@ -94,13 +94,7 @@ code.subscribe(code => {
     }
 })
 
-
-let counter = createCount(0);
-
-// Main application loop
-const loop = new Loop(time => { 
-    const count = counter()
-    
+function evaluate(count: number, time: number) {
     const t = z.getTime(count)
     const s = z.s
     const q = z.q
@@ -155,9 +149,15 @@ const loop = new Loop(time => {
 
     // call actions
     const delta = (time - immediate())
-    const args = { time, delta, t, s, q, c, events, mutations, gates, measurements, feedback, inputs, v: vis, grid }
-    channel.postMessage({ type: 'action', data: args })
+    return { time, delta, t, s, q, c, events, mutations, gates, measurements, feedback, inputs, v: vis, grid }
+}
 
+// Main application loop using Tone.js
+let counter = createCount(0);
+const loop = new Loop(time => { 
+    const count = counter()
+    const args = evaluate(count, time)
+    channel.postMessage({ type: 'action', data: args })
 }, `${z.q}n`).start(0)
 
 export const play = () => Transport.start('+0.1')
