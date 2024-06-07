@@ -10,6 +10,7 @@ import { createCount } from './utils/utils';
 import { helpers } from './utils/helpers';
 import keymap from './data/keymapping'
 import { print as post, clear } from "$lib/stores/zen";
+import { bpm, getBpm } from "./stores";
 import { modes } from './data/scales'
 import { triads } from './data/chords'
 
@@ -28,14 +29,11 @@ export const setCode = (str: string) => code.set(str + '\n' + Date.now());
 
 const d = new Data();
 
-let counter = createCount(0);
-
 // initialise Zen and Streams within the scope of the loop
 const z = new Zen();
 const streams: Stream[] = Array(12).fill(0).map((_, i) => new Stream('s' + i));
 const fxstreams: Stream[] = Array(2).fill(0).map((_, i) => new Stream('fx' + i));
 const v = new Visuals()
-let bpm = 120
 let measurements: number[] = []
 
 // helper functions and constants
@@ -58,8 +56,8 @@ code.subscribe(code => {
 
     // global variables
     let { q, s, c } = z
-    const bts = initBts(bpm)
-    const btms = initBtms(bpm)
+    const bts = initBts(getBpm())
+    const btms = initBtms(getBpm())
     const ms = btms
     
     // evaluate the user's code, using fallback if it fails
@@ -96,6 +94,9 @@ code.subscribe(code => {
     }
 })
 
+
+let counter = createCount(0);
+
 // Main application loop
 const loop = new Loop(time => { 
     const count = counter()
@@ -116,9 +117,9 @@ const loop = new Loop(time => {
     // update loop and transport
     loop.interval = `${z.q}n`
     const newBpm = z.getBpm()
-    if(newBpm !== bpm) {
+    if(newBpm !== getBpm()) {
         Transport.bpm.setValueAtTime(newBpm, time)
-        bpm = newBpm
+        bpm.set(newBpm)
     }
     Transport.swing = z.getSwing()
     // @ts-ignore
@@ -138,7 +139,7 @@ const loop = new Loop(time => {
     measurements = circuit.measureAll()
 
     // compile parameters, events and mutations
-    const compiled = [...streams, ...fxstreams].map(stream => stream.get(t, q, s, bpm, z))
+    const compiled = [...streams, ...fxstreams].map(stream => stream.get(t, q, s, getBpm(), z))
     const soloed = compiled.filter(({solo}) => solo)
     const result = soloed.length ? soloed : compiled
     const events = result.filter(({e}) => e)

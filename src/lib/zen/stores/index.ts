@@ -1,6 +1,6 @@
 import seedRandom from 'seedrandom'
 import { Noise } from 'noisejs'
-import { writable } from 'svelte/store';
+import { get, writable } from 'svelte/store';
 
 export const seedValue = writable('')
 export const noise = writable(new Noise(Math.random()))
@@ -22,5 +22,8 @@ seedValue.subscribe(value => {
     // update noise generator
     noise.set(new Noise(rng()))
 })
+
+export const bpm = writable(120)
+export const getBpm = () => get(bpm)
 
 
