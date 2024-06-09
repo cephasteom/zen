@@ -26,4 +26,9 @@ seedValue.subscribe(value => {
 export const bpm = writable(120)
 export const getBpm = () => get(bpm)
 
+// either 'internal' or MIDI device index
+export const clockSource = writable<'internal' | 'midi'>('internal')
+export const midiClockDevice = writable<number>(0)
 
+export const getClockSource = () => get(clockSource)
+export const getMidiClockDevice = () => get(midiClockDevice)

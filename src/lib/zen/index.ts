@@ -1,5 +1,6 @@
 import { start, Loop, Transport, immediate, context } from 'tone'
 import { WebMidi } from "webmidi";
+import { initMidiClock } from './midi/clock';
 import { writable, get } from 'svelte/store';
 import { Zen } from './classes/Zen';
 import { Data } from './classes/Data'
@@ -10,9 +11,12 @@ import { createCount } from './utils/utils';
 import { helpers } from './utils/helpers';
 import keymap from './data/keymapping'
 import { print as post, clear } from "$lib/stores/zen";
-import { bpm, getBpm } from "./stores";
+import { bpm, getBpm, clockSource, midiClockDevice, getClockSource } from "./stores";
 import { modes } from './data/scales'
 import { triads } from './data/chords'
+
+// listen for incoming midi clock messages
+initMidiClock()
 
 // Broadcast channels
 const channel = new BroadcastChannel('zen')
@@ -84,17 +88,24 @@ code.subscribe(code => {
         ]; 
         [fx0, fx1];
         map; d;
+        
         // TODO
         // const thisCode = !(t%z.update) ? code : get(lastCode) // only eval code on the beat
         eval(code)
         lastCode.set(code)
+        
+        // update clock source and midi clock
+        const { src = 'internal', device = 0 } = z.getClock()
+        clockSource.set(src === 'midi' ? 'midi' : 'internal')
+        midiClockDevice.set(device)
     } catch (e: any) {
         post('error', e.message)
         eval(get(lastCode))
     }
 })
 
-function evaluate(count: number, time: number) {
+// Run every division of a cycle to get event and mutation arguments
+export function evaluate(count: number, time: number) {
     const t = z.getTime(count)
     const s = z.s
     const q = z.q
@@ -149,26 +160,32 @@ function evaluate(count: number, time: number) {
 
     // call actions
     const delta = (time - immediate())
-    return { time, delta, t, s, q, c, events, mutations, gates, measurements, feedback, inputs, v: vis, grid }
+    const args =  { time, delta, t, s, q, c, events, mutations, gates, measurements, feedback, inputs, v: vis, grid }
+    channel.postMessage({ type: 'action', data: args })
 }
 
+// PLAYBACK USING TONE.JS
 // Main application loop using Tone.js
 let counter = createCount(0);
 const loop = new Loop(time => { 
     const count = counter()
-    const args = evaluate(count, time)
-    channel.postMessage({ type: 'action', data: args })
+    evaluate(count, time)
 }, `${z.q}n`).start(0)
 
-export const play = () => Transport.start('+0.1')
+// PLAYBACK USING EXTERNAL MIDI CLOCK
 
-let stops = 0;
-export const stop = () => {
-    stops++;
-    Transport.stop(immediate())
-    // reset counter if stopped twice
-    !(stops%2) && (counter = createCount(0))
+
+export const play = () => {
+    getClockSource() === 'internal' 
+        ? Transport.start('+0.1')
+        : Transport.stop(immediate())
 }
+export const stop = () => {
+    Transport.stop(immediate())
+    counter = createCount(0)
+}
+
+
 
 export async function startAudio() {
     await start()    

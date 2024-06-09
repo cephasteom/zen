@@ -103,7 +103,21 @@ export class Zen extends Stream {
     get grid() {
         this._gridPattern = this._gridPattern || new Pattern()
         return this._gridPattern
-    }    
+    }   
+    
+    /** @hidden */
+    _clockPattern: null | Pattern = null
+    /**
+     * A Pattern for setting the clock source. Either 'internal' or a MIDI device index
+     * It's a pattern, but you should only use the set method
+     * @example
+     * z.grid.set({src: 'internal'}) // set the clock source to internal
+     * z.grid.set({src: 'midi', device: 0, channel: 0}) // set the clock source to MIDI device 0, channel 0
+     */
+    get clock() {
+        this._clockPattern = this._clockPattern || new Pattern()
+        return this._clockPattern
+    }   
 
     // when to update the executed code, ie at the next division, on the next beat, etc
     /** @hidden */
@@ -176,6 +190,11 @@ export class Zen extends Stream {
     getBpm() : number {
         const value = this.bpm.get(this._t, this._q)
         return value !== null ? Array.isArray(value) ? value[0] : value : 120
+    }
+
+    /** @hidden */
+    getClock() : any {
+        return this.clock.get(this._t, this._q) || {}
     }
 
     getSwing() : number {
