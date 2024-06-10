@@ -15,9 +15,6 @@ import { bpm, getBpm, clockSource, midiClockDevice, getClockSource, activeMidiCl
 import { modes } from './data/scales'
 import { triads } from './data/chords'
 
-// listen for incoming midi clock messages
-// initMidiClock()
-
 // Broadcast channels
 const channel = new BroadcastChannel('zen')
 const otoChannel = new BroadcastChannel('oto')
@@ -185,8 +182,6 @@ export const stop = () => {
     Transport.stop(immediate())
     counter = createCount(0)
 }
-
-
 
 export async function startAudio() {
     await start()    
