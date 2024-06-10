@@ -2,6 +2,7 @@ import { WebMidi } from "webmidi";
 import { getClockSource, getMidiClockDevice } from "../stores";
 import { evaluate } from "..";
 import { immediate } from "tone";
+
 export function initMidiClock() {
     // TODO: make this configurable
     const q = 16;

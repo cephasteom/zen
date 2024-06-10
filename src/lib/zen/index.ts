@@ -11,12 +11,12 @@ import { createCount } from './utils/utils';
 import { helpers } from './utils/helpers';
 import keymap from './data/keymapping'
 import { print as post, clear } from "$lib/stores/zen";
-import { bpm, getBpm, clockSource, midiClockDevice, getClockSource } from "./stores";
+import { bpm, getBpm, clockSource, midiClockDevice, getClockSource, activeMidiClock } from "./stores";
 import { modes } from './data/scales'
 import { triads } from './data/chords'
 
 // listen for incoming midi clock messages
-initMidiClock()
+// initMidiClock()
 
 // Broadcast channels
 const channel = new BroadcastChannel('zen')
@@ -174,11 +174,12 @@ const loop = new Loop(time => {
 
 // PLAYBACK USING EXTERNAL MIDI CLOCK
 
-
 export const play = () => {
-    getClockSource() === 'internal' 
-        ? Transport.start('+0.1')
-        : Transport.stop(immediate())
+    if(getClockSource() === 'internal') return Transport.start('+0.1')
+        
+    Transport.stop(immediate())
+    !get(activeMidiClock) && initMidiClock()
+    activeMidiClock.set(true)
 }
 export const stop = () => {
     Transport.stop(immediate())

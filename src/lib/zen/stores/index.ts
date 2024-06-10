@@ -29,6 +29,7 @@ export const getBpm = () => get(bpm)
 // either 'internal' or MIDI device index
 export const clockSource = writable<'internal' | 'midi'>('internal')
 export const midiClockDevice = writable<number>(0)
+export const activeMidiClock = writable(false)
 
 export const getClockSource = () => get(clockSource)
 export const getMidiClockDevice = () => get(midiClockDevice)
