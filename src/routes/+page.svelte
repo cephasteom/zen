@@ -23,10 +23,15 @@
 
 <section 
     class="zen"
-    class:zen--quantum={$showCircuit}    
 >
-    <div class="editor">
+    <div 
+        class="editor"
+    >
         <Editor />
+    </div>
+
+    <div class="console">
+        <Console />
     </div>
     
     <div class="tools">
@@ -41,17 +46,12 @@
     
     <div 
         class="visuals"
-        class:visuals--quantum={$showCircuit}
+        class:visuals--circuit={$showCircuit}
     >
         <Visuals />
     </div>
 
-    <div 
-        class="console"
-        class:console--quantum={$showCircuit}
-    >
-        <Console />
-    </div>
+    
 
     <div class="data">
         <Data />
@@ -62,7 +62,7 @@
     .zen {
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr 6fr 1fr;
+        grid-template-rows: 1fr 8fr 1fr;
         grid-gap: 1rem;
         padding: 1rem;
         user-select: none;
@@ -73,22 +73,15 @@
         @media (min-width: 800px) {
             grid-template-columns: 1fr 1fr;
             grid-template-rows: 8fr 3fr 1fr;
-            
-            &--quantum {
-                grid-template-columns: 1fr 1fr 1fr;
-                grid-template-rows: 8fr 4fr 1fr;
-            }
         }
         
         @media (min-width: 1200px) {
             grid-template-columns: 1fr 1fr;
             padding: 1rem 2rem;
-            &--quantum {
-                grid-template-columns: 2fr 1.5fr 1.5fr;
-            }
         }
 
         @media all and (display-mode: fullscreen) {
+            grid-template-columns: 1fr 1.5fr;
             height: calc(100vh - 4rem);
             padding: 2rem;
         }
@@ -100,8 +93,12 @@
         grid-row: 2;
         @media (min-width: 800px) {
             grid-column: 1;
-            grid-row: 1 / 3;
+            grid-row: 1 / 2;
+            &--withConsole {
+                grid-row: 1 / 2   
+            }
         }
+
     }
 
     .tools {
@@ -110,7 +107,7 @@
         border-radius: 10px;
 
         @media (min-width: 800px) {
-            grid-column: 1;
+            grid-column: 2;
             grid-row: 3;
         }
         background: linear-gradient(45deg, var(--color-grey-light-mid), var(--color-grey-darker));
@@ -135,7 +132,7 @@
         grid-column: 2 / 3;
         grid-row: 1;
 
-        &--quantum {
+        &--circuit {
             grid-column: 3 / 4;
             grid-row: 1;
         }
@@ -152,12 +149,8 @@
     }
 
     .console {
-        grid-column: 2 / 3;
+        grid-column: 1 / 2;
         grid-row: 2 / 4;
-        &--quantum {
-            grid-column: 2 / 3;
-            grid-row: 1;
-        }
         border-radius: 10px;
         position: relative;
 

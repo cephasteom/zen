@@ -150,7 +150,7 @@ export function evaluate(count: number, time: number) {
     const vis = v.get(
         result
             .filter(({id}) => id.startsWith('s'))
-            .map(({x,y,z,id,e,m}) => ({x,y,z,id,e: !!e,m: !!m}))
+            .map(({x,y,z,id,e,m}) => ({x,y,z,id,e:!!e, m:!!m}))
     )
 
     const grid = z.grid.get(t, q)

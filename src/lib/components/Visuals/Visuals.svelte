@@ -126,6 +126,7 @@
                 // Draw the square
                 p5.push();
                 p5.fill(colour);
+                
                 p5.noStroke();
                 p5.rect(posX, posY, squareSize, squareSize);
                 p5.pop();

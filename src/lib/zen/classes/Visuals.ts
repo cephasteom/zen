@@ -16,7 +16,10 @@ export class Visuals {
             x: position.x,
             y: position.y,
             z: position.z,
-            colour: this.colours[i%this.colours.length],
+            colour: [
+                ...this.colours[i%this.colours.length], 
+                (position.e ? 1 : 0.25) * 255
+            ],
             weight: position.e ? 1 : 0.5
         }
     }

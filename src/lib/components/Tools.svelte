@@ -1,6 +1,6 @@
 <script lang="ts">
     import Icon from 'svelte-awesome';
-    import { faPlay, faStop, faFloppyDisk, faCode, faGlobe, faChessBoard, faAtom } from '@fortawesome/free-solid-svg-icons';
+    import { faPlay, faStop, faFloppyDisk, faCode, faGlobe, faChessBoard, faGripLines, faTerminal } from '@fortawesome/free-solid-svg-icons';
     import { isPlaying, isSphere, showCircuit } from '$lib/stores/zen';
     import Dialog from './Dialog.svelte'
     import Save from './Save.svelte'
@@ -19,7 +19,7 @@
         <Icon data="{$isSphere ? faChessBoard : faGlobe}" />
     </button>
     <button class="tools__circuit" on:click={() => showCircuit.set(!$showCircuit)} class:active={$showCircuit}>
-        <Icon data={faAtom} />
+        <Icon data={faGripLines} />
     </button>
 </div>
 
@@ -65,7 +65,7 @@
             }
         }
 
-        &__visuals, &__circuit {
+        &__visuals, &__circuit, &__console {
             display: none;
             @media (min-width: 800px) {
                 display: block;
