@@ -1,32 +1,30 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
     import { createEventDispatcher } from 'svelte';
     const dispatch = createEventDispatcher();
 
-    import { presets, activePreset, deletePreset } from "$lib/stores/presets";
+    import { presetKeys, activePreset, deletePreset } from "$lib/stores/presets";
     let index = 0;
-
-    onMount(() => {
-        index = Object.keys($presets).indexOf($activePreset)
-        index = index === -1 ? 0 : index
-    })
+    $: start = index < 5 ? 0 : index - 4
+    $: end = start + 5
+    $: visiblePresets = $presetKeys.slice(start, end)
 
     function handleKeydown(e: KeyboardEvent) {
-        const key = Object.keys($presets)[index]
+        const key = $presetKeys[index]
+        console.log(key)
         
         // handle number keys
         if(!isNaN(Number(e.key))) {
             e.preventDefault()
             const i = Number(e.key)
-            index = i % Object.keys($presets).length
-            activePreset.set(Object.keys($presets)[index])
+            index = i % $presetKeys.length
+            activePreset.set($presetKeys[index])
             dispatch('load')
             return
         }
         
         switch (e.key) {
             case 'ArrowDown':
-                index = Math.min(index + 1, Object.keys($presets).length - 1)
+                index = Math.min(index + 1, $presetKeys.length - 1)
                 break;
             case 'ArrowUp':
                 index = Math.max(index - 1, 0)
@@ -45,18 +43,17 @@
 </script>
 
 <div class="presets" on:keydown={handleKeydown} >
-    {#if Object.keys($presets).length === 0}
+    {#if $presetKeys.length === 0}
         <p>No presets saved</p>
     {:else}
         <label>Load</label>
     
         <ul>
-            {#each Object.keys($presets) as key, i}
+            {#each visiblePresets as key, i}
             
-            <li class:active={$activePreset === key || index === i}>
+            <li class:active={$presetKeys[index] === key}>
                 <button 
                     on:click={() => {
-                        index = i
                         activePreset.set(key)
                         dispatch('load')
                     }}

@@ -11,6 +11,7 @@
                 index = Math.min(index + 1, $presetKeys.length - 1)
                 break;
             case 'ArrowUp':
+                e.preventDefault()
                 index = Math.max(index - 1, -1)
                 break;
         }
