@@ -76,7 +76,7 @@
             
             &--quantum {
                 grid-template-columns: 1fr 1fr 1fr;
-                grid-template-rows: 7fr 5fr 1fr;
+                grid-template-rows: 8fr 4fr 1fr;
             }
         }
         
@@ -89,8 +89,6 @@
         }
 
         @media all and (display-mode: fullscreen) {
-            // grid-template-columns: 2fr 3fr;
-            // grid-template-rows: 8fr 1fr 1fr;
             height: calc(100vh - 4rem);
             padding: 2rem;
         }
