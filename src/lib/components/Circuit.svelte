@@ -74,7 +74,6 @@
             left: 0;
             width: 100%;
             height: 5rem;
-            // background: linear-gradient(to bottom, transparent, var(--color-grey-darker));
             pointer-events: none;
             z-index:10;
         }
@@ -91,9 +90,6 @@
         justify-content: space-between;
         width: 100%;
         min-height: 3rem;
-        &:last-of-type {
-            margin-bottom: 2rem;
-        }
     }
 
     .col {
