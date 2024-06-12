@@ -5,7 +5,7 @@
     import type { p5, Sketch } from 'p5-svelte';
     import { Vector } from 'p5';
     import { min } from '$lib/zen/utils/utils';
-    import { visualsData, gridData, isQuantum, s } from "$lib/stores/zen";
+    import { visualsData, gridData, isSphere, s } from "$lib/stores/zen";
     import type { vector as v } from '$lib/zen/types';
 
     let container: HTMLElement;
@@ -28,7 +28,7 @@
             p5.push()
             p5.noFill()
             p5.stroke(185,185,185)
-            p5.strokeWeight(1/16)
+            p5.strokeWeight(1/2)
             p5.sphere(radius*0.85, 20, 20);
             p5.pop()
         }
@@ -37,7 +37,7 @@
             p5.push();
             p5.noFill();
             p5.stroke(255,255,255);
-            p5.strokeWeight(1/4);
+            p5.strokeWeight(1/2);
 
             const squareSize = (size / gridSize) * 0.9;
             const gridTotalSize = gridSize * squareSize;
@@ -62,7 +62,7 @@
             p5.smooth()
             p5.noLoop()
 
-            get(isQuantum)
+            get(isSphere)
                 ? drawSphere()
                 : drawSquare()
       
@@ -156,7 +156,7 @@
         p5.draw = () => {
             p5.clear()
             gridSize = get(s)
-            if(get(isQuantum)) return sphereMode(get(visualsData))
+            if(get(isSphere)) return sphereMode(get(visualsData))
 
             get(gridData) 
                 ? gridMode(get(gridData).flat())
@@ -170,9 +170,10 @@
     }
 
     onMount(() => {
-        const unsubscribeIsQuantum = isQuantum.subscribe(async () => {
+        const unsubscribeIsQuantum = isSphere.subscribe(async () => {
             await tick()
             handleResize && handleResize()
+            draw && draw()
         });
         const unsubscribeVisualsData = visualsData.subscribe(() => {
             draw && draw()
