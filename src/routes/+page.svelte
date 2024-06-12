@@ -46,7 +46,7 @@
     
     <div 
         class="visuals"
-        class:visuals--circuit={$showCircuit}
+        class:visuals--withCircuit={$showCircuit}
     >
         <Visuals />
     </div>
@@ -72,7 +72,7 @@
         
         @media (min-width: 800px) {
             grid-template-columns: 1fr 1fr;
-            grid-template-rows: 8fr 3fr 1fr;
+            grid-template-rows: 6fr 2fr 3fr 1fr;
         }
         
         @media (min-width: 1200px) {
@@ -93,13 +93,25 @@
         grid-row: 2;
         @media (min-width: 800px) {
             grid-column: 1;
-            grid-row: 1 / 2;
-            &--withConsole {
-                grid-row: 1 / 2   
-            }
+            grid-row: 1 / 3;
         }
 
     }
+    
+    .console {
+        grid-column: 1 / 2;
+        grid-row: 3 / 5;
+        border-radius: 10px;
+        position: relative;
+
+        background-color: var(--color-grey-dark);
+
+        display: none;
+
+        @media (min-width: 800px) {
+            display: block;
+        }
+    }    
 
     .tools {
         grid-column: 1;
@@ -108,14 +120,14 @@
 
         @media (min-width: 800px) {
             grid-column: 2;
-            grid-row: 3;
+            grid-row: 4;
         }
         background: linear-gradient(45deg, var(--color-grey-light-mid), var(--color-grey-darker));
         padding: 1rem;
     }
 
     .circuit {
-        grid-column: 2 / 4;
+        grid-column: 2;
         grid-row: 2 / 4;
         border-radius: 10px;
         position: relative;
@@ -130,11 +142,10 @@
 
     .visuals {
         grid-column: 2 / 3;
-        grid-row: 1;
+        grid-row: 1 / 4;
 
-        &--circuit {
-            grid-column: 3 / 4;
-            grid-row: 1;
+        &--withCircuit {
+            grid-row: 1 / 2;
         }
         border-radius: 10px;
         position: relative;
@@ -148,20 +159,7 @@
         }
     }
 
-    .console {
-        grid-column: 1 / 2;
-        grid-row: 2 / 4;
-        border-radius: 10px;
-        position: relative;
-
-        background-color: var(--color-grey-dark);
-
-        display: none;
-
-        @media (min-width: 800px) {
-            display: block;
-        }
-    }
+    
 
     .data {
         grid-column: 1;
