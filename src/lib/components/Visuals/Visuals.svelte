@@ -5,7 +5,7 @@
     import type { p5, Sketch } from 'p5-svelte';
     import { Vector } from 'p5';
     import { min } from '$lib/zen/utils/utils';
-    import { visualsData, gridData, isSphere, s } from "$lib/stores/zen";
+    import { visualsData, gridData, isSphere, s, showCircuit } from "$lib/stores/zen";
     import type { vector as v } from '$lib/zen/types';
 
     let container: HTMLElement;
@@ -170,7 +170,12 @@
     }
 
     onMount(() => {
-        const unsubscribeIsQuantum = isSphere.subscribe(async () => {
+        const unsubscribeIsSphere = isSphere.subscribe(async () => {
+            await tick()
+            handleResize && handleResize()
+            draw && draw()
+        });
+        const unsubscribeShowCircuit = showCircuit.subscribe(async () => {
             await tick()
             handleResize && handleResize()
             draw && draw()
@@ -180,7 +185,8 @@
         });
 
         return () => {
-            unsubscribeIsQuantum()
+            unsubscribeIsSphere()
+            unsubscribeShowCircuit()
             unsubscribeVisualsData()
         }
     })

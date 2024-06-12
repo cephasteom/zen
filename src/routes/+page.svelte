@@ -6,7 +6,7 @@
     import Tools from '$lib/components/Tools.svelte';
     import Console from '$lib/components/Console.svelte';
     import { startAudio } from '$lib/zen/index';
-    import { isQuantum } from '$lib/stores/zen';
+    import { showCircuit } from '$lib/stores/zen';
     
 </script>
 
@@ -23,7 +23,7 @@
 
 <section 
     class="zen"
-    class:zen--quantum={$isQuantum}    
+    class:zen--quantum={$showCircuit}    
 >
     <div class="editor">
         <Editor />
@@ -33,7 +33,7 @@
         <Tools />
     </div>
 
-    {#if $isQuantum}
+    {#if $showCircuit}
         <div class="circuit">
             <Circuit />
         </div>
@@ -41,14 +41,14 @@
     
     <div 
         class="visuals"
-        class:visuals--quantum={$isQuantum}
+        class:visuals--quantum={$showCircuit}
     >
         <Visuals />
     </div>
 
     <div 
         class="console"
-        class:console--quantum={$isQuantum}
+        class:console--quantum={$showCircuit}
     >
         <Console />
     </div>
@@ -76,7 +76,7 @@
             
             &--quantum {
                 grid-template-columns: 1fr 1fr 1fr;
-                grid-template-rows: 6fr 5fr 1fr;
+                grid-template-rows: 7fr 5fr 1fr;
             }
         }
         
@@ -89,8 +89,8 @@
         }
 
         @media all and (display-mode: fullscreen) {
-            grid-template-columns: 2fr 3fr;
-            grid-template-rows: 8fr 1fr 1fr;
+            // grid-template-columns: 2fr 3fr;
+            // grid-template-rows: 8fr 1fr 1fr;
             height: calc(100vh - 4rem);
             padding: 2rem;
         }
