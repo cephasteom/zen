@@ -15,8 +15,8 @@
     <button on:click={() => { isPlaying.set(!$isPlaying)}} ><Icon data="{$isPlaying ? faStop : faPlay}" /></button>
     <button on:click={() => save.showModal()} class:active={false}><Icon data="{faFloppyDisk}" /></button>
     <button on:click={() => load.showModal()} class:active={false}><Icon data="{faCode}" /></button>
-    <button class="tools__visuals active" on:click={() => isSphere.set(!$isSphere)}>
-        <Icon data="{$isSphere ? faGlobe : faChessBoard}" />
+    <button class="tools__visuals" on:click={() => isSphere.set(!$isSphere)}>
+        <Icon data="{$isSphere ? faChessBoard : faGlobe}" />
     </button>
     <button class="tools__circuit" on:click={() => showCircuit.set(!$showCircuit)} class:active={$showCircuit}>
         <Icon data={faAtom} />
