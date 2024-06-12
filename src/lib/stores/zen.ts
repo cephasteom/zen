@@ -16,6 +16,7 @@ export const inputs = writable<number[]>([0,0,0,0,0,0,0,0]); // initial state of
 
 export const isQuantum = writable(false);
 export const isSphere = writable(false)
+export const showCircuit = writable(false)
 export const messages = writable<{type: string, message: string}[]>([]);
 
 const initialMessages = [

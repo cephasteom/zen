@@ -1,7 +1,7 @@
 <script lang="ts">
     import Icon from 'svelte-awesome';
-    import { faPlay, faStop, faFloppyDisk, faCode, faGlobe, faChessBoard, faChess } from '@fortawesome/free-solid-svg-icons';
-    import { isPlaying, isSphere } from '$lib/stores/zen';
+    import { faPlay, faStop, faFloppyDisk, faCode, faGlobe, faChessBoard, faAtom } from '@fortawesome/free-solid-svg-icons';
+    import { isPlaying, isSphere, showCircuit } from '$lib/stores/zen';
     import Dialog from './Dialog.svelte'
     import Save from './Save.svelte'
     import Load from './Load.svelte'
@@ -15,9 +15,11 @@
     <button on:click={() => { isPlaying.set(!$isPlaying)}} ><Icon data="{$isPlaying ? faStop : faPlay}" /></button>
     <button on:click={() => save.showModal()} class:active={false}><Icon data="{faFloppyDisk}" /></button>
     <button on:click={() => load.showModal()} class:active={false}><Icon data="{faCode}" /></button>
-    <button on:click={() => load.showModal()} class:active={false}><Icon data="{faChessBoard}" /></button>
-    <button class="tools__mode active" on:click={() => isSphere.set(!$isSphere)}>
+    <button class="tools__visuals active" on:click={() => isSphere.set(!$isSphere)}>
         <Icon data="{$isSphere ? faGlobe : faChessBoard}" />
+    </button>
+    <button class="tools__circuit" on:click={() => showCircuit.set(!$showCircuit)} class:active={$showCircuit}>
+        <Icon data={faAtom} />
     </button>
 </div>
 
@@ -58,11 +60,15 @@
             font-family: var(--font-family);
             padding: 0;
 
-            &:hover {
-                color: var(--color-theme-1);
-            }
             &.active {
                 color: var(--color-theme-1);
+            }
+        }
+
+        &__visuals, &__circuit {
+            display: none;
+            @media (min-width: 800px) {
+                display: block;
             }
         }
     }
