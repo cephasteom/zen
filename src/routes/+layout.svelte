@@ -22,7 +22,7 @@
         flex-direction: column;
         @media all and (display-mode: fullscreen) {
             margin: 2rem;
-            margin-bottom: 0;
+            min-height: calc(100vh - 4rem);
         }
     }
 
@@ -52,6 +52,10 @@
         @media (min-width: 1600px) {
             width: 100%;
             padding: 1rem 0;
+        }
+
+        @media all and (display-mode: fullscreen) {
+            display: none;
         }
 
         span {

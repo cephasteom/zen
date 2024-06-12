@@ -21,9 +21,7 @@
     on:keydown={startAudio}
 />
 
-<section 
-    class="zen"
->
+<section class="zen">
     <div 
         class="editor"
     >
@@ -82,8 +80,8 @@
 
         @media all and (display-mode: fullscreen) {
             grid-template-columns: 1fr 1.5fr;
-            height: calc(100vh - 4rem);
-            padding: 2rem;
+            min-height: calc(100vh - 6rem);
+            padding: 1rem;
         }
     }
 

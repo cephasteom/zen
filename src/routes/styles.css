@@ -83,6 +83,9 @@ body {
 	background-color: var(--color-grey-darker);
 	background-size: 100vw 100vh;
     letter-spacing: 0.1rem;
+    @media all and (display-mode: fullscreen) {
+        min-height: calc(100vh - 2rem);
+    }
 }
 
 p, li {
