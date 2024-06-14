@@ -2,6 +2,8 @@ import seedRandom from 'seedrandom'
 import { Noise } from 'noisejs'
 import { get, writable } from 'svelte/store';
 
+export const nStreams = writable(32)
+
 export const seedValue = writable('')
 export const noise = writable(new Noise(Math.random()))
 

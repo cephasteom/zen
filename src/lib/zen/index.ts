@@ -11,7 +11,7 @@ import { createCount } from './utils/utils';
 import { helpers } from './utils/helpers';
 import keymap from './data/keymapping'
 import { print as post, clear } from "$lib/stores/zen";
-import { bpm, getBpm, clockSource, midiClockDevice, getClockSource, activeMidiClock } from "./stores";
+import { nStreams, bpm, getBpm, clockSource, midiClockDevice, getClockSource, activeMidiClock } from "./stores";
 import { modes } from './data/scales'
 import { triads } from './data/chords'
 
@@ -32,7 +32,7 @@ const d = new Data();
 
 // initialise Zen and Streams within the scope of the loop
 const z = new Zen();
-const streams: Stream[] = Array(12).fill(0).map((_, i) => new Stream('s' + i));
+const streams: Stream[] = Array(get(nStreams)).fill(0).map((_, i) => new Stream('s' + i));
 const fxstreams: Stream[] = Array(2).fill(0).map((_, i) => new Stream('fx' + i));
 const v = new Visuals()
 let measurements: number[] = []

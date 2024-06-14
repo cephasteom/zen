@@ -1,5 +1,7 @@
+import { get } from 'svelte/store';
 import { circuit } from './Circuit';
 import { handleTypes } from '../utils/handleTypes'; 
+import { nStreams } from '../stores';
 /**
  * The Wire class represents a single wire in a quantum circuit.
  * It uses the Quantum Circuit package to implement quantum gates. 
@@ -40,7 +42,7 @@ export class Wire {
 
         // determine which argument is which
         // important for live coding so we don't have to pass all arguments
-        const connections = [(hasControlQubits ? arg1 : [])].flat().map(i => (i ||0) % 8) || []
+        const connections = [(hasControlQubits ? arg1 : [])].flat().map(i => (i ||0) % get(nStreams)) || []
         const params = [(hasParams 
             ? hasControlQubits ? arg2 : arg1
             : [])].flat().filter(v => v!== undefined && v !== null)
@@ -102,7 +104,6 @@ export class Wire {
     /** @hidden */
     constructor(row: number) {
         this.row = row;    
-
 
         Object.entries(circuit.basicGates).forEach(([key, gate]: [string, any]) => {
             // add a method for each gate
