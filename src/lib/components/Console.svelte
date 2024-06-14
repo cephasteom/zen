@@ -29,8 +29,8 @@
 <style lang="scss">
     .console {
         background-color: var(--color-grey-darkest);
-        padding: 2rem;
-        height: calc(100% - 4rem);
+        padding: 1.5rem;
+        height: calc(100% - 3rem);
         position: absolute;
         left: 0;
         right: 0;
