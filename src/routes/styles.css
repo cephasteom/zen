@@ -138,11 +138,6 @@ h4 {
     font-size: clamp(1.125rem, 1.09rem + 0.18vw, 1.25rem);
 }
 
-svg {
-    width: 100%;
-    height: 100%;
-}
-
 ul {
     list-style: none;
     padding: 0 1rem;
@@ -263,4 +258,26 @@ dialog::backdrop {
 
 canvas {
     contain: paint;
+}
+
+.qc-circuit line {
+	stroke: var(--color-theme-2)!important;
+}
+
+.qc-circuit text {
+	font-size: var(--text-xs);
+}
+
+.qc-circuit text, 
+.qc-circuit circle {
+	fill: var(--color-theme-2)!important;
+	stroke: none!important;
+}
+
+.qc-circuit ellipse, 
+.qc-circuit rect, 
+.qc-circuit path {
+	fill: var(--color-grey-darker)!important;
+	stroke: var(--color-theme-2)!important;
+	cursor: grab;
 }
