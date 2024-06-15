@@ -67,11 +67,12 @@ export class Wire {
         } : {}
         
         // intialise the gate without options
-        hasControlQubits
+        const id = hasControlQubits
             ? circuit.insertGate(key, column, [this.row, ...controlQubits], { creg })
             : circuit.addGate(key, column, this.row, { creg })
         
-        // add a function to the stack to set params dynamically on each frame
+        const {wires, col} = circuit.getGatePosById(id)
+        
         this._stack.push(() => {
             if(!hasParams) return
 
@@ -93,10 +94,10 @@ export class Wire {
                     : [0,0,0]
             }
 
-            // overwrite the gate with options
-            hasControlQubits
-                ? circuit.insertGate(key, column, [this.row, ...controlQubits], options)
-                : circuit.addGate(key, column, [this.row], options)
+            wires.forEach((wire: any) => {
+                circuit.gates[wire][col].options = options
+            })
+
         })
         return this
     }
