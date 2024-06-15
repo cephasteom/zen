@@ -19,6 +19,7 @@
         let radius = size * 0.4;
 
         const getSize = (): void => {
+            if(!container) return
             const dimensions = container.getBoundingClientRect()
             size = min(dimensions.width, dimensions.height)
             radius = size * 0.4;

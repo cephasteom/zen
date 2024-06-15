@@ -14,15 +14,6 @@ export const gates = writable<any[]>([[],[],[],[], [],[],[],[]]); // circuit gat
 export const measurements = writable<any[]>([0,0,0,0,0,0,0,0]); // circuit measurements
 export const inputs = writable<number[]>([0,0,0,0,0,0,0,0]); // initial state of qubits in circuit
 
-const visualsTypes = ['grid', 'sphere', 'none'];
-export const visualsType = writable<'sphere' | 'grid' | 'none'>('grid')
-export const toggleVisuals = () => {
-    const i = visualsTypes.indexOf(get(visualsType));
-    // @ts-ignore
-    visualsType.set(visualsTypes[(i + 1) % visualsTypes.length]);
-}
-export const showVisuals = derived(visualsType, $visualsType => $visualsType !== 'none');
-
 export const showCircuit = writable(false)
 export const messages = writable<{type: string, message: string}[]>([]);
 
@@ -50,11 +41,28 @@ export const print = (type: string, message: string) => {
 
 export const clear = () => messages.set([]);
 
+const visualsTypes = writable<string[]>(['grid', 'sphere', 'none']);
 export const visualsData = writable<vector[]>([]);
 export const gridData = writable<number[]>([]);
 gridData.subscribe(d => {
-    d && d.length && visualsType.set('grid')
+    if(d && d.length) {
+        get(visualsType) === 'sphere' && visualsType.set('grid')
+        visualsTypes.set(['grid', 'none'])
+    } 
+    else {
+        visualsTypes.set(['grid', 'sphere', 'none'])
+    }
 })
+
+export const visualsType = writable<'sphere' | 'grid' | 'none'>('grid')
+export const toggleVisuals = () => {
+    const types = get(visualsTypes)
+    const currentType = get(visualsType)
+    const i = types.indexOf(currentType);
+    // @ts-ignore
+    visualsType.set(types[(i + 1) % types.length]);
+}
+export const showVisuals = derived(visualsType, $visualsType => $visualsType !== 'none');
 
 const zenChannel = new BroadcastChannel('zen');
 

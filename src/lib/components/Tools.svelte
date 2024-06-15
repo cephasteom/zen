@@ -23,7 +23,6 @@
     <button on:click={() => load.showModal()} class:active={false}><Icon data="{faCode}" /></button>
     <button class="tools__visuals" 
         class:active={$visualsType !== 'none'} 
-        class:disabled={$gridData && $gridData.length}
         on:click={toggleVisuals}
     >
         <Icon data={visualsIcons[$visualsType]} />
@@ -72,11 +71,6 @@
 
             &.active {
                 color: var(--color-theme-1);
-            }
-
-            &.disabled {
-                opacity: 0.5;
-                cursor: not-allowed;
             }
         }
 
