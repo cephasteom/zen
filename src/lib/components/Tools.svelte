@@ -7,9 +7,9 @@
     import Load from './Load.svelte'
 
     const visualsIcons = {
-        'grid': faGlobe,
-        'sphere': faToggleOff,
-        'none': faChessBoard
+        'grid': faChessBoard,
+        'sphere': faGlobe,
+        'none': faToggleOff
     }
     
     let save: HTMLDialogElement;
@@ -21,7 +21,7 @@
     <button on:click={() => { isPlaying.set(!$isPlaying)}} ><Icon data="{$isPlaying ? faStop : faPlay}" /></button>
     <button on:click={() => save.showModal()} class:active={false}><Icon data="{faFloppyDisk}" /></button>
     <button on:click={() => load.showModal()} class:active={false}><Icon data="{faCode}" /></button>
-    <button class="tools__visuals" on:click={toggleVisuals}>
+    <button class="tools__visuals" class:active={$visualsType !== 'none'} on:click={toggleVisuals}>
         <Icon data={visualsIcons[$visualsType]} />
     </button>
     <button class="tools__circuit" on:click={() => showCircuit.set(!$showCircuit)} class:active={$showCircuit}>

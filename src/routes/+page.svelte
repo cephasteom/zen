@@ -24,11 +24,15 @@
 <section class="zen">
     <div 
         class="editor"
+        class:editor--large={!$showCircuit && !$showVisuals}
     >
         <Editor />
     </div>
 
-    <div class="console">
+    <div 
+        class="console"
+        class:console--large={!$showCircuit && !$showVisuals}
+    >
         <Console />
     </div>
     
@@ -37,7 +41,10 @@
     </div>
 
     {#if $showCircuit}
-        <div class="circuit">
+        <div 
+            class="circuit"
+            class:circuit--fullHeight={!$showVisuals}
+        >
             <Circuit />
         </div>
     {/if}
@@ -92,6 +99,10 @@
         @media (min-width: 800px) {
             grid-column: 1;
             grid-row: 1 / 3;
+
+            &--large {
+                grid-row: 1 / 5;
+            }
         }
 
     }
@@ -101,10 +112,13 @@
         grid-row: 3 / 5;
         border-radius: 10px;
         position: relative;
-
         background-color: var(--color-grey-dark);
-
         display: none;
+
+        &--large {
+            grid-column: 2 / 3;
+            grid-row: 1 / 4;
+        }
 
         @media (min-width: 800px) {
             display: block;
@@ -130,6 +144,10 @@
         border-radius: 10px;
         position: relative;
         display: none;
+
+        &--fullHeight {
+            grid-row: 1 / 4;
+        }
 
         @media (min-width: 800px) {
             display: block;
