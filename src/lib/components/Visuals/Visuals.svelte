@@ -133,31 +133,8 @@
             })
         }
 
-        // const gridMode = (data: number[]) => {
-        //     const { width, height } = calculateRectHeightAndWidth(data.length)
-        //     // drawSquare()
-        //     const gridSize = Math.round(Math.sqrt(data.length));
-        //     const squareSize = (size / gridSize) * 0.9;
-        //     const gridTotalSize = gridSize * squareSize;
-        //     for (let i = 0; i < gridSize; i++) {
-        //         for (let j = 0; j < gridSize; j++) {
-        //             const index = i * gridSize + j;
-        //             const value = data[index];
-        //             const posX = i * squareSize - gridTotalSize / 2;
-        //             const posY = j * squareSize - gridTotalSize / 2;
-        //             // Draw the square
-        //             p5.push();
-        //             p5.fill(Math.floor(value * 256));
-        //             p5.noStroke();
-        //             p5.rect(posX, posY, squareSize, squareSize);
-        //             p5.pop();
-        //         }
-        //     }
-        // }
-
         const gridMode = (data: number[]) => {
             const { width, height } = calculateRectHeightAndWidth(data.length);
-            console.log(data.length)
             const squareSize = (size / Math.max(width, height)) * 0.9;
             const gridTotalWidth = width * squareSize;
             const gridTotalHeight = height * squareSize;
@@ -183,7 +160,7 @@
             gridSize = get(s)
             if(get(isSphere)) return sphereMode(get(visualsData))
 
-            get(gridData) 
+            get(gridData).length
                 ? gridMode(get(gridData).flat())
                 : squareMode(get(visualsData))
             
