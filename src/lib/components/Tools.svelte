@@ -1,7 +1,7 @@
 <script lang="ts">
     import Icon from 'svelte-awesome';
     import { faPlay, faStop, faFloppyDisk, faCode, faGlobe, faChessBoard, faBars, faToggleOff } from '@fortawesome/free-solid-svg-icons';
-    import { isPlaying, showCircuit, toggleVisuals, visualsType } from '$lib/stores/zen';
+    import { isPlaying, showCircuit, toggleVisuals, visualsType, gridData } from '$lib/stores/zen';
     import Dialog from './Dialog.svelte'
     import Save from './Save.svelte'
     import Load from './Load.svelte'
@@ -21,7 +21,11 @@
     <button on:click={() => { isPlaying.set(!$isPlaying)}} ><Icon data="{$isPlaying ? faStop : faPlay}" /></button>
     <button on:click={() => save.showModal()} class:active={false}><Icon data="{faFloppyDisk}" /></button>
     <button on:click={() => load.showModal()} class:active={false}><Icon data="{faCode}" /></button>
-    <button class="tools__visuals" class:active={$visualsType !== 'none'} on:click={toggleVisuals}>
+    <button class="tools__visuals" 
+        class:active={$visualsType !== 'none'} 
+        class:disabled={$gridData && $gridData.length}
+        on:click={toggleVisuals}
+    >
         <Icon data={visualsIcons[$visualsType]} />
     </button>
     <button class="tools__circuit" on:click={() => showCircuit.set(!$showCircuit)} class:active={$showCircuit}>
@@ -68,6 +72,11 @@
 
             &.active {
                 color: var(--color-theme-1);
+            }
+
+            &.disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
             }
         }
 

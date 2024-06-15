@@ -52,6 +52,9 @@ export const clear = () => messages.set([]);
 
 export const visualsData = writable<vector[]>([]);
 export const gridData = writable<number[]>([]);
+gridData.subscribe(d => {
+    d && d.length && visualsType.set('grid')
+})
 
 const zenChannel = new BroadcastChannel('zen');
 
