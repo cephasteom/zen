@@ -7,7 +7,6 @@
     import Console from '$lib/components/Console.svelte';
     import { startAudio } from '$lib/zen/index';
     import { showCircuit, showVisuals } from '$lib/stores/zen';
-    
 </script>
 
 <svelte:head>
@@ -174,8 +173,6 @@
             display: block;
         }
     }
-
-    
 
     .data {
         grid-column: 1;

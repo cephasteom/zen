@@ -54,6 +54,7 @@ code.subscribe(code => {
     z.reset()
     z.resetGlobals()
     circuit.clear()
+    circuit.numQubits = 1
 
     // global variables
     let { q, s, c } = z
