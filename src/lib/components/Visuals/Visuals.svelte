@@ -158,10 +158,11 @@
         p5.draw = () => {
             p5.clear()
             gridSize = get(s)
+            const gridDataArray = get(gridData)
             if(get(isSphere)) return sphereMode(get(visualsData))
 
-            get(gridData).length
-                ? gridMode(get(gridData).flat())
+            gridDataArray && gridDataArray.length
+                ? gridMode(gridDataArray.flat())
                 : squareMode(get(visualsData))
             
         }
