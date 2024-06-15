@@ -5,7 +5,7 @@
     import type { p5, Sketch } from 'p5-svelte';
     import { Vector } from 'p5';
     import { min, calculateRectHeightAndWidth } from '$lib/zen/utils/utils';
-    import { visualsData, gridData, isSphere, s, showCircuit } from "$lib/stores/zen";
+    import { visualsData, gridData, visualsType, s, showCircuit } from "$lib/stores/zen";
     import type { vector as v } from '$lib/zen/types';
 
     let container: HTMLElement;
@@ -62,7 +62,7 @@
             p5.smooth()
             p5.noLoop()
 
-            get(isSphere)
+            get(visualsType) === 'sphere'
                 ? drawSphere()
                 : drawSquare()
       
@@ -159,7 +159,7 @@
             p5.clear()
             gridSize = get(s)
             const gridDataArray = get(gridData)
-            if(get(isSphere)) return sphereMode(get(visualsData))
+            if(get(visualsType) === 'sphere') return sphereMode(get(visualsData))
 
             gridDataArray && gridDataArray.length
                 ? gridMode(gridDataArray.flat())
@@ -173,7 +173,7 @@
     }
 
     onMount(() => {
-        const unsubscribeIsSphere = isSphere.subscribe(async () => {
+        const unsubscribeVisualsType = visualsType.subscribe(async () => {
             await tick()
             handleResize && handleResize()
             draw && draw()
@@ -188,7 +188,7 @@
         });
 
         return () => {
-            unsubscribeIsSphere()
+            unsubscribeVisualsType()
             unsubscribeShowCircuit()
             unsubscribeVisualsData()
         }

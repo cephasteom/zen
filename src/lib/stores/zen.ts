@@ -1,4 +1,4 @@
-import { writable, get } from 'svelte/store';
+import { writable, get, derived } from 'svelte/store';
 import '../oto';
 import type { vector } from '../zen/types'
 
@@ -14,8 +14,15 @@ export const gates = writable<any[]>([[],[],[],[], [],[],[],[]]); // circuit gat
 export const measurements = writable<any[]>([0,0,0,0,0,0,0,0]); // circuit measurements
 export const inputs = writable<number[]>([0,0,0,0,0,0,0,0]); // initial state of qubits in circuit
 
-export const isQuantum = writable(false);
-export const isSphere = writable(false)
+const visualsTypes = ['grid', 'sphere', 'none'];
+export const visualsType = writable<'sphere' | 'grid' | 'none'>('grid')
+export const toggleVisuals = () => {
+    const i = visualsTypes.indexOf(get(visualsType));
+    // @ts-ignore
+    visualsType.set(visualsTypes[(i + 1) % visualsTypes.length]);
+}
+export const showVisuals = derived(visualsType, $visualsType => $visualsType !== 'none');
+
 export const showCircuit = writable(false)
 export const messages = writable<{type: string, message: string}[]>([]);
 

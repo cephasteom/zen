@@ -6,7 +6,7 @@
     import Tools from '$lib/components/Tools.svelte';
     import Console from '$lib/components/Console.svelte';
     import { startAudio } from '$lib/zen/index';
-    import { showCircuit } from '$lib/stores/zen';
+    import { showCircuit, showVisuals } from '$lib/stores/zen';
     
 </script>
 
@@ -42,14 +42,14 @@
         </div>
     {/if}
     
-    <div 
-        class="visuals"
-        class:visuals--withCircuit={$showCircuit}
-    >
-        <Visuals />
-    </div>
-
-    
+    {#if $showVisuals}
+        <div 
+            class="visuals"
+            class:visuals--withCircuit={$showCircuit}
+        >
+            <Visuals />
+        </div>
+    {/if}
 
     <div class="data">
         <Data />

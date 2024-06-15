@@ -1,10 +1,16 @@
 <script lang="ts">
     import Icon from 'svelte-awesome';
-    import { faPlay, faStop, faFloppyDisk, faCode, faGlobe, faChessBoard, faBars } from '@fortawesome/free-solid-svg-icons';
-    import { isPlaying, isSphere, showCircuit } from '$lib/stores/zen';
+    import { faPlay, faStop, faFloppyDisk, faCode, faGlobe, faChessBoard, faBars, faToggleOff } from '@fortawesome/free-solid-svg-icons';
+    import { isPlaying, showCircuit, toggleVisuals, visualsType } from '$lib/stores/zen';
     import Dialog from './Dialog.svelte'
     import Save from './Save.svelte'
     import Load from './Load.svelte'
+
+    const visualsIcons = {
+        'grid': faGlobe,
+        'sphere': faToggleOff,
+        'none': faChessBoard
+    }
     
     let save: HTMLDialogElement;
     let load: HTMLDialogElement;
@@ -15,8 +21,8 @@
     <button on:click={() => { isPlaying.set(!$isPlaying)}} ><Icon data="{$isPlaying ? faStop : faPlay}" /></button>
     <button on:click={() => save.showModal()} class:active={false}><Icon data="{faFloppyDisk}" /></button>
     <button on:click={() => load.showModal()} class:active={false}><Icon data="{faCode}" /></button>
-    <button class="tools__visuals" on:click={() => isSphere.set(!$isSphere)}>
-        <Icon data="{$isSphere ? faChessBoard : faGlobe}" />
+    <button class="tools__visuals" on:click={toggleVisuals}>
+        <Icon data={visualsIcons[$visualsType]} />
     </button>
     <button class="tools__circuit" on:click={() => showCircuit.set(!$showCircuit)} class:active={$showCircuit}>
         <Icon data={faBars} />
