@@ -136,9 +136,11 @@ export function evaluate(count: number, time: number) {
         : 0
     )
     
-    circuit.run(inputs)
     const gates = circuit.gates
-    measurements = circuit.measureAll()
+    if(gates.flat().length) {
+        circuit.run(inputs)
+        measurements = circuit.measureAll()
+    }
 
     // compile parameters, events and mutations
     const compiled = [...streams, ...fxstreams].map(stream => stream.get(t, q, s, getBpm(), z))
