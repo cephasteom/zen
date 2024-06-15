@@ -145,8 +145,8 @@ export function debounce<F extends (...args: any[]) => any>(callback: F, wait: n
 }
 
 export function calculateRectHeightAndWidth(area: number): { width: number, height: number } {
-    let width = Math.floor(Math.sqrt(area));
-    let height = Math.ceil(area / width);
+    let height = Math.floor(Math.sqrt(area));
+    let width = Math.ceil(area / height);
 
     while (width * height < area) {
         width += 1;
