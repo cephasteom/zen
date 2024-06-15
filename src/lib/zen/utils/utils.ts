@@ -135,10 +135,23 @@ export function loopArray(arr: any[], n: number) {
 }
 
 export function debounce<F extends (...args: any[]) => any>(callback: F, wait: number): (...args: Parameters<F>) => void {
+    // @ts-ignore
     let timerId: NodeJS.Timeout | null = null;
   
     return (...args: Parameters<F>): void => {
         timerId && clearTimeout(timerId);
         timerId = setTimeout(() => callback(...args), wait);
     };
+}
+
+export function calculateRectHeightAndWidth(area: number): { width: number, height: number } {
+    let width = Math.floor(Math.sqrt(area));
+    let height = Math.ceil(area / width);
+
+    while (width * height < area) {
+        width += 1;
+        height = Math.ceil(area / width);
+    }
+
+    return { width, height };
 }

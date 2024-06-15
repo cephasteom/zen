@@ -4,7 +4,7 @@
     import P5 from 'p5-svelte'
     import type { p5, Sketch } from 'p5-svelte';
     import { Vector } from 'p5';
-    import { min } from '$lib/zen/utils/utils';
+    import { min, calculateRectHeightAndWidth } from '$lib/zen/utils/utils';
     import { visualsData, gridData, isSphere, s, showCircuit } from "$lib/stores/zen";
     import type { vector as v } from '$lib/zen/types';
 
@@ -133,17 +133,41 @@
             })
         }
 
+        // const gridMode = (data: number[]) => {
+        //     const { width, height } = calculateRectHeightAndWidth(data.length)
+        //     // drawSquare()
+        //     const gridSize = Math.round(Math.sqrt(data.length));
+        //     const squareSize = (size / gridSize) * 0.9;
+        //     const gridTotalSize = gridSize * squareSize;
+        //     for (let i = 0; i < gridSize; i++) {
+        //         for (let j = 0; j < gridSize; j++) {
+        //             const index = i * gridSize + j;
+        //             const value = data[index];
+        //             const posX = i * squareSize - gridTotalSize / 2;
+        //             const posY = j * squareSize - gridTotalSize / 2;
+        //             // Draw the square
+        //             p5.push();
+        //             p5.fill(Math.floor(value * 256));
+        //             p5.noStroke();
+        //             p5.rect(posX, posY, squareSize, squareSize);
+        //             p5.pop();
+        //         }
+        //     }
+        // }
+
         const gridMode = (data: number[]) => {
-            drawSquare()
-            const gridSize = Math.round(Math.sqrt(data.length));
-            const squareSize = (size / gridSize) * 0.9;
-            const gridTotalSize = gridSize * squareSize;
-            for (let i = 0; i < gridSize; i++) {
-                for (let j = 0; j < gridSize; j++) {
-                    const index = i * gridSize + j;
+            const { width, height } = calculateRectHeightAndWidth(data.length);
+            console.log(data.length)
+            const squareSize = (size / Math.max(width, height)) * 0.9;
+            const gridTotalWidth = width * squareSize;
+            const gridTotalHeight = height * squareSize;
+            for (let i = 0; i < height; i++) {
+                for (let j = 0; j < width; j++) {
+                    const index = i * width + j;
+                    if (index >= data.length) break; // Stop if we've processed all data
                     const value = data[index];
-                    const posX = i * squareSize - gridTotalSize / 2;
-                    const posY = j * squareSize - gridTotalSize / 2;
+                    const posX = j * squareSize - gridTotalWidth / 2;
+                    const posY = i * squareSize - gridTotalHeight / 2;
                     // Draw the square
                     p5.push();
                     p5.fill(Math.floor(value * 256));
