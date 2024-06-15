@@ -87,8 +87,6 @@ code.subscribe(code => {
         [fx0, fx1];
         map; d;
         
-        // TODO
-        // const thisCode = !(t%z.update) ? code : get(lastCode) // only eval code on the beat
         eval(code)
         lastCode.set(code)
         
