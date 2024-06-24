@@ -14,6 +14,7 @@ import { print as post, clear } from "$lib/stores/zen";
 import { nStreams, bpm, getBpm, clockSource, midiClockDevice, getClockSource, activeMidiClock } from "./stores";
 import { modes } from './data/scales'
 import { triads } from './data/chords'
+import { loadSamples } from '$lib/oto';
 
 // Broadcast channels
 const channel = new BroadcastChannel('zen')
@@ -76,7 +77,7 @@ code.subscribe(code => {
     const map = keymap
     try {
         // prevent unused variable errors
-        [bts, btms, ms, clamp, print, clear, scales, chords, samples, instruments, midi, seed];
+        [bts, btms, ms, clamp, print, clear, scales, chords, samples, instruments, midi, seed, loadSamples];
         [abs, acos, acosh, asin, asinh, atan, atan2, atanh, cbrt, ceil, clz32, cos, cosh, exp, expm1, floor, fround, hypot, imul, log, log10, log1p, log2, max, min, pow, random, round, sign, sin, sinh, sqrt, tan, tanh, trunc, E, LN10, LN2, LOG10E, LOG2E, PI, SQRT1_2, SQRT2];
         [
             s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15,

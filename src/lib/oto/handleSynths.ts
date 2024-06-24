@@ -2,6 +2,7 @@ import { writable, get } from "svelte/store";
 import { CtSynth, CtSampler, CtGranulator, CtAdditive, CtAcidSynth, CtDroneSynth, CtSubSynth, CtSuperFM, CtWavetable } from "./ct-synths"
 import type { Dictionary } from './types'
 import { getChannel } from './routing';
+import { samples } from './stores'
 
 const otoChannel = new BroadcastChannel('oto')
 
@@ -112,7 +113,7 @@ export const handleSynthMutation = (time: number, params: Dictionary) => {
 }
 
 // Fetch samples lists
-const samples = writable<Dictionary>({});
+// const samples = writable<Dictionary>({});
 
 const fetchSamples = (url: string) => {
     fetch(url)
@@ -121,7 +122,6 @@ const fetchSamples = (url: string) => {
             if(!json) return
             otoChannel.postMessage({ type: 'success', message: 'Loaded samples from ' + url})
             samples.update((samples: Dictionary) => ({...samples, ...json}))
-            
         })
         .catch(_ => console.log('No samples available at ' + url))
 }

@@ -1,6 +1,7 @@
 import { handleMidiEvent, handleMidiMutation } from "./handleMidi";
 import { handleSynthEvent, handleSynthMutation } from "./handleSynths";
 import { handleFxEvent, handleFxMutation } from "./handleFx";
+import { samples } from "./stores";
 import type { Dictionary } from "./types";
 
 const channel = new BroadcastChannel('zen');
@@ -30,4 +31,24 @@ export function handleMutation(time: number, delta: number, id: string, params: 
     params.midi && handleMidiMutation(delta, id, params);
     id.startsWith('s') && handleSynthMutation(time, params);
     id.startsWith('fx') && handleFxMutation(time, id, params);
+}
+
+/**
+ * Load samples into the store
+ * @param samples
+ * Should be an object with keys as bank names and values as arrays of urls
+ */
+export function loadSamples(samps: Dictionary) {
+    samples.update((currentSamples: Dictionary) => {
+        // Iterate over each key in samps
+        Object.keys(samps).forEach((key) => {
+            currentSamples[key]
+                // If the key exists in currentSamples, append the new items
+                ? (currentSamples[key] = [...currentSamples[key], ...samps[key]])
+                // If the key doesn't exist, add the new key-value pair
+                : (currentSamples[key] = samps[key])
+            }
+        );
+        return { ...currentSamples };
+    });
 }
