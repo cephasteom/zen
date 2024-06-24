@@ -112,9 +112,6 @@ export const handleSynthMutation = (time: number, params: Dictionary) => {
         })
 }
 
-// Fetch samples lists
-// const samples = writable<Dictionary>({});
-
 const fetchSamples = (url: string) => {
     fetch(url)
         .then(res => res.json())
@@ -129,13 +126,16 @@ const fetchSamples = (url: string) => {
 fetchSamples('/samples/samples.json')
 fetchSamples('http://localhost:5000/samples.json')
 
-synths.subscribe((synths: Dictionary) => {
+const updateSynthsSamples = (synths: Dictionary) => {
     Object.values(synths).forEach(({sampler, granular, wavetable}) => 
         [sampler, granular, wavetable].forEach(synth => 
             synth && (synth.banks = {...synth.banks, ...get(samples)})
         ))
-})
+}
+
+synths.subscribe((synths: Dictionary) => updateSynthsSamples(synths))
 
 samples.subscribe((samples: Dictionary) => {
+    updateSynthsSamples(get(synths))
     otoChannel.postMessage({ type: 'info', message: 'Sample banks ->\n' + Object.keys(samples).join(', ') + '\n'})
 })
