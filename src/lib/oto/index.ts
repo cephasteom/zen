@@ -37,16 +37,19 @@ export function handleMutation(time: number, delta: number, id: string, params: 
  * Load samples into the store
  * @param samples
  * Should be an object with keys as bank names and values as arrays of urls
+ * @param baseUrl
+ * An optional base url to prepend to each url
  */
-export function loadSamples(samps: Dictionary) {
+export function loadSamples(samps: Dictionary, baseUrl: string) {
     samples.update((currentSamples: Dictionary) => {
         // Iterate over each key in samps
         Object.keys(samps).forEach((key) => {
+            const bank = samps[key].map((url: string) => baseUrl ? `${baseUrl}/${url}` : url)
             currentSamples[key]
                 // If the key exists in currentSamples, append the new items
-                ? (currentSamples[key] = [...currentSamples[key], ...samps[key]])
+                ? (currentSamples[key] = [...currentSamples[key], ...bank])
                 // If the key doesn't exist, add the new key-value pair
-                : (currentSamples[key] = samps[key])
+                : (currentSamples[key] = bank)
             }
         );
         return { ...currentSamples };
