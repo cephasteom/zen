@@ -43,7 +43,7 @@ export const clear = () => messages.set([]);
 
 const visualsTypes = writable<string[]>(['grid', 'sphere', 'none']);
 export const visualsData = writable<vector[]>([]);
-export const gridData = writable<number[]>([]);
+export const gridData = writable<number[] | number[][]>([]);
 gridData.subscribe(d => {
     if(d && d.length) {
         get(visualsType) === 'sphere' && visualsType.set('grid')

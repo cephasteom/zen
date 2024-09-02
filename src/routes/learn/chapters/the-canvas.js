@@ -29,9 +29,14 @@ The canvas can be used or ignored at will. If you don’t need to map parameters
 As we shall see, plotting a stream's position in 3D space comes into its own when you start using Zen's quantum features.
 
 ## Grid
-Alternatively, you can overwrite the stream positions on the canvas using \`z.grid\`. This is an instance of the Pattern class and expects a flat array of values between 0 and 1. Using the length of the array as the size of the grid, it will visualise the data that you send. For example:
+Alternatively, you can overwrite the stream positions on the canvas using \`z.grid\`. This is an instance of the Pattern class and expects an array of values between 0 and 1. Using the length of the array as the size of the grid, it will visualise the data that you send. For example:
 \`\`\`js
 z.grid.set(() => Array.from({length: 16*16}, () => Math.random()))
+\`\`\`
+
+If you want to determine the width and height of the grid, you can pass a 2D array:
+\`\`\`js
+z.grid.set(() => Array.from({length: 16}, () => Array.from({length: 16}, () => Math.random())))
 \`\`\`
 
 Whilst this has no bearing on the sound, you can sonify this data elsewhere in your code. Potential uses are for cellular automata. The \`.persist()\` pattern method can be used to modify the grid over time, allowing you to create evolving patterns. 

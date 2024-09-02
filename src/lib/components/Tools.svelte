@@ -1,7 +1,7 @@
 <script lang="ts">
     import Icon from 'svelte-awesome';
     import { faPlay, faStop, faFloppyDisk, faCode, faGlobe, faChessBoard, faBars, faToggleOff } from '@fortawesome/free-solid-svg-icons';
-    import { isPlaying, showCircuit, toggleVisuals, visualsType, gridData } from '$lib/stores/zen';
+    import { isPlaying, showCircuit, toggleVisuals, visualsType } from '$lib/stores/zen';
     import Dialog from './Dialog.svelte'
     import Save from './Save.svelte'
     import Load from './Load.svelte'

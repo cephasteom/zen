@@ -144,6 +144,9 @@ export function debounce<F extends (...args: any[]) => any>(callback: F, wait: n
     };
 }
 
+/**
+ * Calculate the width and height of a rectangle given an area
+ */ 
 export function calculateRectHeightAndWidth(area: number): { width: number, height: number } {
     let height = Math.floor(Math.sqrt(area));
     let width = Math.ceil(area / height);

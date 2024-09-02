@@ -134,16 +134,22 @@
             })
         }
 
-        const gridMode = (data: number[]) => {
-            const { width, height } = calculateRectHeightAndWidth(data.length);
+        const gridMode = (data: number[] | number[][]) => {
+            const { width, height } = Array.isArray(data[0]) // if data is 3D array...
+                ? { width: data[0].length, height: data.length } // ...use the first two dimensions
+                : calculateRectHeightAndWidth(data.length) // ...otherwise, calculate the width and height of the grid
+
             const squareSize = (size / Math.max(width, height)) * 0.9;
             const gridTotalWidth = width * squareSize;
             const gridTotalHeight = height * squareSize;
+            
+            const gridData = Array.isArray(data[0]) ? data.flat() : data
+            
             for (let i = 0; i < height; i++) {
                 for (let j = 0; j < width; j++) {
                     const index = i * width + j;
-                    if (index >= data.length) break; // Stop if we've processed all data
-                    const value = data[index];
+                    if (index >= gridData.length) break; // Stop if we've processed all data
+                    const value = gridData[index];
                     const posX = j * squareSize - gridTotalWidth / 2;
                     const posY = i * squareSize - gridTotalHeight / 2;
                     // Draw the square
@@ -163,7 +169,7 @@
             if(get(visualsType) === 'sphere') return sphereMode(get(visualsData))
 
             gridDataArray && gridDataArray.length
-                ? gridMode(gridDataArray.flat())
+                ? gridMode(gridDataArray)
                 : squareMode(get(visualsData))
             
         }
