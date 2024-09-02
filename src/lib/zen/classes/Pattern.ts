@@ -279,7 +279,9 @@ qr: 'qresult',
     reset() {
         this.stack = []
         this._value = 0
-        this._state = {}
+        this._state = {
+            persist: this._state?.persist || false,
+        }
         return this
     }   
     
