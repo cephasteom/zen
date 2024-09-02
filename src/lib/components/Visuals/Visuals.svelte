@@ -154,7 +154,7 @@
                     const posY = i * squareSize - gridTotalHeight / 2;
                     // Draw the square
                     p5.push();
-                    p5.fill(Math.floor(value * 256));
+                    p5.fill(Math.floor((1 - value) * 256));
                     p5.noStroke();
                     p5.rect(posX, posY, squareSize, squareSize);
                     p5.pop();
@@ -167,7 +167,6 @@
             gridSize = get(s)
             const gridDataArray = get(gridData)
             if(get(visualsType) === 'sphere') return sphereMode(get(visualsData))
-
             gridDataArray && gridDataArray.length
                 ? gridMode(gridDataArray)
                 : squareMode(get(visualsData))
@@ -190,7 +189,8 @@
             handleResize && handleResize()
             draw && draw()
         });
-        const unsubscribeVisualsData = visualsData.subscribe(() => {
+        const unsubscribeVisualsData = visualsData.subscribe(async (data) => {
+            await tick()
             draw && draw()
         });
 

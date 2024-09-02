@@ -13,7 +13,8 @@ import {
     odd, 
     even,
     interpolate,
-    handleArrayOrSingleValue as handlePolyphony
+    handleArrayOrSingleValue as handlePolyphony,
+    memoize
 } from '../utils/utils';
 import { parsePattern } from '../parsing/mininotation';
 import { noise, randomSequence } from '../stores'
@@ -1355,9 +1356,11 @@ qr: 'qresult',
      * @example z.grid.persist((t, prev) => prev ? [...prev, Math.random()] : [])
      */
     persist(fn: Function): Pattern {
+        // memoize the persist value so that we don't affect it each time we call the function
+        const get = memoize((t) => this._state.persist)
         this.stack.push((x: patternValue) => {
             // call function passing in t and previous value
-            const result = fn(x, this._state.persist)
+            const result = fn(x, get(this._t))
             // set the result as the new persist value
             this._state.persist = result
             // return the result
