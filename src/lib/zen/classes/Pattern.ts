@@ -1353,9 +1353,9 @@ qr: 'qresult',
      * @example z.grid.persist((t, prev) => prev ? [...prev, Math.random()] : [])
      */
     persist(fn: Function): Pattern {
-        this.stack.push(() => {
+        this.stack.push((x: patternValue) => {
             // call function passing in t and previous value
-            const result = fn(this._t, this._state.persist)
+            const result = fn(x, this._state.persist)
             // set the result as the new persist value
             this._state.persist = result
             // return the result
