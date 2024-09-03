@@ -35,7 +35,7 @@ self.addEventListener('fetch', (event) => {
     if (event.request.method !== 'GET') return;
 
     // ignore request to samples.json
-    if (event.request.url === 'http://localhost:5000/samples.json') return;
+    if (event.request.url === 'http://localhost:6060/samples.json') return;
 
     async function respond() {
         const url = new URL(event.request.url);

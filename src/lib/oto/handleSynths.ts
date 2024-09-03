@@ -124,7 +124,7 @@ const fetchSamples = (url: string) => {
 }
 
 fetchSamples('/samples/samples.json')
-fetchSamples('http://localhost:5000/samples.json')
+fetchSamples('http://localhost:6060/samples.json')
 
 const updateSynthsSamples = (synths: Dictionary) => {
     Object.values(synths).forEach(({sampler, granular, wavetable}) => 

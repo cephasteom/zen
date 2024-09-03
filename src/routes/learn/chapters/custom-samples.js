@@ -16,6 +16,6 @@ s0.set({inst:1,bank:'test'})
 s0.e.every(2)
 \`\`\`
 
-## localhost:5000
-Zen fetches samples via HTTP requests, looking for additional, locally served files on localhost:5000. To serve your own samples, download and install this [simple package](https://github.com/cephasteom/zen-connect). Follow the instructions in the README.md and refresh Zen. Your custom samples should be listed in the console when you run the command \`samples()\`.
+## localhost:6060
+Zen fetches samples via HTTP requests, looking for additional, locally served files on localhost:6060. To serve your own samples, download and install this [simple package](https://github.com/cephasteom/zen-connect). Follow the instructions in the README.md and refresh Zen. Your custom samples should be listed in the console when you run the command \`samples()\`.
 `
