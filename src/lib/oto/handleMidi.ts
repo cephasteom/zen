@@ -9,7 +9,7 @@ async function enableMidi() {
 enableMidi();
 
 // Create Midi class for each stream
-const midiStreams:  { [key: string]: Midi } = new Array(8).fill(0)
+const midiStreams:  { [key: string]: Midi } = new Array(32).fill(0)
     .map((_, i) => new Midi())
     .reduce((obj, stream, i) => ({
         ...obj,
