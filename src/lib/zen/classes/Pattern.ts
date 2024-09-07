@@ -1060,7 +1060,6 @@ qr: 'qresult',
         this.stack.push(data => {
             // @ts-ignore
             const indexes = [this.handleTypes(i)].flat()
-            console.log(indexes,data)
             const type = typeof data
             return type === 'object'
                 // @ts-ignore
