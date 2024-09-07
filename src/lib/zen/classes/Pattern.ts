@@ -1048,22 +1048,25 @@ qr: 'qresult',
     }
 
     /**
-     * Get a value from the previous value in the pattern chain, at index n
-     * The previous value can be either an array - so n must be an integer...
-     * ...or an object - so n must be a string
-     * @param n index of value to retrieve
+     * Get a value, or values, from the previous value in the pattern chain
+     * It is assumed that the previous value is an array
+     * @param i index of value to retrieve, or array of indexes to retrieve
      * @returns {Pattern}
-     * @example s0.p.n.set('Ddor%16').at(t%16)
+     * @example s0.set({inst:0, cut:0})
+     * s0.p.n.set('Ddor%16').at('0..8?*16')
+     * s0.e.every(1)
      */ 
-    at(n: patternable): Pattern {
+    at(i: patternable[]): Pattern {
         this.stack.push(data => {
+            // @ts-ignore
+            const indexes = [this.handleTypes(i)].flat()
             const type = typeof data
-            const key = this.handleTypes(n)
             return type === 'object'
                 // @ts-ignore
-                ? data[key] 
+                ? indexes.map(i => data[i])
                 // @ts-ignore
-                : data[Math.floor(+key) % data.length]
+                : indexes.map(i => data[Math.floor(+i) % data.length])
+            
         })
         return this
     }
