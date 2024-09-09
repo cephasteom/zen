@@ -28,7 +28,7 @@ export function handleEvent(time: number, delta: number, id: string, params: Dic
 }
 
 export function handleMutation(time: number, delta: number, id: string, params: Dictionary) {
-    params.midi && handleMidiMutation(delta, id, params);
+    handleMidiMutation(delta, id, params);
     id.startsWith('s') && handleSynthMutation(time, params);
     id.startsWith('fx') && handleFxMutation(time, id, params);
 }
