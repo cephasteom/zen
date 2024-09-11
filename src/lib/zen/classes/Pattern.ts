@@ -119,8 +119,8 @@ trig: 'trigger',
 tu: 'tune',
 u: 'use',
 x: 'xor',
-qm: 'qmeasure',
-qms: 'qmeasures',
+qm: 'qmeasurement',
+qms: 'qmeasurements',
 qpb: 'qprobability',
 qpbs: 'qprobabilities',
 qr: 'qresult',
@@ -172,8 +172,8 @@ qr: 'qresult',
         tu: 'tune',
         u: 'use',
         x: 'xor',
-        qm: 'qmeasure',
-        qms: 'qmeasures',
+        qm: 'qmeasurement',
+        qms: 'qmeasurements',
         qpb: 'qprobability',
         qpbs: 'qprobabilities',
         qr: 'qresult',
@@ -241,10 +241,13 @@ qr: 'qresult',
         t: number,
         key: string,
         loopSize: number, 
-        currentValue: any, 
+        currentValue: any,
+        reset: boolean = false
     ): any {
-        // create item in state if it doesn't exist
-        !this._state[key] && (this._state[key] = [])
+        // if the key doesn't exist, or reset is true, initialise it
+        this._state[key] = reset || !this._state[key] 
+            ? []
+            : this._state[key]
 
         // if we are looping and we have a value, use it, otherwise use the current value
         const result = loopSize > 0 && loopSize <= this._state[key].length
@@ -1378,13 +1381,17 @@ qr: 'qresult',
      * @example s0.e.measurement(0)
      * @param qubit qubit to measure
      * @param hits number of measurements to take before looping. Default is 0 (no looping). Max 256.
+     * @param repeats how many times the loop should repeat before being regenerated. Default is 0 (infinite).
      */
-    qmeasurement(qubit: patternable = 0, hits: patternable = 0): Pattern {
+    qmeasurement(qubit: patternable = 0, hits: patternable = 0, repeats: patternable = 0): Pattern {
         this.stack.push((t: patternValue) => {
             const q = +this.handleTypes(qubit)
             const loop = clamp(+this.handleTypes(hits), 0, 256)
             const current = circuit.measure(q) || 0
-            return this.handleLoop(+t, 'measure', loop, current)
+            const shouldRepeat = +repeats > 0 
+                ? +t%(+repeats * loop) === 0
+                : false
+            return this.handleLoop(+t, 'measure', loop, current, shouldRepeat)
         })
         return this
     }
@@ -1394,12 +1401,16 @@ qr: 'qresult',
      * @returns {Pattern}
      * @example s0.e.measurements(4)
      * @param hits number of measurements to take before looping. Default is 0 (no looping). Max 256.
+     * @param repeats how many times the loop should repeat before being regenerated. Default is 0 (infinite).
      */
-    qmeasurements(hits: patternable = 0): Pattern {
+    qmeasurements(hits: patternable = 0, repeats: patternable = 0): Pattern {
         this.stack.push((t: patternValue) => {
             const loop = clamp(+this.handleTypes(hits), 0, 256)
             const current = circuit.measureAll() || []
-            return this.handleLoop(+t, 'measures', loop, current)
+            const shouldRepeat = +repeats > 0 
+                ? +t%(+repeats * loop) === 0
+                : false
+            return this.handleLoop(+t, 'measures', loop, current, shouldRepeat)
         })
         return this
     }
@@ -1409,16 +1420,20 @@ qr: 'qresult',
      * @returns {Pattern}
      * @param state state to get amplitude of, as an integer
      * @param hits number of measurements to take before looping. Default is 0 (no looping). Max 256.
+     * @param repeats how many times the loop should repeat before being regenerated. Default is 0 (infinite).
      * @example s0.p.amp.amplitude(0).print()
      */
-    qprobability(state: patternable, hits: patternable = 0): Pattern {
+    qprobability(state: patternable, hits: patternable = 0, repeats: patternable = 0): Pattern {
         this.stack.push((t: patternValue) => {
             const length = circuit.numAmplitudes()
             const i = +this.handleTypes(state) % length
             const loop = clamp(+this.handleTypes(hits), 0, 256)
             const current = +pow(abs(round(circuit.state[i] || complex(0, 0), 14)), 2)
+            const shouldRepeat = +repeats > 0 
+                ? +t%(+repeats * loop) === 0
+                : false
             
-            return this.handleLoop(+t, 'amplitude', loop, parseFloat(current.toFixed(5)))
+            return this.handleLoop(+t, 'amplitude', loop, parseFloat(current.toFixed(5)), shouldRepeat)
         })
         return this
     }
@@ -1427,9 +1442,10 @@ qr: 'qresult',
      * Returns an array of probabilities (squared amplitude coefficients) for all possible states of the quantum system
      * @returns {Pattern}
      * @param hits number of measurements to take before looping. Default is 0 (no looping). Max 256.
+     * @param repeats how many times the loop should repeat before being regenerated. Default is 0 (infinite).
      * @example s0.p.amps.amplitudes().print()
      */ 
-    qprobabilities(hits: patternable = 0): Pattern {
+    qprobabilities(hits: patternable = 0, repeats: patternable = 0): Pattern {
         this.stack.push((t: patternValue) => {
             const loop = clamp(+this.handleTypes(hits), 0, 256)
             const length = circuit.numAmplitudes()
@@ -1438,8 +1454,11 @@ qr: 'qresult',
                 const result = +pow(abs(state), 2)
                 return parseFloat(result.toFixed(5))
             })
+            const shouldRepeat = +repeats > 0 
+                ? +t%(+repeats * loop) === 0
+                : false
 
-            return this.handleLoop(+t, 'amplitudes', loop, current)
+            return this.handleLoop(+t, 'amplitudes', loop, current, shouldRepeat)
         })
         return this
     }
@@ -1449,16 +1468,20 @@ qr: 'qresult',
      * @returns {Pattern}
      * @param state state to get phase of, as an integer
      * @param hits number of measurements to take before looping. Default is 0 (no looping). Max 256.
+     * @param repeats how many times the loop should repeat before being regenerated. Default is 0 (infinite).
      * @example s0.p.phase.qphase(0).print()
      */
-    qphase(state: patternable, hits: patternable = 0): Pattern {
+    qphase(state: patternable, hits: patternable = 0, repeats: patternable = 0): Pattern {
         this.stack.push((t: patternValue) => {
             const loop = clamp(+this.handleTypes(hits), 0, 256)
             const states = circuit.stateAsArray()
             const i = +this.handleTypes(state) % states.length
             const current = states[i].phase
+            const shouldRepeat = +repeats > 0
+                ? +t%(+repeats * loop) === 0
+                : false
             
-            return this.handleLoop(+t, 'phase', loop, current)
+            return this.handleLoop(+t, 'phase', loop, current, shouldRepeat)
         })
         return this
     }
@@ -1469,13 +1492,16 @@ qr: 'qresult',
      * @param hits number of measurements to take before looping. Default is 0 (no looping). Max 256.
      * @example s0.p.phases.qphases().print()
      */
-    qphases(hits: patternable = 0): Pattern {
+    qphases(hits: patternable = 0, repeats: patternable = 0): Pattern {
         this.stack.push((t: patternValue) => {
             const loop = clamp(+this.handleTypes(hits), 0, 256)
             const states = circuit.stateAsArray()
             const current = states.map((state: any) => state.phase)
+            const shouldRepeat = +repeats > 0
+                ? +t%(+repeats * loop) === 0
+                : false
             
-            return this.handleLoop(+t, 'phases', loop, current)
+            return this.handleLoop(+t, 'phases', loop, current, shouldRepeat)
         })
         return this
     }
@@ -1487,7 +1513,7 @@ qr: 'qresult',
      * @param hits number of measurements to take before looping. Default is 0 (no looping). Max 256.
      * @example s0.p.res.qresult().print()
      */
-    qresult(hits: patternable = 0): Pattern {
+    qresult(hits: patternable = 0, repeats: patternable = 0): Pattern {
         this.stack.push((t: patternValue) => {
             const loop = clamp(+this.handleTypes(hits), 0, 256)
             const length = circuit.numAmplitudes()
@@ -1504,8 +1530,12 @@ qr: 'qresult',
             }, [] as number[]);
     
             const current = maxIndices[Math.floor(Math.random() * maxIndices.length)];
+
+            const shouldRepeat = +repeats > 0
+                ? +t%(+repeats * loop) === 0
+                : false
             
-            return this.handleLoop(+t, 'result', loop, current)
+            return this.handleLoop(+t, 'result', loop, current, shouldRepeat)
         })
         return this
     }
