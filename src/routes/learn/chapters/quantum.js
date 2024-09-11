@@ -116,6 +116,11 @@ By default, measurements are taken at each division of the cycle. However, repet
 s0.e.qmeasurement(0, 8) // measure qubit 0, loop after 8 measurements
 \`\`\`
 
+You can also set the number of times this loop should repeat before regenerating with new measurements. For example:
+\`\`\`js
+s0.e.qmeasurement(0, 8, 4) // measure qubit 0, loop after 8 measurements, repeat 4 times
+\`\`\`
+
 ### Measurements
 Use \`qmeasurements()\`, alias \`qms\`, to get the measurements of all qubits as an array.
 \`\`\`js
@@ -123,7 +128,7 @@ s0.e.qmeasurements().at(0) // this is the same as...
 s0.e.qmeasurement(0) // ...this
 \`\`\`
 
-You can pass an integer greater than 1 as the first argument to loop the measurements.
+You can pass an integer greater than 1 as the first argument to loop the measurements, and an integer as the second argument to set the number of times this loop should repeat before regenerating with new measurements.
 
 ### Probability
 Use the \`qprobability()\`, or alias \`qpb\`, method to get the probability (squared amplitude coefficient) of a given basis state. The number of states in a quantum system is 2 to the power of the number of qubits. In a system with 2 qubits, there are 4 possible basis states (|00⟩, |01⟩, |10⟩, |11⟩). To get the probability for state |01⟩, for example, pass in the integer 1:
