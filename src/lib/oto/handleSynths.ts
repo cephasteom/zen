@@ -107,7 +107,7 @@ export const handleSynthMutation = (time: number, params: Dictionary) => {
 
     // handle buses
     [params.fx0, params.fx1, params.fx2, params.fx3]
-        .forEach((gain: number = 0, i: number) => {
+        .forEach((gain: number | undefined, i: number) => {
             gain !== undefined && ch.send(i, gain, time, lag)
         })
 }
