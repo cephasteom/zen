@@ -47,8 +47,8 @@ const chords = () => post('info', 'Chords ->\n' + Object.keys(triads).join(', ')
 const samples = () => post('info', get(samplesMessage))
 const instruments = () => post('info', 'Instruments ->\n0: synth\n1: sampler\n2: granular\n3: additive\n4: acid\n5: drone\n6: sub\n7: superfm\n8: wavetable')
 const midi = () => post('info', WebMidi.outputs.reduce((str, input, i) => `${str}${i}: ${input.name},\n`, ''))
-let printCircuit = false
-const exportCircuit = () => printCircuit = true
+let printCircuit: string = ''
+const exportCircuit = (format: string = 'qasm') => printCircuit = format
 
 // parse code when it changes
 code.subscribe(code => {
@@ -56,7 +56,7 @@ code.subscribe(code => {
     fxstreams.forEach(stream => stream.reset())
     z.reset()
     z.resetGlobals()
-    printCircuit = false
+    printCircuit = ''
     circuit.clear()
     circuit.numQubits = 1
 
@@ -142,7 +142,11 @@ export function evaluate(count: number, time: number) {
     const gates = circuit.gates
     if(gates.flat().length) {
         measurements = circuit.measureAll()
-        printCircuit && post('info', circuit.exportToQASM())
+        printCircuit !== '' 
+            && post('info', printCircuit === 'qasm'
+                ? circuit.exportToQASM()
+                : circuit.exportToQiskit()
+            )
     }
 
     // compile parameters, events and mutations
