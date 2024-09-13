@@ -47,6 +47,8 @@ const chords = () => post('info', 'Chords ->\n' + Object.keys(triads).join(', ')
 const samples = () => post('info', get(samplesMessage))
 const instruments = () => post('info', 'Instruments ->\n0: synth\n1: sampler\n2: granular\n3: additive\n4: acid\n5: drone\n6: sub\n7: superfm\n8: wavetable')
 const midi = () => post('info', WebMidi.outputs.reduce((str, input, i) => `${str}${i}: ${input.name},\n`, ''))
+let printCircuit = false
+const exportCircuit = () => printCircuit = true
 
 // parse code when it changes
 code.subscribe(code => {
@@ -54,6 +56,7 @@ code.subscribe(code => {
     fxstreams.forEach(stream => stream.reset())
     z.reset()
     z.resetGlobals()
+    printCircuit = false
     circuit.clear()
     circuit.numQubits = 1
 
@@ -77,7 +80,7 @@ code.subscribe(code => {
     const map = keymap
     try {
         // prevent unused variable errors
-        [bts, btms, ms, clamp, print, clear, scales, chords, samples, instruments, midi, seed, loadSamples];
+        [bts, btms, ms, clamp, print, clear, scales, chords, samples, instruments, midi, seed, loadSamples, exportCircuit];
         [abs, acos, acosh, asin, asinh, atan, atan2, atanh, cbrt, ceil, clz32, cos, cosh, exp, expm1, floor, fround, hypot, imul, log, log10, log1p, log2, max, min, pow, random, round, sign, sin, sinh, sqrt, tan, tanh, trunc, E, LN10, LN2, LOG10E, LOG2E, PI, SQRT1_2, SQRT2];
         [
             s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15,
@@ -138,8 +141,8 @@ export function evaluate(count: number, time: number) {
     
     const gates = circuit.gates
     if(gates.flat().length) {
-        circuit.run(inputs)
         measurements = circuit.measureAll()
+        printCircuit && post('info', circuit.exportToQASM())
     }
 
     // compile parameters, events and mutations

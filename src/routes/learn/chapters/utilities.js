@@ -8,4 +8,5 @@ There are a number of utility functions useful for controlling Zen.
 - \`midi()\` show all available midi devices
 - \`seed(<string>)\` call seed, passing in a string, to seed the random numbers used in Pattern and in the mini-notation. 
 - \`btms()\` converts a number of beats to milliseconds, based on the current tempo.
+- \`exportCircuit()\` prints the current circuit as QASM to the console
 `
