@@ -236,18 +236,23 @@ Here, we create a 4 qubit system with 16 possible basis states. Hadamard gates a
 ## Importing Code
 
 ### QASM Strings
-You can paste in a QASM 2.0 string to load a quantum circuit. This will be parsed and replaced with Zen code for you to edit. This is an experimental feature. QASM strings should start with a " and end with a \\n", and contain newlines and escaped quotes. For example, the first example should be formatted as per the second example:
+Use the \`import()\` method on any wire to import a quantum circuit from a QASM string. For example:
 \`\`\`js
-OPENQASM 2.0;
+s0.wire.import(\`OPENQASM 2.0;
 include "qelib1.inc";
-qreg q[2];
-creg c[2];
+qreg q[6];
 h q[0];
-cx q[0],q[1];
-measure q[0] -> c[0];
-measure q[1] -> c[1];
+cx q[0], q[1];
+cx q[1], q[2];
+cx q[2], q[3];
+cx q[3], q[4];
+ry (1.57) q[4];
+cx q[4], q[5];
+cx q[3], q[4];
+cx q[2], q[3];
+cx q[1], q[2];
+cx q[0], q[1];
+h q[0];\`)
 \`\`\`
-\`\`\`js
-"OPENQASM 2.0;\\ninclude \\"qelib1.inc\\";\\nqreg q[2];\\ncreg c[2];\\nh q[0];\\ncx q[0],q[1];\\nmeasure q[0] -> c[0];\\nmeasure q[1] -> c[1];\\n"
-\`\`\`
+Remember to use backticks to wrap the string, so that JavaScript can interpret the line breaks.
 `
