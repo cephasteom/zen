@@ -230,6 +230,16 @@ export class Wire {
         return this
     }
 
+    /**
+     * import a circuit from QASM code
+     */
+    import(code: string) {
+        circuit.importQASM(code, function(errors: any) {
+            errors.lenght && console.error(errors)
+        })
+        return this
+    }
+
     /** @hidden */
     clear() {
         this._stack = []
