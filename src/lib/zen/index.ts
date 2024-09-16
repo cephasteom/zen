@@ -141,6 +141,7 @@ export function evaluate(count: number, time: number) {
     
     const gates = circuit.gates
     if(gates.flat().length) {
+        circuit.run()
         measurements = circuit.measureAll()
         printCircuit !== '' 
             && post('info', printCircuit === 'qasm'
