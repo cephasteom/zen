@@ -185,6 +185,15 @@ export class Stream {
     }
 
     /**
+     * The stream's index number
+     * @example
+     * s0.id // 0
+     */
+    get i() {
+        return +this.id.slice(1)
+    }
+
+    /**
      * An object used to map parameter names to different keys. Useful for mapping to MIDI controllers
      * @example
      * s0.map = {amp: 'cc1', cutoff: 'cc74'}

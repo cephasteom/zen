@@ -77,4 +77,13 @@ They can be patterned in the usual way, for example, \`s0.solo.set('1?0*16')\` w
 
 ### Level
 Level is a special parameter that allows you to control the level of the track used by the Stream. It accepts a float between 0 and 1. For example, \`s0.set({level:0.5})\` will set the level of stream 0 to 0.5. Think of it as the fader on a mixing desk channel strip.
+
+### I
+Use \`s0.i\` to access the index of the Stream. This is useful when you want to reference the Stream elsewhere:
+\`\`\`js
+let kick = s0
+let snare = s1
+
+kick.set({inst:1,cut:snare.i})
+snare.set({inst:2,cut:kick.i})
 `
