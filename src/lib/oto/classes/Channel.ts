@@ -67,7 +67,7 @@ class Channel {
         this._fx?.mutate(params, time, lag)
         this._reverb?.mutate(params, time, lag)
         this._delay?.mutate(params, time, lag)
-        // this._fader.gain.rampTo(params.level, lag/1000, time)
+        this._fader.gain.rampTo(params.level, lag/1000, time)
     }
 
     initFX() {
