@@ -25,6 +25,20 @@ s0.p.n.sine(48,64,2).add(12)
 s0.e.every(1)
 \`\`\`
 
+To create a new Pattern independent of a stream, use the \`$p\` method. This allows you to create a Pattern that can be used in multiple streams:
+\`\`\`js
+let scale = $p().set('Ddor%15')
+
+s0.set({inst:0, cut:0})
+s0.p.n.set(scale).$at.noise(0,15,1,1/4)
+s0.e.every(1)
+
+s1.set({inst:0, cut:1})
+s1.p.n.set(scale).$at.random(0,15,1,1/4)
+s1.e.every(1)
+\`\`\`
+
+
 Prefixing a Pattern method with a \`$\` creates a new Pattern and combines the returned value with the first pattern, as in this example:
 \`\`\`js
 s0.set({in:0,cu:0,re:0.5})
