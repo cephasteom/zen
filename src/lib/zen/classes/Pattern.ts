@@ -1060,9 +1060,11 @@ qr: 'qresult',
      * s0.e.every(1)
      */ 
     at(i: patternable[]): Pattern {
-        this.stack.push(data => {
+        this.stack.push((data: any) => {
             // @ts-ignore
             const indexes = [this.handleTypes(i)].flat()
+            if(indexes.length === 1) return data[indexes[0]]
+            
             const type = typeof data
             return type === 'object'
                 // @ts-ignore
