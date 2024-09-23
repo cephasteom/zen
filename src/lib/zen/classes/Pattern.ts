@@ -1378,6 +1378,21 @@ qr: 'qresult',
     }
 
     /**
+     * Cache the value. Set how many values to cache and how many times to repeat the cache before it clears
+     * @returns {Pattern}
+     */
+    cache(hits: patternable = 1, repeats: patternable = 1): Pattern {
+        this.stack.push((x: patternValue) => {
+            const loop = clamp(+this.handleTypes(hits), 0, 256)
+            const shouldRepeat = +repeats > 0 
+                ? this._t%(+repeats * loop) === 0
+                : false
+            return this.handleLoop(this._t, 'cache', loop, +x, shouldRepeat)
+        })
+        return this
+    }
+
+    /**
      * Return the value of the measured qubit
      * @returns {Pattern}
      * @example s0.e.measurement(0)
