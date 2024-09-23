@@ -1380,6 +1380,7 @@ qr: 'qresult',
     /**
      * Cache the value. Set how many values to cache and how many times to repeat the cache before it clears
      * @returns {Pattern}
+     * @example s0.e.random(0,1,1).cache(16,4)
      */
     cache(hits: patternable = 1, repeats: patternable = 1): Pattern {
         this.stack.push((x: patternValue) => {
