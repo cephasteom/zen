@@ -1,7 +1,7 @@
 <script lang="ts">
     import Icon from 'svelte-awesome';
     import { faPlay, faStop, faFloppyDisk, faCode, faGlobe, faChessBoard, faBars, faToggleOff } from '@fortawesome/free-solid-svg-icons';
-    import { isPlaying, showCircuit, toggleVisuals, visualsType } from '$lib/stores/zen';
+    import { isPlaying, showCircuit, toggleCircuit, toggleVisuals, visualsType } from '$lib/stores/zen';
     import Dialog from './Dialog.svelte'
     import Save from './Save.svelte'
     import Load from './Load.svelte'
@@ -27,7 +27,7 @@
     >
         <Icon data={visualsIcons[$visualsType]} />
     </button>
-    <button class="tools__circuit" on:click={() => showCircuit.set(!$showCircuit)} class:active={$showCircuit}>
+    <button class="tools__circuit" on:click={toggleCircuit} class:active={$showCircuit}>
         <Icon data={faBars} />
     </button>
 </div>

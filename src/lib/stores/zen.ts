@@ -15,6 +15,19 @@ export const measurements = writable<any[]>([0,0,0,0,0,0,0,0]); // circuit measu
 export const inputs = writable<number[]>([0,0,0,0,0,0,0,0]); // initial state of qubits in circuit
 
 export const showCircuit = writable(false)
+export const toggleCircuit = () => showCircuit.update(s => {
+    const show = !s;
+    localStorage.setItem('z.circuit', show ? 'true' : '');
+    return show;
+})
+function initCircuit() {
+    if(typeof localStorage === 'undefined') return
+    const show = localStorage.getItem('z.circuit');
+    if(show) showCircuit.set(true);
+}
+
+initCircuit();
+
 export const messages = writable<{type: string, message: string}[]>([]);
 
 const initialMessages = [
@@ -59,10 +72,20 @@ export const toggleVisuals = () => {
     const types = get(visualsTypes)
     const currentType = get(visualsType)
     const i = types.indexOf(currentType);
+    const type = types[(i + 1) % types.length];
+    localStorage.setItem('z.visuals', type);
     // @ts-ignore
-    visualsType.set(types[(i + 1) % types.length]);
+    visualsType.set(type);
 }
 export const showVisuals = derived(visualsType, $visualsType => $visualsType !== 'none');
+
+function initVisuals() {
+    if(typeof localStorage === 'undefined') return
+    const type = localStorage.getItem('z.visuals');
+    if(type) visualsType.set(type as any);
+}
+
+initVisuals();
 
 const zenChannel = new BroadcastChannel('zen');
 
