@@ -35,6 +35,7 @@
 		"@fortawesome/free-solid-svg-icons": "^6.4.0",
 		"@rnbo/js": "^1.2.5",
 		"@types/marked": "^5.0.1",
+		"@types/node": "^22.6.0",
 		"@types/pegjs": "^0.10.3",
 		"highlight.js": "^11.2.0",
 		"marked": "^5.1.1",
