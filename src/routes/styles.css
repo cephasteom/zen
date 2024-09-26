@@ -262,10 +262,12 @@ canvas {
 
 .qc-circuit line {
 	stroke: var(--color-theme-2)!important;
+    stroke-width: 2px;
 }
 
 .qc-circuit text {
 	font-size: var(--text-xs);
+    font-family: 'Lato Bold', sans-serif;
 }
 
 .qc-circuit text, 
@@ -279,5 +281,10 @@ canvas {
 .qc-circuit path {
 	fill: var(--color-grey-darker)!important;
 	stroke: var(--color-theme-2)!important;
+    stroke-width: 2px;
 	cursor: grab;
+}
+
+.circuit__svg > svg {
+    transform: translate(-2.5rem, -1rem);
 }
