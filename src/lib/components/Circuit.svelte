@@ -100,8 +100,7 @@
         display: flex;
         justify-content: space-between;
         width: 100%;
-        min-height: 3rem;
-        margin-bottom: 0.2rem;
+        height: 3.7rem;
     }
 
     .label {
@@ -109,6 +108,7 @@
         color: var(--color-theme-2);
         font-family: 'Lato Bold', sans-serif;
         font-weight: bold;
+        margin-top: 2em;
     }
 </style>
 
