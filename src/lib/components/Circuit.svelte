@@ -57,7 +57,7 @@
         width: calc(100% - 4rem);
         height: calc(100% - 3rem);
         border-radius: 10px;
-        padding: 1rem 2rem 2rem;
+        padding: 2rem;
         overflow: auto; /* Enable scrolling */
         position: relative;
 
@@ -75,11 +75,15 @@
         &__svg {
             max-width: calc(50vw - 4rem);
             max-height: 100%;
-            display: bloxk;
+            display: block;
             overflow: scroll;
             
             @media (min-width: 1200px) {
                 max-width: calc(50vw - 6rem);
+            }
+
+            @media all and (display-mode: fullscreen) {
+                max-width: calc((100vw/5) * 3 - 4rem);
             }
         }
 
