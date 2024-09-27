@@ -59,7 +59,7 @@
         height: calc(100% - 3rem);
         border-radius: 10px;
         padding: 2rem;
-        overflow: auto; /* Enable scrolling */
+        overflow: auto;
         position: relative;
 
         &::after {
@@ -84,7 +84,7 @@
             }
 
             @media all and (display-mode: fullscreen) {
-                max-width: calc((100vw/5) * 3 - 4rem);
+                max-width: calc(((100vw/5) * 3) - 10rem);
             }
         }
 
