@@ -75,7 +75,6 @@
 
         &__svg {
             max-width: calc(50vw - 4rem);
-            max-height: 100%;
             display: block;
             overflow-x: scroll;
             margin-left: 1rem;
@@ -107,7 +106,9 @@
 
     .label {
         background-color: var(--color-grey-darker);
-        // z-index: 1000;
+        color: var(--color-theme-2);
+        font-family: 'Lato Bold', sans-serif;
+        font-weight: bold;
     }
 </style>
 
