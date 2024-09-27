@@ -143,6 +143,7 @@
         border-radius: 10px;
         position: relative;
         display: none;
+        overflow: hidden;
 
         &--fullHeight {
             grid-row: 1 / 4;
