@@ -291,5 +291,6 @@ canvas {
 }
 
 .circuit__svg > svg {
-    transform: translate(-18px, -30px);
+    transform: scale(0.8) translate(-18px, -30px);
+    transform-origin: top left;
 }

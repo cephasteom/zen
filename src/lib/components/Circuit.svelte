@@ -76,7 +76,7 @@
         &__svg {
             max-width: calc(50vw - 4rem);
             display: block;
-            overflow-x: scroll;
+            overflow-x: auto;
             margin-left: 1rem;
             
             @media (min-width: 1200px) {
@@ -90,7 +90,7 @@
 
         &__wires {
             position: absolute;
-            top: 0.7rem;
+            top: 0.38rem;
             left: 1rem;
             right: 1rem;
         }
@@ -101,7 +101,7 @@
         justify-content: space-between;
         width: 100%;
         min-height: 3rem;
-        margin-bottom: 1.125rem;
+        margin-bottom: 0.2rem;
     }
 
     .label {
