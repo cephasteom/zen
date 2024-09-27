@@ -33,7 +33,7 @@
                             <span class="label__state">|{$inputs[row]}⟩</span>
                         </p>
                     </div>
-
+                    <div class="row__wire"></div>
                     <div 
                         class="col col--last"
                     >
@@ -101,6 +101,13 @@
         justify-content: space-between;
         width: 100%;
         height: 3.7rem;
+
+        &__wire {
+            height: 3px;
+            background-color: var(--color-theme-2);
+            width: calc(100% - 60px);
+            margin-top: 2.71rem;
+        }
     }
 
     .label {
