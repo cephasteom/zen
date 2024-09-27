@@ -107,7 +107,7 @@
             background-color: var(--color-theme-2);
             width: calc(100% - 4rem);
             margin-top: 2.71rem;
-            margin-left:0.5rem;
+            margin-left:0.2rem;
         }
     }
 
