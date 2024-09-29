@@ -1256,6 +1256,19 @@ qr: 'qresult',
         return this
     }
 
+    /**
+     * Degrade the pattern, replacing values with 0 based on a probability
+     * @param amt amount to degrade by. 1 is fully degraded (all 0s), 0 is not degraded at all
+     * @returns {Pattern}
+     */
+    degrade(amt: patternable): Pattern {
+        this.stack.push((x: patternValue) => {
+            let amount = +this.handleTypes(amt)
+            return Math.random() > amount ? x : 0
+        })
+        return this
+    }
+
     // Chance
     /**
      * 50/50 chance of returning 1 or 0. Also, use `coin()`.
