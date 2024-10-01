@@ -400,11 +400,16 @@ qr: 'qresult',
     /**
      * Test if the previous value in the pattern chain is a truthy or falsy value
      * If true return new value, if false, simply pass on the previous value
-     * @param  value - a value, instance of Pattern, or Zen pattern string
+     * @param ifValue - a value, instance of Pattern, or Zen pattern string
+     * @param elseValue - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      */ 
-    if(value: patternable): Pattern {
-        this.stack.push(x => [x].flat().every(x => !!x) ? this.handleTypes(value) : x)
+    if(ifValue: patternable, elseValue: patternable = 0): Pattern {
+        this.stack.push(x => {
+            return [x].flat().every(x => !!x) 
+                ? this.handleTypes(ifValue) 
+                : this.handleTypes(elseValue) 
+        })
         return this
     }
 
