@@ -28,9 +28,9 @@ s0.set({inst:1,bank:'breaks',snap:q,dur:ms(1),cut:[0,1,2]})
 s0.e.set('1')
 
 s1.set({inst:1,ba:'breaks',snap:q,cut:[0,1],dur:ms(8),loop:1,cutr:ms(0.5),re:0.125,rs:0.1})
-s1.px.begin.v('1|*3 0').$if.saw(0,1,1/32,1/16)._.$else.random(0,0.75,1/16)
+s1.px.begin.v('1|*3 0').if(saw(0,1,1/32,1/16)).else(random(0,0.75,1/16))
 s1.px.i.v('0|*3 1')
-s1.e.not(s0.e).$and.every('8|*4 4|*4')
+s1.e.not(s0.e).and(every('8|*4 4|*4'))
 \`\`\`
 
 ## Granular Synth

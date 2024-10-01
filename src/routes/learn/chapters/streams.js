@@ -29,7 +29,7 @@ s0.e.every(4)
 \`\`\`
 
 \`\`\`js
-s0.e.every(4).$or.every(3)
+s0.e.every(4).or(every(3))
 \`\`\`
 
 \`\`\`js
@@ -51,19 +51,19 @@ A few extras before moving on. By default, each Stream sits on its own track, an
 
 Listen to the following example then comment out the track parameter:
 \`\`\`js
-z.v({
-    in:0,du:ms(4),re:0.5,rde:0.5,v:1,r:1000,co:1000,res:0.1,ra:1,
-    track:0, // comment out this line to hear the difference
-  });
+z.set({
+  in:0,dur:ms(4),re:0.5,rde:0.5,v:1,r:1000,co:1000,res:0.1,ra:1,
+  track:0, // comment out this line to hear the difference
+});
   
-  [s0,s1,s2,s3,s4,s5,s6,s7]
-    .map((st,i) => st
-      .v({v:0.25})
-      .p._n.v('Clyd%16..?*16')._
-      .p._harm.saw(0.5,1.5,0.25)._
-      .e.v('1*16')._
-      .m.v('1*16')
-    )
+[s0,s1,s2,s3,s4,s5,s6,s7]
+  .map(st => st
+    .set({vol:0.25})
+    .p._n.set('Clyd%16..?*16')._
+    .p._harm.saw(0.5,1.5,0.25)._
+    .e.set('1*16')._
+    .m.set('1*16')
+  )
 \`\`\`
 Without the track parameter, we hear 8 synths with 8 reverbs. With the track parameter set to the same value, all streams control the same synth and reverb, saving on CPU.
 
