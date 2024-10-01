@@ -30,7 +30,6 @@ export const lastCode = writable('');
 export const code = writable('');
 export const setCode = (str: string) => code.set(str + '\n' + Date.now());
 
-
 /**
  * Add classes and methods to the window object to be accessed in the code editor
  */
@@ -49,7 +48,6 @@ streams.forEach(stream => window[stream.id] = stream)
 // @ts-ignore
 fxstreams.forEach(stream => window[stream.id] = stream)
 
-
 /**
  * Add all pattern methods to the window object, so they can be used to spawn new patterns
  */
@@ -62,7 +60,6 @@ Pattern.methods().forEach((method: string) => {
         return p.call(method as PatternMethod, ...args)
     }
 })
-
 
 /**
  * Add helper functions to the window object
@@ -91,7 +88,9 @@ let printCircuit: string = ''
 const exportCircuit = (format: string = 'qasm') => printCircuit = format; window.exportCircuit = exportCircuit;
 let measurements: number[] = []
 
-// parse code when it changes
+/**
+ * Whenever new code is received via the code editor, reset and re-evaluate the code
+ */
 code.subscribe(code => {
     streams.forEach(stream => stream.reset())
     fxstreams.forEach(stream => stream.reset())
@@ -124,7 +123,9 @@ code.subscribe(code => {
     }
 })
 
-// Run every division of a cycle to get event and mutation arguments
+/**
+ * This is the central function that is evaluated on every loop iteration
+ */
 export function evaluate(count: number, time: number) {
     const t = z.getTime(count)
     const s = z.s
@@ -191,28 +192,36 @@ export function evaluate(count: number, time: number) {
     channel.postMessage({ type: 'action', data: args })
 }
 
-// PLAYBACK USING TONE.JS
-// Main application loop using Tone.js
+/**
+ * Main app loop scheduled using internal clock
+ */
 let counter = createCount(0);
 const loop = new Loop(time => { 
     const count = counter()
     evaluate(count, time)
 }, `${z.q}n`).start(0)
 
-// PLAYBACK USING EXTERNAL MIDI CLOCK
-
+/**
+ * Pay and stop functions
+ */
 export const play = () => {
+    // if clock source is internal, start transport
     if(getClockSource() === 'internal') return Transport.start('+0.1')
         
+    // otherwise, stop transport and listen for midi clock messages
     Transport.stop(immediate())
     !get(activeMidiClock) && initMidiClock()
     activeMidiClock.set(true)
 }
+
 export const stop = () => {
     Transport.stop(immediate())
     counter = createCount(0)
 }
 
+/**
+ * Start audio context
+ */
 export async function startAudio() {
     await start()    
     console.log('started audio')
