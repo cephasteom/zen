@@ -9,7 +9,6 @@ import { circuit } from './classes/Circuit';
 import { Visuals } from './classes/Visuals';
 import { createCount } from './utils/utils';
 import { helpers } from './utils/helpers';
-import keymap from './data/keymapping'
 import { print as post, clear } from "$lib/stores/zen";
 import { nStreams, bpm, getBpm, clockSource, midiClockDevice, getClockSource, activeMidiClock } from "./stores";
 import { modes } from './data/scales'
@@ -31,17 +30,29 @@ export const lastCode = writable('');
 export const code = writable('');
 export const setCode = (str: string) => code.set(str + '\n' + Date.now());
 
-const d = new Data();
 
-// initialise Zen and Streams within the scope of the loop
-const z = new Zen();
-const streams: Stream[] = Array(get(nStreams)).fill(0).map((_, i) => new Stream('s' + i));
-const fxstreams: Stream[] = Array(2).fill(0).map((_, i) => new Stream('fx' + i));
-const v = new Visuals()
-let measurements: number[] = []
+/**
+ * Add classes and methods to the window object to be accessed in the code editor
+ */
+// @ts-ignore
+const z = new Zen(); window.z = z;
+// @ts-ignore
+const streams: Stream[] = Array(get(nStreams)).fill(0).map((_, i) => new Stream('s' + i)); window.streams = streams;
+// @ts-ignore
+const fxstreams: Stream[] = Array(2).fill(0).map((_, i) => new Stream('fx' + i)); window.fxstreams = fxstreams;
+// @ts-ignore
+const v = new Visuals(); window.v = v;
+// @ts-ignore
+const d = new Data(); window.d = d;
+// @ts-ignore
+streams.forEach(stream => window[stream.id] = stream)
+// @ts-ignore
+fxstreams.forEach(stream => window[stream.id] = stream)
 
-// Pattern spawning
-// Add all pattern methods to the window object, so they can be used to spawn new patterns
+
+/**
+ * Add all pattern methods to the window object, so they can be used to spawn new patterns
+ */
 Pattern.methods().forEach((method: string) => {
     // check if method already exists
     if(method in window) return
@@ -52,18 +63,33 @@ Pattern.methods().forEach((method: string) => {
     }
 })
 
-// helper functions and constants
+
+/**
+ * Add helper functions to the window object
+ */
+// @ts-ignore
+const print = (message: any) => post('info', message.toString()); window.print = print;
+// @ts-ignore
+const scales = () => post('info', 'Scales ->\n' + Object.keys(modes).join(', ')); window.scales = scales;
+// @ts-ignore
+const chords = () => post('info', 'Chords ->\n' + Object.keys(triads).join(', ')); window.chords = chords;
+// @ts-ignore
+const samples = () => post('info', get(samplesMessage)); window.samples = samples;
+// @ts-ignore
+const instruments = () => post('info', 'Instruments ->\n0: synth\n1: sampler\n2: granular\n3: additive\n4: acid\n5: drone\n6: sub\n7: superfm\n8: wavetable'); window.instruments = instruments;
+// @ts-ignore
+const midi = () => post('info', WebMidi.outputs.reduce((str, input, i) => `${str}${i}: ${input.name},\n`, '')); window.midi = midi;
+// @ts-ignore
+window.clear = clear;
+// @ts-ignore
+window.loadSamples = loadSamples;
+// @ts-ignore
 const { bts: initBts, btms: initBtms, clamp, seed } = helpers;
-// const { abs, acos, acosh, asin, asinh, atan, atan2, atanh, cbrt, ceil, clz32, cos, cosh, exp, expm1, floor, fround, hypot, imul, log, log10, log1p, log2, max, min, pow, random, round, sign, sin, sinh, sqrt, tan, tanh, trunc, E, LN10, LN2, LOG10E, LOG2E, PI, SQRT1_2, SQRT2 } = Math;
-const print = (message: any) => post('info', message.toString())
-const scales = () => post('info', 'Scales ->\n' + Object.keys(modes).join(', '))
-const chords = () => post('info', 'Chords ->\n' + Object.keys(triads).join(', '))
-const samples = () => post('info', get(samplesMessage))
-const instruments = () => post('info', 'Instruments ->\n0: synth\n1: sampler\n2: granular\n3: additive\n4: acid\n5: drone\n6: sub\n7: superfm\n8: wavetable')
-const midi = () => post('info', WebMidi.outputs.reduce((str, input, i) => `${str}${i}: ${input.name},\n`, ''))
+
 let printCircuit: string = ''
-const exportCircuit = (format: string = 'qasm') => printCircuit = format
-const $p = () => new Pattern()
+// @ts-ignore
+const exportCircuit = (format: string = 'qasm') => printCircuit = format; window.exportCircuit = exportCircuit;
+let measurements: number[] = []
 
 // parse code when it changes
 code.subscribe(code => {
@@ -81,30 +107,9 @@ code.subscribe(code => {
     const btms = initBtms(getBpm())
     const ms = btms
     
-    // evaluate the user's code, using fallback if it fails
-    // deconstruct streams from s0, to s127 in entirey
-    const [ 
-        s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15,
-        s16, s17, s18, s19, s20, s21, s22, s23, s24, s25, s26, s27, s28, s29, s30, s31,
-        s32, s33, s34, s35, s36, s37, s38, s39, s40, s41, s42, s43, s44, s45, s46, s47,
-        s48, s49, s50, s51, s52, s53, s54, s55, s56, s57, s58, s59, s60, s61, s62, s63,
-    ] = streams   
-    const [
-        fx0, fx1
-    ] = fxstreams
-    const map = keymap
     try {
         // prevent unused variable errors
-        [bts, btms, ms, clamp, print, clear, scales, chords, samples, instruments, midi, seed, loadSamples, exportCircuit, $p];
-        // [abs, acos, acosh, asin, asinh, atan, atan2, atanh, cbrt, ceil, clz32, cos, cosh, exp, expm1, floor, fround, hypot, imul, log, log10, log1p, log2, max, min, pow, random, round, sign, sin, sinh, sqrt, tan, tanh, trunc, E, LN10, LN2, LOG10E, LOG2E, PI, SQRT1_2, SQRT2];
-        [
-            s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15,
-            s16, s17, s18, s19, s20, s21, s22, s23, s24, s25, s26, s27, s28, s29, s30, s31,
-            s32, s33, s34, s35, s36, s37, s38, s39, s40, s41, s42, s43, s44, s45, s46, s47,
-            s48, s49, s50, s51, s52, s53, s54, s55, s56, s57, s58, s59, s60, s61, s62, s63
-        ]; 
-        [fx0, fx1];
-        map; d;
+        [bts, btms, ms, clamp, seed];
         
         eval(code)
         lastCode.set(code)
