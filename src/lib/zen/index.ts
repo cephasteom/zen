@@ -43,6 +43,8 @@ let measurements: number[] = []
 // Pattern spawning
 // Add all pattern methods to the window object, so they can be used to spawn new patterns
 Pattern.methods().forEach((method: string) => {
+    // check if method already exists
+    if(method in window) return
     // @ts-ignore
     window[method] = (...args: any[]) => {
         const p = new Pattern()
