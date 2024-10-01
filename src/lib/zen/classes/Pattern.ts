@@ -2,7 +2,7 @@ import { get } from 'svelte/store';
 import { complex, round, pow, abs } from 'mathjs'
 import { nanoid } from 'nanoid'
 import type { Stream } from './Stream'
-import type { stack, patternValue, patternable } from '../types'
+import type { stack, patternValue, patternable, Dictionary, PatternMethod } from '../types'
 import { 
     mapToRange, 
     roundToFactor, 
@@ -33,7 +33,7 @@ const channel = new BroadcastChannel('zen')
  * s0.py.modi.range(0,10).mul((t%q)/q)
  * s0.e.every(3).$and.every(4)
  */
-export class Pattern {
+export class Pattern implements Dictionary {
     /** 
      * The Pattern that instantiated this Pattern
      * @hidden 
@@ -1602,5 +1602,21 @@ qr: 'qresult',
     /** @hidden */
     has() : boolean {
         return !!this.stack.length
+    }
+
+    /** @hidden */
+    static methods(): string[] {
+        return Object.getOwnPropertyNames(Pattern.prototype)
+            .filter(method => !['constructor', 'handleTypes', 'handleLoop', '_', 'get', 'has'].includes(method))
+    }
+
+    /** @hidden */
+    call(methodName: PatternMethod, ...args: any[]): any {
+        if (typeof this[methodName] === 'function') {
+            // @ts-ignore
+            return this[methodName].apply(this, args);
+        } else {
+            throw new Error(`Method ${methodName} does not exist on Pattern`);
+        }
     }
 }

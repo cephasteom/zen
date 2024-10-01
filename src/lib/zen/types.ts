@@ -21,3 +21,5 @@ export interface ActionArgs {
 export type action = { (input: ActionArgs): void }
 
 export type vector = {x: number, y: number, z: number, colour: number[], weight: number}
+
+export type PatternMethod = keyof Pattern;

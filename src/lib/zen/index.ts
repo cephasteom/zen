@@ -16,6 +16,7 @@ import { modes } from './data/scales'
 import { triads } from './data/chords'
 import { loadSamples } from '$lib/oto';
 import { Pattern } from './classes/Pattern';
+import type { PatternMethod } from './types';
 
 // Broadcast channels
 const channel = new BroadcastChannel('zen')
@@ -39,9 +40,19 @@ const fxstreams: Stream[] = Array(2).fill(0).map((_, i) => new Stream('fx' + i))
 const v = new Visuals()
 let measurements: number[] = []
 
+// Pattern spawning
+// Add all pattern methods to the window object, so they can be used to spawn new patterns
+Pattern.methods().forEach((method: string) => {
+    // @ts-ignore
+    window[method] = (...args: any[]) => {
+        const p = new Pattern()
+        return p.call(method as PatternMethod, ...args)
+    }
+})
+
 // helper functions and constants
 const { bts: initBts, btms: initBtms, clamp, seed } = helpers;
-const { abs, acos, acosh, asin, asinh, atan, atan2, atanh, cbrt, ceil, clz32, cos, cosh, exp, expm1, floor, fround, hypot, imul, log, log10, log1p, log2, max, min, pow, random, round, sign, sin, sinh, sqrt, tan, tanh, trunc, E, LN10, LN2, LOG10E, LOG2E, PI, SQRT1_2, SQRT2 } = Math;
+// const { abs, acos, acosh, asin, asinh, atan, atan2, atanh, cbrt, ceil, clz32, cos, cosh, exp, expm1, floor, fround, hypot, imul, log, log10, log1p, log2, max, min, pow, random, round, sign, sin, sinh, sqrt, tan, tanh, trunc, E, LN10, LN2, LOG10E, LOG2E, PI, SQRT1_2, SQRT2 } = Math;
 const print = (message: any) => post('info', message.toString())
 const scales = () => post('info', 'Scales ->\n' + Object.keys(modes).join(', '))
 const chords = () => post('info', 'Chords ->\n' + Object.keys(triads).join(', '))
@@ -83,7 +94,7 @@ code.subscribe(code => {
     try {
         // prevent unused variable errors
         [bts, btms, ms, clamp, print, clear, scales, chords, samples, instruments, midi, seed, loadSamples, exportCircuit, $p];
-        [abs, acos, acosh, asin, asinh, atan, atan2, atanh, cbrt, ceil, clz32, cos, cosh, exp, expm1, floor, fround, hypot, imul, log, log10, log1p, log2, max, min, pow, random, round, sign, sin, sinh, sqrt, tan, tanh, trunc, E, LN10, LN2, LOG10E, LOG2E, PI, SQRT1_2, SQRT2];
+        // [abs, acos, acosh, asin, asinh, atan, atan2, atanh, cbrt, ceil, clz32, cos, cosh, exp, expm1, floor, fround, hypot, imul, log, log10, log1p, log2, max, min, pow, random, round, sign, sin, sinh, sqrt, tan, tanh, trunc, E, LN10, LN2, LOG10E, LOG2E, PI, SQRT1_2, SQRT2];
         [
             s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15,
             s16, s17, s18, s19, s20, s21, s22, s23, s24, s25, s26, s27, s28, s29, s30, s31,
