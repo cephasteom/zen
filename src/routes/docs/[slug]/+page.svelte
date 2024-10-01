@@ -80,7 +80,7 @@
             width: 50%;
             span { 
                 display: block;
-                width: 2rem ;
+                width: 2rem;
             }
             p { margin: 0}
         }

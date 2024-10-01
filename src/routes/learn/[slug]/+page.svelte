@@ -34,17 +34,17 @@
                 <span>
                     <Icon data="{faArrowLeft}" />
                 </span>
+                <p>{data.prev?.title || 'Learn'}</p>
             </a>
-            <p>{data.prev?.title || 'Learn'}</p>
         </div>
         <div class="pagination__next">
             {#if data.next}
                 <a href="/learn/{data.next.slug}">
+                    <p>{data.next.title}</p>
                     <span>
                         <Icon data="{faArrowRight}" />        
                     </span>
                 </a>
-                <p>{data.next.title}</p>
             {/if}
         </div>
     </nav>
@@ -85,9 +85,24 @@
             width: 50%;
             span { 
                 display: block;
-                width: 2rem ;
+                height: 100%;
+                display: flex;
+                align-items: center;
             }
-            p { margin: 0}
+            p { 
+                margin: 0;
+            }
+
+            a {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                &:hover {
+                    color: var(--color-yellow);
+                    text-decoration: none;
+                }
+
+            }
         }
 
         &__next {
