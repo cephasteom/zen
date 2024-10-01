@@ -24,14 +24,7 @@ import { circuit } from './Circuit'
 const channel = new BroadcastChannel('zen')
 
 /**
- * Patterns are the building blocks of Zen. They are used to generate patterns of values in interesting, concise ways. 
- * Pattern methods can be chained together.
- * Pattern methods can be prefixed with a $ to create a new pattern; for example, $add. The results of each pattern are combined together.
- * @example
- * s0.p.amp.range(0,1)
- * s0.px.drive.sine(0,1)
- * s0.py.modi.range(0,10).mul((t%q)/q)
- * s0.e.every(3).$and.every(4)
+ * Patterns are the building blocks of Zen. They are used to generate patterns of values in interesting, concise ways.
  */
 export class Pattern implements Dictionary {
     /** 
@@ -189,18 +182,6 @@ qr: 'qresult',
         this._parent = parent
         this.reset()
         isTrigger && (this.set = this.trigger)
-
-        // handle dollar methods
-        Object.getOwnPropertyNames(Pattern.prototype).forEach(method => {
-            Object.defineProperty(this, `$${method}`, {
-                get: () => {
-                    const pattern = new Pattern(this, ['and', 'or', 'xor', 'not'].includes(method))
-                    // @ts-ignore
-                    this[method](pattern)
-                    return pattern
-                },
-            })
-        })
             
         // handle aliases
         return new Proxy(this, {
@@ -208,10 +189,8 @@ qr: 'qresult',
                 // @ts-ignore
                 if (prop in target) return target[prop]
 
-                const isDollarMethod = prop.toString().startsWith('$')
-                const p = prop.toString().replace('$', '')
                 // @ts-ignore
-                const name = (isDollarMethod ? '$' : '') + this.aliases[p] || p
+                const name = this.aliases[prop] || prop
                 // @ts-ignore
                 if (name in target) return target[name]
                 // @ts-ignore

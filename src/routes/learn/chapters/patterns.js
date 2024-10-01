@@ -25,27 +25,27 @@ s0.p.n.sine(48,64,2).add(12)
 s0.e.every(1)
 \`\`\`
 
-To create a new Pattern independent of a stream, use the \`$p\` method. This allows you to create a Pattern that can be used in multiple streams:
+Pattern arguments can be raw values, the Zen mini-language, or other Patterns. For example, the following code creates a Pattern that alternates between two scales:
 \`\`\`js
-let scale = $p().set('Ddor%15')
+z.set({inst: 0, cut: [0,1]})
 
-s0.set({inst:0, cut:0})
-s0.p.n.set(scale).$at.noise(0,15,1,1/4)
-s0.e.every(1)
+s0.set({n: 48})
+s0.e.set('0?1*16') // use the mini-language
 
-s1.set({inst:0, cut:1})
-s1.p.n.set(scale).$at.random(0,15,1,1/4)
-s1.e.every(1)
+s1.set({n: 60})
+s1.e.not(s0.e) // use the Pattern from s0.e as an argument
 \`\`\`
 
-
-Prefixing a Pattern method with a \`$\` creates a new Pattern and combines the returned value with the first pattern, as in this example:
+All Pattern methods exist in the global scope and spawn new Patterns. For example, the following code creates a Pattern that alternates between two scales:
 \`\`\`js
-s0.set({in:0,cu:0,re:0.5})
-s0.p.n.sine(48,64,2).$add.square(0,12,0.5)
-s0.e.every(4).$or.every(3)
+z.set({inst: 0, cut: [0,1]})
+
+s0.set({n: 48})
+s0.e.every(noise(1,4).step(1)) // spawn a new Patten and use it as an argument. You can chain methods on the new Pattern.
+
+s1.set({n: 60})
+s1.e.not(s0.e)
 \`\`\`
-Almost all Pattern methods can be prefixed with a \`$\` and used in this way.
 
 For a full list of Pattern methods and their arguments, see the [Pattern docs](/docs/classes#pattern).
 `
