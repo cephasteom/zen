@@ -240,24 +240,6 @@ qr: 'qresult',
         return result
     }
 
-   /**
-     * Return to parent Pattern or Stream
-     * Useful when using any of the dollar methods, which spawn new Patterns, allowing you to return to this original pattern.
-     * Or, use as shorthand to access the underlying stream
-     * @returns {Pattern}
-     * @example
-     * s1.set({inst: 'synth', cut: 1})
-     * s1.p.n.coin()
-     *  .$if.set(57)._
-     *  .$else.set('Ddor..*16')
-     * s1.e.every(1)
-     * @example
-     * s0.x.set(0.5)._.y.set(0.5)
-     */ 
-    get _(): Pattern | Stream {
-        return this._parent || this
-    }
-
     /** @hidden */
     reset() {
         this.stack = []
@@ -347,8 +329,7 @@ qr: 'qresult',
      * @example 
      * s0.e.every(3)
      * s1.e.not(s0.e)
-     * s2.e.not(!(t%3))
-     * s3.e.not('1?0*16')
+     * s3.e.every(1).and(not(s0.e)).and(not(s1.e))
      */ 
     not(x: patternable): Pattern {
         this.stack.push(() => this.handleTypes(x) 
@@ -366,7 +347,7 @@ qr: 'qresult',
      * @example
      * s0.e.every(3)
      * s1.e.toggle(s0.e)
-     * s2.e.toggle(!(t%3))
+     * s2.e.toggle(not(t().mod(3)))
      * s3.e.toggle('1?0*16')
      */ 
     toggle(x: patternable): Pattern {
@@ -490,8 +471,6 @@ qr: 'qresult',
      * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      * @example s0.p.n.noise(60,72,1).div(2)
-     * Or, use $div to create a new pattern and divide it by the previous pattern in the chain.
-     * @example s0.p.n.noise(60,72,1).$div.noise(0,12,1)
      */
     div(value: patternable): Pattern {
         this.stack.push(x => handlePolyphony(x, x => x / +this.handleTypes(value)))
@@ -503,8 +482,6 @@ qr: 'qresult',
      * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      * @example s0.p.modi.noise(1,2).divr(2)
-     * Or, use $divr to create a new pattern and divide it by the previous pattern in the chain.
-     * @example s0.p.n.noise(0,12,1).$divr.noise(60,72,1)
      */ 
     divr(value: patternable): Pattern {
         this.stack.push(x => handlePolyphony(x, x => +this.handleTypes(value) / x))
@@ -734,17 +711,11 @@ qr: 'qresult',
     /**
      * Generate truthy or falsy values every n divisions.
      * @param n number of divisions
-     * @param a value to return when true
-     * @param b value to return when false
      * @returns {Pattern}
      * @example s0.e.every(4) // return 1 every 4 divisions, 0 otherwise
-     * @example s0.p.n.every(2, 60, 72) // return 60 every 2 divisions, 72 otherwise
      */
-    every(...args: patternable[]): Pattern {
-        this.stack.push(x => {
-            const [n=1, a=1, b=0] = args.map(arg => this.handleTypes(arg))
-            return !(+x % +n) ? a : b
-        })
+    every(n: patternable): Pattern {
+        this.mod(n).eq(0)
         return this
     }
 
