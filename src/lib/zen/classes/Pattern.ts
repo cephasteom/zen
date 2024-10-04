@@ -1233,7 +1233,7 @@ qr: 'qresult',
      * Interpolate between a value and the previous value in the pattern chain
      * @param val value to interpolate to
      * @returns {Pattern}
-     * @example s0.y.sine().$intrp.sine(1,0,0,0.5)
+     * @example s0.y.sine().intrp(sine(1,0,0,0.5))
      */ 
     interpolate(val: patternable): Pattern {
         this.stack.push((x: patternValue) => handlePolyphony(x, x => interpolate(+x, +this.handleTypes(val), 0.5)))
@@ -1590,7 +1590,9 @@ qr: 'qresult',
 
     /** @hidden */
     static methods(): string[] {
+        const aliases = Object.keys(new Pattern().aliases)
         return Object.getOwnPropertyNames(Pattern.prototype)
+            .concat(aliases)
             .filter(method => !['constructor', 'handleTypes', 'handleLoop', '_', 'get', 'has'].includes(method))
     }
 

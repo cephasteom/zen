@@ -31,7 +31,7 @@
 								"content": [
 									{
 										"kind": "code",
-										"text": "```ts\ns0.p.amp.range(0,1)\ns0.px.drive.sine(0,1)\ns0.py.modi.range(0,10).mul((t%q)/q)\ns0.e.every(3).$and.every(4)\n```"
+										"text": "```ts\ns0.p.amp.range(0,1)\ns0.px.drive.sine(0,1)\ns0.py.modi.range(0,10).mul((t%q)/q)\ns0.e.every(3)and(every(4))\n```"
 									}
 								]
 							}
