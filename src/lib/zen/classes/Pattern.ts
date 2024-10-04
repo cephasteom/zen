@@ -182,6 +182,18 @@ qr: 'qresult',
         this._parent = parent
         this.reset()
         isTrigger && (this.set = this.trigger)
+
+        // handle dollar methods - used internally to concatenate patterns
+        Object.getOwnPropertyNames(Pattern.prototype).forEach(method => {
+            Object.defineProperty(this, `$${method}`, {
+                get: () => {
+                    const pattern = new Pattern(this, ['and', 'or', 'xor', 'not'].includes(method))
+                    // @ts-ignore
+                    this[method](pattern)
+                    return pattern
+                },
+            })
+        })
             
         // handle aliases
         return new Proxy(this, {
@@ -847,15 +859,13 @@ qr: 'qresult',
     /**
      * Test if the previous value in the pattern chain is greater than or equal to a value.
      * @param value value to test against
-     * @param a value to return when true
-     * @param b value to return when false
      * @returns {Pattern}
-     * @example s0.p.n.noise(0,1).gte(0.3, 60, 72)
+     * @example s0.p.n.noise(0,1).gte(0.3).if(60, 72)
      */ 
-    gte(...args: patternable[]): Pattern {
+    gte(value: patternable): Pattern {
         this.stack.push(x => {
-            const [n=1, a=1, b=0] = args.map(arg => this.handleTypes(arg))
-            return [x].flat().every(x => x >= +n) ? a : b
+            const n = this.handleTypes(value)
+            return [x].flat().every(x => x >= +n) ? 1 : 0
         })
         return this
     }
@@ -863,14 +873,12 @@ qr: 'qresult',
     /**
      * Test if the previous value in the pattern chain is less than or equal to a value.
      * @param value value to test against
-     * @param a value to return when true
-     * @param b value to return when false
      * @returns {Pattern}
      */
-    lte(...args: patternable[]): Pattern {
+    lte(value: patternable): Pattern {
         this.stack.push(x => {
-            const [n=1, a=1, b=0] = args.map(arg => this.handleTypes(arg))
-            return [x].flat().every(x => x <= +n) ? a : b
+            const n = this.handleTypes(value)
+            return [x].flat().every(x => x <= +n) ? 1 : 0
         })
         return this
     }
