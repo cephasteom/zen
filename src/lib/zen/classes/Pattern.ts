@@ -645,12 +645,11 @@ qr: 'qresult',
      * @returns {Pattern}
      * @example s0.p.modi.pulse(0, 10, 0.25)
     */
-    pulse(...args: patternable[]): Pattern {
-        this.stack.push((x: patternValue) => {
-            const [lo=0, hi=1, width=0.5, freq=1] = args.map(arg => this.handleTypes(arg))
-            const pulse = (((pos(x, this._q, +freq))%1) < +width ? 1 : 0)
-            return mapToRange(pulse, 0, 1, +lo, +hi)
-        })
+    pulse(lo: patternable = 0, hi: patternable = 1, width: patternable = 0.5, freq: patternable = 1): Pattern {
+        this.fn(x => pos(x, this._q, +this.handleTypes(freq)))
+            .mod(1)
+            .lt(+width)
+            .mtr(lo, hi)
         return this
     }
 
