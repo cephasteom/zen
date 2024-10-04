@@ -270,6 +270,16 @@ qr: 'qresult',
         this.stack.push(x => pos(x, this._q, +this.handleTypes(freq), +this.handleTypes(cycles)))
         return this
     }
+
+    /** 
+     * @hidden 
+     * Used internally to work out the number of divisions in a pattern
+     * Based on the divisions of a cycle and the frequency of the pattern
+     * */
+    divisions(freq: patternable = 1) {
+        this.stack.push(x => this._q / +this.handleTypes(freq))
+        return this
+    }
     
     /**
      * Return the current time
@@ -754,10 +764,9 @@ qr: 'qresult',
      * @example s0.p.n.seq([60,72,74,76])
      */
     seq(values: number[] = [], freq: patternable = 1): Pattern {
-        this.stack.push((x: patternValue) => {
-            const f = this.handleTypes(freq)
-            return values[Math.floor((pos(x, this._q, +f)*values.length)%values.length)]
-        })
+        this.normalise(freq)
+            .mul(values.length).floor().mod(values.length)
+            .atr(values)
         return this
     }
 
@@ -824,14 +833,12 @@ qr: 'qresult',
     /**
      * Test if the previous value in the pattern chain is less than a value.
      * @param value value to test against
-     * @param a value to return when true
-     * @param b value to return when false
      * @returns {Pattern}
      */ 
-    lt(...args: patternable[]): Pattern {
+    lt(value: patternable = 1): Pattern {
         this.stack.push(x => {
-            const [n=1, a=1, b=0] = args.map(arg => this.handleTypes(arg))
-            return [x].flat().every(x => x < +n) ? a : b
+            const n = this.handleTypes(value)
+            return [x].flat().every(x => x < +n) ? 1 : 0
         })
         return this
     }
