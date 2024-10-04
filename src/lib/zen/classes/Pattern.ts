@@ -260,7 +260,16 @@ qr: 'qresult',
             persist: this._state?.persist || false,
         }
         return this
-    }   
+    }
+
+    /** 
+     * @hidden 
+     * Used internally to normalise a value
+     * */
+    normalise(freq: patternable = 1, cycles: patternable = 1) {
+        this.stack.push(x => pos(x, this._q, +this.handleTypes(freq), +this.handleTypes(cycles)))
+        return this
+    }
     
     /**
      * Return the current time
@@ -558,8 +567,7 @@ qr: 'qresult',
      * @example s0.p.modi.range(0, 10, 1, 2)
      */
     range(lo: patternable = 0, hi: patternable = 1, freq: patternable = 1): Pattern {
-        this.fn(x => pos(x, this._q, +this.handleTypes(freq)))
-            .mtr(lo, hi)
+        this.normalise(freq).mtr(lo, hi)
         return this
     }
 
@@ -572,7 +580,8 @@ qr: 'qresult',
      * @example s0.p.modi.sine(0, 10)
      */
     sine(lo: patternable = 0, hi: patternable = 1, freq: patternable = 1): Pattern {
-        this.fn(x => pos(x, this._q, +this.handleTypes(freq)) * 360 * (Math.PI/180))
+        this.normalise(freq)
+            .mul(360 * (Math.PI/180))
             .sin()
             .mtr(lo, hi, -1, 1)
         return this
@@ -587,7 +596,8 @@ qr: 'qresult',
      * @example s0.p.modi.cosine(0, 10)
      */
     cosine(lo: patternable = 0, hi: patternable = 1, freq: patternable = 1): Pattern {
-        this.fn(x => pos(x, this._q, +this.handleTypes(freq)) * 360 * (Math.PI/180))
+        this.normalise(freq)
+            .mul(360 * (Math.PI/180))
             .cos()
             .mtr(lo, hi, -1, 1)
         return this
@@ -614,7 +624,7 @@ qr: 'qresult',
      * @returns {Pattern}
      */
     curve(lo: patternable = 0, hi: patternable = 1, curve: patternable = 0.5, freq: patternable = 1): Pattern {
-        this.fn(x => pos(x, this._q, +this.handleTypes(freq)))
+        this.normalise(freq)
             .pow(curve)
             .mtr(lo, hi)
         return this
@@ -629,7 +639,7 @@ qr: 'qresult',
      * @example s0.p.harm.tri(0, 4, 0.25)
      */
     tri(lo: patternable = 0, hi: patternable = 1, freq: patternable = 1): Pattern {
-        this.fn(x => pos(x, this._q, +this.handleTypes(freq)))
+        this.normalise(freq)
             .sub(0.5)
             .abs()
             .mul(2)
@@ -646,7 +656,7 @@ qr: 'qresult',
      * @example s0.p.modi.pulse(0, 10, 0.25)
     */
     pulse(lo: patternable = 0, hi: patternable = 1, width: patternable = 0.5, freq: patternable = 1): Pattern {
-        this.fn(x => pos(x, this._q, +this.handleTypes(freq)))
+        this.normalise(freq)
             .mod(1)
             .lt(+width)
             .mtr(lo, hi)
@@ -690,8 +700,8 @@ qr: 'qresult',
      * @returns {Pattern}
      * @example s0.p.pan.noise(0, 1)
     */
-    noise(lo: patternable=0, hi: patternable=1, freq: patternable = 1, cycles: patternable = 1): Pattern {
-        this.fn(x => pos(x, this._q, +this.handleTypes(freq), +this.handleTypes(cycles)))
+    noise(lo: patternable=0, hi: patternable=1, freq: patternable = 1, cycles: patternable = 4): Pattern {
+        this.normalise(freq, cycles)
             .fn(x => get(noise).simplex2(x, 0))
             .mtr(lo, hi, -1, 1)
         return this
@@ -712,20 +722,15 @@ qr: 'qresult',
      * Generate truthy or falsy values from a binary string.
      * @param n binary string
      * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
-     * @param a value to return when true
-     * @param b value to return when false
      * @returns {Pattern}
      * @example s0.e.bin('1111') // output depends on the number of division per cycle / canvas. If 16, returns 1 every 4 divisions, 0 otherwise
     */
-    bin(n: string = '10000000', ...rest: patternable[]): Pattern {
-        const arr = n.replace(/\s+/g, '').split('').map(x => !!parseInt(x))
-        
-        this.stack = [(x: patternValue) => {
-            const [freq=1, a=1, b=0] = rest.map(arg => this.handleTypes(arg))
-            const divisions = this._q / +freq
-            const result = arr[ (+x%divisions) / (divisions/arr.length) ] ? a : b
-            return result
-        }]
+    bin(n: string = '10000000', freq: patternable = 1): Pattern {
+        const arr = n.replace(/\s+/g, '').split('').map(x => !!parseInt(x) ? 1 : 0)
+        this.fn(x => {
+            const divisions = this._q / +this.handleTypes(freq)
+            return arr[ (+x%divisions) / (divisions/arr.length) ]
+        })
         return this
     }
 
@@ -734,13 +739,11 @@ qr: 'qresult',
      * @param n a number
      * @param q the length of the binary string
      * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
-     * @param a value to return when true
-     * @param b value to return when false
      * @returns {Pattern}
      * @example s0.p.n.ntbin(9, 8) // 9 in binary is 1001, padded out to 8 digits. Passes 00001001 to .bin()
      */
-    ntbin(n: patternable = 0, q: number = 8, freq: patternable = 1, a: patternable = 1, b: patternable = 0): Pattern {
-        return this.bin(numberToBinary(+n, q), freq, a, b)
+    ntbin(n: patternable = 0, q: number = 8, freq: patternable = 1): Pattern {
+        return this.bin(numberToBinary(+n, q), freq)
     }
 
     /**
