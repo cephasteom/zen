@@ -661,7 +661,7 @@ qr: 'qresult',
      * @returns {Pattern}
      * @example s0.p.modi.square(0, 10)
     */
-    square(lo=0, hi=1, freq=1): Pattern {
+    square(lo: patternable=0, hi: patternable=1, freq: patternable=1): Pattern {
         this.pulse(lo, hi, 0.5, freq)
         return this
     }
@@ -674,11 +674,10 @@ qr: 'qresult',
      * @returns {Pattern}
      * @example s0.p.n.random(60,72,1)
      */
-    random(...args: patternable[]): Pattern {
-        this.stack = [() => {
-            const [lo=0, hi=1, step=0] = args.map(arg => this.handleTypes(arg))
-            return mapToRange(this.rng(this._t), 0, 1, +lo, +hi, +step)
-        }]
+    random(lo: patternable=0, hi: patternable=1, step: patternable=1): Pattern {
+        this.fn(x => this.rng(+x))
+            .mtr(lo, hi)
+            .step(step)
         return this
     }
 
@@ -686,17 +685,15 @@ qr: 'qresult',
      * Generate a number between lo and hi, using a simplex noise function.
      * @param lo lowest value in range
      * @param hi highest value in range
-     * @param step step size to round the output. Default is 0, which means no rounding.
      * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @param cycles number of cycles of the pattern. Default is 4.
      * @returns {Pattern}
      * @example s0.p.pan.noise(0, 1)
     */
-    noise(...args: patternable[]): Pattern {
-        this.stack = [(x: patternValue) => {
-            const [lo=0, hi=1, step=0, freq=1, cycles=4] = args.map(arg => this.handleTypes(arg))
-            return mapToRange(get(noise).simplex2(pos(x, this._q, +freq, +cycles), 0), -1, 1, +lo, +hi, +step)
-        }]
+    noise(lo: patternable=0, hi: patternable=1, freq: patternable = 1, cycles: patternable = 1): Pattern {
+        this.fn(x => pos(x, this._q, +this.handleTypes(freq), +this.handleTypes(cycles)))
+            .fn(x => get(noise).simplex2(x, 0))
+            .mtr(lo, hi, -1, 1)
         return this
     }
 
