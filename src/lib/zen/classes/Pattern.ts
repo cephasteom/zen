@@ -269,7 +269,7 @@ qr: 'qresult',
      * @returns {Pattern}
      */
     t(): Pattern {
-        this.stack.push(t => t)
+        this.stack.push(() => this._t)
         return this
     }
 
@@ -502,11 +502,9 @@ qr: 'qresult',
 
     /**
      * Modulo the previous value in the pattern chain by a value.
-     * Or, use $mod to pass the outcome of a pattern to the function
      * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      * @example s0.n.set(t).mod(12).add(36)
-     * @example s0.n.set(t).$mod.set(12)
      */ 
     mod(value: patternable): Pattern {
         this.stack.push(x => {
@@ -521,9 +519,7 @@ qr: 'qresult',
      * Compare the previous value in the pattern chain with a value.
      * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
-     * @example s0.e.every(3).add(t%2)
-     * Or, use $and to create a new pattern and compare it with the previous pattern in the chain.
-     * @example s0.e.every(3).$and.every(2)
+     * @example s0.e.every(3).and(t().mod(5))
      */ 
     and(value: patternable): Pattern {
         this.stack.push(x => handlePolyphony(x, x => x && +this.handleTypes(value, this._t, false)))
@@ -579,13 +575,11 @@ qr: 'qresult',
      * @returns {Pattern}
      * @example s0.p.modi.sine(0, 10)
      */
-    sine(...args: number[]): Pattern {
-        this.stack.push((x: patternValue) => {
-            const [lo=0, hi=1, step=0, freq=1] = args.map(arg => this.handleTypes(arg))
-            const radians = pos(x, this._q, +freq) * 360 * (Math.PI/180)
-            const sin = Math.sin(radians)
-            return mapToRange(sin, -1, 1, +lo, +hi, +step)
-        })
+    sine(lo: patternable = 0, hi: patternable = 1, step: patternable = 0, freq: patternable = 1): Pattern {
+        this.fn(x => pos(x, this._q, +freq) * 360 * (Math.PI/180))
+            .sin()
+            .mtr(lo, hi, -1, 1)
+            .step(step)
         return this
     }
 
@@ -598,13 +592,11 @@ qr: 'qresult',
      * @returns {Pattern}
      * @example s0.p.modi.cosine(0, 10)
      */
-    cosine(...args: number[]): Pattern {
-        this.stack.push((x: patternValue) =>  {
-            const [lo=0, hi=1, step=0, freq=1] = args.map(arg => this.handleTypes(arg))
-            const radians = pos(x, this._q, +freq) * 360 * (Math.PI/180)
-            const cos = Math.cos(radians)
-            return mapToRange(cos, -1, 1, +lo, +hi, +step)
-        })
+    cosine(lo: patternable = 0, hi: patternable = 1, step: patternable = 0, freq: patternable = 1): Pattern {
+        this.fn(x => pos(x, this._q, +freq) * 360 * (Math.PI/180))
+            .cos()
+            .mtr(lo, hi, -1, 1)
+            .step(step)
         return this
     }
 
