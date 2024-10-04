@@ -818,15 +818,13 @@ qr: 'qresult',
     /**
      * Test if the previous value in the pattern chain is greater than a value.
      * @param value value to test against
-     * @param a value to return when true
-     * @param b value to return when false
      * @returns {Pattern}
-     * @example s0.p.n.noise(0,1).gt(0.3, 60, 72)
+     * @example s0.p.n.noise(0,1).gt(0.3).if(60, 72)
      */ 
-    gt(...args: patternable[]): Pattern {
+    gt(value: patternable): Pattern {
         this.stack.push(x => {
-            const [n=1, a=1, b=0] = args.map(arg => this.handleTypes(arg))
-            return [x].flat().every(x => x > +n) ? a : b
+            const n = this.handleTypes(value)
+            return [x].flat().every(x => x > +n) ? 1 : 0
         })
         return this
     }
