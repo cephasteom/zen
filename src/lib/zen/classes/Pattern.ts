@@ -1002,6 +1002,20 @@ qr: 'qresult',
         })
         return this
     }
+
+    /**
+     * At, but reversed. Given an array of values, it returns the value at the index of the previous value in the pattern chain.
+     * @param array array of values
+     * @returns {Pattern}
+     * @example s0.x.t().atr([0,1,5,4]).div(16)
+     */ 
+    atr(array: patternable): Pattern {
+        this.fn(i => {
+            const a = [this.handleTypes(array)].flat()
+            return a[Math.floor(+i) % a.length]
+        })
+        return this
+    }
     
     /**
      * Layer a value on top of the previous value in the pattern chain, forming an array of values
