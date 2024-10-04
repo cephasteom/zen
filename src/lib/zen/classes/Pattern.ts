@@ -558,11 +558,8 @@ qr: 'qresult',
      * @returns {Pattern}
      * @example s0.p.modi.range(0, 10, 1, 2)
      */
-    range(...args: patternable[]): Pattern {
-        this.stack.push((x: patternValue) => {
-            const [lo=0, hi=1, step=0, freq=1] = args.map(arg => this.handleTypes(arg))
-            return mapToRange(pos(x, this._q, +freq), 0, 1, +lo, +hi, +step)
-        })
+    range(lo: patternable = 0, hi: patternable = 1, step: patternable = 0, freq: patternable = 1): Pattern {
+        this.fn(x => pos(x, this._q, +freq)).mtr(lo, hi).step(step)
         return this
     }
 
