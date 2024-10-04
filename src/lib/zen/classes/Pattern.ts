@@ -886,14 +886,12 @@ qr: 'qresult',
     /**
      * Test if the previous value in the pattern chain is equal to a value using ==.
      * @param value value to test against
-     * @param a value to return when true
-     * @param b value to return when false
      * @returns {Pattern}
      */ 
-    eq(...args: patternable[]): Pattern {
-        this.stack.push(x => { 
-            const [n=1, a=1, b=0] = args.map(arg => this.handleTypes(arg))
-            return [x].flat().every(x => x == n) ? a : b
+    eq(value: patternable): Pattern {
+        this.stack.push(x => {
+            const n = this.handleTypes(value)
+            return [x].flat().every(x => x == n) ? 1 : 0
         })
         return this
     }
@@ -901,14 +899,12 @@ qr: 'qresult',
     /**
      * Test if the previous value in the pattern chain is not equal to a value using !=.
      * @param value value to test against
-     * @param a value to return when true
-     * @param b value to return when false
      * @returns {Pattern}
      */ 
-    neq(...args: patternable[]): Pattern {
+    neq(value: patternable): Pattern {
         this.stack.push(x => {
-            const [n=1, a=1, b=0] = args.map(arg => this.handleTypes(arg))
-            return [x].flat().every(x => x != n) ? a : b
+            const n = this.handleTypes(value)
+            return [x].flat().every(x => x != n) ? 1 : 0
         })
         return this
     }
@@ -925,29 +921,19 @@ qr: 'qresult',
 
     /**
      * Test if the previous value in the pattern chain is an odd number
-     * @param a value to return when true
-     * @param b value to return when false
      * @returns {Pattern}
      */ 
-    odd(...args: patternable[]): Pattern {
-        this.stack.push(x => {
-            const [a=1, b=0] = args.map(arg => this.handleTypes(arg))
-            return [x].flat().every(odd) ? a : b
-        })
+    odd(): Pattern {
+        this.fn(x => odd(+x) ? 1 : 0)
         return this
     }
 
     /**
      * Test if the previous value in the pattern chain is an even number
-     * @param a value to return when true
-     * @param b value to return when false
      * @returns {Pattern}
      */ 
-    even(...args: patternable[]): Pattern {
-        this.stack.push(x => {
-            const [a=1, b=0] = args.map(arg => this.handleTypes(arg))
-            return [x].flat().every(even) ? a : b
-        })
+    even(): Pattern {
+        this.fn(x => even(+x) ? 1 : 0)
         return this
     }
     
@@ -957,7 +943,7 @@ qr: 'qresult',
      * @example s0.p.dur(1).bts().mul(1000)
      */ 
     bts(): Pattern {
-        this.stack.push(x => handlePolyphony(x, x => x * (60/this._bpm)))
+        this.fn(x => handlePolyphony(x, x => x * (60/this._bpm)))
         return this
     }
 
@@ -967,7 +953,7 @@ qr: 'qresult',
      * @example s0.p.dur(1).btms()
      */ 
     btms(): Pattern {
-        this.stack.push(x => handlePolyphony(x, x => x * (60000/this._bpm)))
+        this.fn(x => handlePolyphony(x, x => x * (60000/this._bpm)))
         return this
     }
 
@@ -977,7 +963,7 @@ qr: 'qresult',
      * @example s0.p.set(q).ttms()
      */
     ttms(): Pattern {
-        this.stack.push(x => handlePolyphony(x, x =>  x * (((60000/this._bpm) * 4) / this._q)))
+        this.fn(x => handlePolyphony(x, x =>  x * (((60000/this._bpm) * 4) / this._q)))
         return this
     }
 
@@ -1233,60 +1219,42 @@ qr: 'qresult',
     // Chance
     /**
      * 50/50 chance of returning 1 or 0. Also, use `coin()`.
-     * @param a value to return if true
-     * @param b value to return if false
      * @returns {Pattern}
      * @example
      * s0.e.sometimes()
      */ 
-    sometimes(...args: patternable[]): Pattern {
-        this.stack.push(() => {
-            const [a=1, b=0] = args.map(arg => this.handleTypes(arg))
-            return this.rng(this._t) < 0.5 ? a : b
-        })
+    sometimes(): Pattern {
+        this.t().fn(t => this.rng(+t)).gt(0.5)
         return this
     }
 
     /**
      * Alias for `sometimes`
      */ 
-    coin(...args: patternable[]): Pattern {
-        this.stack.push(() => { 
-            const [a=1, b=0] = args.map(arg => this.handleTypes(arg))
-            return this.rng(this._t) < 0.5 ? a : b
-        })
+    coin(): Pattern {
+        this.sometimes()
         return this
     }  
 
     /**
      * 25/75 chance of returning 1 or 0
-     * @param a value to return if true
-     * @param b value to return if false
      * @returns {Pattern}
      * @example
      * s0.e.rarely()
      */ 
-    rarely(...args: patternable[]): Pattern {
-        this.stack.push(() => {
-            const [a=1, b=0] = args.map(arg => this.handleTypes(arg))
-            return this.rng(this._t) < 0.25 ? a : b
-        })
+    rarely(): Pattern {
+        this.t().fn(t => this.rng(+t)).gt(0.25)
         return this
     }
 
     /**
      * 75/25 chance of returning a 1 or 0
-     * @param a value to return if true
-     * @param b value to return if false
      * @returns {Pattern}
      * @example
      * s0.e.often()
      */ 
-    often(...args: patternable[]): Pattern {
-        this.stack.push(() => {
-            const [a=1, b=0] = args.map(arg => this.handleTypes(arg))
-            return this.rng(this._t) < 0.75 ? a : b
-        })
+    often(): Pattern {
+        this.t().fn(t => this.rng(+t)).gt(0.75)
         return this
     }
 
