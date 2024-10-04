@@ -553,13 +553,13 @@ qr: 'qresult',
      * Generate a range of values between lo and hi. Use as the first call in a pattern chain.
      * @param lo lowest value in range
      * @param hi highest value in range
-     * @param step step size to round the output. Default is 0, which means no rounding.
      * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
      * @example s0.p.modi.range(0, 10, 1, 2)
      */
-    range(lo: patternable = 0, hi: patternable = 1, step: patternable = 0, freq: patternable = 1): Pattern {
-        this.fn(x => pos(x, this._q, +freq)).mtr(lo, hi).step(step)
+    range(lo: patternable = 0, hi: patternable = 1, freq: patternable = 1): Pattern {
+        this.fn(x => pos(x, this._q, +this.handleTypes(freq)))
+            .mtr(lo, hi)
         return this
     }
 
@@ -567,16 +567,14 @@ qr: 'qresult',
      * Generate a sine wave between lo and hi. Use as the first call in a pattern chain.
      * @param lo lowest value in range
      * @param hi highest value in range
-     * @param step step size to round the output. Default is 0, which means no rounding.
      * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
      * @example s0.p.modi.sine(0, 10)
      */
-    sine(lo: patternable = 0, hi: patternable = 1, step: patternable = 0, freq: patternable = 1): Pattern {
-        this.fn(x => pos(x, this._q, +freq) * 360 * (Math.PI/180))
+    sine(lo: patternable = 0, hi: patternable = 1, freq: patternable = 1): Pattern {
+        this.fn(x => pos(x, this._q, +this.handleTypes(freq)) * 360 * (Math.PI/180))
             .sin()
             .mtr(lo, hi, -1, 1)
-            .step(step)
         return this
     }
 
@@ -584,16 +582,14 @@ qr: 'qresult',
      * Generate a cosine wave between lo and hi. Use as the first call in a pattern chain.
      * @param lo lowest value in range
      * @param hi highest value in range
-     * @param step step size to round the output. Default is 0, which means no rounding.
      * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
      * @example s0.p.modi.cosine(0, 10)
      */
-    cosine(lo: patternable = 0, hi: patternable = 1, step: patternable = 0, freq: patternable = 1): Pattern {
-        this.fn(x => pos(x, this._q, +freq) * 360 * (Math.PI/180))
+    cosine(lo: patternable = 0, hi: patternable = 1, freq: patternable = 1): Pattern {
+        this.fn(x => pos(x, this._q, +this.handleTypes(freq)) * 360 * (Math.PI/180))
             .cos()
             .mtr(lo, hi, -1, 1)
-            .step(step)
         return this
     }
 
@@ -601,7 +597,6 @@ qr: 'qresult',
      * Generate a saw wave between lo and hi. Alias of range. Use as the first call in a pattern chain.
      * @param lo lowest value in range
      * @param hi highest value in range
-     * @param step step size to round the output. Default is 0, which means no rounding.
      * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
      * @example s0.p.modi.saw(0, 10)
@@ -618,11 +613,10 @@ qr: 'qresult',
      * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
      */
-    curve(lo: patternable, hi: patternable, curve: patternable, freq: patternable ): Pattern {
-        this.stack.push((x: patternValue) => {
-            const value = Math.pow(pos(x, this._q, +this.handleTypes(freq)), +this.handleTypes(curve)) 
-            return mapToRange(value, 0, 1, +this.handleTypes(lo), +this.handleTypes(hi))
-        })
+    curve(lo: patternable = 0, hi: patternable = 1, curve: patternable = 0.5, freq: patternable = 1): Pattern {
+        this.fn(x => pos(x, this._q, +this.handleTypes(freq)))
+            .pow(curve)
+            .mtr(lo, hi)
         return this
     }
     
@@ -630,17 +624,15 @@ qr: 'qresult',
      * Generate a triangle wave between lo and hi. Use as the first call in a pattern chain.
      * @param lo lowest value in range
      * @param hi highest value in range
-     * @param step step size to round the output. Default is 0, which means no rounding.
      * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
      * @example s0.p.harm.tri(0, 4, 0.25)
      */
-    tri(...args: patternable[]): Pattern {
-        this.stack.push((x: patternValue) => {
-            const [lo=0, hi=1, step=0, freq=1] = args.map(arg => this.handleTypes(arg))
-            const tri = Math.abs(pos(x, this._q, +freq) - 0.5) * 2
-            return mapToRange(tri, 0, 1, +lo, +hi, +step)
-        })
+    tri(lo: patternable = 0, hi: patternable = 1, freq: patternable = 1): Pattern {
+        this.fn(x => pos(x, this._q, +this.handleTypes(freq)))
+            .sub(0.5)
+            .abs()
+            .mul(2)
         return this
     }
 
