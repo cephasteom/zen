@@ -70,8 +70,8 @@
         grid-gap: 1rem;
         padding: 1rem;
         user-select: none;
-        min-height: calc(100vh - 10rem);
-        max-height: calc(100vh - 10rem);
+        min-height: calc(100vh - 8.75rem);
+        max-height: calc(100vh - 8.75rem);
         overflow: scroll;
         
         @media (min-width: 800px) {
@@ -81,7 +81,7 @@
         
         @media (min-width: 1200px) {
             grid-template-columns: 1fr 1fr;
-            padding: 1rem 2rem;
+            padding: 1rem;
         }
 
         @media all and (display-mode: fullscreen) {

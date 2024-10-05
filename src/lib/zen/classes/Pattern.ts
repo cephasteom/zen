@@ -700,7 +700,7 @@ qr: 'qresult',
      * @returns {Pattern}
      * @example s0.p.n.random(60,72,1)
      */
-    random(lo: patternable=0, hi: patternable=1, step: patternable=1): Pattern {
+    random(lo: patternable=0, hi: patternable=1, step: patternable=0): Pattern {
         this.fn(x => this.rng(+x))
             .mtr(lo, hi)
             .step(step)
@@ -786,12 +786,29 @@ qr: 'qresult',
     }
 
     /**
+     * Snap the previous value in the pattern chain to the nearest value in an array.
+     * @param array array of values to snap to
+     * @returns {Pattern}
+     * @example s0.x.random(0,1).snap([0,0.25,0.5,0.75])
+     * s0.e.set(1)
+     */
+    snap(array: patternable): Pattern {
+        this.stack.push(x => {
+            const arr = this.handleTypes(array)
+            if(!Array.isArray(arr)) return x
+            return handlePolyphony(x, x => roundToNearest(x, arr))
+        })
+        return this
+    }
+
+    /**
      * Round the previous value in the pattern chain to the nearest value in an array.
      * @param array array of values to round to
      * @returns {Pattern}
      * @example s0.p.n.noise(0,12).tune([0,2,4,5,7,9,11,12]).add(36)
      */ 
     tune(array: patternable): Pattern {
+        // this.step(1).mod(12)
         this.stack.push(x => {
             const arr = this.handleTypes(array)
             if(!Array.isArray(arr)) return x
