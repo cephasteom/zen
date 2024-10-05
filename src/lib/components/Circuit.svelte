@@ -57,7 +57,7 @@
     .circuit {
         width: calc(100% - 4rem);
         height: calc(100% - 3rem);
-        border-radius: 10px;
+        border-radius: 5px;
         padding: 2rem;
         overflow: auto;
         position: relative;

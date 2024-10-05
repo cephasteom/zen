@@ -70,8 +70,8 @@
         grid-gap: 1rem;
         padding: 1rem;
         user-select: none;
-        min-height: calc(100vh - 8.75rem);
-        max-height: calc(100vh - 8.75rem);
+        min-height: calc(100vh - 56px - 2rem);
+        max-height: calc(100vh - 56px - 2rem);
         overflow: scroll;
         
         @media (min-width: 800px) {
@@ -109,7 +109,7 @@
     .console {
         grid-column: 1 / 2;
         grid-row: 3 / 5;
-        border-radius: 10px;
+        border-radius: 5px;
         position: relative;
         background-color: var(--color-grey-dark);
         display: none;
@@ -127,7 +127,7 @@
     .tools {
         grid-column: 1;
         grid-row: 1;
-        border-radius: 10px;
+        border-radius: 5px;
 
         @media (min-width: 800px) {
             grid-column: 2;
@@ -140,7 +140,7 @@
     .circuit {
         grid-column: 2;
         grid-row: 2 / 4;
-        border-radius: 10px;
+        border-radius: 5px;
         position: relative;
         display: none;
         overflow: hidden;
@@ -163,7 +163,7 @@
         &--withCircuit {
             grid-row: 1 / 2;
         }
-        border-radius: 10px;
+        border-radius: 5px;
         position: relative;
 
         background: var(--color-grey-dark);
@@ -178,7 +178,7 @@
     .data {
         grid-column: 1;
         grid-row: 3;
-        border-radius: 10px;
+        border-radius: 5px;
 
         @media (min-width: 800px) {
             display: none;

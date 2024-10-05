@@ -10,10 +10,10 @@
         <slot />
     </main>
 
-    <footer class="footer container">
-        <span class="footer__issues">Something wrong? <a target="_blank" href="https://github.com/cephasteom/zen-3/issues">Open an issue</a>.</span>
-        <span class="footer__copyright">© <a target="_blank" href="https://cephasteom.co.uk">Cephas Teom</a> {new Date().getFullYear()}</span>
-    </footer>
+    <!-- <footer class="footer container"> -->
+        <!-- <span class="footer__issues">Something wrong? <a target="_blank" href="https://github.com/cephasteom/zen-3/issues">Open an issue</a>.</span> -->
+        <!-- <span class="footer__copyright">© <a target="_blank" href="https://cephasteom.co.uk">Cephas Teom</a> {new Date().getFullYear()}</span> -->
+    <!-- </footer> -->
 </div>
 
 <style lang="scss">
@@ -33,6 +33,13 @@
         margin: 0 auto;
         box-sizing: border-box;
         background-color: var(--color-grey-mid);
+        @media (min-width: 1600px) {
+            border-radius: 0 0 5px 5px;
+        }
+
+        @media all and (display-mode: fullscreen) {
+            border-radius: 5px;
+        }
     }
 
     .footer {
@@ -42,7 +49,7 @@
         color: var(--color-grey-light);
         text-align: center;
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-end;
         @media (min-width: 1200px) {
             text-align: right;
             width: calc(100% - 4rem);
