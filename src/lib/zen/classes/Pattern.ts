@@ -182,18 +182,6 @@ qr: 'qresult',
         this._parent = parent
         this.reset()
         isTrigger && (this.set = this.trigger)
-
-        // handle dollar methods - used internally to concatenate patterns
-        Object.getOwnPropertyNames(Pattern.prototype).forEach(method => {
-            Object.defineProperty(this, `$${method}`, {
-                get: () => {
-                    const pattern = new Pattern(this, ['and', 'or', 'xor', 'not'].includes(method))
-                    // @ts-ignore
-                    this[method](pattern)
-                    return pattern
-                },
-            })
-        })
             
         // handle aliases
         return new Proxy(this, {
@@ -305,7 +293,7 @@ qr: 'qresult',
     }
 
     /**
-     * Return the divisions per cycle
+     * Return the current divisions per cycle
      * @returns {Pattern}
      */
     q(): Pattern {
@@ -365,7 +353,7 @@ qr: 'qresult',
     }
 
     /**
-     * Get the current value of pattern if it has been evaluated. Used internally.
+     * Get the current value of pattern if it has been evaluated. Used internally. Possibly deprecated.
      * @hidden
      */ 
     value(): patternValue {
@@ -395,16 +383,15 @@ qr: 'qresult',
      * @param x - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      * @example
-     * s0.e.every(3)
+     * s0.e.every(8)
      * s1.e.toggle(s0.e)
-     * s2.e.toggle(not(t().mod(3)))
-     * s3.e.toggle('1?0*16')
+     * s1.y.set(0.5)
      */ 
     toggle(x: patternable): Pattern {
-        this.stack.push(() => {
-            if (this.handleTypes(x)) this._state.toggle = !this._state.toggle
-            return this._state.toggle ? 1 : 0
-        })
+        const st = this._state
+        this.set(x)
+            .fn(x => st.toggle = x ? !st.toggle : st.toggle)
+            .if()
         return this
     }
 
@@ -435,7 +422,7 @@ qr: 'qresult',
      * @param elseValue - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      */ 
-    if(ifValue: patternable, elseValue: patternable = 0): Pattern {
+    if(ifValue: patternable = 1, elseValue: patternable = 0): Pattern {
         this.stack.push(x => {
             return [x].flat().every(x => !!x) 
                 ? this.handleTypes(ifValue) 
