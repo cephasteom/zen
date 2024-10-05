@@ -36,7 +36,7 @@ const initialMessages = [
     {type: 'info', message: 'esc to stop.\n'},
     {type: 'success', message: 'Commands ->'},
     {type: 'info', message: 'instruments()\nmidi()\nsamples()\nscales()\nchords()\nprint()\nclear()\n'},
-    {type: 'info', message: `© Cephas Teom ${new Date().getFullYear()}`},
+    {type: 'credit', message: `© Cephas Teom ${new Date().getFullYear()}\n`},
 ];
 
 initialMessages.forEach((message, index) => {
@@ -94,7 +94,7 @@ const zenChannel = new BroadcastChannel('zen');
 zenChannel.onmessage = ({data: {message, type, data}}) => {
     if(type === 'error' && (get(editorConsole) !== message)) return editorConsole.set({type, message});
     
-    ['error', 'info', 'pattern', 'success'].includes(type) && print(type, message.toString())
+    ['error', 'info', 'pattern', 'success', 'credit'].includes(type) && print(type, message.toString())
     
     if(type !== 'action') return
     const { t: time, c: cycle, q: quant, s: size, delta, v, grid, gates: gs, measurements: ms, feedback: fb, inputs: ins } = data;

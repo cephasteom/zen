@@ -262,7 +262,7 @@ canvas {
 
 .qc-circuit line {
 	stroke: var(--color-theme-2)!important;
-    stroke-width: 3px;
+    stroke-width: 2px;
 }
 
 .qc-circuit text {
@@ -282,7 +282,7 @@ canvas {
 .qc-circuit path {
 	fill: var(--color-grey-darker)!important;
 	stroke: var(--color-theme-2)!important;
-    stroke-width: 3px;
+    stroke-width: 2px;
 	cursor: grab;
 }
 

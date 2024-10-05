@@ -103,7 +103,7 @@
         height: 3.7rem;
 
         &__wire {
-            height: 3px;
+            height: 2px;
             background-color: var(--color-theme-2);
             width: calc(100% - 4rem);
             margin-top: 2.71rem;
@@ -114,8 +114,6 @@
     .label {
         background-color: var(--color-grey-darker);
         color: var(--color-theme-2);
-        font-family: 'Lato Bold', sans-serif;
-        font-weight: bold;
         margin-top: 2em;
     }
 </style>

@@ -70,4 +70,8 @@
     .error {
         color: var(--color-theme-1);
     }
+
+    .credit {
+        color: var(--color-theme-2);
+    }
 </style>
