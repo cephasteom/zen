@@ -277,7 +277,7 @@ qr: 'qresult',
      * Based on the divisions of a cycle and the frequency of the pattern
      * */
     divisions(freq: patternable = 1) {
-        this.stack.push(x => this._q / +this.handleTypes(freq))
+        this.q().div(freq)
         return this
     }
     
@@ -302,6 +302,25 @@ qr: 'qresult',
     c(): Pattern {
         this.stack.push(() => Math.floor(this._t / this._q))
         return this
+    }
+
+    /**
+     * Return the divisions per cycle
+     * @returns {Pattern}
+     */
+    q(): Pattern {
+        this.stack.push(() => this._q)
+        return this
+    }
+
+    /**
+     * Create a new pattern.
+     * Used internally
+     * @hidden
+     * @returns {Pattern}
+     */
+    p(isTrigger = false): Pattern {
+        return new Pattern(this, isTrigger)
     }
 
     /**
@@ -737,10 +756,9 @@ qr: 'qresult',
     */
     bin(n: string = '10000000', freq: patternable = 1): Pattern {
         const arr = n.replace(/\s+/g, '').split('').map(x => !!parseInt(x) ? 1 : 0)
-        this.fn(x => {
-            const divisions = this._q / +this.handleTypes(freq)
-            return arr[ (+x%divisions) / (divisions/arr.length) ]
-        })
+        this.mod(this.p().divisions(freq))
+            .div(this.p().divisions(freq).div(arr.length))
+            .atr(arr)
         return this
     }
 
@@ -1011,7 +1029,7 @@ qr: 'qresult',
     }
 
     /**
-     * At, but reversed. Given an array of values, it returns the value at the index of the previous value in the pattern chain.
+     * At, but reversed. Given an array of values, it returns the value at the index provided by the previous value in the pattern chain.
      * @param array array of values
      * @returns {Pattern}
      * @example s0.x.t().atr([0,1,5,4]).div(16)
