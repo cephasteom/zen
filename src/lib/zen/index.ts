@@ -159,9 +159,9 @@ export function evaluate(count: number, time: number) {
     Transport.swingSubdivision = `${z.getSwingN()}n`
 
     // build gates
-    qubits.forEach(wire => wire.build(tclearq))
-    // routing for how qubits should feed their outputs back into the inputs, if clearall
-    const feedback = qubits.map(wire => wire.clearck)
+    qubits.forEach(wire => wire.build(t, q))
+    // routing for how qubits should feed their outputs back into the inputs, if at all
+    const feedback = qubits.map(wire => wire.feedback)
     const inputs = feedback.map((i) => i > -1 && i < measurements.length 
         ? measurements[i]
         : 0
