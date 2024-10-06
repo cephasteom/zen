@@ -45,9 +45,9 @@ const fxstreams: Stream[] = Array(2).fill(0).map((_, i) => new Stream('fx' + i))
 // @ts-ignore
 fxstreams.forEach(stream => window[stream.id] = stream)
 // @ts-ignore
-const wires: Wire[] = Array(get(nStreams)).fill(0).map((_, i) => new Wire('w' + i)); window.wires = wires;
+const qubits: Wire[] = Array(get(nStreams)).fill(0).map((_, i) => new Wire('q' + i)); window.qubits = qubits;
 // @ts-ignore
-wires.forEach(wire => window[wire._id] = wire)
+qubits.forEach(wire => window[wire._id] = wire)
 
 // @ts-ignore
 const v = new Visuals(); window.v = v;
@@ -100,7 +100,7 @@ let measurements: number[] = []
 code.subscribe(code => {
     streams.forEach(stream => stream.reset())
     fxstreams.forEach(stream => stream.reset())
-    wires.forEach(wire => wire.reset())
+    qubits.forEach(wire => wire.clear())
     z.reset()
     z.resetGlobals()
     printCircuit = ''
@@ -159,9 +159,9 @@ export function evaluate(count: number, time: number) {
     Transport.swingSubdivision = `${z.getSwingN()}n`
 
     // build gates
-    wires.forEach(wire => wire.build(t, q))
-    // routing for how wires should feed their outputs back into the inputs, if at all
-    const feedback = wires.map(wire => wire.feedback)
+    qubits.forEach(wire => wire.build(tclearq))
+    // routing for how qubits should feed their outputs back into the inputs, if clearall
+    const feedback = qubits.map(wire => wire.clearck)
     const inputs = feedback.map((i) => i > -1 && i < measurements.length 
         ? measurements[i]
         : 0
