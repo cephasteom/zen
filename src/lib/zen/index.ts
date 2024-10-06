@@ -7,6 +7,7 @@ import { Data } from './classes/Data'
 import { Stream } from './classes/Stream';
 import { circuit } from './classes/Circuit';
 import { Visuals } from './classes/Visuals';
+import { Wire } from './classes/Wire';
 import { createCount } from './utils/utils';
 import { helpers } from './utils/helpers';
 import { print as post, clear } from "$lib/stores/zen";
@@ -38,15 +39,20 @@ const z = new Zen(); window.z = z;
 // @ts-ignore
 const streams: Stream[] = Array(get(nStreams)).fill(0).map((_, i) => new Stream('s' + i)); window.streams = streams;
 // @ts-ignore
+streams.forEach(stream => window[stream.id] = stream)
+// @ts-ignore
 const fxstreams: Stream[] = Array(2).fill(0).map((_, i) => new Stream('fx' + i)); window.fxstreams = fxstreams;
+// @ts-ignore
+fxstreams.forEach(stream => window[stream.id] = stream)
+// @ts-ignore
+const wires: Wire[] = Array(get(nStreams)).fill(0).map((_, i) => new Wire('w' + i)); window.wires = wires;
+// @ts-ignore
+wires.forEach(wire => window[wire._id] = wire)
+
 // @ts-ignore
 const v = new Visuals(); window.v = v;
 // @ts-ignore
 const d = new Data(); window.d = d;
-// @ts-ignore
-streams.forEach(stream => window[stream.id] = stream)
-// @ts-ignore
-fxstreams.forEach(stream => window[stream.id] = stream)
 
 /**
  * Add all pattern methods to the window object, so they can be used to spawn new patterns
@@ -94,6 +100,7 @@ let measurements: number[] = []
 code.subscribe(code => {
     streams.forEach(stream => stream.reset())
     fxstreams.forEach(stream => stream.reset())
+    wires.forEach(wire => wire.reset())
     z.reset()
     z.resetGlobals()
     printCircuit = ''
@@ -152,9 +159,9 @@ export function evaluate(count: number, time: number) {
     Transport.swingSubdivision = `${z.getSwingN()}n`
 
     // build gates
-    streams.forEach(stream => stream.wire.build(t, q))
+    wires.forEach(wire => wire.build(t, q))
     // routing for how wires should feed their outputs back into the inputs, if at all
-    const feedback = streams.map(stream => stream.wire.feedback)
+    const feedback = wires.map(wire => wire.feedback)
     const inputs = feedback.map((i) => i > -1 && i < measurements.length 
         ? measurements[i]
         : 0

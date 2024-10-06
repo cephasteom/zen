@@ -14,6 +14,8 @@ export class Wire {
     /** @hidden */
     private _q: number = 16;
     /** @hidden */
+    _id: string;
+    /** @hidden */
     row: number;
     /** @hidden */
     private _offset: number = 0;
@@ -103,8 +105,9 @@ export class Wire {
     }
     
     /** @hidden */
-    constructor(row: number) {
-        this.row = row;    
+    constructor(id: string) {
+        this._id = id
+        this.row = +id.slice(1)    
 
         Object.entries(circuit.basicGates).forEach(([key, gate]: [string, any]) => {
             // add a method for each gate
