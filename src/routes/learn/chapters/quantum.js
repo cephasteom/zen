@@ -1,5 +1,9 @@
 export default `# Zen Quantum
-Zen is a quantum programming inspired system. It integrates the [Quantum Circuit library](https://www.npmjs.com/package/quantum-circuit) developed by Quantastica to facilitate the construction and execution of quantum circuit simulations within the web browser. In quantum mode, each stream corresponds to a single wire within the quantum circuit. Gates are appended to individual wires by method chaining through the \`.wire\` property of a stream. Gate parameters may be passed as values, [mini-notation](/learn/mini-notation), or [Patterns](/learn/patterns).
+Zen is a quantum computer music programming language. It integrates the [Quantum Circuit library](https://www.npmjs.com/package/quantum-circuit) developed by Quantastica to facilitate the construction and execution of quantum circuit simulations within the web browser. 
+
+Quantum circuits are built by adding gates to individual wires. Each wire represents a qubit, the fundamental unit of quantum information. In Zen, qubits are represented by TODO
+
+In quantum mode, each stream corresponds to a single wire within the quantum circuit. Gates are appended to individual wires by method chaining through the \`.wire\` property of a stream. Gate parameters may be passed as values, [mini-notation](/learn/mini-notation), or [Patterns](/learn/patterns).
 
 The outcomes of circuit executions, encompassing the state vector, individual qubit measurements, basis states, probabilities, and amplitude coefficients, can serve as data to be sonified within your Zen code. This document explains how to construct quantum circuits within Zen, and how to access the available quantum data within your compositions. For a more detailed explanation of quantum computer music, see [Miranda (2022)](https://link.springer.com/book/10.1007/978-3-031-13909-3).
 

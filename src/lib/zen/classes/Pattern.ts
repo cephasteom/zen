@@ -1232,10 +1232,7 @@ qr: 'qresult',
      * @returns {Pattern}
      */
     degrade(amt: patternable): Pattern {
-        this.stack.push((x: patternValue) => {
-            let amount = +this.handleTypes(amt)
-            return Math.random() > amount ? x : 0
-        })
+        this.and(this.p().random().gt(amt))
         return this
     }
 

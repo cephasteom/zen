@@ -29,4 +29,10 @@ export const options: Monaco.editor.IStandaloneEditorConstructionOptions = {
     snippetSuggestions: 'none',
     roundedSelection: false,
     tabSize: 2,
+    parameterHints: {
+        enabled: false
+    },
+    hover: {
+        enabled: false
+    }
 };
