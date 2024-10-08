@@ -118,6 +118,7 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
+        background-color: var(--color-theme-1);
 
         &__item a {
             text-transform: uppercase;
@@ -137,6 +138,7 @@
             list-style: none;
             padding: 0;
             margin: 0;
+            background-color: transparent;
             &__item {
                 padding-left: 1rem;
                 @media(min-width: 600px) {
