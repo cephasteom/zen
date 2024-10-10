@@ -36,7 +36,7 @@ const initialMessages = [
     {type: 'info', message: 'esc to stop.\n'},
     {type: 'success', message: 'Commands ->'},
     {type: 'info', message: 'instruments()\nmidi()\nsamples()\nscales()\nchords()\nprint()\nclear()\n'},
-    {type: 'credit', message: `© Cephas Teom ${new Date().getFullYear()}\n`},
+    {type: 'credit', message: `© Cephas Teom ${new Date().getFullYear()}`},
 ];
 
 initialMessages.forEach((message, index) => {

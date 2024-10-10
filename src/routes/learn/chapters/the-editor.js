@@ -1,7 +1,7 @@
 export default `# The Editor
-The best place to start is by using the <a href="https://zen.cephasteom.co.uk" target="_blank">online editor</a>. On the left, you should see a code editor and on the right, a console for communicating errors and debugging your code, a visualisation of the position of your streams, and a blank quantum circuit.
+On the left of the user interface is the code editor and, below this, the console: for logging errors and getting information. On the right, you can toggle through different combinations of the pattern visualiser and the quantum circuit schematic, using the icons in the lower toolbar.
 
-In the toolbar, there are controls for play/stop, save and load.
+In the toolbar, there also are controls for play/stop, save and load.
 
 Editor commands:
 - \`shift+enter\` executes the code and starts playback

@@ -29,12 +29,13 @@
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-
+            height: 100%;
         }
     }
     ul {
-        padding: 0;
+        padding: 2rem 0;
         & a {
+            // width: 50%;
             text-decoration: none;
             &:hover {
                 color: var(--color-theme-1);

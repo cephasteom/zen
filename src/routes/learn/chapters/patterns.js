@@ -1,51 +1,31 @@
 export default `# Patterns
-As we have seen, the [Pattern class](/docs/classes#pattern) is used to set parameters that change over time, and to trigger patterns of musical events. They are also used for moving streams around the canvas, mutating parameters, and warping time. We’ll cover these topics in a later chapter. For now, it's good to realise that almost everything in Zen is a Pattern. Once you've mastered Patterns, you've mastered Zen.
-
-As in a Stream, the \`.set()\` method is used to set a constant value. For example, \`s0.p.amp.set(1)\` sets the amplitude of Stream 0 to a constant value of 1.
-
-Methods such as \`.sine()\`, \`.tri()\`, and \`.square()\` return different values depending on the current time, or \`t\`. Many methods accept additional arguments to determine how their output should be scaled and rounded. For example, \`s0.p.n.sine(48,64,1)\` returns numbers between 48 and 64, rounded to a step value of 1, creating a pattern of ascending and descending semitones. 
-
-A final frequency argument determines how fast the pattern runs. Compare the following two examples:
+The [Pattern class](/docs/classes#pattern) is Zen's primary building block. As we shall see, in Zen *everything is a pattern*. Once you have mastered patterns, you have mastered Zen. Run the following code in the editor:
 \`\`\`js
-s0.set({in:0,cu:0,ms:0.1,re:0.5})
-s0.p.n.sine(48,64,1,0.5)
-s0.e.set(1)
+s0.x.saw()
+s0.every(1)
+\`\`\`
+\`s0\`, or \`s1\`, \`s2\`, \`s3\` etc., represent streams of values and can be thought of as a single channel of a mixing desk. We will cover the Stream class in more detail in the next chapter. The \`.x\` and \`.e\` properties are both instances of the Pattern class. \`.x\` controls the x position of the stream on the canvas and expects values between 1 and 0. \`.e\` controls when a stream should trigger a musical event and expects patterns of 1s or 0s. 1 will fire an event, 0 will be ignored.
+
+Patterns have many useful methods for generating interesting streams of values. The \`.set()\` method is used to set a constant value. For example:
+\`\`\`js
+s0.x.set(0.5)
+s0.every(1)
 \`\`\`
 
-\`\`\`js
-s0.set({in:0,cu:0,ms:0.1,re:0.5})
-s0.p.n.sine(48,64,1,2)
-s0.e.set(1)
-\`\`\`
+Methods such as \`.sine()\`, \`.tri()\`, and \`.square()\` return different values, between 0 and 1, depending on the current time. Many methods accept additional arguments to determine how their output should be scaled. For example, \`s0.x.sine(0,0.5,2)\` returns values between 0 and 0.5, at a frequency of 2 cycles per bar.
 
 Pattern methods can be chained:
 \`\`\`js
-s0.set({in:0,cu:0,re:0.5})
-s0.p.n.sine(48,64,2).add(12)
+s0.x.saw(0,1,0.25).step(0.25)
+s0.y.tri().step(0.25)
 s0.e.every(1)
 \`\`\`
 
-Pattern arguments can be raw values, the Zen mini-language, or other Patterns. For example, the following code creates a Pattern that alternates between two scales:
-\`\`\`js
-z.set({inst: 0, cut: [0,1]})
+Pattern arguments can be raw values, other Patterns, or the Zen mini-language.
+// TODO
 
-s0.set({n: 48})
-s0.e.set('0?1*16') // use the mini-language
-
-s1.set({n: 60})
-s1.e.not(s0.e) // use the Pattern from s0.e as an argument
-\`\`\`
-
-All Pattern methods exist in the global scope and spawn new Patterns. For example, the following code creates a Pattern that alternates between two scales:
-\`\`\`js
-z.set({inst: 0, cut: [0,1]})
-
-s0.set({n: 48})
-s0.e.every(noise(1,4).step(1)) // spawn a new Patten and use it as an argument. You can chain methods on the new Pattern.
-
-s1.set({n: 60})
-s1.e.not(s0.e)
-\`\`\`
+All Pattern methods exist in the global scope and spawn new Patterns. For example:
+// TODO
 
 For a full list of Pattern methods and their arguments, see the [Pattern docs](/docs/classes#pattern).
 `

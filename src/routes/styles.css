@@ -150,7 +150,7 @@ li {
 }
 
 .content {
-    min-height: 80vh;
+    min-height: calc(100vh - 56px - 2rem);
 	padding: 1rem;
     background-color: var(--color-grey-dark);
 }
