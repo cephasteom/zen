@@ -61,10 +61,17 @@ Pattern.methods().forEach((method: string) => {
     // check if method already exists
     if(method in window) return
     // @ts-ignore
-    window[method] = (...args: any[]) => {
+    const value = (...args: any[]) => {
         const p = new Pattern()
         return p.call(method as PatternMethod, ...args)
     }
+
+    Object.defineProperty(window, method, {
+        value,            // Assign the function as the value
+        writable: false,         // Prevents it from being overwritten
+        enumerable: false,       // It won't show up in for...in loops
+        configurable: false      // Prevents the property from being deleted or reconfigured
+    });
 })
 
 /**
