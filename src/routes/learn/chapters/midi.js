@@ -6,7 +6,7 @@ The following parameters control midi routing in Zen:
 
 - \`midi\` the midi device to send messages to (passed as an index).
 - \`midichan\` the midi channel to send messages to. Sends to all channels if not included.
-- \`mididelay\` delay midi messages by n milliseconds. Useful for synchronising midi and audio.
+- \`mididelay\` delay midi messages (ms). Useful for synchronising midi and audio.
 - \`cc<number>\`, as in \`cc1\`, \`cc2\` etc. Send control change messages. CC values are normalised (0 - 1).
 
 For example:

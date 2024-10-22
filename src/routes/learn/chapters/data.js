@@ -10,9 +10,13 @@ The \`fetch()\` method is used to retrieve data from the web. It takes a URL and
 // This will fetch the data from the URL and store it under the key 'packet'
 d.fetch('https://zendata.cephasteom.co.uk/api/packet', 'packet')
 
-// Once a success message has been printed to the console, you can access the data using d.packet
+
 // console.log(d.packet)
 \`\`\`
 
+Once a success message has been printed to the console, you can access the data using \`d\` and the key you provided, in this case \`d.packet\`:
 
+\`\`\`js
+// console.log(d.packet)
+\`\`\`
 `

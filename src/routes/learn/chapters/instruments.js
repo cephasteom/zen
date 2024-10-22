@@ -1,8 +1,8 @@
 export default `# Instruments
-Zen has an internal synth engine, called Oto, giving you access to a range of high-quality instruments and effects within your browser. Full documentation for all instruments and effects can be found in the docs. This chapter gives you a flavour of what’s possible.
+Zen has an internal synth engine, with a range of high-quality instruments and effects, all within your browser. Full documentation for instruments and effects can be found in the docs. This chapter gives a flavour of what’s possible.
 
 ## Generic Parameters
-Most instruments share a common set of parameters. Envelope parameters are \`a\` (attack), \`d\` (decay), \`s\` (sustain), \`r\` (release). The \`dur\` parameter controls the duration of the note, the \`amp\` parameter controls the amplitude of the note, and the \`vol\` parameter controls the overall volume of the instrument. \`lag\` determines the time in ms it takes for a stream to mutate (ms), whilst \`nudge\` allows you to delay a stream's events by a given amount of time (ms).
+Most instruments share a common set of parameters. Envelope parameters are \`a\` (attack), \`d\` (decay), \`s\` (sustain), \`r\` (release). The \`dur\` parameter controls the duration of the note, the \`amp\` parameter controls the amplitude of the note, and the \`vol\` parameter controls the overall volume of the instrument. \`lag\` determines the time in ms it takes for a stream to mutate (see [mutations](/learn/mutations)), whilst \`nudge\` allows you to delay a stream's events by a given amount of time (in ms).
 
 ## Synth
 An all purpose synth with filters and FM:
@@ -23,7 +23,7 @@ s0.m.not(s0.e)
 \`\`\`
 
 ## Sampler
-The sampler takes the name of a sample bank and the index of a file within that directory. To print a list of available banks, type \`samples()\` into the editor. See the chapter on [Custom Samples](/learn/custom-samples) for instructions on how to load your own.
+The sampler takes the name of a sample bank and the index of a file within that directory. To print a list of available sample banks, type \`samples()\` into the editor. See the chapter on [Custom Samples](/learn/custom-samples) to load your own.
 \`\`\`js
 z.bpm.set(160)
 
