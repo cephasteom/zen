@@ -34,13 +34,23 @@
     }
     ul {
         padding: 2rem 0;
+        
+        @media (min-width: 798px) {
+            display: flex;
+        }
+        
+        flex-direction: column;
+        flex-wrap: wrap;
+        max-height: 50vh;
         & a {
-            // width: 50%;
+            width: 50%;
             text-decoration: none;
             &:hover {
                 color: var(--color-theme-1);
             }
         }
+
+
     }
 
 </style>
