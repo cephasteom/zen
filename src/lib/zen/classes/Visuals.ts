@@ -5,9 +5,9 @@ export class Visuals {
     data: vector[] = [];
     activeStreams: string[] = [];
     colours = [
-        [255, 105, 90],
-        [229, 0, 127],
-        [0, 163, 153],
+        [52, 152, 219], // Blue
+        [46, 204, 113], // Green
+        [231, 76, 60],
     ]
     mColour = [51, 51, 51, 255];
 

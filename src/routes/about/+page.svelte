@@ -1,11 +1,11 @@
 <svelte:head>
 	<title>Zen | About</title>
-	<meta name="description" content="About Zen, a musical live coding language that uses quantum simulations and runs in your browser." />
+	<meta name="description" content="About Zen, a quantum computer music programming language, using quantum simulations to make music in your browser." />
 </svelte:head>
 
 <section class="content">
     <div class="content__inner">
-        <h1>Live code in your browser</h1>
+        <h1>Live code quantum computer music in your browser</h1>
         <h2>About</h2>
         <p>Zen is a live coding environment for expressing complex patterns with very little code. It was written to take advantage of JavaScript's flexibility and is primed for pattern interference. Design and run quantum circuits and use the results to trigger musical events. Map musical and sonic parameters across time and space and draw multiple trajectories around a canvas to generate infinitely complex, morphing sounds.</p>
 
