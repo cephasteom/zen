@@ -1444,7 +1444,8 @@ qr: 'qresult',
     }
 
     /**
-     * Returns the phase of a given state of the quantum system
+     * Returns the phase of a given state of the quantum system. 
+     * Assuming that this value is between -PI and +PI, the result is normalised
      * @returns {Pattern}
      * @param state state to get phase of, as an integer
      * @param hits number of measurements to take before looping. Default is 0 (no looping). Max 256.
@@ -1456,7 +1457,7 @@ qr: 'qresult',
             const loop = clamp(+this.handleTypes(hits), 0, 256)
             const states = circuit.stateAsArray()
             const i = +this.handleTypes(state) % states.length
-            const current = states[i].phase
+            const current = mapToRange(states[i].phase, -Math.PI, Math.PI, 0, 1, 0)
             const shouldRepeat = +repeats > 0
                 ? +t%(+repeats * loop) === 0
                 : false
@@ -1476,7 +1477,7 @@ qr: 'qresult',
         this.stack.push((t: patternValue) => {
             const loop = clamp(+this.handleTypes(hits), 0, 256)
             const states = circuit.stateAsArray()
-            const current = states.map((state: any) => state.phase)
+            const current = states.map((state: any) => mapToRange(state.phase, -Math.PI, Math.PI, 0, 1, 0))
             const shouldRepeat = +repeats > 0
                 ? +t%(+repeats * loop) === 0
                 : false
