@@ -99,9 +99,10 @@
             color: white;
 
             & span {
-                font-size: var(--text-xxs);
+                font-size: 10px;
                 position: relative;
-                top: -7px;
+                top: -0.125px;
+                color: var(--color-theme-3)
             }
         }
     }
