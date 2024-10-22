@@ -10,10 +10,10 @@
         <slot />
     </main>
 
-    <!-- <footer class="footer container"> -->
+    <footer class="footer container">
         <!-- <span class="footer__issues">Something wrong? <a target="_blank" href="https://github.com/cephasteom/zen-3/issues">Open an issue</a>.</span> -->
-        <!-- <span class="footer__copyright">© <a target="_blank" href="https://cephasteom.co.uk">Cephas Teom</a> {new Date().getFullYear()}</span> -->
-    <!-- </footer> -->
+        <span class="footer__copyright">© <a target="_blank" href="https://cephasteom.co.uk">Cephas Teom</a> {new Date().getFullYear()}</span>
+    </footer>
 </div>
 
 <style lang="scss">
