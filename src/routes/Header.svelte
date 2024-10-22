@@ -31,7 +31,7 @@
                 class="mr-3 h-6 sm:h-6"
                 alt="Zen Logo"
             />
-            <p>zen<span>q</span></p>
+            <p>zen<span>Q</span></p>
         </a>
         <button on:click={toggleMenu} class="menu-toggle">
             <Icon data="{showMobileMenu ? faXmark : faBars}" />
@@ -149,9 +149,7 @@
                 display: flex;
                 align-items: center;
                 margin-top: 0;
-            }
-        
-            
+            }    
         }
     }
 
