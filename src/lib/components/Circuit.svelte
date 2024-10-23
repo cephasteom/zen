@@ -115,6 +115,8 @@
         background-color: var(--color-grey-darker);
         color: var(--color-theme-2);
         margin-top: 2em;
+        font-size: var(--text-xs);
+        transform: translateY(11px);
     }
 </style>
 
