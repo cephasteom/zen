@@ -29,7 +29,7 @@ s0.e.every(4)
 \`\`\`
 
 \`\`\`js
-s0.e.every(4).or(every(3))
+s0.e.every(4).or($every(3))
 \`\`\`
 
 \`\`\`js
@@ -78,14 +78,13 @@ z.set({
   track:0, // comment out this line to hear the difference
 });
   
-[s0,s1,s2,s3,s4,s5,s6,s7]
-  .map(st => st
-    .set({vol:0.25})
-    .p._n.set('Clyd%16..?*16')._
-    .p._harm.saw(0.5,1.5,0.25)._
-    .e.set('1*16')._
-    .m.set('1*16')
-  )
+[s0,s1,s2,s3,s4,s5,s6,s7].map(s => {
+  s.set({vol:0.25})
+  s.p._n.set('Clyd%16..?*16')
+  s.p._harm.saw(0.5,1.5,0.25)
+  s.e.set('1*16')
+  s.m.set('1*16')
+})
 \`\`\`
 Without the track parameter, we hear 8 synths with 8 reverbs. With the track parameter set to the same value, all streams control the same synth and reverb, saving on CPU.
 `

@@ -34,7 +34,7 @@ s1.set({inst:1,ba:'breaks',snap:16,cut:[0,1],dur:ms(8),loop:1,cutr:ms(0.5),re:0.
 s1.x.saw(0,1,1/4)
 s1.p.begin.set(s1.x).saw().step(1/8)
 s1.p.i.v('0|*3 1')
-s1.e.not(s0.e).and(every(16))
+s1.e.not(s0.e).and($every(16))
 \`\`\`
 
 ## Granular Synth
