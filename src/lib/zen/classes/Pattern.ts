@@ -17,6 +17,7 @@ import {
     memoize
 } from '../utils/utils';
 import { parsePattern } from '../parsing/mininotation';
+import { parseMidiFile } from '../parsing/midifile';
 import { noise, randomSequence } from '../stores'
 import { getCC, getNotes } from '../stores/midi'
 import { circuit } from './Circuit'
@@ -1303,6 +1304,30 @@ qr: 'qresult',
      */
     midinote(device: patternable): Pattern {
         this.stack.push(() => getNotes(+this.handleTypes(device)))
+        return this
+    }
+
+    /**
+     * Use the notes from a midi file
+     * @param path url path to midi file, must be available to the browser
+     * @returns {Pattern}
+     * @example s0.p.n.midifile('path/to/midi.mid')
+     */
+    midifile(path: string): Pattern {
+        let data: any;
+        parseMidiFile(path, this._q)
+            .then((d: any) => data = d)
+        
+        this.stack.push(t => {
+            const division = +t % (data.bars * this._q)
+            const events = Object.keys(data.notes).map(x => +x)
+
+            // get nearest event - events are [0, 16, 24], division is 20, should return 16
+            const nearest = events.reduce((acc, cur) => +cur <= division ? +cur : acc, 0)
+            console.log(nearest)
+            return data.notes[nearest]
+            // return 0
+        })
         return this
     }
 
