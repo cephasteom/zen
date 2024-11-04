@@ -14,7 +14,7 @@
                 {#each section.children as child}
                     {#if child.comment}
                         <p>{@html parseTSDocsText(child.comment.summary)}</p>
-                        {#each child.comment.blockTags as tag}
+                        {#each child.comment.blockTags || [] as tag}
                             <span>{@html parseTSDocsText(tag.content)}</span>
                         {/each}
                     {/if}
