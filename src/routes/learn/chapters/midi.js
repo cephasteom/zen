@@ -27,4 +27,14 @@ s0.p.vol.midicc(1,10,0.5)
 // use all pressed keys on device 10 as input
 s0.p.n.midinote(10)
 \`\`\`
+
+## MIDI Parsing
+Zen can parse midi files and extract note and event data:
+\`\`\`js
+let bassfile = 'http://localhost:6060/midi/tune03/tune03-bass.mid' // must be hosted somewhere accessible
+
+s0.set({inst: 0, cut:0})
+s0.p.n.midifile(bassfile, 'n') // use the note data
+s0.e.midifile(bassfile, 'e') // use the event data
+\`\`\
 `

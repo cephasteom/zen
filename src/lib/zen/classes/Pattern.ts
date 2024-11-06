@@ -1311,9 +1311,10 @@ qr: 'qresult',
      * Use the notes from a midi file
      * @param path url path to midi file, must be available to the browser
      * @returns {Pattern}
-     * @example s0.p.n.midifile('path/to/midi.mid')
+     * @example s0.p.n.midifile('path/to/midi.mid', 'n')
+     * @example s0.e.midifile('path/to/midi.mid', 'e')
      */
-    midifile(path: string): Pattern {
+    midifile(path: string, param: string = 'n'): Pattern {
         let data: any;
         parseMidiFile(path, this._q)
             .then((d: any) => data = d)
@@ -1321,12 +1322,10 @@ qr: 'qresult',
         this.stack.push(t => {
             const division = +t % (data.bars * this._q)
             const events = Object.keys(data.notes).map(x => +x)
-
-            // get nearest event - events are [0, 16, 24], division is 20, should return 16
             const nearest = events.reduce((acc, cur) => +cur <= division ? +cur : acc, 0)
-            console.log(nearest)
-            return data.notes[nearest]
-            // return 0
+            return param === 'n'
+                ? data.notes[nearest]
+                : data.events.includes(division)
         })
         return this
     }
