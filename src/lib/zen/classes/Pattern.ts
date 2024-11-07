@@ -1312,6 +1312,7 @@ qr: 'qresult',
      * @param path url path to midi file, must be available to the browser
      * @returns {Pattern}
      * @example s0.p.n.midifile('path/to/midi.mid', 'n')
+     * @example s0.p.dur.midifile('path/to/midi.mid', 'dur').btms()
      * @example s0.e.midifile('path/to/midi.mid', 'e')
      */
     midifile(path: string, param: string = 'n'): Pattern {
@@ -1323,9 +1324,13 @@ qr: 'qresult',
             const division = +t % (data.bars * this._q)
             const events = Object.keys(data.notes).map(x => +x)
             const nearest = events.reduce((acc, cur) => +cur <= division ? +cur : acc, 0)
-            return param === 'n'
-                ? data.notes[nearest]
-                : data.events.includes(division)
+            const beatsElapsed = (division - nearest) / 4
+            const dur = Math.max(data.durs[nearest] - beatsElapsed, 0)
+            return {
+                n: data.notes[nearest],
+                e: data.events.includes(division),
+                dur
+            }[param] || 0
         })
         return this
     }

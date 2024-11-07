@@ -19,12 +19,24 @@ async function parse(path: string, q: number) {
         // @ts-ignore
         .sort((a, b) => a.midi < b.midi)
     }), {})
+
+    const durs = (midi.tracks[0].notes || []).reduce((groups, note) => ({
+        ...groups,
+        [(note.ticks/ticksPerDivision)]: Math.max(
+            // @ts-ignore
+            (groups[(note.ticks/ticksPerDivision)] || 0), 
+            Math.floor(note.durationTicks / ticksPerDivision) / timeSig
+
+        )
+    }), {})
+    
     const events = Object.keys(notes).map(e => +e)
 
     return {
         bars,
         notes,
-        events
+        events,
+        durs
     }
 }
 
