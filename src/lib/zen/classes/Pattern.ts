@@ -1310,6 +1310,7 @@ qr: 'qresult',
     /**
      * Use the notes from a midi file
      * @param path url path to midi file, must be available to the browser
+     * @param param e | n | dur. Default n.
      * @returns {Pattern}
      * @example s0.p.n.midifile('path/to/midi.mid', 'n')
      * @example s0.p.dur.midifile('path/to/midi.mid', 'dur').btms()
