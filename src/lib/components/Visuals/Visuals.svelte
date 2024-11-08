@@ -202,7 +202,7 @@
     })
 </script>
 
-<svelte:window on:resize={() => handleResize()} />
+<svelte:window on:resize={() => handleResize && handleResize()} />
 
 <div bind:this={container} class="visuals">
     <P5 {sketch} on:instance={handleInstance} />

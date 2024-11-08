@@ -33,6 +33,7 @@
 	"dependencies": {
 		"@fortawesome/free-regular-svg-icons": "^6.4.0",
 		"@fortawesome/free-solid-svg-icons": "^6.4.0",
+		"@ptkdev/sveltekit-electron-adapter": "^0.3.0",
 		"@rnbo/js": "^1.3.2",
 		"@tonejs/midi": "^2.0.28",
 		"@types/marked": "^5.0.1",
