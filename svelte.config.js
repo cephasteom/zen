@@ -1,7 +1,7 @@
 import preprocess from "svelte-preprocess";
 import { vitePreprocess } from "@sveltejs/kit/vite";
-// import adapter from "@sveltejs/adapter-auto"; // original sveltejs adapter
-import adapter from "@ptkdev/sveltekit-electron-adapter";
+import adapter from "@sveltejs/adapter-auto"; // original sveltejs adapter
+// import adapter from "@ptkdev/sveltekit-electron-adapter";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -9,9 +9,9 @@ const config = {
   // for more information about preprocessors
   preprocess: [
     vitePreprocess(),
-    // preprocess({
-    //   postcss: true,
-    // }),
+    preprocess({
+      postcss: true,
+    }),
   ],
 
   kit: {
