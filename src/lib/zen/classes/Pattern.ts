@@ -206,9 +206,12 @@ qr: 'qresult',
      * @hidden 
      */ 
     handleTypes(value: patternValue | Pattern | string | Function, t: number | null = null, round=true) : patternValue {
-        if(value instanceof Pattern) return value.get(t || this._t, this._q, this._bpm) || 0
-        if(typeof value === 'function') return value(t || this._t, this._q)
-        if(typeof value === 'string') return parsePattern(value, t || this._t, this._q, this._id, round)
+        const time = t !== null && t !== undefined
+            ? t
+            : this._t
+        if(value instanceof Pattern) return value.get(time, this._q, this._bpm) || 0
+        if(typeof value === 'function') return value(time, this._q)
+        if(typeof value === 'string') return parsePattern(value, time, this._q, this._id, round)
         return value
     }
 
