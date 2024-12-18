@@ -117,6 +117,8 @@ qm: 'qmeasurement',
 qms: 'qmeasurements',
 qpb: 'qprobability',
 qpbs: 'qprobabilities',
+qph: 'qphase',
+qphs: 'qphases',
 qr: 'qresult',
     */ 
     aliases = {
@@ -170,6 +172,8 @@ qr: 'qresult',
         qms: 'qmeasurements',
         qpb: 'qprobability',
         qpbs: 'qprobabilities',
+        qph: 'qphase',
+        qphs: 'qphases',
         qr: 'qresult',
     }
 
