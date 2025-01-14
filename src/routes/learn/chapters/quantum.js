@@ -268,4 +268,13 @@ cx q[0], q[1];
 h q[0];\`)
 \`\`\`
 Remember to use backticks to wrap the string, so that JavaScript can interpret the line breaks.
+
+## Exporting Code
+Use \`exportCircuit()\` to export the current circuit as QASM or Qiskit string. For example:
+\`\`\`js
+q0.h()
+
+print(exportCircuit('qasm))
+print(exportCircuit('qiskit))
+\`\`\`
 `

@@ -96,9 +96,14 @@ window.loadSamples = loadSamples;
 // @ts-ignore
 const { bts: initBts, btms: initBtms, clamp, seed } = helpers;
 
-let printCircuit: string = ''
+// let printCircuit: string = ''
+const exportCircuit = (format: string = 'qasm') => {
+    return format === 'qasm'
+        ? circuit.exportToQASM()
+        : circuit.exportToQiskit()
+} 
 // @ts-ignore
-const exportCircuit = (format: string = 'qasm') => printCircuit = format; window.exportCircuit = exportCircuit;
+window.exportCircuit = exportCircuit;
 let measurements: number[] = []
 
 /**
@@ -110,7 +115,6 @@ code.subscribe(code => {
     qubits.forEach(wire => wire.clear())
     z.reset()
     z.resetGlobals()
-    printCircuit = ''
     circuit.clear()
     circuit.numQubits = 1
 
@@ -178,11 +182,6 @@ export function evaluate(count: number, time: number) {
     if(gates.flat().length) {
         circuit.run()
         measurements = circuit.measureAll()
-        printCircuit !== '' 
-            && post('info', printCircuit === 'qasm'
-                ? circuit.exportToQASM()
-                : circuit.exportToQiskit()
-            )
     }
 
     // compile parameters, events and mutations
