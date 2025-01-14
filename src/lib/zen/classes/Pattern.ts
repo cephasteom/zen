@@ -348,6 +348,29 @@ qr: 'qresult',
     }
 
     /**
+     * Count up from 0 to n-1, if n is 0 counter continues indefinitely
+     * Restarts the counter each time reset is true
+     * @param n - the number to count up to
+     * @param reset - a value, instance of Pattern, or Zen pattern string that resets the counter
+     * @returns {Pattern}
+     * @example s0.set({inst: 1, bank: 'bd'})
+     * s0.x.counter(16, s0.e).div(z.q)
+     * s0.e.set('3:8')
+     */
+    counter(n: patternable = 0, reset: patternable): Pattern {
+        let count = 0
+        
+        this.stack.push((t) => {
+            const shouldReset = this.handleTypes(reset, +t, false)
+            count = shouldReset ? 0 : count + 1
+                
+            const limit = +this.handleTypes(n)
+            return limit === 0 ? count : count % limit
+        })        
+        return this
+    }
+
+    /**
      * Inset another pattern's stack into the current pattern's stack
      * @param {Pattern} pattern - an instance of another pattern
      * @returns {Pattern}
