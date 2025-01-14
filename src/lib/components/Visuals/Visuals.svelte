@@ -88,7 +88,7 @@
                 p5.stroke(colour)
                 p5.strokeWeight(3)
                 p5.rotateY(p5.radians(90))
-                p5.rotateY(p5.radians(phi * 180))
+                p5.rotateY(p5.radians(phi * 360))
                 p5.circle(0, 0, ((radius * lambda) * 2));
                 p5.pop()
 
