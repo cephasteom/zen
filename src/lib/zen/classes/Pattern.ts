@@ -76,6 +76,7 @@ cl: 'clamp',
 c: 'coin',
 cc: 'midicc',
 co: 'cosine',
+ctr: 'counter',
 cu: 'curve',
 d: 'div',
 dr: 'divr',
@@ -131,6 +132,7 @@ qr: 'qresult',
         c: 'coin',
         cc: 'midicc',
         co: 'cosine',
+        ctr: 'counter',
         cu: 'curve',
         d: 'div',
         dr: 'divr',
@@ -348,9 +350,9 @@ qr: 'qresult',
     }
 
     /**
-     * Count up from 0 to n-1, if n is 0 counter continues indefinitely
-     * Restarts the counter each time reset is true
-     * @param n - the number to count up to
+     * Count up from 0 to n-1 or Infinity if n is 0. 
+     * Restarts the counter each time reset is true.
+     * @param n - the number to count up to, default is 0
      * @param reset - a value, instance of Pattern, or Zen pattern string that resets the counter
      * @returns {Pattern}
      * @example s0.set({inst: 1, bank: 'bd'})
