@@ -373,6 +373,22 @@ qr: 'qresult',
     }
 
     /**
+     * When trigger is true, samples the value returned by the previous pattern in the chain, and holds it until the next trigger.
+     * @param trigger - a value, instance of Pattern, or Zen pattern string
+     * @returns {Pattern}
+     * @example s0.e.every(5)
+     * s0.x.noise().hold(s0.e)
+     */
+    hold(trigger: patternable): Pattern {
+        let heldValue: any = 0
+        this.stack.push((value) => {
+            if(this.handleTypes(trigger, this._t, false)) heldValue = value
+            return heldValue
+        })
+        return this
+    }
+
+    /**
      * Inset another pattern's stack into the current pattern's stack
      * @param {Pattern} pattern - an instance of another pattern
      * @returns {Pattern}
@@ -1409,8 +1425,9 @@ qr: 'qresult',
     cache(hits: patternable = 1, repeats: patternable = 1): Pattern {
         this.stack.push((x: patternValue) => {
             const loop = clamp(+this.handleTypes(hits), 0, 256)
-            const shouldRepeat = +repeats > 0 
-                ? this._t%(+repeats * loop) === 0
+            const nRepeats = +this.handleTypes(repeats)
+            const shouldRepeat = nRepeats > 0 
+                ? this._t%(nRepeats * loop) === 0
                 : false
             return this.handleLoop(this._t, 'cache', loop, +x, shouldRepeat)
         })
