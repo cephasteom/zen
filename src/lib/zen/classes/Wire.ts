@@ -3,10 +3,10 @@ import { circuit } from './Circuit';
 import { handleTypes } from '../utils/handleTypes'; 
 import { nStreams } from '../stores';
 /**
- * The Wire class represents a single wire in a quantum circuit.
+ * The Wire class represents a single wire in a quantum circuit. They are represented in Zen as q0, q1, q2, etc. 
  * It uses the Quantum Circuit package to implement quantum gates. 
  * Some gates are documented here. See https://www.npmjs.com/package/quantum-circuit#implemented-gates for a list of all implemented gates. 
- * @example s0.wire.h().cx([1])
+ * @example q0.h().cx([1])
  */
 export class Wire {
     /** @hidden */

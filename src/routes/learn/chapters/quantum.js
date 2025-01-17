@@ -18,15 +18,15 @@ q1.rx(saw().step(0.25))
 
 The outcomes of circuit executions, encompassing the state vector, individual qubit measurements, basis states, probabilities, and amplitude coefficients, can serve as data to be sonified within your Zen code. In the remainder of this section, we explain how to construct quantum circuits within Zen, and how to access the available quantum data within your compositions. For a more detailed explanation of quantum computer music, see [Miranda (2022)](https://link.springer.com/book/10.1007/978-3-031-13909-3).
 
-Run the following example to get a feel for quantum programming in Zen. Ensure quantum mode is toggled by clicking on the qubit icon in the tool bar:
+Run the following example to get a feel for quantum programming in Zen:
 \`\`\`js
 q0.h().cx([1]).ccx([1,2])
 q1.fb(0)
 q2.fb(1)
 
-s0.e.qmeasurement(0, 32)
-s1.e.qmeasurement(1, 32)
-s2.e.qmeasurement(2, 32)
+s0.e.qm(0, 32)
+s1.e.qm(1, 32)
+s2.e.qm(2, 32)
 
 s0.set({inst: 1, bank: 'bd808', i: 3, cut: 0})
 s1.set({inst: 1, bank: 'sd808', i: '0..1?*16', cut: [0,1]})
@@ -37,24 +37,24 @@ s2.set({inst: 1, bank: 'hh', i: '0..16?*16', cut: [0,2], vol: 0.5})
 All of the gates implemented in Zen can be found in the [Quantum Circuit library](https://www.npmjs.com/package/quantum-circuit) and, in each case, use the short name as the name of the method.
 
 ## Multi-qubit gates
-Multi-qubit gates facilitate entanglement. They connect one or more control qubits, and a target qubit. The target qubit has a gate applied to its wire only if the state(s) of the control qubit(s) meets certain conditions. The wire that we add the gate to is always the first control qubit. Additional qubits are passed as the first argument of the gate method. This can be either a single index or array of indexes. For example, to apply a CNOT, or CX, gate to qubits 0 and 1:
+Multi-qubit gates are used to entangle qubits. They connect one or more control qubits to a target qubit. A gate will be applied to the target qubit only if the state(s) of the control qubit(s) meet certain conditions. In Zen, the wire that the gate is appended to is always the control qubit. Additional qubits are passed as the first argument as an index or array of indexes. For example, to apply a CNOT, or CX, gate to qubits 0 and 1:
 \`\`\`js
 q0.cx(1)
 \`\`\`
-Here, the control qubit is 0 and the target qubit is 1. Wire 1 will have an X gate applied to it only if qubit 0 is in the state |1⟩.
+Here, the control qubit is 0 and the target qubit is 1. Qubit 1 has an X gate applied only if qubit 0 is in the state |1⟩.
 
 To apply a CCNOT, or CCX, gate to qubits 0, 1 and 2:
 \`\`\`js
 q0.ccx([1,2])
 \`\`\`
-Here, the control qubits are 0 and 1, and the target qubit is 2. Wire 2 will have an X gate applied to it only if qubits 0 and 1 are both in the state |1⟩.
+Here, the control qubits are 0 and 1, and the target qubit is 2. Qubit 2 has an X gate applied only if qubit 0 and qubit 1 are in the state |1⟩.
 
 ### Gate parameters
-Some gates require additional parameters. For example, the U3 gate requires three parameters - theta, phi, and lambda - passed as an array to the gate method. For example, to apply a U3 gate to qubit 0 with parameters theta, phi, lambda:
+Some gates require additional parameters. For example, the U3 gate expects theta, phi, and lambda angles passed as an array. For example, to apply a U3 gate to qubit 0:
 \`\`\`js
 q0.u3([0.1,0.2,0.3])
 \`\`\`
-Parameters are written as multiples of π, as in 0.5π, π, 2π etc. Values can be numbers, [mini-notation](/learn/mini-notation), or [Patterns](/learn/patterns). The following will work:
+Parameters are always normalised (between 0 and 1). In the case of the theta angle, this translates to π. For phi and lambda, 2π. Values can be numbers, [mini-notation](/learn/mini-notation), or [Patterns](/learn/patterns). The following will work:
 \`\`\`js
 s0.x.sine()
 q0.u3([0.5,'0.25?0.5?0.75?1*16',s0.x])
@@ -72,7 +72,7 @@ q0.u3([$sine(),$saw(),$noise()])
 \`\`\`
 
 ### Gate position
-By default, chaining gates will add them sequentially to the wire. You can offset the position and move the gate further along the wire. 
+By default, adding gates places them sequentially on the wire. You may need to offset the position and move the gate further along the wire. 
 \`\`\`js
 q0.cx(1)
 q1.cx(2)
@@ -81,14 +81,14 @@ q3.cx(4,3)
 \`\`\`
 
 ### Arguments
-We therefore have three potential arguments for each gate: the connected qubit(s), the parameters, and the position. Some gates require all three, some only require one or two. This being a live coding environment, we want to write as little code as possible. As a general rule, arguments are ordered as follows: connected qubit(s), parameters, position. If a gate does not expect connected qubits, or parameters, these can be omitted. For example:
+We therefore have three potential arguments for each gate: the connected qubit(s), the parameters, and the position. Some gates require all three, some only require one or two. This being a live coding environment, we want to write as little code as possible. As a rule, arguments are ordered as follows: connected qubit(s), parameters, position. If a gate does not expect connected qubits, or parameters, these can be omitted. For example:
 \`\`\`js
 q0.x(2) // no target qubit or parameters, so arguments are just [position]
 q0.u3([0.1,0.2,0.3],2) // no target qubits but parameters can be specified, so arguments are [parameters, position]
 q0.ccx([1,2],2) // target qubits and position can be specified, so arguments are [target qubits, position]
 q0.xx(2,0.5,0) // a rare example of a gate that requires all three arguments [target qubits, parameters, position]
 \`\`\`
-See the [Quantum Circuit documentation](https://www.npmjs.com/package/quantum-circuit#implemented-gates) for a full list of gates and their parameters.
+See the [Wire class documentation](/docs/classes#wire) for a list of the main gates and their parameters. See the [Quantum Circuit documentation](https://www.npmjs.com/package/quantum-circuit#implemented-gates) for a full list of gates and their parameters.
 
 ### Feedback
 Use the \`.fb()\` method to apply feedback to a wire. This will use the previous measurement as the initial state of the qubit before the circuit runs. For example:
@@ -212,13 +212,13 @@ s0.e.set(1)
 \`\`\`
 
 ### Result
-Return the basis state with the highest amplitude as an integer using the \`qresult()\`, or alias \`qr\`, method. For example:
+Return the measured state of the system as an integer, using the \`qresult()\`, or alias \`qr\`, method. For example:
 \`\`\`js
-q0.rx(saw())
-q1.rx(saw(1,0,1/4))
+q0.h()
+q1.h()
 
 s0.x.qresult().div(4)
-s0.e.every(4))
+s0.e.every(4)
 \`\`\`
 
 If there are multiple states with a joint highest amplitude, an index will be returned at random. For example:

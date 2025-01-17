@@ -1567,13 +1567,13 @@ qr: 'qresult',
     }
 
     /**
-     * Returns the result of a measurement of the quantum system as an integer
+     * Returns the measured state as an integer - 
      * ie. in a 2-qubit system, 00 = 0, 01 = 1, 10 = 2, 11 = 3
      * @returns {Pattern}
      * @example s0.p.res.qresult().print()
      */
     qresult(): Pattern {
-        this.qmeasurements().fn((x: any) => parseInt(x.join(''), 2))
+        this.qmeasurements().fn((x: any) => parseInt(x.reverse().join(''), 2))
         return this
     }
 
