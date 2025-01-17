@@ -221,31 +221,6 @@ s0.x.qresult().div(4)
 s0.e.every(4)
 \`\`\`
 
-If there are multiple states with a joint highest amplitude, an index will be returned at random. For example:
-\`\`\`js
-q0.rx(0.5)
-q1.rx(0.5)
-
-s0.p.result.qresult().print()
-s0.e.every(4)
-\`\`\`
-
-One application for this could be to trigger events based on whether a certain state has the highest amplitude. For example:
-\`\`\`js
-q2.h()
-q3.h()
-
-s0.set({inst:1,bank:'bd'})
-s0.e.qresult().eq(12)
-
-s1.set({inst:1,bank:'sd'})
-s1.e.qresult().eq(4)
-
-s2.set({inst:1,bank:'hh'})
-s2.e.qresult().eq(8)
-\`\`\`
-Here, we create a 4 qubit system with 16 possible basis states. Hadamard gates are applied to the 3rd and 4th wires which means that only the states |1100⟩, |0100⟩, and |1000⟩ will have the highest amplitude. We assign a sound to each state.
-
 ## Importing Code
 
 ### QASM Strings
