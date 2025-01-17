@@ -1567,36 +1567,13 @@ qr: 'qresult',
     }
 
     /**
-     * Returns the index of the state with the highest amplitude
-     * If there are multiple states with the same amplitude, one is chosen at random
+     * Returns the result of a measurement of the quantum system as an integer
+     * ie. in a 2-qubit system, 00 = 0, 01 = 1, 10 = 2, 11 = 3
      * @returns {Pattern}
-     * @param hits number of measurements to take before looping. Default is 0 (no looping). Max 256.
      * @example s0.p.res.qresult().print()
      */
-    qresult(hits: patternable = 0, repeats: patternable = 0): Pattern {
-        this.stack.push((t: patternValue) => {
-            const loop = clamp(+this.handleTypes(hits), 0, 256)
-            const length = circuit.numAmplitudes()
-            const amps = Array.from({length}, (_, i) => {
-                const state = round(circuit.state[i] || complex(0, 0), 14);
-                const result = +pow(abs(state), 2)
-                return parseFloat(result.toFixed(5))
-            })
-
-            const maxIndices = amps.reduce((indices, amp, i) => {
-                return amp === Math.max(...amps)
-                    ? [...indices, i]
-                    : indices
-            }, [] as number[]);
-    
-            const current = maxIndices[Math.floor(Math.random() * maxIndices.length)];
-
-            const shouldRepeat = +repeats > 0
-                ? +t%(+repeats * loop) === 0
-                : false
-            
-            return this.handleLoop(+t, 'result', loop, current, shouldRepeat)
-        })
+    qresult(): Pattern {
+        this.qmeasurements().fn((x: any) => parseInt(x.join(''), 2))
         return this
     }
 
