@@ -15,6 +15,8 @@
     let save: HTMLDialogElement;
     let load: HTMLDialogElement;
 
+    console.log($visualsType)
+
 </script>
 
 <div class="tools">
@@ -25,7 +27,7 @@
         class:active={$visualsType !== 'none'} 
         on:click={toggleVisuals}
     >
-        <Icon data={visualsIcons[$visualsType]} />
+        <Icon data={visualsIcons[$visualsType] || visualsIcons.grid} />
     </button>
     <button class="tools__circuit" on:click={toggleCircuit} class:active={$showCircuit}>
         <Icon data={faBars} />
