@@ -1246,8 +1246,8 @@ qr: 'qresult',
     }
 
     /**
-     * Multiply the previous value in the pattern chain to the power of a given value
-     * @param exponent value to multiply by
+     * The previous value in the pattern chain to the power of a given value
+     * @param exponent
      * @returns {Pattern}
      */ 
     pow(exponent: patternable = 2): Pattern {
