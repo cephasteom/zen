@@ -1,5 +1,5 @@
 import { WebMidi } from "webmidi";
-import { getClockSource, getMidiClockDevice } from "../stores";
+import { getClockSource, getMidiClockDevice, getActiveMidiClock } from "../stores";
 import { evaluate } from "..";
 import { immediate } from "tone";
 
@@ -38,6 +38,7 @@ export function initMidiClock() {
             input.addListener("clock", "all", () => {
                 // console.log(getMidiClockDevice(), i)
                 if (!isPlaying 
+                    || !getActiveMidiClock()
                     || getClockSource() === 'internal' 
                     || getMidiClockDevice() !== i
                 ) return;

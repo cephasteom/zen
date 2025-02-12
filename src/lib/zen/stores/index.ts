@@ -35,3 +35,4 @@ export const activeMidiClock = writable(false)
 
 export const getClockSource = () => get(clockSource)
 export const getMidiClockDevice = () => get(midiClockDevice)
+export const getActiveMidiClock = () => get(activeMidiClock)

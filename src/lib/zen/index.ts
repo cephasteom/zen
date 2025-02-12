@@ -230,6 +230,7 @@ export const play = () => {
 export const stop = () => {
     Transport.stop(immediate())
     counter = createCount(0)
+    activeMidiClock.set(false)
 }
 
 /**
