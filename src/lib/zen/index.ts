@@ -177,8 +177,6 @@ export function evaluate(count: number, time: number) {
         ? measurements[i]
         : 0
     )
-
-    console.log(inputs)
     
     const gates = circuit.gates
     if(gates.flat().length) {
