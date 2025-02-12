@@ -42,14 +42,14 @@ export function initMidiClock() {
                     || getMidiClockDevice() !== i
                 ) return;
 
-                tickCount++;
-                
                 tickCount % ticksPerCycle === 0 
                     && console.log("Cycle: " + tickCount / ticksPerCycle);
 
                 tickCount % ticksPerDivision === 0 
                     && evaluate(tickCount / ticksPerDivision, immediate())
                     // && console.log("Division: " + tickCount / ticksPerDivision);
+                
+                tickCount++;
             });
         });
     });
