@@ -14,9 +14,6 @@
     
     let save: HTMLDialogElement;
     let load: HTMLDialogElement;
-
-    console.log($visualsType)
-
 </script>
 
 <div class="tools">
