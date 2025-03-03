@@ -16,19 +16,16 @@ export function initMidiClock() {
             input.addListener("start", "all", () => {
                 tickCount = 0;
                 isPlaying = true;
-                console.log("Start");
             });
 
             // @ts-ignore
             input.addListener("stop", "all", () => {
                 isPlaying = false;
-                console.log("Stop");
             });
 
             // @ts-ignore
             input.addListener("continue", "all", () => {
                 isPlaying = true;
-                console.log("Continue");
             })
 
             // @ts-ignore

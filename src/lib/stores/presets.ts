@@ -23,7 +23,6 @@ export const presetKeys = derived(
 )
 
 export function savePreset(key: string) {
-    console.log(key)
     const stored = JSON.parse(localStorage.getItem('z.presets') || "{}");
     stored[key] = get(editorValue) // get current code from the Editor
     
