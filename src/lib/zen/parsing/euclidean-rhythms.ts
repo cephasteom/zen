@@ -1,3 +1,5 @@
+import { memoize } from "../utils/utils";
+
 // From https://github.com/mkontogiannis/euclidean-rhythms/
 // copied in here rather installed as a dependency due to a node version mismatch
 // N.B. Ensure credit is given to the original author
@@ -6,11 +8,11 @@
  *  Returns the calculated pattern of equally distributed pulses in total steps
  *  based on the euclidean rhythms algorithm described by Godfried Toussaint
  *
- *  @method  euclidean
+ *  @method euclid
  *  @param {Number} pulses Number of pulses in the pattern
  *  @param {Number} steps  Number of steps in the pattern (pattern length)
  */
-export function euclidean(pulses: number, steps: number) {
+function euclid(pulses: number, steps: number) {
     if (pulses < 0 || steps < 0 || steps < pulses) {
       return [];
     }
@@ -54,3 +56,7 @@ export function euclidean(pulses: number, steps: number) {
   
     return pattern;
   }
+
+export function euclidean(pulses: number, steps: number) {
+    return memoize(euclid)(pulses, steps);
+}

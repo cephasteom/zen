@@ -28,6 +28,10 @@ seedValue.subscribe(value => {
 export const bpm = writable(120)
 export const getBpm = () => get(bpm)
 
+export const q = writable(16)
+export const getQ = () => get(q)
+export const storeQ = (value: number) => q.set(value)
+
 // either 'internal' or MIDI device index
 export const clockSource = writable<'internal' | 'midi'>('internal')
 export const midiClockDevice = writable<number>(0)

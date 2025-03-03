@@ -1,13 +1,10 @@
 import { WebMidi } from "webmidi";
-import { getClockSource, getMidiClockDevice, getActiveMidiClock } from "../stores";
+import { getClockSource, getMidiClockDevice, getActiveMidiClock, getBpm, getQ } from "../stores";
+import { euclidean } from "../parsing/euclidean-rhythms";
 import { evaluate } from "..";
 import { immediate } from "tone";
 
 export function initMidiClock() {
-    // TODO: make this configurable
-    const q = 16;
-    const ticksPerCycle = 24 * 4;
-    const ticksPerDivision = ticksPerCycle/q;
     // @ts-ignore
     WebMidi.enable(() => {
         // Listen to the MIDI clock on all available inputs
@@ -35,20 +32,21 @@ export function initMidiClock() {
             })
 
             // @ts-ignore
-            input.addListener("clock", "all", () => {
-                // console.log(getMidiClockDevice(), i)
+            input.addListener("clock", "all", (clock) => {
                 if (!isPlaying 
                     || !getActiveMidiClock()
                     || getClockSource() === 'internal' 
                     || getMidiClockDevice() !== i
                 ) return;
 
-                tickCount % ticksPerCycle === 0 
-                    && console.log("Cycle: " + tickCount / ticksPerCycle);
+                const q = getQ();
+                const ticksPerCycle = 96;
+                const ticksPerDivision = Math.floor(ticksPerCycle/q);
 
-                tickCount % ticksPerDivision === 0 
+                const beats = euclidean(q, ticksPerCycle);
+
+                beats[tickCount % ticksPerCycle]
                     && evaluate(tickCount / ticksPerDivision, immediate())
-                    // && console.log("Division: " + tickCount / ticksPerDivision);
                 
                 tickCount++;
             });

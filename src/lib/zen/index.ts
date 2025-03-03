@@ -11,7 +11,7 @@ import { Wire } from './classes/Wire';
 import { createCount } from './utils/utils';
 import { helpers } from './utils/helpers';
 import { print as post, clear } from "$lib/stores/zen";
-import { nStreams, bpm, getBpm, clockSource, midiClockDevice, getClockSource, activeMidiClock } from "./stores";
+import { nStreams, bpm, getBpm, clockSource, midiClockDevice, getClockSource, activeMidiClock, storeQ } from "./stores";
 import { modes } from './data/scales'
 import { triads } from './data/chords'
 import { loadSamples } from '$lib/oto';
@@ -58,8 +58,6 @@ const d = new Data(); window.d = d;
  * Add all pattern methods to the window object, so they can be used to spawn new patterns
  */
 Pattern.methods().forEach((method: string) => {
-    // check if method already exists
-    // if(method in window) return
     // @ts-ignore
     const value = (...args: any[]) => {
         const p = new Pattern()
@@ -149,6 +147,8 @@ export function evaluate(count: number, time: number) {
     const s = z.s
     const q = z.q
     const c = z.c
+
+    storeQ(q)
 
     // get seed value
     const seedValue = z.getSeed()
