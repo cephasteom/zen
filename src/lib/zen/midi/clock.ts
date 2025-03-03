@@ -41,7 +41,6 @@ export function initMidiClock() {
                 const ticksPerDivision = Math.floor(ticksPerCycle/q);
 
                 const beats = euclidean(q, ticksPerCycle);
-                const t = 
 
                 beats[tickCount % ticksPerCycle]
                     && evaluate(tickCount / ticksPerDivision, immediate())
