@@ -36,7 +36,12 @@ export const storeQ = (value: number) => q.set(value)
 export const clockSource = writable<'internal' | 'midi'>('internal')
 export const midiClockDevice = writable<number>(0)
 export const activeMidiClock = writable(false)
+export const midiClockConfig = writable({
+    srcBpm: 120,
+    relativeBpm: false
+})
 
 export const getClockSource = () => get(clockSource)
 export const getMidiClockDevice = () => get(midiClockDevice)
 export const getActiveMidiClock = () => get(activeMidiClock)
+export const getMidiClockConfig = () => get(midiClockConfig)

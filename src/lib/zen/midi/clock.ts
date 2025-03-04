@@ -1,5 +1,5 @@
 import { WebMidi } from "webmidi";
-import { getClockSource, getMidiClockDevice, getActiveMidiClock, getBpm, getQ } from "../stores";
+import { getClockSource, getMidiClockDevice, getActiveMidiClock, getMidiClockConfig, getBpm, getQ } from "../stores";
 import { euclidean } from "../parsing/euclidean-rhythms";
 import { evaluate } from "..";
 import { immediate } from "tone";
@@ -37,13 +37,18 @@ export function initMidiClock() {
                 ) return;
 
                 const q = getQ();
-                const ticksPerCycle = 96;
-                const ticksPerDivision = Math.floor(ticksPerCycle/q);
+                const zenBpm = getBpm(); // Zen's BPM
+                const { srcBpm, relativeBpm } = getMidiClockConfig(); // MIDI clock BPM, whether to set Zen's BPM relative to MIDI clock BPM, or ignore it
+                const ticksPerCycle = relativeBpm ? Math.round((srcBpm / zenBpm) * 96) : 96;
 
                 const beats = euclidean(q, ticksPerCycle);
+                const cycle = Math.floor(tickCount / ticksPerCycle);
+                const t = (cycle * q) + beats
+                    .slice(0, tickCount % ticksPerCycle)
+                    .reduce((acc: number, curr: number) => acc + curr, 0);
 
                 beats[tickCount % ticksPerCycle]
-                    && evaluate(tickCount / ticksPerDivision, immediate())
+                    && evaluate(t, immediate())
                 
                 tickCount++;
             });
