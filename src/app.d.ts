@@ -2,11 +2,10 @@
 // for information about these interfaces
 declare global {
 	namespace App {
-		// interface Error {}
-		// interface Locals {}
-		// interface PageData {}
-		// interface Platform {}
+		interface Window {
+			isApp: boolean;
+		}
 	}
 }
 
-export {};
+export {} // Ensure this file can only be a module

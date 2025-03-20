@@ -5,6 +5,7 @@
     import logo from '$lib/images/karma.png';
     import Icon from 'svelte-awesome';
     import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
+    import { isApp } from '$lib/utils/utils';
 
     let showMobileMenu = false;
     let menu: HTMLUListElement;
@@ -36,11 +37,13 @@
         <button on:click={toggleMenu} class="menu-toggle">
             <Icon data="{showMobileMenu ? faXmark : faBars}" />
         </button>
-        <ul class="menu" bind:this={menu}>
-            <li class="menu__item"><a on:click={closeMenu} class={$page.url.pathname === '/about' ? 'active' : ''} href="/about">About</a></li>
-            <li class="menu__item"><a on:click={closeMenu} class={$page.url.pathname.includes('/learn') ? 'active' : ''} href="/learn">Learn</a></li>
-            <li class="menu__item"><a on:click={closeMenu} class={$page.url.pathname === '/docs' ? 'active' : ''} href="/docs">Docs</a></li>
-        </ul>
+        {#if !isApp()}
+            <ul class="menu" bind:this={menu}>
+                <li class="menu__item"><a on:click={closeMenu} class={$page.url.pathname === '/about' ? 'active' : ''} href="/about">About</a></li>
+                <li class="menu__item"><a on:click={closeMenu} class={$page.url.pathname.includes('/learn') ? 'active' : ''} href="/learn">Learn</a></li>
+                <li class="menu__item"><a on:click={closeMenu} class={$page.url.pathname === '/docs' ? 'active' : ''} href="/docs">Docs</a></li>
+            </ul>
+        {/if}
     
     </nav>
 </header>
