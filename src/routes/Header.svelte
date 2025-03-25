@@ -26,24 +26,53 @@
 
 <header>
     <nav class="container">
-        <a href="/" class="icon" on:click={closeMenu}>
-            <img
-                src={logo}
-                class="mr-3 h-6 sm:h-6"
-                alt="Zen Logo"
-            />
-            <p>zen<span>Q</span></p>
-        </a>
+        {#if isApp()}
+            <span class="icon">
+                <img
+                    src={logo}
+                    class="mr-3 h-6 sm:h-6"
+                    alt="Zen Logo"
+                />
+                <p>zen</p>
+            </span>
+        {:else}
+            <a 
+                href={(isApp() ? "https://zen.cephasteom.co.uk" : "") + "/"}
+                target={isApp() ? "_blank" : ""}
+                class="icon" on:click={closeMenu}
+            >
+                <img
+                    src={logo}
+                    class="mr-3 h-6 sm:h-6"
+                    alt="Zen Logo"
+                />
+                <p>zen</p>
+            </a>
+        {/if}
         <button on:click={toggleMenu} class="menu-toggle">
             <Icon data="{showMobileMenu ? faXmark : faBars}" />
         </button>
-        {#if !isApp()}
-            <ul class="menu" bind:this={menu}>
-                <li class="menu__item"><a on:click={closeMenu} class={$page.url.pathname === '/about' ? 'active' : ''} href="/about">About</a></li>
-                <li class="menu__item"><a on:click={closeMenu} class={$page.url.pathname.includes('/learn') ? 'active' : ''} href="/learn">Learn</a></li>
-                <li class="menu__item"><a on:click={closeMenu} class={$page.url.pathname === '/docs' ? 'active' : ''} href="/docs">Docs</a></li>
-            </ul>
-        {/if}
+    
+        <ul class="menu" bind:this={menu}>
+            <li 
+                class="menu__item"><a on:click={closeMenu} 
+                class={$page.url.pathname === '/about' ? 'active' : ''} 
+                href={(isApp() ? "https://zen.cephasteom.co.uk" : "") + "/about"}
+                target={isApp() ? "_blank" : ""}
+            >About</a></li>
+            <li 
+                class="menu__item"><a on:click={closeMenu} 
+                class={$page.url.pathname.includes('/learn') ? 'active' : ''} 
+                href={(isApp() ? "https://zen.cephasteom.co.uk" : "") + "/learn"}
+                target={isApp() ? "_blank" : ""}
+            >Learn</a></li>
+            <li 
+                class="menu__item"><a on:click={closeMenu} 
+                class={$page.url.pathname === '/docs' ? 'active' : ''} 
+                href={(isApp() ? "https://zen.cephasteom.co.uk" : "") + "/docs"}
+                target={isApp() ? "_blank" : ""}
+            >Docs</a></li>
+        </ul>
     
     </nav>
 </header>
