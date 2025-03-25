@@ -158,3 +158,17 @@ export function calculateRectHeightAndWidth(area: number): { width: number, heig
 
     return { width, height };
 }
+
+export function weightedChoice(weights: number[]) {
+    const totalWeight = weights.reduce((sum, weight) => sum + weight, 0);
+    let randomValue = Math.random() * totalWeight;
+    
+    for (let i = 0; i < weights.length; i++) {
+        if (randomValue < weights[i]) {
+            return i;
+        }
+        randomValue -= weights[i];
+    }
+
+    return weights.length - 1;
+}

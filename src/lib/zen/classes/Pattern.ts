@@ -14,7 +14,8 @@ import {
     even,
     interpolate,
     handleArrayOrSingleValue as handlePolyphony,
-    memoize
+    memoize,
+    weightedChoice
 } from '../utils/utils';
 import { parsePattern } from '../parsing/mininotation';
 import { parseMidiFile } from '../parsing/midifile';
@@ -1324,6 +1325,25 @@ qr: 'qresult',
      */ 
     often(): Pattern {
         this.t().fn(t => this.rng(+t)).gt(0.75)
+        return this
+    }
+
+    /**
+     * Markov pattern generator
+     * @param matrix transition matrix
+     * @param states number of states to generate in the pattern. If 0, use z.q. Default is 0.
+     * @param frequency frequency - number of patterns to generate per cycle. Default is 1.
+     * @returns {Pattern}
+     */
+    markov(matrix: number[][], states: patternable = 0, frequency: patternable = 1): Pattern {
+        let sequence = [0]
+        const patternLength = +this.handleTypes(states) || this._q
+        for(let i = 0; i < patternLength; i++) {
+            const current = sequence[sequence.length - 1]
+            const next = weightedChoice(matrix[current])
+            sequence.push(next)
+        }
+        this.seq(sequence, frequency)
         return this
     }
 
