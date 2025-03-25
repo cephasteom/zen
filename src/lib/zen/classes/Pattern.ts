@@ -1331,9 +1331,17 @@ qr: 'qresult',
     /**
      * Markov pattern generator
      * @param matrix transition matrix
-     * @param states number of states to generate in the pattern. If 0, use z.q. Default is 0.
+     * @param states number of states to generate in the pattern. If 0, uses z.q. Default is 0.
      * @param frequency frequency - number of patterns to generate per cycle. Default is 1.
      * @returns {Pattern}
+     * @example s0.set({inst: 1})
+s0.p.bank.set(['bd', 'sd', 'hh']).at(
+  $markov(
+    [[0,0.1,0.9], [0.25,0.1,0.9], [0.5,0.25,0.5]]),
+    64,
+    0.25
+)
+s0.e.set(1)
      */
     markov(matrix: number[][], states: patternable = 0, frequency: patternable = 1): Pattern {
         let sequence = [0]
