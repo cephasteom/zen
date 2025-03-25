@@ -5,7 +5,7 @@
     import logo from '$lib/images/karma.png';
     import Icon from 'svelte-awesome';
     import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
-    import { isApp } from '$lib/utils/utils';
+    import { isApp } from '$lib/electronAPI/index';
 
     let showMobileMenu = false;
     let menu: HTMLUListElement;

@@ -7,6 +7,12 @@
     import Console from '$lib/components/Console.svelte';
     import { startAudio } from '$lib/zen/index';
     import { showCircuit, showVisuals } from '$lib/stores/zen';
+    import { initElectronAPI, isApp } from '$lib/electronAPI';
+    import { onMount } from 'svelte';
+
+    onMount(() => {
+        isApp() && initElectronAPI();
+    });
 </script>
 
 <svelte:head>

@@ -2,7 +2,7 @@
     import Icon from 'svelte-awesome';
     import { faPlay, faStop, faFloppyDisk, faCode, faGlobe, faChessBoard, faBars, faToggleOff } from '@fortawesome/free-solid-svg-icons';
     import { isPlaying, showCircuit, toggleCircuit, toggleVisuals, visualsType } from '$lib/stores/zen';
-    import { isApp } from '$lib/utils/utils';
+    import { isApp } from '$lib/electronAPI/index';
     import Dialog from './Dialog.svelte'
     import Save from './Save.svelte'
     import Load from './Load.svelte'
@@ -44,7 +44,7 @@
 
 <svelte:window 
     on:keydown={e => { 
-        if(!e.metaKey || !['s', 'o'].includes(e.key)) return
+        if(isApp() || !e.metaKey || !['s', 'o'].includes(e.key)) return
         e.preventDefault()
         e.key === 's' && save.showModal();
         e.key === 'o' && load.showModal();

@@ -2,9 +2,7 @@
 // for information about these interfaces
 declare global {
 	namespace App {
-		interface Window {
-			isApp: boolean;
-		}
+
 	}
 }
 

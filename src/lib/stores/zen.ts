@@ -3,6 +3,7 @@ import '../oto';
 import type { vector } from '../zen/types'
 
 export const editorValue = writable('');
+export const loadCode = writable(''); // code loaded from file
 export const t = writable(0); // time
 export const c = writable(0); // cycle
 export const q = writable(16); // quantization (frames per cycle)

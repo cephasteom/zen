@@ -13,8 +13,3 @@ export function formatSlug(slug: string) {
 export function min(a: number, b: number) {
     return a < b ? a : b
 }
-
-export const isApp: () => boolean = () => {
-    // @ts-ignore
-    return typeof window !== 'undefined' && !!window.isApp;
-}

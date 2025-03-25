@@ -3,7 +3,7 @@
     import { onDestroy, onMount } from 'svelte';
     import type * as Monaco from 'monaco-editor/esm/vs/editor/editor.api';
     import { setCode, play, stop } from '$lib/zen';
-    import { editorConsole, isPlaying, editorValue } from '$lib/stores/zen';
+    import { editorConsole, isPlaying, editorValue, loadCode } from '$lib/stores/zen';
     import { activePreset, presets } from '$lib/stores/presets';
     import { options } from './options';
     import { example } from './example';
@@ -77,6 +77,12 @@
         })
 
         isPlaying.subscribe(playing => playing ? setAndPlay() : stop());
+
+        loadCode.subscribe(code => {
+            if(code === '') return; // only load if there is code
+            editor.setValue(code);
+            editorValue.set(editor.getValue());
+        });
     });
 
     onDestroy(() => {
