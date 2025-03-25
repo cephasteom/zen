@@ -2,6 +2,7 @@
     import Icon from 'svelte-awesome';
     import { faPlay, faStop, faFloppyDisk, faCode, faGlobe, faChessBoard, faBars, faToggleOff } from '@fortawesome/free-solid-svg-icons';
     import { isPlaying, showCircuit, toggleCircuit, toggleVisuals, visualsType } from '$lib/stores/zen';
+    import { isApp } from '$lib/utils/utils';
     import Dialog from './Dialog.svelte'
     import Save from './Save.svelte'
     import Load from './Load.svelte'
@@ -18,8 +19,10 @@
 
 <div class="tools">
     <button on:click={() => { isPlaying.set(!$isPlaying)}} ><Icon data="{$isPlaying ? faStop : faPlay}" /></button>
-    <button on:click={() => save.showModal()} class:active={false}><Icon data="{faFloppyDisk}" /></button>
-    <button on:click={() => load.showModal()} class:active={false}><Icon data="{faCode}" /></button>
+    {#if !isApp()}
+        <button on:click={() => save.showModal()} class:active={false}><Icon data="{faFloppyDisk}" /></button>
+        <button on:click={() => load.showModal()} class:active={false}><Icon data="{faCode}" /></button>
+    {/if}
     <button class="tools__visuals" 
         class:active={$visualsType !== 'none'} 
         on:click={toggleVisuals}
