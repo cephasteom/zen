@@ -11,7 +11,6 @@ export function initMidiTriggers() {
             // @ts-ignore
             input.addListener("noteon", "all", (e) => {
                 if (getMode() !== 'noteon' || getMidiTriggerDevice() !== i) return;
-                console.log('noteon', e.note.number);
                 evaluate(getT(), immediate());
             });
         });
