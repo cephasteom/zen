@@ -1,5 +1,5 @@
 export default `# Modes
-By default, Zen evaluates your code on every division of a cycle. However, Zen can also be used as a playable instrument, and triggered using MIDI. This can be achieved by setting the mode. Here's a working example:
+By default, Zen evaluates your code on each division of the cycle. However, it can also be approached as a playable instrument, triggered by MIDI. This can be achieved by setting the mode. Here's a working example:
 \`\`\`javascript
 midi() // To see available devices
 

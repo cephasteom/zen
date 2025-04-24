@@ -17,6 +17,7 @@ import effects from './effects'
 import zen_quantum from './quantum'
 import data from './data'
 import clocks from "./clocks";
+import modes from './modes'
 
 const content = { 
     intro, 
@@ -35,7 +36,8 @@ const content = {
     midi,
     utilities,
     data,
-    clocks
+    clocks,
+    modes
 };
 
 export const chapters = Object.entries(content).map(([key, markdown]) => ({

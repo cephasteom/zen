@@ -40,8 +40,7 @@
         }
         
         flex-direction: column;
-        // max-height: 50vh;
-        // overflow: scroll;
+        
         & a {
             width: 50%;
             text-decoration: none;
