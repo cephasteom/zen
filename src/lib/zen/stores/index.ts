@@ -30,7 +30,11 @@ export const getBpm = () => get(bpm)
 
 export const q = writable(16)
 export const getQ = () => get(q)
-export const storeQ = (value: number) => q.set(value)
+export const setQ = (value: number) => q.set(value)
+
+export const t = writable(0)
+export const getT = () => get(t)
+export const setT = (value: number) => t.set(value)
 
 // either 'internal' or MIDI device index
 export const clockSource = writable<'internal' | 'midi'>('internal')

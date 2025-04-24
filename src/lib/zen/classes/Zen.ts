@@ -240,6 +240,6 @@ export class Zen extends Stream {
 
     /** @hidden */
     resetGlobals() {
-        [this._bpmPattern, this._tPattern, this._seedPattern, this._gridPattern].forEach(p => p?.reset())
+        [this._bpmPattern, this._tPattern, this._seedPattern, this._gridPattern, this._modePattern].forEach(p => p?.reset())
     }
 }

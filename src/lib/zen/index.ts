@@ -12,7 +12,7 @@ import { Wire } from './classes/Wire';
 import { createCount } from './utils/utils';
 import { helpers } from './utils/helpers';
 import { print as post, clear } from "$lib/stores/zen";
-import { nStreams, bpm, getBpm, clockSource, midiClockDevice, midiClockConfig, getClockSource, activeMidiClock, storeQ, mode, midiTriggerDevice } from "./stores";
+import { nStreams, bpm, getBpm, clockSource, midiClockDevice, midiClockConfig, getClockSource, activeMidiClock, setQ, mode, midiTriggerDevice, getMode, setT } from "./stores";
 import { modes } from './data/scales'
 import { triads } from './data/chords'
 import { loadSamples } from '$lib/oto';
@@ -141,6 +141,7 @@ code.subscribe(code => {
         midiClockConfig.set({ srcBpm, relativeBpm })
 
         const { trigger = 'division', device: midiDevice = 0 } = z.getMode()
+        console.log('trigger', trigger)
         mode.set(trigger)
         midiTriggerDevice.set(midiDevice)
     } catch (e: any) {
@@ -158,7 +159,7 @@ export function evaluate(count: number, time: number) {
     const q = z.q
     const c = z.c
 
-    storeQ(q)
+    setQ(q)
 
     // get seed value
     const seedValue = z.getSeed()
@@ -221,7 +222,8 @@ export function evaluate(count: number, time: number) {
 let counter = createCount(0);
 const loop = new Loop(time => { 
     const count = counter()
-    evaluate(count, time)
+    setT(count)
+    getMode() === 'division' && evaluate(count, time)
 }, `${z.q}n`).start(0)
 
 /**
