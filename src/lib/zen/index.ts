@@ -11,7 +11,7 @@ import { Wire } from './classes/Wire';
 import { createCount } from './utils/utils';
 import { helpers } from './utils/helpers';
 import { print as post, clear } from "$lib/stores/zen";
-import { nStreams, bpm, getBpm, clockSource, midiClockDevice, midiClockConfig, getClockSource, activeMidiClock, storeQ } from "./stores";
+import { nStreams, bpm, getBpm, clockSource, midiClockDevice, midiClockConfig, getClockSource, activeMidiClock, storeQ, mode, midiModeDevice } from "./stores";
 import { modes } from './data/scales'
 import { triads } from './data/chords'
 import { loadSamples } from '$lib/oto';
@@ -134,6 +134,10 @@ code.subscribe(code => {
         clockSource.set(src === 'midi' ? 'midi' : 'internal')
         midiClockDevice.set(device)
         midiClockConfig.set({ srcBpm, relativeBpm })
+
+        const { trigger = 'division', device: midiDevice = 0 } = z.getMode()
+        mode.set(trigger)
+        midiModeDevice.set(midiDevice)
     } catch (e: any) {
         post('error', e.message)
         eval(get(lastCode))
