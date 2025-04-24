@@ -1059,7 +1059,7 @@ qr: 'qresult',
     /**
      * Get a value, or values, from the previous value in the pattern chain
      * It is assumed that the previous value is an array
-     * @param i index of value to retrieve, or array of indexes to retrieve
+     * @param i index of value to retrieve, or array of indexes to retrieve. Negative numbers are counted from the end of the array.
      * @returns {Pattern}
      * @example s0.set({inst:0, cut:0})
      * s0.p.n.set('Ddor%16').at('0..8?*16')
@@ -1068,7 +1068,10 @@ qr: 'qresult',
     at(i: patternable[]): Pattern {
         this.stack.push((data: any) => {
             // @ts-ignore
-            const indexes = [this.handleTypes(i)].flat()
+            const indexes = [this.handleTypes(i)]
+                .flat()
+                // if negative numbers, get index from the end of the array
+                .map(i => i < 0 ? data.length + i : i)
             if(indexes.length === 1) return data[indexes[0]]
             
             const type = typeof data

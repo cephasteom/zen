@@ -141,7 +141,6 @@ code.subscribe(code => {
         midiClockConfig.set({ srcBpm, relativeBpm })
 
         const { trigger = 'division', device: midiDevice = 0 } = z.getMode()
-        console.log('trigger', trigger)
         mode.set(trigger)
         midiTriggerDevice.set(midiDevice)
     } catch (e: any) {
@@ -242,6 +241,7 @@ export const play = () => {
 export const stop = () => {
     Transport.stop(immediate())
     counter = createCount(0)
+    setT(0)
     activeMidiClock.set(false)
 }
 

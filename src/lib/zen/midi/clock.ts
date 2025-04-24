@@ -1,5 +1,5 @@
 import { WebMidi } from "webmidi";
-import { getClockSource, getMidiClockDevice, getActiveMidiClock, getMidiClockConfig, getBpm, getQ } from "../stores";
+import { getClockSource, getMidiClockDevice, getActiveMidiClock, getMidiClockConfig, getBpm, getQ, setT } from "../stores";
 import { euclidean } from "../parsing/euclidean-rhythms";
 import { evaluate } from "..";
 import { immediate } from "tone";
@@ -46,6 +46,8 @@ export function initMidiClock() {
                 const t = (cycle * q) + beats
                     .slice(0, tickCount % ticksPerCycle)
                     .reduce((acc: number, curr: number) => acc + curr, 0);
+
+                setT(t);
 
                 beats[tickCount % ticksPerCycle]
                     && evaluate(t, immediate())
