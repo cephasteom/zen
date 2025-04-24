@@ -117,7 +117,23 @@ export class Zen extends Stream {
     get clock() {
         this._clockPattern = this._clockPattern || new Pattern()
         return this._clockPattern
-    }   
+    }  
+    
+    /** @hidden */
+    _modePattern: null | Pattern = null
+    /**
+     * A Pattern for setting the mode.
+     * It's a pattern, but you should only use the set method
+     * @example
+     * z.mode.set({trigger: 'division'}) // this is the default. Evaluate the code on every division.
+     * z.mode.set({trigger: 'noteon', device: 0}) // evaluate the code on every note on event on MIDI device 0
+     * z.mode.set({trigger: 'noteoff', device: 0}) // evaluate the code on every note off event on MIDI device 0
+     * z.mode.set({trigger: 'cc', device: 0}) // evaluate the code on every CC event on MIDI device 0
+     */
+    get mode() {
+        this._modePattern = this._modePattern || new Pattern()
+        return this._modePattern
+    }  
 
     // when to update the executed code, ie at the next division, on the next beat, etc
     /** @hidden */
@@ -195,6 +211,11 @@ export class Zen extends Stream {
     /** @hidden */
     getClock() : any {
         return this.clock.get(this._t, this._q) || {}
+    }
+
+    /** @hidden */
+    getMode() : any {
+        return this.mode.get(this._t, this._q) || {}
     }
 
     getSwing() : number {
