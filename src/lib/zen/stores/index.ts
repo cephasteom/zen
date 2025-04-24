@@ -47,7 +47,7 @@ export const getActiveMidiClock = () => get(activeMidiClock)
 export const getMidiClockConfig = () => get(midiClockConfig)
 
 export const mode = writable<'division' | 'noteon' | 'noteoff' | 'cc'>('division')
-export const midiModeDevice = writable<number>(0)
+export const midiTriggerDevice = writable<number>(0)
 
 export const getMode = () => get(mode)
-export const getMidiModeDevice = () => get(midiModeDevice)
+export const getMidiTriggerDevice = () => get(midiTriggerDevice)

@@ -1,6 +1,7 @@
 import { start, Loop, Transport, immediate, context } from 'tone'
 import { WebMidi } from "webmidi";
 import { initMidiClock } from './midi/clock';
+import { initMidiTriggers } from './midi/triggers';
 import { writable, get } from 'svelte/store';
 import { Zen } from './classes/Zen';
 import { Data } from './classes/Data'
@@ -11,7 +12,7 @@ import { Wire } from './classes/Wire';
 import { createCount } from './utils/utils';
 import { helpers } from './utils/helpers';
 import { print as post, clear } from "$lib/stores/zen";
-import { nStreams, bpm, getBpm, clockSource, midiClockDevice, midiClockConfig, getClockSource, activeMidiClock, storeQ, mode, midiModeDevice } from "./stores";
+import { nStreams, bpm, getBpm, clockSource, midiClockDevice, midiClockConfig, getClockSource, activeMidiClock, storeQ, mode, midiTriggerDevice } from "./stores";
 import { modes } from './data/scales'
 import { triads } from './data/chords'
 import { loadSamples } from '$lib/oto';
@@ -30,6 +31,9 @@ otoChannel.onmessage = ({data: {message}}) => message.includes('Sample banks') &
 export const lastCode = writable('');
 export const code = writable('');
 export const setCode = (str: string) => code.set(str + '\n' + Date.now());
+
+// Midi Triggers
+initMidiTriggers()
 
 /**
  * Add classes and methods to the window object to be accessed in the code editor
@@ -85,8 +89,9 @@ const chords = () => post('info', 'Chords ->\n' + Object.keys(triads).join(', ')
 const samples = () => post('info', get(samplesMessage)); window.samples = samples;
 // @ts-ignore
 const instruments = () => post('info', 'Instruments ->\n0: synth\n1: sampler\n2: granular\n3: additive\n4: acid\n5: drone\n6: sub\n7: superfm\n8: wavetable'); window.instruments = instruments;
+const midi = () => post('info', `Inputs ->\n${WebMidi.inputs.reduce((str, input, i) => `${str}${i}: ${input.name},\n`, '')}Outputs ->\n${WebMidi.outputs.reduce((str, output, i) => `${str}${i}: ${output.name},\n`, '')}`);
 // @ts-ignore
-const midi = () => post('info', WebMidi.outputs.reduce((str, input, i) => `${str}${i}: ${input.name},\n`, '')); window.midi = midi;
+window.midi = midi;
 // @ts-ignore
 window.clear = clear;
 // @ts-ignore
@@ -137,7 +142,7 @@ code.subscribe(code => {
 
         const { trigger = 'division', device: midiDevice = 0 } = z.getMode()
         mode.set(trigger)
-        midiModeDevice.set(midiDevice)
+        midiTriggerDevice.set(midiDevice)
     } catch (e: any) {
         post('error', e.message)
         eval(get(lastCode))

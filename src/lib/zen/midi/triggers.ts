@@ -1,5 +1,5 @@
 import { WebMidi } from "webmidi";
-import { mode, getMode, getMidiModeDevice } from "../stores";
+import { mode, getMode, getMidiTriggerDevice } from "../stores";
 import { evaluate } from "..";
 import { immediate } from "tone";
 
@@ -10,7 +10,7 @@ export function initMidiTriggers() {
         WebMidi.inputs.forEach((input, i) => {
             // @ts-ignore
             input.addListener("noteon", "all", (e) => {
-                if (getMode() !== 'noteon' || getMidiModeDevice() !== i) return;
+                if (getMode() !== 'noteon' || getMidiTriggerDevice() !== i) return;
                 console.log('noteon', e.note.number);
                 // evaluate(getT(), immediate());
             });
