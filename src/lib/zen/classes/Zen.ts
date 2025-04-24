@@ -111,8 +111,8 @@ export class Zen extends Stream {
      * A Pattern for setting the clock source. Either 'internal' or a MIDI device index
      * It's a pattern, but you should only use the set method
      * @example
-     * z.grid.set({src: 'internal'}) // set the clock source to internal
-     * z.grid.set({src: 'midi', device: 0, channel: 0}) // set the clock source to MIDI device 0, channel 0
+     * z.clock.set({src: 'internal'}) // set the clock source to internal
+     * z.clock.set({src: 'midi', device: 0}) // set the clock source to MIDI device 0
      */
     get clock() {
         this._clockPattern = this._clockPattern || new Pattern()
