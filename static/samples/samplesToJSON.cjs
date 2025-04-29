@@ -28,7 +28,7 @@ const result = compile(tree.children)
 
 const json = JSON.stringify(result);
 
-fs.writeFile('./samples.json', json, 'utf8', (err) => {
+fs.writeFile('./static/samples/samples.json', json, 'utf8', (err) => {
     err
         ? console.log(`Error writing samples file: ${err}`)
         : console.log(`Samples file is written successfully!`);
