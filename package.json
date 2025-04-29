@@ -20,6 +20,8 @@
 		"@types/cookie": "^0.5.1",
 		"@types/p5": "^1.7.6",
 		"@types/seedrandom": "^3.0.7",
+		"directory-tree": "^3.5.2",
+		"fs": "^0.0.1-security",
 		"monaco-editor": "^0.39.0",
 		"sass": "^1.63.6",
 		"svelte": "^3.54.0",
