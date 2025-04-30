@@ -2,8 +2,8 @@
 	"name": "zen-3",
 	"version": "0.0.1",
 	"scripts": {
-		"dev": "node static/samples/samplesToJSON.cjs && vite dev",
-		"build": "node static/samples/samplesToJSON.cjs && vite build",
+		"dev": "vite dev",
+		"build": "vite build",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
