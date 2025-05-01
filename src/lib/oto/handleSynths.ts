@@ -24,10 +24,10 @@ const makeSynth = (type: string) => {
     }
 }
 
-const connect = (synth: any, channel: number, type: string) => {
+const connect = (synth: any, channel: number, out: number, type: string) => {
     if(!synth) return
 
-    const ch = getChannel(channel)
+    const ch = getChannel(channel, out)
 
     // connect synth to channel
     synth.connect(ch.input)
@@ -44,7 +44,7 @@ const connect = (synth: any, channel: number, type: string) => {
 }
 
 export const handleSynthEvent = (time: number, params: Dictionary) => {
-    const { cut, n = 60, strum = 0, inst, cutr = 10, track } = params;
+    const { cut, n = 60, strum = 0, inst, cutr = 10, track, out = 0 } = params;
     const channel = track * 2
 
     // Handle cut notes
@@ -65,7 +65,7 @@ export const handleSynthEvent = (time: number, params: Dictionary) => {
         const store = get(synths)
         const synth = store[channel] && store[channel][inst] 
             ? store[channel][inst] 
-            : connect(makeSynth(inst), channel, inst);
+            : connect(makeSynth(inst), channel, out, inst);
 
         // handle multiple notes
         [n].flat().forEach((n: number, noteIndex: number) => {
