@@ -2,8 +2,8 @@ import type { Dictionary } from '../types'
 import { aliases } from '../data/keymapping'
 
 // remove _ from all params
-export const formatEventParams = (params: Dictionary, map: Dictionary) => {    
-    return Object.entries(params)
+export const formatEventParams = (params: Dictionary, map: Dictionary) => {  
+    let result = Object.entries(params)
         .filter(([_, value]) => value !== null)
         .reduce((obj, [key, value]) => {
             key = map[key] || aliases[key] || key;
@@ -12,6 +12,8 @@ export const formatEventParams = (params: Dictionary, map: Dictionary) => {
                 [key.startsWith('_') ? key.substring(1) : key]: value
             }
         }, {});
+
+    return result
 }
 
 // filter out all params that don't start with _
