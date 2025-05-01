@@ -1,5 +1,6 @@
 import { writable, get } from "svelte/store";
 import { CtSynth, CtSampler, CtGranulator, CtAdditive, CtAcidSynth, CtDroneSynth, CtSubSynth, CtSuperFM, CtWavetable } from "./ct-synths"
+import { runCode } from "./kabel-salat"
 import type { Dictionary } from './types'
 import { getChannel } from './routing';
 import { samples } from './stores'
@@ -46,6 +47,8 @@ const connect = (synth: any, channel: number, out: number, type: string) => {
 
 export const handleSynthEvent = (time: number, params: Dictionary) => {
     const { cut, n = 60, strum = 0, inst, cutr = 10, track, out = 0 } = params;
+    // Test kabel-salat
+    runCode()
     // channel strip to use, by default, each stream has its own channel strip
     const channel = track * 2
 
