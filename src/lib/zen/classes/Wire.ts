@@ -2,6 +2,9 @@ import { get } from 'svelte/store';
 import { circuit } from './Circuit';
 import { handleTypes } from '../utils/handleTypes'; 
 import { nStreams } from '../stores';
+
+const channel = new BroadcastChannel('zen')
+
 /**
  * The Wire class represents a single wire in a quantum circuit. They are represented in Zen as q0, q1, q2, etc. 
  * It uses the Quantum Circuit package to implement quantum gates. 
@@ -11,14 +14,19 @@ import { nStreams } from '../stores';
 export class Wire {
     /** @hidden */
     private _t: number = 0;
+
     /** @hidden */
     private _q: number = 16;
+
     /** @hidden */
     _id: string;
+
     /** @hidden */
     row: number;
+
     /** @hidden */
     private _offset: number = 0;
+
     /** @hidden */
     private _stack: any[] = []
     
@@ -29,7 +37,8 @@ export class Wire {
     get feedback() {
         return this._feedback
     }
-/** @hidden */
+    
+    /** @hidden */
     set feedback(value: number) {
         this._feedback = value
     }
@@ -238,7 +247,28 @@ export class Wire {
      */
     import(code: string) {
         circuit.importQASM(code, function(errors: any) {
-            errors.lenght && console.error(errors)
+            errors.length && console.error(errors)
+        })
+        return this
+    }
+
+    /**
+     * Update a gate parameter outside of a gate method
+     * @param param - id of the parameter to update. Should be 'gateName.gateIndex.paramIndex' as in 'rx.0.0'
+     * @param value - value to set. Can be a number of an instance of a pattern
+     * @example q0.update('r2.2.0', $noise())
+     */ 
+    update(param: string, value: number) {
+        const [name, gateIndex, paramIndex] = param.split('.')
+        const gates = circuit.gates[this.row] || []
+        const gate = gates.filter((gate: any) => gate.name === name)[+gateIndex]
+        if (!gate) return channel.postMessage({ type: 'error', message: `Can't find gate ${name}.${gateIndex}` })
+        
+        this._stack.push(() => {
+            // get gate by id
+            // work out what it's parameter value is using handleType
+            // update the gate
+            // update messages should always be at the end of the stack
         })
         return this
     }
