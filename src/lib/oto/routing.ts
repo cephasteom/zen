@@ -25,6 +25,7 @@ export const fxChannels: Dictionary = {
 const channels: Dictionary = {}
 
 export const getChannel = (channel: number, out: number) => {
+    // if the channel strip doesn't exist, make it
     if(!channels[channel]) {
         channels[channel] = new Channel(output, out);
 
@@ -33,7 +34,11 @@ export const getChannel = (channel: number, out: number) => {
             channels[channel].routeBus(i, fxChannels[id].input)
         })
     }
+
+    // if the output is different, route it to the new output
+    channels[channel].routeOut(out)
     
+    // return the channel strip
     return channels[channel]
 }
 
