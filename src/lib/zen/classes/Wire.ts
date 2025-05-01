@@ -100,7 +100,7 @@ export class Wire {
                                 this._q, 
                                 `${this.row}`
                             // theta (0 - PI), phi (0 - 2PI), lambda (0 - 2PI)
-                            ) * (i === 0 ? 1 : 2) * Math.PI
+                            ) * (gate.params[i] === 'theta' ? 1 : 2) * Math.PI
                         }), {})
                     : [0,0,0]
             }
@@ -265,10 +265,16 @@ export class Wire {
         if (!gate) return channel.postMessage({ type: 'error', message: `Can't find gate ${name}.${gateIndex}` })
         
         this._stack.push(() => {
-            // get gate by id
-            // work out what it's parameter value is using handleType
-            // update the gate
-            // update messages should always be at the end of the stack
+            gate.options = {
+                ...gate.options,
+                params: Object.entries(gate.options.params)
+                    .reduce((acc: any, [key, val]: [string, any], i: number) => ({
+                        ...acc,
+                        [key]: i === +paramIndex
+                            ? +handleTypes(value, this._t, this._q, `${this.row}`) * (key === 'theta' ? 1 : 2) * Math.PI
+                            : val
+                    }), {})
+            }
         })
         return this
     }
