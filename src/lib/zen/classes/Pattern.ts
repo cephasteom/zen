@@ -1610,7 +1610,8 @@ s0.e.set(1)
 
     /**
      * Post the current value to the console
-     * @returns 
+     * @param prefix optional prefix to the message
+     * @example s0.p.n.set('Cmi7').print('s0.p.n')
      */
     print(prefix: string = ''): Pattern {
         this.stack.push(x => {
