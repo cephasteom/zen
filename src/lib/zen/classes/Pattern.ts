@@ -1612,9 +1612,10 @@ s0.e.set(1)
      * Post the current value to the console
      * @returns 
      */
-    print(): Pattern {
+    print(prefix: string = ''): Pattern {
         this.stack.push(x => {
-            channel.postMessage({type: 'pattern', message: x})
+            const message = prefix ? `${prefix}: ${x}` : x
+            channel.postMessage({type: 'pattern', message})
             return x
         })
         return this

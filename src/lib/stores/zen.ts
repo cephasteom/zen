@@ -47,10 +47,7 @@ initialMessages.forEach((message, index) => {
 });
 
 export const print = (type: string, message: string) => {
-    // if last message does not match, add to messages
-    const last = get(messages).slice(-1)[0];
-    if(last && last.message === message) return
-    type === 'pattern' && messages.update(arr => arr.filter(m => m.type !== 'pattern'))
+    // type === 'pattern' && messages.update(arr => arr.filter(m => m.type !== 'pattern'))
     messages.update(arr => [...arr, {type, message}]);
 }
 
