@@ -77,6 +77,7 @@ cl: 'clamp',
 c: 'coin',
 cc: 'midicc',
 co: 'cosine',
+ct: 'count',
 ctr: 'counter',
 cu: 'curve',
 d: 'div',
@@ -133,6 +134,7 @@ qr: 'qresult',
         c: 'coin',
         cc: 'midicc',
         co: 'cosine',
+        ct: 'count',
         ctr: 'counter',
         cu: 'curve',
         d: 'div',
@@ -347,6 +349,22 @@ qr: 'qresult',
      */ 
     trigger(value: patternable): Pattern {
         this.stack.push(t => this.handleTypes(value, +t, false))
+        return this
+    }
+
+    /**
+     * 
+     * @param event - a value, instance of Pattern, or Zen pattern string
+     * @returns {Pattern}
+     * @example s0.x.count(s0.e).div(16)
+s0.e.every('0?1*4|*2')
+     */
+    count(event: patternable = 1): Pattern {
+        let count = 0
+        this.stack.push(t => {
+            const shouldCount = this.handleTypes(event, +t, false)
+            return shouldCount ? count++ : count
+        })
         return this
     }
 
