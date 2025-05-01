@@ -261,12 +261,11 @@ export class Wire {
     update(param: string, value: number) {
         const [name, gateIndex, paramIndex] = param.split('.')
         const gates = circuit.gates[this.row] || []
-        const gate = gates.filter((gate: any) => gate.name === name)[+gateIndex]
+        const gate = gates.filter((gate: any) => gate && gate.name === name)[+gateIndex]
         if (!gate) return channel.postMessage({ type: 'error', message: `Can't find gate ${name}.${gateIndex}` })
         
         
         this._stack.push(() => {
-            console.log(gate.options)
             gate.options = {
                 ...gate.options,
                 params: Object.entries(gate.options.params || {})
