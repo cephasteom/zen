@@ -102,7 +102,7 @@ export class Wire {
                             // theta (0 - PI), phi (0 - 2PI), lambda (0 - 2PI)
                             ) * (gate.params[i] === 'theta' ? 1 : 2) * Math.PI
                         }), {})
-                    : [0,0,0]
+                    : {theta: 0, phi: 0, lambda: 0},
             }
 
             wires.forEach((wire: any) => {
@@ -264,10 +264,12 @@ export class Wire {
         const gate = gates.filter((gate: any) => gate.name === name)[+gateIndex]
         if (!gate) return channel.postMessage({ type: 'error', message: `Can't find gate ${name}.${gateIndex}` })
         
+        
         this._stack.push(() => {
+            console.log(gate.options)
             gate.options = {
                 ...gate.options,
-                params: Object.entries(gate.options.params)
+                params: Object.entries(gate.options.params || {})
                     .reduce((acc: any, [key, val]: [string, any], i: number) => ({
                         ...acc,
                         [key]: i === +paramIndex
