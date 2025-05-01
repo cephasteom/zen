@@ -68,23 +68,9 @@ kick.set({inst:1,cut:snare.i})
 snare.set({inst:2,cut:kick.i})
 \`\`\`
 
-### Track
-By default, each Stream sits on its own track, controlling a separate channel strip containing instruments and fx. These are created as you use them, meaning most tracks, and their associated instruments and fx, are dormant. As soon as you use more than 8 streams, particularly if you use reverb on each, things get a little expensive, especially when running Zen in the browser. To save on CPU, you can point multiple Streams at the same track, using the \`track\` parameter. For example, \`s0.set({track:0})\` and \`s1.set({track:0})\` will both play on track 0, sharing their instruments and fx.
-
-Listen to the following example then comment out the track parameter:
+### Out
+Streams are always stereo. By default, all streams are routed to the first two channels of your output device. You can route streams using the \`out\` parameter. For example, \`s0.set({out: 2})\` will route stream 0 to channels 2 and 3. Here's a shorthand way of spreading your streams across the outputs of your audio interface:
 \`\`\`js
-z.set({
-  in:0,dur:ms(4),re:0.5,rde:0.5,v:1,r:1000,co:1000,res:0.1,ra:1,
-  track:0, // comment out this line to hear the difference
-});
-  
-[s0,s1,s2,s3,s4,s5,s6,s7].map(s => {
-  s.set({vol:0.25})
-  s.p._n.set('Clyd%16..?*16')
-  s.p._harm.saw(0.5,1.5,0.25)
-  s.e.set('1*16')
-  s.m.set('1*16')
-})
+streams.slice(0,8).map((s,i) => s.set({out: i*2}))
 \`\`\`
-Without the track parameter, we hear 8 synths with 8 reverbs. With the track parameter set to the same value, all streams control the same synth and reverb, saving on CPU.
 `

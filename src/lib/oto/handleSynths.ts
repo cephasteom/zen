@@ -24,10 +24,11 @@ const makeSynth = (type: string) => {
     }
 }
 
-const connect = (synth: any, channel: number, type: string) => {
+const connect = (synth: any, channel: number, out: number, type: string) => {
     if(!synth) return
 
-    const ch = getChannel(channel)
+    // get channel if it exists, or create a new one and connect to given output
+    const ch = getChannel(channel, out)
 
     // connect synth to channel
     synth.connect(ch.input)
@@ -44,7 +45,8 @@ const connect = (synth: any, channel: number, type: string) => {
 }
 
 export const handleSynthEvent = (time: number, params: Dictionary) => {
-    const { cut, n = 60, strum = 0, inst, cutr = 10, track } = params;
+    const { cut, n = 60, strum = 0, inst, cutr = 10, track, out = 0 } = params;
+    // channel strip to use, by default, each stream has its own channel strip
     const channel = track * 2
 
     // Handle cut notes
@@ -58,14 +60,19 @@ export const handleSynthEvent = (time: number, params: Dictionary) => {
     // handle multiple insts
     [inst].flat().forEach((inst: string | number, instIndex: number) => {
         inst = typeof(inst) === 'number' ? synthTypes[inst] : inst;
+        
         // ignore instruments that don't exist
         if(!synthTypes.includes(inst)) return
     
         // Get or make synth
         const store = get(synths)
+
+        // synths are associated with a channel strip
         const synth = store[channel] && store[channel][inst] 
-            ? store[channel][inst] 
-            : connect(makeSynth(inst), channel, inst);
+            // if it exists, use it
+            ? store[channel][inst]
+            // otherwise, make a new one and connect it with the channel strip
+            : connect(makeSynth(inst), channel, out, inst);
 
         // handle multiple notes
         [n].flat().forEach((n: number, noteIndex: number) => {
@@ -79,7 +86,7 @@ export const handleSynthEvent = (time: number, params: Dictionary) => {
     })
 
     // set fx params on that channel
-    const ch = getChannel(channel)
+    const ch = getChannel(channel, out)
     ch.set(params, time);
 
     // handle buses
@@ -90,7 +97,7 @@ export const handleSynthEvent = (time: number, params: Dictionary) => {
 }
 
 export const handleSynthMutation = (time: number, params: Dictionary) => {
-    const { lag=500, track } = params;
+    const { lag=500, track, out = 0 } = params;
     const channel = track * 2
 
     const { n } = params
@@ -102,7 +109,7 @@ export const handleSynthMutation = (time: number, params: Dictionary) => {
     Object.values(store[channel] || {}).forEach((s: any) => s.mutate(ps, time, lag))
     
     // mutate fx params on that channel
-    const ch = getChannel(channel)
+    const ch = getChannel(channel, out)
     ch.mutate(ps, time, lag);
 
     // handle buses

@@ -6,16 +6,16 @@ class Channel {
     input
     _busses
     _destination
-    _channel: number
+    _out: number
     _fx: any
     _reverb: any
     _delay: any
     _fader: Gain
     _output
     
-    constructor(destination: any, channel: number) {
+    constructor(destination: any, out: number) {
         this._destination = destination
-        this._channel = channel
+        this._out = out
 
         this.input = new Gain(1)
         this._busses = Array.from({length: 4}, () => new Gain(0))
@@ -25,18 +25,18 @@ class Channel {
         this._fader.connect(this._output)
         this.input.fan(this._fader, ...this._busses)
         
-        this._output.connect(destination, 0, channel)
-        this._output.connect(destination, 1, channel+1)
+        this._output.connect(destination, 0, out)
+        this._output.connect(destination, 1, out+1)
     }
 
-    routeOut(channel: number) {
-        if(channel === this._channel) return
+    routeOut(out: number) {
+        if(out === this._out) return
 
         this._output.disconnect()
-        this._output.connect(this._destination, 0, channel)
-        this._output.connect(this._destination, 1, channel+1)
+        this._output.connect(this._destination, 0, out)
+        this._output.connect(this._destination, 1, out+1)
 
-        this._channel = channel
+        this._out = out
     }
 
     routeBus(bus: number, destination: any) {
