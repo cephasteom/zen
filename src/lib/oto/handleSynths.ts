@@ -48,7 +48,7 @@ const connect = (synth: any, channel: number, out: number, type: string) => {
 export const handleSynthEvent = (time: number, params: Dictionary) => {
     const { cut, n = 60, strum = 0, inst, cutr = 10, track, out = 0 } = params;
     // Test kabel-salat
-    runCode()
+    // runCode()
     // channel strip to use, by default, each stream has its own channel strip
     const channel = track * 2
 

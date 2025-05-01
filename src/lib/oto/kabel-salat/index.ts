@@ -1,9 +1,8 @@
 import { SalatRepl } from '@kabelsalat/web'
 
-export const ks = new SalatRepl()
-let isRunning = false
+const ks = new SalatRepl()
+
 export const runCode = (() => {
-    if (isRunning) return
     const code = `saw([55,110,220,330]).lpf( sine(.25).range(.3,.7) )
     .mix(2)
     .mul(impulse(4).perc(.1).lag(.05))
@@ -12,5 +11,4 @@ export const runCode = (() => {
     .fold().mul(.6)
     .out()`
     ks.run( code )
-    isRunning = true
 })
