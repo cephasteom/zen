@@ -279,6 +279,10 @@ canvas {
     transform: translate(1px,1px);
 }
 
+.qc-gate-params {
+    display: none;
+}
+
 .circuit__svg > svg {
     transform: scale(0.8) translate(-18px, -31px);
     transform-origin: top left;
