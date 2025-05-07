@@ -1,6 +1,6 @@
 import { writable, get } from "svelte/store";
 import { CtSynth, CtSampler, CtGranulator, CtAdditive, CtAcidSynth, CtDroneSynth, CtSubSynth, CtSuperFM, CtWavetable } from "./ct-synths"
-import { runCode } from "./kabel-salat"
+import KabelSalat from "./kabelsalat";
 import type { Dictionary } from './types'
 import { getChannel } from './routing';
 import { samples } from './stores'
@@ -9,7 +9,7 @@ const otoChannel = new BroadcastChannel('oto')
 
 const synths = writable<Dictionary>({});
 
-const synthTypes = ['synth', 'sampler', 'granular', 'additive', 'acid', 'drone', 'sub', 'superfm', 'wavetable']
+const synthTypes = ['synth', 'sampler', 'granular', 'additive', 'acid', 'drone', 'sub', 'superfm', 'wavetable', 'dsp']
 const makeSynth = (type: string) => {
     switch(type) {
         case 'synth': return new CtSynth({lite: true})
@@ -21,6 +21,7 @@ const makeSynth = (type: string) => {
         case 'sub': return new CtSubSynth()
         case 'superfm': return new CtSuperFM()
         case 'wavetable': return new CtWavetable()
+        case 'dsp': return new KabelSalat()
         default: return null
     }
 }
@@ -47,8 +48,6 @@ const connect = (synth: any, channel: number, out: number, type: string) => {
 
 export const handleSynthEvent = (time: number, params: Dictionary) => {
     const { cut, n = 60, strum = 0, inst, cutr = 10, track, out = 0 } = params;
-    // Test kabel-salat
-    // runCode()
     // channel strip to use, by default, each stream has its own channel strip
     const channel = track * 2
 
@@ -120,6 +119,12 @@ export const handleSynthMutation = (time: number, params: Dictionary) => {
         .forEach((gain: number | undefined, i: number) => {
             gain !== undefined && ch.send(i, gain, time, lag)
         })
+}
+
+export const handleStop = () => {
+    const store = get(synths)
+    // release dsp synths
+    Object.values(store).forEach((s: any) => s.dsp && s.dsp.release())
 }
 
 const fetchSamples = (url: string) => {

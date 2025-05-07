@@ -1,5 +1,5 @@
 import { handleMidiEvent, handleMidiMutation } from "./handleMidi";
-import { handleSynthEvent, handleSynthMutation } from "./handleSynths";
+import { handleSynthEvent, handleSynthMutation, handleStop } from "./handleSynths";
 import { handleFxEvent, handleFxMutation } from "./handleFx";
 import { samples } from "./stores";
 import type { Dictionary } from "./types";
@@ -8,7 +8,10 @@ const channel = new BroadcastChannel('zen');
 
 // Listen for actions from Zen
 channel.onmessage = ({data: {type, data}}) => {
-    if(type !== 'action') return
+    if(!['action', 'stop'].includes(type)) return
+
+    if(type === 'stop') return handleStop()
+
     const { time, delta, events, mutations } = data;
     // @ts-ignore
     events.forEach(({id, eparams}) => {
@@ -21,13 +24,13 @@ channel.onmessage = ({data: {type, data}}) => {
     })
 }
 
-export function handleEvent(time: number, delta: number, id: string, params: Dictionary) {
+function handleEvent(time: number, delta: number, id: string, params: Dictionary) {
     handleMidiEvent(delta, id, params);
     id.startsWith('s') && handleSynthEvent(time, params);
     id.startsWith('fx') && handleFxEvent(time, id, params);
 }
 
-export function handleMutation(time: number, delta: number, id: string, params: Dictionary) {
+function handleMutation(time: number, delta: number, id: string, params: Dictionary) {
     handleMidiMutation(delta, id, params);
     id.startsWith('s') && handleSynthMutation(time, params);
     id.startsWith('fx') && handleFxMutation(time, id, params);

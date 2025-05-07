@@ -88,7 +88,7 @@ const chords = () => post('info', 'Chords ->\n' + Object.keys(triads).join(', ')
 // @ts-ignore
 const samples = () => post('info', get(samplesMessage)); window.samples = samples;
 // @ts-ignore
-const instruments = () => post('info', 'Instruments ->\n0: synth\n1: sampler\n2: granular\n3: additive\n4: acid\n5: drone\n6: sub\n7: superfm\n8: wavetable'); window.instruments = instruments;
+const instruments = () => post('info', 'Instruments ->\n0: synth\n1: sampler\n2: granular\n3: additive\n4: acid\n5: drone\n6: sub\n7: superfm\n8: wavetable\n9: dsp'); window.instruments = instruments;
 const midi = () => post('info', `Inputs ->\n${WebMidi.inputs.reduce((str, input, i) => `${str}${i}: ${input.name},\n`, '')}Outputs ->\n${WebMidi.outputs.reduce((str, output, i) => `${str}${i}: ${output.name},\n`, '')}`);
 // @ts-ignore
 window.midi = midi;
@@ -243,6 +243,7 @@ export const stop = () => {
     counter = createCount(0)
     setT(0)
     activeMidiClock.set(false)
+    channel.postMessage({ type: 'stop' })
 }
 
 /**
