@@ -29,8 +29,8 @@ class KabelSalat {
     }
 
     cut() {
-        this.repl.stop()
-        this.code = ''
+        // this.repl.stop()
+        // this.code = ''
     }
 
     release() {
