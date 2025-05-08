@@ -8,7 +8,6 @@ class KabelSalat {
 
     constructor() {
         this.repl = new SalatRepl()
-        console.log(this.repl)
     }
 
     parse(graph: string) {
@@ -23,6 +22,7 @@ class KabelSalat {
         if (!this.code || this.code !== graph) {
             this.code = this.parse(graph)
             this.repl.run(this.code)
+            
         }
 
         
