@@ -1,13 +1,25 @@
 // @ts-ignore
-import { SalatRepl } from '@kabelsalat/web'
+// import { SalatRepl } from '@kabelsalat/web' // from node modules
+import { SalatRepl } from '/Users/peterthomas/Documents/personal-development/kabelsalat/packages/web/dist' // from local
 import type { Dictionary } from '../types'
+import { Gain, Oscillator } from 'tone'
+import type { Destination } from 'tone';
+
+export const dummy = new Oscillator({volume: -Infinity, frequency: 0, type: 'sine1'}).start();
 
 class KabelSalat {
+    input: Gain
+    output: Gain
     repl: SalatRepl
     code: string = ''
 
     constructor() {
-        this.repl = new SalatRepl()
+        this.input = new Gain(1);
+        this.output = new Gain(1);
+        dummy.connect(this.output);
+        dummy.connect(this.input);
+        // @ts-ignore
+        this.repl = new SalatRepl({outputNode: this.output._gainNode._nativeAudioNode})
     }
 
     parse(graph: string) {
@@ -22,10 +34,7 @@ class KabelSalat {
         if (!this.code || this.code !== graph) {
             this.code = this.parse(graph)
             this.repl.run(this.code)
-            
         }
-
-        
     }
 
     cut() {
@@ -38,8 +47,8 @@ class KabelSalat {
         this.code = ''
     }
     
-    connect(node: AudioNode) {
-        // TODO
+    connect(node: typeof Destination | Gain) {
+        this.output.connect(node)
     }
 
     mutate() {
