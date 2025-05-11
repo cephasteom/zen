@@ -18,28 +18,21 @@ class KabelSalat {
         this.output = new Gain(1);
         dummy.connect(this.output);
         dummy.connect(this.input);
+        
         // @ts-ignore
         this.repl = new SalatRepl({outputNode: this.output._gainNode._nativeAudioNode})
-    }
-
-    parse(graph: string) {
-        // remove .out() at end of graph and replace with an envelope and out
-        // TODO: 
-        // return graph.replace(/\.out\(\)/g, '.mul(impulse(16).perc(.01).adsr(.02,.1,.5,.01)).out()')
-        return graph
     }
 
     play(params: Dictionary = {}) {
         const { graph } = params
         if (!this.code || this.code !== graph) {
-            this.code = this.parse(graph)
+            this.code = graph
             this.repl.run(this.code)
         }
     }
 
     cut() {
-        // this.repl.stop()
-        // this.code = ''
+        // TODO
     }
 
     release() {
