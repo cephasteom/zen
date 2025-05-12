@@ -2,8 +2,8 @@
 // import { SalatRepl } from '@kabelsalat/web' // from node modules
 import { SalatRepl } from '/Users/peterthomas/Documents/personal-development/kabelsalat/packages/web/dist' // from local
 import type { Dictionary } from '../types'
-import { Gain, Oscillator } from 'tone'
-import type { Destination } from 'tone';
+import { Gain, Oscillator, type Destination } from 'tone'
+import { z } from './helpers';
 
 export const dummy = new Oscillator({volume: -Infinity, frequency: 0, type: 'sine1'}).start();
 
@@ -25,8 +25,9 @@ class KabelSalat {
 
     play(params: Dictionary = {}) {
         const { graph } = params
-        if (!this.code || this.code !== graph) {
-            this.code = graph
+        if (!this.code || this.code !== `${z}${graph}`) {
+            // prepend with helpers in z
+            this.code = `${z}${graph}`
             this.repl.run(this.code)
         }
     }
