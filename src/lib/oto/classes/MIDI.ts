@@ -121,7 +121,8 @@ class Midi {
         ccs.forEach(({cc, value}) => {
             const prev = this.history.ccs || {}
             if(prev[cc] === value) return;
-            this.history.device.sendControlChange(cc, !prev[value] ? 0 : value, options)
+            
+            this.history.device.sendControlChange(cc, value, options)
         })
 
         this.storeHistory(0, ccs);
