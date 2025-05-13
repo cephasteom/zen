@@ -2,7 +2,7 @@
     import { onMount, tick } from 'svelte';
     import { get } from 'svelte/store';
     // import P5 from 'p5-svelte'
-    // import "q5";
+    import "q5";
     // import type { p5, Sketch } from 'p5-svelte';
     import { Vector } from 'p5';
     import { min, calculateRectHeightAndWidth } from '$lib/zen/utils/utils';
