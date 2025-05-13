@@ -47,13 +47,12 @@ initialMessages.forEach((message, index) => {
 });
 
 export const print = (type: string, message: string) => {
-    // type === 'pattern' && messages.update(arr => arr.filter(m => m.type !== 'pattern'))
     messages.update(arr => [...arr, {type, message}]);
 }
 
 export const clear = () => messages.set([]);
 
-const visualsTypes = writable<string[]>(['grid', 'sphere', 'none']);
+const visualsTypes = writable<string[]>(['grid', 'sphere', 'paintbrush', 'none']);
 export const visualsData = writable<vector[]>([]);
 export const gridData = writable<number[] | number[][]>([]);
 gridData.subscribe(d => {
@@ -62,11 +61,11 @@ gridData.subscribe(d => {
         visualsTypes.set(['grid', 'none'])
     } 
     else {
-        visualsTypes.set(['grid', 'sphere', 'none'])
+        visualsTypes.set(['grid', 'sphere', 'paintbrush', 'none'])
     }
 })
 
-export const visualsType = writable<'sphere' | 'grid' | 'none'>('grid')
+export const visualsType = writable<'sphere' | 'grid' | 'paintbrush' | 'none'>('grid')
 export const toggleVisuals = () => {
     const types = get(visualsTypes)
     const currentType = get(visualsType)

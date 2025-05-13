@@ -1,6 +1,6 @@
 <script lang="ts">
     import Icon from 'svelte-awesome';
-    import { faPlay, faStop, faFloppyDisk, faCode, faGlobe, faChessBoard, faBars, faToggleOff } from '@fortawesome/free-solid-svg-icons';
+    import { faPlay, faStop, faFloppyDisk, faCode, faGlobe, faChessBoard, faBars, faPaintBrush, faToggleOff } from '@fortawesome/free-solid-svg-icons';
     import { isPlaying, showCircuit, toggleCircuit, toggleVisuals, visualsType } from '$lib/stores/zen';
     import { isApp } from '$lib/electronAPI/index';
     import Dialog from './Dialog.svelte'
@@ -10,6 +10,7 @@
     const visualsIcons = {
         'grid': faChessBoard,
         'sphere': faGlobe,
+        'paintbrush': faPaintBrush,
         'none': faToggleOff
     }
     
