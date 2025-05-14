@@ -3,7 +3,7 @@
     import { get } from 'svelte/store';
     import { Vector } from 'p5';
     import { min, calculateRectHeightAndWidth } from '$lib/zen/utils/utils';
-    import { visualsData, gridData, visualsType, s, showCircuit } from "$lib/stores/zen";
+    import { visualsData, gridData, visualsType, s, showCircuit, isPlaying } from "$lib/stores/zen";
     import type { vector as v } from '$lib/zen/types';
     import "q5";
 
@@ -13,7 +13,7 @@
     let size: number = 100;
     let container: HTMLElement;
     let handleResize: any;
-    let draw: any;
+    let handleDraw: any;
     let gridSize = 16; // TODO: replace with s
 
     // let sketch : Sketch = (p5: p5)=> {
@@ -183,6 +183,7 @@
     }
 
     async function initQ5() {
+        let i = 0
         getSize()
         // @ts-ignore
         q = await Q5.WebGPU('instance', container);
@@ -192,39 +193,39 @@
             q.resizeCanvas(size, size)
         }
 
-        q.setup = () => {
-            q.createCanvas(size,size)
-            handleResize = resize
-        };
-
-        
         q.draw = () => {
             q.clear();
-            q.circle(q.frameCount % 200, 100, 80);
+            q.circle((i % 100) * 4, 0, 80);
+            i++
         }
+
+        q.setup = () => {
+            q.createCanvas(size,size)
+            q.noLoop()
+            handleResize = resize
+        };        
     }
 
     onMount(() => {
         initQ5()
+
+        isPlaying.subscribe(isPlaying => isPlaying ? q.loop() : q.noLoop())
         const unsubscribeVisualsType = visualsType.subscribe(async () => {
             await tick()
             handleResize && handleResize()
-            draw && draw()
         });
         const unsubscribeShowCircuit = showCircuit.subscribe(async () => {
             await tick()
             handleResize && handleResize()
-            draw && draw()
         });
-        const unsubscribeVisualsData = visualsData.subscribe(async (data) => {
-            await tick()
-            draw && draw()
-        });
+        // const unsubscribeVisualsData = visualsData.subscribe(async () => {
+        //     await tick()
+        // });
 
         return () => {
             unsubscribeVisualsType()
             unsubscribeShowCircuit()
-            unsubscribeVisualsData()
+            // unsubscribeVisualsData()
         }
     })
 </script>
