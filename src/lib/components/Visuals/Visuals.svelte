@@ -1,16 +1,17 @@
 <script lang="ts">
     import { onMount, tick } from 'svelte';
     import { get } from 'svelte/store';
-    // import P5 from 'p5-svelte'
-    import "q5";
-    // import type { p5, Sketch } from 'p5-svelte';
     import { Vector } from 'p5';
     import { min, calculateRectHeightAndWidth } from '$lib/zen/utils/utils';
     import { visualsData, gridData, visualsType, s, showCircuit } from "$lib/stores/zen";
     import type { vector as v } from '$lib/zen/types';
+    import "q5";
+
+    // create instance of q5 and associate with an existing canvas
   
+    let q: any;
+    let size: number = 100;
     let container: HTMLElement;
-    // let p5Instance: p5;
     let handleResize: any;
     let draw: any;
     let gridSize = 16; // TODO: replace with s
@@ -175,20 +176,36 @@
     //     }
     // }
 
-    // async function initQ5() {
-    //     q = await Q5.WebGPU();
-    //     // TODO: create canvas and attach to existing canvas
-    //     q.setup = () => q.createCanvas(q.windowWidth, q.windowHeight);
-    //     q.draw = () => {
-    //         q.background(0.5)
-    //     }
-    // }
+    const getSize = (): void => {
+        if(!container) return
+        const dimensions = container.getBoundingClientRect()
+        size = min(dimensions.width, dimensions.height)
+    }
 
-    // const handleInstance = (e: CustomEvent<p5>) => {
-    //     p5Instance = e.detail
-    // }
+    async function initQ5() {
+        getSize()
+        // @ts-ignore
+        q = await Q5.WebGPU('instance', container);
+        
+        const resize = () => {
+            getSize()
+            q.resizeCanvas(size, size)
+        }
+
+        q.setup = () => {
+            q.createCanvas(size,size)
+            handleResize = resize
+        };
+
+        
+        q.draw = () => {
+            q.clear();
+            q.circle(q.frameCount % 200, 100, 80);
+        }
+    }
 
     onMount(() => {
+        initQ5()
         const unsubscribeVisualsType = visualsType.subscribe(async () => {
             await tick()
             handleResize && handleResize()
@@ -214,9 +231,7 @@
 
 <svelte:window on:resize={() => handleResize && handleResize()} />
 
-<div bind:this={container} class="visuals">
-    <!-- <P5 {sketch} on:instance={handleInstance} /> -->
-</div>
+<div bind:this={container} class="visuals" />
 
 <style lang="scss">
     .visuals {
