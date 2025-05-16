@@ -182,6 +182,7 @@
         size = min(dimensions.width, dimensions.height)
     }
 
+
     async function initQ5() {
         let i = 0
         getSize()
@@ -193,15 +194,55 @@
             q.resizeCanvas(size, size)
         }
 
+        const drawSquare = () => {
+            q.push();
+            q.noFill();
+            q.stroke(255,255,255);
+            q.strokeWeight(1/4);
+
+            const squareSize = (size / gridSize) * 0.9;
+            const gridTotalSize = gridSize * squareSize;
+
+            for (let i = 0; i < gridSize; i++) {
+                for (let j = 0; j < gridSize; j++) {
+                    q.rect(i * squareSize - gridTotalSize / 2, j * squareSize - gridTotalSize / 2, squareSize, squareSize);
+                }
+            }
+
+            q.pop();
+        }
+
+        const squareMode = (data: v[]) => {
+            drawSquare()
+            const squareSize = (size / gridSize) * 0.9;
+            const gridTotalSize = gridSize * squareSize;
+
+            data.forEach((p: v) => {
+                const { x, y, colour } = p
+                // Calculate the position of the square in the grid
+                const posX = Math.floor((x%1) * gridSize) * squareSize - gridTotalSize / 2;
+                const posY = Math.floor((y%1) * gridSize) * squareSize - gridTotalSize / 2;
+
+                // Draw the square
+                q.push();
+                q.fill(colour);
+                
+                q.noStroke();
+                q.rect(posX, posY, squareSize, squareSize);
+                q.pop();
+            })
+        }
+
         q.draw = () => {
-            q.clear();
-            q.circle((i % 100) * 4, 0, 80);
-            i++
+            q.clear()
+            q.background(q.color(52,73,94))
+            gridSize = get(s)
+            squareMode(get(visualsData))
         }
 
         q.setup = () => {
             q.createCanvas(size,size)
-            q.noLoop()
+            q.colorMode(q.RGB, 255)
             handleResize = resize
         };        
     }
@@ -209,7 +250,8 @@
     onMount(() => {
         initQ5()
 
-        isPlaying.subscribe(isPlaying => isPlaying ? q.loop() : q.noLoop())
+        isPlaying.subscribe(isPlaying => q && (isPlaying ? q.loop() : q.noLoop()))
+
         const unsubscribeVisualsType = visualsType.subscribe(async () => {
             await tick()
             handleResize && handleResize()
