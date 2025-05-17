@@ -1116,6 +1116,16 @@ s0.e.every('0?1*4|*2')
         })
         return this
     }
+
+    /**
+     * Pack all arguments into an array
+     * Arguments can be a value, instance of Pattern, or Zen pattern string
+     * Each will be evaluated and packed into an array
+     */
+    pack(...args: patternable[]): Pattern {
+        this.stack.push(() => args.map(x => this.handleTypes(x)).flat())
+        return this
+    }
     
     /**
      * Layer a value on top of the previous value in the pattern chain, forming an array of values
