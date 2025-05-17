@@ -178,18 +178,18 @@ export class Stream {
     }
 
     /** @hidden */
-    _q5Pattern: null | Pattern = null
+    _canvasPattern: null | Pattern = null
     /**
      * A Pattern for adding to the q5.js canvas
      * See (q5.js)[https://q5js.org/home/] for more information
      * @example
-     * s0.q5.set(circle(0,0,100))
+     * s0.canvas.set(circle(0,0,100))
      */
-    get q5() {
-        this._q5Pattern = this._q5Pattern || new Pattern(this)
-        return this._q5Pattern
+    get canvas() {
+        this._canvasPattern = this._canvasPattern || new Pattern(this)
+        return this._canvasPattern
     }
-    
+
     /**
      * The stream's index number
      * @example
