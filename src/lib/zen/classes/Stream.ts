@@ -183,7 +183,11 @@ export class Stream {
      * A Pattern for adding to the q5.js canvas
      * See (q5.js)[https://q5js.org/home/] for more information
      * @example
-     * s0.canvas.set(circle(0,0,100))
+     * s0.canvas
+        .set(`
+            background('blue');
+            circle(frameCount % canvas.w - (canvas.w / 2), 100, 80);
+        `)
      */
     get canvas() {
         this._canvasPattern = this._canvasPattern || new Pattern(this)
