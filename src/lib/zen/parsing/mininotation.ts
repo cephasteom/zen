@@ -13,6 +13,7 @@ import { ntom, repeatScale, stretchBar } from '../utils/musical'
 import { euclidean } from './euclidean-rhythms'
 import { modes } from '../data/scales'
 import { triads } from '../data/chords'
+import { c } from '$lib/stores/zen';
 
 let time = 0
 function rng() { return get(randomSequence)[time++] || Math.random() }
@@ -282,13 +283,17 @@ seedValue.subscribe(() => parse = memoize((pattern: string, _: string): string|n
 
 export const parsePattern = (pattern: string, t: number, q: number, id: string, round=true) => {
     time = 0
-    const array = parse(pattern, id)
-    let position = pos(t, q, 1, array.length)
-    let bar = Math.trunc(position)
-    // fixed to 3 decimal places to avoid floating point errors
-    let beat = Number(((position % 1) * array[bar].length).toFixed(3))
-    // if round is true, round the beat down to the nearest integer so that it always returns a value
-    // if round is false, return the value at the exact beat, or return a 0
-    beat = round ? Math.floor(beat) : beat
-    return array[bar][beat] || 0
+    try {
+        const array = parse(pattern, id)
+        let position = pos(t, q, 1, array.length)
+        let bar = Math.trunc(position)
+        // fixed to 3 decimal places to avoid floating point errors
+        let beat = Number(((position % 1) * array[bar].length).toFixed(3))
+        // if round is true, round the beat down to the nearest integer so that it always returns a value
+        // if round is false, return the value at the exact beat, or return a 0
+        beat = round ? Math.floor(beat) : beat
+        return array[bar][beat] || 0
+    } catch {
+        return pattern
+    }
 }
