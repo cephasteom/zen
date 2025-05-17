@@ -65,6 +65,8 @@ gridData.subscribe(d => {
     }
 })
 
+export const canvasData = writable<any[]>([]); // canvas data
+
 export const visualsType = writable<'sphere' | 'grid' | 'paintbrush' | 'none'>('grid')
 export const toggleVisuals = () => {
     const types = get(visualsTypes)
@@ -94,7 +96,7 @@ zenChannel.onmessage = ({data: {message, type, data}}) => {
     ['error', 'info', 'pattern', 'success', 'credit'].includes(type) && print(type, message.toString())
     
     if(type !== 'action') return
-    const { t: time, c: cycle, q: quant, s: size, delta, v, grid, gates: gs, measurements: ms, feedback: fb, inputs: ins } = data;
+    const { t: time, c: cycle, q: quant, s: size, delta, v, grid, gates: gs, measurements: ms, feedback: fb, inputs: ins, canvas } = data;
     setTimeout(() => {
         t.set(time);
         c.set(cycle);
@@ -105,5 +107,6 @@ zenChannel.onmessage = ({data: {message, type, data}}) => {
         inputs.set(ins);
         visualsData.set(v);
         gridData.set(grid);
+        canvasData.set(canvas);
     }, delta * 1000);
 }

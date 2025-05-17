@@ -290,6 +290,7 @@ export class Stream {
         const solo = !!this.solo.get(t, q, bpm)
         const e = !mute && this.e.get(t, q, bpm)
         const m = !mute && this.m.get(t, q, bpm)
+        const canvas = !mute && this.canvas.get(t, q, bpm)
         const lag = (60000/bpm)/q // ms per division
 
         // compile all parameters
@@ -314,14 +315,15 @@ export class Stream {
             mute, solo,
             x: mod(x,s), y: mod(y,s), z: mod(z,s), 
             eparams: formatEventParams(compiled, this.map), 
-            mparams: formatMutationParams(compiled, this.map, lag) 
+            mparams: formatMutationParams(compiled, this.map, lag),
+            canvas
         }
     }
 
     /** @hidden */
     reset() {
-        const { _tPattern, _xPattern, _yPattern, _zPattern, _xyzPattern, _ePattern, _mPattern, _soloPattern, _mutePattern } = this;
-        [_tPattern, _xPattern, _yPattern, _zPattern, _xyzPattern, _ePattern, _mPattern, _soloPattern, _mutePattern].forEach(p => p?.reset())
+        const { _tPattern, _xPattern, _yPattern, _zPattern, _xyzPattern, _ePattern, _mPattern, _soloPattern, _mutePattern, _canvasPattern } = this;
+        [_tPattern, _xPattern, _yPattern, _zPattern, _xyzPattern, _ePattern, _mPattern, _soloPattern, _mutePattern, _canvasPattern].forEach(p => p?.reset())
 
         Object.values(this.p).forEach(p => p.reset())
         Object.values(this.px).forEach(p => p.reset())

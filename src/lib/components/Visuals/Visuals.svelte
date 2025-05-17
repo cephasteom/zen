@@ -2,7 +2,7 @@
     import { onMount, tick } from 'svelte';
     import { get } from 'svelte/store';
     import { min, calculateRectHeightAndWidth } from '$lib/zen/utils/utils';
-    import { visualsData, gridData, visualsType, s, showCircuit, isPlaying } from "$lib/stores/zen";
+    import { visualsData, gridData, canvasData, visualsType, s, showCircuit, isPlaying } from "$lib/stores/zen";
     import type { vector as v } from '$lib/zen/types';
     import "q5";
 
@@ -33,7 +33,7 @@
             q.push();
             q.noFill();
             q.stroke(255,255,255);
-            q.strokeWeight(1/4);
+            q.strokeWeight(1/2);
 
             const squareSize = (size / gridSize) * 0.9;
             const gridTotalSize = gridSize * squareSize;
@@ -96,11 +96,25 @@
             }
         }
 
+        /**
+         * Run q5.js script
+        */
+        function runScript(script: string) {
+            try {
+                new Function(...Object.keys(q), script)(...Object.values(q));
+            } catch (error) {
+                console.error("Error in q5.js script:", error);
+            }
+        }
+
         q.draw = () => {
+            // if any stream has set a q5.js string, run it
+            if($canvasData) return runScript($canvasData)
+            
             q.clear()
             q.background(q.color(52,73,94))
             gridSize = get(s)
-            const gridDataArray: number[] | number[][] = get(gridData)
+            const gridDataArray: number[] | number[][] = $gridData
             gridDataArray && gridDataArray.length
                 ? gridMode(gridDataArray)
                 : squareMode(get(visualsData))
@@ -110,6 +124,7 @@
             q.createCanvas(size,size)
             q.colorMode(q.RGB, 255)
             handleResize = resize
+            q.noLoop()
         };        
     }
 

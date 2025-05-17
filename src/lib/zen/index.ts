@@ -200,6 +200,7 @@ export function evaluate(count: number, time: number) {
     const result = soloed.length ? soloed : compiled
     const events = result.filter(({e}) => e)
     const mutations = result.filter(({m}) => m)
+    const canvas = result.map(({canvas}) => canvas).filter(Boolean).reduce((script, string) => script + string + '\n', '')
 
     const vis = v.get(
         result
@@ -211,7 +212,7 @@ export function evaluate(count: number, time: number) {
 
     // call actions
     const delta = (time - immediate())
-    const args =  { time, delta, t, s, q, c, events, mutations, gates, measurements, feedback, inputs, v: vis, grid }
+    const args =  { time, delta, t, s, q, c, events, mutations, gates, measurements, feedback, inputs, v: vis, grid, canvas }
     channel.postMessage({ type: 'action', data: args })
 }
 
