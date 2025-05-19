@@ -200,7 +200,9 @@ export function evaluate(count: number, time: number) {
     const result = soloed.length ? soloed : compiled
     const events = result.filter(({e}) => e)
     const mutations = result.filter(({m}) => m)
-    const canvas = result.map(({canvas}) => canvas).filter(Boolean).reduce((script, string) => script + string + '\n', '')
+    const canvas = result.map(({canvas}) => canvas)
+        .filter(Boolean)
+        .reduce((script, string) => script + string + '\n', '')
 
     const vis = v.get(
         result
