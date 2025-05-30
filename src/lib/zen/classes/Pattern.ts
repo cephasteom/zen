@@ -85,10 +85,10 @@ dr: 'divr',
 e: 'else',
 eq: 'eq',
 ev: 'every',
-i: 'if',
+// i: 'if',
 intrp: 'interpolate',
 inv: 'inversion',
-in: 'invert',
+// in: 'invert',
 la: 'layer',
 mo: 'mod',
 m: 'mul',
@@ -125,54 +125,54 @@ qphs: 'qphases',
 qr: 'qresult',
     */ 
     aliases = {
-        a: 'add',
-        an: 'and',
-        b: 'bin',
-        bm: 'btms',
-        bs: 'bts',
-        cl: 'clamp',
-        c: 'coin',
-        cc: 'midicc',
-        co: 'cosine',
-        ct: 'count',
-        ctr: 'counter',
-        cu: 'curve',
-        d: 'div',
-        dr: 'divr',
-        e: 'else',
-        eq: 'eq',
-        ev: 'every',
-        i: 'if',
-        intrp: 'interpolate',
-        inv: 'inversion',
-        in: 'invert',
-        la: 'layer',
-        mo: 'mod',
-        m: 'mul',
-        n: 'not',
-        no: 'noise',
-        nb: 'ntbin',
-        o: 'or',
-        of: 'often',
-        pu: 'pulse',
-        rd: 'random',
-        ra: 'range',
-        r: 'rarely',
-        sa: 'saw',
-        se: 'seq',
-        v: 'set',
-        si: 'sine',
-        sq: 'square',
-        st: 'step',
-        so: 'sometimes',
-        s: 'sub',
-        sr: 'subr',
-        t: 'toggle',
-        tr: 'tri',
-        trig: 'trigger',
-        tu: 'tune',
-        u: 'use',
-        x: 'xor',
+        // a: 'add',
+        // an: 'and',
+        // b: 'bin',
+        // bm: 'btms',
+        // bs: 'bts',
+        // cl: 'clamp',
+        // c: 'coin',
+        // cc: 'midicc',
+        // co: 'cosine',
+        // ct: 'count',
+        // ctr: 'counter',
+        // cu: 'curve',
+        // d: 'div',
+        // dr: 'divr',
+        // e: 'else',
+        // eq: 'eq',
+        // ev: 'every',
+        // i: 'if',
+        // intrp: 'interpolate',
+        // inv: 'inversion',
+        // // in: 'invert',
+        // la: 'layer',
+        // mo: 'mod',
+        // m: 'mul',
+        // n: 'not',
+        // no: 'noise',
+        // nb: 'ntbin',
+        // o: 'or',
+        // of: 'often',
+        // pu: 'pulse',
+        // rd: 'random',
+        // ra: 'range',
+        // r: 'rarely',
+        // sa: 'saw',
+        // se: 'seq',
+        // v: 'set',
+        // si: 'sine',
+        // sq: 'square',
+        // st: 'step',
+        // so: 'sometimes',
+        // s: 'sub',
+        // sr: 'subr',
+        // t: 'toggle',
+        // tr: 'tri',
+        // trig: 'trigger',
+        // tu: 'tune',
+        // u: 'use',
+        // x: 'xor',
         qm: 'qmeasurement',
         qms: 'qmeasurements',
         qpb: 'qprobability',
@@ -490,14 +490,14 @@ s0.e.every('0?1*4|*2')
      * @param elseValue - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      */ 
-    if(ifValue: patternable = 1, elseValue: patternable = 0): Pattern {
-        this.stack.push(x => {
-            return [x].flat().every(x => !!x) 
-                ? this.handleTypes(ifValue) 
-                : this.handleTypes(elseValue) 
-        })
-        return this
-    }
+    // if(ifValue: patternable = 1, elseValue: patternable = 0): Pattern {
+    //     this.stack.push(x => {
+    //         return [x].flat().every(x => !!x) 
+    //             ? this.handleTypes(ifValue) 
+    //             : this.handleTypes(elseValue) 
+    //     })
+    //     return this
+    // }
 
     /**
      * Test if the previous value in the pattern chain is a truthy or falsy value
@@ -505,10 +505,10 @@ s0.e.every('0?1*4|*2')
      * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      */ 
-    else(value: patternable): Pattern {
-        this.stack.push(x => [x].flat().every(x => !x) ? this.handleTypes(value) : x)
-        return this
-    }
+    // else(value: patternable): Pattern {
+    //     this.stack.push(x => [x].flat().every(x => !x) ? this.handleTypes(value) : x)
+    //     return this
+    // }
 
     // MATHS
     /**

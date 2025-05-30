@@ -86,7 +86,7 @@ scope.qubits.forEach((wire: Wire) => {
 Pattern.methods().forEach((method: string) => {
     // include method prefixed with $ for backwards compatibility
     [
-        // method, 
+        method, 
         `$${method}`
     ].forEach((name: string) => {
         scope[name] = (...args: any[]) => {
@@ -118,6 +118,7 @@ code.subscribe(code => {
     scope.ms = scope.btms
     
     try {
+        console.log(Object.keys(scope))
         new Function(...Object.keys(scope), code)(...Object.values(scope));
         lastCode.set(code)
         
