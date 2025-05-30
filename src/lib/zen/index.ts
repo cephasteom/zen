@@ -118,7 +118,6 @@ code.subscribe(code => {
     scope.ms = scope.btms
     
     try {
-        console.log(Object.keys(scope))
         new Function(...Object.keys(scope), code)(...Object.values(scope));
         lastCode.set(code)
         
