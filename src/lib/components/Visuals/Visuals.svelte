@@ -11,6 +11,7 @@
     let container: HTMLElement;
     let handleResize: any;
     let gridSize = 16;
+    let lastScript: string;
 
     const getSize = (): void => {
         if(!container) return
@@ -100,8 +101,11 @@
          * Run q5.js script
         */
         function runScript(script: string) {
+            // console.log(lastScript === script)
+            if (lastScript === script) return
             try {
                 new Function(...Object.keys(q), script)(...Object.values(q));
+                lastScript = script
             } catch (error) {
                 console.error("Error in q5.js script:", error);
             }
@@ -111,6 +115,7 @@
             // if any stream has set a q5.js string, run it
             if($canvasData) return runScript($canvasData)
             
+            console.log('draw')
             q.clear()
             q.background(q.color(52,73,94))
             gridSize = get(s)
