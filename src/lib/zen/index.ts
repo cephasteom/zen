@@ -67,11 +67,28 @@ const scope: any = {
 };
 
 /**
+ * Add all streams and fxstreams to the scope object, so they can be used in the code editor
+ */
+[...scope.streams, ...scope.fxstreams].forEach((stream: Stream) => {
+    scope[stream.id] = stream;
+})
+
+/**
+ * Add all qubits to the scope object, so they can be used in the code editor
+ */
+scope.qubits.forEach((wire: Wire) => {
+    scope[wire._id] = wire;
+})
+
+/**
  * Add all pattern methods to the window object, so they can be used to spawn new patterns
  */
 Pattern.methods().forEach((method: string) => {
     // include method prefixed with $ for backwards compatibility
-    [method, `$${method}`].forEach((name: string) => {
+    [
+        // method, 
+        `$${method}`
+    ].forEach((name: string) => {
         scope[name] = (...args: any[]) => {
             const p = new Pattern()
             return p.call(method as PatternMethod, ...args)
@@ -123,36 +140,37 @@ code.subscribe(code => {
  * This is the central function that is evaluated on every loop iteration
  */
 export function evaluate(count: number, time: number) {
-    const t = scope.z.getTime(count)
-    const s = scope.z.s
-    const q = scope.z.q
-    const c = scope.z.c
+    const { z, qubits } = scope
+    const t = z.getTime(count)
+    const s = z.s
+    const q = z.q
+    const c = z.c
 
     setQ(q)
 
     // get seed value
-    const seedValue = scope.z.getSeed()
+    const seedValue = z.getSeed()
     seedValue !== null && seed(seedValue)
 
     // get latency value
-    const latencyValue = scope.z.getLatency()
+    const latencyValue = z.getLatency()
     latencyValue !== null && (context.lookAhead = Math.floor(latencyValue/1000))
     
     // update loop and transport
-    loop.interval = `${scope.z.q}n`
-    const newBpm = scope.z.getBpm()
+    loop.interval = `${z.q}n`
+    const newBpm = z.getBpm()
     if(newBpm !== getBpm()) {
         Transport.bpm.setValueAtTime(newBpm, time)
         bpm.set(newBpm)
     }
-    Transport.swing = scope.z.getSwing()
+    Transport.swing = z.getSwing()
     // @ts-ignore
     Transport.swingSubdivision = `${z.getSwingN()}n`
 
     // build gates
-    scope.qubits.forEach((wire: Wire) => wire.build(t, q))
+    qubits.forEach((wire: Wire) => wire.build(t, q))
     // routing for how qubits should feed their outputs back into the inputs, if at all
-    const feedback = scope.qubits.map((wire: Wire) => wire.feedback)
+    const feedback = qubits.map((wire: Wire) => wire.feedback)
     const inputs = feedback.map((i: number) => i > -1 && i < scope.measurements.length 
         ? scope.measurements[i]
         : 0
@@ -165,7 +183,7 @@ export function evaluate(count: number, time: number) {
     }
 
     // compile parameters, events and mutations
-    const compiled = [...scope.streams, ...scope.fxstreams].map(stream => stream.get(t, q, s, getBpm(), scope.z))
+    const compiled = [...scope.streams, ...scope.fxstreams].map(stream => stream.get(t, q, s, getBpm(), z))
     const soloed = compiled.filter(({solo}) => solo)
     const result = soloed.length ? soloed : compiled
     const events = result.filter(({e}) => e)
@@ -177,9 +195,9 @@ export function evaluate(count: number, time: number) {
             .map(({x,y,z,id,e,m}) => ({x,y,z,id,e:!!e, m:!!m}))
     )
 
-    const grid = scope.z.grid.get(t, q)
-
     const { measurements } = scope
+
+    const grid = z.grid.get(t, q)
 
     // call actions
     const delta = (time - immediate())
