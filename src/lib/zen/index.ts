@@ -11,7 +11,7 @@ import { Visuals } from './classes/Visuals';
 import { Wire } from './classes/Wire';
 import { createCount } from './utils/utils';
 import { helpers } from './utils/helpers';
-import { print as post, clear } from "$lib/stores/zen";
+import { print, clear } from "$lib/stores/zen";
 import { nStreams, bpm, getBpm, clockSource, midiClockDevice, midiClockConfig, getClockSource, activeMidiClock, setQ, mode, midiTriggerDevice, getMode, setT } from "./stores";
 import { modes } from './data/scales'
 import { triads } from './data/chords'
@@ -35,117 +35,87 @@ export const setCode = (str: string) => code.set(str + '\n' + Date.now());
 // Midi Triggers
 initMidiTriggers()
 
-/**
- * Add classes and methods to the window object to be accessed in the code editor
- */
 // @ts-ignore
-const z = new Zen(); window.z = z;
-// @ts-ignore
-const streams: Stream[] = Array(get(nStreams)).fill(0).map((_, i) => new Stream('s' + i)); window.streams = streams;
-// @ts-ignore
-streams.forEach(stream => window[stream.id] = stream)
-// @ts-ignore
-const fxstreams: Stream[] = Array(2).fill(0).map((_, i) => new Stream('fx' + i)); window.fxstreams = fxstreams;
-// @ts-ignore
-fxstreams.forEach(stream => window[stream.id] = stream)
-// @ts-ignore
-const qubits: Wire[] = Array(get(nStreams)).fill(0).map((_, i) => new Wire('q' + i)); window.qubits = qubits;
-// @ts-ignore
-qubits.forEach(wire => window[wire._id] = wire)
+const { bts: initBts, btms: initBtms, clamp, seed } = helpers;
 
-// @ts-ignore
-const v = new Visuals(); window.v = v;
-// @ts-ignore
-const d = new Data(); window.d = d;
+/**
+ * All classes and methods added to the scope object are made available in the code editor
+ */
+const scope: any = {
+    z: new Zen(),
+    streams: Array(get(nStreams)).fill(0).map((_, i) => new Stream('s' + i)),
+    fxstreams: Array(2).fill(0).map((_, i) => new Stream('fx' + i)),
+    qubits: Array(get(nStreams)).fill(0).map((_, i) => new Wire('q' + i)),
+    v: new Visuals(),
+    d: new Data(),
+    print: (message: any) => print('info', message.toString()),
+    scales: () => print('info', 'Scales ->\n' + Object.keys(modes).join(', ')),
+    chords: () => print('info', 'Chords ->\n' + Object.keys(triads).join(', ')),
+    samples: () => print('info', get(samplesMessage)),
+    instruments: () => print('info', 'Instruments ->\n0: synth\n1: sampler\n2: granular\n3: additive\n4: acid\n5: drone\n6: sub\n7: superfm\n8: wavetable'),
+    midi: () => print('info', `Inputs ->\n${WebMidi.inputs.reduce((str, input, i) => `${str}${i}: ${input.name},\n`, '')}Outputs ->\n${WebMidi.outputs.reduce((str, output, i) => `${str}${i}: ${output.name},\n`, '')}`),
+    clear,
+    loadSamples,
+    clamp, 
+    seed,
+    exportCircuit: (format: string = 'qasm') => {
+        return format === 'qasm'
+            ? circuit.exportToQASM()
+            : circuit.exportToQiskit()
+    },
+    measurements: [],
+};
 
 /**
  * Add all pattern methods to the window object, so they can be used to spawn new patterns
  */
 Pattern.methods().forEach((method: string) => {
-    // @ts-ignore
-    const value = (...args: any[]) => {
-        const p = new Pattern()
-        return p.call(method as PatternMethod, ...args)
-    }
-
-    Object.defineProperty(window, `$${method}`, {
-        value,            // Assign the function as the value
-        writable: true,         // Prevents it from being overwritten
-        enumerable: false,       // It won't show up in for...in loops
-        configurable: false      // Prevents the property from being deleted or reconfigured
-    });
+    // include method prefixed with $ for backwards compatibility
+    [method, `$${method}`].forEach((name: string) => {
+        scope[name] = (...args: any[]) => {
+            const p = new Pattern()
+            return p.call(method as PatternMethod, ...args)
+        }
+    })
 })
-
-/**
- * Add helper functions to the window object
- */
-// @ts-ignore
-const print = (message: any) => post('info', message.toString()); window.print = print;
-// @ts-ignore
-const scales = () => post('info', 'Scales ->\n' + Object.keys(modes).join(', ')); window.scales = scales;
-// @ts-ignore
-const chords = () => post('info', 'Chords ->\n' + Object.keys(triads).join(', ')); window.chords = chords;
-// @ts-ignore
-const samples = () => post('info', get(samplesMessage)); window.samples = samples;
-// @ts-ignore
-const instruments = () => post('info', 'Instruments ->\n0: synth\n1: sampler\n2: granular\n3: additive\n4: acid\n5: drone\n6: sub\n7: superfm\n8: wavetable'); window.instruments = instruments;
-const midi = () => post('info', `Inputs ->\n${WebMidi.inputs.reduce((str, input, i) => `${str}${i}: ${input.name},\n`, '')}Outputs ->\n${WebMidi.outputs.reduce((str, output, i) => `${str}${i}: ${output.name},\n`, '')}`);
-// @ts-ignore
-window.midi = midi;
-// @ts-ignore
-window.clear = clear;
-// @ts-ignore
-window.loadSamples = loadSamples;
-// @ts-ignore
-const { bts: initBts, btms: initBtms, clamp, seed } = helpers;
-
-// let printCircuit: string = ''
-const exportCircuit = (format: string = 'qasm') => {
-    return format === 'qasm'
-        ? circuit.exportToQASM()
-        : circuit.exportToQiskit()
-} 
-// @ts-ignore
-window.exportCircuit = exportCircuit;
-let measurements: number[] = []
 
 /**
  * Whenever new code is received via the code editor, reset and re-evaluate the code
  */
 code.subscribe(code => {
-    streams.forEach(stream => stream.reset())
-    fxstreams.forEach(stream => stream.reset())
-    qubits.forEach(wire => wire.clear())
-    z.reset()
-    z.resetGlobals()
+    scope.streams.forEach((stream: Stream) => stream.reset())
+    scope.fxstreams.forEach((stream: Stream) => stream.reset())
+    scope.qubits.forEach((wire: Wire) => wire.clear())
+    scope.z.reset()
+    scope.z.resetGlobals()
     circuit.clear()
     circuit.numQubits = 1
 
     // global variables
-    let { q, s, c } = z
-    const bts = initBts(getBpm())
-    const btms = initBtms(getBpm())
-    const ms = btms
+    scope.q = scope.z.q
+    scope.s = scope.z.s
+    scope.c = scope.z.c
+
+    scope.bts = initBts(getBpm())
+    scope.btms = initBtms(getBpm())
+    scope.ms = scope.btms
     
     try {
-        // prevent unused variable errors
-        [bts, btms, ms, clamp, seed];
-        
-        eval(code)
+        new Function(...Object.keys(scope), code)(...Object.values(scope));
         lastCode.set(code)
         
         // update clock source and midi clock
-        const { src = 'internal', device = 0, srcBpm = 120, relativeBpm = false } = z.getClock()
+        const { src = 'internal', device = 0, srcBpm = 120, relativeBpm = false } = scope.z.getClock()
         clockSource.set(src === 'midi' ? 'midi' : 'internal')
         midiClockDevice.set(device)
         midiClockConfig.set({ srcBpm, relativeBpm })
 
-        const { trigger = 'division', device: midiDevice = 0 } = z.getMode()
+        const { trigger = 'division', device: midiDevice = 0 } = scope.z.getMode()
         mode.set(trigger)
         midiTriggerDevice.set(midiDevice)
     } catch (e: any) {
-        post('error', e.message)
-        eval(get(lastCode))
+        print('error', e.message)
+        new Function(...Object.keys(scope), get(lastCode))(...Object.values(scope));
     }
 })
 
@@ -153,61 +123,63 @@ code.subscribe(code => {
  * This is the central function that is evaluated on every loop iteration
  */
 export function evaluate(count: number, time: number) {
-    const t = z.getTime(count)
-    const s = z.s
-    const q = z.q
-    const c = z.c
+    const t = scope.z.getTime(count)
+    const s = scope.z.s
+    const q = scope.z.q
+    const c = scope.z.c
 
     setQ(q)
 
     // get seed value
-    const seedValue = z.getSeed()
+    const seedValue = scope.z.getSeed()
     seedValue !== null && seed(seedValue)
 
     // get latency value
-    const latencyValue = z.getLatency()
+    const latencyValue = scope.z.getLatency()
     latencyValue !== null && (context.lookAhead = Math.floor(latencyValue/1000))
     
     // update loop and transport
-    loop.interval = `${z.q}n`
-    const newBpm = z.getBpm()
+    loop.interval = `${scope.z.q}n`
+    const newBpm = scope.z.getBpm()
     if(newBpm !== getBpm()) {
         Transport.bpm.setValueAtTime(newBpm, time)
         bpm.set(newBpm)
     }
-    Transport.swing = z.getSwing()
+    Transport.swing = scope.z.getSwing()
     // @ts-ignore
     Transport.swingSubdivision = `${z.getSwingN()}n`
 
     // build gates
-    qubits.forEach(wire => wire.build(t, q))
+    scope.qubits.forEach((wire: Wire) => wire.build(t, q))
     // routing for how qubits should feed their outputs back into the inputs, if at all
-    const feedback = qubits.map(wire => wire.feedback)
-    const inputs = feedback.map((i) => i > -1 && i < measurements.length 
-        ? measurements[i]
+    const feedback = scope.qubits.map((wire: Wire) => wire.feedback)
+    const inputs = feedback.map((i: number) => i > -1 && i < scope.measurements.length 
+        ? scope.measurements[i]
         : 0
     )
     
     const gates = circuit.gates
     if(gates.flat().length) {
         circuit.run(inputs)
-        measurements = circuit.measureAll()
+        scope.measurements = circuit.measureAll()
     }
 
     // compile parameters, events and mutations
-    const compiled = [...streams, ...fxstreams].map(stream => stream.get(t, q, s, getBpm(), z))
+    const compiled = [...scope.streams, ...scope.fxstreams].map(stream => stream.get(t, q, s, getBpm(), scope.z))
     const soloed = compiled.filter(({solo}) => solo)
     const result = soloed.length ? soloed : compiled
     const events = result.filter(({e}) => e)
     const mutations = result.filter(({m}) => m)
 
-    const vis = v.get(
+    const vis = scope.v.get(
         result
             .filter(({id}) => id.startsWith('s'))
             .map(({x,y,z,id,e,m}) => ({x,y,z,id,e:!!e, m:!!m}))
     )
 
-    const grid = z.grid.get(t, q)
+    const grid = scope.z.grid.get(t, q)
+
+    const { measurements } = scope
 
     // call actions
     const delta = (time - immediate())
@@ -223,7 +195,7 @@ const loop = new Loop(time => {
     const count = counter()
     setT(count)
     getMode() === 'division' && evaluate(count, time)
-}, `${z.q}n`).start(0)
+}, `${scope.z.q}n`).start(0)
 
 /**
  * Pay and stop functions
@@ -251,7 +223,7 @@ export const stop = () => {
 export async function startAudio() {
     await start()    
     console.log('started audio')
-    post('success', 'Started audio')
+    print('success', 'Started audio')
     window.removeEventListener('keydown', startAudio)
     window.removeEventListener('click', startAudio)
     window.removeEventListener('touchstart', startAudio)
