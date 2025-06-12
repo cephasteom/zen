@@ -516,7 +516,7 @@ s0.e.every('0?1*4|*2')
      * Compare the previous value in the pattern chain with a value.
      * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
-     * @example s0.e.every(3).or(t%2)
+     * @example s0.e.every(3).or(t().mod(2))
      */ 
     or(value: patternable): Pattern {
         this.stack.push(x => handlePolyphony(x, x => x || +this.handleTypes(value, this._t, false)))
@@ -527,7 +527,7 @@ s0.e.every('0?1*4|*2')
      * Compare the previous value in the pattern chain with a value.
      * @param value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
-     * @example s0.e.every(3).xor(t%2)
+     * @example s0.e.every(3).xor(t().mod(2))
      */ 
     xor(value: patternable): Pattern {
         this.stack.push(x => handlePolyphony(x, x => x ^ +this.handleTypes(value, this._t, false)))
@@ -930,7 +930,7 @@ s0.e.every('0?1*4|*2')
     /**
      * Convert the previous value from divisions of a bar to seconds, scaling by bpm
      * @returns {Pattern}
-     * @example s0.p.set(q).ttms()
+     * @example s0.p.q().ttms()
      */
     ttms(): Pattern {
         this.fn(x => handlePolyphony(x, x =>  x * (((60000/this._bpm) * 4) / this._q)))
@@ -953,7 +953,6 @@ s0.e.every('0?1*4|*2')
      * @param n inversion
      * @returns {Pattern}
      * @example s0.p.n.set('Cmi7').inversion(1)
-     * @example s0.p.n.set('Cmi7').$inversion.range(0,8,1)
      */ 
     inversion(n: patternable): Pattern {
         this.stack.push((x: patternValue) => {
@@ -1250,7 +1249,7 @@ s0.e.every('0?1*4|*2')
      * @returns {Pattern}
      * @example s0.set({inst: 1})
 s0.p.bank.set(['bd', 'sd', 'hh']).at(
-  $markov(
+  markov(
     [[0,0.1,0.9], [0.25,0.1,0.9], [0.5,0.25,0.5]]),
     64,
     0.25
@@ -1444,7 +1443,7 @@ s0.e.set(1)
      * @returns {Pattern}
      * @param hits number of measurements to take before looping. Default is 0 (no looping). Max 256.
      * @param repeats how many times the loop should repeat before being regenerated. Default is 0 (infinite).
-     * @example s0.p.amps.amplitudes().print()
+     * @example s0.p.probs.qprobabilities().print()
      */ 
     qprobabilities(hits: patternable = 0, repeats: patternable = 0): Pattern {
         this.stack.push((t: patternValue) => {
