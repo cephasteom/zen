@@ -48,8 +48,8 @@ const create = size => Array(size).fill()
   .map(() => Array(size).fill()
   .map(() => Math.floor(Math.random() * 2)));
 
-// Count the neighbours of a cell
-const count = (grid, x, y) => [-1, 0, 1].flatMap(dx =>
+// count the neighbours of a cell
+const countNeighbours = (grid, x, y) => [-1, 0, 1].flatMap(dx =>
     [-1, 0, 1].map(dy => {
       if (dx == 0 && dy == 0) return 0;
       const newX = (x + dx + z.s) % z.s;
@@ -68,7 +68,7 @@ const shouldLive = (cell, neighbours) => (cell
 // generate next state of grid
 const next = grid => grid.map((row, x) =>
   row.map((cell, y) => 
-    shouldLive(cell, count(grid, x, y))
+    shouldLive(cell, countNeighbours(grid, x, y))
   ));
 
 // use the persist method to change previous iteration

@@ -29,7 +29,7 @@ s0.e.every(4)
 \`\`\`
 
 \`\`\`js
-s0.e.every(4).or($every(3))
+s0.e.every(4).or(every(3))
 \`\`\`
 
 \`\`\`js
@@ -71,6 +71,6 @@ snare.set({inst:2,cut:kick.i})
 ### Out
 Streams are always stereo. By default, all streams are routed to the first two channels of your output device. You can route streams using the \`out\` parameter. For example, \`s0.set({out: 2})\` will route stream 0 to channels 2 and 3. Here's a shorthand way of spreading your streams across the outputs of your audio interface:
 \`\`\`js
-streams.slice(0,8).map((s,i) => s.set({out: i*2}))
+streams.slice(0,8).map((stream,i) => stream.set({out: i*2}))
 \`\`\`
 `

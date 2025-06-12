@@ -68,7 +68,7 @@ q0.u3([s0.y,s0.x,s0.z])
 \`\`\`
 This will apply a U3 gate to qubit 0 with the parameters set by the patterns \`.x\`, \`.y\`, and \`.z\` of stream 0. Or, you can use any custom pattern defined in the usual way. For example:
 \`\`\`js
-q0.u3([$sine(),$saw(),$noise()])
+q0.u3([sine(),saw(),noise()])
 \`\`\`
 
 ### Gate position
@@ -181,8 +181,8 @@ Using the grid can be useful for seeing what is happening here, especially when 
 \`\`\`js
 z.grid.set(qpbs().fn(a=>[a]))
 
-q0.rx($saw())
-q1.rx($saw(1,0))
+q0.rx(saw())
+q1.rx(saw(1,0))
 q2.h()
 \`\`\`
 
@@ -249,7 +249,7 @@ Use \`exportCircuit()\` to export the current circuit as QASM or Qiskit string. 
 \`\`\`js
 q0.h()
 
-print(exportCircuit('qasm))
-print(exportCircuit('qiskit))
+print(exportCircuit('qasm'))
+print(exportCircuit('qiskit'))
 \`\`\`
 `

@@ -30,9 +30,9 @@ s0.y.saw(s0.x,1) // move the stream up and down with a saw wave, scales by the x
 s0.e.set(s0.x).gt(0.5) // trigger an event when the x position is greater than 0.5
 \`\`\`
 
-All Pattern methods exist in the global scope, prefixed by $, allowing you to spawn new Patterns. For example:
+All Pattern methods exist in the global scope, which allows you to nest Patterns in other Patterns. For example:
 \`\`\`js
-s0.x.sine($saw().mul($noise()),1)
+s0.x.sine(saw().mul(noise()),1)
 s0.e.set(1)
 \`\`\`
 
