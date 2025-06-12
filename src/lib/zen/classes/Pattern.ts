@@ -363,7 +363,7 @@ s0.e.every('0?1*4|*2')
         const st = this._state
         this.set(x)
             .fn(x => st.toggle = x ? !st.toggle : st.toggle)
-            .if()
+            .ifelse()
         return this
     }
 
@@ -394,25 +394,14 @@ s0.e.every('0?1*4|*2')
      * @param elseValue - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      */ 
-    // if(ifValue: patternable = 1, elseValue: patternable = 0): Pattern {
-    //     this.stack.push(x => {
-    //         return [x].flat().every(x => !!x) 
-    //             ? this.handleTypes(ifValue) 
-    //             : this.handleTypes(elseValue) 
-    //     })
-    //     return this
-    // }
-
-    /**
-     * Test if the previous value in the pattern chain is a truthy or falsy value
-     * If false return new value, if true, simply pass on the previous value
-     * @param  value - a value, instance of Pattern, or Zen pattern string
-     * @returns {Pattern}
-     */ 
-    // else(value: patternable): Pattern {
-    //     this.stack.push(x => [x].flat().every(x => !x) ? this.handleTypes(value) : x)
-    //     return this
-    // }
+    ifelse(ifValue: patternable = 1, elseValue: patternable = 0): Pattern {
+        this.stack.push(x => {
+            return [x].flat().every(x => !!x) 
+                ? this.handleTypes(ifValue) 
+                : this.handleTypes(elseValue) 
+        })
+        return this
+    }
 
     // MATHS
     /**
@@ -814,7 +803,7 @@ s0.e.every('0?1*4|*2')
      * Test if the previous value in the pattern chain is greater than a value.
      * @param value value to test against
      * @returns {Pattern}
-     * @example s0.p.n.noise(0,1).gt(0.3).if(60, 72)
+     * @example s0.p.n.noise(0,1).gt(0.3).ifelse(60, 72)
      */ 
     gt(value: patternable): Pattern {
         this.stack.push(x => {
@@ -841,7 +830,7 @@ s0.e.every('0?1*4|*2')
      * Test if the previous value in the pattern chain is greater than or equal to a value.
      * @param value value to test against
      * @returns {Pattern}
-     * @example s0.p.n.noise(0,1).gte(0.3).if(60, 72)
+     * @example s0.p.n.noise(0,1).gte(0.3).ifelse(60, 72)
      */ 
     gte(value: patternable): Pattern {
         this.stack.push(x => {

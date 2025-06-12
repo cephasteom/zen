@@ -3247,84 +3247,6 @@
 							]
 						},
 						{
-							"id": 142,
-							"name": "else",
-							"variant": "declaration",
-							"kind": 2048,
-							"flags": {},
-							"sources": [
-								{
-									"fileName": "classes/Pattern.ts",
-									"line": 508,
-									"character": 4,
-									"url": "https://github.com/cephasteom/zen-3/blob/997cf28/src/lib/zen/classes/Pattern.ts#L508"
-								}
-							],
-							"signatures": [
-								{
-									"id": 143,
-									"name": "else",
-									"variant": "signature",
-									"kind": 4096,
-									"flags": {},
-									"comment": {
-										"summary": [
-											{
-												"kind": "text",
-												"text": "Test if the previous value in the pattern chain is a truthy or falsy value\nIf false return new value, if true, simply pass on the previous value"
-											}
-										],
-										"blockTags": [
-											{
-												"tag": "@returns",
-												"content": []
-											}
-										]
-									},
-									"sources": [
-										{
-											"fileName": "classes/Pattern.ts",
-											"line": 508,
-											"character": 4,
-											"url": "https://github.com/cephasteom/zen-3/blob/997cf28/src/lib/zen/classes/Pattern.ts#L508"
-										}
-									],
-									"parameters": [
-										{
-											"id": 144,
-											"name": "value",
-											"variant": "param",
-											"kind": 32768,
-											"flags": {},
-											"comment": {
-												"summary": [
-													{
-														"kind": "text",
-														"text": "a value, instance of Pattern, or Zen pattern string"
-													}
-												]
-											},
-											"type": {
-												"type": "reference",
-												"target": {
-													"sourceFileName": "src/lib/zen/types.ts",
-													"qualifiedName": "patternable"
-												},
-												"name": "patternable",
-												"package": "zen-3"
-											}
-										}
-									],
-									"type": {
-										"type": "reference",
-										"target": 2,
-										"name": "Pattern",
-										"package": "zen-3"
-									}
-								}
-							]
-						},
-						{
 							"id": 272,
 							"name": "eq",
 							"variant": "declaration",
@@ -4048,7 +3970,7 @@
 						},
 						{
 							"id": 138,
-							"name": "if",
+							"name": "ifelse",
 							"variant": "declaration",
 							"kind": 2048,
 							"flags": {},
@@ -4063,7 +3985,7 @@
 							"signatures": [
 								{
 									"id": 139,
-									"name": "if",
+									"name": "ifelse",
 									"variant": "signature",
 									"kind": 4096,
 									"flags": {},
