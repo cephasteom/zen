@@ -200,7 +200,7 @@ export class Pattern implements Dictionary {
     /**
      * Return the current cycle
      * @example 
-     * s0.e.v(1)
+     * s0.e.set(1)
      * s0.x.c()
      * @returns {Pattern}
      */

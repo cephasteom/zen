@@ -38,6 +38,8 @@ initMidiTriggers()
 // @ts-ignore
 const { bts: initBts, btms: initBtms, clamp, seed } = helpers;
 
+let measurements: number[] = []
+
 /**
  * All classes and methods added to the scope object are made available in the code editor
  */
@@ -63,7 +65,6 @@ const scope: any = {
             ? circuit.exportToQASM()
             : circuit.exportToQiskit()
     },
-    measurements: [],
 };
 
 /**
@@ -141,12 +142,8 @@ code.subscribe(code => {
  */
 export function evaluate(count: number, time: number) {
     const { z, qubits } = scope
-    const t = z.getTime(count)
-    const s = z.s
-    const q = z.q
-    const c = z.c
 
-    setQ(q)
+    setQ(z.q)
 
     // get seed value
     const seedValue = z.getSeed()
@@ -168,22 +165,30 @@ export function evaluate(count: number, time: number) {
     Transport.swingSubdivision = `${z.getSwingN()}n`
 
     // build gates
-    qubits.forEach((wire: Wire) => wire.build(t, q))
+    qubits.forEach((wire: Wire) => wire.build(z.getTime(count), z.q))
     // routing for how qubits should feed their outputs back into the inputs, if at all
     const feedback = qubits.map((wire: Wire) => wire.feedback)
-    const inputs = feedback.map((i: number) => i > -1 && i < scope.measurements.length 
-        ? scope.measurements[i]
+    const inputs = feedback.map((i: number) => i > -1 && i < measurements.length 
+        ? measurements[i]
         : 0
     )
     
     const gates = circuit.gates
     if(gates.flat().length) {
         circuit.run(inputs)
-        scope.measurements = circuit.measureAll()
+        measurements = circuit.measureAll()
     }
 
     // compile parameters, events and mutations
-    const compiled = [...scope.streams, ...scope.fxstreams].map(stream => stream.get(t, q, s, getBpm(), z))
+    const compiled = [...scope.streams, ...scope.fxstreams]
+        .map(stream => stream.get(
+            z.getTime(count), 
+            z.q, 
+            z.s, 
+            getBpm(), 
+            z
+        )
+    )
     const soloed = compiled.filter(({solo}) => solo)
     const result = soloed.length ? soloed : compiled
     const events = result.filter(({e}) => e)
@@ -195,13 +200,26 @@ export function evaluate(count: number, time: number) {
             .map(({x,y,z,id,e,m}) => ({x,y,z,id,e:!!e, m:!!m}))
     )
 
-    const { measurements } = scope
-
-    const grid = z.grid.get(t, q)
+    const grid = z.grid.get(z.getTime(count), z.q)
 
     // call actions
     const delta = (time - immediate())
-    const args =  { time, delta, t, s, q, c, events, mutations, gates, measurements, feedback, inputs, v: vis, grid }
+    const args =  { 
+        time, 
+        delta, 
+        t: z.getTime(count), 
+        s: z.s, 
+        q: z.q, 
+        c: z.c, 
+        events, 
+        mutations, 
+        gates, 
+        measurements, 
+        feedback, 
+        inputs, 
+        v: vis, 
+        grid 
+    }
     channel.postMessage({ type: 'action', data: args })
 }
 
