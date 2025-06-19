@@ -1,9 +1,9 @@
 <script lang="ts">
     import { onMount, tick } from 'svelte';
     import { get } from 'svelte/store';
-    import P5 from 'p5-svelte'
-    import type { p5, Sketch } from 'p5-svelte';
-    import { Vector } from 'p5';
+    import P5Svelte from 'p5-svelte'
+    import type { Sketch } from 'p5-svelte';
+    import p5 from 'p5';
     import { min, calculateRectHeightAndWidth } from '$lib/zen/utils/utils';
     import { visualsData, gridData, visualsType, s, showCircuit } from "$lib/stores/zen";
     import type { vector as v } from '$lib/zen/types';
@@ -76,7 +76,7 @@
             data.forEach((p: v) => {
                 const { x: phi, y: theta, z: l, colour } = p
                 const lambda = Math.abs(1 - l)
-                const vector = Vector.fromAngles(
+                const vector = p5.Vector.fromAngles(
                     p5.radians(theta * 180), 
                     p5.radians(phi * 360),
                     radius * lambda
@@ -205,7 +205,7 @@
 <svelte:window on:resize={() => handleResize && handleResize()} />
 
 <div bind:this={container} class="visuals">
-    <P5 {sketch} on:instance={handleInstance} />
+    <P5Svelte {sketch} on:instance={handleInstance} />
 </div>
 
 <style lang="scss">

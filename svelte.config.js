@@ -1,4 +1,3 @@
-import preprocess from "svelte-preprocess";
 import { vitePreprocess } from "@sveltejs/kit/vite";
 import adapter from "@sveltejs/adapter-auto"; // original sveltejs adapter
 // import adapter from "@ptkdev/sveltekit-electron-adapter"; // for when you want to build an electron app
