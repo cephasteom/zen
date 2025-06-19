@@ -1536,7 +1536,7 @@ s0.e.set(1)
             const length = circuit.numAmplitudes()
             const i = +this.handleTypes(state) % length
             const loop = clamp(+this.handleTypes(hits), 0, 256)
-            const current = +pow(abs(round(circuit.state[i] || complex(0, 0), 14)), 2)
+            const current = Number(pow(abs(round(circuit.state[i] || complex(0, 0), 14)), 2))
             const shouldRepeat = +repeats > 0 
                 ? +t%(+repeats * loop) === 0
                 : false
@@ -1559,7 +1559,7 @@ s0.e.set(1)
             const length = circuit.numAmplitudes()
             const current =  Array.from({length}, (_, i) => {
                 const state = round(circuit.state[i] || complex(0, 0), 14);
-                const result = +pow(abs(state), 2)
+                const result = Number(pow(abs(state), 2))
                 return parseFloat(result.toFixed(5))
             })
             const shouldRepeat = +repeats > 0 
