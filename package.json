@@ -23,7 +23,7 @@
 		"fs": "^0.0.1-security",
 		"monaco-editor": "^0.52.2",
 		"sass": "^1.63.6",
-		"svelte": "^3.54.0",
+		"svelte": "^5.34.7",
 		"svelte-check": "^3.0.1",
 		"tslib": "^2.4.1",
 		"typedoc": "^0.28.5",
