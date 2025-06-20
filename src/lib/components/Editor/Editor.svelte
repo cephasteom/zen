@@ -8,7 +8,7 @@
     import { options } from './options';
     import { example } from './example';
     import { parseCode } from '$lib/zen/parsing';
-
+ 
     let editor: Monaco.editor.IStandaloneCodeEditor;
     let monaco: typeof Monaco;
     let editorContainer: HTMLElement;
