@@ -24,7 +24,7 @@
 		"monaco-editor": "^0.52.2",
 		"sass": "^1.63.6",
 		"svelte": "^5.34.7",
-		"svelte-check": "^3.0.1",
+		"svelte-check": "^4.2.2",
 		"tslib": "^2.4.1",
 		"typedoc": "^0.28.5",
 		"typescript": "^5.0.0",
