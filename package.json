@@ -52,7 +52,7 @@
 		"quantum-circuit": "^0.9.221",
 		"seedrandom": "^3.0.5",
 		"svelte-awesome": "^3.2.1",
-		"tone": "^14.7.77",
+		"tone": "^15.1.22",
 		"webmidi": "^3.1.6"
 	}
 }
