@@ -103,7 +103,7 @@
 }} />
 
 <div class="container" class:flash={flash}>
-    <div class="editor" bind:this={editorContainer} />
+    <div class="editor" bind:this={editorContainer}></div>
     <div class="notices">
         <ul>
             <li class:hidden={!type} >
