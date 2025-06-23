@@ -4,8 +4,10 @@
     // @ts-ignore
     import logo from '$lib/images/karma.png';
     import Icon from 'svelte-awesome';
-    import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
+    import { faBars, faXmark, faDownload } from '@fortawesome/free-solid-svg-icons';
     import { isApp } from '$lib/electronAPI/index';
+
+    import { version } from '$app/environment';
 
     let showMobileMenu = false;
     let menu: HTMLUListElement;
@@ -33,7 +35,7 @@
                     class="mr-3 h-6 sm:h-6"
                     alt="Zen Logo"
                 />
-                <p>zen</p>
+                <p>zen <span>{version}</span></p>
             </span>
         {:else}
             <a 
@@ -46,7 +48,7 @@
                     class="mr-3 h-6 sm:h-6"
                     alt="Zen Logo"
                 />
-                <p>zen</p>
+                <p>zen <span>{version}</span></p>
             </a>
         {/if}
         <button on:click={toggleMenu} class="menu-toggle">
@@ -72,6 +74,15 @@
                 href={(isApp() ? "https://zen.cephasteom.co.uk" : "") + "/docs"}
                 target={isApp() ? "_blank" : ""}
             >Docs</a></li>
+            <li class="menu__item">
+                <a 
+                    href="https://github.com/cephasteom/zen-electron/releases" 
+                    target="_blank"
+                    class="icon"
+                >
+                    <Icon data={faDownload} />
+                </a>
+            </li>
         </ul>
     
     </nav>
@@ -98,8 +109,6 @@
         @media (min-width: 1200px) {
             padding: 1rem 2rem;
         }
-
-        $var: calc(1600px - 4rem);
 
         @media (min-width: 1664px) {
             padding-left: 0rem;
@@ -131,10 +140,10 @@
             color: white;
 
             & span {
-                font-size: 10px;
+                font-size: 8px;
                 position: relative;
-                top: -0.125px;
-                color: var(--color-theme-3)
+                color: var(--color-theme-2);
+                opacity: 0.8;
             }
         }
     }

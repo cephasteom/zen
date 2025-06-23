@@ -9,6 +9,8 @@
         <h2>About</h2>
         <p>Zen is a live coding environment for expressing complex patterns with very little code. It was written to take advantage of JavaScript's flexibility and is primed for pattern interference. Design and run quantum circuits and use the results to trigger musical events. Map musical and sonic parameters across time and space and draw multiple trajectories around a canvas to generate infinitely complex, morphing sounds.</p>
 
+        <p>Zen is built for the browser, but you'd be mad to put your faith in the internet if you're going on stage. And so, Zen can be downloaded as a desktop app for Mac, Windows and Linux - with added features. Have a look at this <a href="https://github.com/cephasteom/zen-electron/releases">link</a>.</p>
+
         <h3>Credits</h3>
         <p>Zen is the work of Cephas Teom, a musician and coder based in the UK. It was devised, researched, and built at the <a href="https://www.plymouth.ac.uk/research/iccmr" target="_blank">ICCMR, University of Plymouth</a>, as part of the <a href="https://www.plymouth.ac.uk/courses/postgraduate/phd-computer-music" target="_blank">PhD Computer Music</a>, exploring the intersection of quantum computer music, live coding, and the web.</p>
             

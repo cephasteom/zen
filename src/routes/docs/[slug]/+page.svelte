@@ -1,5 +1,4 @@
 <script>
-    import { marked } from "marked";
     import Icon from 'svelte-awesome';
     import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
     import Docs from "$lib/components/Docs.svelte"

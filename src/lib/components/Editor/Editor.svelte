@@ -8,7 +8,7 @@
     import { options } from './options';
     import { example } from './example';
     import { parseCode } from '$lib/zen/parsing';
-
+ 
     let editor: Monaco.editor.IStandaloneCodeEditor;
     let monaco: typeof Monaco;
     let editorContainer: HTMLElement;
@@ -103,7 +103,7 @@
 }} />
 
 <div class="container" class:flash={flash}>
-    <div class="editor" bind:this={editorContainer} />
+    <div class="editor" bind:this={editorContainer}></div>
     <div class="notices">
         <ul>
             <li class:hidden={!type} >

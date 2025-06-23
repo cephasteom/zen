@@ -12,6 +12,9 @@
 
     onMount(() => {
         isApp() && initElectronAPI();
+        window.addEventListener('click', startAudio);
+        window.addEventListener('touchstart', startAudio);
+        window.addEventListener('keydown', startAudio);
     });
 </script>
 
@@ -19,12 +22,6 @@
 	<title>Zen</title>
 	<meta name="description" content="A musical live coding language that runs in your browser" />
 </svelte:head>
-
-<svelte:window 
-    on:click={startAudio} 
-    on:touchstart={startAudio}
-    on:keydown={startAudio}
-/>
 
 <section class="zen">
     <div 
