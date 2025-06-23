@@ -155,7 +155,7 @@ code.subscribe(code => {
 export function evaluate(count: number, time: number) {
     const transport = getTransport()
     const context = getContext()
-    
+
     const t = z.getTime(count)
     const s = z.s
     const q = z.q
