@@ -1,4 +1,4 @@
-import { start, Loop, immediate, context, getTransport } from 'tone'
+import { start, Loop, immediate, getContext, getTransport } from 'tone'
 import { WebMidi } from "webmidi";
 import { initMidiClock } from './midi/clock';
 import { initMidiTriggers } from './midi/triggers';
@@ -154,6 +154,8 @@ code.subscribe(code => {
  */
 export function evaluate(count: number, time: number) {
     const transport = getTransport()
+    const context = getContext()
+    
     const t = z.getTime(count)
     const s = z.s
     const q = z.q
