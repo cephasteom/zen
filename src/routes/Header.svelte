@@ -7,6 +7,8 @@
     import { faBars, faXmark, faDownload } from '@fortawesome/free-solid-svg-icons';
     import { isApp } from '$lib/electronAPI/index';
 
+    import { version } from '$app/environment';
+
     let showMobileMenu = false;
     let menu: HTMLUListElement;
 
@@ -33,7 +35,7 @@
                     class="mr-3 h-6 sm:h-6"
                     alt="Zen Logo"
                 />
-                <p>zen</p>
+                <p>zen <span>{version}</span></p>
             </span>
         {:else}
             <a 
@@ -46,7 +48,7 @@
                     class="mr-3 h-6 sm:h-6"
                     alt="Zen Logo"
                 />
-                <p>zen</p>
+                <p>zen <span>{version}</span></p>
             </a>
         {/if}
         <button on:click={toggleMenu} class="menu-toggle">
@@ -109,8 +111,6 @@
             padding: 1rem 2rem;
         }
 
-        $var: calc(1600px - 4rem);
-
         @media (min-width: 1664px) {
             padding-left: 0rem;
             padding-right: 0rem;
@@ -141,10 +141,10 @@
             color: white;
 
             & span {
-                font-size: 10px;
+                font-size: 8px;
                 position: relative;
-                top: -0.125px;
-                color: var(--color-theme-3)
+                color: var(--color-theme-2);
+                opacity: 0.8;
             }
         }
     }
