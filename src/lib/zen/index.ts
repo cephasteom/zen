@@ -1,4 +1,4 @@
-import { start, Loop, Transport, immediate, context } from 'tone'
+import { start, Loop, immediate, context, getTransport } from 'tone'
 import { WebMidi } from "webmidi";
 import { initMidiClock } from './midi/clock';
 import { initMidiTriggers } from './midi/triggers';
@@ -153,6 +153,7 @@ code.subscribe(code => {
  * This is the central function that is evaluated on every loop iteration
  */
 export function evaluate(count: number, time: number) {
+    const transport = getTransport()
     const t = z.getTime(count)
     const s = z.s
     const q = z.q
@@ -172,12 +173,12 @@ export function evaluate(count: number, time: number) {
     loop.interval = `${z.q}n`
     const newBpm = z.getBpm()
     if(newBpm !== getBpm()) {
-        Transport.bpm.setValueAtTime(newBpm, time)
+        transport.bpm.setValueAtTime(newBpm, time)
         bpm.set(newBpm)
     }
-    Transport.swing = z.getSwing()
+    transport.swing = z.getSwing()
     // @ts-ignore
-    Transport.swingSubdivision = `${z.getSwingN()}n`
+    transport.swingSubdivision = `${z.getSwingN()}n`
 
     // build gates
     qubits.forEach(wire => wire.build(t, q))
@@ -229,17 +230,19 @@ const loop = new Loop(time => {
  * Pay and stop functions
  */
 export const play = () => {
+    const transport = getTransport()
     // if clock source is internal, start transport
-    if(getClockSource() === 'internal') return Transport.start('+0.1')
+    if(getClockSource() === 'internal') return transport.start('+0.1')
         
     // otherwise, stop transport and listen for midi clock messages
-    Transport.stop(immediate())
+    transport.stop(immediate())
     !get(activeMidiClock) && initMidiClock()
     activeMidiClock.set(true)
 }
 
 export const stop = () => {
-    Transport.stop(immediate())
+    const transport = getTransport()
+    transport.stop(immediate())
     counter = createCount(0)
     setT(0)
     activeMidiClock.set(false)
