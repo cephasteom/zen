@@ -56,15 +56,6 @@
         </button>
     
         <ul class="menu" bind:this={menu}>
-            <li class="menu__item">
-                <a 
-                    href="https://github.com/cephasteom/zen-electron/releases" 
-                    target="_blank"
-                    class="icon"
-                >
-                    <Icon data={faDownload} />
-                </a>
-            </li>
             <li 
                 class="menu__item"><a on:click={closeMenu} 
                 class={$page.url.pathname === '/about' ? 'active' : ''} 
@@ -83,7 +74,15 @@
                 href={(isApp() ? "https://zen.cephasteom.co.uk" : "") + "/docs"}
                 target={isApp() ? "_blank" : ""}
             >Docs</a></li>
-            
+            <li class="menu__item">
+                <a 
+                    href="https://github.com/cephasteom/zen-electron/releases" 
+                    target="_blank"
+                    class="icon"
+                >
+                    <Icon data={faDownload} />
+                </a>
+            </li>
         </ul>
     
     </nav>
