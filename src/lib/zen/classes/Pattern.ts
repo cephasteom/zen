@@ -467,8 +467,8 @@ s0.e.every('0?1*4|*2')
      * On/off. Returns 1 when on, 0 when off.
      * True values passed to the first argument will turn the pattern on, false values are ignored.
      * True values passed to the second argument will turn the pattern off, false values are ignored.
-     * @param on - a value, instance of Pattern, or Zen pattern string
-     * @param off - a value, instance of Pattern, or Zen pattern string
+     * @param i - a value, instance of Pattern, or Zen pattern string
+     * @param o - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      * @example
      * s0.e.io(s1.e, s2.e)
@@ -515,8 +515,8 @@ s0.e.every('0?1*4|*2')
      * Map the preceding value in the chain to a new range.
      * @param outMin - the new minimum value
      * @param outMax - the new maximum value 
-     * @param inLo - the minimum value of the input range. Default is 0.
-     * @param inHi - the maximum value of the input range. Default is 1.
+     * @param inMin - the minimum value of the input range. Default is 0.
+     * @param inMax - the maximum value of the input range. Default is 1.
      * @returns 
      */
     mtr(outMin: patternable, outMax: patternable, inMin: patternable = 0, inMax: patternable = 1): Pattern {
@@ -695,8 +695,8 @@ s0.e.every('0?1*4|*2')
      * @returns {Pattern}
      * @example s0.p.modi.saw(0, 10)
      */
-    saw(...args: number[]): Pattern {
-        return this.range(...args)
+    saw(lo: patternable, hi: patternable, freq: patternable = 1): Pattern {
+        return this.range(lo, hi, freq)
     }
 
     /**
@@ -898,10 +898,10 @@ s0.e.every('0?1*4|*2')
      * @param max maximum value
      * @returns {Pattern}
      */ 
-    clamp(...args: patternable[]): Pattern {
+    clamp(min: patternable, max: patternable): Pattern {
         this.stack.push(x => { 
-            const [min=0, max=1] = args.map(arg => this.handleTypes(arg))
-            return handlePolyphony(x, x => clamp(x, +min, +max))
+            const [mn=0, mx=1] = [min,max].map(arg => this.handleTypes(arg))
+            return handlePolyphony(x, x => clamp(x, +mn, +mx))
         })
         return this
     }

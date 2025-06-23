@@ -24,19 +24,19 @@
 	// from the referenced tsconfig.json - TypeScript does not merge them in
 
     // TODO: once ct-synths is fully typed, remove these
-    // "include": [
-    //     "src/lib/zen/", 
-    //     "src/lib/oto/ct-synths/rnbo/Synth.ts", 
-    //     "src/lib/oto/ct-synths/rnbo/AcidSynth.ts",
-    //     "src/lib/oto/ct-synths/rnbo/Granular.ts",
-    //     "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
-    //     "src/lib/oto/ct-synths/rnbo/Sampler.ts",
-    //     "src/lib/oto/ct-synths/rnbo/Additive.ts",
-    //     "src/lib/oto/ct-synths/rnbo/DroneSynth.ts",
-    //     "src/lib/oto/ct-synths/rnbo/FXChain.ts", 
-    //     "src/lib/oto/ct-synths/rnbo/Reverb.ts", 
-    //     "src/lib/oto/ct-synths/rnbo/Delay.ts", 
-    // ],
+    "include": [
+        "src/lib/zen/", 
+        "src/lib/oto/ct-synths/rnbo/Synth.ts", 
+        "src/lib/oto/ct-synths/rnbo/AcidSynth.ts",
+        "src/lib/oto/ct-synths/rnbo/Granular.ts",
+        "src/lib/oto/ct-synths/rnbo/SubSynth.ts",
+        "src/lib/oto/ct-synths/rnbo/Sampler.ts",
+        "src/lib/oto/ct-synths/rnbo/Additive.ts",
+        "src/lib/oto/ct-synths/rnbo/DroneSynth.ts",
+        "src/lib/oto/ct-synths/rnbo/FXChain.ts", 
+        "src/lib/oto/ct-synths/rnbo/Reverb.ts", 
+        "src/lib/oto/ct-synths/rnbo/Delay.ts", 
+    ],
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
 	//
 	// If you want to overwrite includes/excludes, make sure to copy over the relevant includes/excludes
