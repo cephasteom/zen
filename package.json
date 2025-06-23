@@ -1,6 +1,16 @@
 {
-	"name": "zen-3",
-	"version": "0.0.1",
+	"name": "zen",
+	"version": "4.3.0",
+	"description": "Zen is a quantum computer music programming language and environment.",
+	"keywords": [
+		"zen",
+		"quantum",
+		"music",
+		"programming",
+		"language"
+	],
+	"author": "CephasTeom",
+	"license": "AGPL-3.0-or-later",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
