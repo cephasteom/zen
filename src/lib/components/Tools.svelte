@@ -60,9 +60,6 @@
 
         & button {
             height: 1.5rem;
-            @media(min-width: 600px) {
-                height: 1rem;
-            }
             background: none;
             border: none;
             cursor: pointer;
@@ -70,7 +67,11 @@
             font-size: var(--text-sm);
             font-family: var(--font-family);
             padding: 0;
-
+            
+            @media(min-width: 600px) {
+                height: 1rem;
+            }
+            
             &.active {
                 color: var(--color-theme-1);
             }

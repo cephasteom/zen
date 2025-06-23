@@ -131,13 +131,13 @@
         grid-column: 1;
         grid-row: 1;
         border-radius: 5px;
+        background: var(--color-grey-darker);
+        padding: 1rem;
 
         @media (min-width: 800px) {
             grid-column: 2;
             grid-row: 4;
         }
-        background: var(--color-grey-darker);
-        padding: 1rem;
     }
 
     .circuit {
@@ -147,6 +147,7 @@
         position: relative;
         display: none;
         overflow: hidden;
+        background-color: var(--color-grey-darker);
 
         &--fullHeight {
             grid-row: 1 / 4;
@@ -156,22 +157,19 @@
             display: block;
         }
 
-        background-color: var(--color-grey-darker);
     }
 
     .visuals {
         grid-column: 2 / 3;
         grid-row: 1 / 4;
-
+        border-radius: 5px;
+        position: relative;
+        background: var(--color-grey-dark);
+        display: none;
+        
         &--withCircuit {
             grid-row: 1 / 2;
         }
-        border-radius: 5px;
-        position: relative;
-
-        background: var(--color-grey-dark);
-
-        display: none;
 
         @media (min-width: 800px) {
             display: block;
@@ -182,13 +180,13 @@
         grid-column: 1;
         grid-row: 3;
         border-radius: 5px;
+        background-color: var(--color-grey-dark);
+        padding: 1rem;
 
         @media (min-width: 800px) {
             display: none;
             grid-column: 2;
             grid-row: 2;
         }
-        background-color: var(--color-grey-dark);
-        padding: 1rem;
     }
 </style>

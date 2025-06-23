@@ -118,13 +118,14 @@
     
     .icon {
         height: 2rem;
-        @media(min-width: 600px) {
-            height: 1.5rem;
-        }
         display: flex;
         align-items: center;
         font-size: var(--text-sm);
         z-index: 200;
+        
+        @media(min-width: 600px) {
+            height: 1.5rem;
+        }
         img {
             height: 100%;
             object-fit: contain;
