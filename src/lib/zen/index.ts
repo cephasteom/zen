@@ -90,6 +90,9 @@ Pattern.methods().forEach((method: string) => {
         method, 
         `$${method}`
     ].forEach((name: string) => {
+        // check if name is a protected word in javaScript
+        if (['if', 'else'].includes(name)) return;
+
         scope[name] = (...args: any[]) => {
             const p = new Pattern()
             return p.call(method as PatternMethod, ...args)

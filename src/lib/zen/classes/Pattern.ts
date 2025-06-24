@@ -403,6 +403,38 @@ s0.e.every('0?1*4|*2')
         return this
     }
 
+    /**
+     * If the previous value in the pattern chain is truthy, return a new value, otherwise return previous value.
+     * @param value - a value, instance of Pattern, or Zen pattern string
+     * @deprecated - use ifelse() instead, kept for backwards compatibility
+     * @returns {Pattern}
+     */
+    if(value: patternable): Pattern {
+        console.warn('Pattern.if() is deprecated, use Pattern.ifelse() instead')
+        this.stack.push(x => {
+            return [x].flat().every(x => !!x)
+                ? this.handleTypes(value)
+                : x
+        })
+        return this
+    }
+
+    /**
+     * If the previous value in the pattern chain is falsy, return a new value, otherwise return previous value.
+     * @param value - a value, instance of Pattern, or Zen pattern string
+     * @deprecated - use ifelse() instead, kept for backwards compatibility
+     * @returns {Pattern}
+     */
+    else(value: patternable): Pattern {
+        console.warn('Pattern.else() is deprecated, use Pattern.ifelse() instead')
+        this.stack.push(x => {
+            return [x].flat().every(x => !x)
+                ? this.handleTypes(value)
+                : x
+        })
+        return this
+    }
+
     // MATHS
     /**
      * Map the preceding value in the chain to a new range.
