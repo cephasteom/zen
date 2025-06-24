@@ -68,111 +68,15 @@ export class Pattern implements Dictionary {
      * Shorthand aliases for pattern methods.
      * @example
      * 
-a: 'add',
-an: 'and',
-b: 'bin',
-bm: 'btms',
-bs: 'bts',
-cl: 'clamp',
-c: 'coin',
-cc: 'midicc',
-co: 'cosine',
-ct: 'count',
-ctr: 'counter',
-cu: 'curve',
-d: 'div',
-dr: 'divr',
-e: 'else',
-eq: 'eq',
-ev: 'every',
-i: 'if',
-intrp: 'interpolate',
-inv: 'inversion',
-in: 'invert',
-la: 'layer',
-mo: 'mod',
-m: 'mul',
-n: 'not',
-no: 'noise',
-nb: 'ntbin',
-o: 'or',
-of: 'often',
-pu: 'pulse',
-rd: 'random',
-ra: 'range',
-r: 'rarely',
-sa: 'saw',
-se: 'seq',
-v: 'set',
-si: 'sine',
-sq: 'square',
-st: 'step',
-so: 'sometimes',
-s: 'sub',
-sr: 'subr',
-t: 'toggle',
-tr: 'tri',
-trig: 'trigger',
-tu: 'tune',
-u: 'use',
-x: 'xor',
-qm: 'qmeasurement',
-qms: 'qmeasurements',
-qpb: 'qprobability',
-qpbs: 'qprobabilities',
-qph: 'qphase',
-qphs: 'qphases',
-qr: 'qresult',
+    qm: 'qmeasurement',
+    qms: 'qmeasurements',
+    qpb: 'qprobability',
+    qpbs: 'qprobabilities',
+    qph: 'qphase',
+    qphs: 'qphases',
+    qr: 'qresult',
     */ 
     aliases = {
-        a: 'add',
-        an: 'and',
-        b: 'bin',
-        bm: 'btms',
-        bs: 'bts',
-        cl: 'clamp',
-        c: 'coin',
-        cc: 'midicc',
-        co: 'cosine',
-        ct: 'count',
-        ctr: 'counter',
-        cu: 'curve',
-        d: 'div',
-        dr: 'divr',
-        e: 'else',
-        eq: 'eq',
-        ev: 'every',
-        i: 'if',
-        intrp: 'interpolate',
-        inv: 'inversion',
-        in: 'invert',
-        la: 'layer',
-        mo: 'mod',
-        m: 'mul',
-        n: 'not',
-        no: 'noise',
-        nb: 'ntbin',
-        o: 'or',
-        of: 'often',
-        pu: 'pulse',
-        rd: 'random',
-        ra: 'range',
-        r: 'rarely',
-        sa: 'saw',
-        se: 'seq',
-        v: 'set',
-        si: 'sine',
-        sq: 'square',
-        st: 'step',
-        so: 'sometimes',
-        s: 'sub',
-        sr: 'subr',
-        t: 'toggle',
-        tr: 'tri',
-        trig: 'trigger',
-        tu: 'tune',
-        u: 'use',
-        x: 'xor',
         qm: 'qmeasurement',
         qms: 'qmeasurements',
         qpb: 'qprobability',
@@ -296,7 +200,7 @@ qr: 'qresult',
     /**
      * Return the current cycle
      * @example 
-     * s0.e.v(1)
+     * s0.e.set(1)
      * s0.x.c()
      * @returns {Pattern}
      */
@@ -459,7 +363,7 @@ s0.e.every('0?1*4|*2')
         const st = this._state
         this.set(x)
             .fn(x => st.toggle = x ? !st.toggle : st.toggle)
-            .if()
+            .ifelse()
         return this
     }
 
@@ -490,23 +394,12 @@ s0.e.every('0?1*4|*2')
      * @param elseValue - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      */ 
-    if(ifValue: patternable = 1, elseValue: patternable = 0): Pattern {
+    ifelse(ifValue: patternable = 1, elseValue: patternable = 0): Pattern {
         this.stack.push(x => {
             return [x].flat().every(x => !!x) 
                 ? this.handleTypes(ifValue) 
                 : this.handleTypes(elseValue) 
         })
-        return this
-    }
-
-    /**
-     * Test if the previous value in the pattern chain is a truthy or falsy value
-     * If false return new value, if true, simply pass on the previous value
-     * @param  value - a value, instance of Pattern, or Zen pattern string
-     * @returns {Pattern}
-     */ 
-    else(value: patternable): Pattern {
-        this.stack.push(x => [x].flat().every(x => !x) ? this.handleTypes(value) : x)
         return this
     }
 
@@ -623,7 +516,7 @@ s0.e.every('0?1*4|*2')
      * Compare the previous value in the pattern chain with a value.
      * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
-     * @example s0.e.every(3).or(t%2)
+     * @example s0.e.every(3).or(t().mod(2))
      */ 
     or(value: patternable): Pattern {
         this.stack.push(x => handlePolyphony(x, x => x || +this.handleTypes(value, this._t, false)))
@@ -634,7 +527,7 @@ s0.e.every('0?1*4|*2')
      * Compare the previous value in the pattern chain with a value.
      * @param value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
-     * @example s0.e.every(3).xor(t%2)
+     * @example s0.e.every(3).xor(t().mod(2))
      */ 
     xor(value: patternable): Pattern {
         this.stack.push(x => handlePolyphony(x, x => x ^ +this.handleTypes(value, this._t, false)))
@@ -910,7 +803,7 @@ s0.e.every('0?1*4|*2')
      * Test if the previous value in the pattern chain is greater than a value.
      * @param value value to test against
      * @returns {Pattern}
-     * @example s0.p.n.noise(0,1).gt(0.3).if(60, 72)
+     * @example s0.p.n.noise(0,1).gt(0.3).ifelse(60, 72)
      */ 
     gt(value: patternable): Pattern {
         this.stack.push(x => {
@@ -937,7 +830,7 @@ s0.e.every('0?1*4|*2')
      * Test if the previous value in the pattern chain is greater than or equal to a value.
      * @param value value to test against
      * @returns {Pattern}
-     * @example s0.p.n.noise(0,1).gte(0.3).if(60, 72)
+     * @example s0.p.n.noise(0,1).gte(0.3).ifelse(60, 72)
      */ 
     gte(value: patternable): Pattern {
         this.stack.push(x => {
@@ -1037,7 +930,7 @@ s0.e.every('0?1*4|*2')
     /**
      * Convert the previous value from divisions of a bar to seconds, scaling by bpm
      * @returns {Pattern}
-     * @example s0.p.set(q).ttms()
+     * @example s0.p.q().ttms()
      */
     ttms(): Pattern {
         this.fn(x => handlePolyphony(x, x =>  x * (((60000/this._bpm) * 4) / this._q)))
@@ -1060,7 +953,6 @@ s0.e.every('0?1*4|*2')
      * @param n inversion
      * @returns {Pattern}
      * @example s0.p.n.set('Cmi7').inversion(1)
-     * @example s0.p.n.set('Cmi7').$inversion.range(0,8,1)
      */ 
     inversion(n: patternable): Pattern {
         this.stack.push((x: patternValue) => {
@@ -1357,7 +1249,7 @@ s0.e.every('0?1*4|*2')
      * @returns {Pattern}
      * @example s0.set({inst: 1})
 s0.p.bank.set(['bd', 'sd', 'hh']).at(
-  $markov(
+  markov(
     [[0,0.1,0.9], [0.25,0.1,0.9], [0.5,0.25,0.5]]),
     64,
     0.25
@@ -1551,7 +1443,7 @@ s0.e.set(1)
      * @returns {Pattern}
      * @param hits number of measurements to take before looping. Default is 0 (no looping). Max 256.
      * @param repeats how many times the loop should repeat before being regenerated. Default is 0 (infinite).
-     * @example s0.p.amps.amplitudes().print()
+     * @example s0.p.probs.qprobabilities().print()
      */ 
     qprobabilities(hits: patternable = 0, repeats: patternable = 0): Pattern {
         this.stack.push((t: patternValue) => {
