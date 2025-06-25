@@ -1,22 +1,24 @@
 export default `# Streams
-Zen is organised into Streams, which refer to different musical layers. Streams are represented by the letter \`s\` and an index, as in \`s0\`, \`s1\`, \`s2\` ... \`s63\`. Think of them as separate tracks on a mixing desk, each track with its own instruments and effects. A Stream is an instance of a [Stream class](/docs/classes#stream). The methods and properties you’ll use the most are:
+Zen is organised into Streams, which refer to different musical layers. Streams are represented by the letter \`s\` and an index, as in \`s0\`, \`s1\`, \`s2\` ... \`s63\`. Think of them as separate tracks on a mixing desk, each track with its own instruments and effects. A Stream is an instance of a [Stream class](/docs/classes#stream). The methods and properties you'll use the most are:
 - \`.set()\`
-- \`.p\`
 - \`.e\`
 
 ## .set()
-The \`.set()\` method is used to set parameters that remain constant. It accepts an object literal: a list of key/value pairs. For example, \`s0.set({inst:’synth’,vol:0.5})\` tells stream 0 to use the synth instrument at half volume. 
+The \`.set()\` method is used to set musical parameters. It accepts an object literal: a list of key/value pairs. For example, \`s0.set({inst:'synth',vol:0.5})\` tells stream 0 to use the synth instrument at half volume. You can also use \`.ps()\` or \`.params()\` as aliases if these make more sense to you. 
 
-## .p
-The \`.p\` property is used to set parameters that should change over time. These are written, for example, as \`s0.p.vol\`, or \`s0.p.amp\`, or even \`s0.p.banana\`. Zen doesn’t care what parameter names you use here, invalid parameters are simply ignored by the synth engine. All parameters are instances of the [Pattern class](/docs/classes#pattern), covered in the previous chapter.
+Zen doesn't care what parameter names you use here, invalid parameters are simply ignored by the synth engine.
 
-Here’s an example of setting parameters using the \`.p\` property:
+You can set parameter using constant values or using patterns to change values over time. Here's an example of some ways you can set parameters:
 \`\`\`js
-s0.set({inst:0,cut:0,mods:0.1,reverb:0.5})
-s0.p.n.saw(0,32,2).add(48)
-s0.p.modi.sine(0,4,0,0.5)
-s0.p.harm.tri(1,2)
-s0.p.pan.noise()
+s0.set({
+  // constant values
+  inst:0,cut:0,mods:0.1,reverb:0.5, 
+  // patterns
+  n: saw(0,32,2).add(48),
+  modi: sine(0,4,0,0.5),
+  harm: tri(1,2)
+  pan: noise()
+})
 s0.e.set(1)
 \`\`\`
 
@@ -44,6 +46,21 @@ s0.e.set('1?0*16')
 s0.e.set('3:8*2')
 \`\`\`
 
+## .p
+The \`.p\` property is a alternative way of setting musical parameters and can be ignored if it muddies the waters for you.
+
+Here's an example of setting parameters using the \`.p\` property:
+\`\`\`js
+// set musical parameters using .params()
+s0.set({inst:0,cut:0,mods:0.1,reverb:0.5})
+// or set the individual parameters using .p
+s0.p.n.saw(0,32,2).add(48)
+s0.p.modi.sine(0,4,0,0.5)
+s0.p.harm.tri(1,2)
+s0.p.pan.noise()
+s0.e.set(1)
+\`\`\`
+
 ## Additional Features
 A few extras before moving on. If you're just trying to get a sense of what Zen can do, you can skip this section for now.
 
@@ -64,13 +81,13 @@ Use \`s0.i\` to access the index of the Stream. This is useful when you want to 
 let kick = s0
 let snare = s1
 
-kick.set({inst:1,cut:snare.i})
-snare.set({inst:2,cut:kick.i})
+kick.ps({inst:1,cut:snare.i})
+snare.ps({inst:2,cut:kick.i})
 \`\`\`
 
 ### Out
 Streams are always stereo. By default, all streams are routed to the first two channels of your output device. You can route streams using the \`out\` parameter. For example, \`s0.set({out: 2})\` will route stream 0 to channels 2 and 3. Here's a shorthand way of spreading your streams across the outputs of your audio interface:
 \`\`\`js
-streams.slice(0,8).map((stream,i) => stream.set({out: i*2}))
+streams.slice(0,8).map((stream,i) => stream.ps({out: i*2}))
 \`\`\`
 `

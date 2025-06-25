@@ -230,7 +230,7 @@ export class Stream {
      * @param ps key/value pairs
      * @returns {this}
      * @example
-     * s0.params({amp: 1, n: 60, reverb: 0.5})
+     * s0.set({amp: 1, n: 60, reverb: 0.5})
      */ 
     params(ps: Dictionary): this {
         Object.entries(ps).forEach(([key, value]) => {
