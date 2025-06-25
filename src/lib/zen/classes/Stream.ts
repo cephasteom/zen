@@ -225,20 +225,28 @@ export class Stream {
             .reduce((obj, [key, value]) => ({...obj, [key]: value}), {})
     }
 
-    // set multiple parameters at once, e.g. s0.set({foo: 1, bar: 2})
     /**
      * Set multiple stream parameter using key/value pairs
      * @param ps key/value pairs
      * @returns {this}
      * @example
-     * s0.set({amp: 1, n: 60, reverb: 0.5})
+     * s0.params({amp: 1, n: 60, reverb: 0.5})
      */ 
-    set(ps: Dictionary): this {
+    params(ps: Dictionary): this {
         Object.entries(ps).forEach(([key, value]) => {
             this.p[key].set(value)
         })
         return this
     }
+
+    /** @alias for `params` */ 
+    ps = this.params
+    
+    /** 
+     * @alias for `params` 
+     * @deprecated use `params` or  `ps` instead - kept for backwards compatibility
+     */
+    set = this.params
 
     /** @hidden */
     get(

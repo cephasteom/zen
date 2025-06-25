@@ -100,6 +100,9 @@ Pattern.methods().forEach((method: string) => {
     })
 })
 
+// Alias for set function
+scope.$ = scope.set
+
 /**
  * Whenever new code is received via the code editor, reset and re-evaluate the code
  */
