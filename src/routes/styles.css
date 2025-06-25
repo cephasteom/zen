@@ -53,7 +53,7 @@
     --color-theme-1: #00f6ff; /* Laser Cyan */
     --color-theme-2: #00ff9f; /* Hyper Neon Green */
     --color-theme-3: #ff1fff; /* Ultraviolet Magenta */
-    --color-yellow: #ffdd88;  /* Warm Gold */
+    --color-yellow: #fdf6f0;  /* Warm Gold */
     --color-grey-lighter: #fdf6f0; /* Blush White */
     --color-grey-light: #e7dcd7;   /* Pale Rose Grey */
     --color-grey-light-mid: #c8b8b2; /* Warm Mid Grey */
@@ -163,7 +163,7 @@ code {
 }
 
 pre {
-    background-color: var(--color-yellow);
+    background-color: var(--color-grey-darkest);
     padding: 1rem;
     overflow: scroll;
 }
