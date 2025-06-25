@@ -141,10 +141,9 @@
             color: white;
 
             & span {
-                font-size: 8px;
+                font-size: 10px;
                 position: relative;
                 color: var(--color-theme-2);
-                opacity: 0.8;
             }
         }
     }

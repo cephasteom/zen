@@ -50,19 +50,20 @@
 	color: var(--color-text);
     --max-width: 1600px;
 
-    --color-theme-1: #3498db; /* Blue */
-    --color-theme-2: #2ecc71; /* Green */
-    --color-theme-3: #e74c3c; /* Red */
-    --color-yellow: #fff; /* Yellow */
-    --color-grey-lighter: #ecf0f1; /* Light Grey */
-    --color-grey-light: #bdc3c7; /* Light Mid Grey */
-    --color-grey-light-mid: #95a5a6; /* Mid Grey */
-    --color-grey-mid: #7f8c8d; /* Dark Mid Grey */
-    --color-grey-dark: #34495e; /* Dark Grey */
-    --color-grey-darker: #2c3e50; /* Darker Grey */
-    --color-grey-darkest: #1c2833; /* Darkest Grey */
-    --color-pink: #FFE6EB;
-    --color-box-shadow: rgba(44, 62, 80, 0.75); /* Box Shadow */
+    --color-theme-1: #00f6ff; /* Laser Cyan */
+    --color-theme-2: #00ff9f; /* Hyper Neon Green */
+    --color-theme-3: #ff1fff; /* Ultraviolet Magenta */
+    --color-yellow: #ffdd88;  /* Warm Gold */
+    --color-grey-lighter: #fdf6f0; /* Blush White */
+    --color-grey-light: #e7dcd7;   /* Pale Rose Grey */
+    --color-grey-light-mid: #c8b8b2; /* Warm Mid Grey */
+    --color-grey-mid: #a89c96;     /* Soft Clay Grey */
+    --color-grey-dark: #7e6d66;    /* Cocoa Brown */
+    --color-grey-darker: #5c4c47;  /* Deep Earth Grey */
+    --color-grey-darkest: #2a211f; /* Deeper Almost Black Brown */
+    --color-pink: #f8d7da; /* Blush Pink */
+    --color-box-shadow: rgba(60, 40, 40, 0.6); /* Warm Shadow */
+
 }
 
 body {

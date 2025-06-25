@@ -5,9 +5,12 @@ export class Visuals {
     data: vector[] = [];
     activeStreams: string[] = [];
     colours = [
-        [52, 152, 219], // Blue
-        [46, 204, 113], // Green
-        [231, 76, 60],
+        // --color-theme-1: #00f6ff; /* Laser Cyan */ as rgb
+        [0, 246, 255],
+        // --color-theme-2: #00ff9f; /* Hyper Neon Green */
+        [0, 255, 159],
+        // --color-theme-3: #ff1fff; /* Ultraviolet Magenta */
+        [255, 31, 255],
     ]
     mColour = [51, 51, 51, 255];
 
