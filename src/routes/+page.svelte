@@ -148,7 +148,7 @@
         display: none;
         overflow: hidden;
         background-color: var(--color-grey-darker);
-
+        
         &--fullHeight {
             grid-row: 1 / 4;
         }
@@ -164,7 +164,7 @@
         grid-row: 1 / 4;
         border-radius: 5px;
         position: relative;
-        background: var(--color-grey-dark);
+        background-image: linear-gradient(135deg, var(--color-grey-dark), #8a7972);
         display: none;
         
         &--withCircuit {
