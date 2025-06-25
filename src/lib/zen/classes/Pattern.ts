@@ -1395,6 +1395,19 @@ s0.e.set(1)
     }
 
     /**
+     * Pack all arguments into an array
+     * Arguments can be a value, instance of Pattern, or Zen pattern string
+     * Each will be evaluated and packed into an array
+     * @example s0.x.sine()
+     * s0.y.noise()
+     * s0.p.pack(s0.x, s0.y).print().fn(([x, y]) => ...)
+     */
+    pack(...args: patternable[]): Pattern {
+        this.stack.push(() => args.map(x => this.handleTypes(x)).flat())
+        return this
+    }
+
+    /**
      * Return the value of the measured qubit
      * @returns {Pattern}
      * @example s0.e.measurement(0)
