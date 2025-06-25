@@ -128,35 +128,6 @@ export class Pattern implements Dictionary {
         return value
     }
 
-    /**
-     * Handle looping of values for any pattern function
-     * Used to store values in state and loop over them
-     * @hidden
-     */
-    handleLoop(
-        t: number,
-        key: string,
-        loopSize: number, 
-        currentValue: any,
-        reset: boolean = false
-    ): any {
-        // if the key doesn't exist, or reset is true, initialise it
-        this._state[key] = reset || !this._state[key] 
-            ? []
-            : this._state[key]
-
-        // if we are looping and we have a value, use it, otherwise use the current value
-        const result = loopSize > 0 && loopSize <= this._state[key].length
-            ? this._state[key][+t%loopSize]
-            : currentValue
-
-        // if we are looping and we don't have enough values, add the current one
-        loopSize > 0 && loopSize > this._state[key].length
-            && this._state[key].push(currentValue)
-
-        return result
-    }
-
     /** @hidden */
     reset() {
         this.stack = []
@@ -1393,16 +1364,32 @@ s0.e.set(1)
     /**
      * Cache the value. Set how many values to cache and how many times to repeat the cache before it clears
      * @returns {Pattern}
+     * @param size number of values to cache
+     * @param repeats number of times to repeat the cache before it clears. Default is 1.
      * @example s0.e.random(0,1,1).cache(16,4)
      */
-    cache(hits: patternable = 1, repeats: patternable = 1): Pattern {
+    cache(size: patternable = 1, repeats: patternable = 1): Pattern {
+        let values: any[] = []
+        
         this.stack.push((x: patternValue) => {
-            const loop = clamp(+this.handleTypes(hits), 0, 256)
+            const loop = clamp(+this.handleTypes(size), 0, 256)
             const nRepeats = +this.handleTypes(repeats)
-            const shouldRepeat = nRepeats > 0 
+            const reset = nRepeats > 0 
                 ? this._t%(nRepeats * loop) === 0
                 : false
-            return this.handleLoop(this._t, 'cache', loop, +x, shouldRepeat)
+
+            values = reset ? [] : values
+
+            // if we are looping and we have a value, use it, otherwise use the current value
+            const result = loop > 0 && loop <= values.length
+                ? values[this._t%loop]
+                : +x
+
+            // if we are looping and we don't have enough values, add the current one
+            loop > 0 && loop > values.length
+                && values.push(+x)
+
+            return result
         })
         return this
     }
@@ -1543,7 +1530,7 @@ s0.e.set(1)
         const aliases = Object.keys(new Pattern().aliases)
         return Object.getOwnPropertyNames(Pattern.prototype)
             .concat(aliases)
-            .filter(method => !['constructor', 'handleTypes', 'handleLoop', '_', 'get', 'has'].includes(method))
+            .filter(method => !['constructor', 'handleTypes', '_', 'get', 'has'].includes(method))
     }
 
     /** @hidden */
