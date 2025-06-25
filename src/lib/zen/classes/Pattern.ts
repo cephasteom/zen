@@ -1412,18 +1412,11 @@ s0.e.set(1)
      * @returns {Pattern}
      * @example s0.e.measurement(0)
      * @param qubit qubit to measure
-     * @param hits number of measurements to take before looping. Default is 0 (no looping). Max 256.
-     * @param repeats how many times the loop should repeat before being regenerated. Default is 0 (infinite).
      */
-    qmeasurement(qubit: patternable = 0, hits: patternable = 0, repeats: patternable = 0): Pattern {
-        this.stack.push((t: patternValue) => {
+    qmeasurement(qubit: patternable = 0): Pattern {
+        this.stack.push(() => {
             const q = +this.handleTypes(qubit)
-            const loop = clamp(+this.handleTypes(hits), 0, 256)
-            const current = circuit.measure(q) || 0
-            const shouldRepeat = +repeats > 0 
-                ? +t%(+repeats * loop) === 0
-                : false
-            return this.handleLoop(+t, 'measure', loop, current, shouldRepeat)
+            return circuit.measure(q) || 0
         })
         return this
     }
@@ -1431,19 +1424,10 @@ s0.e.set(1)
     /**
      * Return all measurements of the system as an array
      * @returns {Pattern}
-     * @example s0.e.measurements(4)
-     * @param hits number of measurements to take before looping. Default is 0 (no looping). Max 256.
-     * @param repeats how many times the loop should repeat before being regenerated. Default is 0 (infinite).
+     * @example s0.e.measurements()
      */
-    qmeasurements(hits: patternable = 0, repeats: patternable = 0): Pattern {
-        this.stack.push((t: patternValue) => {
-            const loop = clamp(+this.handleTypes(hits), 0, 256)
-            const current = circuit.measureAll() || []
-            const shouldRepeat = +repeats > 0 
-                ? +t%(+repeats * loop) === 0
-                : false
-            return this.handleLoop(+t, 'measures', loop, current, shouldRepeat)
-        })
+    qmeasurements(): Pattern {
+        this.stack.push(() => circuit.measureAll() || [])
         return this
     }
 
@@ -1451,21 +1435,13 @@ s0.e.set(1)
      * Return the probability (squared amplitude coefficient) for a given state of the quantum system
      * @returns {Pattern}
      * @param state state to get amplitude of, as an integer
-     * @param hits number of measurements to take before looping. Default is 0 (no looping). Max 256.
-     * @param repeats how many times the loop should repeat before being regenerated. Default is 0 (infinite).
      * @example s0.p.amp.amplitude(0).print()
      */
-    qprobability(state: patternable, hits: patternable = 0, repeats: patternable = 0): Pattern {
-        this.stack.push((t: patternValue) => {
+    qprobability(state: patternable): Pattern {
+        this.stack.push(() => {
             const length = circuit.numAmplitudes()
             const i = +this.handleTypes(state) % length
-            const loop = clamp(+this.handleTypes(hits), 0, 256)
-            const current = Number(pow(abs(round(circuit.state[i] || complex(0, 0), 14)), 2))
-            const shouldRepeat = +repeats > 0 
-                ? +t%(+repeats * loop) === 0
-                : false
-            
-            return this.handleLoop(+t, 'amplitude', loop, parseFloat(current.toFixed(5)), shouldRepeat)
+            return Number(pow(abs(round(circuit.state[i] || complex(0, 0), 14)), 2))
         })
         return this
     }
@@ -1473,24 +1449,16 @@ s0.e.set(1)
     /**
      * Returns an array of probabilities (squared amplitude coefficients) for all possible states of the quantum system
      * @returns {Pattern}
-     * @param hits number of measurements to take before looping. Default is 0 (no looping). Max 256.
-     * @param repeats how many times the loop should repeat before being regenerated. Default is 0 (infinite).
      * @example s0.p.probs.qprobabilities().print()
      */ 
-    qprobabilities(hits: patternable = 0, repeats: patternable = 0): Pattern {
-        this.stack.push((t: patternValue) => {
-            const loop = clamp(+this.handleTypes(hits), 0, 256)
+    qprobabilities(): Pattern {
+        this.stack.push(() => {
             const length = circuit.numAmplitudes()
-            const current =  Array.from({length}, (_, i) => {
+            return Array.from({length}, (_, i) => {
                 const state = round(circuit.state[i] || complex(0, 0), 14);
                 const result = Number(pow(abs(state), 2))
                 return parseFloat(result.toFixed(5))
             })
-            const shouldRepeat = +repeats > 0 
-                ? +t%(+repeats * loop) === 0
-                : false
-
-            return this.handleLoop(+t, 'amplitudes', loop, current, shouldRepeat)
         })
         return this
     }
@@ -1500,41 +1468,26 @@ s0.e.set(1)
      * Assuming that this value is between -PI and +PI, the result is normalised
      * @returns {Pattern}
      * @param state state to get phase of, as an integer
-     * @param hits number of measurements to take before looping. Default is 0 (no looping). Max 256.
-     * @param repeats how many times the loop should repeat before being regenerated. Default is 0 (infinite).
      * @example s0.p.phase.qphase(0).print()
      */
-    qphase(state: patternable, hits: patternable = 0, repeats: patternable = 0): Pattern {
-        this.stack.push((t: patternValue) => {
-            const loop = clamp(+this.handleTypes(hits), 0, 256)
+    qphase(state: patternable): Pattern {
+        this.stack.push(() => {
             const states = circuit.stateAsArray()
             const i = +this.handleTypes(state) % states.length
-            const current = mapToRange(states[i].phase, -Math.PI, Math.PI, 0, 1, 0)
-            const shouldRepeat = +repeats > 0
-                ? +t%(+repeats * loop) === 0
-                : false
-            
-            return this.handleLoop(+t, 'phase', loop, current, shouldRepeat)
+            return mapToRange(states[i].phase, -Math.PI, Math.PI, 0, 1, 0)
         })
         return this
     }
 
     /**
-     * Returns an array of phases for all possible states of the quantum system
+     * Returns an array of phases for all basis states of the quantum system
      * @returns {Pattern}
-     * @param hits number of measurements to take before looping. Default is 0 (no looping). Max 256.
      * @example s0.p.phases.qphases().print()
      */
-    qphases(hits: patternable = 0, repeats: patternable = 0): Pattern {
-        this.stack.push((t: patternValue) => {
-            const loop = clamp(+this.handleTypes(hits), 0, 256)
+    qphases(): Pattern {
+        this.stack.push(() => {
             const states = circuit.stateAsArray()
-            const current = states.map((state: any) => mapToRange(state.phase, -Math.PI, Math.PI, 0, 1, 0))
-            const shouldRepeat = +repeats > 0
-                ? +t%(+repeats * loop) === 0
-                : false
-            
-            return this.handleLoop(+t, 'phases', loop, current, shouldRepeat)
+            return states.map((state: any) => mapToRange(state.phase, -Math.PI, Math.PI, 0, 1, 0))
         })
         return this
     }
