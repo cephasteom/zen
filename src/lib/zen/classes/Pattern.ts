@@ -1383,11 +1383,11 @@ s0.e.set(1)
             // if we are looping and we have a value, use it, otherwise use the current value
             const result = loop > 0 && loop <= values.length
                 ? values[this._t%loop]
-                : +x
+                : x
 
             // if we are looping and we don't have enough values, add the current one
             loop > 0 && loop > values.length
-                && values.push(+x)
+                && values.push(x)
 
             return result
         })
