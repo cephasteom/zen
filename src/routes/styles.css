@@ -53,14 +53,16 @@
     --color-theme-1: #00f6ff; /* Laser Cyan */
     --color-theme-2: #00ff9f; /* Hyper Neon Green */
     --color-theme-3: #ff1fff; /* Ultraviolet Magenta */
+    --color-theme-4: #ff6c00;/* Blazing Neon Orange */    
+    --color-theme-5: #faff00;/* Electric Acid Yellow */
     --color-yellow: #fdf6f0;  /* Warm Gold */
     --color-grey-lighter: #fdf6f0; /* Blush White */
     --color-grey-light: #e7dcd7;   /* Pale Rose Grey */
     --color-grey-light-mid: #c8b8b2; /* Warm Mid Grey */
     --color-grey-mid: #a89c96;     /* Soft Clay Grey */
     --color-grey-dark: #7e6d66;    /* Cocoa Brown */
-    --color-grey-darker: #5c4c47;  /* Deep Earth Grey */
-    --color-grey-darkest: #2a211f; /* Deeper Almost Black Brown */
+    --color-grey-darker: #4a3f3a; /* Deep Earth Grey (50 % blend) */
+    --color-grey-darkest: #15110f; /* Near-black with warm brown tone */
     --color-pink: #f8d7da; /* Blush Pink */
     --color-box-shadow: rgba(60, 40, 40, 0.6); /* Warm Shadow */
 
@@ -229,7 +231,11 @@ button:focus:not(:focus-visible) {
 }
 
 .monaco-editor .bracket-highlighting-1 {
-    color: var(--color-theme-2) !important;
+    color: var(--color-theme-4) !important;
+}
+
+.monaco-editor .bracket-highlighting-2 {
+    color: var(--color-theme-5) !important;
 }
 
 .lines-content .mtk8 {
@@ -242,8 +248,7 @@ button:focus:not(:focus-visible) {
 }
 
 dialog::backdrop {
-    background: rgba(255, 105, 90, 0.5);
-
+    background: var(--color-grey-light);
 }
 
 canvas {
@@ -251,7 +256,7 @@ canvas {
 }
 
 .qc-circuit line {
-	stroke: var(--color-theme-2)!important;
+	stroke: var(--color-theme-1)!important;
     stroke-width: 2px;
 }
 
@@ -263,7 +268,7 @@ canvas {
 
 .qc-circuit text, 
 .qc-circuit circle {
-	fill: var(--color-theme-2)!important;
+	fill: var(--color-theme-1)!important;
 	stroke: none!important;
 }
 
@@ -271,7 +276,7 @@ canvas {
 .qc-circuit rect, 
 .qc-circuit path {
 	fill: var(--color-grey-darker)!important;
-	stroke: var(--color-theme-2)!important;
+	stroke: var(--color-theme-1)!important;
     stroke-width: 2px;
 	cursor: grab;
 }

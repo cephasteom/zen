@@ -32,7 +32,7 @@
         flex-direction: column;
         margin: 0 auto;
         box-sizing: border-box;
-        background-color: var(--color-grey-lighter);
+        background-color: var(--color-grey-light);
         @media (min-width: 1600px) {
             border-radius: 0 0 5px 5px;
         }
