@@ -1011,7 +1011,24 @@ s0.e.every('0?1*4|*2')
         })
         return this
     }
-    
+
+    /**
+     * Size - number of values in the previous value in the pattern chain
+     * @returns {Pattern}
+     * @example s0.p.n.set([0,1,2,3]).size() // returns 4
+     * @example s0.p.n.set('Cmaj7').size() // returns 4
+     * @example s0.p.n.set('Cmaj7..*16').size() // returns 1 
+     */
+    size(): Pattern {
+        this.stack.push((x: patternValue) => {
+            const data = [x].flat()
+            return Array.isArray(data) || typeof data === 'string'
+                ? data.length
+                : 1 // if not an array, return 1
+        })
+        return this
+    }
+
     /**
      * Layer a value on top of the previous value in the pattern chain, forming an array of values
      * @param n 
