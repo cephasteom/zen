@@ -93,7 +93,7 @@
 	header {
 		display: flex;
 		justify-content: center;
-        background-color: var(--color-grey-darkest);
+        background-color: var(--color-black);
 
         @media all and (display-mode: fullscreen) {
             background-color: var(--color-grey-darker);

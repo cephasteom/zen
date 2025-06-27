@@ -12,7 +12,6 @@ export class Visuals {
         // --color-theme-3: #ff1fff; /* Ultraviolet Magenta */
         [255, 31, 255],
     ]
-    mColour = [51, 51, 51, 255];
 
     convertPositionToVector(position: position, i: number): vector {
         return {

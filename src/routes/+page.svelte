@@ -147,7 +147,7 @@
         position: relative;
         display: none;
         overflow: hidden;
-        background-color: var(--color-grey-darker);
+        background-color: var(--color-grey-dark);
         
         &--fullHeight {
             grid-row: 1 / 4;

@@ -59,10 +59,11 @@
     --color-grey-lighter: #fdf6f0; /* Blush White */
     --color-grey-light: #e7dcd7;   /* Pale Rose Grey */
     --color-grey-light-mid: #c8b8b2; /* Warm Mid Grey */
-    --color-grey-mid: #a89c96;     /* Soft Clay Grey */
-    --color-grey-dark: #7e6d66;    /* Cocoa Brown */
-    --color-grey-darker: #4a3f3a; /* Deep Earth Grey (50 % blend) */
-    --color-grey-darkest: #15110f; /* Near-black with warm brown tone */
+    --color-grey-mid: #a89c96;       /* Soft Clay Grey */
+    --color-grey-dark: #7e6d66;      /* Cocoa Brown */
+    --color-grey-darker: #5e4f49;    /* Deep Earth Grey (moderated) */
+    --color-grey-darkest: #2f2521;   /* Muted Charcoal Brown */
+    --color-black: #15110f; /* Near-black with warm brown tone */
     --color-pink: #f8d7da; /* Blush Pink */
     --color-box-shadow: rgba(60, 40, 40, 0.6); /* Warm Shadow */
 
@@ -275,7 +276,7 @@ canvas {
 .qc-circuit ellipse, 
 .qc-circuit rect, 
 .qc-circuit path {
-	fill: var(--color-grey-darker)!important;
+	fill: var(--color-grey-dark)!important;
 	stroke: var(--color-theme-1)!important;
     stroke-width: 2px;
 	cursor: grab;

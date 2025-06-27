@@ -112,7 +112,7 @@
     }
 
     .label {
-        background-color: var(--color-grey-darker);
+        background-color: var(--color-grey-dark);
         color: var(--color-theme-1);
         margin-top: 2em;
         font-size: var(--text-xs);
