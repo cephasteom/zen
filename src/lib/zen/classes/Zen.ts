@@ -11,9 +11,6 @@ import { clamp } from '../utils/utils'
  * z.q = 16 // frames per cycle
  * z.update = 1 // when to update the executed code, 1 is on the next division, q is on the next cycle etc.
  * z.set({reverb: 1, rsize: 0.5}) // set global parameters for all streams. Can be overwritten by stream parameters
- * z.p.n.scales('d-dorian', 16) // set global time parameters using z.p
- * z.px._modi.range(0, 1, 0.25) // set global stream parameters using z.px
- * etc.
  */ 
 export class Zen extends Stream {
     /** @hidden */
