@@ -1030,6 +1030,72 @@ s0.e.every('0?1*4|*2')
     }
 
     /**
+     * Map - apply a function to each value in the previous value in the pattern chain
+     * @param cb callback function to apply to each value
+     */
+    map(cb: {(x: patternValue): patternValue}): Pattern {
+        this.stack.push((x: patternValue) => {
+            const data = [x].flat()
+            return data.map(cb).flat()
+        })
+        return this
+    }
+
+    /**
+     * Reduce - reduce the previous value in the pattern chain to a single value
+     * @param cb callback function to apply to each value
+     * @param initial initial value to start the reduction
+     * @returns {Pattern}
+     */
+    reduce(cb: {(acc: patternValue, x: patternValue): patternValue}, initial: patternValue = 0): Pattern {
+        this.stack.push((x: patternValue) => {
+            const data = [x].flat()
+            return data.reduce(cb, initial)
+        })
+        return this
+    }
+
+    /**
+     * Filter - filter the previous value in the pattern chain
+     * @param cb callback function to apply to each value
+     * @returns {Pattern}
+     */
+    filter(cb: {(x: patternValue): boolean}): Pattern {
+        this.stack.push((x: patternValue) => {
+            const data = [x].flat()
+            return data.filter(cb).flat()
+        })
+        return this
+    }
+
+    /**
+     * Slice - slice the previous value in the pattern chain
+     * @param start start index of the slice
+     * @param end end index of the slice
+     * @returns {Pattern}
+     */
+    slice(start: patternable = 0, end: patternable = Infinity): Pattern {
+        this.stack.push((x: patternValue) => {
+            const data = [x].flat()
+            return data.slice(+start, +end).flat()
+        })
+        return this
+    }
+
+    /**
+     * Some - test if some values in the previous value in the pattern chain pass a test
+     * @param cb callback function to apply to each value
+     * @returns {Pattern}   
+     */
+    some(cb: {(x: patternValue): boolean}): Pattern {
+        this.stack.push((x: patternValue) => {
+            const data = [x].flat()
+            return data.some(cb) ? 1 : 0
+        })
+        return this
+    }
+
+    /**
      * Layer a value on top of the previous value in the pattern chain, forming an array of values
      * @param n 
      * @returns 

@@ -11,12 +11,6 @@
 		"strict": true,
 		"verbatimModuleSyntax": true,
 		"moduleResolution": "bundler",
-		"baseUrl": ".",
-		"paths": {
-			"$lib/*": ["src/lib/*"],
-			"$lib": ["src/lib/index"],
-			"$app/*": [".svelte-kit/types/app/*"]
-		},
 	},
 	// Path aliases are handled by https://svelte.dev/docs/kit/configuration#alias
 	// except $lib which is handled by https://svelte.dev/docs/kit/configuration#files
