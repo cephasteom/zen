@@ -1,7 +1,7 @@
 export default `# Streams
 Zen is organised into Streams, which refer to different musical layers. Streams are represented by the letter \`s\` and an index, as in \`s0\`, \`s1\`, \`s2\` ... \`s63\`. Think of them as separate tracks on a mixing desk, each track with its own instruments and effects. A Stream is an instance of a [Stream class](/docs/classes#stream). 
 
-In terms of syntax, a Stream is just an agnostic object that returns a Pattern when you access its properties. For example, \`s0.n\` returns a Pattern that can be used to set the note values for stream 0, \`s0.reverb\` returns a Pattern that can be used to set the reverb value for stream 0, and so on. Even, \`s0.banana\` will return a Pattern, though it's unlikely that you'll find a banana parameter in your synth engine.
+A Stream is just an object that returns a Pattern for each property. For example, \`s0.n\` returns a Pattern that can be used to set the note values for stream 0, \`s0.reverb\` returns a Pattern that can be used to set the reverb value for stream 0, and so on. Even, \`s0.banana\` will return a Pattern, though it's unlikely that you'll find a banana parameter in your synth engine.
 
 Properties can be set directly, as above, or using the \`.set()\` method, which accepts an object literal with key/value pairs. For example, these two examples are equivalent:
 \`\`\`js
@@ -14,7 +14,15 @@ s0.e.sometimes()
 s0.set({inst: 'synth', n: saw(0,32,2).add(48), e: sometimes()})
 \`\`\`
 
-Here are some special properties.
+The properties you set depend on the parameters of the instruments and effect you are using. For example, if you are using the sampler, you'll want to set a sample bank and index: 
+\`\`\`js
+s0.set({inst: 'sampler', bank: 'bd808 sd808', e: sometimes().cache(16,4)})
+s0.i.random(1,15).step(1).cache(16,4)
+\`\`\`
+
+You can find a full list of instruments and their parameters in the [Synths docs](/docs/synths), and a full list of effects and their parameters in the [Effects docs](/docs/fx).
+
+Here are some special stream properties.
 
 ## .e
 \`.e\` stands for event and is used to trigger the stream. If \`.e\` is set to 0 no event is triggered. If \`.e\` is greater than 0, an event is triggered. Consequently, there are many Pattern methods that simply return 1s and 0s.

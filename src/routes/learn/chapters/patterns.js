@@ -4,7 +4,7 @@ The [Pattern class](/docs/classes#pattern) is Zen's primary building block. As w
 s0.x.saw()
 s0.e.every(1)
 \`\`\`
-\`s0\`, or \`s1\`, \`s2\`, \`s3\` etc., are instances of the [Stream class](/docs/classes#stream), which we will cover in the next chapter. A stream's \`.x\` and \`.e\` properties are both patterns. \`.x\` controls the x position of the stream on the canvas and expects values between 1 and 0. \`.e\` determines when a stream should trigger an event and expects patterns of 1s or 0s. 1s fires an event, 0s are ignored.
+\`s0\`, or \`s1\`, \`s2\`, \`s3\` etc., are instances of the [Stream class](/docs/classes#stream), which we will cover in the next chapter. (Almost) every parameter of a stream returns a pattern. So, for example, \`.x\` and \`.e\` are patterns. \`.x\` controls the x position of the stream on the canvas and expects values between 1 and 0. \`.e\` determines whether a stream should trigger an event and expects patterns of 1s or 0s.
 
 Patterns have many useful methods for generating interesting streams of values. The \`.set()\` method is used to set a constant value, whereas \`every()\` returns a 1 every n divisions. For example:
 \`\`\`js
