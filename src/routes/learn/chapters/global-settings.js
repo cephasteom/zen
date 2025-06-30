@@ -14,20 +14,6 @@ z.t.sine(0,16,10.25)
 z.q = 16
 \`\`\`
 
-## Global parameters
-You can set instrument and fx parameters in the same way that you set them on a stream, using \`z.set()\` and \`z.p\`. Parameters set on the global \`z\` object will be passed down to all streams.
-\`\`\`js
-z.set({reverb: 1, cut:[0,1]}) // set reverb to 0.5 on all streams
-z.n.set('Clyd%16..*16') // use a lydian scale on all streams
-
-s0.set({inst: 0})
-s0.e.set(1)
-
-s1.set({inst: 0, reverb: 0}) // override global reverb setting
-s1.n.add(12) // you can chain further methods to the pattern set on the z object
-s1.e.set(1)
-\`\`\`
-
 ## Seeding randomness
 You can seed the random number generator using \`z.seed\`, allowing you to use randomness with repeatable results. Seed is an instance of a pattern, so you can use any pattern method to set it, for example \`z.seed.set(256)\`.
 
