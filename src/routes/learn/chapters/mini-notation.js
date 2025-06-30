@@ -90,7 +90,7 @@ Midi note values are notated as \`<root><octave>\`, where the root is a capital 
 \`\`\`js
 s0.set({inst:0,reverb:0.5,cut:0,cutr:100})
 s0.x.set('0..15?*16 |*4').div(16)
-s0.p.n.set(s0.x).set('C4 E4 G4 B4') // use the x position to control the note number
+s0.n.set(s0.x).mul(16).set('C4 E4 G4 B4') // use the x position to control the note number
 s0.e.set('9:16')
 \`\`\`
 
@@ -100,63 +100,63 @@ Chords and scales both return an array of note values. Scales were adapted from 
 Chords are notated as \`<root><triad><extension?>\`, where the root is a capitalised letter, the triad is one of \`ma\`, \`mi\`, \`di\`, \`au\`, \`su\` (major, minor, diminished, augmented, suspended), and the (optional) extension is one of \`6\`, \`7\`, \`#7\`, \`b9\`, \`9\`, \`11\`, \`#11\`, \`13\`, \`#13\`:
 \`\`\`js
 s0.set({inst:0,reverb:0.5,cut:0,dur:10,r:100})
-s0.p.n.set('Cmi7')
+s0.n.set('Cmi7')
 s0.e.set('9:16')
 \`\`\`
 
 Turn the chord into a sequence:
 \`\`\`js
 s0.set({inst:0,reverb:0.5,cut:0,dur:10,r:100})
-s0.p.n.set('Cmi7..*8')
+s0.n.set('Cmi7..*8')
 s0.e.set('9:16')
 \`\`\`
 
 Randomly choose from the sequence:
 \`\`\`js
 s0.set({inst:0,reverb:0.5,cut:0,dur:10,r:100})
-s0.p.n.set('Cmi7..?*16')
+s0.n.set('Cmi7..?*16')
 s0.e.set('9:16')
 \`\`\`
 
 Specify the length of the chord:
 \`\`\`js
 s0.set({inst:0,reverb:0.5,cut:0,dur:10,r:100})
-s0.p.n.set('Cmi7%8..*16')
+s0.n.set('Cmi7%8..*16')
 s0.e.set('1*16')
 \`\`\`
 
 A number of Pattern methods handle arrays and can be useful here:
 \`\`\`js
 s0.set({inst:0,reverb:0.5,cut:0,dur:10,r:100,vol:0.5})
-s0.p.n.set('Cmi7*16').inv('0..8?*16|*4')
+s0.n.set('Cmi7*16').inv('0..8?*16|*4')
 s0.e.set('1*16')
 \`\`\`
 
 Scales are notated <root><scale> and can be treated in the same way:
 \`\`\`js
 s0.set({inst:0,reverb:0.5,cut:0,dur:10,r:100,vol:0.5})
-s0.p.n.set('Clyd*16')
+s0.n.set('Clyd*16')
 s0.e.set('1 1 1 1')
 \`\`\`
 
 Turn the scale into a sequence:
 \`\`\`js
 s0.set({inst:0,reverb:0.5,cut:0,dur:10,r:100,vol:0.5})
-s0.p.n.set('Clyd..*16')
+s0.n.set('Clyd..*16')
 s0.e.set('1*16')
 \`\`\`
 
 Randomly choose from the sequence:
 \`\`\`js
 s0.set({inst:0,reverb:0.5,cut:0,dur:10,r:100,vol:0.5})
-s0.p.n.set('Clyd..?*16')
+s0.n.set('Clyd..?*16')
 s0.e.set('1*16')
 \`\`\`
 
 Specify the length of the scale:
 \`\`\`js
 s0.set({inst:0,reverb:0.5,cut:0,dur:10,r:100,vol:0.5})
-s0.p.n.set('Clyd%16..?*16')
+s0.n.set('Clyd%16..?*16')
 s0.e.set('1*16')
 \`\`\`
 
@@ -166,7 +166,7 @@ Execute \`scales()\` in the editor to print a list of available scales in the co
 Mini-notation can be used in place of any value in Zen, making it enormously powerful. For example:
 \`\`\`js
 s0.set({inst:0,reverb:'0.5?0*16',cut:'0?1*16',dur:10,r:100,vol:0.5})
-s0.p.n.set('Clyd%16..?*16')
+s0.n.set('Clyd%16..?*16')
 s0.e.set('1*16')
 \`\`\`
 `

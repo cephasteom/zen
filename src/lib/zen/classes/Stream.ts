@@ -12,7 +12,7 @@ import type { Dictionary } from '../types'
  * Streams are available within Zen as `s0`, `s1`, `s2`, `s3`, `s4`, `s5`, `s6`, `s7`.
  * @example
  * s0.set({inst: 'synth', n: 60}) // set the stream's default parameters
- * s0.p.lag.set(1).btms()
+ * s0.lag.set(1).btms()
  * s0.px._modi.saw(1,10) // map the synth's modulation index across the x axis
  * s0.py._harm.range(0,10,1) // map the synth's harmonic series across the y axis
  * s0.x.saw() // move the stream across the x axis of the canvas
@@ -39,7 +39,7 @@ export class Stream {
     /**
      * Patterns to be mapped across time
      * @example
-     * s0.p.amp.range(0,1) // ramp amp from 0 to 1 across the cycle
+     * s0.amp.range(0,1) // ramp amp from 0 to 1 across the cycle
      */ 
     p
 

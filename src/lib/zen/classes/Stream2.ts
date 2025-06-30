@@ -35,10 +35,15 @@ export class Stream {
                 if (key in target) return target[key as keyof typeof target];
 
                 // wrap Pattern instance in callable proxy
-                const pattern = new Pattern();
-                const callable = makeCallablePattern(pattern);
-                target[key] = callable;
-                return callable;
+                const isTrigger = ['e', 'm', 'solo', 'mute'].includes(key);
+                const pattern = new Pattern(isTrigger);
+                target[key] = pattern;
+                return pattern;
+                
+                // TODO: get this working without breaking passing patterns as args
+                // const callable = makeCallablePattern(pattern);
+                // target[key] = callable;
+                // return callable;
             }
         };
 

@@ -9,7 +9,7 @@ z.mode.set({
 })
 
 s0.set({inst: 0})
-s0.p.n.midinote(1).at(-1) // use the last note to be played as the n value
+s0.n.midinote(1).at(-1) // use the last note to be played as the n value
 s0.e.set(1) // trigger an event every time a note is received
 \`\`\`
 

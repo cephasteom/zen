@@ -196,7 +196,7 @@ export class Pattern implements Dictionary {
      * Set a single value
      * @param value - a single string or number or array of strings or numbers, or a Pattern, or a Zen pattern string
      * @returns {Pattern}
-     * @example s0.p.amp.set(1)
+     * @example s0.amp.set(1)
      * @example s1.e.set(s0.e)
      * @example s0.e.set('1?0*16')
      * @example s0.x.set(t => t) // run a function, with the first argument being the current time
@@ -280,8 +280,8 @@ s0.e.every('0?1*4|*2')
      * @param {Pattern} pattern - an instance of another pattern
      * @returns {Pattern}
      * @example 
-    s0.p.amp.sine()
-    s1.p.pan.use(s0.p.amp);
+    s0.amp.sine()
+    s1.pan.use(s0.amp);
      */
     use(pattern: Pattern): Pattern {
         this.stack.push(...pattern.stack)
@@ -419,8 +419,8 @@ s0.e.every('0?1*4|*2')
      * Add a value to the previous value in the pattern chain.
      * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
-     * @example s0.p.n.noise(60,72,1).add(12)
-     * @example s0.p.n.noise(60,72,1).add('0?12*16')
+     * @example s0.n.noise(60,72,1).add(12)
+     * @example s0.n.noise(60,72,1).add('0?12*16')
      */
     add(value: patternable): Pattern {
         this.stack.push(x => handlePolyphony(x, x => x + +this.handleTypes(value)))
@@ -431,7 +431,7 @@ s0.e.every('0?1*4|*2')
      * Subtract a value from the previous value in the pattern chain.
      * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
-     * @example s0.p.n.noise(60,72,1).sub(12)
+     * @example s0.n.noise(60,72,1).sub(12)
      */
     sub(value: patternable): Pattern {
         this.stack.push(x => handlePolyphony(x, x => x - +this.handleTypes(value)))
@@ -442,7 +442,7 @@ s0.e.every('0?1*4|*2')
      * Reverse subtract. Subtract the previous value in the pattern chain from a value.
      * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
-     * @example s0.p.amp.noise(0.5,0.25).subr(1)
+     * @example s0.amp.noise(0.5,0.25).subr(1)
      */
     subr(value: patternable): Pattern {
         this.stack.push(x => handlePolyphony(x, x => +this.handleTypes(value) - x))
@@ -453,7 +453,7 @@ s0.e.every('0?1*4|*2')
      * Multiply the previous value in the pattern chain by a value.
      * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
-     * @example s0.p.n.noise(60,72,1).mul(2)
+     * @example s0.n.noise(60,72,1).mul(2)
      */ 
     mul(value: patternable): Pattern {
         this.stack.push(x => handlePolyphony(x, x => x * +this.handleTypes(value)))
@@ -464,7 +464,7 @@ s0.e.every('0?1*4|*2')
      * Divide the previous value in the pattern chain by a value.
      * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
-     * @example s0.p.n.noise(60,72,1).div(2)
+     * @example s0.n.noise(60,72,1).div(2)
      */
     div(value: patternable): Pattern {
         this.stack.push(x => handlePolyphony(x, x => x / +this.handleTypes(value)))
@@ -475,7 +475,7 @@ s0.e.every('0?1*4|*2')
      * Reverse divide the previous value in the pattern chain by a value.
      * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
-     * @example s0.p.modi.noise(1,2).divr(2)
+     * @example s0.modi.noise(1,2).divr(2)
      */ 
     divr(value: patternable): Pattern {
         this.stack.push(x => handlePolyphony(x, x => +this.handleTypes(value) / x))
@@ -537,7 +537,7 @@ s0.e.every('0?1*4|*2')
      * @param hi highest value in range
      * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
-     * @example s0.p.modi.range(0, 10, 1, 2)
+     * @example s0.modi.range(0, 10, 1, 2)
      */
     range(lo: patternable = 0, hi: patternable = 1, freq: patternable = 1): Pattern {
         this.normalise(freq).mtr(lo, hi)
@@ -550,7 +550,7 @@ s0.e.every('0?1*4|*2')
      * @param hi highest value in range
      * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
-     * @example s0.p.modi.sine(0, 10)
+     * @example s0.modi.sine(0, 10)
      */
     sine(lo: patternable = 0, hi: patternable = 1, freq: patternable = 1): Pattern {
         this.normalise(freq)
@@ -566,7 +566,7 @@ s0.e.every('0?1*4|*2')
      * @param hi highest value in range
      * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
-     * @example s0.p.modi.cosine(0, 10)
+     * @example s0.modi.cosine(0, 10)
      */
     cosine(lo: patternable = 0, hi: patternable = 1, freq: patternable = 1): Pattern {
         this.normalise(freq)
@@ -582,7 +582,7 @@ s0.e.every('0?1*4|*2')
      * @param hi highest value in range
      * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
-     * @example s0.p.modi.saw(0, 10)
+     * @example s0.modi.saw(0, 10)
      */
     saw(lo: patternable, hi: patternable, freq: patternable = 1): Pattern {
         return this.range(lo, hi, freq)
@@ -609,7 +609,7 @@ s0.e.every('0?1*4|*2')
      * @param hi highest value in range
      * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
-     * @example s0.p.harm.tri(0, 4, 0.25)
+     * @example s0.harm.tri(0, 4, 0.25)
      */
     tri(lo: patternable = 0, hi: patternable = 1, freq: patternable = 1): Pattern {
         this.normalise(freq)
@@ -626,7 +626,7 @@ s0.e.every('0?1*4|*2')
      * @param width - width of the pulse. Default is 0.5, which means a square wave.
      * @param freq - number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
-     * @example s0.p.modi.pulse(0, 10, 0.25)
+     * @example s0.modi.pulse(0, 10, 0.25)
     */
     pulse(lo: patternable = 0, hi: patternable = 1, width: patternable = 0.5, freq: patternable = 1): Pattern {
         this.normalise(freq)
@@ -642,7 +642,7 @@ s0.e.every('0?1*4|*2')
      * @param hi highest value in range
      * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
-     * @example s0.p.modi.square(0, 10)
+     * @example s0.modi.square(0, 10)
     */
     square(lo: patternable=0, hi: patternable=1, freq: patternable=1): Pattern {
         this.pulse(lo, hi, 0.5, freq)
@@ -655,7 +655,7 @@ s0.e.every('0?1*4|*2')
      * @param hi highest value in range
      * @param step step size to round the output. Default is 0, which means no rounding.
      * @returns {Pattern}
-     * @example s0.p.n.random(60,72,1)
+     * @example s0.n.random(60,72,1)
      */
     random(lo: patternable=0, hi: patternable=1, step: patternable=0): Pattern {
         this.fn(x => this.rng(+x))
@@ -671,7 +671,7 @@ s0.e.every('0?1*4|*2')
      * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @param cycles number of cycles of the pattern. Default is 4.
      * @returns {Pattern}
-     * @example s0.p.pan.noise(0, 1)
+     * @example s0.pan.noise(0, 1)
     */
     noise(lo: patternable=0, hi: patternable=1, freq: patternable = 1, cycles: patternable = 4): Pattern {
         this.normalise(freq, cycles)
@@ -712,7 +712,7 @@ s0.e.every('0?1*4|*2')
      * @param q the length of the binary string
      * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
-     * @example s0.p.n.ntbin(9, 8) // 9 in binary is 1001, padded out to 8 digits. Passes 00001001 to .bin()
+     * @example s0.n.ntbin(9, 8) // 9 in binary is 1001, padded out to 8 digits. Passes 00001001 to .bin()
      */
     ntbin(n: patternable = 0, q: number = 8, freq: patternable = 1): Pattern {
         return this.bin(numberToBinary(+n, q), freq)
@@ -723,7 +723,7 @@ s0.e.every('0?1*4|*2')
      * @param values an array of values
      * @param freq number of iterations of the sequence, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
-     * @example s0.p.n.seq([60,72,74,76])
+     * @example s0.n.seq([60,72,74,76])
      */
     seq(values: number[] = [], freq: patternable = 1): Pattern {
         this.normalise(freq)
@@ -762,7 +762,7 @@ s0.e.every('0?1*4|*2')
      * Round the previous value in the pattern chain to the nearest value in an array.
      * @param array array of values to round to
      * @returns {Pattern}
-     * @example s0.p.n.noise(0,12).tune([0,2,4,5,7,9,11,12]).add(36)
+     * @example s0.n.noise(0,12).tune([0,2,4,5,7,9,11,12]).add(36)
      */ 
     tune(array: patternable): Pattern {
         // this.step(1).mod(12)
@@ -799,7 +799,7 @@ s0.e.every('0?1*4|*2')
      * Test if the previous value in the pattern chain is greater than a value.
      * @param value value to test against
      * @returns {Pattern}
-     * @example s0.p.n.noise(0,1).gt(0.3).ifelse(60, 72)
+     * @example s0.n.noise(0,1).gt(0.3).ifelse(60, 72)
      */ 
     gt(value: patternable): Pattern {
         this.stack.push(x => {
@@ -826,7 +826,7 @@ s0.e.every('0?1*4|*2')
      * Test if the previous value in the pattern chain is greater than or equal to a value.
      * @param value value to test against
      * @returns {Pattern}
-     * @example s0.p.n.noise(0,1).gte(0.3).ifelse(60, 72)
+     * @example s0.n.noise(0,1).gte(0.3).ifelse(60, 72)
      */ 
     gte(value: patternable): Pattern {
         this.stack.push(x => {
@@ -906,7 +906,7 @@ s0.e.every('0?1*4|*2')
     /**
      * Convert the previous value from beats to seconds, scaling by bpm
      * @returns {Pattern}
-     * @example s0.p.dur(1).bts().mul(1000)
+     * @example s0.dur(1).bts().mul(1000)
      */ 
     bts(): Pattern {
         this.fn(x => handlePolyphony(x, x => x * (60/this._bpm)))
@@ -916,7 +916,7 @@ s0.e.every('0?1*4|*2')
     /**
      * Convert the previous value from beats to milliseconds, scaling by bpm
      * @returns {Pattern}
-     * @example s0.p.dur(1).btms()
+     * @example s0.dur(1).btms()
      */ 
     btms(): Pattern {
         this.fn(x => handlePolyphony(x, x => x * (60000/this._bpm)))
@@ -926,7 +926,7 @@ s0.e.every('0?1*4|*2')
     /**
      * Convert the previous value from divisions of a bar to seconds, scaling by bpm
      * @returns {Pattern}
-     * @example s0.p.q().ttms()
+     * @example s0.q().ttms()
      */
     ttms(): Pattern {
         this.fn(x => handlePolyphony(x, x =>  x * (((60000/this._bpm) * 4) / this._q)))
@@ -937,7 +937,7 @@ s0.e.every('0?1*4|*2')
      * Provide a callback function to the previous value in the pattern chain
      * @param cb callback function
      * @returns {Pattern}
-     * @example s0.p.modi.seq([0,1,2,3]).fn(x => x * 2)
+     * @example s0.modi.seq([0,1,2,3]).fn(x => x * 2)
      */ 
     fn(cb: {(x: patternValue): patternValue}): Pattern {
         this.stack.push(cb)
@@ -948,7 +948,7 @@ s0.e.every('0?1*4|*2')
      * Invert the previous chord in the pattern chain
      * @param n inversion
      * @returns {Pattern}
-     * @example s0.p.n.set('Cmi7').inversion(1)
+     * @example s0.n.set('Cmi7').inversion(1)
      */ 
     inversion(n: patternable): Pattern {
         this.stack.push((x: patternValue) => {
@@ -968,7 +968,7 @@ s0.e.every('0?1*4|*2')
      * @param i index of value to retrieve, or array of indexes to retrieve. Negative numbers are counted from the end of the array.
      * @returns {Pattern}
      * @example s0.set({inst:0, cut:0})
-     * s0.p.n.set('Ddor%16').at('0..8?*16')
+     * s0.n.set('Ddor%16').at('0..8?*16')
      * s0.e.every(1)
      */ 
     at(i: patternable[]): Pattern {
@@ -1008,9 +1008,9 @@ s0.e.every('0?1*4|*2')
     /**
      * Size - number of values in the previous value in the pattern chain
      * @returns {Pattern}
-     * @example s0.p.n.set([0,1,2,3]).size() // returns 4
-     * @example s0.p.n.set('Cmaj7').size() // returns 4
-     * @example s0.p.n.set('Cmaj7..*16').size() // returns 1 
+     * @example s0.n.set([0,1,2,3]).size() // returns 4
+     * @example s0.n.set('Cmaj7').size() // returns 4
+     * @example s0.n.set('Cmaj7..*16').size() // returns 1 
      */
     size(): Pattern {
         this.stack.push((x: patternValue) => {
@@ -1092,7 +1092,7 @@ s0.e.every('0?1*4|*2')
      * Layer a value on top of the previous value in the pattern chain, forming an array of values
      * @param n 
      * @returns 
-     * @example s0.p.n.set('Ddor%16..*16').layer(62)
+     * @example s0.n.set('Ddor%16..*16').layer(62)
      */
     layer(n: patternable): Pattern {
         this.stack.push(x => [x].flat().concat(this.handleTypes(n)))
@@ -1327,7 +1327,7 @@ s0.e.every('0?1*4|*2')
      * @param frequency frequency - number of patterns to generate per cycle. Default is 1.
      * @returns {Pattern}
      * @example s0.set({inst: 1})
-s0.p.bank.set(['bd', 'sd', 'hh']).at(
+s0.bank.set(['bd', 'sd', 'hh']).at(
   markov(
     [[0,0.1,0.9], [0.25,0.1,0.9], [0.5,0.25,0.5]]),
     64,
@@ -1353,7 +1353,7 @@ s0.e.set(1)
      * @param device midi device index (default is 0)
      * @param value initial value (default is 1)
      * @returns {Pattern}
-     * @example s0.p.vol.midicc(1,0.5,0)
+     * @example s0.vol.midicc(1,0.5,0)
      */
     midicc(cc: patternable, device: patternable = 0, value: patternable = 1): Pattern {
         this.stack.push(() => {
@@ -1368,7 +1368,7 @@ s0.e.set(1)
      * Use the currently pressed key(s) on the selected device
      * @param device midi device index (default is 0)
      * @returns {Pattern}
-     * @example s0.p.n.midinote()
+     * @example s0.n.midinote()
      */
     midinote(device: patternable): Pattern {
         this.stack.push(() => getNotes(+this.handleTypes(device)))
@@ -1380,8 +1380,8 @@ s0.e.set(1)
      * @param path url path to midi file, must be available to the browser
      * @param param e | n | dur. Default n.
      * @returns {Pattern}
-     * @example s0.p.n.midifile('path/to/midi.mid', 'n')
-     * @example s0.p.dur.midifile('path/to/midi.mid', 'dur').btms()
+     * @example s0.n.midifile('path/to/midi.mid', 'n')
+     * @example s0.dur.midifile('path/to/midi.mid', 'dur').btms()
      * @example s0.e.midifile('path/to/midi.mid', 'e')
      */
     midifile(path: string, param: string = 'n'): Pattern {
@@ -1476,7 +1476,7 @@ s0.e.set(1)
      * Each will be evaluated and packed into an array
      * @example s0.x.sine()
      * s0.y.noise()
-     * s0.p.pack(s0.x, s0.y).print().fn(([x, y]) => ...)
+     * s0.pack(s0.x, s0.y).print().fn(([x, y]) => ...)
      */
     pack(...args: patternable[]): Pattern {
         this.stack.push(() => args.map(x => this.handleTypes(x)).flat())
@@ -1511,7 +1511,7 @@ s0.e.set(1)
      * Return the probability (squared amplitude coefficient) for a given state of the quantum system
      * @returns {Pattern}
      * @param state state to get amplitude of, as an integer
-     * @example s0.p.amp.amplitude(0).print()
+     * @example s0.amp.amplitude(0).print()
      */
     qprobability(state: patternable): Pattern {
         this.stack.push(() => {
@@ -1525,7 +1525,7 @@ s0.e.set(1)
     /**
      * Returns an array of probabilities (squared amplitude coefficients) for all possible states of the quantum system
      * @returns {Pattern}
-     * @example s0.p.probs.qprobabilities().print()
+     * @example s0.probs.qprobabilities().print()
      */ 
     qprobabilities(): Pattern {
         this.stack.push(() => {
@@ -1544,7 +1544,7 @@ s0.e.set(1)
      * Assuming that this value is between -PI and +PI, the result is normalised
      * @returns {Pattern}
      * @param state state to get phase of, as an integer
-     * @example s0.p.phase.qphase(0).print()
+     * @example s0.phase.qphase(0).print()
      */
     qphase(state: patternable): Pattern {
         this.stack.push(() => {
@@ -1558,7 +1558,7 @@ s0.e.set(1)
     /**
      * Returns an array of phases for all basis states of the quantum system
      * @returns {Pattern}
-     * @example s0.p.phases.qphases().print()
+     * @example s0.phases.qphases().print()
      */
     qphases(): Pattern {
         this.stack.push(() => {
@@ -1572,7 +1572,7 @@ s0.e.set(1)
      * Returns the measured state as an integer - 
      * ie. in a 2-qubit system, 00 = 0, 01 = 1, 10 = 2, 11 = 3
      * @returns {Pattern}
-     * @example s0.p.res.qresult().print()
+     * @example s0.res.qresult().print()
      */
     qresult(): Pattern {
         this.qmeasurements().fn((x: any) => parseInt(x.reverse().join(''), 2))
@@ -1582,7 +1582,7 @@ s0.e.set(1)
     /**
      * Post the current value to the console
      * @param prefix optional prefix to the message
-     * @example s0.p.n.set('Cmi7').print('s0.p.n')
+     * @example s0.n.set('Cmi7').print('s0.n')
      */
     print(prefix: string = ''): Pattern {
         this.stack.push(x => {

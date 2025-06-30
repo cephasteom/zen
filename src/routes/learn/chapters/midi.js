@@ -13,19 +13,19 @@ For example:
 \`\`\`js
 // send midi notes to device 1, channel 1
 s0.set({ midi: 1, midichan: 1 })
-s0.p.n.set('60 62 64 65 67 69 71 72')
+s0.n.set('60 62 64 65 67 69 71 72')
 s0.e.every(2)
 // send cc messages
-s0.p.cc1.sine()
+s0.cc1.sine()
 \`\`\`
 
 ## MIDI Input
 Patterns can also use midi control changes and currently pressed keys as input. The following methods are available:
 \`\`\`js
 // use the modulation wheel on device 10 as input, with an initial value of 0.5
-s0.p.vol.midicc(1,10,0.5)
+s0.vol.midicc(1,10,0.5)
 // use all pressed keys on device 10 as input
-s0.p.n.midinote(10)
+s0.n.midinote(10)
 \`\`\`
 
 ## MIDI Parsing
@@ -34,7 +34,7 @@ Zen can parse midi files and extract note and event data:
 let bassfile = 'http://localhost:6060/midi/tune03/tune03-bass.mid' // must be hosted somewhere accessible
 
 s0.set({inst: 0, cut:0})
-s0.p.n.midifile(bassfile, 'n') // use the note data
+s0.n.midifile(bassfile, 'n') // use the note data
 s0.e.midifile(bassfile, 'e') // use the event data
 \`\`\
 `

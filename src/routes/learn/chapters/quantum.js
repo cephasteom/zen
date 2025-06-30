@@ -115,25 +115,10 @@ q0.u3([s0.y,s0.x,0])
 s0.y.noise()
 s0.x.sine(0,1,1/3)
 
-s0.p._n.set(s0.y).set('Cpro%16..*16 | Cpro%16..?*16').sub('0?12*16')
-s0.p.modi.set(s0.x).saw()
+s0._n.set(s0.y).mtr(0,16).set('Cpro%16..*16 | Cpro%16..?*16').sub('0?12*16')
+s0._modi.set(s0.x).mtr(1,10)
 s0.e.qmeasurement(0) // measure qubit 0. If it collapses to |1⟩, trigger the event
 s0.m.not(s0.e)
-\`\`\`
-
-By default, measurements are taken at each division of the cycle. However, repetition is musically useful. Passing an integer greater than 1 as the second argument will cause the measurement to loop. For example:
-\`\`\`js
-s0.e.qmeasurement(0,8) // measure qubit 0, loop after 8 measurements
-\`\`\`
-
-You can also set the number of times this loop should repeat before regenerating with new measurements. For example:
-\`\`\`js
-s0.e.qmeasurement(0, 8, 4) // measure qubit 0, loop after 8 measurements, repeat 4 times
-\`\`\`
-
-You can achieve the same thing using a Pattern's \`.cache\` method:
-\`\`\`js
-s0.e.qmeasurement(0).cache(8,4) // measure qubit 0, loop after 8 measurements, repeat 4 times
 \`\`\`
 
 ### Measurements
@@ -151,7 +136,7 @@ Use the \`qprobability()\`, or alias \`qpb\`, method to get the probability (squ
 q0.rx(0.25)
 q1.rx(0.75)
 
-s0.p.amp.qpb(1).print() // print the probability of the state |01⟩ to the console
+s0.amp.qpb(1).print() // print the probability of the state |01⟩ to the console
 s0.e.every(4)
 \`\`\`
 
@@ -164,7 +149,7 @@ q1.fb(0).rx(s1.y);
 
 [s0,s1,s2].map((s,i) => s.e.qmeasurement(i,32))
 \`\`\`
-Each probability is returned as a float to 5 decimal places. As with other methods, you can pass a loop length as the second argument.
+Each probability is returned as a float to 5 decimal places.
 
 ### Probabilities
 Use the \`qprobabilities()\`, or alias \`qamps\`, method to get an array of the probabilities for each possible result of a circuit. For example:
@@ -172,10 +157,9 @@ Use the \`qprobabilities()\`, or alias \`qamps\`, method to get an array of the 
 s0.wire.rx(0.25)
 s1.wire.rx(0.75)
 
-s0.p.amp.pbs().print() // print all probabilities to the console
+s0.amp.pbs().print() // print all probabilities to the console
 s0.e.every(4)
 \`\`\`
-As with other methods, you can pass a loop length as the first argument.
 
 Using the grid can be useful for seeing what is happening here, especially when you start to use dynamic parameters:
 \`\`\`js
@@ -201,8 +185,8 @@ s0.e.set(1)
 ### Phases
 Use the \`qphases()\`, or alias \`qps\`, method to get an array of the phases of each basis state. For example:
 \`\`\`js
-s0.p.z.sine(0,saw(),0,1/16)
-q0.h().rz(s0.p.z)
+s0.z.sine(0,saw(),0,1/16)
+q0.h().rz(s0.z)
 q1.h()
 q2.h()
 q3.h().z()

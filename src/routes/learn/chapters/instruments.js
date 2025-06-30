@@ -12,11 +12,11 @@ s0.set({inst:'synth',cut:0,re:0.25,rdecay:0.75,de:0.25,lag:ms(2),locut:0.3})
 s0.x.saw()
 s0.y.noise()
 
-s0.p.n.set('Dpro%16..?*16|*4').sub(12)
-s0.p.mods.random(0.1,1,0.5)
-s0.p.dur.noise(0.1,2,0.75).btms()
-s0.p._modi.set(s0.x).saw(0.25,0.5)
-s0.p._harm.set(s0.y).saw(0.5,3,0.25)
+s0.n.set('Dpro%16..?*16|*4').sub(12)
+s0.mods.random(0.1,1,0.5)
+s0.dur.noise(0.1,2,0.75).btms()
+s0._modi.set(s0.x).saw(0.25,0.5)
+s0._harm.set(s0.y).saw(0.5,3,0.25)
 
 s0.e.every('1?2*16')
 s0.m.not(s0.e)
@@ -32,8 +32,8 @@ s0.e.set('1')
 
 s1.set({inst:1,ba:'breaks',snap:16,cut:[0,1],dur:ms(8),loop:1,cutr:ms(0.5),re:0.125,rs:0.1})
 s1.x.saw(0,1,1/4)
-s1.p.begin.set(s1.x).saw().step(1/8)
-s1.p.i.set('0|*3 1')
+s1.begin.set(s1.x).saw().step(1/8)
+s1.i.set('0|*3 1')
 s1.e.not(s0.e).and($every(16))
 \`\`\`
 
@@ -43,8 +43,8 @@ Similar to the sampler, the granular synth expects a sample bank and index. Gran
 z.bpm.set(160)
 
 s0.set({inst:'granular',bank:'cpu2',i:2,snap:q,dur:ms(8),cut:[0,1,2],rate:0.5,lag:ms(1/4),vol:0.5,reverb:1,locut:0.25})
-s0.p._n.sine(60,72,0,0.25)
-s0.p._i.random(0,16,1)
+s0._n.sine(60,72,0,0.25)
+s0._i.random(0,16,1)
 s0.e.set('1|0')
 s0.m.every(1)
 \`\`\`

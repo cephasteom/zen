@@ -10,16 +10,16 @@ s0.y.noise()
 \`\`\`
 
 ## Using .x .y .z
-When you use the \`.p\` property, the current time is passed as the first value to your chain of methods. You can replace this with the position of a stream:
+When a Pattern is evaluated, the current time is passed as the first value to your chain of methods. You can replace this with the position of a stream:
 \`\`\`js
 s0.set({inst:0,cut:0,re:0.5})
 
 s0.x.saw() // set the stream's x position
 s0.y.noise() // set the stream's y position
 
-s0.p.n.set(s0.x).set('Dlyd%12..*16') // map the note number pattern across time
-s0.p.modi.set(s0.x).saw(1,10) // map the modulation index pattern over the x axis
-s0.p.harm.set(s0.y).saw(0.5,3,0.25) // map the harmonicity ratio over the y axis
+s0.n.set(s0.x).mtr(0,16).set('Dlyd%12..*16') // map the note number pattern across time
+s0.modi.set(s0.x).mtr(0,16).saw(1,10) // map the modulation index pattern over the x axis
+s0.harm.set(s0.y).mtr(0,16).saw(0.5,3,0.25) // map the harmonicity ratio over the y axis
 
 s0.e.every(1)
 \`\`\`
