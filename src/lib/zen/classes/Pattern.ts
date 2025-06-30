@@ -29,12 +29,6 @@ const channel = new BroadcastChannel('zen')
  * Patterns are the building blocks of Zen. They are used to generate patterns of values in interesting, concise ways.
  */
 export class Pattern implements Dictionary {
-    /** 
-     * The Pattern that instantiated this Pattern
-     * @hidden 
-     */
-    private _parent: Pattern | Stream | null = null
-    
     /** @hidden */
     private _id: string = ''
     
@@ -91,9 +85,8 @@ export class Pattern implements Dictionary {
     }
 
     /** @hidden */
-    constructor(parent: Pattern | Stream | null = null, isTrigger=false) {
+    constructor(isTrigger=false) {
         this._id = nanoid()
-        this._parent = parent
         this.reset()
         isTrigger && (this.set = this.trigger)
             
@@ -196,7 +189,7 @@ export class Pattern implements Dictionary {
      * @returns {Pattern}
      */
     p(isTrigger = false): Pattern {
-        return new Pattern(this, isTrigger)
+        return new Pattern(isTrigger)
     }
 
     /**

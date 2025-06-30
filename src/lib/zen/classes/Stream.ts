@@ -72,7 +72,7 @@ export class Stream {
      * s0.t.sine(0,16,1) // override the global t with a sine wave between 0 and 16
      */ 
     get t() { 
-        this._tPattern = this._tPattern || new Pattern(this)
+        this._tPattern = this._tPattern || new Pattern()
         return this._tPattern
     }
 
@@ -84,7 +84,7 @@ export class Stream {
      * s0.x.saw() // move the stream across the x axis of the canvas with a saw wave
      */ 
     get x() {
-        this._xPattern = this._xPattern || new Pattern(this)
+        this._xPattern = this._xPattern || new Pattern()
         return this._xPattern
     }
 
@@ -96,7 +96,7 @@ export class Stream {
      * s0.y.saw() // move the stream across the y axis of the canvas with a saw wave
      */ 
     get y() {
-        this._yPattern = this._yPattern || new Pattern(this)
+        this._yPattern = this._yPattern || new Pattern()
         return this._yPattern
     }
 
@@ -108,7 +108,7 @@ export class Stream {
      * s0.z.saw() // move the stream across the z axis of the canvas with a saw wave
      */ 
     get z() {
-        this._zPattern = this._zPattern || new Pattern(this)
+        this._zPattern = this._zPattern || new Pattern()
         return this._zPattern
     }
 
@@ -120,7 +120,7 @@ export class Stream {
      * s0.xyz.set([0,0.5,0])
      */ 
     get xyz() {
-        this._xyzPattern = this._xyzPattern || new Pattern(this)
+        this._xyzPattern = this._xyzPattern || new Pattern()
         return this._xyzPattern
     }
 
@@ -134,7 +134,7 @@ export class Stream {
      * s0.e.bin('1000 1001') // use a binary pattern to trigger events
      */ 
     get e() {
-        this._ePattern = this._ePattern || new Pattern(this, true)
+        this._ePattern = this._ePattern || new Pattern(true)
         return this._ePattern
     }
 
@@ -147,7 +147,7 @@ export class Stream {
      * s0.m.every(4) // mutate all active events every 4 divisions
      */ 
     get m() {
-        this._mPattern = this._mPattern || new Pattern(this, true)
+        this._mPattern = this._mPattern || new Pattern(true)
         return this._mPattern
     }
     
@@ -160,7 +160,7 @@ export class Stream {
      * s0.mute.every(4) // mute the stream every 4 divisions
      */ 
     get mute() {
-        this._mutePattern = this._mutePattern || new Pattern(this)
+        this._mutePattern = this._mutePattern || new Pattern()
         return this._mutePattern
     }
 
@@ -173,7 +173,7 @@ export class Stream {
      * s0.solo.every(4) // solo the stream every 4 divisions
      */ 
     get solo() {
-        this._soloPattern = this._soloPattern || new Pattern(this)
+        this._soloPattern = this._soloPattern || new Pattern()
         return this._soloPattern
     }
 
@@ -201,7 +201,7 @@ export class Stream {
         const handler = {
             get: (target: Dictionary, key: string) => key in target 
                 ? target[key as keyof typeof target] 
-                : (target[key] = new Pattern(this))
+                : (target[key] = new Pattern())
         }
 
         this.p = new Proxy({}, handler)
