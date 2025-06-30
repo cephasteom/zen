@@ -2,7 +2,7 @@ import type { Dictionary } from '../types'
 import { aliases } from '../data/keymapping'
 
 // remove _ from all params
-export const formatEventParams = (params: Dictionary, map: Dictionary) => {  
+export const formatEventParams = (params: Dictionary, map: Dictionary = {}) => {  
     let result = Object.entries(params)
         .filter(([_, value]) => value !== null)
         .reduce((obj, [key, value]) => {
@@ -18,7 +18,7 @@ export const formatEventParams = (params: Dictionary, map: Dictionary) => {
 
 // filter out all params that don't start with _
 // remove _ from remaining params
-export const formatMutationParams = (params: Dictionary, map: Dictionary, lag: number) => {
+export const formatMutationParams = (params: Dictionary, map: Dictionary = {}, lag: number) => {
     return {
         ...Object.entries(params)
             .filter(([key, value]) => key.startsWith('_') && value !== null && value !== undefined)

@@ -193,15 +193,6 @@ export function evaluate(count: number, time: number) {
         measurements = circuit.measureAll()
     }
 
-    scope.streams[0].get(
-        z.getTime(count), 
-        z.q, 
-        z.s, 
-        getBpm(), 
-        z
-    )
-    return;
-
     // compile parameters, events and mutations
     const compiled = [...scope.streams, ...scope.fxstreams]
         .map(stream => stream.get(
@@ -212,6 +203,7 @@ export function evaluate(count: number, time: number) {
             z
         )
     )
+
     const soloed = compiled.filter(({solo}) => solo)
     const result = soloed.length ? soloed : compiled
     const events = result.filter(({e}) => e)

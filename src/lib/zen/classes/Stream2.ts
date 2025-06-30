@@ -1,6 +1,7 @@
 import { Pattern } from './Pattern'
 import type { Dictionary } from '../types'
-import { e } from 'mathjs';
+import { mod } from '../utils/utils'
+import { formatEventParams, formatMutationParams } from '../utils/syntax';
 
 export interface Stream extends Dictionary {
     id: string;
@@ -43,27 +44,60 @@ export class Stream {
 
         const init: Stream = { 
             id,
+            set: (params: Dictionary) => {
+                Object.entries(params)
+                    .filter(([key]) => !['id', 'get', 'reset', 'clear'].includes(key))
+                    .forEach(([key, value]) => init[key] = (new Pattern()).set(value));
+            },
             get: (time: number, q: number, s: number, bpm: number) => {
                 const t = +(init.t && init.t.has() ? init.t.get(time, q) || 0 : time);
 
                 const params = Object.entries(init)
-                    .filter(([key]) => !['id','get', 't', 'reset', 'clear'].includes(key))
+                    .filter(([key]) => !['id', 'set', 'get', 't', 'reset', 'clear'].includes(key))
                     .reduce((acc, [key, pattern]) => ({
                         ...acc,
-                        // TODO: x, y, z expect s, rather than q
-                        [key]: pattern.get(t, q, bpm)
+                        [key]: pattern.get(t, ['x', 'y', 'z'].includes(key) ? s : q, bpm)
                     }), {} as Dictionary);
-                console.log(params)
 
+                const mute = !!params.mute
+                const solo = !!params.solo
+                const e = !mute && !!params.e
+                const m = !mute && !!params.m
+                const lag = (60000/bpm)/q // ms per division
+
+                // compile all parameters
+                const compiled = (e || m) ? {
+                    track: +id.slice(1),
+                    _track: +id.slice(1),
+                    ...Object.entries(params)
+                        .filter(([key]) => !['e', 'm', 'mute', 'solo'].includes(key))
+                        .reduce((acc, [key, value]) => ({
+                            ...acc,
+                            [key]: value
+                        }), {}),
+                    bpm, // bpm
+                    q, // divisions
+                } : {}
+                    
+                return {
+                    id,
+                    t, q, s, bpm,
+                    e, m, solo, mute,
+                    x: mod(params.x || 0, s),
+                    y: mod(params.y || 0, s),
+                    z: mod(params.z || 0, s),
+                    eparams: formatEventParams(compiled, {}), 
+                    mparams: formatMutationParams(compiled, {}, lag) 
+                }
             },
             clear: () => {
                 Object.keys(init)
-                    .filter(key => !['id','get','reset','clear'].includes(key))
+                    .filter(key => !['id','set','get','reset','clear'].includes(key))
                     .map(key => delete init[key]);
             },
             reset: () => {
                 Object.entries(init)
-                    .filter(([key]) => !['id','get','reset','clear'].includes(key))
+                    .filter(([key]) => !['id','set','get','reset','clear'].includes(key))
                     .map(([_, pattern]) => pattern.reset());
             }
         };
