@@ -11,14 +11,10 @@ import type { Dictionary } from '../types'
  * 
  * Streams are available within Zen as `s0`, `s1`, `s2`, `s3`, `s4`, `s5`, `s6`, `s7`.
  * @example
- * s0.set({inst: 'synth', n: 60}) // set the stream's default parameters
- * s0.lag.set(1).btms()
- * s0.px._modi.saw(1,10) // map the synth's modulation index across the x axis
- * s0.py._harm.range(0,10,1) // map the synth's harmonic series across the y axis
- * s0.x.saw() // move the stream across the x axis of the canvas
- * s0.y.noise(0,1,0,0.5) // move the stream across the y axis of the canvas
- * s0.e.every(4) // trigger an event every 4 divisions
- * s0.m.not(s0.e)
+ * s0.set({inst:0,cut:0,reverb:.5,delay:.25,vol:.5,modi:1.25,mods:0.1})
+ * s0.n.set('Cpro%16..*16 | Cpro%16..?*16').sub(12),
+ * s0.s.noise(0.05,0.5,0.25)
+ * s0.e.every(4).or(every(3))
  */ 
 export class Stream {
     /** @hidden */

@@ -1,7 +1,6 @@
 import { get } from 'svelte/store';
 import { complex, round, pow, abs } from 'mathjs'
 import { nanoid } from 'nanoid'
-import type { Stream } from './Stream'
 import type { stack, patternValue, patternable, Dictionary, PatternMethod } from '../types'
 import { 
     mapToRange, 
@@ -1406,8 +1405,8 @@ s0.e.set(1)
 
     /**
      * Returns a 1 the first time it is called, and 0 thereafter
-     * @returns {Pattern}
      * @example s0.e.once()
+     * @returns {Pattern}
      */
     once(): Pattern {
         this.stack.push(() => {
