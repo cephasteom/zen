@@ -5,7 +5,7 @@ import { initMidiTriggers } from './midi/triggers';
 import { writable, get } from 'svelte/store';
 import { Zen } from './classes/Zen';
 import { Data } from './classes/Data'
-import { Stream } from './classes/Stream';
+import { Stream } from './classes/Stream2';
 import { circuit } from './classes/Circuit';
 import { Visuals } from './classes/Visuals';
 import { Wire } from './classes/Wire';
@@ -71,6 +71,7 @@ const scope: any = {
  * Add all streams and fxstreams to the scope object, so they can be used in the code editor
  */
 [...scope.streams, ...scope.fxstreams].forEach((stream: Stream) => {
+    // @ts-ignore
     scope[stream.id] = stream;
 })
 
@@ -191,6 +192,15 @@ export function evaluate(count: number, time: number) {
         circuit.run(inputs)
         measurements = circuit.measureAll()
     }
+
+    scope.streams[0].get(
+        z.getTime(count), 
+        z.q, 
+        z.s, 
+        getBpm(), 
+        z
+    )
+    return;
 
     // compile parameters, events and mutations
     const compiled = [...scope.streams, ...scope.fxstreams]
