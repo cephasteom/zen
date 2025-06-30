@@ -27,14 +27,15 @@ The sampler takes the name of a sample bank and the index of a file within that 
 \`\`\`js
 z.bpm.set(160)
 
-s0.set({inst:1,bank:'breaks',snap:16,dur:ms(1),cut:[0,1,2]})
-s0.e.set('1')
+s0.set({inst:1,bank:'breaks',snap:16,dur:ms(1),cut:[0,1,2],e:'1'})
+s1.set({inst:1,bank:'sd808',cut:2,s:.1,e:'0 1'})
 
-s1.set({inst:1,ba:'breaks',snap:16,cut:[0,1],dur:ms(8),loop:1,cutr:ms(0.5),re:0.125,rs:0.1})
-s1.x.saw(0,1,1/4)
-s1.begin.set(s1.x).saw().step(1/8)
-s1.i.set('0|*3 1')
-s1.e.not(s0.e).and($every(16))
+s2.set({inst:1,ba:'breaks',snap:16,cut:[0,1],dur:ms(8),loop:1,cutr:ms(0.5),re:0.125,rs:0.1})
+s2.x.random(0,1,1/4)
+s2.begin.set(s2.x).step(1/32)
+s2.i.set('0|*3 1')
+s2.e.not(s0.e)
+  .xor(rarely())
 \`\`\`
 
 ## Granular Synth
@@ -42,10 +43,10 @@ Similar to the sampler, the granular synth expects a sample bank and index. Gran
 \`\`\`js
 z.bpm.set(160)
 
-s0.set({inst:'granular',bank:'cpu2',i:2,snap:q,dur:ms(8),cut:[0,1,2],rate:0.5,lag:ms(1/4),vol:0.5,reverb:1,locut:0.25})
+s0.set({inst:'granular',bank:'cpu2',i:2,snap:z.q,dur:ms(8),cut:[0,1,2],rate:0.5,lag:ms(1/4),vol:0.5,reverb:1,locut:0.25})
 s0._n.sine(60,72,0,0.25)
 s0._i.random(0,16,1)
 s0.e.set('1|0')
-s0.m.every(1)
+s0.m.not(s0.e)
 \`\`\`
 `

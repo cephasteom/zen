@@ -23,6 +23,10 @@ function makeCallablePattern(pattern: Pattern): Pattern & ((...args: any[]) => a
     }) as any;
 }
 
+function isTrigger(key: string): boolean {
+    return ['e', 'm', 'solo', 'mute'].includes(key);
+}
+
 /**
  * A Stream is a musical layer. You can think of it as a track in a DAW, or a channel in a mixer.
  * It can be used to control multiple instruments, effects, and routing.
@@ -35,8 +39,7 @@ export class Stream {
                 if (key in target) return target[key as keyof typeof target];
 
                 // wrap Pattern instance in callable proxy
-                const isTrigger = ['e', 'm', 'solo', 'mute'].includes(key);
-                const pattern = new Pattern(isTrigger);
+                const pattern = new Pattern(isTrigger(key));
                 target[key] = pattern;
                 return pattern;
                 
@@ -52,7 +55,7 @@ export class Stream {
             set: (params: Dictionary) => {
                 Object.entries(params)
                     .filter(([key]) => !['id', 'get', 'reset', 'clear'].includes(key))
-                    .forEach(([key, value]) => init[key] = (new Pattern()).set(value));
+                    .forEach(([key, value]) => init[key] = (new Pattern(isTrigger(key))).set(value));
             },
             get: (time: number, q: number, s: number, bpm: number) => {
                 const t = +(init.t && init.t.has() ? init.t.get(time, q) || 0 : time);

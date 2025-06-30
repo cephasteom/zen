@@ -22,7 +22,7 @@ s0.e.every('1?2*16')
 s0.m.not(s0.e)
 
 fx0.set({reverb:1,rsize:0.5})
-fx0.rtail.saw(0,1,0,1/4)
+fx0.rtail.saw().mtr(0,.25)
 fx0.e.every(1) // you still need to trigger events on an fx stream
 \`\`\`
 `
