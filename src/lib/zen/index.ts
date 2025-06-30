@@ -108,8 +108,8 @@ scope.$ = scope.set
  * Whenever new code is received via the code editor, reset and re-evaluate the code
  */
 code.subscribe(code => {
-    scope.streams.forEach((stream: Stream) => stream.reset())
-    scope.fxstreams.forEach((stream: Stream) => stream.reset())
+    scope.streams.forEach((stream: Stream) => stream.clear())
+    scope.fxstreams.forEach((stream: Stream) => stream.clear())
     scope.qubits.forEach((wire: Wire) => wire.clear())
     scope.z.reset()
     scope.z.resetGlobals()

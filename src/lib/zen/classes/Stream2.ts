@@ -47,7 +47,7 @@ export class Stream {
                 const t = +(init.t && init.t.has() ? init.t.get(time, q) || 0 : time);
 
                 const params = Object.entries(init)
-                    .filter(([key]) => !['id','get', 't', 'reset'].includes(key))
+                    .filter(([key]) => !['id','get', 't', 'reset', 'clear'].includes(key))
                     .reduce((acc, [key, pattern]) => ({
                         ...acc,
                         // TODO: x, y, z expect s, rather than q
@@ -56,10 +56,15 @@ export class Stream {
                 console.log(params)
 
             },
+            clear: () => {
+                Object.keys(init)
+                    .filter(key => !['id','get','reset','clear'].includes(key))
+                    .map(key => delete init[key]);
+            },
             reset: () => {
                 Object.entries(init)
-                    .filter(([key]) => !['id','get','reset'].includes(key))
-                    .map(([key, pattern]) => pattern.reset());
+                    .filter(([key]) => !['id','get','reset','clear'].includes(key))
+                    .map(([_, pattern]) => pattern.reset());
             }
         };
 
