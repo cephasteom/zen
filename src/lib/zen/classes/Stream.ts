@@ -46,30 +46,26 @@ export class Stream {
             },
             get: (time: number, q: number, s: number, bpm: number) => {
                 const t = +(init.t && init.t.has() ? init.t.get(time, q) || 0 : time);
-
-                const params = Object.entries(init)
-                    .filter(([key]) => !['id', 'set', 'get', 't', 'reset', 'clear'].includes(key))
-                    .reduce((acc, [key, pattern]) => ({
-                        ...acc,
-                        [key]: pattern.get(t, ['x', 'y', 'z'].includes(key) ? s : q, bpm)
-                    }), {} as Dictionary);
-
-                const mute = !!params.mute
-                const solo = !!params.solo
-                const e = !mute && !!params.e
-                const m = !mute && !!params.m
+                const mute = init.mute?.get(t, q)
+                const solo = init.solo?.get(t, q)
+                const e = !mute && init.e?.get(t, q)
+                const m = !mute && init.m?.get(t, q)
                 const lag = (60000/bpm)/q // ms per division
+
+                const params = (e || m) 
+                    ? Object.entries(init)
+                        .filter(([key]) => !['id', 'set', 'get', 't', 'reset', 'clear', 'e', 'm', 'mute', 'solo'].includes(key))
+                        .reduce((acc, [key, pattern]) => ({
+                            ...acc,
+                            [key]: pattern.get(t, ['x', 'y', 'z'].includes(key) ? s : q, bpm)
+                        }), {} as Dictionary)
+                    : {};
 
                 // compile all parameters
                 const compiled = (e || m) ? {
                     track: +id.slice(1),
                     _track: +id.slice(1),
-                    ...Object.entries(params)
-                        .filter(([key]) => !['e', 'm', 'mute', 'solo'].includes(key))
-                        .reduce((acc, [key, value]) => ({
-                            ...acc,
-                            [key]: value
-                        }), {}),
+                    ...params,
                     bpm, // bpm
                     q, // divisions
                 } : {}
