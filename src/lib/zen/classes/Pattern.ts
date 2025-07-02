@@ -242,7 +242,7 @@ s0.e.every('0?1*4|*2')
      * @param reset - a value, instance of Pattern, or Zen pattern string that resets the counter
      * @returns {Pattern}
      * @example s0.set({inst: 1, bank: 'bd'})
-     * s0.x.counter(16, s0.e).div(z.q)
+     * s0.x.counter(16, s0.e).div(q())
      * s0.e.set('3:8')
      */
     counter(n: patternable = 0, reset: patternable): Pattern {
