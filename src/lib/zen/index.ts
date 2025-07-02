@@ -3,9 +3,8 @@ import { WebMidi } from "webmidi";
 import { initMidiClock } from './midi/clock';
 import { initMidiTriggers } from './midi/triggers';
 import { writable, get } from 'svelte/store';
-import { Zen } from './classes/Zen';
 import { Data } from './classes/Data'
-import { Stream } from './classes/Stream2';
+import { Stream } from './classes/Stream';
 import { circuit } from './classes/Circuit';
 import { Visuals } from './classes/Visuals';
 import { Wire } from './classes/Wire';
