@@ -56,6 +56,7 @@
         editorValue.set(editor.getValue());
         
         editor.onKeyDown(e => {
+            console.log(e.keyCode)
             editorValue.set(editor.getValue());
             localStorage.setItem("z.code", editor.getValue());
 

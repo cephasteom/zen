@@ -191,7 +191,7 @@ q1.h()
 q2.h()
 q3.h().z()
 
-s0.y.qphases().at(t=>t%z.q)
+s0.y.qphases().at(t().mod(q()))
 s0.e.set(1)
 \`\`\`
 
