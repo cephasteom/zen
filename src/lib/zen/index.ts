@@ -109,15 +109,11 @@ scope.$ = scope.set
 code.subscribe(code => {
     // global variables - these don't have to be accurate as we're only testing the code
     // divisions per cycle
-    scope.q = scope.z.q.get(0, 16) || 16 // since q (divisions) is a pattern that requires a time and divisions, we assume time=0 and divisions=16
-    // size of canvas
-    scope.s = scope.z.s.get(0, scope.q) || scope.q 
-    // current cycle
-    scope.c = scope.z.c.get(0, scope.q) || 0
+    const q = scope.z.q.get(0, 16) || 16 // since q (divisions) is a pattern that requires a time and divisions, we assume time=0 and divisions=16
     // clock source
-    const { src = 'internal', device = 0, srcBpm = 120, relativeBpm = false } = scope.z.clock.get(0, scope.q) || {};
+    const { src = 'internal', device = 0, srcBpm = 120, relativeBpm = false } = scope.z.clock.get(0, q) || {};
     // mode 
-    const { trigger = 'division', device: midiDevice = 0 } = scope.z.mode.get(0, scope.q) || {};
+    const { trigger = 'division', device: midiDevice = 0 } = scope.z.mode.get(0, q) || {};
 
     scope.streams.forEach((stream: Stream) => stream.clear())
     scope.fxstreams.forEach((stream: Stream) => stream.clear())
