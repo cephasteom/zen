@@ -43,17 +43,19 @@ Whilst this has no bearing on the sound, you can sonify this data elsewhere in y
 
 Here's an example of the famous Game of Life:
 \`\`\`js
+let n = 24;
+
 // Create a new grid
-const create = size => Array(size).fill()
-  .map(() => Array(size).fill()
+const create = size => Array(n).fill()
+  .map(() => Array(n).fill()
   .map(() => Math.floor(Math.random() * 2)));
 
 // count the neighbours of a cell
 const countNeighbours = (grid, x, y) => [-1, 0, 1].flatMap(dx =>
     [-1, 0, 1].map(dy => {
       if (dx == 0 && dy == 0) return 0;
-      const newX = (x + dx + z.s) % z.s;
-      const newY = (y + dy + z.s) % z.s;
+      const newX = (x + dx + n) % n;
+      const newY = (y + dy + n) % n;
       return grid[newX][newY] ? 1 : 0;
     })
   ).reduce((a, b) => a + b);
@@ -73,7 +75,7 @@ const next = grid => grid.map((row, x) =>
 
 // use the persist method to change previous iteration
 z.grid.persist((_, last) => {
-  const grid = last ? last : create(z.s);
+  const grid = last ? last : create(n);
   return next(grid);
 });
 \`\`\`

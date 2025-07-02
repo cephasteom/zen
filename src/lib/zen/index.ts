@@ -9,7 +9,6 @@ import { circuit } from './classes/Circuit';
 import { Visuals } from './classes/Visuals';
 import { Wire } from './classes/Wire';
 import { createCount } from './utils/utils';
-import { helpers } from './utils/helpers';
 import { print, clear } from "$lib/stores/zen";
 import { nStreams, bpm, getBpm, clockSource, midiClockDevice, midiClockConfig, getClockSource, activeMidiClock, setQ, mode, midiTriggerDevice, getMode, setT } from "./stores";
 import { modes } from './data/scales'
@@ -17,6 +16,7 @@ import { triads } from './data/chords'
 import { loadSamples } from '$lib/oto';
 import { Pattern } from './classes/Pattern';
 import type { PatternMethod } from './types';
+import { seed } from './stores';
 
 // Broadcast channels
 const channel = new BroadcastChannel('zen')
@@ -33,9 +33,6 @@ export const setCode = (str: string) => code.set(str + '\n' + Date.now());
 
 // Midi Triggers
 initMidiTriggers()
-
-// @ts-ignore
-const { bts: initBts, btms: initBtms, clamp, seed } = helpers;
 
 let measurements: number[] = []
 
@@ -57,8 +54,6 @@ const scope: any = {
     midi: () => print('info', `Inputs ->\n${WebMidi.inputs.reduce((str, input, i) => `${str}${i}: ${input.name},\n`, '')}Outputs ->\n${WebMidi.outputs.reduce((str, output, i) => `${str}${i}: ${output.name},\n`, '')}`),
     clear,
     loadSamples,
-    clamp, 
-    seed,
     exportCircuit: (format: string = 'qasm') => {
         return format === 'qasm'
             ? circuit.exportToQASM()
@@ -109,7 +104,7 @@ scope.$ = scope.set
 code.subscribe(code => {
     // global variables - these don't have to be accurate as we're only testing the code
     // divisions per cycle
-    const q = scope.z.q.get(0, 16) || 16 // since q (divisions) is a pattern that requires a time and divisions, we assume time=0 and divisions=16
+    const q = Math.floor(scope.z.q.get(0, 16) || 16) // since q (divisions) is a pattern that requires a time and divisions, we assume time=0 and divisions=16
     // clock source
     const { src = 'internal', device = 0, srcBpm = 120, relativeBpm = false } = scope.z.clock.get(0, q) || {};
     // mode 
@@ -122,9 +117,7 @@ code.subscribe(code => {
     circuit.clear()
     circuit.numQubits = 1
 
-    scope.bts = initBts(getBpm())
-    scope.btms = initBtms(getBpm())
-    scope.ms = scope.btms
+    scope.btms = (beats: number) => (new Pattern()).set(beats).btms()
     
     try {
         new Function(...Object.keys(scope), code)(...Object.values(scope));
@@ -152,7 +145,7 @@ export function evaluate(count: number, time: number) {
     const transport = getTransport()
     const context = getContext()
 
-    const q = z.q.get(count, 16) || 16 // divisions per cycle
+    const q = Math.floor(z.q.get(count, 16) || 16) // divisions per cycle
     const zT = z.t.get(count, q) 
     const t = zT !== null ? Math.floor(zT) : count
     const s = z.s.get(t, q) || 16 // size of canvas
