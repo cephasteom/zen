@@ -86,14 +86,14 @@ export class Stream {
                     mparams: formatMutationParams(compiled, {}, lag) 
                 }
             },
-            clear: () => {
+            clear: (persist: string[] = []) => {
                 Object.keys(init)
-                    .filter(key => !['id','set','get','reset','clear'].includes(key))
+                    .filter(key => !['id','set','get','reset','clear', ...persist].includes(key))
                     .map(key => delete init[key]);
             },
-            reset: () => {
+            reset: (persist: string[] = []) => {
                 Object.entries(init)
-                    .filter(([key]) => !['id','set','get','reset','clear'].includes(key))
+                    .filter(([key]) => !['id','set','get','reset','clear', ...persist].includes(key))
                     .map(([_, pattern]) => pattern.reset());
             }
         };

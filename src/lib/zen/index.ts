@@ -44,7 +44,7 @@ let measurements: number[] = []
  * All classes and methods added to the scope object are made available in the code editor
  */
 const scope: any = {
-    z: new Zen(),
+    z: new Stream('z'),
     streams: Array(get(nStreams)).fill(0).map((_, i) => new Stream('s' + i)),
     fxstreams: Array(2).fill(0).map((_, i) => new Stream('fx' + i)),
     qubits: Array(get(nStreams)).fill(0).map((_, i) => new Wire('q' + i)),
@@ -108,18 +108,24 @@ scope.$ = scope.set
  * Whenever new code is received via the code editor, reset and re-evaluate the code
  */
 code.subscribe(code => {
+    // global variables - these don't have to be accurate as we're only testing the code
+    // divisions per cycle
+    scope.q = scope.z.q.get(0, 16) || 16 // since q (divisions) is a pattern that requires a time and divisions, we assume time=0 and divisions=16
+    // size of canvas
+    scope.s = scope.z.s.get(0, scope.q) || scope.q 
+    // current cycle
+    scope.c = scope.z.c.get(0, scope.q) || 0
+    // clock source
+    const { src = 'internal', device = 0, srcBpm = 120, relativeBpm = false } = scope.z.clock.get(0, scope.q) || {};
+    // mode 
+    const { trigger = 'division', device: midiDevice = 0 } = scope.z.mode.get(0, scope.q) || {};
+
     scope.streams.forEach((stream: Stream) => stream.clear())
     scope.fxstreams.forEach((stream: Stream) => stream.clear())
     scope.qubits.forEach((wire: Wire) => wire.clear())
-    scope.z.reset()
-    scope.z.resetGlobals()
+    scope.z.clear()
     circuit.clear()
     circuit.numQubits = 1
-
-    // global variables
-    scope.q = scope.z.q
-    scope.s = scope.z.s
-    scope.c = scope.z.c
 
     scope.bts = initBts(getBpm())
     scope.btms = initBtms(getBpm())
@@ -130,12 +136,11 @@ code.subscribe(code => {
         lastCode.set(code)
         
         // update clock source and midi clock
-        const { src = 'internal', device = 0, srcBpm = 120, relativeBpm = false } = scope.z.getClock()
         clockSource.set(src === 'midi' ? 'midi' : 'internal')
         midiClockDevice.set(device)
         midiClockConfig.set({ srcBpm, relativeBpm })
 
-        const { trigger = 'division', device: midiDevice = 0 } = scope.z.getMode()
+        // update mode and midi trigger device
         mode.set(trigger)
         midiTriggerDevice.set(midiDevice)
     } catch (e: any) {
@@ -152,34 +157,36 @@ export function evaluate(count: number, time: number) {
     const transport = getTransport()
     const context = getContext()
 
-    const t = z.getTime(count)
-    const s = z.s
-    const q = z.q
-    const c = z.c
+    const q = z.q.get(count, 16) || 16 // divisions per cycle
+    const zT = z.t.get(count, q) 
+    const t = zT !== null ? Math.floor(zT) : count
+    const s = z.s.get(t, q) || 16 // size of canvas
+    const c = z.c.get(t, q) || 0 // current cycle
 
     setQ(z.q)
 
     // get seed value
-    const seedValue = z.getSeed()
+    const seedValue = z.seed.get(t, q) || null
     seedValue !== null && seed(seedValue)
 
     // get latency value
-    const latencyValue = z.getLatency()
+    const latencyValue = z.latency.get(t, q) || null
     latencyValue !== null && (context.lookAhead = Math.floor(latencyValue/1000))
     
     // update loop and transport
-    loop.interval = `${z.q}n`
-    const newBpm = z.getBpm()
+    loop.interval = `${q}n`
+    const newBpm = z.bpm.get(t, q) || 120 // bpm
+
     if(newBpm !== getBpm()) {
         transport.bpm.setValueAtTime(newBpm, time)
         bpm.set(newBpm)
     }
-    transport.swing = z.getSwing()
+    transport.swing = z.swing.get(t, q) || 0 // swing value
     // @ts-ignore
-    transport.swingSubdivision = `${z.getSwingN()}n`
+    transport.swingSubdivision = `${z.swingn.get(t, q) || 8}n`
 
     // build gates
-    qubits.forEach((wire: Wire) => wire.build(z.getTime(count), z.q))
+    qubits.forEach((wire: Wire) => wire.build(t, q))
     // routing for how qubits should feed their outputs back into the inputs, if at all
     const feedback = qubits.map((wire: Wire) => wire.feedback)
     const inputs = feedback.map((i: number) => i > -1 && i < measurements.length 
@@ -195,14 +202,7 @@ export function evaluate(count: number, time: number) {
 
     // compile parameters, events and mutations
     const compiled = [...scope.streams, ...scope.fxstreams]
-        .map(stream => stream.get(
-            z.getTime(count), 
-            z.q, 
-            z.s, 
-            getBpm(), 
-            z
-        )
-    )
+        .map(stream => stream.get(t, q, s, getBpm()))
 
     const soloed = compiled.filter(({solo}) => solo)
     const result = soloed.length ? soloed : compiled
@@ -215,17 +215,17 @@ export function evaluate(count: number, time: number) {
             .map(({x,y,z,id,e,m}) => ({x,y,z,id,e:!!e, m:!!m}))
     )
 
-    const grid = z.grid.get(z.getTime(count), z.q)
+    const grid = z.grid.get(t, q) || []
 
     // call actions
     const delta = (time - immediate())
     const args =  { 
         time, 
         delta, 
-        t: z.getTime(count), 
-        s: z.s, 
-        q: z.q, 
-        c: z.c, 
+        t,
+        s,
+        q,
+        c,
         events, 
         mutations, 
         gates, 
@@ -246,7 +246,7 @@ const loop = new Loop(time => {
     const count = counter()
     setT(count)
     getMode() === 'division' && evaluate(count, time)
-}, `${scope.z.q}n`).start(0)
+}, `${scope.z.q.get(0,16)}n`).start(0)
 
 /**
  * Pay and stop functions
