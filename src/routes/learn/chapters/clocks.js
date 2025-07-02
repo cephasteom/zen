@@ -12,5 +12,5 @@ z.clock.set({
 Execute this twice, using shift+enter, to set the clock to MIDI.
 
 ## MIDI Clock
-Zen will now listen for MIDI clock messages on the selected device. You can transmit MIDI clock messages from your DAW, or from a hardware device - refer to devices own documentation. For example, here's how to transmit messages for [Logic](https://support.apple.com/en-gb/102005). Zen will respond to the start, stop, and continue messages, as well as the clock itself. \`z.q\` will determine how many divisions of a cycle will be triggered by clock messages.
+Zen will now listen for MIDI clock messages on the selected device. You can transmit MIDI clock messages from your DAW, or from a hardware device - refer to devices own documentation. For example, here's how to transmit messages for [Logic](https://support.apple.com/en-gb/102005). Zen will respond to the start, stop, and continue messages, as well as the clock itself. \`z.q.set(...)\` will determine how many divisions of a cycle will be triggered by clock messages.
 `
