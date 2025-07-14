@@ -1,5 +1,6 @@
 import { writable, get } from "svelte/store";
 import { CtSynth, CtSampler, CtGranulator, CtAdditive, CtAcidSynth, CtDroneSynth, CtSubSynth, CtSuperFM, CtWavetable } from "./ct-synths"
+import ZMod from '../../../../zmod/lib/Zmod'
 import type { Dictionary } from './types'
 import { getChannel } from './routing';
 import { samples } from './stores'
@@ -8,7 +9,7 @@ const otoChannel = new BroadcastChannel('oto')
 
 const synths = writable<Dictionary>({});
 
-const synthTypes = ['synth', 'sampler', 'granular', 'additive', 'acid', 'drone', 'sub', 'superfm', 'wavetable']
+const synthTypes = ['synth', 'sampler', 'granular', 'additive', 'acid', 'drone', 'sub', 'superfm', 'wavetable', 'zmod']
 const makeSynth = (type: string) => {
     switch(type) {
         case 'synth': return new CtSynth({lite: true})
@@ -20,6 +21,7 @@ const makeSynth = (type: string) => {
         case 'sub': return new CtSubSynth()
         case 'superfm': return new CtSuperFM()
         case 'wavetable': return new CtWavetable()
+        case 'zmod': return new ZMod()
         default: return null
     }
 }
@@ -74,15 +76,23 @@ export const handleSynthEvent = (time: number, params: Dictionary) => {
             // otherwise, make a new one and connect it with the channel strip
             : connect(makeSynth(inst), channel, out, inst);
 
-        // handle multiple notes
-        [n].flat().forEach((n: number, noteIndex: number) => {
-            const ps: Dictionary = Object.entries(params).reduce((obj, [key, val]) => ({
-                ...obj,
-                [key]: Array.isArray(val) ? val[instIndex%val.length] : val
-            }), {});
-            ps.n = n
-            synth.play(ps, time + (noteIndex * (strum/1000)));
-        })
+        // handle zmod as a special case 
+        if(inst === 'zmod') {
+            console.log(params)
+
+        
+        } else {
+            // all other RNBO synths
+            // handle multiple notes
+            [n].flat().forEach((n: number, noteIndex: number) => {
+                const ps: Dictionary = Object.entries(params).reduce((obj, [key, val]) => ({
+                    ...obj,
+                    [key]: Array.isArray(val) ? val[instIndex%val.length] : val
+                }), {});
+                ps.n = n
+                synth.play(ps, time + (noteIndex * (strum/1000)));
+            })
+        }
     })
 
     // set fx params on that channel
