@@ -10,3 +10,8 @@ export function roundToFactor(n: number, factor: number = 1) {
     const quotient = n / factor;
     return Math.round(quotient) * factor;
 }
+
+export function mtf(midinote: number): number {
+    // convert midi note to frequency
+    return 440 * Math.pow(2, (midinote - 69) / 12);
+}

@@ -4,6 +4,7 @@ import ZMod from '../../../../zmod/lib/Zmod'
 import type { Dictionary } from './types'
 import { getChannel } from './routing';
 import { samples } from './stores'
+import { mtf } from "./utils/utils";
 
 const otoChannel = new BroadcastChannel('oto')
 
@@ -109,6 +110,9 @@ export const handleSynthEvent = (time: number, params: Dictionary) => {
                 zmod: synth
             }
         }))
+
+        params.n = mtf(Array.isArray(params.n) ? params.n[0] : params.n)
+        synth.play(params, time + (strum / 1000));
     }
 
     // set fx params on that channel
