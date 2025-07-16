@@ -223,8 +223,8 @@ button:focus:not(:focus-visible) {
     color: var(--color-theme-2);
 }
 /* const etc. */
-.monaco-scrollable-element, .margin-view-overlays, .lines-content .mtk22, .hljs-title {
-    color: var(--color-theme-3);
+.monaco-scrollable-element, .margin-view-overlays, .lines-content .mtk22, .mtk8, .hljs-title {
+    color: var(--color-theme-3)!important;
 }
 
 .monaco-editor .bracket-highlighting-0 {
@@ -237,6 +237,10 @@ button:focus:not(:focus-visible) {
 
 .monaco-editor .bracket-highlighting-2 {
     color: var(--color-theme-5) !important;
+}
+
+.monaco-editor .sticky-widget-lines-scrollable, .monaco-editor .sticky-widget-line-numbers {
+    background-color: var(--color-grey-darkest)!important;
 }
 
 .lines-content .mtk8 {
