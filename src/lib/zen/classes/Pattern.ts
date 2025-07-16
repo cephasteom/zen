@@ -1285,7 +1285,7 @@ s0.e.every('0?1*4|*2')
      * s0.e.sometimes()
      */ 
     sometimes(): Pattern {
-        this.t().fn(t => this.rng(+t)).gt(0.5)
+        this.t().random().gt(0.5)
         return this
     }
 
@@ -1304,7 +1304,7 @@ s0.e.every('0?1*4|*2')
      * s0.e.rarely()
      */ 
     rarely(): Pattern {
-        this.t().fn(t => this.rng(+t)).gt(0.25)
+        this.t().random().gt(0.8)
         return this
     }
 
@@ -1315,7 +1315,7 @@ s0.e.every('0?1*4|*2')
      * s0.e.often()
      */ 
     often(): Pattern {
-        this.t().fn(t => this.rng(+t)).gt(0.75)
+        this.t().random().gt(0.25)
         return this
     }
 

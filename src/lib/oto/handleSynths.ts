@@ -75,22 +75,22 @@ export const handleSynthEvent = (time: number, params: Dictionary) => {
             ? store[channel][inst]
             // otherwise, make a new one and connect it with the channel strip
             : connect(makeSynth(inst), channel, out, inst);
-        if(inst !== 'zmod') {
-            // handle multiple notes
-            [n].flat().forEach((n: number, noteIndex: number) => {
-                const ps: Dictionary = Object.entries(params).reduce((obj, [key, val]) => ({
-                    ...obj,
-                    [key]: Array.isArray(val) ? val[instIndex%val.length] : val
-                }), {});
-                ps.n = n
-                synth.play(ps, time + (noteIndex * (strum/1000)));
-            })
-        } else {
-            // handle zmod as a special case 
-            synth.set(params.patch).start()
-            params.n = mtf([params.n].flat()[0])
-            synth.play(params, time + (strum / 1000));
-        }
+        
+        
+        // handle multiple notes
+        [n].flat().forEach((n: number, noteIndex: number) => {
+            const ps: Dictionary = Object.entries(params).reduce((obj, [key, val]) => ({
+                ...obj,
+                [key]: Array.isArray(val) ? val[instIndex%val.length] : val
+            }), {});
+
+            // special handling for zmod
+            ps.n = inst === 'zmod' ? mtf([params.n].flat()[0]) : n
+            inst === 'zmod' && synth.set(params.patch).start()
+
+            // play
+            synth.play(ps, time + (noteIndex * (strum/1000)));
+        })
     })
 
     // set fx params on that channel
@@ -114,7 +114,14 @@ export const handleSynthMutation = (time: number, params: Dictionary) => {
         : params
 
     const store = get(synths)
-    Object.values(store[channel] || {}).forEach((s: any) => s.mutate(ps, time, lag))
+    Object.entries(store[channel] || {})
+        .forEach(([type, synth]: [string, any]) => {
+            // special handling for zmod
+            if(type === 'zmod' && ps.n) ps.n = mtf([ps.n].flat()[0])
+
+            // mutate
+            synth.mutate(ps, time, lag)
+        })
     
     // mutate fx params on that channel
     const ch = getChannel(channel, out)
