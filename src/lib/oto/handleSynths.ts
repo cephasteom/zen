@@ -34,7 +34,7 @@ const connect = (synth: any, channel: number, out: number, type: string) => {
     const ch = getChannel(channel, out)
 
     // connect synth to channel
-    synth.connect(ch.input)
+    synth.connect(ch.input, [channel, channel + 1]) 
 
     // add synth to store
     synths.update((obj: Dictionary) => ({
@@ -60,25 +60,22 @@ export const handleSynthEvent = (time: number, params: Dictionary) => {
         Object.values(stream).forEach((synth: any) => synth?.cut(time, cutr))
     });
 
-    if(inst !== 'zmod') {
-        // handle multiple insts
-        [inst].flat().forEach((inst: string | number, instIndex: number) => {
-            inst = typeof(inst) === 'number' ? synthTypes[inst] : inst;
-            
-            // ignore instruments that don't exist
-            if(!synthTypes.includes(inst)) return
+    const store = get(synths);
+
+    // handle multiple insts
+    [inst].flat().forEach((inst: string | number, instIndex: number) => {
+        inst = typeof(inst) === 'number' ? synthTypes[inst] : inst;
         
-            // Get or make synth
-            const store = get(synths)
-
-            // synths are associated with a channel strip
-            const synth = store[channel] && store[channel][inst] 
-                // if it exists, use it
-                ? store[channel][inst]
-                // otherwise, make a new one and connect it with the channel strip
-                : connect(makeSynth(inst), channel, out, inst);
-
-            
+        // ignore instruments that don't exist
+        if(!synthTypes.includes(inst)) return
+        
+        // synths are associated with a channel strip
+        const synth = store[channel] && store[channel][inst] 
+            // if it exists, use it
+            ? store[channel][inst]
+            // otherwise, make a new one and connect it with the channel strip
+            : connect(makeSynth(inst), channel, out, inst);
+        if(inst !== 'zmod') {
             // handle multiple notes
             [n].flat().forEach((n: number, noteIndex: number) => {
                 const ps: Dictionary = Object.entries(params).reduce((obj, [key, val]) => ({
@@ -88,32 +85,13 @@ export const handleSynthEvent = (time: number, params: Dictionary) => {
                 ps.n = n
                 synth.play(ps, time + (noteIndex * (strum/1000)));
             })
-        })
-    } else {
-        // handle zmod as a special case 
-        // Get or make synth
-        const store = get(synths)
-
-        // synths are associated with a channel strip
-        const synth = store[channel] && store[channel][inst] 
-            // if it exists, use it
-            ? store[channel][inst]
-            // otherwise, make a new one and connect it with the channel strip
-            : makeSynth(inst);
-
-        synth.set(params.patch).start()
-        
-        synths.update((obj: Dictionary) => ({
-            ...obj,
-            [channel]: {
-                ...obj[channel],
-                zmod: synth
-            }
-        }))
-
-        params.n = mtf(Array.isArray(params.n) ? params.n[0] : params.n)
-        synth.play(params, time + (strum / 1000));
-    }
+        } else {
+            // handle zmod as a special case 
+            synth.set(params.patch).start()
+            params.n = mtf([params.n].flat()[0])
+            synth.play(params, time + (strum / 1000));
+        }
+    })
 
     // set fx params on that channel
     const ch = getChannel(channel, out)
