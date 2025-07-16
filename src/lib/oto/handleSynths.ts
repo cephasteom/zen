@@ -86,7 +86,7 @@ export const handleSynthEvent = (time: number, params: Dictionary) => {
 
             // special handling for zmod
             ps.n = inst === 'zmod' ? mtf([params.n].flat()[0]) : n
-            inst === 'zmod' && synth.set(params.patch).start()
+            inst === 'zmod' && synth.set(`${params.patch}.out(${channel},${channel + 1})`).start()
 
             // play
             synth.play(ps, time + (noteIndex * (strum/1000)));
