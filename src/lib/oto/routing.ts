@@ -31,7 +31,7 @@ export const getChannel = (channel: number, out: number) => {
 
         // connect all buses to the input of the fx channels
         ['fx0', 'fx1', 'fx2', 'fx3'].forEach((id: string, i: number) => {
-            channels[channel].routeBus(i, fxChannels[id].input)
+            channels[channel].routeFxBus(i, fxChannels[id].input)
         })
     }
 

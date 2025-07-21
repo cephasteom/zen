@@ -18,6 +18,7 @@ import zen_quantum from './quantum'
 import data from './data'
 import clocks from "./clocks";
 import modes from './modes'
+import zmod from "./zmod";
 
 const content = { 
     intro, 
@@ -32,6 +33,7 @@ const content = {
     instruments,
     effects,
     custom_samples,
+    zmod,
     global_settings,
     midi,
     utilities,

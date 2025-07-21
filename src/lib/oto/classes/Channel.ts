@@ -1,10 +1,10 @@
 import type { Dictionary } from "../types";
-import { Split, Gain, context } from 'tone'
+import { Split, Gain } from 'tone'
 import { CtFXChannel, CtReverbGen, CtFXDelay } from "../ct-synths"
 
 class Channel {
     input
-    _busses
+    _fxBusses
     _destination
     _out: number
     _fx: any
@@ -18,12 +18,12 @@ class Channel {
         this._out = out
 
         this.input = new Gain(1)
-        this._busses = Array.from({length: 4}, () => new Gain(0))
+        this._fxBusses = Array.from({length: 4}, () => new Gain(0))
         this._fader = new Gain(1)
-        this._output = new Split({context, channels: 2})
+        this._output = new Split({channels: 2})
         
         this._fader.connect(this._output)
-        this.input.fan(this._fader, ...this._busses)
+        this.input.fan(this._fader, ...this._fxBusses)
         
         this._output.connect(destination, 0, out)
         this._output.connect(destination, 1, out+1)
@@ -39,12 +39,12 @@ class Channel {
         this._out = out
     }
 
-    routeBus(bus: number, destination: any) {
-        this._busses[bus].connect(destination)
+    routeFxBus(bus: number, destination: any) {
+        this._fxBusses[bus].connect(destination)
     }
 
     send(bus: number, gain: number, time: number = 0, lag: number = 10) {
-        this._busses[bus].gain.rampTo(gain, lag/1000, time)
+        this._fxBusses[bus].gain.rampTo(gain, lag/1000, time)
     }
 
     set(params: Dictionary, time: number) {
@@ -92,7 +92,7 @@ class Channel {
         // disconnect chain
         fx.forEach(fx => fx && fx.disconnect())
         input.disconnect()
-        input.fan(...this._busses)
+        input.fan(...this._fxBusses)
 
         const first = fx.find(Boolean)
         const last = [...fx].reverse().find(Boolean)
