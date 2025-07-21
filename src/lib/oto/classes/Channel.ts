@@ -41,6 +41,14 @@ class Channel {
         this._out = out
     }
 
+    routeBus(bus: number, destination: any) {
+        this._busses[bus].connect(destination)
+    }
+
+    send(bus: number, gain: number, time: number = 0, lag: number = 10) {
+        this._busses[bus].gain.rampTo(gain, lag/1000, time)
+    }
+
     routeFxBus(bus: number, destination: any) {
         this._fxBusses[bus].connect(destination)
     }

@@ -1,4 +1,4 @@
-import { Merge, getDestination, Limiter } from 'tone'
+import { Merge, getDestination, Limiter, Gain } from 'tone'
 import Channel from './classes/Channel'
 import type { Dictionary } from './types'
 
@@ -12,6 +12,8 @@ destination.channelCount === 2 && destination.chain(limiter)
 
 export const output = new Merge({channels: destination.maxChannelCount})
 output.connect(destination)
+
+export const busses = Array.from({length: 16}, () => new Gain(1))
 
 // FX channel strips, connected by a bus from all channels
 export const fxChannels: Dictionary = {
@@ -29,10 +31,15 @@ export const getChannel = (channel: number, out: number) => {
     if(!channels[channel]) {
         channels[channel] = new Channel(output, out);
 
-        // connect all buses to the input of the fx channels
+        // connect all channels to the busses
+        busses.forEach((bus: Gain, i: number) => {
+            channels[channel].routeBus(i, bus)
+        });
+
+        // connect all fx buses to the input of the fx channels
         ['fx0', 'fx1', 'fx2', 'fx3'].forEach((id: string, i: number) => {
             channels[channel].routeFxBus(i, fxChannels[id].input)
-        })
+        });
     }
 
     // if the output is different, route it to the new output
