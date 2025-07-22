@@ -83,6 +83,27 @@ s0.n.set('Ddor%8..*16')
 s0.e.set('3:8')
 \`\`\`
 
+### Using busses
+ZMod supports routing signals to and from busses, allowing you to create complex patches with multiple signal paths. Use the \`bus\` method to route a signal to a bus, and the \`bus\` function to retrieve a signal from a bus. You can also route audio from non-ZMod instruments to a bus, for use in ZMod patches.
+\`\`\`js
+s0.set({
+  inst: 1, bank: 'bd', // play a kick drum
+  bus0: 1, // route to bus 0
+})
+s0.e.set('3:8')
+
+// use the bus to modulate frequency and filter cutoff
+let patch = \`
+saw(#n.add(bus(0).follow().scale(10,500)))
+  .amp(#e)
+  .dist()
+  .lpf(bus(0).follow().scale(1000,5000))
+  .pan()
+\`
+s1.set({inst: 'zmod', patch, n: 36, s: 1, a: 50, dur: $(4).btms()})
+s1.e.every(16)
+\`\`\`
+
 ## API
 There are two main types of signal in ZMod: \`ControlSignal\` and \`AudioSignal\`. \`ControlSignals\`, including LFOs and Envelopes, can usually be passed to any \`AudioSignal\` method where a number is expected.
 

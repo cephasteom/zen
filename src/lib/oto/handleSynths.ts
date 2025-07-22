@@ -1,6 +1,6 @@
 import { writable, get } from "svelte/store";
 import { CtSynth, CtSampler, CtGranulator, CtAdditive, CtAcidSynth, CtDroneSynth, CtSubSynth, CtSuperFM, CtWavetable } from "./ct-synths"
-import ZMod from '../../../../zmod/lib/Zmod'
+import ZMod from '../../../../zmod/lib/' // TODO: issue with the build, so importing prebuilt ZMod
 import type { Dictionary } from './types'
 import { busses, fxChannels, getChannel } from './routing';
 import { samples } from './stores'
