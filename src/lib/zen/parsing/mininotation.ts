@@ -55,7 +55,6 @@ const chordTypes: string = Object.entries(triads).reduce((grammar: string, [key,
 * @example 'Cma69' => you can use any combination of extensions
 * @example 'Clyd..*16' => [[60, 62, 64, 66, 67, 69, 71, 73, 60, 62, 64, 66, 67, 69, 71, 73]] // turn scale into a sequence and specify duration. Treat scales and chords the same, both return an array which can be turned into a sequence or played in unison
 * @example 'Clyd%4..?*16' => take first 4 notes from scale, turn into a sequence, random choice, repeat 16 times. You can do the same with chords
-* @example '(1 0*3)*4' => [[1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]] // group any of the above together, specify how many times the group should repeat in its entirety. Grouping needs more work
 * @example '1 1 1?0--; b:8' // set the amount of bars generated to 8. Default is 1 or length of your pattern.
 * @example 'Dlyd..*16 |^3' // stretch a bar over 3 bars
 */
@@ -95,11 +94,10 @@ const parser = peg.generate(`
         }
     
     bar 
-        = space* values:(group+ / event+) divider? repeats:duration? stretch:stretch? space* { return {bar: values, repeats: repeats || 1, stretch: stretch || 1}; }    
+        = space* values:(event+) divider? repeats:duration? stretch:stretch? space* { return {bar: values, repeats: repeats || 1, stretch: stretch || 1}; }    
     
     // GROUPING
-    group
-        = "(" space* val:event+ space* ")" repeats:duration? space* { return {val, repeats: repeats || 1, type: 'group'}; }
+    
 
     // COMPLEX TYPES
     event 
@@ -281,14 +279,19 @@ let parse = memoize((pattern: string, _: string): string|number|[][] => parser.p
 seedValue.subscribe(() => parse = memoize((pattern: string, _: string): string|number|[][] => parser.parse(pattern)))
 
 export const parsePattern = (pattern: string, t: number, q: number, id: string, round=true) => {
-    time = 0
-    const array = parse(pattern, id)
-    let position = pos(t, q, 1, array.length)
-    let bar = Math.trunc(position)
-    // fixed to 3 decimal places to avoid floating point errors
-    let beat = Number(((position % 1) * array[bar].length).toFixed(3))
-    // if round is true, round the beat down to the nearest integer so that it always returns a value
-    // if round is false, return the value at the exact beat, or return a 0
-    beat = round ? Math.floor(beat) : beat
-    return array[bar][beat] || 0
+    try {
+        time = 0
+        const array = parse(pattern, id)
+        let position = pos(t, q, 1, array.length)
+        let bar = Math.trunc(position)
+        // fixed to 3 decimal places to avoid floating point errors
+        let beat = Number(((position % 1) * array[bar].length).toFixed(3))
+        // if round is true, round the beat down to the nearest integer so that it always returns a value
+        // if round is false, return the value at the exact beat, or return a 0
+        beat = round ? Math.floor(beat) : beat
+        return array[bar][beat] || 0
+    } catch (error) {
+        // if we can't parse the pattern, return the original string
+        return pattern
+    }
 }
