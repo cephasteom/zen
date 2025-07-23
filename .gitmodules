@@ -1,3 +1,7 @@
 [submodule "ct-synths"]
 	path = src/lib/oto/ct-synths
 	url = https://github.com/cephasteom/ct-synths.git
+
+[submodule "zmod"]
+	path = src/lib/oto/ZMod
+	url = https://github.com/cephasteom/ZMod.git
