@@ -151,7 +151,7 @@ export function evaluate(count: number, time: number) {
     const s = z.s.get(t, q) || 16 // size of canvas
     const c = z.c.get(t, q) || 0 // current cycle
 
-    setQ(z.q)
+    setQ(q)
 
     // get seed value
     const seedValue = z.seed.get(t, q) || null
