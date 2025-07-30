@@ -380,6 +380,17 @@ Stereo panner. Values between 0 and 1. Converts the signal to stereo.
 fm(100).pan(lfo())
 \`\`\`
 
+#### input
+\`\`\`ts
+AudioSignal.input(index: number): AudioSignal
+\`\`\`
+
+Routes the signal from an input. Due to the limitation of the Web Audio API, only the first two inputs on your audio device are available.
+
+\`\`\`ts
+input(0)
+\`\`\`
+
 #### bus
 When used as method, routes the signal to a bus.
 \`\`\`ts
