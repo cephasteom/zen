@@ -64,8 +64,10 @@ export const handleSynthEvent = (time: number, params: Dictionary) => {
 
     // handle multiple insts
     [inst].flat().forEach((inst: string | number, instIndex: number) => {
+        // convert number indexes to synth type strings
         inst = typeof(inst) === 'number' ? synthTypes[inst] : inst;
-        
+        // if no inst and there is a patch, assume it's zmod
+        inst = !inst && params.patch ? 'zmod' : inst;
         // ignore instruments that don't exist
         if(!synthTypes.includes(inst)) return
         
