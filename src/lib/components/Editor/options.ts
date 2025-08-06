@@ -3,7 +3,7 @@ import type * as Monaco from 'monaco-editor/esm/vs/editor/editor.api';
 export const options: Monaco.editor.IStandaloneEditorConstructionOptions = {
     language: 'javascript',
     theme: 'vs-dark',
-    fontSize: 14,
+    fontSize: 17,
     lineNumbers: 'off',
     minimap: {
         enabled: false

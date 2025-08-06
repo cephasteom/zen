@@ -48,7 +48,7 @@
     li {
         font-family: Menlo, Monaco, "Courier New", monospace;
         font-weight: normal;
-        font-size: var(--text-xs);
+        font-size: var(--text-sm);
         font-feature-settings: "liga" 0, "calt" 0;
         font-variation-settings: normal;
         letter-spacing: 0px;

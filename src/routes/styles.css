@@ -36,8 +36,8 @@
 		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	--font-mono: 'Fira Mono', monospace;
     --text-base: 1rem;
-    --text-sm: 0.85rem;
-    --text-xs: 0.75rem;
+    --text-sm: 1rem;
+    --text-xs: .75rem;
     --text-xxs: 0.5rem;
     --text-spacing: 0.1rem;
 	--color-bg-0: rgb(202, 216, 228);
@@ -206,6 +206,11 @@ button:focus:not(:focus-visible) {
 .decorationsOverviewRuler {
     display: none!important;
 }
+
+/* .view-line {
+    font-size: var(--text-sm)!important;
+    line-height: 1.5!important;
+} */
 
 /* strings */
 .monaco-scrollable-element, .margin-view-overlays, .lines-content {

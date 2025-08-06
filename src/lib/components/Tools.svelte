@@ -59,7 +59,6 @@
         height: 100%;
 
         & button {
-            height: 1.5rem;
             background: none;
             border: none;
             cursor: pointer;
@@ -68,10 +67,7 @@
             font-family: var(--font-family);
             padding: 0;
             color:white;
-            
-            @media(min-width: 600px) {
-                height: 1rem;
-            }
+            transform: scale(1.25) translateY(2px);
             
             &.active {
                 color: var(--color-theme-1);

@@ -106,10 +106,10 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 1rem;
+        padding: 1.5rem;
 
         @media (min-width: 1200px) {
-            padding: 1rem 2rem;
+            padding: 1.5rem;
         }
 
         @media (min-width: 1664px) {
@@ -165,7 +165,7 @@
             text-transform: uppercase;
             text-decoration: none;
             color: #FFF;
-            font-size: var(--text-xs);
+            font-size: var(--text-sm);
         }
 
         @media (min-width: 600px) {
