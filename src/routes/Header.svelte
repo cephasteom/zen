@@ -6,7 +6,6 @@
     import Icon from 'svelte-awesome';
     import { faBars, faXmark, faDownload } from '@fortawesome/free-solid-svg-icons';
     import { isApp } from '$lib/electronAPI/index';
-
     import { version } from '$app/environment';
 
     let showMobileMenu = false;

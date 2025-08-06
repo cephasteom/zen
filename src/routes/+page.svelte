@@ -127,7 +127,7 @@
         grid-column: 1;
         grid-row: 2 / 3;
         background: var(--color-black);
-        padding: 1rem;
+        padding: 1.5rem;
         
         @media (min-width: 800px) {
             background: var(--color-grey-darker);

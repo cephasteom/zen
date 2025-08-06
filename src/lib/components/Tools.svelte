@@ -18,19 +18,19 @@
 </script>
 
 <div class="tools">
-    <button on:click={() => { isPlaying.set(!$isPlaying)}} ><Icon data="{$isPlaying ? faStop : faPlay}" /></button>
+    <button on:click={() => { isPlaying.set(!$isPlaying)}} ><Icon scale={1.25} data="{$isPlaying ? faStop : faPlay}" /></button>
     {#if !isApp()}
-        <button on:click={() => save.showModal()} class:active={false}><Icon data="{faFloppyDisk}" /></button>
-        <button on:click={() => load.showModal()} class:active={false}><Icon data="{faCode}" /></button>
+        <button on:click={() => save.showModal()} class:active={false}><Icon scale={1.25} data="{faFloppyDisk}" /></button>
+        <button on:click={() => load.showModal()} class:active={false}><Icon scale={1.25} data="{faCode}" /></button>
     {/if}
     <button class="tools__visuals" 
         class:active={$visualsType !== 'none'} 
         on:click={toggleVisuals}
     >
-        <Icon data={visualsIcons[$visualsType] || visualsIcons.grid} />
+        <Icon scale={1.25} data={visualsIcons[$visualsType] || visualsIcons.grid} />
     </button>
     <button class="tools__circuit" on:click={toggleCircuit} class:active={$showCircuit}>
-        <Icon data={faBars} />
+        <Icon scale={1.25} data={faBars} />
     </button>
 </div>
 
@@ -67,7 +67,6 @@
             font-family: var(--font-family);
             padding: 0;
             color:white;
-            transform: scale(1.25) translateY(2px);
             
             &.active {
                 color: var(--color-theme-1);

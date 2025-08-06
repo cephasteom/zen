@@ -36,17 +36,15 @@
 
     .footer {
         border-top: 0.5px solid var(--color-grey-light);
-        width: calc(100% - 2rem);
-        padding: 1rem;
-        margin: 0 auto;
+        width: calc(100% - 3rem);
+        padding: 1.5rem;
+        margin: 0;
         color: var(--color-grey-light);
         text-align: center;
         display: flex;
         justify-content: space-between;
         @media (min-width: 1200px) {
             text-align: right;
-            width: calc(100% - 4rem);
-            padding: 1rem 2rem;
         }
 
         @media (min-width: 1600px) {
