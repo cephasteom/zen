@@ -51,7 +51,7 @@
             </a>
         {/if}
         <button on:click={toggleMenu} class="menu-toggle">
-            <Icon data="{showMobileMenu ? faXmark : faBars}" />
+            <Icon scale={1.5} data="{showMobileMenu ? faXmark : faBars}" />
         </button>
     
         <ul class="menu" bind:this={menu}>
@@ -118,7 +118,7 @@
     }
     
     .icon {
-        height: 2rem;
+        height: 1.5rem;
         display: flex;
         align-items: center;
         font-size: var(--text-sm);
@@ -128,8 +128,8 @@
             height: 100%;
             object-fit: contain;
             filter: invert(1);
-            margin-right: 0.125rem;
-            transform: rotate(-45deg);
+            margin-right: 0.5rem;
+            transform: rotate(-45deg) scale(1.5);
         }
         p {
             position: relative;

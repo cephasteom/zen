@@ -72,8 +72,8 @@
         grid-template-rows: 8fr 1fr;
         grid-gap: 0.5px;
         user-select: none;
-        min-height: calc(100vh - 79px);
-        max-height: calc(100vh - 79px);
+        min-height: calc(100vh - 71px);
+        max-height: calc(100vh - 71px);
         overflow: scroll;
         
         @media (min-width: 800px) {

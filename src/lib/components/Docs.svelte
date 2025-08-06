@@ -131,7 +131,7 @@
 
     .path {
         margin-top: 0.25rem;
-        font-size: var(--text-xs);
+        font-size: var(--text-sm);
         word-wrap: break-word;
     }
 
