@@ -4,7 +4,7 @@ Zen is designed to be quick to write and clear to read. Most methods and paramet
 Here’s a quick example, followed by the same code written in shorthand:
 \`\`\`js
 s0.set({inst:0,cut:0,mods:0.1,reverb:0.5})
-s0.n.saw(0,32,2).add(48)
+s0.n.saw(2,0,32).add(48)
 s0.modi.sine(0,4,0,0.5)
 s0.harm.tri(1,2)
 s0.pan.noise()
