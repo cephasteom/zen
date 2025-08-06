@@ -532,26 +532,26 @@ s0.e.every('0?1*4|*2')
     // Generators
     /**
      * Generate a range of values between lo and hi. Use as the first call in a pattern chain.
+     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @param lo lowest value in range
      * @param hi highest value in range
-     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
      * @example s0.modi.range(0, 10, 1, 2)
      */
-    range(lo: patternable = 0, hi: patternable = 1, freq: patternable = 1): Pattern {
+    range(freq: patternable = 1, lo: patternable = 0, hi: patternable = 1): Pattern {
         this.normalise(freq).mtr(lo, hi)
         return this
     }
 
     /**
      * Generate a sine wave between lo and hi. Use as the first call in a pattern chain.
+     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @param lo lowest value in range
      * @param hi highest value in range
-     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
-     * @example s0.modi.sine(0, 10)
+     * @example s0.modi.sine().mul(10)
      */
-    sine(lo: patternable = 0, hi: patternable = 1, freq: patternable = 1): Pattern {
+    sine(freq: patternable = 1, lo: patternable = 0, hi: patternable = 1): Pattern {
         this.normalise(freq)
             .mul(360 * (Math.PI/180))
             .sin()
@@ -561,13 +561,13 @@ s0.e.every('0?1*4|*2')
 
     /**
      * Generate a cosine wave between lo and hi. Use as the first call in a pattern chain.
+     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @param lo lowest value in range
      * @param hi highest value in range
-     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
-     * @example s0.modi.cosine(0, 10)
+     * @example s0.modi.cosine().mul(10)
      */
-    cosine(lo: patternable = 0, hi: patternable = 1, freq: patternable = 1): Pattern {
+    cosine(freq: patternable = 1, lo: patternable = 0, hi: patternable = 1): Pattern {
         this.normalise(freq)
             .mul(360 * (Math.PI/180))
             .cos()
@@ -577,25 +577,25 @@ s0.e.every('0?1*4|*2')
 
     /**
      * Generate a saw wave between lo and hi. Alias of range. Use as the first call in a pattern chain.
+     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @param lo lowest value in range
      * @param hi highest value in range
-     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
-     * @example s0.modi.saw(0, 10)
+     * @example s0.modi.saw().mul(10)
      */
-    saw(lo: patternable, hi: patternable, freq: patternable = 1): Pattern {
-        return this.range(lo, hi, freq)
+    saw(freq: patternable = 1, lo: patternable = 0, hi: patternable = 1): Pattern {
+        return this.range(freq, lo, hi)
     }
 
     /**
      * Generate a curve between lo and hi. Use as the first call in a pattern chain.
+     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @param curve curve of the pattern. Default is 0.5, which means a linear curve.
      * @param lo lowest value in range
      * @param hi highest value in range
-     * @param curve curve of the pattern. Default is 0.5, which means a linear curve.
-     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
      */
-    curve(lo: patternable = 0, hi: patternable = 1, curve: patternable = 0.5, freq: patternable = 1): Pattern {
+    curve(freq: patternable = 1, lo: patternable = 0, curve: patternable = 0.5, hi: patternable = 1): Pattern {
         this.normalise(freq)
             .pow(curve)
             .mtr(lo, hi)
@@ -604,30 +604,31 @@ s0.e.every('0?1*4|*2')
     
     /**
      * Generate a triangle wave between lo and hi. Use as the first call in a pattern chain.
+     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @param lo lowest value in range
      * @param hi highest value in range
-     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
-     * @example s0.harm.tri(0, 4, 0.25)
+     * @example s0.harm.tri(0.25).mul(4)
      */
-    tri(lo: patternable = 0, hi: patternable = 1, freq: patternable = 1): Pattern {
+    tri(freq: patternable = 1, lo: patternable = 0, hi: patternable = 1): Pattern {
         this.normalise(freq)
             .sub(0.5)
             .abs()
             .mul(2)
+            .mtr(lo, hi)
         return this
     }
 
     /**
      * Generate a pulse wave between lo and hi. Use as the first call in a pattern chain.
+     * @param freq - number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
+     * @param width - width of the pulse. Default is 0.5, which means a square wave.
      * @param lo - lowest value in range
      * @param hi - highest value in range
-     * @param width - width of the pulse. Default is 0.5, which means a square wave.
-     * @param freq - number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
-     * @example s0.modi.pulse(0, 10, 0.25)
+     * @example s0.modi.pulse(0.25, 1, 10)
     */
-    pulse(lo: patternable = 0, hi: patternable = 1, width: patternable = 0.5, freq: patternable = 1): Pattern {
+    pulse(freq: patternable = 1, width: patternable = 0.5, lo: patternable = 0, hi: patternable = 1): Pattern {
         this.normalise(freq)
             .mod(1)
             .lt(+width)
@@ -637,14 +638,14 @@ s0.e.every('0?1*4|*2')
 
     /**
      * Generate a square wave between lo and hi. Use as the first call in a pattern chain. See also pulse.
+     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @param lo lowest value in range
      * @param hi highest value in range
-     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
      * @returns {Pattern}
-     * @example s0.modi.square(0, 10)
+     * @example s0.modi.square(1,0,10)
     */
-    square(lo: patternable=0, hi: patternable=1, freq: patternable=1): Pattern {
-        this.pulse(lo, hi, 0.5, freq)
+    square(freq: patternable=1, lo: patternable=0, hi: patternable=1): Pattern {
+        this.pulse(freq, 0.5, lo, hi)
         return this
     }
 
@@ -652,14 +653,12 @@ s0.e.every('0?1*4|*2')
      * Generate a random number between lo and hi.
      * @param lo lowest value in range
      * @param hi highest value in range
-     * @param step step size to round the output. Default is 0, which means no rounding.
      * @returns {Pattern}
-     * @example s0.n.random(60,72,1)
+     * @example s0.n.random(60,72).step(1)
      */
-    random(lo: patternable=0, hi: patternable=1, step: patternable=0): Pattern {
+    random(lo: patternable=0, hi: patternable=1): Pattern {
         this.fn(x => this.rng(+x))
             .mtr(lo, hi)
-            .step(step)
         return this
     }
 
@@ -1260,7 +1259,7 @@ s0.e.every('0?1*4|*2')
      * Interpolate between a value and the previous value in the pattern chain
      * @param val value to interpolate to
      * @returns {Pattern}
-     * @example s0.y.sine().intrp(sine(1,0,0,0.5))
+     * @example s0.y.sine().intrp(sine(0.5))
      */ 
     interpolate(val: patternable): Pattern {
         this.stack.push((x: patternValue) => handlePolyphony(x, x => interpolate(+x, +this.handleTypes(val), 0.5)))
@@ -1441,7 +1440,7 @@ s0.e.set(1)
      * @returns {Pattern}
      * @param size number of values to cache
      * @param repeats number of times to repeat the cache before it clears. Default is 1.
-     * @example s0.e.random(0,1,1).cache(16,4)
+     * @example s0.e.random(0,1).step(1).cache(16,4)
      */
     cache(size: patternable = 1, repeats: patternable = 1): Pattern {
         let values: any[] = []
@@ -1509,8 +1508,8 @@ s0.e.set(1)
     /**
      * Return the probability (squared amplitude coefficient) for a given state of the quantum system
      * @returns {Pattern}
-     * @param state state to get amplitude of, as an integer
-     * @example s0.amp.amplitude(0).print()
+     * @param state state to get probability of, as an integer
+     * @example s0.amp.qprobability(0).print()
      */
     qprobability(state: patternable): Pattern {
         this.stack.push(() => {
