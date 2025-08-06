@@ -18,7 +18,7 @@
     }
 
     const closeMenu = () => {
-        if(window.innerWidth > 599) return (menu.style.display = 'flex');
+        if(window.innerWidth > 799) return (menu.style.display = 'flex');
         showMobileMenu = false;
         menu && (menu.style.display = 'none');
     }
@@ -168,7 +168,7 @@
             font-size: var(--text-sm);
         }
 
-        @media (min-width: 600px) {
+        @media (min-width: 800px) {
             position: relative;
             height: auto;
             width: auto;
@@ -182,7 +182,7 @@
             background-color: transparent;
             &__item {
                 padding-left: 1rem;
-                @media(min-width: 800px) {
+                @media(min-width: 600px) {
                     padding-right: 3rem;
                 }
                 font-size: var(--text-sm);
