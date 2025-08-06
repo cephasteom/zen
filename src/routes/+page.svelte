@@ -143,6 +143,7 @@
         display: none;
         overflow: hidden;
         background-color: var(--color-grey-dark);
+        padding: 0 1rem;
         
         &--fullHeight {
             grid-row: 1 / 4;

@@ -207,11 +207,6 @@ button:focus:not(:focus-visible) {
     display: none!important;
 }
 
-/* .view-line {
-    font-size: var(--text-sm)!important;
-    line-height: 1.5!important;
-} */
-
 /* strings */
 .monaco-scrollable-element, .margin-view-overlays, .lines-content {
     background-color: var(--color-black)!important;
@@ -294,12 +289,15 @@ canvas {
 .qc-gate-label {
     transform: translate(1px,1px);
 }
+.qc-wire-label {
+    transform: translate(1px,-4px);
+}
 
 .qc-gate-params {
     display: none;
 }
 
 .circuit__svg > svg {
-    transform: scale(0.8) translate(-18px, -31px);
+    transform: scale(0.8) translate(-21px, -31px);
     transform-origin: top left;
 }
