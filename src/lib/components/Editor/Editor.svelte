@@ -117,11 +117,10 @@
 <style lang="scss">
     .container {
         position: relative;
-        background-color: var(--color-grey-darkest);
+        background-color: var(--color-black);
         padding-top: 1.5rem;
         padding-bottom: 1.5rem;
         height: calc(100% - 3rem);
-        border-radius: 5px;
 
     }
     
@@ -145,7 +144,7 @@
         padding: 1rem 0;
         font-size: var(--text-sm);
         color: var(--color-grey-light);
-        background-color: var(--color-grey-darkest);
+        background-color: var(--color-black);
 
         ul {
             list-style: none;

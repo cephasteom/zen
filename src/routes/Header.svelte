@@ -94,9 +94,11 @@
 		display: flex;
 		justify-content: center;
         background-color: var(--color-black);
+        border-bottom: 0.5px solid var(--color-grey-light);
 
         @media all and (display-mode: fullscreen) {
             background-color: var(--color-grey-darker);
+            border-bottom: none;
             & > nav { display: none }
         }
 	}
@@ -117,15 +119,12 @@
     }
     
     .icon {
-        height: 2rem;
+        height: 1.5rem;
         display: flex;
         align-items: center;
         font-size: var(--text-sm);
         z-index: 200;
-        
-        @media(min-width: 600px) {
-            height: 1.5rem;
-        }
+
         img {
             height: 100%;
             object-fit: contain;
@@ -160,7 +159,7 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        background-color: var(--color-theme-1);
+        background-color: var(--color-grey-darker);
 
         &__item a {
             text-transform: uppercase;
@@ -215,7 +214,6 @@
         border: none;
         cursor: pointer;
         color: var(--color-grey-light);
-        height: 2rem;
         font-family: var(--font-family);
         padding: 0;
         cursor: pointer;

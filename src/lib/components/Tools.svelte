@@ -63,10 +63,11 @@
             background: none;
             border: none;
             cursor: pointer;
-            color: var(--color-grey-light);
+            color: var(--color-grey-dark);
             font-size: var(--text-sm);
             font-family: var(--font-family);
             padding: 0;
+            color:white;
             
             @media(min-width: 600px) {
                 height: 1rem;

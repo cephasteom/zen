@@ -21,8 +21,7 @@
         display: flex;
         flex-direction: column;
         @media all and (display-mode: fullscreen) {
-            margin: 2rem;
-            min-height: calc(100vh - 4rem);
+            min-height: 100vh;
         }
     }
 
@@ -33,16 +32,10 @@
         margin: 0 auto;
         box-sizing: border-box;
         background-color: var(--color-grey-light);
-        @media (min-width: 1600px) {
-            border-radius: 0 0 5px 5px;
-        }
-
-        @media all and (display-mode: fullscreen) {
-            border-radius: 5px;
-        }
     }
 
     .footer {
+        border-top: 0.5px solid var(--color-grey-light);
         width: calc(100% - 2rem);
         padding: 1rem;
         margin: 0 auto;

@@ -28,7 +28,7 @@
 
 <style lang="scss">
     .console {
-        background-color: var(--color-grey-darkest);
+        background-color: var(--color-black);
         padding: 1.5rem;
         height: calc(100% - 3rem);
         position: absolute;
@@ -36,8 +36,6 @@
         right: 0;
         overflow: hidden;
         user-select: text;
-        border-radius: 5px;
-
     }
 
     ul {

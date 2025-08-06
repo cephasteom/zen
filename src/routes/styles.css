@@ -73,7 +73,7 @@ body {
 	min-height: 100vh;
 	margin: 0;
 	background-attachment: fixed;
-	background-color: var(--color-grey-darker);
+	background-color: var(--color-grey-darkest);
 	background-size: 100vw 100vh;
     letter-spacing: 0.1rem;
     @media all and (display-mode: fullscreen) {
@@ -209,7 +209,7 @@ button:focus:not(:focus-visible) {
 
 /* strings */
 .monaco-scrollable-element, .margin-view-overlays, .lines-content {
-    background-color: var(--color-grey-darkest)!important;
+    background-color: var(--color-black)!important;
 }
 .monaco-scrollable-element, .margin-view-overlays, .lines-content .mtk5, .hljs-string {
     color: var(--color-theme-2);
@@ -240,7 +240,7 @@ button:focus:not(:focus-visible) {
 }
 
 .monaco-editor .sticky-widget-lines-scrollable, .monaco-editor .sticky-widget-line-numbers {
-    background-color: var(--color-grey-darkest)!important;
+    background-color: var(--color-black)!important;
 }
 
 .lines-content .mtk8 {

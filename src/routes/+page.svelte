@@ -69,35 +69,32 @@
     .zen {
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr 8fr 1fr;
-        grid-gap: 1rem;
-        padding: 1rem;
+        grid-template-rows: 8fr 1fr;
+        grid-gap: 0.5px;
         user-select: none;
-        min-height: calc(100vh - 56px - 2rem);
-        max-height: calc(100vh - 56px - 2rem);
+        min-height: calc(100vh - 56px);
+        max-height: calc(100vh - 56px);
         overflow: scroll;
         
         @media (min-width: 800px) {
             grid-template-columns: 1fr 1fr;
             grid-template-rows: 6fr 2fr 2fr 1fr;
         }
-        
-        @media (min-width: 1200px) {
-            grid-template-columns: 1fr 1fr;
-            padding: 1rem;
-        }
 
         @media all and (display-mode: fullscreen) {
-            grid-template-columns: 1fr 1fr;
-            min-height: calc(100vh - 6rem);
-            padding: 1rem;
+            grid-template-columns: 1fr;
+            min-height: 100vh;
+            @media (min-width: 800px) {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 6fr 2fr 2fr 1fr;
+            }
         }
     }
 
     .editor {
         height: 100%;
         grid-column: 1;
-        grid-row: 2;
+        grid-row: 1;
         @media (min-width: 800px) {
             grid-column: 1;
             grid-row: 1 / 3;
@@ -112,7 +109,6 @@
     .console {
         grid-column: 1 / 2;
         grid-row: 3 / 5;
-        border-radius: 5px;
         position: relative;
         background-color: var(--color-grey-dark);
         display: none;
@@ -129,8 +125,7 @@
 
     .tools {
         grid-column: 1;
-        grid-row: 1;
-        border-radius: 5px;
+        grid-row: 2 / 3;
         background: var(--color-grey-darker);
         padding: 1rem;
 
@@ -143,7 +138,6 @@
     .circuit {
         grid-column: 2;
         grid-row: 2 / 4;
-        border-radius: 5px;
         position: relative;
         display: none;
         overflow: hidden;
@@ -162,7 +156,6 @@
     .visuals {
         grid-column: 2 / 3;
         grid-row: 1 / 4;
-        border-radius: 5px;
         position: relative;
         background-image: linear-gradient(135deg, var(--color-grey-dark), #8a7972);
         display: none;
@@ -179,9 +172,9 @@
     .data {
         grid-column: 1;
         grid-row: 3;
-        border-radius: 5px;
         background-color: var(--color-grey-dark);
         padding: 1rem;
+        display: none;
 
         @media (min-width: 800px) {
             display: none;
