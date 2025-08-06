@@ -44,7 +44,7 @@ Similar to the sampler, the granular synth expects a sample bank and index. Gran
 z.bpm.set(160)
 
 s0.set({inst:'granular',bank:'cpu2',i:2,snap:q(),dur:ms(8),cut:[0,1,2],rate:0.5,lag:ms(1/4),vol:0.5,reverb:1,locut:0.25})
-s0._n.sine(60,72,0,0.25)
+s0._n.sine(.25,60,72)
 s0._i.random(0,16,1)
 s0.e.set('1|0')
 s0.m.not(s0.e)

@@ -6,12 +6,12 @@ A Stream is just an object that returns a Pattern for each property. For example
 Properties can be set directly, as above, or using the \`.set()\` method, which accepts an object literal with key/value pairs. For example, these two examples are equivalent:
 \`\`\`js
 s0.inst.set('synth')
-s0.n.saw(0,32,2).add(48)
+s0.n.saw(2,0,32).add(48)
 s0.e.sometimes()
 \`\`\`
 
 \`\`\`js
-s0.set({inst: 'synth', n: saw(0,32,2).add(48), e: sometimes()})
+s0.set({inst: 'synth', n: saw(2,0,32).add(48), e: sometimes()})
 \`\`\`
 
 The properties you set depend on the parameters of the instruments and effect you are using. For example, if you are using the sampler, you'll want to set a sample bank and index: 
@@ -37,7 +37,7 @@ s0.e.every(4).or(every(3))
 \`\`\`
 
 \`\`\`js
-s0.e.sine(0,1).step(1)
+s0.e.sine().step(1)
 \`\`\`
 
 \`\`\`js

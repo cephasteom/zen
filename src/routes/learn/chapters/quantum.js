@@ -113,7 +113,7 @@ s0.set({inst:0,reverb:0.125,rtail:0.2,cut:0,cutr:250,dur:100,mods:0.1})
 q0.u3([s0.y,s0.x,0])
 
 s0.y.noise()
-s0.x.sine(0,1,1/3)
+s0.x.sine(1/3,0,1)
 
 s0._n.set(s0.y).mtr(0,16).set('Cpro%16..*16 | Cpro%16..?*16').sub('0?12*16')
 s0._modi.set(s0.x).mtr(1,10)
@@ -166,7 +166,7 @@ Using the grid can be useful for seeing what is happening here, especially when 
 z.grid.set(qpbs().fn(a=>[a]))
 
 q0.rx(saw())
-q1.rx(saw(1,0))
+q1.rx(saw())
 q2.h()
 \`\`\`
 
@@ -185,7 +185,7 @@ s0.e.set(1)
 ### Phases
 Use the \`qphases()\`, or alias \`qps\`, method to get an array of the phases of each basis state. For example:
 \`\`\`js
-s0.z.sine(0,saw(),0,1/16)
+s0.z.sine(1/16,0,saw()))
 q0.h().rz(s0.z)
 q1.h()
 q2.h()
