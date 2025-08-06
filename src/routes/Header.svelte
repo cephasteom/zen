@@ -35,7 +35,7 @@
                     class="mr-3 h-6 sm:h-6"
                     alt="Zen Logo"
                 />
-                <p>zen <span>{version}</span></p>
+                <p><span>{version}</span></p>
             </span>
         {:else}
             <a 
@@ -48,7 +48,7 @@
                     class="mr-3 h-6 sm:h-6"
                     alt="Zen Logo"
                 />
-                <p>zen <span>{version}</span></p>
+                <p><span>{version}</span></p>
             </a>
         {/if}
         <button on:click={toggleMenu} class="menu-toggle">
@@ -119,7 +119,7 @@
     }
     
     .icon {
-        height: 1.5rem;
+        height: 2rem;
         display: flex;
         align-items: center;
         font-size: var(--text-sm);
