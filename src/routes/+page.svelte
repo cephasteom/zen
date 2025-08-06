@@ -126,10 +126,11 @@
     .tools {
         grid-column: 1;
         grid-row: 2 / 3;
-        background: var(--color-grey-darker);
+        background: var(--color-black);
         padding: 1rem;
-
+        
         @media (min-width: 800px) {
+            background: var(--color-grey-darker);
             grid-column: 2;
             grid-row: 4;
         }

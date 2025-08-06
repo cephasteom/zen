@@ -182,7 +182,7 @@
             background-color: transparent;
             &__item {
                 padding-left: 1rem;
-                @media(min-width: 600px) {
+                @media(min-width: 800px) {
                     padding-right: 3rem;
                 }
                 font-size: var(--text-sm);
@@ -219,7 +219,7 @@
         cursor: pointer;
         z-index: 200;
 
-        @media (min-width: 600px) {
+        @media (min-width: 800px) {
             display: none;
         }
     }
