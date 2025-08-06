@@ -4,7 +4,7 @@ Global settings can be set using the \`z\` object, which is just another instanc
 Each of the following properties are instances of the [Pattern class](/docs/classes#pattern), allowing you to set them using any of the pattern methods.
 
 ## z.t
-\`z.t\` sets the global time of the piece. By default this increments by 1 every division, but it can be interesting to modulate it. All Streams inherit this time value, unless you use .t() on the Stream - e.g. \`s0.t.noise(0, 32, 0.25)\`.
+\`z.t\` sets the global time of the piece. By default this increments by 1 every division, but it can be interesting to modulate it. All Streams inherit this time value, unless you use .t() on the Stream - e.g. \`s0.t.noise(.25, 0, 32).step(1)\`.
 \`\`\`js
 z.t.saw(1,0,16) // loop between 0 and 16
 z.t.sine(.25, 0, 16) // modulate the time with a sine wave

@@ -14,7 +14,7 @@ s0.y.noise()
 
 s0.n.set('Dpro%16..?*16|*4').sub(12)
 s0.mods.random(0.1,1,0.5)
-s0.dur.noise(0.1,2,0.75).btms()
+s0.dur.noise(1,0.1,2).btms()
 s0._modi.set(s0.x).saw(0.25,0.5)
 s0._harm.set(s0.y).saw(0.5,3,0.25)
 

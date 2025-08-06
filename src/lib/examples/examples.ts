@@ -20,7 +20,7 @@ s2.e.set('8:16').and('1 1?0*8|*4')
 s3.set({inst:0,vol:0.5,cut:3,modi:1.1,harm:2,moda:1,de:0.5,dtime:ms(0.5),reverb:0.5,rsize:0.75,mods:0.1,dcolour:0.25})
 s3.px.n.set(sc).at('0..15*16|*4 0..15?*16|*4').sub(12)
 .$add.set('3:16').mul(12)
-s3.pa.noise(0.25,0.75)
+s3.pa.noise(1,0.25,0.75)
 s3.amp.set('3:8').div(2).add(0.5)
 s3.e.set(1)`
 

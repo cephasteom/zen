@@ -418,8 +418,8 @@ s0.e.every('0?1*4|*2')
      * Add a value to the previous value in the pattern chain.
      * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
-     * @example s0.n.noise(60,72,1).add(12)
-     * @example s0.n.noise(60,72,1).add('0?12*16')
+     * @example s0.n.noise(1,60,72).add(12)
+     * @example s0.n.noise(1,60,72).add('0?12*16')
      */
     add(value: patternable): Pattern {
         this.stack.push(x => handlePolyphony(x, x => x + +this.handleTypes(value)))
@@ -430,7 +430,7 @@ s0.e.every('0?1*4|*2')
      * Subtract a value from the previous value in the pattern chain.
      * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
-     * @example s0.n.noise(60,72,1).sub(12)
+     * @example s0.n.noise(1,60,72).sub(12)
      */
     sub(value: patternable): Pattern {
         this.stack.push(x => handlePolyphony(x, x => x - +this.handleTypes(value)))
@@ -441,7 +441,7 @@ s0.e.every('0?1*4|*2')
      * Reverse subtract. Subtract the previous value in the pattern chain from a value.
      * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
-     * @example s0.amp.noise(0.5,0.25).subr(1)
+     * @example s0.amp.noise(1,0.5,0.25).subr(1)
      */
     subr(value: patternable): Pattern {
         this.stack.push(x => handlePolyphony(x, x => +this.handleTypes(value) - x))
@@ -452,7 +452,7 @@ s0.e.every('0?1*4|*2')
      * Multiply the previous value in the pattern chain by a value.
      * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
-     * @example s0.n.noise(60,72,1).mul(2)
+     * @example s0.n.noise(1,60,72).mul(2)
      */ 
     mul(value: patternable): Pattern {
         this.stack.push(x => handlePolyphony(x, x => x * +this.handleTypes(value)))
@@ -463,7 +463,7 @@ s0.e.every('0?1*4|*2')
      * Divide the previous value in the pattern chain by a value.
      * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
-     * @example s0.n.noise(60,72,1).div(2)
+     * @example s0.n.noise(1,60,72).div(2)
      */
     div(value: patternable): Pattern {
         this.stack.push(x => handlePolyphony(x, x => x / +this.handleTypes(value)))
@@ -474,7 +474,7 @@ s0.e.every('0?1*4|*2')
      * Reverse divide the previous value in the pattern chain by a value.
      * @param  value - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
-     * @example s0.modi.noise(1,2).divr(2)
+     * @example s0.modi.noise().mul(2)
      */ 
     divr(value: patternable): Pattern {
         this.stack.push(x => handlePolyphony(x, x => +this.handleTypes(value) / x))
@@ -664,15 +664,15 @@ s0.e.every('0?1*4|*2')
 
     /**
      * Generate a number between lo and hi, using a simplex noise function.
+     * @param freq Speed of the noise function.
      * @param lo lowest value in range
      * @param hi highest value in range
-     * @param freq number of iterations of the pattern, either per cycle or per canvas. Default is 1, which means once per cycle.
-     * @param cycles number of cycles of the pattern. Default is 4.
      * @returns {Pattern}
-     * @example s0.pan.noise(0, 1)
+     * @example s0.pan.noise()
     */
-    noise(lo: patternable=0, hi: patternable=1, freq: patternable = 1, cycles: patternable = 4): Pattern {
-        this.normalise(freq, cycles)
+    noise(freq: patternable = 1, lo: patternable=0, hi: patternable=1): Pattern {
+        this.mul(freq) // divide the time by the frequency
+            .div(16) // slow down the noise function so it's a bit smoother
             .fn(x => get(noise).simplex2(x, 0))
             .mtr(lo, hi, -1, 1)
         return this
@@ -760,7 +760,7 @@ s0.e.every('0?1*4|*2')
      * Round the previous value in the pattern chain to the nearest value in an array.
      * @param array array of values to round to
      * @returns {Pattern}
-     * @example s0.n.noise(0,12).tune([0,2,4,5,7,9,11,12]).add(36)
+     * @example s0.n.noise(1,0,12).tune([0,2,4,5,7,9,11,12]).add(36)
      */ 
     tune(array: patternable): Pattern {
         // this.step(1).mod(12)
@@ -797,7 +797,7 @@ s0.e.every('0?1*4|*2')
      * Test if the previous value in the pattern chain is greater than a value.
      * @param value value to test against
      * @returns {Pattern}
-     * @example s0.n.noise(0,1).gt(0.3).ifelse(60, 72)
+     * @example s0.n.noise(1).gt(0.3).ifelse(60, 72)
      */ 
     gt(value: patternable): Pattern {
         this.stack.push(x => {
@@ -824,7 +824,7 @@ s0.e.every('0?1*4|*2')
      * Test if the previous value in the pattern chain is greater than or equal to a value.
      * @param value value to test against
      * @returns {Pattern}
-     * @example s0.n.noise(0,1).gte(0.3).ifelse(60, 72)
+     * @example s0.n.noise().gte(0.3).ifelse(60, 72)
      */ 
     gte(value: patternable): Pattern {
         this.stack.push(x => {
