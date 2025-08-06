@@ -69,7 +69,7 @@
     .zen {
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 8fr 1fr;
+        grid-template-rows: 5fr 3fr 1fr;
         grid-gap: 0.5px;
         user-select: none;
         min-height: calc(100vh - 71px);
@@ -108,24 +108,23 @@
     
     .console {
         grid-column: 1 / 2;
-        grid-row: 3 / 5;
+        grid-row: 2 / 3;
         position: relative;
         background-color: var(--color-grey-dark);
-        display: none;
-
-        &--large {
-            grid-column: 2 / 3;
-            grid-row: 1 / 4;
-        }
 
         @media (min-width: 800px) {
+            grid-row: 3 / 5;
+            &--large {
+                grid-column: 2 / 3;
+                grid-row: 1 / 4;
+            }
             display: block;
         }
     }    
 
     .tools {
         grid-column: 1;
-        grid-row: 2 / 3;
+        grid-row: 3 / 4;
         background: var(--color-black);
         padding: 1.5rem;
         
