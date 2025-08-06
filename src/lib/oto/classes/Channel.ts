@@ -58,10 +58,10 @@ class Channel {
     }
 
     set(params: Dictionary, time: number) {
-        const { dist = 0, ring = 0, chorus = 0, hicut = 0, locut = 0, level = 1 } = params;
+        const { dist = 0, ring = 0, chorus = 0, lpf = 0, hpf = 0, level = 1 } = params;
         
         if(!this._fx) {
-            [dist, ring, chorus, hicut, locut].reduce((a, b) => a + b, 0) > 0 
+            [dist, ring, chorus, lpf, hpf].reduce((a, b) => a + b, 0) > 0 
                 && this.initFX()
         }
 
