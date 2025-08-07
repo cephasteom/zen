@@ -44,7 +44,7 @@
 
 <svelte:window 
     on:resize={closeMenu} 
-    on:mousemove={debounce((e) => e.clientY < 72 ? showHeader(true) : showHeader(false), 100)}
+    on:mousemove={debounce((e) => e.clientY < 30 ? showHeader(true) : showHeader(false), 100)}
 />
 
 <header
