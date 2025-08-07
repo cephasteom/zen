@@ -1,6 +1,3 @@
-// TODO: Grouping - be able to group anything, from beats to bars to events. Be able to repeat and stretch
-// TODO: arrays
-// TODO: test tasks using jest
 import peg from 'pegjs';
 import { get } from 'svelte/store';
 import { 
@@ -18,7 +15,8 @@ let time = 0
 function rng() { return get(randomSequence)[time++] || Math.random() }
 
 // Add functions to window for so that it can be accessed by parser syntax
-[euclidean, loopArray, ntom, repeatScale, stretchBar, rng].forEach((fn: any) => window[fn.name] = fn)
+typeof window !== 'undefined'
+&& [euclidean, loopArray, ntom, repeatScale, stretchBar, rng].forEach((fn: any) => window[fn.name] = fn)
 
 const scaleTypes: string = Object.entries(modes).reduce((grammar: string, [key, scale], i, arr) => {
     return grammar + `"${key}" { return [${scale.join()}]; } ` + (i === arr.length - 1 ? '' : '/ ')
