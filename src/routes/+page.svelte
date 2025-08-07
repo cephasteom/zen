@@ -72,8 +72,8 @@
         grid-template-rows: 5fr 3fr 1fr;
         grid-gap: 0.5px;
         user-select: none;
-        min-height: calc(100vh - 71px);
-        max-height: calc(100vh - 71px);
+        min-height: calc(100vh + 3px);
+        max-height: calc(100vh + 3px);
         overflow: scroll;
         
         @media (min-width: 800px) {
@@ -108,7 +108,7 @@
     
     .console {
         grid-column: 1 / 2;
-        grid-row: 2 / 3;
+        grid-row: 2 / 4;
         position: relative;
         background-color: var(--color-grey-dark);
 
@@ -123,15 +123,13 @@
     }    
 
     .tools {
-        grid-column: 1;
-        grid-row: 3 / 4;
-        background: var(--color-black);
-        padding: 1.5rem;
+        display: none;
         
         @media (min-width: 800px) {
             background: var(--color-grey-darker);
             grid-column: 2;
             grid-row: 4;
+            display: block;
         }
     }
 
