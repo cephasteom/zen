@@ -7,9 +7,13 @@
     import { faBars, faXmark, faDownload } from '@fortawesome/free-solid-svg-icons';
     import { isApp } from '$lib/electronAPI/index';
     import { version } from '$app/environment';
+    import { onMount } from 'svelte';
+    import { debounce } from '$lib/zen/utils/utils';
 
     let showMobileMenu = false;
     let menu: HTMLUListElement;
+    let thisHeader: HTMLElement;
+    let headerisVisible = true;
 
     const toggleMenu = () => {
         showMobileMenu = !showMobileMenu;
@@ -21,11 +25,31 @@
         showMobileMenu = false;
         menu && (menu.style.display = 'none');
     }
+
+    const showHeader = (show: boolean = true) => {
+        if (headerisVisible === show) return;
+        headerisVisible = show;
+        thisHeader && (thisHeader.style.height = show ? '72px' : '0px');
+    };
+
+    onMount(() => {
+        setTimeout(() => showHeader(false), 1000);
+
+        // if mouse is over header or at the top of the page, show it
+        thisHeader && thisHeader.addEventListener('mouseover', () => showHeader(true));
+        thisHeader && thisHeader.addEventListener('mouseout', () => showHeader(false));
+        
+    })
 </script>
 
-<svelte:window on:resize={closeMenu} />
+<svelte:window 
+    on:resize={closeMenu} 
+    on:mousemove={debounce((e) => e.clientY < 72 ? showHeader(true) : showHeader(false), 100)}
+/>
 
-<header>
+<header
+    bind:this={thisHeader}
+>
     <nav class="container">
         {#if isApp()}
             <span class="icon">
@@ -93,7 +117,11 @@
 		display: flex;
 		justify-content: center;
         background-color: var(--color-black);
-        border-bottom: 0.5px solid var(--color-grey-light);
+        border-bottom: 0.25px solid var(--color-grey-light);
+        height: 72px;
+        overflow: hidden;
+
+        transition: height 0.5s ease-in-out;
 
         @media all and (display-mode: fullscreen) {
             background-color: var(--color-grey-darker);
@@ -101,6 +129,8 @@
             & > nav { display: none }
         }
 	}
+
+
     nav {
         display: flex;
         justify-content: space-between;
@@ -133,13 +163,11 @@
         }
         p {
             position: relative;
-            top: -1.5px;
             margin: 0;
-            font-size: var(--text-sm);
+            font-size: var(--text-xs);
             color: white;
 
             & span {
-                font-size: 10px;
                 position: relative;
                 color: var(--color-theme-2);
             }

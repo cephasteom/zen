@@ -35,7 +35,7 @@
     }
 
     .footer {
-        border-top: 0.5px solid var(--color-grey-light);
+        border-top: 0.25px solid var(--color-grey-light);
         width: calc(100% - 3rem);
         padding: 1.5rem;
         margin: 0;
