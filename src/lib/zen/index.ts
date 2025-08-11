@@ -129,7 +129,7 @@ code.subscribe(code => {
     
     try {
         // prevent unused variable errors
-        [bts, btms, ms, clamp, seed];
+        [bts, btms, ms, clamp, seed, d];
         
         eval(code)
         lastCode.set(code)
