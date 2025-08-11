@@ -87,6 +87,7 @@ function initVisuals() {
 initVisuals();
 
 const zenChannel = new BroadcastChannel('zen');
+const zmodChannel = new BroadcastChannel('zmod')
 
 // Listen for error messages from Zen
 zenChannel.onmessage = ({data: {message, type, data}}) => {
@@ -108,3 +109,8 @@ zenChannel.onmessage = ({data: {message, type, data}}) => {
         gridData.set(grid);
     }, delta * 1000);
 }
+
+// Listen for errors from ZMod
+zmodChannel.onmessage = ({data: {message, type}}) => 
+    ['error', 'info', 'pattern', 'success', 'credit'].includes(type) 
+    && print(type, message.toString())

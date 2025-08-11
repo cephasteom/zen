@@ -86,7 +86,7 @@
             min-height: 100vh;
             @media (min-width: 800px) {
                 grid-template-columns: 1fr 1fr;
-                grid-template-rows: 6fr 2fr 2fr 1fr;
+                grid-template-rows: 6fr 2fr 2fr;
             }
         }
     }
@@ -104,6 +104,13 @@
             }
         }
 
+        @media all and (display-mode: fullscreen) {
+            grid-row: 1 / 2;
+            &--large {
+                grid-row: 1 / 5;
+            }
+        }
+
     }
     
     .console {
@@ -113,12 +120,20 @@
         background-color: var(--color-grey-dark);
 
         @media (min-width: 800px) {
+            display: block;
             grid-row: 3 / 5;
             &--large {
                 grid-column: 2 / 3;
                 grid-row: 1 / 4;
             }
-            display: block;
+        }
+
+        @media all and (display-mode: fullscreen) {
+            grid-row: 2 / 4;
+            &--large {
+                grid-column: 2 / 3;
+                grid-row: 1 / 5;
+            }
         }
     }    
 
@@ -130,6 +145,10 @@
             grid-column: 2;
             grid-row: 4;
             display: block;
+        }
+
+        @media all and (display-mode: fullscreen) {
+            display: none;
         }
     }
 

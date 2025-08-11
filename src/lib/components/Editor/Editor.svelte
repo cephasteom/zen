@@ -65,7 +65,7 @@
             }
             if(e.keyCode === 3 && e.shiftKey) {
                 e.preventDefault();
-                setAndPlay();
+                setAndPlay()
             }
         })
 

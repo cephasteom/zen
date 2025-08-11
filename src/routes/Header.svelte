@@ -122,12 +122,6 @@
         overflow: hidden;
 
         transition: height 0.5s ease-in-out;
-
-        @media all and (display-mode: fullscreen) {
-            background-color: var(--color-grey-darker);
-            border-bottom: none;
-            & > nav { display: none }
-        }
 	}
 
 
