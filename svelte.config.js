@@ -13,7 +13,9 @@ const pkg = JSON.parse(json);
 const config = {
 	preprocess: vitePreprocess(),
 	kit: { 
-		adapter: adapter(),
+		adapter: adapter({
+			// strict: false // again, should be active when you build an electron app
+		}),
 		version: {
 			name: pkg.version,
 		}
