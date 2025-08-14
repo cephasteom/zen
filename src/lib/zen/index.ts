@@ -56,7 +56,7 @@ qubits.forEach(wire => window[wire._id] = wire)
 // @ts-ignore
 const v = new Visuals(); window.v = v;
 // @ts-ignore
-const data = new Data(); window.data = data;
+const _d = new Data(); window._d = _d;
 
 /**
  * Add all pattern methods to the window object, so they can be used to spawn new patterns
