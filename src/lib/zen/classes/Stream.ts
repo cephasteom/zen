@@ -6,7 +6,7 @@ import { formatEventParams, formatMutationParams } from '../utils/syntax';
 export interface Stream extends Dictionary {
     id: string;
     get: (time: number, q: number, s: number, bpm: number) => void;
-    reset: () => void;
+    __reset: () => void;
 }
 
 function isTrigger(key: string): boolean {
@@ -41,7 +41,7 @@ export class Stream {
             id,
             set: (params: Dictionary) => {
                 Object.entries(params)
-                    .filter(([key]) => !['id', 'get', 'reset', 'clear'].includes(key))
+                    .filter(([key]) => !['id', 'get', '__reset', '__clear'].includes(key))
                     .forEach(([key, value]) => init[key] = (new Pattern(isTrigger(key))).set(value));
             },
             get: (time: number, q: number, s: number, bpm: number) => {
@@ -54,7 +54,7 @@ export class Stream {
 
                 const params = (e || m) 
                     ? Object.entries(init)
-                        .filter(([key]) => !['id', 'set', 'get', 't', 'reset', 'clear', 'e', 'm', 'mute', 'solo'].includes(key))
+                        .filter(([key]) => !['id', 'set', 'get', 't', '__reset', '__clear', 'e', 'm', 'mute', 'solo'].includes(key))
                         .reduce((acc, [key, pattern]) => ({
                             ...acc,
                             [key]: pattern.get(t, ['x', 'y', 'z'].includes(key) ? s : q, bpm)
@@ -82,14 +82,14 @@ export class Stream {
                     mparams: formatMutationParams(compiled, {}, lag) 
                 }
             },
-            clear: (persist: string[] = []) => {
+            __clear: (persist: string[] = []) => {
                 Object.keys(init)
-                    .filter(key => !['id','set','get','reset','clear', ...persist].includes(key))
+                    .filter(key => !['id','set','get','__reset','__clear', ...persist].includes(key))
                     .map(key => delete init[key]);
             },
-            reset: (persist: string[] = []) => {
+            __reset: (persist: string[] = []) => {
                 Object.entries(init)
-                    .filter(([key]) => !['id','set','get','reset','clear', ...persist].includes(key))
+                    .filter(([key]) => !['id','set','get','reset','__clear', ...persist].includes(key))
                     .map(([_, pattern]) => pattern.reset());
             }
         };

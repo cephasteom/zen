@@ -110,10 +110,10 @@ code.subscribe(code => {
     // mode 
     const { trigger = 'division', device: midiDevice = 0 } = scope.z.mode.get(0, q) || {};
 
-    scope.streams.forEach((stream: Stream) => stream.clear())
-    scope.fxstreams.forEach((stream: Stream) => stream.clear())
+    scope.streams.forEach((stream: Stream) => stream.__clear())
+    scope.fxstreams.forEach((stream: Stream) => stream.__clear())
     scope.qubits.forEach((wire: Wire) => wire.clear())
-    scope.z.clear()
+    scope.z.__clear()
     circuit.clear()
     circuit.numQubits = 1
 
