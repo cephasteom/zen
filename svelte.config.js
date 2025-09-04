@@ -13,7 +13,7 @@ const config = {
 	preprocess: vitePreprocess(),
 	kit: { 
 		adapter: adapter({
-			// strict: false
+			strict: false
 		}),
 		version: {
 			name: pkg.version,

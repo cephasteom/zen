@@ -402,4 +402,26 @@ When used as a function, routes the signal from a bus. A 10ms delay is applied t
 bus(index: number): AudioSignal
 \`\`\`
 
+### Recording
+
+#### loop
+A looper - needs a separate chapter as it's such a useful feature! 
+\`\`\`ts
+AudioSignal.loop(gain: ControlSignal, length: ControlSignal, clear: ControlSignal): AudioSignal
+\`\`\`
+
+\`\`\`ts
+s0.patch.set(\`
+  fm(#_n)
+    .amp(#e)
+    .pan(lfo())
+    .loop(#record,#length,#clear)
+\`)
+s0.record.set('0') // 0 stops recording
+s0.length.set('4') // in beats
+s0.clear.set(0) // 1 clears the loop
+s0._n.set('Ddor%16..?*16')
+s0.e.every(7).or(every(5))
+s0.m.not(s0.e)
+\`\`\`
 `
