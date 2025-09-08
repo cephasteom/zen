@@ -1,14 +1,4 @@
-<!-- a checkbox svelte component with binding to a store that you can pass in, and custom styled checkbox -->
-<!-- write some commented docs at the top of the page showing how you would use it externally -->
 <script lang="ts">
-    /**
-     * Usage:
-     * <Checkbox
-     *     bind:checked={$yourStore.checked}
-     *     onChange={newValue => $yourStore.checked = newValue}
-     *     label="Your Label"
-     * />
-     */
     export let checked: boolean = false;
     export let disabled: boolean = false;
     export let id: string = '';
