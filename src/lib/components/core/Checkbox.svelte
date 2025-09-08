@@ -28,7 +28,7 @@
     <input 
         type="checkbox" 
         id={id} 
-        bind:checked 
+        bind:checked={checked}
         on:change={handleChange} 
         disabled={disabled}
     />

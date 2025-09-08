@@ -14,6 +14,10 @@ function initCollaborate() {
     if(collab) isCollaborating.set(true);
 }
 initCollaborate();
+isCollaborating.subscribe(collab => {
+    if(typeof localStorage === 'undefined') return
+    localStorage.setItem('z.collaborate', collab ? 'true' : '');
+})
 
 export const meetingId = writable('');
 export const setMeetingId = (id: string) => meetingId.set(id);

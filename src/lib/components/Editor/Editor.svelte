@@ -105,7 +105,7 @@
         });
 
         isCollaborating.subscribe(collab => collab
-            ? collaborate('zen-editing')
+            ? collaborate($meetingId || 'zen-default-room')
             : provider?.destroy()
         );
 

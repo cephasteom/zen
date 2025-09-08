@@ -23,7 +23,7 @@
         <div>
             <Checkbox 
                 id="toggleCollaboration"
-                label="On / Off"
+                label="Collaborate"
                 bind:checked={$isCollaborating}
             />
         </div>
