@@ -2,6 +2,10 @@
     import loader from '@monaco-editor/loader';
     import { onDestroy, onMount } from 'svelte';
     import type * as Monaco from 'monaco-editor/esm/vs/editor/editor.api';
+    import * as Y from 'yjs'
+    import { WebrtcProvider } from 'y-webrtc'
+    import { MonacoBinding } from 'y-monaco'
+    
     import { setCode, play, stop } from '$lib/zen';
     import { editorConsole, isPlaying, editorValue } from '$lib/stores/zen';
     import { activePreset, presets } from '$lib/stores/presets';
@@ -13,6 +17,10 @@
     let monaco: typeof Monaco;
     let editorContainer: HTMLElement;
     let flash = false
+
+    const ydoc = new Y.Doc()
+    const provider = new WebrtcProvider('monaco', ydoc)
+    const ydocType = ydoc.getText('monaco')
 
     function setAndPlay() {
         editorConsole.set({});
@@ -33,9 +41,7 @@
         }
 
         // Restore the cursor position
-        if (position) {
-            editor.setPosition(position);
-        }
+        position && editor.setPosition(position);
 
         play();
         isPlaying.set(true);
@@ -54,6 +60,13 @@
         );
         editor.setModel(model);
         editorValue.set(editor.getValue());
+
+        const monacoBinding = new MonacoBinding(
+            ydocType,
+            model,
+            new Set([editor]),
+            provider.awareness
+        )
         
         editor.onKeyDown(e => {
             editorValue.set(editor.getValue());
