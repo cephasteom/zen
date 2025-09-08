@@ -10,6 +10,7 @@
 
     function handleKeydown(e: KeyboardEvent) {
         const key = $presetKeys[index]
+        e.stopPropagation()
         
         // handle number keys
         if(!isNaN(Number(e.key))) {
@@ -23,9 +24,11 @@
         
         switch (e.key) {
             case 'ArrowDown':
+                e.stopPropagation()
                 index = Math.min(index + 1, $presetKeys.length - 1)
                 break;
             case 'ArrowUp':
+                e.stopPropagation()
                 index = Math.max(index - 1, 0)
                 break;
             case 'Enter':

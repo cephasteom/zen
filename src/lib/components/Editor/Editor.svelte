@@ -105,7 +105,7 @@
         });
 
         isCollaborating.subscribe(collab => collab
-            ? collaborate($meetingId)
+            ? collaborate('zen-editing')
             : provider?.destroy()
         );
 

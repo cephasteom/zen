@@ -16,6 +16,7 @@
                 placeholder="Meeting ID" 
                 name="meetingId"
                 bind:value={$meetingId} 
+                disabled={$isCollaborating}
             />
         </div>
         <div>
