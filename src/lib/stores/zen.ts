@@ -47,7 +47,6 @@ initialMessages.forEach((message, index) => {
 });
 
 export const print = (type: string, message: string) => {
-    // type === 'pattern' && messages.update(arr => arr.filter(m => m.type !== 'pattern'))
     messages.update(arr => [...arr, {type, message}]);
 }
 

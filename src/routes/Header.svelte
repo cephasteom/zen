@@ -7,7 +7,6 @@
     import { faBars, faXmark, faDownload } from '@fortawesome/free-solid-svg-icons';
     import { isApp } from '$lib/electronAPI/index';
     import { version } from '$app/environment';
-    import { onMount } from 'svelte';
     import { debounce } from '$lib/zen/utils/utils';
 
     let showMobileMenu = false;
@@ -31,20 +30,12 @@
         headerisVisible = show;
         thisHeader && (thisHeader.style.height = show ? '72px' : '0px');
     };
-
-    onMount(() => {
-        setTimeout(() => showHeader(false), 1000);
-
-        // if mouse is over header or at the top of the page, show it
-        thisHeader && thisHeader.addEventListener('mouseover', () => showHeader(true));
-        thisHeader && thisHeader.addEventListener('mouseout', () => showHeader(false));
-        
-    })
 </script>
 
 <svelte:window 
     on:resize={closeMenu} 
-    on:mousemove={debounce((e) => e.clientY < 30 ? showHeader(true) : showHeader(false), 100)}
+    on:mousemove={debounce((e) => e.clientY < 10 && showHeader(true), 100)}
+    on:keydown={() => showHeader(false)}
 />
 
 <header
