@@ -75,7 +75,6 @@
         min-height: calc(100vh + 3px);
         max-height: calc(100vh + 3px);
         overflow: scroll;
-        position: relative;
 
         @media (min-width: 800px) {
             grid-template-columns: 1fr 1fr;
