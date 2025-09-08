@@ -10,7 +10,6 @@
 
     function handleKeydown(e: KeyboardEvent) {
         const key = $presetKeys[index]
-        console.log(key)
         
         // handle number keys
         if(!isNaN(Number(e.key))) {

@@ -9,6 +9,7 @@
     import { setCode, play, stop } from '$lib/zen';
     import { editorConsole, isPlaying, editorValue } from '$lib/stores/zen';
     import { activePreset, presets } from '$lib/stores/presets';
+    import { isCollaborating, meetingId } from '$lib/stores/collaborative-editing';
     import { options } from './options';
     import { example } from './example';
     import { parseCode } from '$lib/zen/parsing';
@@ -19,8 +20,8 @@
     let flash = false
 
     const ydoc = new Y.Doc()
-    const provider = new WebrtcProvider('monaco', ydoc)
     const ydocType = ydoc.getText('monaco')
+    let provider: WebrtcProvider;
 
     function setAndPlay() {
         editorConsole.set({});
@@ -49,6 +50,17 @@
         setTimeout(() => flash = false, 400);        
     }
 
+    function collaborate(meetingId: string) {
+        provider?.destroy();
+        provider = new WebrtcProvider(meetingId, ydoc);
+        new MonacoBinding(
+            ydocType,
+            editor.getModel()!,
+            new Set([editor]),
+            provider.awareness
+        )
+    }
+
     onMount(async () => {
         monaco = await loader.init();
         editor = monaco.editor.create(editorContainer, options);
@@ -60,13 +72,6 @@
         );
         editor.setModel(model);
         editorValue.set(editor.getValue());
-
-        const monacoBinding = new MonacoBinding(
-            ydocType,
-            model,
-            new Set([editor]),
-            provider.awareness
-        )
         
         editor.onKeyDown(e => {
             editorValue.set(editor.getValue());
@@ -98,7 +103,12 @@
             editor.setValue(code);
             editorValue.set(editor.getValue());
         });
-        
+
+        isCollaborating.subscribe(collab => collab
+            ? collaborate($meetingId)
+            : provider?.destroy()
+        );
+
     });
 
     onDestroy(() => {

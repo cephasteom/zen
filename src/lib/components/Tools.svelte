@@ -1,11 +1,13 @@
 <script lang="ts">
     import Icon from 'svelte-awesome';
-    import { faPlay, faStop, faFloppyDisk, faCode, faGlobe, faChessBoard, faBars, faToggleOff } from '@fortawesome/free-solid-svg-icons';
+    import { faPlay, faStop, faFloppyDisk, faCode, faGlobe, faChessBoard, faBars, faToggleOff, faPeopleGroup } from '@fortawesome/free-solid-svg-icons';
     import { isPlaying, showCircuit, toggleCircuit, toggleVisuals, visualsType } from '$lib/stores/zen';
     import { isApp } from '$lib/electronAPI/index';
     import Dialog from './Dialog.svelte'
     import Save from './Save.svelte'
     import Load from './Load.svelte'
+    import Collaborate from './Collaborate.svelte'
+    import { isCollaborating, toggleCollaborate } from '$lib/stores/collaborative-editing';
 
     const visualsIcons = {
         'grid': faChessBoard,
@@ -15,6 +17,7 @@
     
     let save: HTMLDialogElement;
     let load: HTMLDialogElement;
+    let collaborate: HTMLDialogElement
 </script>
 
 <div class="tools">
@@ -32,6 +35,10 @@
     <button class="tools__circuit" on:click={toggleCircuit} class:active={$showCircuit}>
         <Icon scale={1.25} data={faBars} />
     </button>
+
+    <button class="tools__collaborate" on:click={() => collaborate.showModal()} class:active={$isCollaborating}>
+        <Icon scale={1.25} data={faPeopleGroup} />
+    </button>
 </div>
 
 <Dialog bind:dialog={save} on:close={() => save.close()}>
@@ -40,6 +47,10 @@
 
 <Dialog bind:dialog={load} on:close={() => load.close()}>
     <Load on:load={() => load.close()}/>
+</Dialog>
+
+<Dialog bind:dialog={collaborate} on:close={() => collaborate.close()}>
+    <Collaborate on:load={() => collaborate.close()}/>
 </Dialog>
 
 <svelte:window 

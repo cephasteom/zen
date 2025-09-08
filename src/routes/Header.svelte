@@ -35,7 +35,7 @@
 <svelte:window 
     on:resize={closeMenu} 
     on:mousemove={debounce((e) => e.clientY < 10 && showHeader(true), 100)}
-    on:keydown={() => showHeader(false)}
+    on:click={() => showHeader(false)}
 />
 
 <header
