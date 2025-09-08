@@ -1,5 +1,6 @@
 <script lang="ts">
     import { meetingId, isCollaborating } from "$lib/stores/collaborative-editing";    
+  import Checkbox from "$lib/components/core/Checkbox.svelte";
 </script>
 
 <div class="collaborate">
@@ -10,7 +11,7 @@
         <div>
             <label
                 for="meetingId"
-            >Meeting ID</label>
+            >ID</label>
             <input 
                 type="text" 
                 placeholder="Meeting ID" 
@@ -20,15 +21,12 @@
             />
         </div>
         <div>
-            <label for="toggleCollaboration">Collaborate</label>
-            <input 
-                type="checkbox" 
-                name="toggleCollaboration" 
-            id="toggleCollaboration"
-            bind:checked={$isCollaborating}
-        />
+            <Checkbox 
+                id="toggleCollaboration"
+                label="On / Off"
+                bind:checked={$isCollaborating}
+            />
         </div>
-
     </form>
 </div>
 

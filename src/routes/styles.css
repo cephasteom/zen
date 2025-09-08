@@ -253,7 +253,6 @@ button:focus:not(:focus-visible) {
 }
 
 dialog::backdrop {
-    /* what is --color-grey-darker as a rgb values? */
     background: rgba(94, 79, 73, 0.75);
 }
 
