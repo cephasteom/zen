@@ -36,9 +36,9 @@
         <Icon scale={1.25} data={faBars} />
     </button>
 
-    <button class="tools__collaborate" on:click={() => collaborate.showModal()} class:active={$isCollaborating}>
+    <!-- <button class="tools__collaborate" on:click={() => collaborate.showModal()} class:active={$isCollaborating}>
         <Icon scale={1.25} data={faPeopleGroup} />
-    </button>
+    </button> -->
 </div>
 
 <Dialog bind:dialog={save} on:close={() => save.close()}>
