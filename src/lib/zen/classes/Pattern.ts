@@ -913,12 +913,17 @@ s0.e.every('0?1*4|*2')
     }
 
     /**
-     * Convert the previous value from beats to milliseconds, scaling by bpm
+     * Convert the previous value from beats to milliseconds, scaling by bpm.
+     * Or, if a value is passed, convert that value from beats to milliseconds, scaling by bpm.
      * @returns {Pattern}
-     * @example s0.dur(1).btms()
+     * @example s0.dur(1).btms() // this is equivalent
+     * @example s0.dur(btms(1)) // ...to this
      */ 
-    btms(): Pattern {
-        this.fn(x => handlePolyphony(x, x => x * (60000/this._bpm)))
+    btms(value?: patternable): Pattern {
+        const fn = (x: patternValue) => handlePolyphony(x, x => x * (60000/this._bpm))
+        value !== undefined
+            ? this.stack.push(() => fn(this.handleTypes(value)))
+            : this.fn(fn)
         return this
     }
 
