@@ -121,12 +121,13 @@ export class Pattern implements Dictionary {
     }
 
     /** @hidden */
-    reset() {
+    reset(value?: patternable): Pattern {
         this.stack = []
         this._value = 0
         this._state = {
             persist: this._state?.persist || false,
         }
+        if(value !== undefined) this.set(value)
         return this
     }
 
