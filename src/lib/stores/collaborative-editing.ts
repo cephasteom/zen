@@ -11,7 +11,9 @@ export const toggleCollaborate = () => isCollaborating.update(c => {
 function initCollaborate() {
     if(typeof localStorage === 'undefined') return
     const collab = localStorage.getItem('z.collaborate');
-    if(collab) isCollaborating.set(true);
+    if(collab) {
+        isCollaborating.set(true);
+    }
 }
 initCollaborate();
 isCollaborating.subscribe(collab => {
