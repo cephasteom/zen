@@ -15,7 +15,7 @@ function initCollaborate() {
         isCollaborating.set(true);
     }
 }
-initCollaborate();
+// initCollaborate();
 isCollaborating.subscribe(collab => {
     if(typeof localStorage === 'undefined') return
     localStorage.setItem('z.collaborate', collab ? 'true' : '');
@@ -33,3 +33,20 @@ meetingId.subscribe(id => {
     if(typeof localStorage === 'undefined') return
     localStorage.setItem('z.meetingId', id);
 })
+
+export const rtcOptions = {
+    signaling: [
+        'wss://signaling.yjs.dev',
+        'wss://y-webrtc-signaling-eu.herokuapp.com',
+        'wss://y-webrtc-signaling-us.herokuapp.com'
+    ],
+    peerOpts: {
+        config: {
+            iceServers: [
+                { urls: 'stun:stun.l.google.com:19302' },
+                // TURN server if you have one:
+                // { urls: 'turn:your.turn.server:3478', username: 'user', credential: 'pass' }
+            ]
+        }
+    }
+}

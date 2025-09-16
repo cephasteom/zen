@@ -9,7 +9,7 @@
     import { setCode, play, stop } from '$lib/zen';
     import { editorConsole, isPlaying, editorValue } from '$lib/stores/zen';
     import { activePreset, presets } from '$lib/stores/presets';
-    import { isCollaborating, meetingId } from '$lib/stores/collaborative-editing';
+    import { isCollaborating, meetingId, rtcOptions } from '$lib/stores/collaborative-editing';
     import { options } from './options';
     import { example } from './example';
     import { parseCode } from '$lib/zen/parsing';
@@ -52,7 +52,7 @@
 
     function collaborate(meetingId: string) {
         provider?.destroy();
-        provider = new WebrtcProvider(meetingId, ydoc);
+        provider = new WebrtcProvider(meetingId, ydoc, rtcOptions);
         new MonacoBinding(
             ydocType,
             editor.getModel()!,
