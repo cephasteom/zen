@@ -903,12 +903,14 @@ s0.e.every('0?1*4|*2')
     }
     
     /**
-     * Convert the previous value from beats to seconds, scaling by bpm
+     * Convert the previous value from beats to seconds, scaling by bpm.
+     * Or, if a value is passed, convert that value from beats to seconds, scaling by bpm.
      * @returns {Pattern}
      * @example s0.dur(1).bts().mul(1000)
+     * @example s0.dur(bts(1)).mul(1000) // this is equivalent
      */ 
-    bts(): Pattern {
-        this.fn(x => handlePolyphony(x, x => x * (60/this._bpm)))
+    bts(value?: patternable): Pattern {
+        this.btms(value).div(1000)
         return this
     }
 
