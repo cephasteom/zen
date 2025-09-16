@@ -39,6 +39,7 @@
             case 'Backspace':
                 e.preventDefault()
                 deletePreset(key)
+                index = index > $presetKeys.length - 1 ? $presetKeys.length - 1 : index
                 break;
         }
     }
