@@ -978,20 +978,23 @@ s0.e.every('0?1*4|*2')
      * s0.e.every(1)
      */ 
     at(i: patternable[]): Pattern {
+        // @ts-ignore
         this.stack.push((data: any) => {
             // @ts-ignore
             const indexes = [this.handleTypes(i)]
                 .flat()
                 // if negative numbers, get index from the end of the array
                 .map(i => i < 0 ? data.length + i : i)
-            if(indexes.length === 1) return data[indexes[0] % data.length]
+            if(indexes.length === 1) return this.handleTypes(data[indexes[0] % data.length])
             
             const type = typeof data
-            return type === 'object'
+            const result = type === 'object'
                 // @ts-ignore
                 ? indexes.map(i => data[i]).flat()
                 // @ts-ignore
                 : indexes.map(i => data[Math.floor(+i) % data.length]).flat()
+
+            return result.map((n: any) => this.handleTypes(n))
             
         })
         return this
