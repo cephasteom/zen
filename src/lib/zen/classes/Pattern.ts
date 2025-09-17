@@ -984,7 +984,7 @@ s0.e.every('0?1*4|*2')
                 .flat()
                 // if negative numbers, get index from the end of the array
                 .map(i => i < 0 ? data.length + i : i)
-            if(indexes.length === 1) return data[indexes[0]]
+            if(indexes.length === 1) return data[indexes[0] % data.length]
             
             const type = typeof data
             return type === 'object'
