@@ -125,9 +125,9 @@ Available functions:
 
 * \`abs\`
 * \`add\`
-* \`multiply\`
-* \`subtract\`
-* \`greaterthan\`
+* \`mul\`
+* \`sub\`
+* \`gt\` // greater than
 * \`greaterthanzero\`
 * \`negate\`
 * \`gaintoaudio\`
