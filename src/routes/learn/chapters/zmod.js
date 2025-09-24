@@ -407,7 +407,7 @@ bus(index: number): AudioSignal
 #### loop
 A looper - needs a separate chapter as it's such a useful feature! 
 \`\`\`ts
-AudioSignal.loop(gain: ControlSignal, length: ControlSignal, clear: ControlSignal): AudioSignal
+AudioSignal.loop(gain: ControlSignal, length: ControlSignal, rate: ControlSignal, clear: ControlSignal): AudioSignal
 \`\`\`
 
 \`\`\`ts
@@ -415,10 +415,11 @@ s0.patch.set(\`
   fm(#_n)
     .amp(#e)
     .pan(lfo())
-    .loop(#record,#length,#clear)
+    .loop(#record,#length,#rate,#clear)
 \`)
 s0.record.set('0') // 0 stops recording
 s0.length.set('4') // in beats
+s0.rate.set('1') // buffer speed - 1 is normal speed, 0.5 is half speed, 2 is double speed, negative numbers are reverse. Best to manipulate when recording is off
 s0.clear.set(0) // 1 clears the loop
 s0._n.set('Ddor%16..?*16')
 s0.e.every(7).or(every(5))
