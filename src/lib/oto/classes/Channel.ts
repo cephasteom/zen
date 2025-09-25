@@ -102,7 +102,7 @@ class Channel {
         // disconnect chain
         fx.forEach(fx => fx && fx.disconnect())
         input.disconnect()
-        input.fan(...this._fxBusses)
+        this.input.fan(...this._busses, ...this._fxBusses)
 
         const first = fx.find(Boolean)
         const last = [...fx].reverse().find(Boolean)
