@@ -10,6 +10,8 @@
     import { initElectronAPI, isApp } from '$lib/electronAPI';
     import { onMount } from 'svelte';
 
+    import Notice from '$lib/components/Notice.svelte';
+
     onMount(() => {
         isApp() && initElectronAPI();
         window.addEventListener('click', startAudio);
@@ -63,6 +65,8 @@
     <div class="data">
         <Data />
     </div>
+
+    <Notice />
 </section>
 
 <style lang="scss">
