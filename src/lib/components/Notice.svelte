@@ -23,7 +23,7 @@
         <h2>Zen 5 is here!</h2>
         <p>Zen 5 is a major update with a new user interface, features, improved performance, and simplified syntax.</p>
         <p>You can read about what's changed in the <a href="/changelog">release notes</a>.</p>
-        <p>As Zen 4 scripts may not work as expected, you can use <a href="https://zen4.cephasteom.co.uk">zen4.cephasteom.co.uk</a>, or see <a href="https://github.com/cephasteom/zen-electron">github.com/cephasteom/zen-electron</a> for downloads.</p>
+        <p>Since Zen 4 scripts will not work as expected, you can continue to use <a href="https://zen4.cephasteom.co.uk">zen4.cephasteom.co.uk</a>, or see <a href="https://github.com/cephasteom/zen-electron">github.com/cephasteom/zen-electron</a> for historical desktop app releases.</p>
     </div>
 </Dialog>
 
