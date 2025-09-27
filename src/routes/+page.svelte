@@ -82,7 +82,7 @@
 
         @media (min-width: 800px) {
             grid-template-columns: 1fr 1fr;
-            grid-template-rows: 6fr 2fr 2fr 1fr;
+            grid-template-rows: 6fr 4fr;
         }
 
         @media all and (display-mode: fullscreen) {
@@ -90,7 +90,6 @@
             min-height: 100vh;
             @media (min-width: 800px) {
                 grid-template-columns: 1fr 1fr;
-                grid-template-rows: 6fr 2fr 2fr;
             }
         }
     }
@@ -101,17 +100,17 @@
         grid-row: 1;
         @media (min-width: 800px) {
             grid-column: 1;
-            grid-row: 1 / 3;
+            grid-row: 1 / 2;
 
             &--large {
-                grid-row: 1 / 5;
+                grid-row: 1 / 3;
             }
         }
 
         @media all and (display-mode: fullscreen) {
             grid-row: 1 / 2;
             &--large {
-                grid-row: 1 / 5;
+                grid-row: 1 / 3;
             }
         }
 
@@ -125,18 +124,18 @@
 
         @media (min-width: 800px) {
             display: block;
-            grid-row: 3 / 5;
+            grid-row: 2 / 3;
             &--large {
                 grid-column: 2 / 3;
-                grid-row: 1 / 4;
+                grid-row: 1 / 3;
             }
         }
 
         @media all and (display-mode: fullscreen) {
-            grid-row: 2 / 4;
+            grid-row: 2 / 3;
             &--large {
                 grid-column: 2 / 3;
-                grid-row: 1 / 5;
+                grid-row: 1 / 3;
             }
         }
     }    
@@ -158,7 +157,7 @@
 
     .circuit {
         grid-column: 2;
-        grid-row: 2 / 4;
+        grid-row: 2 / 3;
         position: relative;
         display: none;
         overflow: hidden;
@@ -166,7 +165,7 @@
         padding: 0 1rem;
         
         &--fullHeight {
-            grid-row: 1 / 4;
+            grid-row: 1 / 3;
         }
 
         @media (min-width: 800px) {
@@ -177,7 +176,7 @@
 
     .visuals {
         grid-column: 2 / 3;
-        grid-row: 1 / 4;
+        grid-row: 1 / 3;
         position: relative;
         background-image: linear-gradient(135deg, var(--color-grey-dark), #8a7972);
         display: none;
