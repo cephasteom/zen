@@ -66,7 +66,7 @@ gridData.subscribe(d => {
     }
 })
 
-export const visualsType = writable<'sphere' | 'grid' | 'none'>('grid')
+export const visualsType = writable<'sphere' | 'grid' | 'none'>('none')
 export const toggleVisuals = () => {
     const types = get(visualsTypes)
     const currentType = get(visualsType)
