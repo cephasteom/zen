@@ -22,7 +22,7 @@
 
 <div class="tools">
     <div class="container">
-    <button on:click={() => { isPlaying.set(!$isPlaying)}} ><Icon scale={1.25} data="{$isPlaying ? faStop : faPlay}" /></button>
+    <button on:click={e => { e.stopPropagation(); isPlaying.set(!$isPlaying)}}><Icon scale={1.25} data="{$isPlaying ? faStop : faPlay}" /></button>
     {#if !isApp()}
         <button on:click={e => { e.stopPropagation(); save.showModal()}} class:active={false}><Icon scale={1.25} data="{faFloppyDisk}" /></button>
         <button on:click={e => { e.stopPropagation(); load.showModal()}} class:active={false}><Icon scale={1.25} data="{faCode}" /></button>
