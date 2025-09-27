@@ -3,7 +3,6 @@
     import Visuals from '$lib/components/Visuals/Visuals.svelte';
     import Circuit from '$lib/components/Circuit.svelte';
     import Data from '$lib/components/Data.svelte';
-    import Tools from '$lib/components/Tools.svelte';
     import Console from '$lib/components/Console.svelte';
     import { startAudio } from '$lib/zen/index';
     import { showCircuit, showVisuals } from '$lib/stores/zen';
@@ -39,10 +38,6 @@
     >
         <Console />
     </div>
-    
-    <!-- <div class="tools">
-        <Tools />
-    </div> -->
 
     {#if $showCircuit}
         <div 
@@ -76,8 +71,8 @@
         grid-template-rows: 5fr 3fr 1fr;
         grid-gap: 0.5px;
         user-select: none;
-        min-height: calc(100vh + 3px);
-        max-height: calc(100vh + 3px);
+        min-height: calc(100vh - 2px);
+        max-height: calc(100vh - 2px);
         overflow: scroll;
 
         @media (min-width: 800px) {
