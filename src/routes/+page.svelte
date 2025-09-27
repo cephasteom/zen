@@ -40,9 +40,9 @@
         <Console />
     </div>
     
-    <div class="tools">
+    <!-- <div class="tools">
         <Tools />
-    </div>
+    </div> -->
 
     {#if $showCircuit}
         <div 

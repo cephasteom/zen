@@ -197,6 +197,7 @@ button:focus:not(:focus-visible) {
 .container {
     width: 100%;
     max-width: var(--max-width);
+    margin: 0 auto;
     @media all and (display-mode: fullscreen) {
         max-width: none;
     }
@@ -249,6 +250,7 @@ button:focus:not(:focus-visible) {
 
 *:focus {
     outline: none;
+    /* margin-top: -2px; */
     border-bottom: 2px solid var(--color-theme-3);
 }
 

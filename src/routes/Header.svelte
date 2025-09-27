@@ -1,9 +1,8 @@
 <script lang="ts">
-    // @ts-ignore
     import { page } from '$app/state';
-    // @ts-ignore
     import logo from '$lib/images/karma.png';
     import Icon from 'svelte-awesome';
+    import Tools from "$lib/components/Tools.svelte";
     import { faBars, faXmark, faDownload } from '@fortawesome/free-solid-svg-icons';
     import { isApp } from '$lib/electronAPI/index';
     import { version } from '$app/environment';
@@ -28,7 +27,7 @@
     const showHeader = (show: boolean = true) => {
         if (headerisVisible === show) return;
         headerisVisible = show;
-        thisHeader && (thisHeader.style.height = show ? '72px' : '0px');
+        thisHeader && (thisHeader.style.height = show ? '124px' : '0px');
     };
 </script>
 
@@ -47,68 +46,71 @@
 <header
     bind:this={thisHeader}
 >
-    <nav class="container">
-        {#if isApp()}
-            <span class="icon">
-                <img
-                    src={logo}
-                    class="mr-3 h-6 sm:h-6"
-                    alt="Zen Logo"
-                />
-                <p><span>{version}</span></p>
-            </span>
-        {:else}
-            <a 
-                href={(isApp() ? "https://zen.cephasteom.co.uk" : "") + "/"}
-                target={isApp() ? "_blank" : ""}
-                class="icon" on:click={closeMenu}
-            >
-                <img
-                    src={logo}
-                    class="mr-3 h-6 sm:h-6"
-                    alt="Zen Logo"
-                />
-                <p><span>{version}</span></p>
-            </a>
-        {/if}
-        <button on:click={toggleMenu} class="menu-toggle">
-            <Icon scale={1.5} data="{showMobileMenu ? faXmark : faBars}" />
-        </button>
-    
-        <ul class="menu" bind:this={menu}>
-            <li 
-                class="menu__item"><a on:click={closeMenu} 
-                class={page.url.pathname === '/about' ? 'active' : ''}
-                href={(isApp() ? "https://zen.cephasteom.co.uk" : "") + "/about"}
-                target={isApp() ? "_blank" : ""}
-                on:click={e => e.stopPropagation() /** prevent the header hiding when clicking a link */}
-            >About</a></li>
-            <li 
-                class="menu__item"><a on:click={closeMenu} 
-                class={page.url.pathname === '/learn' ? 'active' : ''} 
-                href={(isApp() ? "https://zen.cephasteom.co.uk" : "") + "/learn"}
-                target={isApp() ? "_blank" : ""}
-                on:click={e => e.stopPropagation() /** prevent the header hiding when clicking a link */}
-            >Learn</a></li>
-            <li 
-                class="menu__item"><a on:click={closeMenu} 
-                class={page.url.pathname === '/docs' ? 'active' : ''} 
-                href={(isApp() ? "https://zen.cephasteom.co.uk" : "") + "/docs"}
-                target={isApp() ? "_blank" : ""}
-                on:click={e => e.stopPropagation() /** prevent the header hiding when clicking a link */}
-            >Docs</a></li>
-            <li class="menu__item">
+    <nav>
+        <div class="container">
+            {#if isApp()}
+                <span class="icon">
+                    <img
+                        src={logo}
+                        class="mr-3 h-6 sm:h-6"
+                        alt="Zen Logo"
+                    />
+                    <p><span>{version}</span></p>
+                </span>
+            {:else}
                 <a 
-                    href="https://github.com/cephasteom/zen-electron/releases" 
-                    target="_blank"
-                    class="icon"
+                    href={(isApp() ? "https://zen.cephasteom.co.uk" : "") + "/"}
+                    target={isApp() ? "_blank" : ""}
+                    class="icon" on:click={closeMenu}
                 >
-                    <Icon data={faDownload} />
+                    <img
+                        src={logo}
+                        class="mr-3 h-6 sm:h-6"
+                        alt="Zen Logo"
+                    />
+                    <p><span>{version}</span></p>
                 </a>
-            </li>
-        </ul>
-    
+            {/if}
+            <button on:click={toggleMenu} class="menu-toggle">
+                <Icon scale={1.5} data="{showMobileMenu ? faXmark : faBars}" />
+            </button>
+        
+            <ul class="menu" bind:this={menu}>
+                <li 
+                    class="menu__item"><a on:click={closeMenu} 
+                    class={page.url.pathname === '/about' ? 'active' : ''}
+                    href={(isApp() ? "https://zen.cephasteom.co.uk" : "") + "/about"}
+                    target={isApp() ? "_blank" : ""}
+                    on:click={e => e.stopPropagation() /** prevent the header hiding when clicking a link */}
+                >About</a></li>
+                <li 
+                    class="menu__item"><a on:click={closeMenu} 
+                    class={page.url.pathname === '/learn' ? 'active' : ''} 
+                    href={(isApp() ? "https://zen.cephasteom.co.uk" : "") + "/learn"}
+                    target={isApp() ? "_blank" : ""}
+                    on:click={e => e.stopPropagation() /** prevent the header hiding when clicking a link */}
+                >Learn</a></li>
+                <li 
+                    class="menu__item"><a on:click={closeMenu} 
+                    class={page.url.pathname === '/docs' ? 'active' : ''} 
+                    href={(isApp() ? "https://zen.cephasteom.co.uk" : "") + "/docs"}
+                    target={isApp() ? "_blank" : ""}
+                    on:click={e => e.stopPropagation() /** prevent the header hiding when clicking a link */}
+                >Docs</a></li>
+                <li class="menu__item">
+                    <a 
+                        href="https://github.com/cephasteom/zen-electron/releases" 
+                        target="_blank"
+                        class="icon"
+                    >
+                        <Icon data={faDownload} />
+                    </a>
+                </li>
+            </ul>
+        
+        </div>
     </nav>
+    <Tools />
 </header>
 
 
@@ -116,20 +118,25 @@
 	header {
 		display: flex;
 		justify-content: center;
-        background-color: var(--color-black);
+        flex-direction: column;
+        background-color: var(--color-grey-darkest);
         border-bottom: 0.25px solid var(--color-grey-light);
-        height: 72px;
+        height: 124px;
         overflow: hidden;
 
         transition: height 0.5s ease-in-out;
 	}
 
-
     nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
         padding: 1.5rem;
+        border-bottom: 0.25px solid var(--color-grey-light);
+        
+        & .container {
+            
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
         @media (min-width: 1200px) {
             padding: 1.5rem;

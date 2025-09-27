@@ -21,24 +21,26 @@
 </script>
 
 <div class="tools">
+    <div class="container">
     <button on:click={() => { isPlaying.set(!$isPlaying)}} ><Icon scale={1.25} data="{$isPlaying ? faStop : faPlay}" /></button>
     {#if !isApp()}
-        <button on:click={() => save.showModal()} class:active={false}><Icon scale={1.25} data="{faFloppyDisk}" /></button>
-        <button on:click={() => load.showModal()} class:active={false}><Icon scale={1.25} data="{faCode}" /></button>
+        <button on:click={e => { e.stopPropagation(); save.showModal()}} class:active={false}><Icon scale={1.25} data="{faFloppyDisk}" /></button>
+        <button on:click={e => { e.stopPropagation(); load.showModal()}} class:active={false}><Icon scale={1.25} data="{faCode}" /></button>
     {/if}
     <button class="tools__visuals" 
         class:active={$visualsType !== 'none'} 
-        on:click={toggleVisuals}
+        on:click={e => { e.stopPropagation(); toggleVisuals()}}
     >
         <Icon scale={1.25} data={visualsIcons[$visualsType] || visualsIcons.grid} />
     </button>
-    <button class="tools__circuit" on:click={toggleCircuit} class:active={$showCircuit}>
+    <button class="tools__circuit" on:click={e => { e.stopPropagation(); toggleCircuit()}} class:active={$showCircuit}>
         <Icon scale={1.25} data={faBars} />
     </button>
 
     <!-- <button class="tools__collaborate" on:click={() => collaborate.showModal()} class:active={$isCollaborating}>
         <Icon scale={1.25} data={faPeopleGroup} />
     </button> -->
+    </div>
 </div>
 
 <Dialog bind:dialog={save} on:close={() => save.close()}>
@@ -64,10 +66,15 @@
 
 <style lang="scss">
     .tools {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        height: 100%;
+        padding: 1rem 1.5rem;
+        background-color: var(--color-grey-darker);
+
+        & .container {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            height: 100%;
+        }
 
         & button {
             background: none;
@@ -78,9 +85,14 @@
             font-family: var(--font-family);
             padding: 0;
             color:white;
+            display: flex;
             
             &.active {
                 color: var(--color-theme-1);
+            }
+
+            &:focus {
+                color: var(--color-theme-3);
             }
         }
 
