@@ -81,18 +81,21 @@
                 class={page.url.pathname === '/about' ? 'active' : ''}
                 href={(isApp() ? "https://zen.cephasteom.co.uk" : "") + "/about"}
                 target={isApp() ? "_blank" : ""}
+                on:click={e => e.stopPropagation() /** prevent the header hiding when clicking a link */}
             >About</a></li>
             <li 
                 class="menu__item"><a on:click={closeMenu} 
                 class={page.url.pathname === '/learn' ? 'active' : ''} 
                 href={(isApp() ? "https://zen.cephasteom.co.uk" : "") + "/learn"}
                 target={isApp() ? "_blank" : ""}
+                on:click={e => e.stopPropagation() /** prevent the header hiding when clicking a link */}
             >Learn</a></li>
             <li 
                 class="menu__item"><a on:click={closeMenu} 
                 class={page.url.pathname === '/docs' ? 'active' : ''} 
                 href={(isApp() ? "https://zen.cephasteom.co.uk" : "") + "/docs"}
                 target={isApp() ? "_blank" : ""}
+                on:click={e => e.stopPropagation() /** prevent the header hiding when clicking a link */}
             >Docs</a></li>
             <li class="menu__item">
                 <a 
