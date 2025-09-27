@@ -8,6 +8,7 @@
     import { showCircuit, showVisuals } from '$lib/stores/zen';
     import { initElectronAPI, isApp } from '$lib/electronAPI';
     import { onMount } from 'svelte';
+    import Tools from '$lib/components/Tools.svelte';
 
     import Notice from '$lib/components/Notice.svelte';
 
@@ -24,6 +25,7 @@
 	<meta name="description" content="A musical live coding language that runs in your browser" />
 </svelte:head>
 
+<Tools />
 <section class="zen">
     <div 
         class="editor"

@@ -43,8 +43,7 @@
         text-align: center;
         display: flex;
         justify-content: space-between;
-        // position: fixed;
-        // bottom: 0;
+
         @media (min-width: 1200px) {
             text-align: right;
         }

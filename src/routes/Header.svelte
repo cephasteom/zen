@@ -2,7 +2,6 @@
     import { page } from '$app/state';
     import logo from '$lib/images/karma.png';
     import Icon from 'svelte-awesome';
-    import Tools from "$lib/components/Tools.svelte";
     import { faBars, faXmark, faDownload } from '@fortawesome/free-solid-svg-icons';
     import { isApp } from '$lib/electronAPI/index';
     import { version } from '$app/environment';
@@ -27,7 +26,7 @@
     const showHeader = (show: boolean = true) => {
         if (headerisVisible === show) return;
         headerisVisible = show;
-        thisHeader && (thisHeader.style.height = show ? '124px' : '0px');
+        thisHeader && (thisHeader.style.height = show ? '72px' : '0px');
     };
 </script>
 
@@ -110,7 +109,6 @@
         
         </div>
     </nav>
-    <Tools />
 </header>
 
 
@@ -121,10 +119,9 @@
         flex-direction: column;
         background-color: var(--color-grey-darkest);
         border-bottom: 0.25px solid var(--color-grey-light);
-        height: 124px;
+        height: 72px;
         overflow: hidden;
-
-        transition: height 0.5s ease-in-out;
+        transition: height 0.75s ease-in-out;
 	}
 
     nav {
