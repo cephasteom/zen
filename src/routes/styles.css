@@ -218,9 +218,13 @@ button:focus:not(:focus-visible) {
     display: none!important;
 }
 
+.monaco-editor {
+    background-color: transparent!important;
+    outline: none !important;
+}
 /* strings */
 .monaco-scrollable-element, .margin-view-overlays, .lines-content {
-    background-color: var(--color-black)!important;
+    background-color: transparent!important;
 }
 .monaco-scrollable-element, .margin-view-overlays, .lines-content .mtk5, .hljs-string {
     color: var(--color-theme-2);

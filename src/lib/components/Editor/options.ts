@@ -38,6 +38,6 @@ export const options: Monaco.editor.IStandaloneEditorConstructionOptions = {
     },
     hover: {
         enabled: false
-    }
+    },
   
 };

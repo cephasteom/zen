@@ -95,6 +95,7 @@
         grid-column: 1 / 2;
         grid-row: 2 / 4;
         position: relative;
+        border-top: 1px solid var(--color-grey-light);
         
         @media (min-width: 800px) {
             grid-column: 2 / 3;
@@ -103,7 +104,7 @@
             
             &--with-circuit {
                 grid-row: 1 / 2;
-                border-bottom: 0.5px solid var(--color-grey-light);
+                border-bottom: 1px solid var(--color-grey-light);
             }
         }
 
