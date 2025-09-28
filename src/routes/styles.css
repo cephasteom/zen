@@ -292,7 +292,7 @@ canvas {
 .qc-circuit ellipse, 
 .qc-circuit rect, 
 .qc-circuit path {
-	fill: var(--color-grey-dark)!important;
+	fill: var(--color-black)!important;
 	stroke: var(--color-theme-1)!important;
     stroke-width: 2px;
 	cursor: grab;

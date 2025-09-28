@@ -10,9 +10,11 @@
         <slot />
     <!-- </main> -->
 
-    <footer class="footer container">
-        <span class="footer__issues">Something wrong? <a target="_blank" href="https://github.com/cephasteom/zen-3/issues">Open an issue</a>.</span>
-        <span class="footer__copyright">© <a target="_blank" href="https://cephasteom.co.uk">CTeom / PThomas</a> {new Date().getFullYear()}</span>
+    <footer class="footer">
+        <div class="container">
+            <span class="footer__issues">Something wrong? <a target="_blank" href="https://github.com/cephasteom/zen-3/issues">Open an issue</a>.</span>
+            <span class="footer__copyright">© <a target="_blank" href="https://cephasteom.co.uk">CTeom / PThomas</a> {new Date().getFullYear()}</span>
+        </div>
     </footer>
 </div>
 
@@ -36,21 +38,20 @@
 
     .footer {
         border-top: 0.25px solid var(--color-grey-light);
-        width: calc(100% - 3rem);
-        padding: 1.5rem;
-        margin: 0;
-        color: var(--color-grey-light);
-        text-align: center;
-        display: flex;
-        justify-content: space-between;
+        
+        & .container {
+            width: calc(100% - 3rem);
+            padding: 1.5rem;
+            margin: 0 auto;
+            color: var(--color-grey-light);
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+
+        }
 
         @media (min-width: 1200px) {
             text-align: right;
-        }
-
-        @media (min-width: 1600px) {
-            width: 100%;
-            padding: 1rem 0;
         }
 
         @media all and (display-mode: fullscreen) {

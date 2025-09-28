@@ -111,7 +111,7 @@
     }
 
     .label {
-        background-color: var(--color-grey-dark);
+        background-color: var(--color-black);
         color: var(--color-theme-1);
         margin-top: 2em;
         font-size: var(--text-sm);

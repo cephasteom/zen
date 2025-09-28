@@ -144,7 +144,6 @@
         position: relative;
         display: none;
         overflow: hidden;
-        padding: 0 1rem;
         
         &--fullHeight {
             grid-row: 1 / 3;
