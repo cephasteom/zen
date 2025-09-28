@@ -6,9 +6,9 @@
 <div class="app">
     <Header />
 
-    <main class="w-full container">
+    <!-- <main class="w-full container"> -->
         <slot />
-    </main>
+    <!-- </main> -->
 
     <footer class="footer container">
         <span class="footer__issues">Something wrong? <a target="_blank" href="https://github.com/cephasteom/zen-3/issues">Open an issue</a>.</span>

@@ -26,6 +26,7 @@
 </svelte:head>
 
 <Tools />
+<main class="w-full container">
 <section class="zen">
     <div 
         class="editor"
@@ -65,6 +66,7 @@
 
     <Notice />
 </section>
+</main>
 
 <style lang="scss">
     .zen {

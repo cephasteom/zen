@@ -129,20 +129,19 @@
         border-bottom: 0.25px solid var(--color-grey-light);
         
         & .container {
-            
             display: flex;
             justify-content: space-between;
             align-items: center;
+            @media (min-width: 1200px) {
+                padding: 1.5rem 0;
+            }
+    
+            @media (min-width: 1664px) {
+                padding-left: 0rem;
+                padding-right: 0rem;
+            }
         }
 
-        @media (min-width: 1200px) {
-            padding: 1.5rem;
-        }
-
-        @media (min-width: 1664px) {
-            padding-left: 0rem;
-            padding-right: 0rem;
-        }
     }
     
     .icon {

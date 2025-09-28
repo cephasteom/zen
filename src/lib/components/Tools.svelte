@@ -99,6 +99,7 @@
         transition: height 0.5s ease-in-out;
         padding: 0 1.5rem;
         border-bottom: 0.25px solid var(--color-grey-light);
+        width: calc(100% - 3rem);
 
         & .container {
             display: flex;
