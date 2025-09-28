@@ -5,6 +5,10 @@ export const options: Monaco.editor.IStandaloneEditorConstructionOptions = {
     theme: 'vs-dark',
     fontSize: 17,
     lineNumbers: 'off',
+    glyphMargin: false,
+    folding: false,
+    lineDecorationsWidth: 0,
+    lineNumbersMinChars: 0,
     minimap: {
         enabled: false
     },
@@ -35,4 +39,5 @@ export const options: Monaco.editor.IStandaloneEditorConstructionOptions = {
     hover: {
         enabled: false
     }
+  
 };

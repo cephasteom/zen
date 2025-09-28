@@ -144,7 +144,6 @@
         padding-top: 1.5rem;
         padding-bottom: 1.5rem;
         height: calc(100% - 3rem);
-
     }
     
     .flash {

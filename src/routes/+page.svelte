@@ -73,7 +73,7 @@
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: 5fr 3fr 1fr;
-        grid-gap: 0.5px;
+        grid-gap: 1.5rem;
         user-select: none;
         min-height: calc(100vh - 2px);
         max-height: calc(100vh - 2px);
@@ -119,7 +119,6 @@
         grid-column: 1 / 2;
         grid-row: 2 / 4;
         position: relative;
-        background-color: var(--color-grey-dark);
 
         @media (min-width: 800px) {
             display: block;
@@ -145,7 +144,6 @@
         position: relative;
         display: none;
         overflow: hidden;
-        background-color: var(--color-grey-dark);
         padding: 0 1rem;
         
         &--fullHeight {
@@ -162,7 +160,6 @@
         grid-column: 2 / 3;
         grid-row: 1 / 3;
         position: relative;
-        background-image: linear-gradient(135deg, var(--color-grey-dark), #8a7972);
         display: none;
         
         &--withCircuit {
