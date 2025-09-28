@@ -24,9 +24,9 @@
     }
 
     const showHeader = (show: boolean = true) => {
-        // if (headerisVisible === show) return;
-        // headerisVisible = show;
-        // thisHeader && (thisHeader.style.height = show ? '72px' : '0px');
+        if (headerisVisible === show) return;
+        headerisVisible = show;
+        thisHeader && (thisHeader.style.height = show ? '72px' : '0px');
     };
 </script>
 

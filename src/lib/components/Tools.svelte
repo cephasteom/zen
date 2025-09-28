@@ -25,8 +25,8 @@
 
     const show = (show: boolean = true) => {
         if (isVisible === show) return;
-        // isVisible = show;
-        // thisElement && (thisElement.style.height = show ? '52px' : '0px');
+        isVisible = show;
+        thisElement && (thisElement.style.height = show ? '52px' : '0px');
     };
 </script>
 
@@ -71,7 +71,7 @@
 
 <svelte:window 
     on:keydown={e => { 
-        if(!isApp() && !e.metaKey && ['s', 'o'].includes(e.key)) {
+        if(!isApp() && e.metaKey && ['s', 'o'].includes(e.key)) {
             e.preventDefault()
             e.key === 's' && save.showModal();
             e.key === 'o' && load.showModal();

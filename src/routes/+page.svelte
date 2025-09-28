@@ -1,11 +1,10 @@
 <script lang="ts">
     import Editor from '$lib/components/Editor/Editor.svelte';
-    import Visuals from '$lib/components/Visuals/Visuals.svelte';
     import Circuit from '$lib/components/Circuit.svelte';
     import Data from '$lib/components/Data.svelte';
     import Console from '$lib/components/Console.svelte';
     import { startAudio } from '$lib/zen/index';
-    import { showCircuit, showVisuals } from '$lib/stores/zen';
+    import { showCircuit } from '$lib/stores/zen';
     import { initElectronAPI, isApp } from '$lib/electronAPI';
     import { onMount } from 'svelte';
     import Tools from '$lib/components/Tools.svelte';
@@ -30,33 +29,21 @@
     <section class="zen container">
         <div 
             class="editor"
-            class:editor--large={!$showCircuit && !$showVisuals}
+            class:editor--with-circuit={$showCircuit}
         >
             <Editor />
         </div>
 
         <div 
             class="console"
-            class:console--large={!$showCircuit && !$showVisuals}
+            class:console--with-circuit={$showCircuit}
         >
             <Console />
         </div>
 
         {#if $showCircuit}
-            <div 
-                class="circuit"
-                class:circuit--fullHeight={!$showVisuals}
-            >
+            <div class="circuit">
                 <Circuit />
-            </div>
-        {/if}
-        
-        {#if $showVisuals}
-            <div 
-                class="visuals"
-                class:visuals--withCircuit={$showCircuit}
-            >
-                <Visuals />
             </div>
         {/if}
 
@@ -81,7 +68,7 @@
 
         @media (min-width: 800px) {
             grid-template-columns: 1fr 1fr;
-            grid-template-rows: 6fr 4fr;
+            grid-template-rows: 5fr 5fr;
         }
 
         @media all and (display-mode: fullscreen) {
@@ -99,18 +86,7 @@
         grid-row: 1;
         @media (min-width: 800px) {
             grid-column: 1;
-            grid-row: 1 / 2;
-
-            &--large {
-                grid-row: 1 / 3;
-            }
-        }
-
-        @media all and (display-mode: fullscreen) {
-            grid-row: 1 / 2;
-            &--large {
-                grid-row: 1 / 3;
-            }
+            grid-row: 1 / 3;
         }
 
     }
@@ -119,21 +95,24 @@
         grid-column: 1 / 2;
         grid-row: 2 / 4;
         position: relative;
-
+        
         @media (min-width: 800px) {
-            display: block;
-            grid-row: 2 / 3;
-            &--large {
-                grid-column: 2 / 3;
-                grid-row: 1 / 3;
+            grid-column: 2 / 3;
+            grid-row: 1 / 3;
+            border-top: 0;
+            
+            &--with-circuit {
+                grid-row: 1 / 2;
+                border-bottom: 0.5px solid var(--color-grey-light);
             }
         }
 
         @media all and (display-mode: fullscreen) {
-            grid-row: 2 / 3;
-            &--large {
-                grid-column: 2 / 3;
-                grid-row: 1 / 3;
+            grid-column: 2 / 3;
+            grid-row: 1 / 3;
+
+            &--with-circuit {
+                grid-row: 1 / 2;
             }
         }
     }
@@ -143,31 +122,12 @@
         grid-row: 2 / 3;
         position: relative;
         display: none;
-        overflow: hidden;
-        
-        &--fullHeight {
-            grid-row: 1 / 3;
-        }
+        overflow: auto;
 
         @media (min-width: 800px) {
             display: block;
         }
 
-    }
-
-    .visuals {
-        grid-column: 2 / 3;
-        grid-row: 1 / 3;
-        position: relative;
-        display: none;
-        
-        &--withCircuit {
-            grid-row: 1 / 2;
-        }
-
-        @media (min-width: 800px) {
-            display: block;
-        }
     }
 
     .data {

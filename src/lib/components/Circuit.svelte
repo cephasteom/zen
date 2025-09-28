@@ -56,10 +56,9 @@
 <style lang="scss">
     .circuit {
         width: calc(100% - 4rem);
-        border-radius: 5px;
         padding: 2rem;
-        overflow: auto;
         position: relative;
+        height: calc(100% - 5.5rem);
 
         &::after {
             content: '';
