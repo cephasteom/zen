@@ -25,9 +25,8 @@
 
     const show = (show: boolean = true) => {
         if (isVisible === show) return;
-        isVisible = show;
-        console.log('show', show);
-        thisElement && (thisElement.style.height = show ? '52px' : '0px');
+        // isVisible = show;
+        // thisElement && (thisElement.style.height = show ? '52px' : '0px');
     };
 </script>
 

@@ -156,7 +156,6 @@
         100% { filter: invert(0) }
     }
     .editor {
-        width: calc(100% - 1rem);
         height: 100%!important;
     }
 

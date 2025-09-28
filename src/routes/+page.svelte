@@ -26,46 +26,46 @@
 </svelte:head>
 
 <Tools />
-<main class="w-full container">
-<section class="zen">
-    <div 
-        class="editor"
-        class:editor--large={!$showCircuit && !$showVisuals}
-    >
-        <Editor />
-    </div>
-
-    <div 
-        class="console"
-        class:console--large={!$showCircuit && !$showVisuals}
-    >
-        <Console />
-    </div>
-
-    {#if $showCircuit}
+<main>
+    <section class="zen container">
         <div 
-            class="circuit"
-            class:circuit--fullHeight={!$showVisuals}
+            class="editor"
+            class:editor--large={!$showCircuit && !$showVisuals}
         >
-            <Circuit />
+            <Editor />
         </div>
-    {/if}
-    
-    {#if $showVisuals}
+
         <div 
-            class="visuals"
-            class:visuals--withCircuit={$showCircuit}
+            class="console"
+            class:console--large={!$showCircuit && !$showVisuals}
         >
-            <Visuals />
+            <Console />
         </div>
-    {/if}
 
-    <div class="data">
-        <Data />
-    </div>
+        {#if $showCircuit}
+            <div 
+                class="circuit"
+                class:circuit--fullHeight={!$showVisuals}
+            >
+                <Circuit />
+            </div>
+        {/if}
+        
+        {#if $showVisuals}
+            <div 
+                class="visuals"
+                class:visuals--withCircuit={$showCircuit}
+            >
+                <Visuals />
+            </div>
+        {/if}
 
-    <Notice />
-</section>
+        <div class="data">
+            <Data />
+        </div>
+
+        <Notice />
+    </section>
 </main>
 
 <style lang="scss">
@@ -136,21 +136,6 @@
                 grid-column: 2 / 3;
                 grid-row: 1 / 3;
             }
-        }
-    }    
-
-    .tools {
-        display: none;
-        
-        @media (min-width: 800px) {
-            background: var(--color-grey-darker);
-            grid-column: 2;
-            grid-row: 4;
-            display: block;
-        }
-
-        @media all and (display-mode: fullscreen) {
-            display: none;
         }
     }
 

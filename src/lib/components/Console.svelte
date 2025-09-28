@@ -29,7 +29,7 @@
 <style lang="scss">
     .console {
         background-color: var(--color-black);
-        padding: 1.5rem;
+        padding: 1.5rem 0;
         height: calc(100% - 3rem);
         position: absolute;
         left: 0;
