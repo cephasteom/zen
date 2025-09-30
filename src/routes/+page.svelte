@@ -104,7 +104,7 @@
             
             &--with-circuit {
                 grid-row: 1 / 2;
-                border-bottom: 1px solid var(--color-grey-light);
+                // border-bottom: 1px solid var(--color-grey-light);
             }
         }
 

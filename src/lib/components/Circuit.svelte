@@ -55,10 +55,11 @@
 
 <style lang="scss">
     .circuit {
-        width: calc(100% - 4rem);
-        padding: 2rem;
+        width: 100%;
+        height: calc(100% - 2rem);
         position: relative;
-        height: calc(100% - 5.5rem);
+        padding: 1rem 0;
+        overflow: hidden;
 
         &::after {
             content: '';
@@ -72,13 +73,14 @@
         }
 
         &__svg {
-            max-width: calc(50vw - 4rem);
+            position: absolute;
+            top: 1.63rem;
             display: block;
             overflow-x: auto;
-            margin-left: 1rem;
+            margin-left: 2.1rem;
             
             @media (min-width: 1200px) {
-                max-width: calc(50vw - 8.5rem);
+                max-width: calc(50vw - 6.25rem);
             }
 
             @media all and (display-mode: fullscreen) {
@@ -88,9 +90,9 @@
 
         &__wires {
             position: absolute;
-            top: 0.38rem;
-            left: 1rem;
-            right: 1rem;
+            top: 0rem;
+            left: 0rem;
+            right: 0rem;
         }
     }
 
