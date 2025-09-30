@@ -1525,6 +1525,11 @@ punycode@^1.4.1:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-1.4.1.tgz#c0d5a63b2718800ad8e1eb0fa5269c84dd41845e"
   integrity sha512-jmYNElW7yvO7TV33CjSmvSiE2yco3bV2czu/OzDKdMNVZQWfxCblURLhf+47syQRBntjfLdd/H0egrzIG+oaFQ==
 
+q5@^3.3.3:
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/q5/-/q5-3.3.3.tgz#f65afc80ae0824d1dd4c00efcab83cb15d75a321"
+  integrity sha512-WqDoSICYpxRsZIsdOK76Dx7kARfKqD5z74VbBj+YLlRTfJMbAbk0w4kOhYffANnnFCQe8uVz8dddGU7sWmmVVQ==
+
 qs@^6.12.3:
   version "6.14.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.14.0.tgz#c63fa40680d2c5c941412a0e899c89af60c0a930"

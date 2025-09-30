@@ -10,6 +10,7 @@
     import Tools from '$lib/components/Tools.svelte';
 
     import Notice from '$lib/components/Notice.svelte';
+    import Canvas from '$lib/components/Canvas.svelte';
 
     onMount(() => {
         isApp() && initElectronAPI();
@@ -26,6 +27,7 @@
 
 <Tools />
 <main>
+    <Canvas />
     <section class="zen container">
         <div 
             class="editor"

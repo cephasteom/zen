@@ -6,9 +6,7 @@
 <div class="app">
     <Header />
 
-    <!-- <main class="w-full container"> -->
-        <slot />
-    <!-- </main> -->
+    <slot />
 
     <footer class="footer">
         <div class="container">
@@ -27,17 +25,9 @@
         }
     }
 
-    main {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        margin: 0 auto;
-        box-sizing: border-box;
-        background-color: var(--color-grey-light);
-    }
-
     .footer {
         border-top: 0.25px solid var(--color-grey-light);
+        background: var(--color-black);
         
         & .container {
             width: calc(100% - 3rem);
