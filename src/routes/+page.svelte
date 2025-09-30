@@ -76,8 +76,6 @@
 
         @media all and (display-mode: fullscreen) {
             grid-template-columns: 1fr;
-            // min-height: 100vh;
-            // max-height: 100vh;
             @media (min-width: 800px) {
                 grid-template-columns: 1fr 1fr;
             }
@@ -109,7 +107,7 @@
             
             &--with-circuit {
                 grid-row: 1 / 2;
-                border-bottom: 1px solid var(--color-grey-light);
+                border-bottom: .25px solid var(--color-grey-light);
                 padding: 1.5rem 0;
             }
             

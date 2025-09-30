@@ -39,7 +39,6 @@ export const options: Monaco.editor.IStandaloneEditorConstructionOptions = {
     hover: {
         enabled: false
     },
-    renderIndentGuides: false, // legacy setting
     guides: {
         indentation: false        // newer setting
     },
