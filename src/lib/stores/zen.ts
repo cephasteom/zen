@@ -10,10 +10,7 @@ export const q = writable(16); // quantization (frames per cycle)
 export const s = writable(16); // size of canvas
 export const editorConsole = writable<{type?: string, message?: string}>({});
 export const isPlaying = writable(false);
-export const q5string = writable(`
-    q.background('silver');
-    q.circle(q.frameCount % 200, 100, 80);
-`); // q5 string for visuals
+export const canvas = writable(""); // q5 string for visuals
 
 /* Quantum Circuit State */
 export const gates = writable<any[]>([[],[],[],[], [],[],[],[]]); // circuit gates
@@ -81,13 +78,13 @@ export const toggleVisuals = () => {
 }
 export const showVisuals = derived(visualsType, $visualsType => $visualsType !== 'none');
 
-function initVisuals() {
-    if(typeof localStorage === 'undefined') return
-    const type = localStorage.getItem('z.visuals');
-    if(type) visualsType.set(type as any);
-}
+// function initVisuals() {
+//     if(typeof localStorage === 'undefined') return
+//     const type = localStorage.getItem('z.visuals');
+//     if(type) visualsType.set(type as any);
+// }
 
-initVisuals();
+// initVisuals();
 
 const zenChannel = new BroadcastChannel('zen');
 const zmodChannel = new BroadcastChannel('zmod')
@@ -99,7 +96,7 @@ zenChannel.onmessage = ({data: {message, type, data}}) => {
     ['error', 'info', 'pattern', 'success', 'credit'].includes(type) && print(type, message.toString())
     
     if(type !== 'action') return
-    const { t: time, c: cycle, q: quant, s: size, delta, v, grid, gates: gs, measurements: ms, feedback: fb, inputs: ins } = data;
+    const { t: time, c: cycle, q: quant, s: size, delta, gates: gs, measurements: ms, feedback: fb, inputs: ins, canvas: cvs } = data;
     setTimeout(() => {
         t.set(time);
         c.set(cycle);
@@ -108,8 +105,9 @@ zenChannel.onmessage = ({data: {message, type, data}}) => {
         gates.set(gs);
         measurements.set(ms);
         inputs.set(ins);
-        visualsData.set(v);
-        gridData.set(grid);
+        canvas.set(cvs);
+        // visualsData.set(v);
+        // gridData.set(grid);
     }, delta * 1000);
 }
 

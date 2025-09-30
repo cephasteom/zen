@@ -6,7 +6,7 @@ import { writable, get } from 'svelte/store';
 import { Data } from './classes/Data'
 import { Stream } from './classes/Stream';
 import { circuit } from './classes/Circuit';
-import { Visuals } from './classes/Visuals';
+// import { Visuals } from './classes/Visuals';
 import { Wire } from './classes/Wire';
 import { createCount } from './utils/utils';
 import { print, clear } from "$lib/stores/zen";
@@ -44,7 +44,7 @@ const scope: any = {
     streams: Array(get(nStreams)).fill(0).map((_, i) => new Stream('s' + i)),
     fxstreams: Array(2).fill(0).map((_, i) => new Stream('fx' + i)),
     qubits: Array(get(nStreams)).fill(0).map((_, i) => new Wire('q' + i)),
-    v: new Visuals(),
+    // v: new Visuals(),
     d: new Data(),
     print: (message: any) => print('info', message.toString()),
     scales: () => print('info', 'Scales ->\n' + Object.keys(modes).join(', ')),
@@ -197,13 +197,14 @@ export function evaluate(count: number, time: number) {
     const events = result.filter(({e}) => e)
     const mutations = result.filter(({m}) => m)
 
-    const vis = scope.v.get(
-        result
-            .filter(({id}) => id.startsWith('s'))
-            .map(({x,y,z,id,e,m}) => ({x,y,z,id,e:!!e, m:!!m}))
-    )
+    // const vis = scope.v.get(
+    //     result
+    //         .filter(({id}) => id.startsWith('s'))
+    //         .map(({x,y,z,id,e,m}) => ({x,y,z,id,e:!!e, m:!!m}))
+    // )
 
-    const grid = z.grid.get(t, q) || []
+    // const grid = z.grid.get(t, q) || []
+    const canvas = z.canvas.get(t, q, s, getBpm()) || null 
 
     // call actions
     const delta = (time - immediate())
@@ -220,8 +221,7 @@ export function evaluate(count: number, time: number) {
         measurements, 
         feedback, 
         inputs, 
-        v: vis, 
-        grid 
+        canvas
     }
     channel.postMessage({ type: 'action', data: args })
 }
