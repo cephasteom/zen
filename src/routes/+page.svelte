@@ -38,7 +38,9 @@
             class="console"
             class:console--with-circuit={$showCircuit}
         >
-            <Console />
+            <Console 
+                fullHeight={!$showCircuit}
+            />
         </div>
 
         {#if $showCircuit}
@@ -62,9 +64,10 @@
         grid-template-rows: 5fr 3fr 1fr;
         grid-gap: 1.5rem;
         user-select: none;
-        min-height: calc(100vh - 2px);
-        max-height: calc(100vh - 2px);
+        min-height: calc(100vh - 2px - 1.5rem);
+        max-height: calc(100vh - 2px - 1.5rem);
         overflow: scroll;
+        padding-bottom: 1.5rem;
 
         @media (min-width: 800px) {
             grid-template-columns: 1fr 1fr;
@@ -96,6 +99,7 @@
         grid-row: 2 / 4;
         position: relative;
         border-top: 1px solid var(--color-grey-light);
+        padding: 1.5rem 0 0 0;
         
         @media (min-width: 800px) {
             grid-column: 2 / 3;
@@ -104,8 +108,10 @@
             
             &--with-circuit {
                 grid-row: 1 / 2;
-                // border-bottom: 1px solid var(--color-grey-light);
+                border-bottom: 1px solid var(--color-grey-light);
+                padding: 1.5rem 0;
             }
+            
         }
 
         @media all and (display-mode: fullscreen) {
@@ -114,6 +120,7 @@
 
             &--with-circuit {
                 grid-row: 1 / 2;
+                padding: 1.5rem 0;
             }
         }
     }

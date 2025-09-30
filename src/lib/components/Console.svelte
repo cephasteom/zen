@@ -2,6 +2,7 @@
     import { onMount } from "svelte";
     import { messages } from "$lib/stores/zen";
 
+    export let fullHeight: boolean = true;
     let console: HTMLUListElement;
 
     onMount(() => {
@@ -16,7 +17,10 @@
     });
 </script>
 
-<div class="console">
+<div 
+    class="console"
+    class:console--fullHeight={fullHeight}
+>
     <ul bind:this={console}>
         {#each $messages as {type, message}}
             {#each message.split("\n") as line}
@@ -29,13 +33,16 @@
 <style lang="scss">
     .console {
         background-color: var(--color-black);
-        padding: 1.5rem 0;
-        height: calc(100% - 3rem);
         position: absolute;
+        height: calc(100% - 3rem);
         left: 0;
         right: 0;
         overflow: hidden;
         user-select: text;
+
+        &--fullHeight {
+            height: calc(100% - 1.5rem);
+        }
     }
 
     ul {

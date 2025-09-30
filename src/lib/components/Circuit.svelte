@@ -56,10 +56,8 @@
 <style lang="scss">
     .circuit {
         width: 100%;
-        height: calc(100% - 2rem);
+        height: calc(100% - 1.5rem);
         position: relative;
-        padding: 1rem 0;
-        overflow: hidden;
 
         &::after {
             content: '';
@@ -74,7 +72,7 @@
 
         &__svg {
             position: absolute;
-            top: 1.63rem;
+            top: 0;
             display: block;
             overflow-x: auto;
             margin-left: 2.1rem;
@@ -90,7 +88,7 @@
 
         &__wires {
             position: absolute;
-            top: 0rem;
+            top: -1.63rem;
             left: 0rem;
             right: 0rem;
         }
