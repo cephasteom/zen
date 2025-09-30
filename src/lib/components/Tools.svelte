@@ -42,12 +42,12 @@
             <button on:click={e => { e.stopPropagation(); load.showModal()}} class:active={false}><Icon scale={1.25} data="{faCode}" /></button>
         {/if}
         
-        <button class="tools__visuals" 
+        <!-- <button class="tools__visuals" 
             class:active={$visualsType !== 'none'} 
             on:click={e => { e.stopPropagation(); toggleVisuals()}}
         >
             <Icon scale={1.25} data={visualsIcons[$visualsType] || visualsIcons.grid} />
-        </button>
+        </button> -->
         <button class="tools__circuit" on:click={e => { e.stopPropagation(); toggleCircuit()}} class:active={$showCircuit}>
             <Icon scale={1.25} data={faBars} />
         </button>
