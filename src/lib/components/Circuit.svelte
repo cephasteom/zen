@@ -102,7 +102,7 @@
 
         &__wire {
             height: 2px;
-            background-color: var(--color-theme-1);
+            background-color: var(--color-white);
             width: calc(100% - 4rem);
             margin-top: 2.71rem;
             margin-left:0.2rem;
@@ -110,8 +110,7 @@
     }
 
     .label {
-        background-color: var(--color-black);
-        color: var(--color-theme-1);
+        color: var(--color-white);
         margin-top: 2em;
         font-size: var(--text-sm);
         transform: translateY(-1px);

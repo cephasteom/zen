@@ -32,7 +32,7 @@
 
 <style lang="scss">
     .console {
-        background-color: var(--color-black);
+        // background-color: var(--color-black);
         position: absolute;
         height: calc(100% - 3rem);
         left: 0;
@@ -60,10 +60,10 @@
         font-variation-settings: normal;
         letter-spacing: 0px;
         margin:0;
-        color: #d4d4d4;
+        color: var(--color-white);
         &::before {
             content: "»";
-            color: #d4d4d4;
+            color: var(--color-white);
             margin-right: 0.5rem;
         }
     }

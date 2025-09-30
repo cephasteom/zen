@@ -63,8 +63,8 @@
     --color-grey-dark: #7e6d66;      /* Cocoa Brown */
     --color-grey-darker: #5e4f49;    /* Deep Earth Grey (moderated) */
     --color-grey-darkest: #2f2521;   /* Muted Charcoal Brown */
-    --color-black: #15110f; /* Near-black with warm brown tone
-    /* --color-black: transparent; Near-black with warm brown tone */
+    --color-black: #15110f; /* Near-black with warm brown tone */
+    --color-white: #d4d4d4; /* Soft White */
     --color-pink: #f8d7da; /* Blush Pink */
     --color-box-shadow: rgba(60, 40, 40, 0.6); /* Warm Shadow */
 
@@ -73,9 +73,6 @@
 body {
 	min-height: 100vh;
 	margin: 0;
-	background-attachment: fixed;
-	background-color: var(--color-black);
-	background-size: 100vw 100vh;
     letter-spacing: 0.1rem;
     @media all and (display-mode: fullscreen) {
         min-height: calc(100vh - 2rem);
@@ -87,7 +84,7 @@ main {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    background-color: var(--color-black);
+    background-color: transparent;
     width: calc(100%);
     padding: 0 1.5rem;
 }
@@ -265,21 +262,20 @@ button:focus:not(:focus-visible) {
 }
 
 .monaco-editor .sticky-widget {
-    background-color: var(--color-black)!important;
+    background-color: transparent!important;
     box-shadow: none!important;
 }
 .monaco-editor .sticky-widget-lines-scrollable, .monaco-editor .sticky-widget-line-numbers {
-    background-color: var(--color-black)!important;
+    background-color: transparent!important;
 }
 
 
 .lines-content .mtk8 {
-    color: #d4d4d4;
+    color: var(--color-white);
 }
 
 *:focus {
     outline: none;
-    /* margin-top: -2px; */
     border-bottom: 2px solid var(--color-theme-3);
 }
 
@@ -292,7 +288,7 @@ canvas {
 }
 
 .qc-circuit line {
-	stroke: var(--color-theme-1)!important;
+	stroke: var(--color-white)!important;
     stroke-width: 2px;
 }
 
@@ -302,26 +298,31 @@ canvas {
     font-weight: bold;
 }
 
-.qc-circuit text, 
+.qc-circuit rect,
 .qc-circuit circle {
-	fill: var(--color-theme-1)!important;
+    fill: var(--color-white)!important;
+	stroke: none!important;
+}
+.qc-circuit text {
+    fill: var(--color-black);
 	stroke: none!important;
 }
 
 .qc-circuit ellipse, 
-.qc-circuit rect, 
 .qc-circuit path {
-	fill: var(--color-black)!important;
-	stroke: var(--color-theme-1)!important;
+    fill: transparent!important;
+	stroke: var(--color-white)!important;
     stroke-width: 2px;
 	cursor: grab;
 }
 
-.qc-gate-label {
+.qc-circuit .qc-gate-label {
     transform: translate(1px,1px);
+    fill: var(--color-black)!important;
 }
 .qc-wire-label {
     transform: translate(1px,-4px);
+    fill: var(--color-white)!important;
 }
 
 .qc-gate-params {

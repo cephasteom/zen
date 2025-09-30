@@ -96,7 +96,7 @@
 <style lang="scss">
     .code {
         background-color: #1e1e1e;
-        color: #d4d4d4;
+        color: var(--color-white);
         padding: 1rem;
         border-radius: 0.5rem;
         margin: 1rem 0;

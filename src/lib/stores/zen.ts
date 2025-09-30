@@ -10,6 +10,10 @@ export const q = writable(16); // quantization (frames per cycle)
 export const s = writable(16); // size of canvas
 export const editorConsole = writable<{type?: string, message?: string}>({});
 export const isPlaying = writable(false);
+export const q5string = writable(`
+    q.background('silver');
+    q.circle(q.frameCount % 200, 100, 80);
+`); // q5 string for visuals
 
 /* Quantum Circuit State */
 export const gates = writable<any[]>([[],[],[],[], [],[],[],[]]); // circuit gates
@@ -28,7 +32,6 @@ function initCircuit() {
     if(show) showCircuit.set(true);
 }
 initCircuit();
-
 
 export const messages = writable<{type: string, message: string}[]>([]);
 
