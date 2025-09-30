@@ -1,7 +1,7 @@
 <script lang="ts">
     import 'q5';
     import { onMount } from 'svelte';
-    import { canvas, isPlaying } from '$lib/stores/zen';
+    import { canvas, isPlaying, t } from '$lib/stores/zen';
   
     let q: any;
     onMount(() => {
@@ -15,11 +15,8 @@
                 q.noLoop();
             };
 
-            // q.draw = () => {
-            //     q.background(q.frameCount%255,0,0)
-            // };
-
             canvas.subscribe((str) => {
+                if(!q) return;
                 try {
                     q.draw = str 
                     ? () => {
@@ -36,15 +33,20 @@
                     }
                     : () => {
                         q.background('#15110f');
-                        q.noLoop();
-                    }
+                        // q.noLoop();
+                    };
                 } catch (e) {
                     console.warn('Error in q5 sketch:', e);
                 }
             });
-            isPlaying.subscribe((playing) => {
-                playing ? q.loop() : q.noLoop();
+            
+            t.subscribe(() => {
+                if(!$isPlaying) return;
+                q.redraw();
             });
+            // isPlaying.subscribe((playing) => {
+            //     playing ? q.loop() : q.noLoop();
+            // });
         }
 
 
