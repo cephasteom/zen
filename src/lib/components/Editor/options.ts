@@ -29,7 +29,7 @@ export const options: Monaco.editor.IStandaloneEditorConstructionOptions = {
     suggestOnTriggerCharacters: false,
     acceptSuggestionOnEnter: "off",
     acceptSuggestionOnCommitCharacter: false,
-    wordBasedSuggestions: false,
+    // wordBasedSuggestions: false,
     snippetSuggestions: 'none',
     roundedSelection: false,
     tabSize: 2,
@@ -39,5 +39,12 @@ export const options: Monaco.editor.IStandaloneEditorConstructionOptions = {
     hover: {
         enabled: false
     },
+    renderIndentGuides: false, // legacy setting
+    guides: {
+        indentation: false        // newer setting
+    },
+    stickyScroll: {
+        enabled: false
+    }
   
 };
