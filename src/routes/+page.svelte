@@ -64,8 +64,8 @@
         grid-template-rows: 5fr 3fr 1fr;
         grid-gap: 1.5rem;
         user-select: none;
-        min-height: calc(100vh - 2px - 1.5rem);
-        max-height: calc(100vh - 2px - 1.5rem);
+        min-height: calc(100vh - 1.5rem);
+        max-height: calc(100vh - 1.5rem);
         overflow: scroll;
         padding-bottom: 1.5rem;
 
@@ -76,7 +76,8 @@
 
         @media all and (display-mode: fullscreen) {
             grid-template-columns: 1fr;
-            min-height: 100vh;
+            // min-height: 100vh;
+            // max-height: 100vh;
             @media (min-width: 800px) {
                 grid-template-columns: 1fr 1fr;
             }

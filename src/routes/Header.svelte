@@ -27,6 +27,7 @@
         if (headerisVisible === show) return;
         headerisVisible = show;
         thisHeader && (thisHeader.style.height = show ? '72px' : '0px');
+        thisHeader && (thisHeader.style.opacity = show ? '1' : '0');
     };
 </script>
 
@@ -121,7 +122,8 @@
         border-bottom: 0.25px solid var(--color-grey-light);
         height: 72px;
         overflow: hidden;
-        transition: height 0.75s ease-in-out;
+        opacity: 1;
+        transition: height 0.75s ease-in-out, opacity 0.75s ease-in-out;
 	}
 
     nav {

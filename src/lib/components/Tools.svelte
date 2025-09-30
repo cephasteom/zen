@@ -27,6 +27,7 @@
         if (isVisible === show) return;
         isVisible = show;
         thisElement && (thisElement.style.height = show ? '52px' : '0px');
+        thisElement && (thisElement.style.opacity = show ? '1' : '0');
     };
 </script>
 
@@ -94,8 +95,9 @@
     .tools {
         background-color: var(--color-grey-darker);
         height: 52px;
+        opacity: 1;
+        transition: height 0.75s ease-in-out, opacity 0.75s ease-in-out;
         overflow: hidden;
-        transition: height 0.5s ease-in-out;
         padding: 0 1.5rem;
         border-bottom: 0.25px solid var(--color-grey-light);
         width: calc(100% - 3rem);
