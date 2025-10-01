@@ -46,7 +46,10 @@ initialMessages.forEach((message, index) => {
 });
 
 export const print = (type: string, message: string) => {
-    messages.update(arr => [...arr, {type, message}]);
+    messages.update(arr => [...arr, {
+        type, 
+        message
+    }]);
 }
 
 export const clear = () => messages.set([]);

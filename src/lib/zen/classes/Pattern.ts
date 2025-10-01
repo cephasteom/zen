@@ -1596,7 +1596,7 @@ s0.e.set(1)
     print(prefix: string = ''): Pattern {
         this.stack.push(x => {
             const message = prefix ? `${prefix}: ${x}` : x
-            channel.postMessage({type: 'pattern', message})
+            channel.postMessage({type: 'pattern', message: JSON.stringify(message)})
             return x
         })
         return this

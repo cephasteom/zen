@@ -195,11 +195,12 @@ export function evaluate(count: number, time: number) {
     const events = result.filter(({e}) => e)
     const mutations = result.filter(({m}) => m)
 
-    const canvasPs = [
+    const canvasPs = Array.from(new Set([
         z.canvas.get(t, q, getBpm()) || '',
         ...events.map(({eparams}) => eparams.canvas).filter(c => c),
         ...mutations.map(({mparams}) => mparams.canvas).filter(c => c)
-    ]
+    ]))
+
 
     canvas.set(canvasPs.join('\n'))
 
