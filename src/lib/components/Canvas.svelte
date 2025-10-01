@@ -1,4 +1,4 @@
-<!-- TODO: parse for frameCount and add loop if present, visuals on off on in Tools, highlight colours on editor -->
+<!-- TODO: parse for frameCount and add loop if present, visuals on off on in Tools -->
 
 <script lang="ts">
     import 'q5';
@@ -42,6 +42,12 @@
                     : () => {
                         q.background('#15110f');
                     };
+
+                    // if string includes frameCount, loop, else noLoop
+                    /frameCount/.test(str)
+                        ? q.loop()
+                        : q.noLoop();
+
                 } catch (e: any) {
                     print('error', 'Error in canvas code: ' + e.message);
                     console.warn('Error in q5 sketch:', e);
@@ -50,8 +56,17 @@
             
             // when t changes, redraw
             t.subscribe(() => {
-                if(!$isPlaying || !q) return;
+                // only redraw if playing and if frameCount is not in the code
+                if(!q || !$isPlaying || /frameCount/.test($canvas)) return;
                 q.redraw();
+            });
+
+            // when isPlaying changes, loop or noLoop
+            isPlaying.subscribe((playing) => {
+                if(!q) return;
+                playing && /frameCount/.test($canvas)
+                    ? q.loop()
+                    : q.noLoop();
             });
         }
 

@@ -1488,7 +1488,8 @@ s0.e.set(1)
      * s0.pack(s0.x, s0.y).print().fn(([x, y]) => ...)
      */
     pack(...args: patternable[]): Pattern {
-        this.stack.push(() => args.map(x => this.handleTypes(x)).flat())
+        // @ts-ignore
+        this.stack.push(() => args.map(x => this.handleTypes(x)))
         return this
     }
 
