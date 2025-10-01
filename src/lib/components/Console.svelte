@@ -32,13 +32,16 @@
 
 <style lang="scss">
     .console {
-        // background-color: var(--color-black);
         position: absolute;
-        height: calc(100% - 3rem);
+        height: calc(100% - 1.5rem);
         left: 0;
         right: 0;
         overflow: hidden;
         user-select: text;
+        
+        @media (min-width: 800px) {
+            height: calc(100% - 3rem);
+        }
 
         &--fullHeight {
             height: calc(100% - 1.5rem);

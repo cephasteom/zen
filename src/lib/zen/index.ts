@@ -146,7 +146,6 @@ export function evaluate(count: number, time: number) {
     const q = Math.floor(z.q.get(count, 16) || 16) // divisions per cycle
     const zT = z.t.get(count, q) 
     const t = zT !== null ? Math.floor(zT) : count
-    const s = z.s.get(t, q) || 16 // size of canvas
     const c = z.c.get(t, q) || 0 // current cycle
 
     setQ(q)
@@ -189,14 +188,14 @@ export function evaluate(count: number, time: number) {
 
     // compile parameters, events and mutations
     const compiled = [...scope.streams, ...scope.fxstreams, scope.z]
-        .map(stream => stream.get(t, q, s, getBpm()))
+        .map(stream => stream.get(t, q, getBpm()))
 
     const soloed = compiled.filter(({solo}) => solo)
     const result = soloed.length ? soloed : compiled
     const events = result.filter(({e}) => e)
     const mutations = result.filter(({m}) => m)
 
-    const canvas = z.canvas.get(t, q, s, getBpm()) || null 
+    const canvas = z.canvas.get(t, q, getBpm()) || null 
 
     // call actions
     const delta = (time - immediate())
@@ -204,7 +203,6 @@ export function evaluate(count: number, time: number) {
         time, 
         delta, 
         t,
-        s,
         q,
         c,
         events, 

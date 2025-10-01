@@ -1,8 +1,8 @@
 <script lang="ts">
     import { page } from '$app/state';
     import Icon from 'svelte-awesome';
-    import { faPlay, faStop, faFloppyDisk, faCode, faGlobe, faChessBoard, faBars, faToggleOff, faPeopleGroup } from '@fortawesome/free-solid-svg-icons';
-    import { isPlaying, showCircuit, toggleCircuit, toggleVisuals, visualsType } from '$lib/stores/zen';
+    import { faPlay, faStop, faFloppyDisk, faCode, faBars, faPeopleGroup } from '@fortawesome/free-solid-svg-icons';
+    import { isPlaying, showCircuit, toggleCircuit } from '$lib/stores/zen';
     import { isApp } from '$lib/electronAPI/index';
     import Dialog from './Dialog.svelte'
     import Save from './Save.svelte'
@@ -10,12 +10,6 @@
     import Collaborate from './Collaborate.svelte'
     import { debounce } from '$lib/zen/utils/utils';
     import { isCollaborating, toggleCollaborate } from '$lib/stores/collaborative-editing';
-
-    const visualsIcons = {
-        'grid': faChessBoard,
-        'sphere': faGlobe,
-        'none': faToggleOff
-    }
     
     let save: HTMLDialogElement;
     let load: HTMLDialogElement;
@@ -42,12 +36,6 @@
             <button on:click={e => { e.stopPropagation(); load.showModal()}} class:active={false}><Icon scale={1.25} data="{faCode}" /></button>
         {/if}
         
-        <!-- <button class="tools__visuals" 
-            class:active={$visualsType !== 'none'} 
-            on:click={e => { e.stopPropagation(); toggleVisuals()}}
-        >
-            <Icon scale={1.25} data={visualsIcons[$visualsType] || visualsIcons.grid} />
-        </button> -->
         <button class="tools__circuit" on:click={e => { e.stopPropagation(); toggleCircuit()}} class:active={$showCircuit}>
             <Icon scale={1.25} data={faBars} />
         </button>
@@ -129,7 +117,7 @@
             }
         }
 
-        &__visuals, &__circuit, &__console {
+        &__circuit, &__console {
             display: none!important;
             @media (min-width: 800px) {
                 display: flex!important;

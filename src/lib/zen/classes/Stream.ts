@@ -1,11 +1,10 @@
 import { Pattern } from './Pattern'
 import type { Dictionary } from '../types'
-import { mod } from '../utils/utils'
 import { formatEventParams, formatMutationParams } from '../utils/syntax';
 
 export interface Stream extends Dictionary {
     id: string;
-    get: (time: number, q: number, s: number, bpm: number) => void;
+    get: (time: number, q: number, bpm: number) => void;
     __reset: () => void;
 }
 
@@ -44,7 +43,7 @@ export class Stream {
                     .filter(([key]) => !['id', 'get', '__reset', '__clear'].includes(key))
                     .forEach(([key, value]) => init[key] = (new Pattern(isTrigger(key))).set(value));
             },
-            get: (time: number, q: number, s: number, bpm: number) => {
+            get: (time: number, q: number, bpm: number) => {
                 const t = +(init.t && init.t.has() ? init.t.get(time, q) || 0 : time);
                 const mute = init.mute?.get(t, q)
                 const solo = init.solo?.get(t, q)
@@ -57,7 +56,7 @@ export class Stream {
                         .filter(([key]) => !['id', 'set', 'get', 't', '__reset', '__clear', 'e', 'm', 'mute', 'solo'].includes(key))
                         .reduce((acc, [key, pattern]) => ({
                             ...acc,
-                            [key]: pattern.get(t, ['x', 'y', 'z'].includes(key) ? s : q, bpm)
+                            [key]: pattern.get(t, q, bpm)
                         }), {} as Dictionary)
                     : {};
 
@@ -73,11 +72,8 @@ export class Stream {
                 // return the stream's parameters
                 return {
                     id,
-                    t, q, s, bpm,
+                    t, q, bpm,
                     e, m, solo, mute,
-                    x: mod(params.x || 0, s),
-                    y: mod(params.y || 0, s),
-                    z: mod(params.z || 0, s),
                     eparams: formatEventParams(compiled, {}), 
                     mparams: formatMutationParams(compiled, {}, lag) 
                 }

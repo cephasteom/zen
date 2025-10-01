@@ -1,13 +1,11 @@
-import { writable, get, derived } from 'svelte/store';
+import { writable, get } from 'svelte/store';
 import '../oto';
-import type { vector } from '../zen/types'
 
 export const editorValue = writable('');
 export const loadCode = writable(''); // code loaded from file
 export const t = writable(0); // time
 export const c = writable(0); // cycle
 export const q = writable(16); // quantization (frames per cycle)
-export const s = writable(16); // size of canvas
 export const editorConsole = writable<{type?: string, message?: string}>({});
 export const isPlaying = writable(false);
 export const canvas = writable(""); // q5 string for visuals
@@ -53,39 +51,6 @@ export const print = (type: string, message: string) => {
 
 export const clear = () => messages.set([]);
 
-const visualsTypes = writable<string[]>(['grid', 'sphere', 'none']);
-export const visualsData = writable<vector[]>([]);
-export const gridData = writable<number[] | number[][]>([]);
-gridData.subscribe(d => {
-    if(d && d.length) {
-        get(visualsType) === 'sphere' && visualsType.set('grid')
-        visualsTypes.set(['grid', 'none'])
-    } 
-    else {
-        visualsTypes.set(['grid', 'sphere', 'none'])
-    }
-})
-
-export const visualsType = writable<'sphere' | 'grid' | 'none'>('none')
-export const toggleVisuals = () => {
-    const types = get(visualsTypes)
-    const currentType = get(visualsType)
-    const i = types.indexOf(currentType);
-    const type = types[(i + 1) % types.length];
-    localStorage.setItem('z.visuals', type);
-    // @ts-ignore
-    visualsType.set(type);
-}
-export const showVisuals = derived(visualsType, $visualsType => $visualsType !== 'none');
-
-// function initVisuals() {
-//     if(typeof localStorage === 'undefined') return
-//     const type = localStorage.getItem('z.visuals');
-//     if(type) visualsType.set(type as any);
-// }
-
-// initVisuals();
-
 const zenChannel = new BroadcastChannel('zen');
 const zmodChannel = new BroadcastChannel('zmod')
 
@@ -96,12 +61,11 @@ zenChannel.onmessage = ({data: {message, type, data}}) => {
     ['error', 'info', 'pattern', 'success', 'credit'].includes(type) && print(type, message.toString())
     
     if(type !== 'action') return
-    const { t: time, c: cycle, q: quant, s: size, delta, gates: gs, measurements: ms, feedback: fb, inputs: ins, canvas: cvs } = data;
+    const { t: time, c: cycle, q: quant, delta, gates: gs, measurements: ms, feedback: fb, inputs: ins, canvas: cvs } = data;
     setTimeout(() => {
         t.set(time);
         c.set(cycle);
         q.set(quant);
-        s.set(size);
         gates.set(gs);
         measurements.set(ms);
         inputs.set(ins);

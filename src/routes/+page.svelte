@@ -1,7 +1,6 @@
 <script lang="ts">
     import Editor from '$lib/components/Editor/Editor.svelte';
     import Circuit from '$lib/components/Circuit.svelte';
-    import Data from '$lib/components/Data.svelte';
     import Console from '$lib/components/Console.svelte';
     import { startAudio } from '$lib/zen/index';
     import { showCircuit } from '$lib/stores/zen';
@@ -51,10 +50,6 @@
             </div>
         {/if}
 
-        <div class="data">
-            <Data />
-        </div>
-
         <Notice />
     </section>
 </main>
@@ -63,7 +58,7 @@
     .zen {
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 5fr 3fr 1fr;
+        grid-template-rows: 5fr 3fr;
         grid-gap: 1.5rem;
         user-select: none;
         min-height: calc(100vh - 1.5rem);
@@ -97,7 +92,7 @@
     
     .console {
         grid-column: 1 / 2;
-        grid-row: 2 / 4;
+        grid-row: 2;
         position: relative;
         border-top: 1px solid var(--color-grey-light);
         padding: 1.5rem 0 0 0;
@@ -137,19 +132,5 @@
             display: block;
         }
 
-    }
-
-    .data {
-        grid-column: 1;
-        grid-row: 3;
-        background-color: var(--color-grey-dark);
-        padding: 1rem;
-        display: none;
-
-        @media (min-width: 800px) {
-            display: none;
-            grid-column: 2;
-            grid-row: 2;
-        }
     }
 </style>

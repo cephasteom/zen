@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { t, c, q, s } from '$lib/stores/zen';    
+    import { t, c, q } from '$lib/stores/zen';    
 
 </script>
 
@@ -7,7 +7,6 @@
     <div>t: <span>{$t}</span></div>
     <div>c: <span>{$c}</span></div>
     <div>q: <span>{$q}</span></div>
-    <div>s: <span>{$s}</span></div>
 </div>
 
 <style lang="scss">
