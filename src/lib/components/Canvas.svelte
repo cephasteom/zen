@@ -4,6 +4,7 @@
     import 'q5';
     import { onMount } from 'svelte';
     import { canvas, isPlaying, t } from '$lib/stores/zen';
+    import { print } from '$lib/stores/zen';
   
     let q: any;
     onMount(() => {
@@ -28,17 +29,23 @@
                         const sandbox = new Proxy(q, {
                             get(target, prop) {
                                 if (prop in target) return target[prop];
-                                throw new Error(`Property "${String(prop)}" not found in Q5 API`);
+                                // throw new Error(`Property "${String(prop)}" not found in Q5 API`);
                             }
                         });
-                        const fn = new Function(str);
-                        fn.call(sandbox);
+
+                        try {
+                            const fn = new Function(str);
+                            fn.call(sandbox);
+                        } catch (e: any) {
+                            print('error', 'Error in canvas code: ' + e.message);
+                            console.warn('Error in q5 sketch:', e);
+                        }
                     }
                     : () => {
                         q.background('#15110f');
-                        // q.noLoop();
                     };
-                } catch (e) {
+                } catch (e: any) {
+                    print('error', 'Error in canvas code: ' + e.message);
                     console.warn('Error in q5 sketch:', e);
                 }
             });

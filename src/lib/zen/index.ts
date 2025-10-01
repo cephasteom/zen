@@ -201,8 +201,6 @@ export function evaluate(count: number, time: number) {
         ...mutations.map(({mparams}) => mparams.canvas).filter(c => c)
     ]
 
-    console.log(events)
-
     canvas.set(canvasPs.join('\n'))
 
     // call actions
