@@ -61,7 +61,7 @@ zenChannel.onmessage = ({data: {message, type, data}}) => {
     ['error', 'info', 'pattern', 'success', 'credit'].includes(type) && print(type, message.toString())
     
     if(type !== 'action') return
-    const { t: time, c: cycle, q: quant, delta, gates: gs, measurements: ms, feedback: fb, inputs: ins, canvas: cvs } = data;
+    const { t: time, c: cycle, q: quant, delta, gates: gs, measurements: ms, feedback: fb, inputs: ins } = data;
     setTimeout(() => {
         t.set(time);
         c.set(cycle);
@@ -69,7 +69,6 @@ zenChannel.onmessage = ({data: {message, type, data}}) => {
         gates.set(gs);
         measurements.set(ms);
         inputs.set(ins);
-        canvas.set(cvs);
     }, delta * 1000);
 }
 

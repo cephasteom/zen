@@ -8,7 +8,7 @@ import { Stream } from './classes/Stream';
 import { circuit } from './classes/Circuit';
 import { Wire } from './classes/Wire';
 import { createCount } from './utils/utils';
-import { print, clear } from "$lib/stores/zen";
+import { print, clear, canvas } from "$lib/stores/zen";
 import { nStreams, bpm, getBpm, clockSource, midiClockDevice, midiClockConfig, getClockSource, activeMidiClock, setQ, mode, midiTriggerDevice, getMode, setT } from "./stores";
 import { modes } from './data/scales'
 import { triads } from './data/chords'
@@ -195,7 +195,15 @@ export function evaluate(count: number, time: number) {
     const events = result.filter(({e}) => e)
     const mutations = result.filter(({m}) => m)
 
-    const canvas = z.canvas.get(t, q, getBpm()) || null 
+    const canvasPs = [
+        z.canvas.get(t, q, getBpm()) || '',
+        ...events.map(({eparams}) => eparams.canvas).filter(c => c),
+        ...mutations.map(({mparams}) => mparams.canvas).filter(c => c)
+    ]
+
+    console.log(events)
+
+    canvas.set(canvasPs.join('\n'))
 
     // call actions
     const delta = (time - immediate())
@@ -210,8 +218,7 @@ export function evaluate(count: number, time: number) {
         gates, 
         measurements, 
         feedback, 
-        inputs, 
-        canvas
+        inputs
     }
     channel.postMessage({ type: 'action', data: args })
 }

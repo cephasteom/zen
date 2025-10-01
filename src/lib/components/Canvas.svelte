@@ -1,4 +1,4 @@
-<!-- TODO: fix z.canvas, parse for frameCount and add loop if present, compile canvas string from all streams, visuals on off on in Tools -->
+<!-- TODO: parse for frameCount and add loop if present, compile canvas string from all streams, visuals on off on in Tools, highlight colours on editor -->
 
 <script lang="ts">
     import 'q5';
@@ -17,6 +17,7 @@
                 q.noLoop();
             };
 
+            // when canvas code changes, update draw function
             canvas.subscribe((str) => {
                 if(!$isPlaying || !q) return;
                 try {
@@ -42,6 +43,7 @@
                 }
             });
             
+            // when t changes, redraw
             t.subscribe(() => {
                 if(!$isPlaying || !q) return;
                 q.redraw();
