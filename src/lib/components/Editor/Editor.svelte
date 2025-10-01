@@ -140,7 +140,6 @@
 <style lang="scss">
     .container {
         position: relative;
-        // background-color: var(--color-black);
         background-color: transparent;
         padding-top: 1.5rem;
         padding-bottom: 0;

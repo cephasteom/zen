@@ -269,6 +269,9 @@ button:focus:not(:focus-visible) {
     background-color: transparent!important;
 }
 
+.monaco-editor .view-line span {
+    background-color: rgba(21, 17, 15, 0.35);
+}
 
 .lines-content .mtk8 {
     color: var(--color-white);

@@ -24,7 +24,7 @@
     <ul bind:this={console}>
         {#each $messages as {type, message}}
             {#each message.split("\n") as line}
-                <li class={type}>{line}</li>
+                <li class={type}><span>{line}</span></li>
             {/each}
         {/each}
     </ul>
@@ -68,6 +68,11 @@
             content: "»";
             color: var(--color-white);
             margin-right: 0.5rem;
+        }
+
+        & span {
+            background-color: rgba(21, 17, 15, 0.35);
+
         }
     }
 
