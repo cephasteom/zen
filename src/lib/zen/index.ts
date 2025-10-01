@@ -6,7 +6,6 @@ import { writable, get } from 'svelte/store';
 import { Data } from './classes/Data'
 import { Stream } from './classes/Stream';
 import { circuit } from './classes/Circuit';
-// import { Visuals } from './classes/Visuals';
 import { Wire } from './classes/Wire';
 import { createCount } from './utils/utils';
 import { print, clear } from "$lib/stores/zen";
@@ -44,7 +43,6 @@ const scope: any = {
     streams: Array(get(nStreams)).fill(0).map((_, i) => new Stream('s' + i)),
     fxstreams: Array(2).fill(0).map((_, i) => new Stream('fx' + i)),
     qubits: Array(get(nStreams)).fill(0).map((_, i) => new Wire('q' + i)),
-    // v: new Visuals(),
     d: new Data(),
     print: (message: any) => print('info', message.toString()),
     scales: () => print('info', 'Scales ->\n' + Object.keys(modes).join(', ')),
@@ -77,7 +75,7 @@ scope.qubits.forEach((wire: Wire) => {
 })
 
 /**
- * Add all pattern methods to the window object, so they can be used to spawn new patterns
+ * Add all pattern methods to the scope object, so they can be used to spawn new patterns
  */
 Pattern.methods().forEach((method: string) => {
     // include method prefixed with $ for backwards compatibility
@@ -182,6 +180,7 @@ export function evaluate(count: number, time: number) {
         : 0
     )
     
+    // run circuit if there are any gates
     const gates = circuit.gates
     if(gates.flat().length) {
         circuit.run(inputs)
@@ -189,7 +188,7 @@ export function evaluate(count: number, time: number) {
     }
 
     // compile parameters, events and mutations
-    const compiled = [...scope.streams, ...scope.fxstreams]
+    const compiled = [...scope.streams, ...scope.fxstreams, scope.z]
         .map(stream => stream.get(t, q, s, getBpm()))
 
     const soloed = compiled.filter(({solo}) => solo)
@@ -197,13 +196,6 @@ export function evaluate(count: number, time: number) {
     const events = result.filter(({e}) => e)
     const mutations = result.filter(({m}) => m)
 
-    // const vis = scope.v.get(
-    //     result
-    //         .filter(({id}) => id.startsWith('s'))
-    //         .map(({x,y,z,id,e,m}) => ({x,y,z,id,e:!!e, m:!!m}))
-    // )
-
-    // const grid = z.grid.get(t, q) || []
     const canvas = z.canvas.get(t, q, s, getBpm()) || null 
 
     // call actions

@@ -1,3 +1,5 @@
+<!-- TODO: fix z.canvas, parse for frameCount and add loop if present, compile canvas string from all streams, visuals on off on in Tools -->
+
 <script lang="ts">
     import 'q5';
     import { onMount } from 'svelte';
@@ -16,7 +18,7 @@
             };
 
             canvas.subscribe((str) => {
-                if(!q) return;
+                if(!$isPlaying || !q) return;
                 try {
                     q.draw = str 
                     ? () => {
@@ -41,12 +43,9 @@
             });
             
             t.subscribe(() => {
-                if(!$isPlaying) return;
+                if(!$isPlaying || !q) return;
                 q.redraw();
             });
-            // isPlaying.subscribe((playing) => {
-            //     playing ? q.loop() : q.noLoop();
-            // });
         }
 
 

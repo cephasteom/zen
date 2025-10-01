@@ -106,8 +106,6 @@ zenChannel.onmessage = ({data: {message, type, data}}) => {
         measurements.set(ms);
         inputs.set(ins);
         canvas.set(cvs);
-        // visualsData.set(v);
-        // gridData.set(grid);
     }, delta * 1000);
 }
 
