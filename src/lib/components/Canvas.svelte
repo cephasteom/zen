@@ -1,4 +1,4 @@
-<!-- TODO: parse for frameCount and add loop if present, compile canvas string from all streams, visuals on off on in Tools, highlight colours on editor -->
+<!-- TODO: parse for frameCount and add loop if present, visuals on off on in Tools, highlight colours on editor -->
 
 <script lang="ts">
     import 'q5';
@@ -9,7 +9,6 @@
     let q: any;
     onMount(() => {
         async function initQ5() {
-            // @ts-ignore
             q = await Q5.WebGPU();
             q.setup = () => {
                 q.createCanvas(q.windowWidth, q.windowHeight);
@@ -29,7 +28,6 @@
                         const sandbox = new Proxy(q, {
                             get(target, prop) {
                                 if (prop in target) return target[prop];
-                                // throw new Error(`Property "${String(prop)}" not found in Q5 API`);
                             }
                         });
 
@@ -56,7 +54,6 @@
                 q.redraw();
             });
         }
-
 
         initQ5();
     });
