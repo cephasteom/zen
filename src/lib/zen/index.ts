@@ -195,19 +195,19 @@ export function evaluate(count: number, time: number) {
     const events = result.filter(({e}) => e)
     const mutations = result.filter(({m}) => m)
 
-    // const canvasPs = Array.from(new Set([
-    //     z.canvas.get(t, q, getBpm()) || '',
-    //     ...events.map(({eparams}) => eparams.canvas).filter(c => c),
-    //     ...mutations.map(({mparams}) => mparams.canvas).filter(c => c)
-    // ]))
-
-    const canvasPs = result
+    // build canvas string
+    canvas.set(result
         .filter(stream => (stream.e || stream.m) && (stream.eparams.canvas || stream.mparams.canvas))
-        .map(stream => stream.e ? stream.eparams : stream.mparams)
-        // replace any #param in the canvas string with the actual param value
-        .map(params => params.canvas.replace(/#([a-zA-Z_][a-zA-Z0-9_]*)/g, (_:any, key: string) => params[key] || 0))
-
-    canvas.set(canvasPs.join('\n'))
+        .map(stream => {
+            const params = stream.e ? stream.eparams : stream.mparams
+            return params.canvas
+                // replace any occurence of #e with stream.e or #m with stream.m
+                .replace(/#(e|m)\b/g, (_:any, key: string) => stream[key] ? stream[key].toString() : '0')
+                // replace any #param in the canvas string with the actual param value
+                .replace(/#([a-zA-Z_][a-zA-Z0-9_]*)/g, (_:any, key: string) => params[key] || '0')
+        })
+        .join('\n')
+    )
 
     // call actions
     const delta = (time - immediate())
