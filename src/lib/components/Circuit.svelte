@@ -80,10 +80,6 @@
             @media (min-width: 1200px) {
                 max-width: calc(50vw - 6.25rem);
             }
-
-            @media all and (display-mode: fullscreen) {
-                max-width: calc(((100vw/5) * 3) - 10rem);
-            }
         }
 
         &__wires {

@@ -26,6 +26,7 @@
             <li><a href="https://tonejs.github.io/" target="_blank">Tone.js</a></li>
             <li><a href="https://rnbo.cycling74.com/" target="_blank">RNBO (Cycling '74')</a></li>
             <li><a href="https://www.npmjs.com/package/quantum-circuit" target="_blank">Quantum Circuit (Quantastica)</a></li>
+            <li><a href="https://q5js.org/home/" target="_blank">Q5.js</a></li>
         </ul>
     </div>
 </section>

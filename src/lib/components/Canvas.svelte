@@ -15,6 +15,7 @@
                 q.colorMode(q.RGB, 255);
                 q.background('#15110f');
                 q.noLoop();
+
             };
 
             // when canvas code changes, update draw function
