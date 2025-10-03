@@ -195,12 +195,17 @@ export function evaluate(count: number, time: number) {
     const events = result.filter(({e}) => e)
     const mutations = result.filter(({m}) => m)
 
-    const canvasPs = Array.from(new Set([
-        z.canvas.get(t, q, getBpm()) || '',
-        ...events.map(({eparams}) => eparams.canvas).filter(c => c),
-        ...mutations.map(({mparams}) => mparams.canvas).filter(c => c)
-    ]))
+    // const canvasPs = Array.from(new Set([
+    //     z.canvas.get(t, q, getBpm()) || '',
+    //     ...events.map(({eparams}) => eparams.canvas).filter(c => c),
+    //     ...mutations.map(({mparams}) => mparams.canvas).filter(c => c)
+    // ]))
 
+    const canvasPs = result
+        .filter(stream => (stream.e || stream.m) && (stream.eparams.canvas || stream.mparams.canvas))
+        .map(stream => stream.e ? stream.eparams : stream.mparams)
+        // replace any #param in the canvas string with the actual param value
+        .map(params => params.canvas.replace(/#([a-zA-Z_][a-zA-Z0-9_]*)/g, (_:any, key: string) => params[key] || 0))
 
     canvas.set(canvasPs.join('\n'))
 
