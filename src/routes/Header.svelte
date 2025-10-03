@@ -35,12 +35,10 @@
     on:resize={closeMenu} 
     on:mousemove={debounce((e) => e.clientY < 10 && showHeader(true), 100)}
     on:click={() => page.url.pathname === '/' && showHeader(false)}
-    on:keydown={(e) => {
-        // if accessibility keys needed for tabbing etc, hide the header
-        if (e?.key && !['Tab', 'Shift', 'Control', 'Alt', 'Meta'].includes(e.key)) {
-            showHeader(false);
-        }
-    }}
+    on:keydown={e => page.url.pathname === '/'
+        && e?.key && !['Tab', 'Shift', 'Control', 'Alt', 'Meta'].includes(e.key)
+        && showHeader(false)
+    }
 />
 
 <header

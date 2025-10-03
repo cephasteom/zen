@@ -5,14 +5,14 @@
 
 <section class="content">
     <div class="content__inner">
-        <h1>Live code quantum computer music in your browser</h1>
+        <h1>Live code music in your browser</h1>
         <h2>About</h2>
-        <p>Zen is a live coding environment for expressing complex patterns with very little code. It was written to take advantage of JavaScript's flexibility and is primed for pattern interference. Design and run quantum circuits and use the results to trigger musical events. Map musical and sonic parameters across time and space and draw multiple trajectories around a canvas to generate infinitely complex, morphing sounds.</p>
+        <p>Zen is a live coding application for expressing complex, interference patterns. It provides a holistic environment for algorithm design, sound synthesis, and real-time performance, requiring no further dependencies outside of the browser. Although it can be approached as a standard live coding language, its most unique feature is the ability to leverage quantum computing principles to create and manipulate sound.</p>
 
-        <p>Zen is built for the browser, but you'd be mad to put your faith in the internet if you're going on stage. And so, Zen can be downloaded as a desktop app for Mac, Windows and Linux - with added features. Have a look at this <a href="https://github.com/cephasteom/zen-electron/releases">link</a>.</p>
+        <p>Zen can be downloaded as a desktop app for Mac, Windows and Linux. See the <a href="https://github.com/cephasteom/zen-electron/releases">releases</a> page.</p>
 
         <h3>Credits</h3>
-        <p>Zen is the work of Cephas Teom, a musician and coder based in the UK. It was devised, researched, and built at the <a href="https://www.plymouth.ac.uk/research/iccmr" target="_blank">ICCMR, University of Plymouth</a>, as part of the <a href="https://www.plymouth.ac.uk/courses/postgraduate/phd-computer-music" target="_blank">PhD Computer Music</a>, exploring the intersection of quantum computer music, live coding, and the web.</p>
+        <p>Zen is the work of Cephas Teom / Peter Thomas, an artist, researcher, and software developer based in the UK. It was devised, researched, and built at the <a href="https://www.plymouth.ac.uk/research/iccmr" target="_blank">ICCMR, University of Plymouth</a>, while studying for the <a href="https://www.plymouth.ac.uk/courses/postgraduate/phd-computer-music" target="_blank">PhD Computer Music</a>. The thesis can be read in full on the <a href="https://researchportal.plymouth.ac.uk/en/studentTheses/zen-and-the-art-of-praxis" target="_blank">university archive</a> and provides a comprehensive overview of the project's development and underlying concepts, as well as a useful primer on quantum computing.</p>
             
         <p>You can see more of his work by following the links below:</p>
         <ul>
@@ -36,6 +36,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        min-height: 0;
         &__inner {
             width: 100%;
             max-width: 1200px;
