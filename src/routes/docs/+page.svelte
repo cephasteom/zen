@@ -29,17 +29,32 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        min-height: calc(100vh - 72px - 2rem - 67.5px);
         &__inner {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-
+            height: 100%;
         }
     }
     ul {
-        padding: 0;
+        padding: 2rem 0;
+        
+        @media (min-width: 798px) {
+            display: flex;
+            flex-direction: column;   /* stack vertically */
+            flex-wrap: wrap;          /* allow wrapping into a second column */
+            max-height: 20rem;        /* controls when wrapping happens */
+            list-style: none;
+        }
+
+        & li {
+            flex: 0 0 auto; /* don’t stretch items */
+        }
+        
         & a {
             text-decoration: none;
+            color: var(--color-yellow);
             &:hover {
                 color: var(--color-theme-1);
             }

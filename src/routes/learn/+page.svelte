@@ -42,8 +42,6 @@
             flex-wrap: wrap;          /* allow wrapping into a second column */
             max-height: 20rem;        /* controls when wrapping happens */
             list-style: none;
-            // display: flex;
-            // flex-wrap: wrap;
         }
 
         & li {

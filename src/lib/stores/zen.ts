@@ -46,10 +46,16 @@ initialMessages.forEach((message, index) => {
 });
 
 export const print = (type: string, message: string) => {
-    messages.update(arr => [...arr, {
-        type, 
-        message
-    }]);
+    // remove any " or " from start/end of message
+    message = message.replace(/^"|"$/g, '');
+    const parts = message.split(':');
+    const prefix = parts.length === 2 ? parts[0].trim() : '';
+
+    messages.update(arr => [
+        // remove any messages that start with the same prefix
+        ...arr.filter(m => !m.message.startsWith(prefix)), 
+        { type, message }
+    ]);
 }
 
 export const clear = () => messages.set([]);

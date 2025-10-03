@@ -164,10 +164,15 @@ li {
 	padding: 1.5rem;
     background-color: var(--color-grey-dark);
 }
+
 @media(min-width: 1200px) {
     .content {
         padding: 1rem 2rem;
     }
+}
+
+.markdown ul {
+    padding: 0;
 }
 
 pre > code {

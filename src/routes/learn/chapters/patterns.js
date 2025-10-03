@@ -1,33 +1,33 @@
 export default `# Patterns
-The [Pattern class](/docs/classes#pattern) is Zen's primary building block. As we shall see, in Zen *everything is a pattern*. Once you have mastered patterns, you have mastered Zen. Run the following code in the editor:
+The [Pattern class](/docs/classes#pattern) is Zen’s core building block — in Zen, *everything is a pattern*. Mastering patterns means mastering Zen. Run the following code in the editor and note the changing values in the console:
 \`\`\`js
-s0.x.saw()
+s0.x.saw().print()
 s0.e.every(1)
 \`\`\`
-\`s0\`, or \`s1\`, \`s2\`, \`s3\` etc., are instances of the [Stream class](/docs/classes#stream), which we will cover in the next chapter. (Almost) every parameter of a stream returns a pattern. So, for example, \`.x\` and \`.e\` are patterns. \`.x\` controls the x position of the stream on the canvas and expects values between 1 and 0. \`.e\` determines whether a stream should trigger an event and expects patterns of 1s or 0s.
+Here, \`s0\` is a Stream. We'll cover these in the next chapter. Every parameter of a Stream returns a Pattern. \`.e\` is a special parameter that triggers events. Other parameters like \`.x\`, \`.y\`, or even \`.banana\`, are user-defined and can be used for anything you like.
 
 Patterns have many useful methods for generating interesting streams of values. The \`.set()\` method is used to set a constant value, whereas \`every()\` returns a 1 every n divisions. For example:
 \`\`\`js
-s0.x.set(0.5)
-s0.e.every(4)
+s0.x.set(0.5).print()
+s0.e.every(4).print()
 \`\`\`
 
-Methods such as \`.sine()\`, \`.tri()\`, and \`.square()\` return changing values that depend on the current time. By default, most methods return normalised values, but you can pass additional arguments to determine how their output should be scaled. This example returns values between 0 and 0.5, at a frequency of 2 cycles per bar:
+Others, like \`.sine()\`, \`.tri()\`, and \`.square()\`, return changing values. Most methods return normalised values (between 0 and 1), but take additional arguments for frequency and scaling:
 \`\`\`js
-s0.x.sine(2,0,0.5)
+s0.x.sine(2,0,0.5).print() // a sine wave that oscillates between 0 and 0.5 every 2 cycles
 \`\`\`
 
 Pattern methods can be chained:
 \`\`\`js
 s0.x.sine(1,0.5,1) // this is the same...
-s0.x.sine().mul(0.5).add(0.5) // ...as this
+s0.x.sine(1).mtr(0.5,1) // ...as this
 \`\`\`
 
-Pattern arguments don't have to be constant. You can pass other patterns as arguments, which allows for complex patterns to be built from simpler ones. For example:
+Pattern arguments don't have to be numbers; you can use other patterns:
 \`\`\`js
-s0.x.sine() // move the stream left and right with a sine wave
-s0.y.saw(1,s0.x,1) // move the stream up and down with a saw wave, scales by the x position
-s0.e.set(s0.x).gt(0.5) // trigger an event when the x position is greater than 0.5
+s0.x.sine().print('x')
+s0.y.set(1).sub(s0.x).print('y') // set y to be the inverse of x
+s0.e.set(1)
 \`\`\`
 
 All Pattern methods exist in the global scope, which allows you to nest Patterns in other Patterns. For example:

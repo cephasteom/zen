@@ -68,6 +68,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        min-height: calc(100vh - 72px - 2rem - 67.5px);
     }
 
     .markdown {
