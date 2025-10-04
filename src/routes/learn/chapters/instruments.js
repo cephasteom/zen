@@ -1,5 +1,5 @@
 export default `# Instruments
-Zen has an internal synth engine, with a range of high-quality instruments and effects, all within your browser. Full documentation for instruments and effects can be found in the docs. This chapter gives a flavour of what’s possible.
+Zen has a range of high-quality instruments and effects. Full documentation for instruments and effects can be found in the [docs](\docs).
 
 ## Generic Parameters
 Most instruments share a common set of parameters. Envelope parameters are \`a\` (attack), \`d\` (decay), \`s\` (sustain), \`r\` (release). The \`dur\` parameter controls the duration of the note, the \`amp\` parameter controls the amplitude of the note, and the \`vol\` parameter controls the overall volume of the instrument. \`lag\` determines the time in ms it takes for a stream to mutate (see [mutations](/learn/mutations)), whilst \`nudge\` allows you to delay a stream's events by a given amount of time (in ms).

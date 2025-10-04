@@ -21,21 +21,6 @@ z.bpm.sine(.5, 60, 120) // modulate the bpm between 60 and 120 bpm with a sine w
 \`z.q\` sets the the amount of divisions per cycle. By default, this is 16.
 You should probably only set this using \`z.q.set(...)\`. Other methods may lead to some unexpected, but perhaps interesting, results.
 
-## z.s
-\`z.s\` sets the size of the canvas.By default, this is 16.
-
-Explore the code below whilst watching the pattern visualiser to see how these parameters affect each other.
-
-\`\`\`js
-z.bpm.sine(.25,120,60)
-z.t.saw().mul(32).step(1)
-z.q.set(16)
-z.s.sine(.25).mul(32).step(1)
-
-s0.x.saw()
-s0.e.set(1)
-\`\`\`
-
 ## z.seed
 You can seed the random number generator using \`z.seed\`, allowing you to use randomness with repeatable results. E.g.:
 \`\`\`js

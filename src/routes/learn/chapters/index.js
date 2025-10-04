@@ -9,7 +9,6 @@ import mini_notation from './mini-notation'
 import mutations from './mutations'
 import custom_samples from './custom-samples'
 import instruments from './instruments'
-import the_canvas from './the-canvas'
 import midi from './midi'
 import global_settings from './global-settings'
 import utilities from "./utilities";
@@ -19,6 +18,7 @@ import data from './data'
 import clocks from "./clocks";
 import modes from './modes'
 import zmod from "./zmod";
+import q5js from './q5js'
 
 const content = { 
     intro, 
@@ -28,12 +28,12 @@ const content = {
     streams, 
     mini_notation,
     mutations,
-    the_canvas,
     zen_quantum,
     instruments,
     effects,
     custom_samples,
     zmod,
+    q5js,
     global_settings,
     midi,
     utilities,

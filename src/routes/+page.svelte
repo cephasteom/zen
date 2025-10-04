@@ -26,7 +26,6 @@
 
 <Tools />
 <main>
-    <Canvas />
     <section class="zen container">
         <div 
             class="editor"
@@ -52,6 +51,7 @@
 
         <Notice />
     </section>
+    <Canvas />
 </main>
 
 <style lang="scss">

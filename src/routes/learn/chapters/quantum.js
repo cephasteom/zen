@@ -16,7 +16,7 @@ q0.rx('1?0*16')
 q1.rx(saw().step(0.25))
 \`\`\`
 
-The outcomes of circuit executions, encompassing the state vector, individual qubit measurements, basis states, probabilities, and amplitude coefficients, can serve as data to be sonified within your Zen code. In the remainder of this section, we explain how to construct quantum circuits within Zen, and how to access the available quantum data within your compositions. For a more detailed explanation of quantum computer music, see [Miranda (2022)](https://link.springer.com/book/10.1007/978-3-031-13909-3).
+The outcomes of circuit executions, encompassing the state vector, individual qubit measurements, basis states, probabilities, and amplitude coefficients, can serve as data to be sonified within your Zen code. In the remainder of this section, we explain how to construct quantum circuits within Zen, and how to access the available quantum data within your compositions. For a more detailed explanation of quantum computer music, see [Miranda (2022)](https://link.springer.com/book/10.1007/978-3-031-13909-3) or [Thomas (2025)](https://researchportal.plymouth.ac.uk/en/studentTheses/zen-and-the-art-of-praxis).
 
 Run the following example to get a feel for quantum programming in Zen:
 \`\`\`js
@@ -24,13 +24,9 @@ q0.h().cx([1]).ccx([1,2])
 q1.fb(0)
 q2.fb(1)
 
-s0.e.qm(0, 32)
-s1.e.qm(1, 32)
-s2.e.qm(2, 32)
-
-s0.set({inst: 1, bank: 'bd808', i: 3, cut: 0})
-s1.set({inst: 1, bank: 'sd808', i: '0..1?*16', cut: [0,1]})
-s2.set({inst: 1, bank: 'hh', i: '0..16?*16', cut: [0,2], vol: 0.5})
+s0.set({inst: 1, bank: 'bd808', i: 3, cut: 0, e: qm(0)})
+s1.set({inst: 1, bank: 'sd808', i: '0..1?*16', cut: [0,1], e: qm(1)})
+s2.set({inst: 1, bank: 'hh', i: '0..16?*16', cut: [0,2], vol: 0.5, e: qm(2)})
 \`\`\`
 
 ## Gates

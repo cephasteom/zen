@@ -2,9 +2,7 @@ export default `# Custom Samples
 There are a number of ways to load your own samples in Zen. 
 
 ## loadSamples()
-The \`loadSamples()\` function allows you to load samples that are publicly available via a URL. It takes two arguments:
-* an object - keys are the names of the sample bank, values are arrays of sample URLs
-* an optional base URL to prepend to each sample URL
+The \`loadSamples()\` function allows you to load samples that are publicly available via a URL. It takes two arguments: an object containing sample banks, and arrays of sample URLs, and an optional base URL to prepend to each sample URL.
 \`\`\`js
 loadSamples(
   {test: ['808bd/BD0000.WAV'], '808bd/BD0001.WAV']}, 

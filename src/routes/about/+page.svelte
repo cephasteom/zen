@@ -7,12 +7,14 @@
     <div class="content__inner">
         <h1>Live code music in your browser</h1>
         <h2>About</h2>
-        <p>Zen is a live coding application for expressing complex, interference patterns. It provides a holistic environment for algorithm design, sound synthesis, and real-time performance, requiring no further dependencies outside of the browser. Although it can be approached as a standard live coding language, its most unique feature is the ability to leverage quantum computing principles to create and manipulate sound.</p>
+        <p>
+        Zen is a live coding application for musical composition, sound design, and performance in real time, all within the browser. While it can be used like a standard live coding language, its most distinctive feature is the use of quantum computing algorithms for generative music.
+        </p>
 
         <p>Zen can be downloaded as a desktop app for Mac, Windows and Linux. See the <a href="https://github.com/cephasteom/zen-electron/releases">releases</a> page.</p>
 
         <h3>Credits</h3>
-        <p>Zen is the work of Cephas Teom / Peter Thomas, an artist, researcher, and software developer based in the UK. It was devised, researched, and built at the <a href="https://www.plymouth.ac.uk/research/iccmr" target="_blank">ICCMR, University of Plymouth</a>, while studying for the <a href="https://www.plymouth.ac.uk/courses/postgraduate/phd-computer-music" target="_blank">PhD Computer Music</a>. The thesis can be read in full on the <a href="https://researchportal.plymouth.ac.uk/en/studentTheses/zen-and-the-art-of-praxis" target="_blank">university archive</a> and provides a comprehensive overview of the project's development and underlying concepts, as well as a useful primer on quantum computing.</p>
+        <p>Zen is the work of Cephas Teom / Peter Thomas, an artist, researcher, and software developer based in the UK. It was devised, researched, and built at the <a href="https://www.plymouth.ac.uk/research/iccmr" target="_blank">ICCMR, University of Plymouth</a>, while studying for the <a href="https://www.plymouth.ac.uk/courses/postgraduate/phd-computer-music" target="_blank">PhD Computer Music</a>. You can read about the project <a href="https://researchportal.plymouth.ac.uk/en/studentTheses/zen-and-the-art-of-praxis" target="_blank">here</a>, which includes a comprehensive overview of the project's development, and a useful primer on quantum computing for musicians.</p>
             
         <p>You can see more of his work by following the links below:</p>
         <ul>
