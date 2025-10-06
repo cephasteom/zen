@@ -48,17 +48,17 @@ export class Wire {
     {
         this._offset > 0 && this._offset++
 
-        const hasControlQubits = gate.numControlQubits > 0 || gate.numTargetQubits > 1
+        const hasConnections = gate.numControlQubits > 0 || gate.numTargetQubits > 1
         const hasParams = gate.params.length > 0
         
         // determine which argument is which
         // important for live coding so we don't have to pass all arguments
-        const connections = [(hasControlQubits ? arg1 : [])].flat().map(i => (i ||0) % get(nStreams)) || []
+        const connections = [(hasConnections ? arg1 : [])].flat().map(i => (i ||0) % get(nStreams)) || []
         const params = [(hasParams 
-            ? hasControlQubits ? arg2 : arg1
+            ? hasConnections ? arg2 : arg1
             : [])].flat().filter(v => v!== undefined && v !== null)
 
-        const offset = [(hasControlQubits
+        const offset = [(hasConnections
             ? hasParams ? arg3 : arg2
             : hasParams ? arg2 : arg1)].flat()[0] || 0  
             
@@ -81,7 +81,7 @@ export class Wire {
         
         // intialise the gate without options
         const defaultOptions = {creg, params: {theta: 0, phi: 0, lambda: 0}}
-        const id = hasControlQubits
+        const id = hasConnections
             ? circuit.insertGate(key, column, [this.row, ...controlQubits], defaultOptions)
             : circuit.addGate(key, column, this.row, defaultOptions)
         
