@@ -173,5 +173,8 @@ synths.subscribe((synths: Dictionary) => updateSynthsSamples(synths))
 
 samples.subscribe((samples: Dictionary) => {
     updateSynthsSamples(get(synths))
-    otoChannel.postMessage({ type: 'info', message: 'Sample banks ->\n' + Object.keys(samples).join(', ') + '\n'})
+    otoChannel.postMessage({ 
+        type: 'info', 
+        message: 'Sample banks ->\n' + Object.keys(samples).filter(key => !key.startsWith('wt_')).join(', ') + '\n'
+    })
 })

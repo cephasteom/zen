@@ -52,8 +52,12 @@ export const print = (type: string, message: string) => {
     const prefix = parts.length === 2 ? parts[0].trim() : '';
 
     messages.update(arr => [
-        // remove any messages that start with the same prefix
-        ...arr.filter(m => !m.message.startsWith(prefix)), 
+        ...arr.filter(m => 
+            // remove any messages that start with the same prefix
+            !(prefix && m.message.startsWith(prefix)) 
+            // or are exactly the same as the new message but don't start with a number
+            && (m.message !== message || /^\d/.test(message))
+        ), 
         { type, message }
     ]);
 }
