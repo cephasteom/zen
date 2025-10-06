@@ -48,9 +48,9 @@ export class Wire {
     {
         this._offset > 0 && this._offset++
 
-        const hasControlQubits = gate.numControlQubits > 0
+        const hasControlQubits = gate.numControlQubits > 0 || gate.numTargetQubits > 1
         const hasParams = gate.params.length > 0
-
+        
         // determine which argument is which
         // important for live coding so we don't have to pass all arguments
         const connections = [(hasControlQubits ? arg1 : [])].flat().map(i => (i ||0) % get(nStreams)) || []
@@ -65,9 +65,11 @@ export class Wire {
         this._offset += offset
 
         // format connections so that they are appropriate list of control qubits
-        const controlQubits =  connections
+        const controlQubits = connections
+            // you can't connect a qubit to itself
             .filter(qubit => qubit !== this.row)
-            .filter((_, i) => i < gate.numControlQubits)
+            // limit the number of control qubits to what the gate can handle
+            .filter((_, i) => i < (gate.numControlQubits + gate.numTargetQubits - 1))
         
         const gates = circuit.gates[this.row] || [];
         const firstNullIndex = gates.findIndex((gate: any) => gate === null);
