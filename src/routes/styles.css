@@ -74,6 +74,7 @@ body {
 	min-height: 100vh;
 	margin: 0;
     letter-spacing: 0.1rem;
+    background-color: var(--color-black);
     @media all and (display-mode: fullscreen) {
         min-height: calc(100vh - 2rem);
     }
