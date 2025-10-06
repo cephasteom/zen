@@ -1,5 +1,6 @@
 import seedRandom from 'seedrandom'
-import { Noise } from 'noisejs'
+import pkg from 'noisejs';
+const {Noise} = pkg;
 import { get, writable } from 'svelte/store';
 
 export const nStreams = writable(32)

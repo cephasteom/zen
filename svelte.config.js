@@ -1,4 +1,3 @@
-
 // import adapter from "@ptkdev/sveltekit-electron-adapter"; // for when you want to build an electron app
 import adapter from '@sveltejs/adapter-auto';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
@@ -15,6 +14,7 @@ const config = {
 	kit: { 
 		adapter: adapter({
 			// strict: false // again, should be active when you build an electron app
+			strict: false
 		}),
 		version: {
 			name: pkg.version,

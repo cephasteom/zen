@@ -1,16 +1,16 @@
 <script lang="ts">
-    // @ts-ignore
-    import { page } from '$app/stores';
-    // @ts-ignore
+    import { page } from '$app/state';
     import logo from '$lib/images/karma.png';
     import Icon from 'svelte-awesome';
     import { faBars, faXmark, faDownload } from '@fortawesome/free-solid-svg-icons';
     import { isApp } from '$lib/electronAPI/index';
-
     import { version } from '$app/environment';
+    import { debounce } from '$lib/zen/utils/utils';
 
     let showMobileMenu = false;
     let menu: HTMLUListElement;
+    let thisHeader: HTMLElement;
+    let headerisVisible = true;
 
     const toggleMenu = () => {
         showMobileMenu = !showMobileMenu;
@@ -18,73 +18,95 @@
     }
 
     const closeMenu = () => {
-        if(window.innerWidth > 599) return (menu.style.display = 'flex');
+        if(window.innerWidth > 799) return (menu.style.display = 'flex');
         showMobileMenu = false;
         menu && (menu.style.display = 'none');
     }
+
+    const showHeader = (show: boolean = true) => {
+        if (headerisVisible === show) return;
+        headerisVisible = show;
+        thisHeader && (thisHeader.style.height = show ? '72px' : '0px');
+        thisHeader && (thisHeader.style.opacity = show ? '1' : '0');
+    };
 </script>
 
-<svelte:window on:resize={closeMenu} />
+<svelte:window 
+    on:resize={closeMenu} 
+    on:mousemove={debounce((e) => e.clientY < 10 && showHeader(true), 100)}
+    on:click={() => page.url.pathname === '/' && showHeader(false)}
+    on:keydown={e => page.url.pathname === '/'
+        && e?.key && !['Tab', 'Shift', 'Control', 'Alt', 'Meta'].includes(e.key)
+        && showHeader(false)
+    }
+/>
 
-<header>
-    <nav class="container">
-        {#if isApp()}
-            <span class="icon">
-                <img
-                    src={logo}
-                    class="mr-3 h-6 sm:h-6"
-                    alt="Zen Logo"
-                />
-                <p>zen <span>{version}</span></p>
-            </span>
-        {:else}
-            <a 
-                href={(isApp() ? "https://zen.cephasteom.co.uk" : "") + "/"}
-                target={isApp() ? "_blank" : ""}
-                class="icon" on:click={closeMenu}
-            >
-                <img
-                    src={logo}
-                    class="mr-3 h-6 sm:h-6"
-                    alt="Zen Logo"
-                />
-                <p>zen <span>{version}</span></p>
-            </a>
-        {/if}
-        <button on:click={toggleMenu} class="menu-toggle">
-            <Icon data="{showMobileMenu ? faXmark : faBars}" />
-        </button>
-    
-        <ul class="menu" bind:this={menu}>
-            <li 
-                class="menu__item"><a on:click={closeMenu} 
-                class={$page.url.pathname === '/about' ? 'active' : ''} 
-                href={(isApp() ? "https://zen.cephasteom.co.uk" : "") + "/about"}
-                target={isApp() ? "_blank" : ""}
-            >About</a></li>
-            <li 
-                class="menu__item"><a on:click={closeMenu} 
-                class={$page.url.pathname.includes('/learn') ? 'active' : ''} 
-                href={(isApp() ? "https://zen.cephasteom.co.uk" : "") + "/learn"}
-                target={isApp() ? "_blank" : ""}
-            >Learn</a></li>
-            <li 
-                class="menu__item"><a on:click={closeMenu} 
-                class={$page.url.pathname === '/docs' ? 'active' : ''} 
-                href={(isApp() ? "https://zen.cephasteom.co.uk" : "") + "/docs"}
-                target={isApp() ? "_blank" : ""}
-            >Docs</a></li>
-            <li class="menu__item">
+<header
+    bind:this={thisHeader}
+>
+    <nav>
+        <div class="container">
+            {#if isApp()}
+                <span class="icon">
+                    <img
+                        src={logo}
+                        class="mr-3 h-6 sm:h-6"
+                        alt="Zen Logo"
+                    />
+                    <p><span>{version}</span></p>
+                </span>
+            {:else}
                 <a 
-                    href="https://github.com/cephasteom/zen-electron/releases" 
-                    target="_blank"
-                    class="icon"
+                    href={(isApp() ? "https://zen.cephasteom.co.uk" : "") + "/"}
+                    target={isApp() ? "_blank" : ""}
+                    class="icon" on:click={closeMenu}
                 >
-                    <Icon data={faDownload} />
+                    <img
+                        src={logo}
+                        class="mr-3 h-6 sm:h-6"
+                        alt="Zen Logo"
+                    />
+                    <p><span>{version}</span></p>
                 </a>
-            </li>
-        </ul>
-    
+            {/if}
+            <button on:click={toggleMenu} class="menu-toggle">
+                <Icon scale={1.5} data="{showMobileMenu ? faXmark : faBars}" />
+            </button>
+        
+            <ul class="menu" bind:this={menu}>
+                <li 
+                    class="menu__item"><a on:click={closeMenu} 
+                    class={page.url.pathname === '/about' ? 'active' : ''}
+                    href={(isApp() ? "https://zen.cephasteom.co.uk" : "") + "/about"}
+                    target={isApp() ? "_blank" : ""}
+                    on:click={e => e.stopPropagation() /** prevent the header hiding when clicking a link */}
+                >About</a></li>
+                <li 
+                    class="menu__item"><a on:click={closeMenu} 
+                    class={page.url.pathname === '/learn' ? 'active' : ''} 
+                    href={(isApp() ? "https://zen.cephasteom.co.uk" : "") + "/learn"}
+                    target={isApp() ? "_blank" : ""}
+                    on:click={e => e.stopPropagation() /** prevent the header hiding when clicking a link */}
+                >Learn</a></li>
+                <li 
+                    class="menu__item"><a on:click={closeMenu} 
+                    class={page.url.pathname === '/docs' ? 'active' : ''} 
+                    href={(isApp() ? "https://zen.cephasteom.co.uk" : "") + "/docs"}
+                    target={isApp() ? "_blank" : ""}
+                    on:click={e => e.stopPropagation() /** prevent the header hiding when clicking a link */}
+                >Docs</a></li>
+                <li class="menu__item">
+                    <a 
+                        href="https://github.com/cephasteom/zen-electron/releases" 
+                        target="_blank"
+                        class="icon"
+                    >
+                        <Icon data={faDownload} />
+                    </a>
+                </li>
+            </ul>
+        
+        </div>
     </nav>
 </header>
 
@@ -93,57 +115,58 @@
 	header {
 		display: flex;
 		justify-content: center;
+        flex-direction: column;
         background-color: var(--color-grey-darkest);
-
-        @media all and (display-mode: fullscreen) {
-            background-color: var(--color-grey-darker);
-            & > nav { display: none }
-        }
+        border-bottom: 0.25px solid var(--color-grey-light);
+        height: 72px;
+        overflow: hidden;
+        opacity: 1;
+        transition: height 0.75s ease-in-out, opacity 0.75s ease-in-out;
 	}
+
     nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem;
-
-        @media (min-width: 1200px) {
-            padding: 1rem 2rem;
+        padding: 1.5rem;
+        border-bottom: 0.25px solid var(--color-grey-light);
+        
+        & .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            @media (min-width: 1200px) {
+                padding: 1.5rem 0;
+            }
+    
+            @media (min-width: 1664px) {
+                padding-left: 0rem;
+                padding-right: 0rem;
+            }
         }
 
-        @media (min-width: 1664px) {
-            padding-left: 0rem;
-            padding-right: 0rem;
-        }
     }
     
     .icon {
-        height: 2rem;
-        @media(min-width: 600px) {
-            height: 1.5rem;
-        }
+        height: 1.5rem;
         display: flex;
         align-items: center;
         font-size: var(--text-sm);
         z-index: 200;
+
         img {
             height: 100%;
             object-fit: contain;
             filter: invert(1);
-            margin-right: 0.125rem;
-            transform: rotate(-45deg);
+            margin-right: 0.5rem;
+            transform: rotate(-45deg) scale(1.5);
         }
         p {
             position: relative;
-            top: -1.5px;
             margin: 0;
-            font-size: var(--text-sm);
+            font-size: var(--text-xs);
             color: white;
 
             & span {
-                font-size: 8px;
                 position: relative;
                 color: var(--color-theme-2);
-                opacity: 0.8;
             }
         }
     }
@@ -160,16 +183,16 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        background-color: var(--color-theme-1);
+        background-color: var(--color-grey-darker);
 
         &__item a {
             text-transform: uppercase;
             text-decoration: none;
             color: #FFF;
-            font-size: var(--text-xs);
+            font-size: var(--text-sm);
         }
 
-        @media (min-width: 600px) {
+        @media (min-width: 800px) {
             position: relative;
             height: auto;
             width: auto;
@@ -215,13 +238,12 @@
         border: none;
         cursor: pointer;
         color: var(--color-grey-light);
-        height: 2rem;
         font-family: var(--font-family);
         padding: 0;
         cursor: pointer;
         z-index: 200;
 
-        @media (min-width: 600px) {
+        @media (min-width: 800px) {
             display: none;
         }
     }

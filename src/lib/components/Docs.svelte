@@ -96,7 +96,7 @@
 <style lang="scss">
     .code {
         background-color: #1e1e1e;
-        color: #d4d4d4;
+        color: var(--color-white);
         padding: 1rem;
         border-radius: 0.5rem;
         margin: 1rem 0;
@@ -131,7 +131,7 @@
 
     .path {
         margin-top: 0.25rem;
-        font-size: var(--text-xs);
+        font-size: var(--text-sm);
         word-wrap: break-word;
     }
 

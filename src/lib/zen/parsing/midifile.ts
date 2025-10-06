@@ -1,8 +1,8 @@
 import { memoize } from '../utils/utils'
-import { Midi } from '@tonejs/midi'
+import pkg from '@tonejs/midi';
 
 async function parse(path: string, q: number) {
-    const midi = await Midi.fromUrl(path) || []
+    const midi = await pkg.Midi.fromUrl(path) || []
     const timeSig = midi.header.timeSignatures[0]?.timeSignature[0] || 4
     // @ts-ignore
     const endTick = Math.floor(midi.tracks[0].endOfTrackTicks / 480 / timeSig) * timeSig * 480

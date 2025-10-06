@@ -1,14 +1,15 @@
 <script lang="ts">
     import Editor from '$lib/components/Editor/Editor.svelte';
-    import Visuals from '$lib/components/Visuals/Visuals.svelte';
     import Circuit from '$lib/components/Circuit.svelte';
-    import Data from '$lib/components/Data.svelte';
-    import Tools from '$lib/components/Tools.svelte';
     import Console from '$lib/components/Console.svelte';
     import { startAudio } from '$lib/zen/index';
-    import { showCircuit, showVisuals } from '$lib/stores/zen';
+    import { showCircuit } from '$lib/stores/zen';
     import { initElectronAPI, isApp } from '$lib/electronAPI';
     import { onMount } from 'svelte';
+    import Tools from '$lib/components/Tools.svelte';
+
+    import Notice from '$lib/components/Notice.svelte';
+    import Canvas from '$lib/components/Canvas.svelte';
 
     onMount(() => {
         isApp() && initElectronAPI();
@@ -23,172 +24,113 @@
 	<meta name="description" content="A musical live coding language that runs in your browser" />
 </svelte:head>
 
-<section class="zen">
-    <div 
-        class="editor"
-        class:editor--large={!$showCircuit && !$showVisuals}
-    >
-        <Editor />
-    </div>
-
-    <div 
-        class="console"
-        class:console--large={!$showCircuit && !$showVisuals}
-    >
-        <Console />
-    </div>
-    
-    <div class="tools">
-        <Tools />
-    </div>
-
-    {#if $showCircuit}
+<Tools />
+<main>
+    <section class="zen container">
         <div 
-            class="circuit"
-            class:circuit--fullHeight={!$showVisuals}
+            class="editor"
+            class:editor--with-circuit={$showCircuit}
         >
-            <Circuit />
+            <Editor />
         </div>
-    {/if}
-    
-    {#if $showVisuals}
-        <div 
-            class="visuals"
-            class:visuals--withCircuit={$showCircuit}
-        >
-            <Visuals />
-        </div>
-    {/if}
 
-    <div class="data">
-        <Data />
-    </div>
-</section>
+        <div 
+            class="console"
+            class:console--with-circuit={$showCircuit}
+        >
+            <Console 
+                fullHeight={!$showCircuit}
+            />
+        </div>
+
+        {#if $showCircuit}
+            <div class="circuit">
+                <Circuit />
+            </div>
+        {/if}
+
+        <Notice />
+    </section>
+    <Canvas />
+</main>
 
 <style lang="scss">
     .zen {
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr 8fr 1fr;
-        grid-gap: 1rem;
-        padding: 1rem;
+        grid-template-rows: 5fr 3fr;
+        grid-gap: 1.5rem;
         user-select: none;
-        min-height: calc(100vh - 56px - 2rem);
-        max-height: calc(100vh - 56px - 2rem);
+        min-height: calc(100vh - 1.5rem);
+        max-height: calc(100vh - 1.5rem);
         overflow: scroll;
-        
+        padding-bottom: 1.5rem;
+
         @media (min-width: 800px) {
             grid-template-columns: 1fr 1fr;
-            grid-template-rows: 6fr 2fr 1fr 1fr;
-        }
-        
-        @media (min-width: 1200px) {
-            grid-template-columns: 1fr 1fr;
-            padding: 1rem;
+            grid-template-rows: 5fr 5fr;
         }
 
         @media all and (display-mode: fullscreen) {
-            grid-template-columns: 1fr 1fr;
-            min-height: calc(100vh - 6rem);
-            padding: 1rem;
+            grid-template-columns: 1fr;
+            @media (min-width: 800px) {
+                grid-template-columns: 1fr 1fr;
+            }
         }
     }
 
     .editor {
         height: 100%;
         grid-column: 1;
-        grid-row: 2;
+        grid-row: 1;
         @media (min-width: 800px) {
             grid-column: 1;
             grid-row: 1 / 3;
-
-            &--large {
-                grid-row: 1 / 5;
-            }
         }
 
     }
     
     .console {
         grid-column: 1 / 2;
-        grid-row: 3 / 5;
-        border-radius: 5px;
+        grid-row: 2;
         position: relative;
-        background-color: var(--color-grey-dark);
-        display: none;
-
-        &--large {
+        border-top: 1px solid var(--color-grey-light);
+        padding: 1.5rem 0 0 0;
+        
+        @media (min-width: 800px) {
             grid-column: 2 / 3;
-            grid-row: 1 / 4;
+            grid-row: 1 / 3;
+            border-top: 0;
+            
+            &--with-circuit {
+                grid-row: 1 / 2;
+                border-bottom: .25px solid var(--color-grey-light);
+                padding: 1.5rem 0;
+            }
+            
         }
 
-        @media (min-width: 800px) {
-            display: block;
-        }
-    }    
+        @media all and (display-mode: fullscreen) {
+            grid-column: 2 / 3;
+            grid-row: 1 / 3;
 
-    .tools {
-        grid-column: 1;
-        grid-row: 1;
-        border-radius: 5px;
-
-        @media (min-width: 800px) {
-            grid-column: 2;
-            grid-row: 4;
+            &--with-circuit {
+                grid-row: 1 / 2;
+                padding: 1.5rem 0;
+            }
         }
-        background: var(--color-grey-darker);
-        padding: 1rem;
     }
 
     .circuit {
         grid-column: 2;
-        grid-row: 2 / 4;
-        border-radius: 5px;
+        grid-row: 2 / 3;
         position: relative;
         display: none;
-        overflow: hidden;
-
-        &--fullHeight {
-            grid-row: 1 / 4;
-        }
+        overflow: auto;
 
         @media (min-width: 800px) {
             display: block;
         }
 
-        background-color: var(--color-grey-darker);
-    }
-
-    .visuals {
-        grid-column: 2 / 3;
-        grid-row: 1 / 4;
-
-        &--withCircuit {
-            grid-row: 1 / 2;
-        }
-        border-radius: 5px;
-        position: relative;
-
-        background: var(--color-grey-dark);
-
-        display: none;
-
-        @media (min-width: 800px) {
-            display: block;
-        }
-    }
-
-    .data {
-        grid-column: 1;
-        grid-row: 3;
-        border-radius: 5px;
-
-        @media (min-width: 800px) {
-            display: none;
-            grid-column: 2;
-            grid-row: 2;
-        }
-        background-color: var(--color-grey-dark);
-        padding: 1rem;
     }
 </style>

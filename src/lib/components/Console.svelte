@@ -2,6 +2,7 @@
     import { onMount } from "svelte";
     import { messages } from "$lib/stores/zen";
 
+    export let fullHeight: boolean = true;
     let console: HTMLUListElement;
 
     onMount(() => {
@@ -16,11 +17,14 @@
     });
 </script>
 
-<div class="console">
+<div 
+    class="console"
+    class:console--fullHeight={fullHeight}
+>
     <ul bind:this={console}>
         {#each $messages as {type, message}}
             {#each message.split("\n") as line}
-                <li class={type}>{line}</li>
+                <li class={type}><span>{line}</span></li>
             {/each}
         {/each}
     </ul>
@@ -28,16 +32,20 @@
 
 <style lang="scss">
     .console {
-        background-color: var(--color-grey-darkest);
-        padding: 1.5rem;
-        height: calc(100% - 3rem);
         position: absolute;
+        height: calc(100% - 1.5rem);
         left: 0;
         right: 0;
         overflow: hidden;
         user-select: text;
-        border-radius: 5px;
+        
+        @media (min-width: 800px) {
+            height: calc(100% - 3rem);
+        }
 
+        &--fullHeight {
+            height: calc(100% - 1.5rem);
+        }
     }
 
     ul {
@@ -50,16 +58,21 @@
     li {
         font-family: Menlo, Monaco, "Courier New", monospace;
         font-weight: normal;
-        font-size: var(--text-xs);
+        font-size: var(--text-sm);
         font-feature-settings: "liga" 0, "calt" 0;
         font-variation-settings: normal;
         letter-spacing: 0px;
         margin:0;
-        color: #d4d4d4;
+        color: var(--color-white);
         &::before {
             content: "»";
-            color: #d4d4d4;
+            color: var(--color-white);
             margin-right: 0.5rem;
+        }
+
+        & span {
+            background-color: rgba(21, 17, 15, 0.35);
+
         }
     }
 

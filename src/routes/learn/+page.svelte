@@ -12,8 +12,8 @@
         <h1>Learn</h1>
         <nav>
             <ul>
-                {#each chapters as {slug,title}}
-                    <a href={'/learn/' + slug} class="chapter"><li>{title}</li></a>
+                {#each chapters as {slug,title}, i}
+                    <li>{i+1}. <a href={'/learn/' + slug} class="chapter">{title}</a></li>
                 {/each}
             </ul>
         </nav>
@@ -25,6 +25,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        min-height: calc(100vh - 72px - 2rem - 67.5px);
         &__inner {
             width: 100%;
             max-width: 1200px;
@@ -37,13 +38,19 @@
         
         @media (min-width: 798px) {
             display: flex;
+            flex-direction: column;   /* stack vertically */
+            flex-wrap: wrap;          /* allow wrapping into a second column */
+            max-height: 20rem;        /* controls when wrapping happens */
+            list-style: none;
+        }
+
+        & li {
+            flex: 0 0 auto; /* don’t stretch items */
         }
         
-        flex-direction: column;
-        
         & a {
-            width: 50%;
             text-decoration: none;
+            color: var(--color-yellow);
             &:hover {
                 color: var(--color-theme-1);
             }

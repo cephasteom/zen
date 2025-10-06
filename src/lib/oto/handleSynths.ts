@@ -1,14 +1,16 @@
 import { writable, get } from "svelte/store";
 import { CtSynth, CtSampler, CtGranulator, CtAdditive, CtAcidSynth, CtDroneSynth, CtSubSynth, CtSuperFM, CtWavetable } from "./ct-synths"
+import ZMod from './ZMod'
 import type { Dictionary } from './types'
-import { getChannel } from './routing';
+import { busses, fxChannels, getChannel } from './routing';
 import { samples } from './stores'
+import { mtf } from "./utils/utils";
 
 const otoChannel = new BroadcastChannel('oto')
 
 const synths = writable<Dictionary>({});
 
-const synthTypes = ['synth', 'sampler', 'granular', 'additive', 'acid', 'drone', 'sub', 'superfm', 'wavetable']
+const synthTypes = ['synth', 'sampler', 'granular', 'additive', 'acid', 'drone', 'sub', 'superfm', 'wavetable', 'zmod']
 const makeSynth = (type: string) => {
     switch(type) {
         case 'synth': return new CtSynth({lite: true})
@@ -20,6 +22,7 @@ const makeSynth = (type: string) => {
         case 'sub': return new CtSubSynth()
         case 'superfm': return new CtSuperFM()
         case 'wavetable': return new CtWavetable()
+        case 'zmod': return new ZMod({busses})
         default: return null
     }
 }
@@ -31,7 +34,7 @@ const connect = (synth: any, channel: number, out: number, type: string) => {
     const ch = getChannel(channel, out)
 
     // connect synth to channel
-    synth.connect(ch.input)
+    synth.connect(ch.input, [channel, channel + 1]) 
 
     // add synth to store
     synths.update((obj: Dictionary) => ({
@@ -57,30 +60,37 @@ export const handleSynthEvent = (time: number, params: Dictionary) => {
         Object.values(stream).forEach((synth: any) => synth?.cut(time, cutr))
     });
 
+    const store = get(synths);
+
     // handle multiple insts
     [inst].flat().forEach((inst: string | number, instIndex: number) => {
+        // convert number indexes to synth type strings
         inst = typeof(inst) === 'number' ? synthTypes[inst] : inst;
-        
+        // if no inst and there is a patch, assume it's zmod
+        inst = !inst && params.patch ? 'zmod' : inst;
         // ignore instruments that don't exist
         if(!synthTypes.includes(inst)) return
-    
-        // Get or make synth
-        const store = get(synths)
-
+        
         // synths are associated with a channel strip
         const synth = store[channel] && store[channel][inst] 
             // if it exists, use it
             ? store[channel][inst]
             // otherwise, make a new one and connect it with the channel strip
             : connect(makeSynth(inst), channel, out, inst);
-
+        
+        
         // handle multiple notes
         [n].flat().forEach((n: number, noteIndex: number) => {
             const ps: Dictionary = Object.entries(params).reduce((obj, [key, val]) => ({
                 ...obj,
                 [key]: Array.isArray(val) ? val[instIndex%val.length] : val
             }), {});
-            ps.n = n
+
+            // special handling for zmod
+            ps.n = inst === 'zmod' ? mtf(ps.n) : n
+            inst === 'zmod' && synth.set(`${ps.patch}.out(${channel},${channel + 1})`).start(time)
+
+            // play
             synth.play(ps, time + (noteIndex * (strum/1000)));
         })
     })
@@ -89,11 +99,17 @@ export const handleSynthEvent = (time: number, params: Dictionary) => {
     const ch = getChannel(channel, out)
     ch.set(params, time);
 
-    // handle buses
-    [params.fx0, params.fx1, params.fx2, params.fx3]
-        .forEach((gain: number = 0, i: number) => {
-            gain !== undefined && ch.send(i, gain, time)
-        })
+    // handle busses
+    busses.forEach((_, i: number) => {
+        const gain = params[`bus${i}`] || 0;
+        ch.send(i, gain, time);
+    });
+
+    // handle fx busses
+    Object.keys(fxChannels).forEach((key: string, i: number) => {
+        const gain = params[key] || 0;
+        ch.sendFx(i, gain, time);
+    })
 }
 
 export const handleSynthMutation = (time: number, params: Dictionary) => {
@@ -106,17 +122,30 @@ export const handleSynthMutation = (time: number, params: Dictionary) => {
         : params
 
     const store = get(synths)
-    Object.values(store[channel] || {}).forEach((s: any) => s.mutate(ps, time, lag))
+    Object.entries(store[channel] || {})
+        .forEach(([type, synth]: [string, any]) => {
+            // special handling for zmod
+            if(type === 'zmod' && ps.n) ps.n = mtf([ps.n].flat()[0])
+
+            // mutate
+            synth.mutate(ps, time, lag)
+        })
     
     // mutate fx params on that channel
     const ch = getChannel(channel, out)
     ch.mutate(ps, time, lag);
 
-    // handle buses
-    [params.fx0, params.fx1, params.fx2, params.fx3]
-        .forEach((gain: number | undefined, i: number) => {
-            gain !== undefined && ch.send(i, gain, time, lag)
-        })
+    // handle busses
+    busses.forEach((_, i: number) => {
+        const gain = params[`bus${i}`] || 0;
+        ch.send(i, gain, time);
+    });
+
+    // handle fx busses
+    Object.keys(fxChannels).forEach((key: string, i: number) => {
+        const gain = params[key] || 0;
+        ch.sendFx(i, gain, time);
+    })
 }
 
 const fetchSamples = (url: string) => {
@@ -144,5 +173,8 @@ synths.subscribe((synths: Dictionary) => updateSynthsSamples(synths))
 
 samples.subscribe((samples: Dictionary) => {
     updateSynthsSamples(get(synths))
-    otoChannel.postMessage({ type: 'info', message: 'Sample banks ->\n' + Object.keys(samples).join(', ') + '\n'})
+    otoChannel.postMessage({ 
+        type: 'info', 
+        message: 'Sample banks ->\n' + Object.keys(samples).filter(key => !key.startsWith('wt_')).join(', ') + '\n'
+    })
 })

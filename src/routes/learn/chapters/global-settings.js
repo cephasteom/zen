@@ -1,40 +1,40 @@
 export default `# Global Settings
 
-## BPM, time and space
-Global settings can be set using the \`z\` object, an instance of the [Zen class](/docs/classes#zen). 
-- \`z.bpm\` sets the tempo of the piece in beats per minute. It is an instance of the [Pattern class](/docs/classes#pattern).
-- \`z.t\` sets the global time of the piece. It is an instance of the [Pattern class](/docs/classes#pattern).
-- \`z.q\` sets the the amount of divisions per cycle. In other words, how many times your code evaluates per bar.
+Global settings can be set using the \`z\` object, which is just another instance of a [Stream class](/docs/classes#stream). 
+Each of the following properties are instances of the [Pattern class](/docs/classes#pattern), allowing you to set them using any of the pattern methods.
 
-Run the code below whilst watching the pattern visualiser to see how these parameters affect the canvas.
-
+## z.t
+\`z.t\` sets the global time of the piece. By default this increments by 1 every division, but it can be interesting to modulate it. All Streams inherit this time value, unless you use .t() on the Stream - e.g. \`s0.t.noise(.25, 0, 32).step(1)\`.
 \`\`\`js
-z.bpm.set(120)
-z.t.sine(0,16,10.25)
-z.q = 16
+z.t.saw(1,0,16) // loop between 0 and 16
+z.t.sine(.25, 0, 16) // modulate the time with a sine wave
 \`\`\`
 
-## Global parameters
-You can set instrument and fx parameters in the same way that you set them on a stream, using \`z.set()\` and \`z.p\`. Parameters set on the global \`z\` object will be passed down to all streams.
+## z.bpm
+\`z.bpm\` sets the tempo of the piece in beats per minute.
 \`\`\`js
-z.set({reverb: 1, cut:[0,1]}) // set reverb to 0.5 on all streams
-z.p.n.set('Clyd%16..*16') // use a lydian scale on all streams
-
-s0.set({inst: 0})
-s0.e.set(1)
-
-s1.set({inst: 0, reverb: 0}) // override global reverb setting
-s1.p.n.add(12) // you can chain further methods to the pattern set on the z object
-s1.e.set(1)
+z.bpm.set(80) // set a constant bpm
+z.bpm.sine(.5, 60, 120) // modulate the bpm between 60 and 120 bpm with a sine wave
 \`\`\`
 
-## Seeding randomness
-You can seed the random number generator using \`z.seed\`, allowing you to use randomness with repeatable results. Seed is an instance of a pattern, so you can use any pattern method to set it, for example \`z.seed.set(256)\`.
+## z.q
+\`z.q\` sets the the amount of divisions per cycle. By default, this is 16.
+You should probably only set this using \`z.q.set(...)\`. Other methods may lead to some unexpected, but perhaps interesting, results.
 
-## Swing
-Swing can be set globally using the \`z.swing\` property. Swing is a value between 0 and 1, with 0 being no swing and 1 being full swing. Swing is applied to all streams. Swing is an instance of the [Pattern class](/docs/classes#pattern).
+## z.seed
+You can seed the random number generator using \`z.seed\`, allowing you to use randomness with repeatable results. E.g.:
+\`\`\`js
+z.seed.set(256)
+\`\`\`
 
-Additionally, set the subdivision to swing using the \`z.swingn\` property. This is an instance of the [Pattern class](/docs/classes#pattern).
+## z.swing
+Swing can be set globally using the \`z.swing\` property. Swing is a value between 0 and 1, with 0 being no swing and 1 being full swing. Swing is applied to all streams. 
+\`\`\`js
+z.swing.set(0.25) // set a constant swing
+\`\`\`
+
+## z.swingn
+Additionally, set the subdivision to swing using the \`z.swingn\` property. By default, this is set to 8th notes.
 \`\`\`js
 z.swing.set(0.25)
 z.swingn.set(16) // swing 16th notes

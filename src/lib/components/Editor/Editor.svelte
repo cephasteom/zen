@@ -2,9 +2,14 @@
     import loader from '@monaco-editor/loader';
     import { onDestroy, onMount } from 'svelte';
     import type * as Monaco from 'monaco-editor/esm/vs/editor/editor.api';
+    import * as Y from 'yjs'
+    import { WebrtcProvider } from 'y-webrtc'
+    import { MonacoBinding } from 'y-monaco'
+    
     import { setCode, play, stop } from '$lib/zen';
     import { editorConsole, isPlaying, editorValue } from '$lib/stores/zen';
     import { activePreset, presets } from '$lib/stores/presets';
+    import { isCollaborating, meetingId, rtcOptions } from '$lib/stores/collaborative-editing';
     import { options } from './options';
     import { example } from './example';
     import { parseCode } from '$lib/zen/parsing';
@@ -13,6 +18,10 @@
     let monaco: typeof Monaco;
     let editorContainer: HTMLElement;
     let flash = false
+
+    const ydoc = new Y.Doc()
+    const ydocType = ydoc.getText('monaco')
+    let provider: WebrtcProvider;
 
     function setAndPlay() {
         editorConsole.set({});
@@ -33,14 +42,23 @@
         }
 
         // Restore the cursor position
-        if (position) {
-            editor.setPosition(position);
-        }
+        position && editor.setPosition(position);
 
         play();
         isPlaying.set(true);
         flash = true;
         setTimeout(() => flash = false, 400);        
+    }
+
+    function collaborate(meetingId: string) {
+        provider?.destroy();
+        provider = new WebrtcProvider(meetingId, ydoc, rtcOptions);
+        new MonacoBinding(
+            ydocType,
+            editor.getModel()!,
+            new Set([editor]),
+            provider.awareness
+        )
     }
 
     onMount(async () => {
@@ -65,7 +83,7 @@
             }
             if(e.keyCode === 3 && e.shiftKey) {
                 e.preventDefault();
-                setAndPlay();
+                setAndPlay()
             }
         })
 
@@ -85,7 +103,12 @@
             editor.setValue(code);
             editorValue.set(editor.getValue());
         });
-        
+
+        isCollaborating.subscribe(collab => collab
+            ? collaborate($meetingId || 'zen-default-room')
+            : provider?.destroy()
+        );
+
     });
 
     onDestroy(() => {
@@ -117,12 +140,10 @@
 <style lang="scss">
     .container {
         position: relative;
-        background-color: var(--color-grey-darkest);
+        background-color: transparent;
         padding-top: 1.5rem;
-        padding-bottom: 1.5rem;
-        height: calc(100% - 3rem);
-        border-radius: 5px;
-
+        padding-bottom: 0;
+        height: calc(100% - 1.5rem);
     }
     
     .flash {
@@ -134,7 +155,6 @@
         100% { filter: invert(0) }
     }
     .editor {
-        width: calc(100% - 1rem);
         height: 100%!important;
     }
 
@@ -145,7 +165,7 @@
         padding: 1rem 0;
         font-size: var(--text-sm);
         color: var(--color-grey-light);
-        background-color: var(--color-grey-darkest);
+        background-color: var(--color-black);
 
         ul {
             list-style: none;

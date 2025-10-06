@@ -23,3 +23,9 @@ export type action = { (input: ActionArgs): void }
 export type vector = {x: number, y: number, z: number, colour: number[], weight: number}
 
 export type PatternMethod = keyof Pattern;
+
+export interface Stream extends Dictionary {
+    id: string;
+    get: (time: number, q: number, s: number, bpm: number) => void;
+    reset: () => void;
+}

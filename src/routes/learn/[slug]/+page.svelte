@@ -4,6 +4,7 @@
     // Using ES6 import syntax
     import hljs from 'highlight.js/lib/core';
     import javascript from 'highlight.js/lib/languages/javascript';
+    import typescript from 'highlight.js/lib/languages/typescript';
 
     // Then register the languages you need
     import { marked } from "marked";
@@ -12,7 +13,10 @@
 	
     export let data;
 
-    onMount(() => hljs.registerLanguage('javascript', javascript));
+    onMount(() => {
+        hljs.registerLanguage('typescript', typescript);
+        hljs.registerLanguage('javascript', javascript)
+    });
     afterUpdate(() => hljs.highlightAll());
 </script>
 
@@ -64,6 +68,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        min-height: calc(100vh - 72px - 2rem - 67.5px);
     }
 
     .markdown {

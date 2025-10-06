@@ -1,12 +1,13 @@
 {
+	"schemaVersion": "2.0",
 	"id": 0,
-	"name": "zen-3",
+	"name": "zen",
 	"variant": "project",
 	"kind": 1,
 	"flags": {},
 	"children": [
 		{
-			"id": 333,
+			"id": 3,
 			"name": "Delay",
 			"variant": "declaration",
 			"kind": 2,
@@ -31,7 +32,7 @@
 								"content": [
 									{
 										"kind": "code",
-										"text": "```ts\ns0.p.delay.set(0.5)\n```"
+										"text": "```ts\ns0.delay.set(0.5)\n```"
 									}
 								]
 							}
@@ -43,23 +44,26 @@
 							"name": "defaults",
 							"variant": "declaration",
 							"kind": 1024,
-							"flags": {},
+							"flags": {
+								"isInherited": true
+							},
 							"sources": [
 								{
 									"fileName": "RNBODevice.ts",
 									"line": 9,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/RNBODevice.ts#L9"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/RNBODevice.ts#L9"
 								}
 							],
 							"type": {
 								"type": "reference",
 								"target": {
-									"sourceFileName": "src/lib/oto/ct-synths/types.ts",
+									"packageName": "zen",
+									"packagePath": "src/lib/oto/ct-synths/types.ts",
 									"qualifiedName": "Dictionary"
 								},
 								"name": "Dictionary",
-								"package": "zen-3"
+								"package": "zen"
 							},
 							"defaultValue": "{}",
 							"inheritedFrom": {
@@ -78,7 +82,8 @@
 								{
 									"fileName": "Delay.ts",
 									"line": 105,
-									"character": 4
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Delay.ts#L105"
 								}
 							],
 							"signatures": [
@@ -100,7 +105,8 @@
 										{
 											"fileName": "Delay.ts",
 											"line": 105,
-											"character": 4
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Delay.ts#L105"
 										}
 									],
 									"parameters": [
@@ -153,7 +159,8 @@
 								{
 									"fileName": "Delay.ts",
 									"line": 57,
-									"character": 4
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Delay.ts#L57"
 								}
 							],
 							"signatures": [
@@ -175,7 +182,8 @@
 										{
 											"fileName": "Delay.ts",
 											"line": 57,
-											"character": 4
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Delay.ts#L57"
 										}
 									],
 									"parameters": [
@@ -228,7 +236,8 @@
 								{
 									"fileName": "Delay.ts",
 									"line": 81,
-									"character": 4
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Delay.ts#L81"
 								}
 							],
 							"signatures": [
@@ -250,7 +259,8 @@
 										{
 											"fileName": "Delay.ts",
 											"line": 81,
-											"character": 4
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Delay.ts#L81"
 										}
 									],
 									"parameters": [
@@ -303,7 +313,8 @@
 								{
 									"fileName": "Delay.ts",
 									"line": 118,
-									"character": 4
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Delay.ts#L118"
 								}
 							],
 							"signatures": [
@@ -325,7 +336,8 @@
 										{
 											"fileName": "Delay.ts",
 											"line": 118,
-											"character": 4
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Delay.ts#L118"
 										}
 									],
 									"parameters": [
@@ -378,7 +390,8 @@
 								{
 									"fileName": "Delay.ts",
 									"line": 93,
-									"character": 4
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Delay.ts#L93"
 								}
 							],
 							"signatures": [
@@ -400,7 +413,8 @@
 										{
 											"fileName": "Delay.ts",
 											"line": 93,
-											"character": 4
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Delay.ts#L93"
 										}
 									],
 									"parameters": [
@@ -453,7 +467,8 @@
 								{
 									"fileName": "Delay.ts",
 									"line": 69,
-									"character": 4
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Delay.ts#L69"
 								}
 							],
 							"signatures": [
@@ -475,7 +490,8 @@
 										{
 											"fileName": "Delay.ts",
 											"line": 69,
-											"character": 4
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Delay.ts#L69"
 										}
 									],
 									"parameters": [
@@ -528,7 +544,8 @@
 								{
 									"fileName": "Delay.ts",
 									"line": 99,
-									"character": 4
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Delay.ts#L99"
 								}
 							],
 							"signatures": [
@@ -550,7 +567,8 @@
 										{
 											"fileName": "Delay.ts",
 											"line": 99,
-											"character": 4
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Delay.ts#L99"
 										}
 									],
 									"parameters": [
@@ -603,7 +621,8 @@
 								{
 									"fileName": "Delay.ts",
 									"line": 51,
-									"character": 4
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Delay.ts#L51"
 								}
 							],
 							"signatures": [
@@ -625,7 +644,8 @@
 										{
 											"fileName": "Delay.ts",
 											"line": 51,
-											"character": 4
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Delay.ts#L51"
 										}
 									],
 									"parameters": [
@@ -678,7 +698,8 @@
 								{
 									"fileName": "Delay.ts",
 									"line": 75,
-									"character": 4
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Delay.ts#L75"
 								}
 							],
 							"signatures": [
@@ -700,7 +721,8 @@
 										{
 											"fileName": "Delay.ts",
 											"line": 75,
-											"character": 4
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Delay.ts#L75"
 										}
 									],
 									"parameters": [
@@ -753,7 +775,8 @@
 								{
 									"fileName": "Delay.ts",
 									"line": 112,
-									"character": 4
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Delay.ts#L112"
 								}
 							],
 							"signatures": [
@@ -775,7 +798,8 @@
 										{
 											"fileName": "Delay.ts",
 											"line": 112,
-											"character": 4
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Delay.ts#L112"
 										}
 									],
 									"parameters": [
@@ -828,7 +852,8 @@
 								{
 									"fileName": "Delay.ts",
 									"line": 87,
-									"character": 4
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Delay.ts#L87"
 								}
 							],
 							"signatures": [
@@ -850,7 +875,8 @@
 										{
 											"fileName": "Delay.ts",
 											"line": 87,
-											"character": 4
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Delay.ts#L87"
 										}
 									],
 									"parameters": [
@@ -903,7 +929,8 @@
 								{
 									"fileName": "Delay.ts",
 									"line": 63,
-									"character": 4
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Delay.ts#L63"
 								}
 							],
 							"signatures": [
@@ -925,7 +952,8 @@
 										{
 											"fileName": "Delay.ts",
 											"line": 63,
-											"character": 4
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Delay.ts#L63"
 										}
 									],
 									"parameters": [
@@ -998,18 +1026,20 @@
 						{
 							"fileName": "Delay.ts",
 							"line": 13,
-							"character": 6
+							"character": 6,
+							"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Delay.ts#L13"
 						}
 					],
 					"extendedTypes": [
 						{
 							"type": "reference",
 							"target": {
-								"sourceFileName": "src/lib/oto/ct-synths/rnbo/RNBODevice.ts",
+								"packageName": "zen",
+								"packagePath": "src/lib/oto/ct-synths/rnbo/RNBODevice.ts",
 								"qualifiedName": "RNBODevice"
 							},
 							"name": "RNBODevice",
-							"package": "zen-3"
+							"package": "zen"
 						}
 					]
 				}
@@ -1026,7 +1056,8 @@
 				{
 					"fileName": "Delay.ts",
 					"line": 1,
-					"character": 0
+					"character": 0,
+					"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Delay.ts#L1"
 				}
 			]
 		},
@@ -1038,7 +1069,7 @@
 			"flags": {},
 			"children": [
 				{
-					"id": 2,
+					"id": 4,
 					"name": "default",
 					"variant": "declaration",
 					"kind": 128,
@@ -1056,7 +1087,7 @@
 								"content": [
 									{
 										"kind": "code",
-										"text": "```ts\ns0.p.reverb.set(0.5)\n```"
+										"text": "```ts\ns0.reverb.set(0.5)\n```"
 									}
 								]
 							}
@@ -1064,27 +1095,30 @@
 					},
 					"children": [
 						{
-							"id": 217,
+							"id": 219,
 							"name": "defaults",
 							"variant": "declaration",
 							"kind": 1024,
-							"flags": {},
+							"flags": {
+								"isInherited": true
+							},
 							"sources": [
 								{
 									"fileName": "RNBODevice.ts",
 									"line": 9,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/RNBODevice.ts#L9"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/RNBODevice.ts#L9"
 								}
 							],
 							"type": {
 								"type": "reference",
 								"target": {
-									"sourceFileName": "src/lib/oto/ct-synths/types.ts",
+									"packageName": "zen",
+									"packagePath": "src/lib/oto/ct-synths/types.ts",
 									"qualifiedName": "Dictionary"
 								},
 								"name": "Dictionary",
-								"package": "zen-3"
+								"package": "zen"
 							},
 							"defaultValue": "{}",
 							"inheritedFrom": {
@@ -1094,7 +1128,7 @@
 							}
 						},
 						{
-							"id": 69,
+							"id": 71,
 							"name": "_chdepth",
 							"variant": "declaration",
 							"kind": 2048,
@@ -1104,12 +1138,12 @@
 									"fileName": "FXChain.ts",
 									"line": 190,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L190"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L190"
 								}
 							],
 							"signatures": [
 								{
-									"id": 70,
+									"id": 72,
 									"name": "_chdepth",
 									"variant": "signature",
 									"kind": 4096,
@@ -1127,12 +1161,12 @@
 											"fileName": "FXChain.ts",
 											"line": 190,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L190"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L190"
 										}
 									],
 									"parameters": [
 										{
-											"id": 71,
+											"id": 73,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -1152,7 +1186,7 @@
 											"defaultValue": "0.25"
 										},
 										{
-											"id": 72,
+											"id": 74,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -1171,7 +1205,7 @@
 							]
 						},
 						{
-							"id": 77,
+							"id": 79,
 							"name": "_chlfo",
 							"variant": "declaration",
 							"kind": 2048,
@@ -1181,12 +1215,12 @@
 									"fileName": "FXChain.ts",
 									"line": 202,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L202"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L202"
 								}
 							],
 							"signatures": [
 								{
-									"id": 78,
+									"id": 80,
 									"name": "_chlfo",
 									"variant": "signature",
 									"kind": 4096,
@@ -1204,12 +1238,12 @@
 											"fileName": "FXChain.ts",
 											"line": 202,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L202"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L202"
 										}
 									],
 									"parameters": [
 										{
-											"id": 79,
+											"id": 81,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -1229,7 +1263,7 @@
 											"defaultValue": "0.25"
 										},
 										{
-											"id": 80,
+											"id": 82,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -1248,7 +1282,7 @@
 							]
 						},
 						{
-							"id": 61,
+							"id": 63,
 							"name": "_chorus",
 							"variant": "declaration",
 							"kind": 2048,
@@ -1258,12 +1292,12 @@
 									"fileName": "FXChain.ts",
 									"line": 178,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L178"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L178"
 								}
 							],
 							"signatures": [
 								{
-									"id": 62,
+									"id": 64,
 									"name": "_chorus",
 									"variant": "signature",
 									"kind": 4096,
@@ -1281,12 +1315,12 @@
 											"fileName": "FXChain.ts",
 											"line": 178,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L178"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L178"
 										}
 									],
 									"parameters": [
 										{
-											"id": 63,
+											"id": 65,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -1306,7 +1340,7 @@
 											"defaultValue": "0"
 										},
 										{
-											"id": 64,
+											"id": 66,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -1325,7 +1359,7 @@
 							]
 						},
 						{
-							"id": 85,
+							"id": 87,
 							"name": "_chspread",
 							"variant": "declaration",
 							"kind": 2048,
@@ -1335,12 +1369,12 @@
 									"fileName": "FXChain.ts",
 									"line": 214,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L214"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L214"
 								}
 							],
 							"signatures": [
 								{
-									"id": 86,
+									"id": 88,
 									"name": "_chspread",
 									"variant": "signature",
 									"kind": 4096,
@@ -1358,12 +1392,12 @@
 											"fileName": "FXChain.ts",
 											"line": 214,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L214"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L214"
 										}
 									],
 									"parameters": [
 										{
-											"id": 87,
+											"id": 89,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -1383,7 +1417,7 @@
 											"defaultValue": "0.25"
 										},
 										{
-											"id": 88,
+											"id": 90,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -1402,7 +1436,7 @@
 							]
 						},
 						{
-							"id": 141,
+							"id": 143,
 							"name": "_dcolour",
 							"variant": "declaration",
 							"kind": 2048,
@@ -1412,12 +1446,12 @@
 									"fileName": "FXChain.ts",
 									"line": 299,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L299"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L299"
 								}
 							],
 							"signatures": [
 								{
-									"id": 142,
+									"id": 144,
 									"name": "_dcolour",
 									"variant": "signature",
 									"kind": 4096,
@@ -1435,12 +1469,12 @@
 											"fileName": "FXChain.ts",
 											"line": 299,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L299"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L299"
 										}
 									],
 									"parameters": [
 										{
-											"id": 143,
+											"id": 145,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -1460,7 +1494,7 @@
 											"defaultValue": "0.25"
 										},
 										{
-											"id": 144,
+											"id": 146,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -1479,7 +1513,7 @@
 							]
 						},
 						{
-							"id": 109,
+							"id": 111,
 							"name": "_delay",
 							"variant": "declaration",
 							"kind": 2048,
@@ -1489,12 +1523,12 @@
 									"fileName": "FXChain.ts",
 									"line": 251,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L251"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L251"
 								}
 							],
 							"signatures": [
 								{
-									"id": 110,
+									"id": 112,
 									"name": "_delay",
 									"variant": "signature",
 									"kind": 4096,
@@ -1512,12 +1546,12 @@
 											"fileName": "FXChain.ts",
 											"line": 251,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L251"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L251"
 										}
 									],
 									"parameters": [
 										{
-											"id": 111,
+											"id": 113,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -1537,7 +1571,7 @@
 											"defaultValue": "0"
 										},
 										{
-											"id": 112,
+											"id": 114,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -1556,7 +1590,7 @@
 							]
 						},
 						{
-							"id": 125,
+							"id": 127,
 							"name": "_dfb",
 							"variant": "declaration",
 							"kind": 2048,
@@ -1566,12 +1600,12 @@
 									"fileName": "FXChain.ts",
 									"line": 275,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L275"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L275"
 								}
 							],
 							"signatures": [
 								{
-									"id": 126,
+									"id": 128,
 									"name": "_dfb",
 									"variant": "signature",
 									"kind": 4096,
@@ -1589,12 +1623,12 @@
 											"fileName": "FXChain.ts",
 											"line": 275,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L275"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L275"
 										}
 									],
 									"parameters": [
 										{
-											"id": 127,
+											"id": 129,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -1614,7 +1648,7 @@
 											"defaultValue": "0.5"
 										},
 										{
-											"id": 128,
+											"id": 130,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -1633,7 +1667,7 @@
 							]
 						},
 						{
-							"id": 149,
+							"id": 151,
 							"name": "_dfilter",
 							"variant": "declaration",
 							"kind": 2048,
@@ -1643,12 +1677,12 @@
 									"fileName": "FXChain.ts",
 									"line": 312,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L312"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L312"
 								}
 							],
 							"signatures": [
 								{
-									"id": 150,
+									"id": 152,
 									"name": "_dfilter",
 									"variant": "signature",
 									"kind": 4096,
@@ -1666,12 +1700,12 @@
 											"fileName": "FXChain.ts",
 											"line": 312,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L312"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L312"
 										}
 									],
 									"parameters": [
 										{
-											"id": 151,
+											"id": 153,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -1691,7 +1725,7 @@
 											"defaultValue": "0"
 										},
 										{
-											"id": 152,
+											"id": 154,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -1710,7 +1744,7 @@
 							]
 						},
 						{
-							"id": 13,
+							"id": 15,
 							"name": "_dist",
 							"variant": "declaration",
 							"kind": 2048,
@@ -1720,12 +1754,12 @@
 									"fileName": "FXChain.ts",
 									"line": 105,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L105"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L105"
 								}
 							],
 							"signatures": [
 								{
-									"id": 14,
+									"id": 16,
 									"name": "_dist",
 									"variant": "signature",
 									"kind": 4096,
@@ -1743,12 +1777,12 @@
 											"fileName": "FXChain.ts",
 											"line": 105,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L105"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L105"
 										}
 									],
 									"parameters": [
 										{
-											"id": 15,
+											"id": 17,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -1768,7 +1802,7 @@
 											"defaultValue": "0"
 										},
 										{
-											"id": 16,
+											"id": 18,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -1787,7 +1821,7 @@
 							]
 						},
 						{
-							"id": 21,
+							"id": 23,
 							"name": "_drive",
 							"variant": "declaration",
 							"kind": 2048,
@@ -1797,12 +1831,12 @@
 									"fileName": "FXChain.ts",
 									"line": 117,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L117"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L117"
 								}
 							],
 							"signatures": [
 								{
-									"id": 22,
+									"id": 24,
 									"name": "_drive",
 									"variant": "signature",
 									"kind": 4096,
@@ -1820,12 +1854,12 @@
 											"fileName": "FXChain.ts",
 											"line": 117,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L117"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L117"
 										}
 									],
 									"parameters": [
 										{
-											"id": 23,
+											"id": 25,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -1845,7 +1879,7 @@
 											"defaultValue": "0.5"
 										},
 										{
-											"id": 24,
+											"id": 26,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -1864,7 +1898,7 @@
 							]
 						},
 						{
-							"id": 133,
+							"id": 135,
 							"name": "_dspread",
 							"variant": "declaration",
 							"kind": 2048,
@@ -1874,12 +1908,12 @@
 									"fileName": "FXChain.ts",
 									"line": 287,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L287"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L287"
 								}
 							],
 							"signatures": [
 								{
-									"id": 134,
+									"id": 136,
 									"name": "_dspread",
 									"variant": "signature",
 									"kind": 4096,
@@ -1897,12 +1931,12 @@
 											"fileName": "FXChain.ts",
 											"line": 287,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L287"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L287"
 										}
 									],
 									"parameters": [
 										{
-											"id": 135,
+											"id": 137,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -1922,7 +1956,7 @@
 											"defaultValue": "0"
 										},
 										{
-											"id": 136,
+											"id": 138,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -1941,7 +1975,7 @@
 							]
 						},
 						{
-							"id": 117,
+							"id": 119,
 							"name": "_dtime",
 							"variant": "declaration",
 							"kind": 2048,
@@ -1951,12 +1985,12 @@
 									"fileName": "FXChain.ts",
 									"line": 263,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L263"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L263"
 								}
 							],
 							"signatures": [
 								{
-									"id": 118,
+									"id": 120,
 									"name": "_dtime",
 									"variant": "signature",
 									"kind": 4096,
@@ -1974,12 +2008,12 @@
 											"fileName": "FXChain.ts",
 											"line": 263,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L263"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L263"
 										}
 									],
 									"parameters": [
 										{
-											"id": 119,
+											"id": 121,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -1999,7 +2033,7 @@
 											"defaultValue": "500"
 										},
 										{
-											"id": 120,
+											"id": 122,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -2018,7 +2052,7 @@
 							]
 						},
 						{
-							"id": 205,
+							"id": 207,
 							"name": "_gain",
 							"variant": "declaration",
 							"kind": 2048,
@@ -2028,12 +2062,12 @@
 									"fileName": "FXChain.ts",
 									"line": 398,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L398"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L398"
 								}
 							],
 							"signatures": [
 								{
-									"id": 206,
+									"id": 208,
 									"name": "_gain",
 									"variant": "signature",
 									"kind": 4096,
@@ -2051,12 +2085,12 @@
 											"fileName": "FXChain.ts",
 											"line": 398,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L398"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L398"
 										}
 									],
 									"parameters": [
 										{
-											"id": 207,
+											"id": 209,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -2076,7 +2110,7 @@
 											"defaultValue": "1"
 										},
 										{
-											"id": 208,
+											"id": 210,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -2095,85 +2129,8 @@
 							]
 						},
 						{
-							"id": 93,
-							"name": "_hicut",
-							"variant": "declaration",
-							"kind": 2048,
-							"flags": {},
-							"sources": [
-								{
-									"fileName": "FXChain.ts",
-									"line": 227,
-									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L227"
-								}
-							],
-							"signatures": [
-								{
-									"id": 94,
-									"name": "_hicut",
-									"variant": "signature",
-									"kind": 4096,
-									"flags": {},
-									"comment": {
-										"summary": [
-											{
-												"kind": "text",
-												"text": "Mutate the hicut filter"
-											}
-										]
-									},
-									"sources": [
-										{
-											"fileName": "FXChain.ts",
-											"line": 227,
-											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L227"
-										}
-									],
-									"parameters": [
-										{
-											"id": 95,
-											"name": "value",
-											"variant": "param",
-											"kind": 32768,
-											"flags": {},
-											"comment": {
-												"summary": [
-													{
-														"kind": "text",
-														"text": "0 to 1"
-													}
-												]
-											},
-											"type": {
-												"type": "intrinsic",
-												"name": "number"
-											},
-											"defaultValue": "0"
-										},
-										{
-											"id": 96,
-											"name": "time",
-											"variant": "param",
-											"kind": 32768,
-											"flags": {},
-											"type": {
-												"type": "intrinsic",
-												"name": "number"
-											}
-										}
-									],
-									"type": {
-										"type": "intrinsic",
-										"name": "void"
-									}
-								}
-							]
-						},
-						{
-							"id": 101,
-							"name": "_locut",
+							"id": 103,
+							"name": "_hpf",
 							"variant": "declaration",
 							"kind": 2048,
 							"flags": {},
@@ -2182,13 +2139,13 @@
 									"fileName": "FXChain.ts",
 									"line": 239,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L239"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L239"
 								}
 							],
 							"signatures": [
 								{
-									"id": 102,
-									"name": "_locut",
+									"id": 104,
+									"name": "_hpf",
 									"variant": "signature",
 									"kind": 4096,
 									"flags": {},
@@ -2196,7 +2153,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Mutate the locut filter"
+												"text": "Mutate the HPF filter"
 											}
 										]
 									},
@@ -2205,12 +2162,12 @@
 											"fileName": "FXChain.ts",
 											"line": 239,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L239"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L239"
 										}
 									],
 									"parameters": [
 										{
-											"id": 103,
+											"id": 105,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -2230,7 +2187,7 @@
 											"defaultValue": "0"
 										},
 										{
-											"id": 104,
+											"id": 106,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -2249,7 +2206,84 @@
 							]
 						},
 						{
-							"id": 213,
+							"id": 95,
+							"name": "_lpf",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "FXChain.ts",
+									"line": 227,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L227"
+								}
+							],
+							"signatures": [
+								{
+									"id": 96,
+									"name": "_lpf",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Mutate the LPF filter"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "FXChain.ts",
+											"line": 227,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L227"
+										}
+									],
+									"parameters": [
+										{
+											"id": 97,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "0 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "0"
+										},
+										{
+											"id": 98,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									}
+								}
+							]
+						},
+						{
+							"id": 215,
 							"name": "_lthresh",
 							"variant": "declaration",
 							"kind": 2048,
@@ -2259,12 +2293,12 @@
 									"fileName": "FXChain.ts",
 									"line": 410,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L410"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L410"
 								}
 							],
 							"signatures": [
 								{
-									"id": 214,
+									"id": 216,
 									"name": "_lthresh",
 									"variant": "signature",
 									"kind": 4096,
@@ -2282,12 +2316,12 @@
 											"fileName": "FXChain.ts",
 											"line": 410,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L410"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L410"
 										}
 									],
 									"parameters": [
 										{
-											"id": 215,
+											"id": 217,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -2307,7 +2341,7 @@
 											"defaultValue": "1"
 										},
 										{
-											"id": 216,
+											"id": 218,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -2326,7 +2360,7 @@
 							]
 						},
 						{
-							"id": 173,
+							"id": 175,
 							"name": "_rdamp",
 							"variant": "declaration",
 							"kind": 2048,
@@ -2336,12 +2370,12 @@
 									"fileName": "FXChain.ts",
 									"line": 350,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L350"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L350"
 								}
 							],
 							"signatures": [
 								{
-									"id": 174,
+									"id": 176,
 									"name": "_rdamp",
 									"variant": "signature",
 									"kind": 4096,
@@ -2359,12 +2393,12 @@
 											"fileName": "FXChain.ts",
 											"line": 350,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L350"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L350"
 										}
 									],
 									"parameters": [
 										{
-											"id": 175,
+											"id": 177,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -2384,7 +2418,7 @@
 											"defaultValue": "0.25"
 										},
 										{
-											"id": 176,
+											"id": 178,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -2403,7 +2437,7 @@
 							]
 						},
 						{
-							"id": 197,
+							"id": 199,
 							"name": "_rdecay",
 							"variant": "declaration",
 							"kind": 2048,
@@ -2413,12 +2447,12 @@
 									"fileName": "FXChain.ts",
 									"line": 386,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L386"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L386"
 								}
 							],
 							"signatures": [
 								{
-									"id": 198,
+									"id": 200,
 									"name": "_rdecay",
 									"variant": "signature",
 									"kind": 4096,
@@ -2436,12 +2470,12 @@
 											"fileName": "FXChain.ts",
 											"line": 386,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L386"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L386"
 										}
 									],
 									"parameters": [
 										{
-											"id": 199,
+											"id": 201,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -2461,7 +2495,7 @@
 											"defaultValue": "0.25"
 										},
 										{
-											"id": 200,
+											"id": 202,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -2480,7 +2514,7 @@
 							]
 						},
 						{
-							"id": 181,
+							"id": 183,
 							"name": "_rdiff",
 							"variant": "declaration",
 							"kind": 2048,
@@ -2490,12 +2524,12 @@
 									"fileName": "FXChain.ts",
 									"line": 362,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L362"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L362"
 								}
 							],
 							"signatures": [
 								{
-									"id": 182,
+									"id": 184,
 									"name": "_rdiff",
 									"variant": "signature",
 									"kind": 4096,
@@ -2513,12 +2547,12 @@
 											"fileName": "FXChain.ts",
 											"line": 362,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L362"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L362"
 										}
 									],
 									"parameters": [
 										{
-											"id": 183,
+											"id": 185,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -2538,7 +2572,7 @@
 											"defaultValue": "0.25"
 										},
 										{
-											"id": 184,
+											"id": 186,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -2557,7 +2591,7 @@
 							]
 						},
 						{
-							"id": 157,
+							"id": 159,
 							"name": "_reverb",
 							"variant": "declaration",
 							"kind": 2048,
@@ -2567,12 +2601,12 @@
 									"fileName": "FXChain.ts",
 									"line": 324,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L324"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L324"
 								}
 							],
 							"signatures": [
 								{
-									"id": 158,
+									"id": 160,
 									"name": "_reverb",
 									"variant": "signature",
 									"kind": 4096,
@@ -2590,12 +2624,12 @@
 											"fileName": "FXChain.ts",
 											"line": 324,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L324"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L324"
 										}
 									],
 									"parameters": [
 										{
-											"id": 159,
+											"id": 161,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -2615,7 +2649,7 @@
 											"defaultValue": "0"
 										},
 										{
-											"id": 160,
+											"id": 162,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -2634,7 +2668,7 @@
 							]
 						},
 						{
-							"id": 29,
+							"id": 31,
 							"name": "_ring",
 							"variant": "declaration",
 							"kind": 2048,
@@ -2644,12 +2678,12 @@
 									"fileName": "FXChain.ts",
 									"line": 130,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L130"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L130"
 								}
 							],
 							"signatures": [
 								{
-									"id": 30,
+									"id": 32,
 									"name": "_ring",
 									"variant": "signature",
 									"kind": 4096,
@@ -2667,12 +2701,12 @@
 											"fileName": "FXChain.ts",
 											"line": 130,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L130"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L130"
 										}
 									],
 									"parameters": [
 										{
-											"id": 31,
+											"id": 33,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -2692,7 +2726,7 @@
 											"defaultValue": "0"
 										},
 										{
-											"id": 32,
+											"id": 34,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -2711,7 +2745,7 @@
 							]
 						},
 						{
-							"id": 37,
+							"id": 39,
 							"name": "_ringf",
 							"variant": "declaration",
 							"kind": 2048,
@@ -2721,12 +2755,12 @@
 									"fileName": "FXChain.ts",
 									"line": 142,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L142"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L142"
 								}
 							],
 							"signatures": [
 								{
-									"id": 38,
+									"id": 40,
 									"name": "_ringf",
 									"variant": "signature",
 									"kind": 4096,
@@ -2744,12 +2778,12 @@
 											"fileName": "FXChain.ts",
 											"line": 142,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L142"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L142"
 										}
 									],
 									"parameters": [
 										{
-											"id": 39,
+											"id": 41,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -2769,7 +2803,7 @@
 											"defaultValue": "0.25"
 										},
 										{
-											"id": 40,
+											"id": 42,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -2788,7 +2822,7 @@
 							]
 						},
 						{
-							"id": 53,
+							"id": 55,
 							"name": "_ringmode",
 							"variant": "declaration",
 							"kind": 2048,
@@ -2798,12 +2832,12 @@
 									"fileName": "FXChain.ts",
 									"line": 166,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L166"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L166"
 								}
 							],
 							"signatures": [
 								{
-									"id": 54,
+									"id": 56,
 									"name": "_ringmode",
 									"variant": "signature",
 									"kind": 4096,
@@ -2821,12 +2855,12 @@
 											"fileName": "FXChain.ts",
 											"line": 166,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L166"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L166"
 										}
 									],
 									"parameters": [
 										{
-											"id": 55,
+											"id": 57,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -2846,7 +2880,7 @@
 											"defaultValue": "0"
 										},
 										{
-											"id": 56,
+											"id": 58,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -2865,7 +2899,7 @@
 							]
 						},
 						{
-							"id": 45,
+							"id": 47,
 							"name": "_ringspread",
 							"variant": "declaration",
 							"kind": 2048,
@@ -2875,12 +2909,12 @@
 									"fileName": "FXChain.ts",
 									"line": 154,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L154"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L154"
 								}
 							],
 							"signatures": [
 								{
-									"id": 46,
+									"id": 48,
 									"name": "_ringspread",
 									"variant": "signature",
 									"kind": 4096,
@@ -2898,12 +2932,12 @@
 											"fileName": "FXChain.ts",
 											"line": 154,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L154"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L154"
 										}
 									],
 									"parameters": [
 										{
-											"id": 47,
+											"id": 49,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -2923,7 +2957,7 @@
 											"defaultValue": "0"
 										},
 										{
-											"id": 48,
+											"id": 50,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -2942,7 +2976,7 @@
 							]
 						},
 						{
-							"id": 189,
+							"id": 191,
 							"name": "_rjitter",
 							"variant": "declaration",
 							"kind": 2048,
@@ -2952,12 +2986,12 @@
 									"fileName": "FXChain.ts",
 									"line": 374,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L374"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L374"
 								}
 							],
 							"signatures": [
 								{
-									"id": 190,
+									"id": 192,
 									"name": "_rjitter",
 									"variant": "signature",
 									"kind": 4096,
@@ -2975,12 +3009,12 @@
 											"fileName": "FXChain.ts",
 											"line": 374,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L374"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L374"
 										}
 									],
 									"parameters": [
 										{
-											"id": 191,
+											"id": 193,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -3000,7 +3034,7 @@
 											"defaultValue": "0"
 										},
 										{
-											"id": 192,
+											"id": 194,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -3019,7 +3053,7 @@
 							]
 						},
 						{
-							"id": 165,
+							"id": 167,
 							"name": "_rsize",
 							"variant": "declaration",
 							"kind": 2048,
@@ -3029,12 +3063,12 @@
 									"fileName": "FXChain.ts",
 									"line": 338,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L338"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L338"
 								}
 							],
 							"signatures": [
 								{
-									"id": 166,
+									"id": 168,
 									"name": "_rsize",
 									"variant": "signature",
 									"kind": 4096,
@@ -3052,12 +3086,12 @@
 											"fileName": "FXChain.ts",
 											"line": 338,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L338"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L338"
 										}
 									],
 									"parameters": [
 										{
-											"id": 167,
+											"id": 169,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -3077,7 +3111,7 @@
 											"defaultValue": "0.25"
 										},
 										{
-											"id": 168,
+											"id": 170,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -3096,7 +3130,7 @@
 							]
 						},
 						{
-							"id": 65,
+							"id": 67,
 							"name": "chdepth",
 							"variant": "declaration",
 							"kind": 2048,
@@ -3106,12 +3140,12 @@
 									"fileName": "FXChain.ts",
 									"line": 184,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L184"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L184"
 								}
 							],
 							"signatures": [
 								{
-									"id": 66,
+									"id": 68,
 									"name": "chdepth",
 									"variant": "signature",
 									"kind": 4096,
@@ -3129,12 +3163,12 @@
 											"fileName": "FXChain.ts",
 											"line": 184,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L184"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L184"
 										}
 									],
 									"parameters": [
 										{
-											"id": 67,
+											"id": 69,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -3154,7 +3188,7 @@
 											"defaultValue": "0.25"
 										},
 										{
-											"id": 68,
+											"id": 70,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -3173,7 +3207,7 @@
 							]
 						},
 						{
-							"id": 73,
+							"id": 75,
 							"name": "chlfo",
 							"variant": "declaration",
 							"kind": 2048,
@@ -3183,12 +3217,12 @@
 									"fileName": "FXChain.ts",
 									"line": 196,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L196"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L196"
 								}
 							],
 							"signatures": [
 								{
-									"id": 74,
+									"id": 76,
 									"name": "chlfo",
 									"variant": "signature",
 									"kind": 4096,
@@ -3206,12 +3240,12 @@
 											"fileName": "FXChain.ts",
 											"line": 196,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L196"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L196"
 										}
 									],
 									"parameters": [
 										{
-											"id": 75,
+											"id": 77,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -3231,7 +3265,7 @@
 											"defaultValue": "0.25"
 										},
 										{
-											"id": 76,
+											"id": 78,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -3250,7 +3284,7 @@
 							]
 						},
 						{
-							"id": 57,
+							"id": 59,
 							"name": "chorus",
 							"variant": "declaration",
 							"kind": 2048,
@@ -3260,12 +3294,12 @@
 									"fileName": "FXChain.ts",
 									"line": 172,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L172"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L172"
 								}
 							],
 							"signatures": [
 								{
-									"id": 58,
+									"id": 60,
 									"name": "chorus",
 									"variant": "signature",
 									"kind": 4096,
@@ -3283,12 +3317,12 @@
 											"fileName": "FXChain.ts",
 											"line": 172,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L172"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L172"
 										}
 									],
 									"parameters": [
 										{
-											"id": 59,
+											"id": 61,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -3308,7 +3342,7 @@
 											"defaultValue": "0"
 										},
 										{
-											"id": 60,
+											"id": 62,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -3327,7 +3361,7 @@
 							]
 						},
 						{
-							"id": 81,
+							"id": 83,
 							"name": "chspread",
 							"variant": "declaration",
 							"kind": 2048,
@@ -3337,12 +3371,12 @@
 									"fileName": "FXChain.ts",
 									"line": 208,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L208"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L208"
 								}
 							],
 							"signatures": [
 								{
-									"id": 82,
+									"id": 84,
 									"name": "chspread",
 									"variant": "signature",
 									"kind": 4096,
@@ -3360,12 +3394,12 @@
 											"fileName": "FXChain.ts",
 											"line": 208,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L208"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L208"
 										}
 									],
 									"parameters": [
 										{
-											"id": 83,
+											"id": 85,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -3385,7 +3419,7 @@
 											"defaultValue": "0.25"
 										},
 										{
-											"id": 84,
+											"id": 86,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -3404,7 +3438,7 @@
 							]
 						},
 						{
-							"id": 137,
+							"id": 139,
 							"name": "dcolour",
 							"variant": "declaration",
 							"kind": 2048,
@@ -3414,12 +3448,12 @@
 									"fileName": "FXChain.ts",
 									"line": 293,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L293"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L293"
 								}
 							],
 							"signatures": [
 								{
-									"id": 138,
+									"id": 140,
 									"name": "dcolour",
 									"variant": "signature",
 									"kind": 4096,
@@ -3437,12 +3471,12 @@
 											"fileName": "FXChain.ts",
 											"line": 293,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L293"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L293"
 										}
 									],
 									"parameters": [
 										{
-											"id": 139,
+											"id": 141,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -3462,7 +3496,7 @@
 											"defaultValue": "0.25"
 										},
 										{
-											"id": 140,
+											"id": 142,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -3481,7 +3515,7 @@
 							]
 						},
 						{
-							"id": 105,
+							"id": 107,
 							"name": "delay",
 							"variant": "declaration",
 							"kind": 2048,
@@ -3491,12 +3525,12 @@
 									"fileName": "FXChain.ts",
 									"line": 245,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L245"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L245"
 								}
 							],
 							"signatures": [
 								{
-									"id": 106,
+									"id": 108,
 									"name": "delay",
 									"variant": "signature",
 									"kind": 4096,
@@ -3514,12 +3548,12 @@
 											"fileName": "FXChain.ts",
 											"line": 245,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L245"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L245"
 										}
 									],
 									"parameters": [
 										{
-											"id": 107,
+											"id": 109,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -3539,7 +3573,7 @@
 											"defaultValue": "0"
 										},
 										{
-											"id": 108,
+											"id": 110,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -3558,7 +3592,7 @@
 							]
 						},
 						{
-							"id": 121,
+							"id": 123,
 							"name": "dfb",
 							"variant": "declaration",
 							"kind": 2048,
@@ -3568,12 +3602,12 @@
 									"fileName": "FXChain.ts",
 									"line": 269,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L269"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L269"
 								}
 							],
 							"signatures": [
 								{
-									"id": 122,
+									"id": 124,
 									"name": "dfb",
 									"variant": "signature",
 									"kind": 4096,
@@ -3591,12 +3625,12 @@
 											"fileName": "FXChain.ts",
 											"line": 269,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L269"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L269"
 										}
 									],
 									"parameters": [
 										{
-											"id": 123,
+											"id": 125,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -3616,7 +3650,7 @@
 											"defaultValue": "0.5"
 										},
 										{
-											"id": 124,
+											"id": 126,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -3635,7 +3669,7 @@
 							]
 						},
 						{
-							"id": 145,
+							"id": 147,
 							"name": "dfilter",
 							"variant": "declaration",
 							"kind": 2048,
@@ -3645,12 +3679,12 @@
 									"fileName": "FXChain.ts",
 									"line": 306,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L306"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L306"
 								}
 							],
 							"signatures": [
 								{
-									"id": 146,
+									"id": 148,
 									"name": "dfilter",
 									"variant": "signature",
 									"kind": 4096,
@@ -3668,12 +3702,12 @@
 											"fileName": "FXChain.ts",
 											"line": 306,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L306"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L306"
 										}
 									],
 									"parameters": [
 										{
-											"id": 147,
+											"id": 149,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -3693,7 +3727,7 @@
 											"defaultValue": "0"
 										},
 										{
-											"id": 148,
+											"id": 150,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -3712,7 +3746,7 @@
 							]
 						},
 						{
-							"id": 9,
+							"id": 11,
 							"name": "dist",
 							"variant": "declaration",
 							"kind": 2048,
@@ -3722,12 +3756,12 @@
 									"fileName": "FXChain.ts",
 									"line": 99,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L99"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L99"
 								}
 							],
 							"signatures": [
 								{
-									"id": 10,
+									"id": 12,
 									"name": "dist",
 									"variant": "signature",
 									"kind": 4096,
@@ -3745,12 +3779,12 @@
 											"fileName": "FXChain.ts",
 											"line": 99,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L99"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L99"
 										}
 									],
 									"parameters": [
 										{
-											"id": 11,
+											"id": 13,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -3770,7 +3804,7 @@
 											"defaultValue": "0"
 										},
 										{
-											"id": 12,
+											"id": 14,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -3789,7 +3823,7 @@
 							]
 						},
 						{
-							"id": 17,
+							"id": 19,
 							"name": "drive",
 							"variant": "declaration",
 							"kind": 2048,
@@ -3799,12 +3833,12 @@
 									"fileName": "FXChain.ts",
 									"line": 111,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L111"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L111"
 								}
 							],
 							"signatures": [
 								{
-									"id": 18,
+									"id": 20,
 									"name": "drive",
 									"variant": "signature",
 									"kind": 4096,
@@ -3822,12 +3856,12 @@
 											"fileName": "FXChain.ts",
 											"line": 111,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L111"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L111"
 										}
 									],
 									"parameters": [
 										{
-											"id": 19,
+											"id": 21,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -3847,7 +3881,7 @@
 											"defaultValue": "0.5"
 										},
 										{
-											"id": 20,
+											"id": 22,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -3866,7 +3900,7 @@
 							]
 						},
 						{
-							"id": 129,
+							"id": 131,
 							"name": "dspread",
 							"variant": "declaration",
 							"kind": 2048,
@@ -3876,12 +3910,12 @@
 									"fileName": "FXChain.ts",
 									"line": 281,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L281"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L281"
 								}
 							],
 							"signatures": [
 								{
-									"id": 130,
+									"id": 132,
 									"name": "dspread",
 									"variant": "signature",
 									"kind": 4096,
@@ -3899,12 +3933,12 @@
 											"fileName": "FXChain.ts",
 											"line": 281,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L281"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L281"
 										}
 									],
 									"parameters": [
 										{
-											"id": 131,
+											"id": 133,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -3924,7 +3958,7 @@
 											"defaultValue": "0"
 										},
 										{
-											"id": 132,
+											"id": 134,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -3943,7 +3977,7 @@
 							]
 						},
 						{
-							"id": 113,
+							"id": 115,
 							"name": "dtime",
 							"variant": "declaration",
 							"kind": 2048,
@@ -3953,12 +3987,12 @@
 									"fileName": "FXChain.ts",
 									"line": 257,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L257"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L257"
 								}
 							],
 							"signatures": [
 								{
-									"id": 114,
+									"id": 116,
 									"name": "dtime",
 									"variant": "signature",
 									"kind": 4096,
@@ -3976,12 +4010,12 @@
 											"fileName": "FXChain.ts",
 											"line": 257,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L257"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L257"
 										}
 									],
 									"parameters": [
 										{
-											"id": 115,
+											"id": 117,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -4001,7 +4035,7 @@
 											"defaultValue": "500"
 										},
 										{
-											"id": 116,
+											"id": 118,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -4020,7 +4054,7 @@
 							]
 						},
 						{
-							"id": 201,
+							"id": 203,
 							"name": "gain",
 							"variant": "declaration",
 							"kind": 2048,
@@ -4030,12 +4064,12 @@
 									"fileName": "FXChain.ts",
 									"line": 392,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L392"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L392"
 								}
 							],
 							"signatures": [
 								{
-									"id": 202,
+									"id": 204,
 									"name": "gain",
 									"variant": "signature",
 									"kind": 4096,
@@ -4053,12 +4087,12 @@
 											"fileName": "FXChain.ts",
 											"line": 392,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L392"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L392"
 										}
 									],
 									"parameters": [
 										{
-											"id": 203,
+											"id": 205,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -4078,7 +4112,7 @@
 											"defaultValue": "1"
 										},
 										{
-											"id": 204,
+											"id": 206,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -4097,85 +4131,8 @@
 							]
 						},
 						{
-							"id": 89,
-							"name": "hicut",
-							"variant": "declaration",
-							"kind": 2048,
-							"flags": {},
-							"sources": [
-								{
-									"fileName": "FXChain.ts",
-									"line": 221,
-									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L221"
-								}
-							],
-							"signatures": [
-								{
-									"id": 90,
-									"name": "hicut",
-									"variant": "signature",
-									"kind": 4096,
-									"flags": {},
-									"comment": {
-										"summary": [
-											{
-												"kind": "text",
-												"text": "Hicut filter"
-											}
-										]
-									},
-									"sources": [
-										{
-											"fileName": "FXChain.ts",
-											"line": 221,
-											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L221"
-										}
-									],
-									"parameters": [
-										{
-											"id": 91,
-											"name": "value",
-											"variant": "param",
-											"kind": 32768,
-											"flags": {},
-											"comment": {
-												"summary": [
-													{
-														"kind": "text",
-														"text": "0 to 1"
-													}
-												]
-											},
-											"type": {
-												"type": "intrinsic",
-												"name": "number"
-											},
-											"defaultValue": "0"
-										},
-										{
-											"id": 92,
-											"name": "time",
-											"variant": "param",
-											"kind": 32768,
-											"flags": {},
-											"type": {
-												"type": "intrinsic",
-												"name": "number"
-											}
-										}
-									],
-									"type": {
-										"type": "intrinsic",
-										"name": "void"
-									}
-								}
-							]
-						},
-						{
-							"id": 97,
-							"name": "locut",
+							"id": 99,
+							"name": "hpf",
 							"variant": "declaration",
 							"kind": 2048,
 							"flags": {},
@@ -4184,13 +4141,13 @@
 									"fileName": "FXChain.ts",
 									"line": 233,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L233"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L233"
 								}
 							],
 							"signatures": [
 								{
-									"id": 98,
-									"name": "locut",
+									"id": 100,
+									"name": "hpf",
 									"variant": "signature",
 									"kind": 4096,
 									"flags": {},
@@ -4198,7 +4155,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Locut filter"
+												"text": "HPF filter"
 											}
 										]
 									},
@@ -4207,12 +4164,12 @@
 											"fileName": "FXChain.ts",
 											"line": 233,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L233"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L233"
 										}
 									],
 									"parameters": [
 										{
-											"id": 99,
+											"id": 101,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -4232,7 +4189,7 @@
 											"defaultValue": "0"
 										},
 										{
-											"id": 100,
+											"id": 102,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -4251,7 +4208,84 @@
 							]
 						},
 						{
-							"id": 209,
+							"id": 91,
+							"name": "lpf",
+							"variant": "declaration",
+							"kind": 2048,
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "FXChain.ts",
+									"line": 221,
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L221"
+								}
+							],
+							"signatures": [
+								{
+									"id": 92,
+									"name": "lpf",
+									"variant": "signature",
+									"kind": 4096,
+									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "LPF filter"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "FXChain.ts",
+											"line": 221,
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L221"
+										}
+									],
+									"parameters": [
+										{
+											"id": 93,
+											"name": "value",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "0 to 1"
+													}
+												]
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "0"
+										},
+										{
+											"id": 94,
+											"name": "time",
+											"variant": "param",
+											"kind": 32768,
+											"flags": {},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									}
+								}
+							]
+						},
+						{
+							"id": 211,
 							"name": "lthresh",
 							"variant": "declaration",
 							"kind": 2048,
@@ -4261,12 +4295,12 @@
 									"fileName": "FXChain.ts",
 									"line": 404,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L404"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L404"
 								}
 							],
 							"signatures": [
 								{
-									"id": 210,
+									"id": 212,
 									"name": "lthresh",
 									"variant": "signature",
 									"kind": 4096,
@@ -4284,12 +4318,12 @@
 											"fileName": "FXChain.ts",
 											"line": 404,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L404"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L404"
 										}
 									],
 									"parameters": [
 										{
-											"id": 211,
+											"id": 213,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -4309,7 +4343,7 @@
 											"defaultValue": "1"
 										},
 										{
-											"id": 212,
+											"id": 214,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -4328,7 +4362,7 @@
 							]
 						},
 						{
-							"id": 169,
+							"id": 171,
 							"name": "rdamp",
 							"variant": "declaration",
 							"kind": 2048,
@@ -4338,12 +4372,12 @@
 									"fileName": "FXChain.ts",
 									"line": 344,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L344"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L344"
 								}
 							],
 							"signatures": [
 								{
-									"id": 170,
+									"id": 172,
 									"name": "rdamp",
 									"variant": "signature",
 									"kind": 4096,
@@ -4361,12 +4395,12 @@
 											"fileName": "FXChain.ts",
 											"line": 344,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L344"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L344"
 										}
 									],
 									"parameters": [
 										{
-											"id": 171,
+											"id": 173,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -4386,7 +4420,7 @@
 											"defaultValue": "0.25"
 										},
 										{
-											"id": 172,
+											"id": 174,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -4405,7 +4439,7 @@
 							]
 						},
 						{
-							"id": 193,
+							"id": 195,
 							"name": "rdecay",
 							"variant": "declaration",
 							"kind": 2048,
@@ -4415,12 +4449,12 @@
 									"fileName": "FXChain.ts",
 									"line": 380,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L380"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L380"
 								}
 							],
 							"signatures": [
 								{
-									"id": 194,
+									"id": 196,
 									"name": "rdecay",
 									"variant": "signature",
 									"kind": 4096,
@@ -4438,12 +4472,12 @@
 											"fileName": "FXChain.ts",
 											"line": 380,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L380"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L380"
 										}
 									],
 									"parameters": [
 										{
-											"id": 195,
+											"id": 197,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -4463,7 +4497,7 @@
 											"defaultValue": "0.25"
 										},
 										{
-											"id": 196,
+											"id": 198,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -4482,7 +4516,7 @@
 							]
 						},
 						{
-							"id": 177,
+							"id": 179,
 							"name": "rdiff",
 							"variant": "declaration",
 							"kind": 2048,
@@ -4492,12 +4526,12 @@
 									"fileName": "FXChain.ts",
 									"line": 356,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L356"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L356"
 								}
 							],
 							"signatures": [
 								{
-									"id": 178,
+									"id": 180,
 									"name": "rdiff",
 									"variant": "signature",
 									"kind": 4096,
@@ -4515,12 +4549,12 @@
 											"fileName": "FXChain.ts",
 											"line": 356,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L356"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L356"
 										}
 									],
 									"parameters": [
 										{
-											"id": 179,
+											"id": 181,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -4540,7 +4574,7 @@
 											"defaultValue": "0.25"
 										},
 										{
-											"id": 180,
+											"id": 182,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -4559,7 +4593,7 @@
 							]
 						},
 						{
-							"id": 153,
+							"id": 155,
 							"name": "reverb",
 							"variant": "declaration",
 							"kind": 2048,
@@ -4569,12 +4603,12 @@
 									"fileName": "FXChain.ts",
 									"line": 318,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L318"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L318"
 								}
 							],
 							"signatures": [
 								{
-									"id": 154,
+									"id": 156,
 									"name": "reverb",
 									"variant": "signature",
 									"kind": 4096,
@@ -4592,12 +4626,12 @@
 											"fileName": "FXChain.ts",
 											"line": 318,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L318"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L318"
 										}
 									],
 									"parameters": [
 										{
-											"id": 155,
+											"id": 157,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -4617,7 +4651,7 @@
 											"defaultValue": "0"
 										},
 										{
-											"id": 156,
+											"id": 158,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -4636,7 +4670,7 @@
 							]
 						},
 						{
-							"id": 25,
+							"id": 27,
 							"name": "ring",
 							"variant": "declaration",
 							"kind": 2048,
@@ -4646,12 +4680,12 @@
 									"fileName": "FXChain.ts",
 									"line": 124,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L124"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L124"
 								}
 							],
 							"signatures": [
 								{
-									"id": 26,
+									"id": 28,
 									"name": "ring",
 									"variant": "signature",
 									"kind": 4096,
@@ -4669,12 +4703,12 @@
 											"fileName": "FXChain.ts",
 											"line": 124,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L124"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L124"
 										}
 									],
 									"parameters": [
 										{
-											"id": 27,
+											"id": 29,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -4694,7 +4728,7 @@
 											"defaultValue": "0"
 										},
 										{
-											"id": 28,
+											"id": 30,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -4713,7 +4747,7 @@
 							]
 						},
 						{
-							"id": 33,
+							"id": 35,
 							"name": "ringf",
 							"variant": "declaration",
 							"kind": 2048,
@@ -4723,12 +4757,12 @@
 									"fileName": "FXChain.ts",
 									"line": 136,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L136"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L136"
 								}
 							],
 							"signatures": [
 								{
-									"id": 34,
+									"id": 36,
 									"name": "ringf",
 									"variant": "signature",
 									"kind": 4096,
@@ -4746,12 +4780,12 @@
 											"fileName": "FXChain.ts",
 											"line": 136,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L136"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L136"
 										}
 									],
 									"parameters": [
 										{
-											"id": 35,
+											"id": 37,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -4771,7 +4805,7 @@
 											"defaultValue": "0.25"
 										},
 										{
-											"id": 36,
+											"id": 38,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -4790,7 +4824,7 @@
 							]
 						},
 						{
-							"id": 49,
+							"id": 51,
 							"name": "ringmode",
 							"variant": "declaration",
 							"kind": 2048,
@@ -4800,12 +4834,12 @@
 									"fileName": "FXChain.ts",
 									"line": 160,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L160"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L160"
 								}
 							],
 							"signatures": [
 								{
-									"id": 50,
+									"id": 52,
 									"name": "ringmode",
 									"variant": "signature",
 									"kind": 4096,
@@ -4823,12 +4857,12 @@
 											"fileName": "FXChain.ts",
 											"line": 160,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L160"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L160"
 										}
 									],
 									"parameters": [
 										{
-											"id": 51,
+											"id": 53,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -4848,7 +4882,7 @@
 											"defaultValue": "0"
 										},
 										{
-											"id": 52,
+											"id": 54,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -4867,7 +4901,7 @@
 							]
 						},
 						{
-							"id": 41,
+							"id": 43,
 							"name": "ringspread",
 							"variant": "declaration",
 							"kind": 2048,
@@ -4877,12 +4911,12 @@
 									"fileName": "FXChain.ts",
 									"line": 148,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L148"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L148"
 								}
 							],
 							"signatures": [
 								{
-									"id": 42,
+									"id": 44,
 									"name": "ringspread",
 									"variant": "signature",
 									"kind": 4096,
@@ -4900,12 +4934,12 @@
 											"fileName": "FXChain.ts",
 											"line": 148,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L148"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L148"
 										}
 									],
 									"parameters": [
 										{
-											"id": 43,
+											"id": 45,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -4925,7 +4959,7 @@
 											"defaultValue": "0"
 										},
 										{
-											"id": 44,
+											"id": 46,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -4944,7 +4978,7 @@
 							]
 						},
 						{
-							"id": 185,
+							"id": 187,
 							"name": "rjitter",
 							"variant": "declaration",
 							"kind": 2048,
@@ -4954,12 +4988,12 @@
 									"fileName": "FXChain.ts",
 									"line": 368,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L368"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L368"
 								}
 							],
 							"signatures": [
 								{
-									"id": 186,
+									"id": 188,
 									"name": "rjitter",
 									"variant": "signature",
 									"kind": 4096,
@@ -4977,12 +5011,12 @@
 											"fileName": "FXChain.ts",
 											"line": 368,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L368"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L368"
 										}
 									],
 									"parameters": [
 										{
-											"id": 187,
+											"id": 189,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -5002,7 +5036,7 @@
 											"defaultValue": "0"
 										},
 										{
-											"id": 188,
+											"id": 190,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -5021,7 +5055,7 @@
 							]
 						},
 						{
-							"id": 161,
+							"id": 163,
 							"name": "rsize",
 							"variant": "declaration",
 							"kind": 2048,
@@ -5031,12 +5065,12 @@
 									"fileName": "FXChain.ts",
 									"line": 330,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L330"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L330"
 								}
 							],
 							"signatures": [
 								{
-									"id": 162,
+									"id": 164,
 									"name": "rsize",
 									"variant": "signature",
 									"kind": 4096,
@@ -5054,12 +5088,12 @@
 											"fileName": "FXChain.ts",
 											"line": 330,
 											"character": 4,
-											"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L330"
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L330"
 										}
 									],
 									"parameters": [
 										{
-											"id": 163,
+											"id": 165,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -5079,7 +5113,7 @@
 											"defaultValue": "0.25"
 										},
 										{
-											"id": 164,
+											"id": 166,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -5102,64 +5136,64 @@
 						{
 							"title": "Properties",
 							"children": [
-								217
+								219
 							]
 						},
 						{
 							"title": "Methods",
 							"children": [
-								69,
-								77,
-								61,
-								85,
-								141,
-								109,
-								125,
-								149,
-								13,
-								21,
-								133,
-								117,
-								205,
-								93,
-								101,
-								213,
-								173,
-								197,
-								181,
-								157,
-								29,
-								37,
-								53,
-								45,
-								189,
-								165,
-								65,
-								73,
-								57,
-								81,
-								137,
-								105,
-								121,
-								145,
-								9,
-								17,
-								129,
-								113,
-								201,
-								89,
-								97,
-								209,
-								169,
-								193,
-								177,
-								153,
-								25,
-								33,
-								49,
-								41,
-								185,
-								161
+								71,
+								79,
+								63,
+								87,
+								143,
+								111,
+								127,
+								151,
+								15,
+								23,
+								135,
+								119,
+								207,
+								103,
+								95,
+								215,
+								175,
+								199,
+								183,
+								159,
+								31,
+								39,
+								55,
+								47,
+								191,
+								167,
+								67,
+								75,
+								59,
+								83,
+								139,
+								107,
+								123,
+								147,
+								11,
+								19,
+								131,
+								115,
+								203,
+								99,
+								91,
+								211,
+								171,
+								195,
+								179,
+								155,
+								27,
+								35,
+								51,
+								43,
+								187,
+								163
 							]
 						}
 					],
@@ -5168,18 +5202,19 @@
 							"fileName": "FXChain.ts",
 							"line": 13,
 							"character": 6,
-							"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L13"
+							"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L13"
 						}
 					],
 					"extendedTypes": [
 						{
 							"type": "reference",
 							"target": {
-								"sourceFileName": "src/lib/oto/ct-synths/rnbo/RNBODevice.ts",
+								"packageName": "zen",
+								"packagePath": "src/lib/oto/ct-synths/rnbo/RNBODevice.ts",
 								"qualifiedName": "RNBODevice"
 							},
 							"name": "RNBODevice",
-							"package": "zen-3"
+							"package": "zen"
 						}
 					]
 				}
@@ -5188,7 +5223,7 @@
 				{
 					"title": "Classes",
 					"children": [
-						2
+						4
 					]
 				}
 			],
@@ -5197,19 +5232,19 @@
 					"fileName": "FXChain.ts",
 					"line": 1,
 					"character": 0,
-					"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/FXChain.ts#L1"
+					"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/FXChain.ts#L1"
 				}
 			]
 		},
 		{
-			"id": 247,
+			"id": 2,
 			"name": "Reverb",
 			"variant": "declaration",
 			"kind": 2,
 			"flags": {},
 			"children": [
 				{
-					"id": 248,
+					"id": 249,
 					"name": "default",
 					"variant": "declaration",
 					"kind": 128,
@@ -5227,7 +5262,7 @@
 								"content": [
 									{
 										"kind": "code",
-										"text": "```ts\ns0.p.reverb.set(0.5)\n```"
+										"text": "```ts\ns0.reverb.set(0.5)\n```"
 									}
 								]
 							}
@@ -5235,27 +5270,30 @@
 					},
 					"children": [
 						{
-							"id": 303,
+							"id": 304,
 							"name": "defaults",
 							"variant": "declaration",
 							"kind": 1024,
-							"flags": {},
+							"flags": {
+								"isInherited": true
+							},
 							"sources": [
 								{
 									"fileName": "RNBODevice.ts",
 									"line": 9,
 									"character": 4,
-									"url": "https://github.com/cephasteom/ct-synths/blob/409f256/rnbo/RNBODevice.ts#L9"
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/RNBODevice.ts#L9"
 								}
 							],
 							"type": {
 								"type": "reference",
 								"target": {
-									"sourceFileName": "src/lib/oto/ct-synths/types.ts",
+									"packageName": "zen",
+									"packagePath": "src/lib/oto/ct-synths/types.ts",
 									"qualifiedName": "Dictionary"
 								},
 								"name": "Dictionary",
-								"package": "zen-3"
+								"package": "zen"
 							},
 							"defaultValue": "{}",
 							"inheritedFrom": {
@@ -5265,7 +5303,7 @@
 							}
 						},
 						{
-							"id": 275,
+							"id": 276,
 							"name": "_rdamp",
 							"variant": "declaration",
 							"kind": 2048,
@@ -5274,12 +5312,13 @@
 								{
 									"fileName": "Reverb.ts",
 									"line": 83,
-									"character": 4
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Reverb.ts#L83"
 								}
 							],
 							"signatures": [
 								{
-									"id": 276,
+									"id": 277,
 									"name": "_rdamp",
 									"variant": "signature",
 									"kind": 4096,
@@ -5296,12 +5335,13 @@
 										{
 											"fileName": "Reverb.ts",
 											"line": 83,
-											"character": 4
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Reverb.ts#L83"
 										}
 									],
 									"parameters": [
 										{
-											"id": 277,
+											"id": 278,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -5321,7 +5361,7 @@
 											"defaultValue": "0.25"
 										},
 										{
-											"id": 278,
+											"id": 279,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -5340,7 +5380,7 @@
 							]
 						},
 						{
-							"id": 299,
+							"id": 300,
 							"name": "_rdecay",
 							"variant": "declaration",
 							"kind": 2048,
@@ -5349,12 +5389,13 @@
 								{
 									"fileName": "Reverb.ts",
 									"line": 119,
-									"character": 4
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Reverb.ts#L119"
 								}
 							],
 							"signatures": [
 								{
-									"id": 300,
+									"id": 301,
 									"name": "_rdecay",
 									"variant": "signature",
 									"kind": 4096,
@@ -5371,12 +5412,13 @@
 										{
 											"fileName": "Reverb.ts",
 											"line": 119,
-											"character": 4
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Reverb.ts#L119"
 										}
 									],
 									"parameters": [
 										{
-											"id": 301,
+											"id": 302,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -5396,7 +5438,7 @@
 											"defaultValue": "0.25"
 										},
 										{
-											"id": 302,
+											"id": 303,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -5415,7 +5457,7 @@
 							]
 						},
 						{
-							"id": 283,
+							"id": 284,
 							"name": "_rdiff",
 							"variant": "declaration",
 							"kind": 2048,
@@ -5424,12 +5466,13 @@
 								{
 									"fileName": "Reverb.ts",
 									"line": 95,
-									"character": 4
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Reverb.ts#L95"
 								}
 							],
 							"signatures": [
 								{
-									"id": 284,
+									"id": 285,
 									"name": "_rdiff",
 									"variant": "signature",
 									"kind": 4096,
@@ -5446,12 +5489,13 @@
 										{
 											"fileName": "Reverb.ts",
 											"line": 95,
-											"character": 4
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Reverb.ts#L95"
 										}
 									],
 									"parameters": [
 										{
-											"id": 285,
+											"id": 286,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -5471,7 +5515,7 @@
 											"defaultValue": "0.25"
 										},
 										{
-											"id": 286,
+											"id": 287,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -5490,7 +5534,7 @@
 							]
 						},
 						{
-							"id": 259,
+							"id": 260,
 							"name": "_reverb",
 							"variant": "declaration",
 							"kind": 2048,
@@ -5499,12 +5543,13 @@
 								{
 									"fileName": "Reverb.ts",
 									"line": 57,
-									"character": 4
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Reverb.ts#L57"
 								}
 							],
 							"signatures": [
 								{
-									"id": 260,
+									"id": 261,
 									"name": "_reverb",
 									"variant": "signature",
 									"kind": 4096,
@@ -5521,12 +5566,13 @@
 										{
 											"fileName": "Reverb.ts",
 											"line": 57,
-											"character": 4
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Reverb.ts#L57"
 										}
 									],
 									"parameters": [
 										{
-											"id": 261,
+											"id": 262,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -5546,7 +5592,7 @@
 											"defaultValue": "0"
 										},
 										{
-											"id": 262,
+											"id": 263,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -5565,7 +5611,7 @@
 							]
 						},
 						{
-							"id": 291,
+							"id": 292,
 							"name": "_rjitter",
 							"variant": "declaration",
 							"kind": 2048,
@@ -5574,12 +5620,13 @@
 								{
 									"fileName": "Reverb.ts",
 									"line": 107,
-									"character": 4
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Reverb.ts#L107"
 								}
 							],
 							"signatures": [
 								{
-									"id": 292,
+									"id": 293,
 									"name": "_rjitter",
 									"variant": "signature",
 									"kind": 4096,
@@ -5596,12 +5643,13 @@
 										{
 											"fileName": "Reverb.ts",
 											"line": 107,
-											"character": 4
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Reverb.ts#L107"
 										}
 									],
 									"parameters": [
 										{
-											"id": 293,
+											"id": 294,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -5621,7 +5669,7 @@
 											"defaultValue": "0"
 										},
 										{
-											"id": 294,
+											"id": 295,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -5640,7 +5688,7 @@
 							]
 						},
 						{
-							"id": 267,
+							"id": 268,
 							"name": "_rsize",
 							"variant": "declaration",
 							"kind": 2048,
@@ -5649,12 +5697,13 @@
 								{
 									"fileName": "Reverb.ts",
 									"line": 71,
-									"character": 4
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Reverb.ts#L71"
 								}
 							],
 							"signatures": [
 								{
-									"id": 268,
+									"id": 269,
 									"name": "_rsize",
 									"variant": "signature",
 									"kind": 4096,
@@ -5671,12 +5720,13 @@
 										{
 											"fileName": "Reverb.ts",
 											"line": 71,
-											"character": 4
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Reverb.ts#L71"
 										}
 									],
 									"parameters": [
 										{
-											"id": 269,
+											"id": 270,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -5696,7 +5746,7 @@
 											"defaultValue": "0.25"
 										},
 										{
-											"id": 270,
+											"id": 271,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -5715,7 +5765,7 @@
 							]
 						},
 						{
-							"id": 271,
+							"id": 272,
 							"name": "rdamp",
 							"variant": "declaration",
 							"kind": 2048,
@@ -5724,12 +5774,13 @@
 								{
 									"fileName": "Reverb.ts",
 									"line": 77,
-									"character": 4
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Reverb.ts#L77"
 								}
 							],
 							"signatures": [
 								{
-									"id": 272,
+									"id": 273,
 									"name": "rdamp",
 									"variant": "signature",
 									"kind": 4096,
@@ -5746,12 +5797,13 @@
 										{
 											"fileName": "Reverb.ts",
 											"line": 77,
-											"character": 4
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Reverb.ts#L77"
 										}
 									],
 									"parameters": [
 										{
-											"id": 273,
+											"id": 274,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -5771,7 +5823,7 @@
 											"defaultValue": "0.25"
 										},
 										{
-											"id": 274,
+											"id": 275,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -5790,7 +5842,7 @@
 							]
 						},
 						{
-							"id": 295,
+							"id": 296,
 							"name": "rdecay",
 							"variant": "declaration",
 							"kind": 2048,
@@ -5799,12 +5851,13 @@
 								{
 									"fileName": "Reverb.ts",
 									"line": 113,
-									"character": 4
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Reverb.ts#L113"
 								}
 							],
 							"signatures": [
 								{
-									"id": 296,
+									"id": 297,
 									"name": "rdecay",
 									"variant": "signature",
 									"kind": 4096,
@@ -5821,12 +5874,13 @@
 										{
 											"fileName": "Reverb.ts",
 											"line": 113,
-											"character": 4
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Reverb.ts#L113"
 										}
 									],
 									"parameters": [
 										{
-											"id": 297,
+											"id": 298,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -5846,7 +5900,7 @@
 											"defaultValue": "0.25"
 										},
 										{
-											"id": 298,
+											"id": 299,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -5865,7 +5919,7 @@
 							]
 						},
 						{
-							"id": 279,
+							"id": 280,
 							"name": "rdiff",
 							"variant": "declaration",
 							"kind": 2048,
@@ -5874,12 +5928,13 @@
 								{
 									"fileName": "Reverb.ts",
 									"line": 89,
-									"character": 4
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Reverb.ts#L89"
 								}
 							],
 							"signatures": [
 								{
-									"id": 280,
+									"id": 281,
 									"name": "rdiff",
 									"variant": "signature",
 									"kind": 4096,
@@ -5896,12 +5951,13 @@
 										{
 											"fileName": "Reverb.ts",
 											"line": 89,
-											"character": 4
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Reverb.ts#L89"
 										}
 									],
 									"parameters": [
 										{
-											"id": 281,
+											"id": 282,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -5921,7 +5977,7 @@
 											"defaultValue": "0.25"
 										},
 										{
-											"id": 282,
+											"id": 283,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -5940,7 +5996,7 @@
 							]
 						},
 						{
-							"id": 255,
+							"id": 256,
 							"name": "reverb",
 							"variant": "declaration",
 							"kind": 2048,
@@ -5949,12 +6005,13 @@
 								{
 									"fileName": "Reverb.ts",
 									"line": 51,
-									"character": 4
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Reverb.ts#L51"
 								}
 							],
 							"signatures": [
 								{
-									"id": 256,
+									"id": 257,
 									"name": "reverb",
 									"variant": "signature",
 									"kind": 4096,
@@ -5971,12 +6028,13 @@
 										{
 											"fileName": "Reverb.ts",
 											"line": 51,
-											"character": 4
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Reverb.ts#L51"
 										}
 									],
 									"parameters": [
 										{
-											"id": 257,
+											"id": 258,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -5996,7 +6054,7 @@
 											"defaultValue": "0"
 										},
 										{
-											"id": 258,
+											"id": 259,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -6015,7 +6073,7 @@
 							]
 						},
 						{
-							"id": 287,
+							"id": 288,
 							"name": "rjitter",
 							"variant": "declaration",
 							"kind": 2048,
@@ -6024,12 +6082,13 @@
 								{
 									"fileName": "Reverb.ts",
 									"line": 101,
-									"character": 4
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Reverb.ts#L101"
 								}
 							],
 							"signatures": [
 								{
-									"id": 288,
+									"id": 289,
 									"name": "rjitter",
 									"variant": "signature",
 									"kind": 4096,
@@ -6046,12 +6105,13 @@
 										{
 											"fileName": "Reverb.ts",
 											"line": 101,
-											"character": 4
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Reverb.ts#L101"
 										}
 									],
 									"parameters": [
 										{
-											"id": 289,
+											"id": 290,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -6071,7 +6131,7 @@
 											"defaultValue": "0"
 										},
 										{
-											"id": 290,
+											"id": 291,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -6090,7 +6150,7 @@
 							]
 						},
 						{
-							"id": 263,
+							"id": 264,
 							"name": "rsize",
 							"variant": "declaration",
 							"kind": 2048,
@@ -6099,12 +6159,13 @@
 								{
 									"fileName": "Reverb.ts",
 									"line": 63,
-									"character": 4
+									"character": 4,
+									"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Reverb.ts#L63"
 								}
 							],
 							"signatures": [
 								{
-									"id": 264,
+									"id": 265,
 									"name": "rsize",
 									"variant": "signature",
 									"kind": 4096,
@@ -6121,12 +6182,13 @@
 										{
 											"fileName": "Reverb.ts",
 											"line": 63,
-											"character": 4
+											"character": 4,
+											"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Reverb.ts#L63"
 										}
 									],
 									"parameters": [
 										{
-											"id": 265,
+											"id": 266,
 											"name": "value",
 											"variant": "param",
 											"kind": 32768,
@@ -6146,7 +6208,7 @@
 											"defaultValue": "0.25"
 										},
 										{
-											"id": 266,
+											"id": 267,
 											"name": "time",
 											"variant": "param",
 											"kind": 32768,
@@ -6169,24 +6231,24 @@
 						{
 							"title": "Properties",
 							"children": [
-								303
+								304
 							]
 						},
 						{
 							"title": "Methods",
 							"children": [
-								275,
-								299,
-								283,
-								259,
-								291,
-								267,
-								271,
-								295,
-								279,
-								255,
-								287,
-								263
+								276,
+								300,
+								284,
+								260,
+								292,
+								268,
+								272,
+								296,
+								280,
+								256,
+								288,
+								264
 							]
 						}
 					],
@@ -6194,18 +6256,20 @@
 						{
 							"fileName": "Reverb.ts",
 							"line": 13,
-							"character": 6
+							"character": 6,
+							"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Reverb.ts#L13"
 						}
 					],
 					"extendedTypes": [
 						{
 							"type": "reference",
 							"target": {
-								"sourceFileName": "src/lib/oto/ct-synths/rnbo/RNBODevice.ts",
+								"packageName": "zen",
+								"packagePath": "src/lib/oto/ct-synths/rnbo/RNBODevice.ts",
 								"qualifiedName": "RNBODevice"
 							},
 							"name": "RNBODevice",
-							"package": "zen-3"
+							"package": "zen"
 						}
 					]
 				}
@@ -6214,7 +6278,7 @@
 				{
 					"title": "Classes",
 					"children": [
-						248
+						249
 					]
 				}
 			],
@@ -6222,7 +6286,8 @@
 				{
 					"fileName": "Reverb.ts",
 					"line": 1,
-					"character": 0
+					"character": 0,
+					"url": "https://github.com/cephasteom/ct-synths/blob/067b72aca101256f0c5a6acfb43fea3ca65ebb66/rnbo/Reverb.ts#L1"
 				}
 			]
 		}
@@ -6231,1271 +6296,1652 @@
 		{
 			"title": "Modules",
 			"children": [
-				333,
+				3,
 				1,
-				247
+				2
 			]
 		}
 	],
-	"packageName": "zen-3",
+	"packageName": "zen",
 	"readme": [
 		{
 			"kind": "text",
-			"text": "# Cephas Teom - Synths\nA library of instruments and FX build with RNBO, exported to wasm and ready for use on a web page.\n\n## How to use\n\n## Instruments\n\n### Default parameters\n\n### Synth\n\n### Sampler\n\n### Granular\n\n### Acid\n\n### Drone\n* lforate: 0 - 1. LFO on filter centre frequency.\n* lfodepth: 0 - 1. LFO on filter centre frequency.\n* spread: 0 - 1. Amount harmonics are spread across stereo image.\n* offset: int. Offset harmonic multiplier.\n* damp: 0 - 1. High frequency dampening.\n* dynamic: 0 - 1. Randomly vary amplitudes of harmonics\n* rand: 0 - 1. Randomly delay harmonic amp envelope retriggering.\n* slide: ms. Slide between different pitches.\n* pitch: 0 - 1. Bends pitch with amplitude envelope. 0.5 is no bend. 0 bend down. 1 bend up.\n* moda: ms. How long the drone envelope takes to rise\n* modd: ms. How long the drone envelope takes to fall\n\n## Sub\n* fat: 0 - 1. Amount of fm.\n* slide: ms.\n* lforate: ms. LFO on amplitude.\n* lfodepth: 0 - 1. LFO on amplitude.\n## FX\n\n### FX chain"
+			"text": "# Zen\n\nZen is a live coding environment for the browser, with an emphasis on the use of quantum algorithms for music generation. You can use it at [https://zen.cephasteom.co.uk/](https://zen.cephasteom.co.uk/) or download a version for desktop at [https://github.com/cephasteom/zen-electron](https://github.com/cephasteom/zen-electron).\n\nThis project was built with, amongst other things, SvelteKit.\n\n## Developing\n\nInstall dependencies with "
+		},
+		{
+			"kind": "code",
+			"text": "`npm install`"
+		},
+		{
+			"kind": "text",
+			"text": " (or "
+		},
+		{
+			"kind": "code",
+			"text": "`pnpm install`"
+		},
+		{
+			"kind": "text",
+			"text": " or "
+		},
+		{
+			"kind": "code",
+			"text": "`yarn`"
+		},
+		{
+			"kind": "text",
+			"text": "), start a development server:\n\n"
+		},
+		{
+			"kind": "code",
+			"text": "```bash\nnpm run dev\n\n# or start the server and open the app in a new browser tab\nnpm run dev -- --open\n```"
+		},
+		{
+			"kind": "text",
+			"text": "\n\n## Building\n\nTo create a production version of the app:\n\n"
+		},
+		{
+			"kind": "code",
+			"text": "```bash\nnpm run build\n```"
+		},
+		{
+			"kind": "text",
+			"text": "\n\nYou can preview the production build with "
+		},
+		{
+			"kind": "code",
+			"text": "`npm run preview`"
+		},
+		{
+			"kind": "text",
+			"text": ".\n\n## Docs\nWe use TSDocs to generate documentation for all Zen classes and synths. These generate each time you run a build. If you want to refresh them manually see the scripts in "
+		},
+		{
+			"kind": "code",
+			"text": "`package.json`"
+		},
+		{
+			"kind": "text",
+			"text": "."
 		}
 	],
 	"symbolIdMap": {
 		"1": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
 			"qualifiedName": ""
 		},
 		"2": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain"
-		},
-		"9": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.dist"
-		},
-		"10": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.dist"
-		},
-		"11": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"12": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"13": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._dist"
-		},
-		"14": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._dist"
-		},
-		"15": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"16": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"17": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.drive"
-		},
-		"18": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.drive"
-		},
-		"19": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"20": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"21": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._drive"
-		},
-		"22": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._drive"
-		},
-		"23": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"24": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"25": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.ring"
-		},
-		"26": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.ring"
-		},
-		"27": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"28": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"29": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._ring"
-		},
-		"30": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._ring"
-		},
-		"31": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"32": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"33": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.ringf"
-		},
-		"34": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.ringf"
-		},
-		"35": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"36": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"37": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._ringf"
-		},
-		"38": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._ringf"
-		},
-		"39": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"40": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"41": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.ringspread"
-		},
-		"42": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.ringspread"
-		},
-		"43": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"44": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"45": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._ringspread"
-		},
-		"46": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._ringspread"
-		},
-		"47": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"48": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"49": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.ringmode"
-		},
-		"50": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.ringmode"
-		},
-		"51": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"52": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"53": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._ringmode"
-		},
-		"54": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._ringmode"
-		},
-		"55": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"56": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"57": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.chorus"
-		},
-		"58": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.chorus"
-		},
-		"59": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"60": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"61": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._chorus"
-		},
-		"62": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._chorus"
-		},
-		"63": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"64": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"65": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.chdepth"
-		},
-		"66": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.chdepth"
-		},
-		"67": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"68": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"69": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._chdepth"
-		},
-		"70": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._chdepth"
-		},
-		"71": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"72": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"73": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.chlfo"
-		},
-		"74": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.chlfo"
-		},
-		"75": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"76": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"77": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._chlfo"
-		},
-		"78": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._chlfo"
-		},
-		"79": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"80": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"81": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.chspread"
-		},
-		"82": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.chspread"
-		},
-		"83": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"84": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"85": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._chspread"
-		},
-		"86": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._chspread"
-		},
-		"87": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"88": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"89": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.hicut"
-		},
-		"90": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.hicut"
-		},
-		"91": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"92": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"93": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._hicut"
-		},
-		"94": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._hicut"
-		},
-		"95": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"96": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"97": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.locut"
-		},
-		"98": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.locut"
-		},
-		"99": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"100": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"101": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._locut"
-		},
-		"102": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._locut"
-		},
-		"103": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"104": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"105": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.delay"
-		},
-		"106": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.delay"
-		},
-		"107": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"108": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"109": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._delay"
-		},
-		"110": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._delay"
-		},
-		"111": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"112": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"113": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.dtime"
-		},
-		"114": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.dtime"
-		},
-		"115": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"116": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"117": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._dtime"
-		},
-		"118": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._dtime"
-		},
-		"119": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"120": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"121": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.dfb"
-		},
-		"122": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.dfb"
-		},
-		"123": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"124": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"125": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._dfb"
-		},
-		"126": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._dfb"
-		},
-		"127": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"128": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"129": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.dspread"
-		},
-		"130": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.dspread"
-		},
-		"131": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"132": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"133": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._dspread"
-		},
-		"134": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._dspread"
-		},
-		"135": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"136": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"137": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.dcolour"
-		},
-		"138": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.dcolour"
-		},
-		"139": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"140": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"141": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._dcolour"
-		},
-		"142": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._dcolour"
-		},
-		"143": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"144": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"145": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.dfilter"
-		},
-		"146": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.dfilter"
-		},
-		"147": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"148": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"149": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._dfilter"
-		},
-		"150": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._dfilter"
-		},
-		"151": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"152": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"153": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.reverb"
-		},
-		"154": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.reverb"
-		},
-		"155": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"156": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"157": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._reverb"
-		},
-		"158": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._reverb"
-		},
-		"159": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"160": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"161": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.rsize"
-		},
-		"162": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.rsize"
-		},
-		"163": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"164": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"165": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._rsize"
-		},
-		"166": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._rsize"
-		},
-		"167": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"168": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"169": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.rdamp"
-		},
-		"170": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.rdamp"
-		},
-		"171": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"172": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"173": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._rdamp"
-		},
-		"174": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._rdamp"
-		},
-		"175": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"176": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"177": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.rdiff"
-		},
-		"178": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.rdiff"
-		},
-		"179": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"180": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"181": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._rdiff"
-		},
-		"182": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._rdiff"
-		},
-		"183": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"184": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"185": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.rjitter"
-		},
-		"186": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.rjitter"
-		},
-		"187": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"188": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"189": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._rjitter"
-		},
-		"190": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._rjitter"
-		},
-		"191": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"192": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"193": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.rdecay"
-		},
-		"194": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.rdecay"
-		},
-		"195": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"196": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"197": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._rdecay"
-		},
-		"198": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._rdecay"
-		},
-		"199": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"200": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"201": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.gain"
-		},
-		"202": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.gain"
-		},
-		"203": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"204": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"205": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._gain"
-		},
-		"206": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._gain"
-		},
-		"207": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"208": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"209": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.lthresh"
-		},
-		"210": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain.lthresh"
-		},
-		"211": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"212": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"213": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._lthresh"
-		},
-		"214": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "FXChain._lthresh"
-		},
-		"215": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "value"
-		},
-		"216": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
-			"qualifiedName": "time"
-		},
-		"217": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/RNBODevice.ts",
-			"qualifiedName": "RNBODevice.defaults"
-		},
-		"247": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": ""
 		},
-		"248": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+		"3": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"qualifiedName": ""
+		},
+		"4": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain"
+		},
+		"11": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.dist"
+		},
+		"12": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.dist"
+		},
+		"13": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"14": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"15": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._dist"
+		},
+		"16": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._dist"
+		},
+		"17": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"18": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"19": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.drive"
+		},
+		"20": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.drive"
+		},
+		"21": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"22": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"23": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._drive"
+		},
+		"24": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._drive"
+		},
+		"25": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"26": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"27": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.ring"
+		},
+		"28": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.ring"
+		},
+		"29": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"30": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"31": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._ring"
+		},
+		"32": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._ring"
+		},
+		"33": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"34": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"35": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.ringf"
+		},
+		"36": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.ringf"
+		},
+		"37": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"38": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"39": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._ringf"
+		},
+		"40": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._ringf"
+		},
+		"41": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"42": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"43": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.ringspread"
+		},
+		"44": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.ringspread"
+		},
+		"45": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"46": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"47": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._ringspread"
+		},
+		"48": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._ringspread"
+		},
+		"49": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"50": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"51": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.ringmode"
+		},
+		"52": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.ringmode"
+		},
+		"53": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"54": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"55": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._ringmode"
+		},
+		"56": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._ringmode"
+		},
+		"57": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"58": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"59": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.chorus"
+		},
+		"60": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.chorus"
+		},
+		"61": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"62": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"63": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._chorus"
+		},
+		"64": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._chorus"
+		},
+		"65": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"66": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"67": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.chdepth"
+		},
+		"68": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.chdepth"
+		},
+		"69": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"70": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"71": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._chdepth"
+		},
+		"72": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._chdepth"
+		},
+		"73": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"74": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"75": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.chlfo"
+		},
+		"76": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.chlfo"
+		},
+		"77": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"78": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"79": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._chlfo"
+		},
+		"80": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._chlfo"
+		},
+		"81": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"82": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"83": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.chspread"
+		},
+		"84": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.chspread"
+		},
+		"85": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"86": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"87": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._chspread"
+		},
+		"88": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._chspread"
+		},
+		"89": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"90": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"91": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.lpf"
+		},
+		"92": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.lpf"
+		},
+		"93": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"94": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"95": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._lpf"
+		},
+		"96": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._lpf"
+		},
+		"97": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"98": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"99": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.hpf"
+		},
+		"100": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.hpf"
+		},
+		"101": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"102": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"103": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._hpf"
+		},
+		"104": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._hpf"
+		},
+		"105": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"106": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"107": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.delay"
+		},
+		"108": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.delay"
+		},
+		"109": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"110": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"111": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._delay"
+		},
+		"112": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._delay"
+		},
+		"113": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"114": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"115": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.dtime"
+		},
+		"116": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.dtime"
+		},
+		"117": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"118": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"119": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._dtime"
+		},
+		"120": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._dtime"
+		},
+		"121": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"122": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"123": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.dfb"
+		},
+		"124": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.dfb"
+		},
+		"125": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"126": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"127": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._dfb"
+		},
+		"128": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._dfb"
+		},
+		"129": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"130": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"131": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.dspread"
+		},
+		"132": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.dspread"
+		},
+		"133": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"134": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"135": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._dspread"
+		},
+		"136": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._dspread"
+		},
+		"137": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"138": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"139": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.dcolour"
+		},
+		"140": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.dcolour"
+		},
+		"141": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"142": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"143": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._dcolour"
+		},
+		"144": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._dcolour"
+		},
+		"145": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"146": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"147": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.dfilter"
+		},
+		"148": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.dfilter"
+		},
+		"149": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"150": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"151": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._dfilter"
+		},
+		"152": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._dfilter"
+		},
+		"153": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"154": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"155": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.reverb"
+		},
+		"156": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.reverb"
+		},
+		"157": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"158": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"159": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._reverb"
+		},
+		"160": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._reverb"
+		},
+		"161": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"162": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"163": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.rsize"
+		},
+		"164": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.rsize"
+		},
+		"165": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"166": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"167": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._rsize"
+		},
+		"168": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._rsize"
+		},
+		"169": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"170": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"171": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.rdamp"
+		},
+		"172": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.rdamp"
+		},
+		"173": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"174": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"175": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._rdamp"
+		},
+		"176": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._rdamp"
+		},
+		"177": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"178": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"179": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.rdiff"
+		},
+		"180": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.rdiff"
+		},
+		"181": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"182": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"183": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._rdiff"
+		},
+		"184": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._rdiff"
+		},
+		"185": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"186": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"187": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.rjitter"
+		},
+		"188": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.rjitter"
+		},
+		"189": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"190": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"191": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._rjitter"
+		},
+		"192": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._rjitter"
+		},
+		"193": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"194": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"195": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.rdecay"
+		},
+		"196": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.rdecay"
+		},
+		"197": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"198": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"199": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._rdecay"
+		},
+		"200": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._rdecay"
+		},
+		"201": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"202": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"203": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.gain"
+		},
+		"204": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.gain"
+		},
+		"205": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"206": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"207": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._gain"
+		},
+		"208": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._gain"
+		},
+		"209": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"210": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"211": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.lthresh"
+		},
+		"212": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain.lthresh"
+		},
+		"213": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"214": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"215": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._lthresh"
+		},
+		"216": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "FXChain._lthresh"
+		},
+		"217": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "value"
+		},
+		"218": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"qualifiedName": "time"
+		},
+		"219": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/RNBODevice.ts",
+			"qualifiedName": "RNBODevice.defaults"
+		},
+		"249": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb"
 		},
-		"255": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "FXReverb.reverb"
-		},
 		"256": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb.reverb"
 		},
 		"257": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "value"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "FXReverb.reverb"
 		},
 		"258": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "time"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "value"
 		},
 		"259": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "FXReverb._reverb"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "time"
 		},
 		"260": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb._reverb"
 		},
 		"261": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "value"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "FXReverb._reverb"
 		},
 		"262": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "time"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "value"
 		},
 		"263": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "FXReverb.rsize"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "time"
 		},
 		"264": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb.rsize"
 		},
 		"265": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "value"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "FXReverb.rsize"
 		},
 		"266": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "time"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "value"
 		},
 		"267": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "FXReverb._rsize"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "time"
 		},
 		"268": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb._rsize"
 		},
 		"269": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "value"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "FXReverb._rsize"
 		},
 		"270": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "time"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "value"
 		},
 		"271": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "FXReverb.rdamp"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "time"
 		},
 		"272": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb.rdamp"
 		},
 		"273": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "value"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "FXReverb.rdamp"
 		},
 		"274": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "time"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "value"
 		},
 		"275": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "FXReverb._rdamp"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "time"
 		},
 		"276": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb._rdamp"
 		},
 		"277": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "value"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "FXReverb._rdamp"
 		},
 		"278": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "time"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "value"
 		},
 		"279": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "FXReverb.rdiff"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "time"
 		},
 		"280": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb.rdiff"
 		},
 		"281": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "value"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "FXReverb.rdiff"
 		},
 		"282": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "time"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "value"
 		},
 		"283": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "FXReverb._rdiff"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "time"
 		},
 		"284": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb._rdiff"
 		},
 		"285": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "value"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "FXReverb._rdiff"
 		},
 		"286": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "time"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "value"
 		},
 		"287": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "FXReverb.rjitter"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "time"
 		},
 		"288": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb.rjitter"
 		},
 		"289": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "value"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "FXReverb.rjitter"
 		},
 		"290": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "time"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "value"
 		},
 		"291": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "FXReverb._rjitter"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "time"
 		},
 		"292": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb._rjitter"
 		},
 		"293": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "value"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "FXReverb._rjitter"
 		},
 		"294": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "time"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "value"
 		},
 		"295": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "FXReverb.rdecay"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "time"
 		},
 		"296": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb.rdecay"
 		},
 		"297": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "value"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "FXReverb.rdecay"
 		},
 		"298": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "time"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "value"
 		},
 		"299": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "FXReverb._rdecay"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "time"
 		},
 		"300": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
 			"qualifiedName": "FXReverb._rdecay"
 		},
 		"301": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "value"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "FXReverb._rdecay"
 		},
 		"302": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
-			"qualifiedName": "time"
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "value"
 		},
 		"303": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/RNBODevice.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"qualifiedName": "time"
+		},
+		"304": {
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/RNBODevice.ts",
 			"qualifiedName": "RNBODevice.defaults"
 		},
-		"333": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
-			"qualifiedName": ""
-		},
 		"334": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay"
 		},
 		"341": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay.delay"
 		},
 		"342": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay.delay"
 		},
 		"343": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "value"
 		},
 		"344": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "time"
 		},
 		"345": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay._delay"
 		},
 		"346": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay._delay"
 		},
 		"347": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "value"
 		},
 		"348": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "time"
 		},
 		"349": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay.dtime"
 		},
 		"350": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay.dtime"
 		},
 		"351": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "value"
 		},
 		"352": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "time"
 		},
 		"353": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay._dtime"
 		},
 		"354": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay._dtime"
 		},
 		"355": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "value"
 		},
 		"356": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "time"
 		},
 		"357": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay.dfb"
 		},
 		"358": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay.dfb"
 		},
 		"359": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "value"
 		},
 		"360": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "time"
 		},
 		"361": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay._dfb"
 		},
 		"362": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay._dfb"
 		},
 		"363": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "value"
 		},
 		"364": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "time"
 		},
 		"365": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay.dspread"
 		},
 		"366": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay.dspread"
 		},
 		"367": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "value"
 		},
 		"368": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "time"
 		},
 		"369": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay._dspread"
 		},
 		"370": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay._dspread"
 		},
 		"371": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "value"
 		},
 		"372": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "time"
 		},
 		"373": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay.dcolour"
 		},
 		"374": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay.dcolour"
 		},
 		"375": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "value"
 		},
 		"376": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "time"
 		},
 		"377": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay._dcolour"
 		},
 		"378": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay._dcolour"
 		},
 		"379": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "value"
 		},
 		"380": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "time"
 		},
 		"381": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay.dfilter"
 		},
 		"382": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay.dfilter"
 		},
 		"383": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "value"
 		},
 		"384": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "time"
 		},
 		"385": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay._dfilter"
 		},
 		"386": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "FXDelay._dfilter"
 		},
 		"387": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "value"
 		},
 		"388": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/Delay.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/Delay.ts",
 			"qualifiedName": "time"
 		},
 		"389": {
-			"sourceFileName": "src/lib/oto/ct-synths/rnbo/RNBODevice.ts",
+			"packageName": "zen",
+			"packagePath": "src/lib/oto/ct-synths/rnbo/RNBODevice.ts",
 			"qualifiedName": "RNBODevice.defaults"
+		}
+	},
+	"files": {
+		"entries": {
+			"1": "src/lib/oto/ct-synths/rnbo/FXChain.ts",
+			"2": "src/lib/oto/ct-synths/rnbo/Reverb.ts",
+			"3": "src/lib/oto/ct-synths/rnbo/Delay.ts"
+		},
+		"reflections": {
+			"1": 1,
+			"2": 2,
+			"3": 3
 		}
 	}
 }

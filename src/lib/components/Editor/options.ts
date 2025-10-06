@@ -3,8 +3,12 @@ import type * as Monaco from 'monaco-editor/esm/vs/editor/editor.api';
 export const options: Monaco.editor.IStandaloneEditorConstructionOptions = {
     language: 'javascript',
     theme: 'vs-dark',
-    fontSize: 14,
+    fontSize: 17,
     lineNumbers: 'off',
+    glyphMargin: false,
+    folding: false,
+    lineDecorationsWidth: 0,
+    lineNumbersMinChars: 0,
     minimap: {
         enabled: false
     },
@@ -25,7 +29,7 @@ export const options: Monaco.editor.IStandaloneEditorConstructionOptions = {
     suggestOnTriggerCharacters: false,
     acceptSuggestionOnEnter: "off",
     acceptSuggestionOnCommitCharacter: false,
-    wordBasedSuggestions: false,
+    // wordBasedSuggestions: false,
     snippetSuggestions: 'none',
     roundedSelection: false,
     tabSize: 2,
@@ -34,5 +38,12 @@ export const options: Monaco.editor.IStandaloneEditorConstructionOptions = {
     },
     hover: {
         enabled: false
+    },
+    guides: {
+        indentation: false        // newer setting
+    },
+    stickyScroll: {
+        enabled: false
     }
+  
 };

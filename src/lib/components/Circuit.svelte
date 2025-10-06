@@ -55,11 +55,8 @@
 
 <style lang="scss">
     .circuit {
-        width: calc(100% - 4rem);
-        height: calc(100% - 3rem);
-        border-radius: 5px;
-        padding: 2rem;
-        overflow: auto;
+        width: 100%;
+        height: calc(100% - 1.5rem);
         position: relative;
 
         &::after {
@@ -74,25 +71,22 @@
         }
 
         &__svg {
-            max-width: calc(50vw - 4rem);
+            position: absolute;
+            top: 0;
             display: block;
             overflow-x: auto;
-            margin-left: 1rem;
+            margin-left: 2.1rem;
             
             @media (min-width: 1200px) {
-                max-width: calc(50vw - 8.5rem);
-            }
-
-            @media all and (display-mode: fullscreen) {
-                max-width: calc(((100vw/5) * 3) - 10rem);
+                max-width: calc(50vw - 6.25rem);
             }
         }
 
         &__wires {
             position: absolute;
-            top: 0.38rem;
-            left: 1rem;
-            right: 1rem;
+            top: -1.63rem;
+            left: 0rem;
+            right: 0rem;
         }
     }
 
@@ -104,7 +98,7 @@
 
         &__wire {
             height: 2px;
-            background-color: var(--color-theme-2);
+            background-color: var(--color-white);
             width: calc(100% - 4rem);
             margin-top: 2.71rem;
             margin-left:0.2rem;
@@ -112,11 +106,10 @@
     }
 
     .label {
-        background-color: var(--color-grey-darker);
-        color: var(--color-theme-2);
+        color: var(--color-white);
         margin-top: 2em;
-        font-size: var(--text-xs);
-        transform: translateY(11px);
+        font-size: var(--text-sm);
+        transform: translateY(-1px);
     }
 </style>
 

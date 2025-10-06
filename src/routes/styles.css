@@ -31,13 +31,13 @@
 
 
 :root {
-    --flow-space: clamp(1.375rem, 1.2rem + 0.89vw, 2rem);
+    --flow-space: clamp(1rem, 1.2rem + 0.89vw, 1rem);
 	--font-body: Lato Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
 		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	--font-mono: 'Fira Mono', monospace;
     --text-base: 1rem;
-    --text-sm: 0.85rem;
-    --text-xs: 0.75rem;
+    --text-sm: 1rem;
+    --text-xs: .75rem;
     --text-xxs: 0.5rem;
     --text-spacing: 0.1rem;
 	--color-bg-0: rgb(202, 216, 228);
@@ -50,37 +50,59 @@
 	color: var(--color-text);
     --max-width: 1600px;
 
-    --color-theme-1: #3498db; /* Blue */
-    --color-theme-2: #2ecc71; /* Green */
-    --color-theme-3: #e74c3c; /* Red */
-    --color-yellow: #fff; /* Yellow */
-    --color-grey-lighter: #ecf0f1; /* Light Grey */
-    --color-grey-light: #bdc3c7; /* Light Mid Grey */
-    --color-grey-light-mid: #95a5a6; /* Mid Grey */
-    --color-grey-mid: #7f8c8d; /* Dark Mid Grey */
-    --color-grey-dark: #34495e; /* Dark Grey */
-    --color-grey-darker: #2c3e50; /* Darker Grey */
-    --color-grey-darkest: #1c2833; /* Darkest Grey */
-    --color-pink: #FFE6EB;
-    --color-box-shadow: rgba(44, 62, 80, 0.75); /* Box Shadow */
+    --color-theme-1: #00f6ff; /* Laser Cyan */
+    --color-theme-2: #00ff9f; /* Hyper Neon Green */
+    --color-theme-3: #ff1fff; /* Ultraviolet Magenta */
+    --color-theme-4: #ff6c00;/* Blazing Neon Orange */    
+    --color-theme-5: #faff00;/* Electric Acid Yellow */
+    --color-yellow: #fdf6f0;  /* Warm Gold */
+    --color-grey-lighter: #fdf6f0; /* Blush White */
+    --color-grey-light: #e7dcd7;   /* Pale Rose Grey */
+    --color-grey-light-mid: #c8b8b2; /* Warm Mid Grey */
+    --color-grey-mid: #a89c96;       /* Soft Clay Grey */
+    --color-grey-dark: #7e6d66;      /* Cocoa Brown */
+    --color-grey-darker: #5e4f49;    /* Deep Earth Grey (moderated) */
+    --color-grey-darkest: #2f2521;   /* Muted Charcoal Brown */
+    --color-black: #15110f; /* Near-black with warm brown tone */
+    --color-white: #d4d4d4; /* Soft White */
+    --color-pink: #f8d7da; /* Blush Pink */
+    --color-box-shadow: rgba(60, 40, 40, 0.6); /* Warm Shadow */
+
 }
 
 body {
 	min-height: 100vh;
 	margin: 0;
-	background-attachment: fixed;
-	background-color: var(--color-grey-darker);
-	background-size: 100vw 100vh;
     letter-spacing: 0.1rem;
+    background-color: var(--color-black);
     @media all and (display-mode: fullscreen) {
         min-height: calc(100vh - 2rem);
     }
 }
 
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    background-color: transparent;
+    width: calc(100%);
+    padding: 0 1.5rem;
+}
+
+main > .q5Canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+
 p, li {
     font-weight: 400;
 	line-height: 1.5;
-    font-size: 1rem;
+    font-size: var(--text-sm);
 }
 
 p:not(code > p), li {
@@ -104,19 +126,19 @@ h1, h2, h3, h4, p {
 
 h1 {
     font-family: 'Ubuntu Bold', sans-serif;
-    color: var(--color-theme-1);
+    color: var(--color-grey-darkest);
     font-size: clamp(2.25rem, 1.82rem + 2.14vw, 3.75rem);
 }
 
 h2 {
-    color: var(--color-theme-2);
+    color: var(--color-grey-darkest);
     font-size: clamp(1.75rem, 1.39rem + 1.79vw, 3rem);
     font-family: 'Lato Bold', sans-serif;
 }
 
 h3 {
     text-transform: uppercase;
-    color: var(--color-theme-2);
+    color: var(--color-grey-darkest);
     font-family: 'Lato Bold', sans-serif;
     font-size: clamp(1.25rem, 1.11rem + 0.71vw, 1.75rem);
 }
@@ -140,13 +162,18 @@ li {
 
 .content {
     min-height: calc(100vh - 56px - 2rem);
-	padding: 1rem;
+	padding: 1.5rem;
     background-color: var(--color-grey-dark);
 }
+
 @media(min-width: 1200px) {
     .content {
         padding: 1rem 2rem;
     }
+}
+
+.markdown ul {
+    padding: 0;
 }
 
 pre > code {
@@ -162,7 +189,7 @@ code {
 }
 
 pre {
-    background-color: var(--color-yellow);
+    background-color: var(--color-grey-darkest);
     padding: 1rem;
     overflow: scroll;
 }
@@ -193,6 +220,7 @@ button:focus:not(:focus-visible) {
 .container {
     width: 100%;
     max-width: var(--max-width);
+    margin: 0 auto;
     @media all and (display-mode: fullscreen) {
         max-width: none;
     }
@@ -203,9 +231,13 @@ button:focus:not(:focus-visible) {
     display: none!important;
 }
 
+.monaco-editor {
+    background-color: transparent!important;
+    outline: none !important;
+}
 /* strings */
 .monaco-scrollable-element, .margin-view-overlays, .lines-content {
-    background-color: var(--color-grey-darkest)!important;
+    background-color: transparent!important;
 }
 .monaco-scrollable-element, .margin-view-overlays, .lines-content .mtk5, .hljs-string {
     color: var(--color-theme-2);
@@ -219,8 +251,8 @@ button:focus:not(:focus-visible) {
     color: var(--color-theme-2);
 }
 /* const etc. */
-.monaco-scrollable-element, .margin-view-overlays, .lines-content .mtk22, .hljs-title {
-    color: var(--color-theme-3);
+.monaco-scrollable-element, .margin-view-overlays, .lines-content .mtk22, .mtk8, .hljs-title {
+    color: var(--color-theme-3)!important;
 }
 
 .monaco-editor .bracket-highlighting-0 {
@@ -228,11 +260,27 @@ button:focus:not(:focus-visible) {
 }
 
 .monaco-editor .bracket-highlighting-1 {
-    color: var(--color-theme-2) !important;
+    color: var(--color-theme-4) !important;
+}
+
+.monaco-editor .bracket-highlighting-2 {
+    color: var(--color-theme-5) !important;
+}
+
+.monaco-editor .sticky-widget {
+    background-color: transparent!important;
+    box-shadow: none!important;
+}
+.monaco-editor .sticky-widget-lines-scrollable, .monaco-editor .sticky-widget-line-numbers {
+    background-color: transparent!important;
+}
+
+.monaco-editor .view-line > span > span {
+    background-color: rgba(21, 17, 15, 0.35);
 }
 
 .lines-content .mtk8 {
-    color: #d4d4d4;
+    color: var(--color-white);
 }
 
 *:focus {
@@ -241,8 +289,7 @@ button:focus:not(:focus-visible) {
 }
 
 dialog::backdrop {
-    background: rgba(255, 105, 90, 0.5);
-
+    background: rgba(94, 79, 73, 0.75);
 }
 
 canvas {
@@ -250,7 +297,7 @@ canvas {
 }
 
 .qc-circuit line {
-	stroke: var(--color-theme-2)!important;
+	stroke: var(--color-white)!important;
     stroke-width: 2px;
 }
 
@@ -260,23 +307,31 @@ canvas {
     font-weight: bold;
 }
 
-.qc-circuit text, 
+.qc-circuit rect,
 .qc-circuit circle {
-	fill: var(--color-theme-2)!important;
+    fill: var(--color-white)!important;
+	stroke: none!important;
+}
+.qc-circuit text {
+    fill: var(--color-black);
 	stroke: none!important;
 }
 
 .qc-circuit ellipse, 
-.qc-circuit rect, 
 .qc-circuit path {
-	fill: var(--color-grey-darker)!important;
-	stroke: var(--color-theme-2)!important;
+    fill: transparent!important;
+	stroke: var(--color-white)!important;
     stroke-width: 2px;
 	cursor: grab;
 }
 
-.qc-gate-label {
+.qc-circuit .qc-gate-label {
     transform: translate(1px,1px);
+    fill: var(--color-black)!important;
+}
+.qc-wire-label {
+    transform: translate(1px,-4px);
+    fill: var(--color-white)!important;
 }
 
 .qc-gate-params {
@@ -284,6 +339,6 @@ canvas {
 }
 
 .circuit__svg > svg {
-    transform: scale(0.8) translate(-18px, -31px);
+    transform: scale(0.8) translate(-21px, -31px);
     transform-origin: top left;
 }

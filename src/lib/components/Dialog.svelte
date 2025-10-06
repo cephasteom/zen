@@ -24,5 +24,6 @@
         box-shadow: 0 0 0.5rem var(--color-box-shadow);
         padding: 1rem 2rem;
         color: var(--color-yellow);
+        max-width: 24rem;
     }
 </style>

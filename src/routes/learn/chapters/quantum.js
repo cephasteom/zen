@@ -16,7 +16,7 @@ q0.rx('1?0*16')
 q1.rx(saw().step(0.25))
 \`\`\`
 
-The outcomes of circuit executions, encompassing the state vector, individual qubit measurements, basis states, probabilities, and amplitude coefficients, can serve as data to be sonified within your Zen code. In the remainder of this section, we explain how to construct quantum circuits within Zen, and how to access the available quantum data within your compositions. For a more detailed explanation of quantum computer music, see [Miranda (2022)](https://link.springer.com/book/10.1007/978-3-031-13909-3).
+The outcomes of circuit executions, encompassing the state vector, individual qubit measurements, basis states, probabilities, and amplitude coefficients, can serve as data to be sonified within your Zen code. In the remainder of this section, we explain how to construct quantum circuits within Zen, and how to access the available quantum data within your compositions. For a more detailed explanation of quantum computer music, see [Miranda (2022)](https://link.springer.com/book/10.1007/978-3-031-13909-3) or [Thomas (2025)](https://researchportal.plymouth.ac.uk/en/studentTheses/zen-and-the-art-of-praxis).
 
 Run the following example to get a feel for quantum programming in Zen:
 \`\`\`js
@@ -24,13 +24,9 @@ q0.h().cx([1]).ccx([1,2])
 q1.fb(0)
 q2.fb(1)
 
-s0.e.qm(0, 32)
-s1.e.qm(1, 32)
-s2.e.qm(2, 32)
-
-s0.set({inst: 1, bank: 'bd808', i: 3, cut: 0})
-s1.set({inst: 1, bank: 'sd808', i: '0..1?*16', cut: [0,1]})
-s2.set({inst: 1, bank: 'hh', i: '0..16?*16', cut: [0,2], vol: 0.5})
+s0.set({inst: 1, bank: 'bd808', i: 3, cut: 0, e: qm(0)})
+s1.set({inst: 1, bank: 'sd808', i: '0..1?*16', cut: [0,1], e: qm(1)})
+s2.set({inst: 1, bank: 'hh', i: '0..16?*16', cut: [0,2], vol: 0.5, e: qm(2)})
 \`\`\`
 
 ## Gates
@@ -68,7 +64,7 @@ q0.u3([s0.y,s0.x,s0.z])
 \`\`\`
 This will apply a U3 gate to qubit 0 with the parameters set by the patterns \`.x\`, \`.y\`, and \`.z\` of stream 0. Or, you can use any custom pattern defined in the usual way. For example:
 \`\`\`js
-q0.u3([$sine(),$saw(),$noise()])
+q0.u3([sine(),saw(),noise()])
 \`\`\`
 
 ### Gate position
@@ -113,27 +109,12 @@ s0.set({inst:0,reverb:0.125,rtail:0.2,cut:0,cutr:250,dur:100,mods:0.1})
 q0.u3([s0.y,s0.x,0])
 
 s0.y.noise()
-s0.x.sine(0,1,1/3)
+s0.x.sine(1/3,0,1)
 
-s0.p._n.set(s0.y).set('Cpro%16..*16 | Cpro%16..?*16').sub('0?12*16')
-s0.p.modi.set(s0.x).saw()
+s0._n.set(s0.y).mtr(0,16).set('Cpro%16..*16 | Cpro%16..?*16').sub('0?12*16')
+s0._modi.set(s0.x).mtr(1,10)
 s0.e.qmeasurement(0) // measure qubit 0. If it collapses to |1⟩, trigger the event
 s0.m.not(s0.e)
-\`\`\`
-
-By default, measurements are taken at each division of the cycle. However, repetition is musically useful. Passing an integer greater than 1 as the second argument will cause the measurement to loop. For example:
-\`\`\`js
-s0.e.qmeasurement(0,8) // measure qubit 0, loop after 8 measurements
-\`\`\`
-
-You can also set the number of times this loop should repeat before regenerating with new measurements. For example:
-\`\`\`js
-s0.e.qmeasurement(0, 8, 4) // measure qubit 0, loop after 8 measurements, repeat 4 times
-\`\`\`
-
-You can achieve the same thing using a Pattern's \`.cache\` method:
-\`\`\`js
-s0.e.qmeasurement(0).cache(8,4) // measure qubit 0, loop after 8 measurements, repeat 4 times
 \`\`\`
 
 ### Measurements
@@ -151,7 +132,7 @@ Use the \`qprobability()\`, or alias \`qpb\`, method to get the probability (squ
 q0.rx(0.25)
 q1.rx(0.75)
 
-s0.p.amp.qpb(1).print() // print the probability of the state |01⟩ to the console
+s0.amp.qpb(1).print() // print the probability of the state |01⟩ to the console
 s0.e.every(4)
 \`\`\`
 
@@ -164,7 +145,7 @@ q1.fb(0).rx(s1.y);
 
 [s0,s1,s2].map((s,i) => s.e.qmeasurement(i,32))
 \`\`\`
-Each probability is returned as a float to 5 decimal places. As with other methods, you can pass a loop length as the second argument.
+Each probability is returned as a float to 5 decimal places.
 
 ### Probabilities
 Use the \`qprobabilities()\`, or alias \`qamps\`, method to get an array of the probabilities for each possible result of a circuit. For example:
@@ -172,17 +153,16 @@ Use the \`qprobabilities()\`, or alias \`qamps\`, method to get an array of the 
 s0.wire.rx(0.25)
 s1.wire.rx(0.75)
 
-s0.p.amp.pbs().print() // print all probabilities to the console
+s0.amp.pbs().print() // print all probabilities to the console
 s0.e.every(4)
 \`\`\`
-As with other methods, you can pass a loop length as the first argument.
 
 Using the grid can be useful for seeing what is happening here, especially when you start to use dynamic parameters:
 \`\`\`js
 z.grid.set(qpbs().fn(a=>[a]))
 
-q0.rx($saw())
-q1.rx($saw(1,0))
+q0.rx(saw())
+q1.rx(saw())
 q2.h()
 \`\`\`
 
@@ -201,13 +181,13 @@ s0.e.set(1)
 ### Phases
 Use the \`qphases()\`, or alias \`qps\`, method to get an array of the phases of each basis state. For example:
 \`\`\`js
-s0.p.z.sine(0,saw(),0,1/16)
-q0.h().rz(s0.p.z)
+s0.z.sine(1/16,0,saw()))
+q0.h().rz(s0.z)
 q1.h()
 q2.h()
 q3.h().z()
 
-s0.y.qphases().at(t=>t%z.q)
+s0.y.qphases().at(t().mod(q()))
 s0.e.set(1)
 \`\`\`
 
@@ -249,7 +229,7 @@ Use \`exportCircuit()\` to export the current circuit as QASM or Qiskit string. 
 \`\`\`js
 q0.h()
 
-print(exportCircuit('qasm))
-print(exportCircuit('qiskit))
+print(exportCircuit('qasm'))
+print(exportCircuit('qiskit'))
 \`\`\`
 `

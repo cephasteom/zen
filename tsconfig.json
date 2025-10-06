@@ -9,13 +9,8 @@
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,
+		"verbatimModuleSyntax": false,
 		"moduleResolution": "bundler",
-		"baseUrl": ".",
-		"paths": {
-			"$lib/*": ["src/lib/*"],
-			"$lib": ["src/lib/index"],
-			"$app/*": [".svelte-kit/types/app/*"]
-		},
 	},
 	// Path aliases are handled by https://svelte.dev/docs/kit/configuration#alias
 	// except $lib which is handled by https://svelte.dev/docs/kit/configuration#files
@@ -37,6 +32,9 @@
     //     "src/lib/oto/ct-synths/rnbo/Reverb.ts", 
     //     "src/lib/oto/ct-synths/rnbo/Delay.ts", 
     // ],
+	// "exclude": [
+	// 	"src/lib/oto/ZMod/**/*",
+	// ]
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
 	//
 	// If you want to overwrite includes/excludes, make sure to copy over the relevant includes/excludes
