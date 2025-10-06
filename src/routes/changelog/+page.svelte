@@ -17,6 +17,8 @@
             <li><strong>UI</strong>: redesigned interface for better usability and accessibility.</li>
             <li><strong>Feature</strong>: Zmod modular synthesis language for live coding the audio graph. See <a href="/learn/zmod" target="_blank">/learn/zmod</a>.</li>
             <li><strong>Feature</strong>: Zmod Looper. See <a href="/learn/zmod" target="_blank">/learn/zmod</a>.</li>
+            <li><strong>Feature</strong>: Q5.js integration. See <a href="/learn/q5js" target="_blank">/learn/q5js</a>.</li>
+
             <li><strong>Syntax</strong>: rename filters for consistency with Zmod. E.g. <code>lpf()</code> rather than <code>hicut()</code>.</li>
 
         </ul>

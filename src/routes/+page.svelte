@@ -49,7 +49,9 @@
             </div>
         {/if}
 
-        <Notice />
+        {#if !isApp()}
+            <Notice />
+        {/if}
     </section>
     <Canvas />
 </main>
