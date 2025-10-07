@@ -14,7 +14,7 @@ s0.e.every(4).print('e')
 
 Others, like \`.sine()\`, \`.tri()\`, and \`.square()\`, return values that change over time. Most methods generate values between 0 and 1, and take additional arguments for frequency and scaling:
 \`\`\`js
-s0.x.sine(2,0,0.5).print('x') // a sine wave that oscillates between 0 and 0.5 every 2 cycles
+s0.x.sine(2,0,0.5).print('x') // a sine wave that oscillates between 0 and 0.5 2 times / cycle
 s0.e.set(1) // trigger the stream
 \`\`\`
 
