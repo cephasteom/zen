@@ -1,5 +1,6 @@
 <script lang="ts">
     export let dialog: HTMLDialogElement;
+    export let maxWidth: number = 24;
 </script>
 
 <dialog 
@@ -10,6 +11,7 @@
         event.key === 'Escape' && dialog?.close()
     }}
     on:close
+    style="max-width: {maxWidth || 24}rem;"
 >
     <div on:click|stopPropagation>
         <slot/>
@@ -24,7 +26,6 @@
         box-shadow: 0 0 0.5rem var(--color-box-shadow);
         padding: 0;
         color: var(--color-yellow);
-        // max-width: 24rem;
         width: 75vw;
     }
 </style>

@@ -10,12 +10,16 @@
 
 </script>
 
-<Dialog bind:dialog={help} on:close={() => help.close()}>
-        <iframe 
-            src="/docs/modules.html" 
-            style="width: 100%; height: 80vh; border: none;"
-            title="Zen Documentation"
-        ></iframe>
+<Dialog 
+    bind:dialog={help} 
+    on:close={() => help.close()}
+    maxWidth={75}
+>
+    <iframe 
+        src="/docs/modules.html" 
+        style="width: 100%; height: 80vh; border: none;"
+        title="Zen Documentation"
+    ></iframe>
 </Dialog>
 
 <style>
