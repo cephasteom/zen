@@ -7,7 +7,7 @@ Most instruments share a common set of parameters. Envelope parameters are \`a\`
 ## Synth
 An all purpose synth with filters and FM:
 \`\`\`js
-s0.set({inst:'synth',cut:0,re:0.25,rdecay:0.75,de:0.25,lag:ms(2),locut:0.3})
+s0.set({inst:'synth',cut:0,re:0.25,rdecay:0.75,de:0.25,lag:btms(2),locut:0.3})
 
 s0.x.saw()
 s0.y.noise()
@@ -27,10 +27,10 @@ The sampler takes the name of a sample bank and the index of a file within that 
 \`\`\`js
 z.bpm.set(160)
 
-s0.set({inst:1,bank:'breaks',snap:16,dur:ms(1),cut:[0,1,2],e:'1'})
+s0.set({inst:1,bank:'breaks',snap:16,dur:btms(1),cut:[0,1,2],e:'1'})
 s1.set({inst:1,bank:'sd808',cut:2,s:.1,e:'0 1'})
 
-s2.set({inst:1,ba:'breaks',snap:16,cut:[0,1],dur:ms(8),loop:1,cutr:ms(0.5),re:0.125,rs:0.1})
+s2.set({inst:1,bank:'breaks',snap:16,cut:[0,1],dur:btms(8),loop:1,cutr:btms(0.5),re:0.125,rs:0.1})
 s2.x.random(0,1,1/4)
 s2.begin.set(s2.x).step(1/32)
 s2.i.set('0|*3 1')
@@ -43,9 +43,9 @@ Similar to the sampler, the granular synth expects a sample bank and index. Gran
 \`\`\`js
 z.bpm.set(160)
 
-s0.set({inst:'granular',bank:'cpu2',i:2,snap:q(),dur:ms(8),cut:[0,1,2],rate:0.5,lag:ms(1/4),vol:0.5,reverb:1,locut:0.25})
+s0.set({inst:'granular',bank:'breaks',snap:q(),dur:btms(8),cut:[0,1,2],rate:0.5,lag:btms(1/4),vol:0.5,reverb:1,locut:0.25})
 s0._n.sine(.25,60,72)
-s0._i.random(0,16,1)
+s0._i.random(0,16,1).step(1)
 s0.e.set('1|0')
 s0.m.not(s0.e)
 \`\`\`
