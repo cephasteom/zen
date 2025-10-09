@@ -15,7 +15,7 @@ function isTrigger(key: string): boolean {
 /**
  * A Stream is a musical layer. You can think of it as a track in a DAW, or a channel in a mixer.
  * It can be used to control multiple instruments, effects, and routing.
- * Streams are available within Zen as `s0`, `s1`, `s2`, `s3`, `s4`, `s5`, `s6`, `s7`.
+ * Streams are available within Zen as `s0`, `s1`, `s2`, `s3`, `s4`, `s5`, `s6`, `s7` and are simply objects whose properties return a `Pattern` instance.
  * @example
  * s0.set({inst:0,cut:0,reverb:.5,delay:.25,vol:.5,modi:1.25,mods:0.1})
  * s0.n.set('Cpro%16..*16 | Cpro%16..?*16').sub(12),

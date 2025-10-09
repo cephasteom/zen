@@ -3,7 +3,7 @@ Welcome to Zen! Here, you can generate complex musical patterns using a simple J
 
 This is a tutorial to help you get started. For more information, check out the [docs](/docs).
 
-Zen will work in most browsers but, for best performance, we recommend something Chromium-based.
+Zen will work in most browsers but, for best performance, we recommend something Chromium-based. Alternatively, download the [desktop app](https://github.com/cephasteom/zen-electron/releases) for Windows, macOS, or Linux.
 
 Enjoy!
 `
