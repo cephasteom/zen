@@ -31,6 +31,9 @@
 </div>
 
 <style lang="scss">
+    .collaborate {
+        padding: 1rem 2rem;
+    }
     p {
         margin: 0;
     }

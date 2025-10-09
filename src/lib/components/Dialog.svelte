@@ -22,8 +22,9 @@
         border: 1px solid var(--color-theme-3);
         border-radius: 0.25rem;
         box-shadow: 0 0 0.5rem var(--color-box-shadow);
-        padding: 1rem 2rem;
+        padding: 0;
         color: var(--color-yellow);
-        max-width: 24rem;
+        // max-width: 24rem;
+        width: 75vw;
     }
 </style>

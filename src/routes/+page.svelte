@@ -11,11 +11,21 @@
     import Notice from '$lib/components/Notice.svelte';
     import Canvas from '$lib/components/Canvas.svelte';
 
+    import Help from '$lib/components/Help.svelte';
+
+    let help: Help;
+
     onMount(() => {
         isApp() && initElectronAPI();
         window.addEventListener('click', startAudio);
         window.addEventListener('touchstart', startAudio);
         window.addEventListener('keydown', startAudio);
+        window.addEventListener('keydown', (e) => {
+            if(e.metaKey && e.key === 'h') {
+                e.preventDefault();
+                help.open();
+            }
+        });
     });
 </script>
 
@@ -54,6 +64,9 @@
         {/if}
     </section>
     <Canvas />
+
+    <!-- open help from the outside -->
+    <Help bind:this={help} />
 </main>
 
 <style lang="scss">

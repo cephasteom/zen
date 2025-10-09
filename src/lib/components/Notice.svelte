@@ -17,7 +17,6 @@
 
 </script>
 
-
 <Dialog bind:dialog={notice} on:close={onClose}>
     <div>
         <h2>Zen 5 is here!</h2>
@@ -28,6 +27,9 @@
 </Dialog>
 
 <style>
+    div {
+        padding: 1rem 2rem;
+    }
     h2 {
         margin-top: 0;
         color: var(--color-primary);

@@ -51,6 +51,9 @@
 </div>
 
 <style lang="scss">
+    div {
+        padding: 1rem 2rem;
+    }
     label {
         padding-right: 0.125rem;
         color: var(--color-grey-light);

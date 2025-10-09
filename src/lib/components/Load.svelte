@@ -68,11 +68,13 @@
 </div>
 
 <style lang="scss">
+
     .presets {
         max-height: 50vh;
         height: fit-content;
         min-width: 20vw; 
         display: flex;
+        padding: 1rem 2rem;
         
         & label, & p {
             padding: 0.5rem;
