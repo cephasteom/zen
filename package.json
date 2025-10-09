@@ -17,6 +17,7 @@
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"docs": "npx typedoc npx typedoc --out static/docs --entryPoints src/lib/zen/classes/Pattern.ts src/lib/zen/classes/Stream.ts src/lib/zen/classes/Wire.ts src/lib/oto/ct-synths/rnbo/Synth.ts src/lib/oto/ct-synths/rnbo/SuperFM.ts src/lib/oto/ct-synths/rnbo/Sampler.ts src/lib/oto/ct-synths/rnbo/Granular.ts src/lib/oto/ct-synths/rnbo/Additive.ts src/lib/oto/ct-synths/rnbo/AcidSynth.ts src/lib/oto/ct-synths/rnbo/DroneSynth.ts src/lib/oto/ct-synths/rnbo/SubSynth.ts src/lib/oto/ct-synths/rnbo/Wavetable.ts src/lib/oto/ct-synths/rnbo/FXChain.ts src/lib/oto/ct-synths/rnbo/FXChannel.ts src/lib/oto/ct-synths/rnbo/Reverb.ts src/lib/oto/ct-synths/rnbo/Delay.ts src/lib/oto/ct-synths/rnbo/ReverbGen.ts",
 		"docs:classes": "npx typedoc --json src/lib/docs/classes.json --entryPoints src/lib/zen/classes/Pattern.ts --entryPoints src/lib/zen/classes/Zen.ts --entryPoints src/lib/zen/classes/Stream.ts --entryPoints src/lib/zen/classes/Wire.ts",
 		"docs:synths": "npx typedoc --json src/lib/docs/synths.json --entryPoints src/lib/oto/ct-synths/rnbo/Synth.ts --entryPoints src/lib/oto/ct-synths/rnbo/AcidSynth.ts --entryPoints src/lib/oto/ct-synths/rnbo/Granular.ts --entryPoints src/lib/oto/ct-synths/rnbo/SubSynth.ts --entryPoints src/lib/oto/ct-synths/rnbo/Sampler.ts --entryPoints src/lib/oto/ct-synths/rnbo/Additive.ts --entryPoints src/lib/oto/ct-synths/rnbo/DroneSynth.ts",
 		"docs:fx": "npx typedoc --json src/lib/docs/fx.json --entryPoints src/lib/oto/ct-synths/rnbo/FXChain.ts --entryPoints src/lib/oto/ct-synths/rnbo/Reverb.ts --entryPoints src/lib/oto/ct-synths/rnbo/Delay.ts"
@@ -27,6 +28,7 @@
 		"@sveltejs/adapter-auto": "^6.0.1",
 		"@sveltejs/kit": "^2.22.0",
 		"@types/cookie": "^1.0.0",
+		"@types/noisejs": "^2.1.0",
 		"@types/p5": "^1.7.6",
 		"@types/seedrandom": "^3.0.8",
 		"directory-tree": "^3.5.2",
