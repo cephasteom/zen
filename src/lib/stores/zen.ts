@@ -28,6 +28,9 @@ function initCircuit() {
 }
 initCircuit();
 
+export const showHelp = writable(false)
+export const toggleHelp = () => showHelp.update(h => !h);
+
 export const messages = writable<{type: string, message: string}[]>([]);
 
 const initialMessages = [

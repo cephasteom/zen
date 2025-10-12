@@ -3,7 +3,7 @@
     import Circuit from '$lib/components/Circuit.svelte';
     import Console from '$lib/components/Console.svelte';
     import { startAudio } from '$lib/zen/index';
-    import { showCircuit } from '$lib/stores/zen';
+    import { showCircuit, toggleHelp } from '$lib/stores/zen';
     import { initElectronAPI, isApp } from '$lib/electronAPI';
     import { onMount } from 'svelte';
     import Tools from '$lib/components/Tools.svelte';
@@ -13,8 +13,6 @@
 
     import Help from '$lib/components/Help.svelte';
 
-    let help: Help;
-
     onMount(() => {
         isApp() && initElectronAPI();
         window.addEventListener('click', startAudio);
@@ -23,7 +21,7 @@
         window.addEventListener('keydown', (e) => {
             if(e.metaKey && e.key === 'h') {
                 e.preventDefault();
-                help.open();
+                toggleHelp();
             }
         });
     });
@@ -65,11 +63,13 @@
     </section>
     <Canvas />
 
-    <!-- open help from the outside -->
-    <Help bind:this={help} />
+    <Help />
 </main>
 
 <style lang="scss">
+    main {
+        position: relative;
+    }
     .zen {
         display: grid;
         grid-template-columns: 1fr;

@@ -1,30 +1,32 @@
 <script lang="ts">
-    import Dialog from './Dialog.svelte';
-    
-    // be able to open this dialog from outside
-    export function open() {
-        help.showModal();
-    }
-
-    let help: HTMLDialogElement;
-
+    import { showHelp } from '$lib/stores/zen';
 </script>
 
-<Dialog 
-    bind:dialog={help} 
-    on:close={() => help.close()}
-    maxWidth={75}
->
-    <iframe 
-        src="/docs/modules.html" 
-        style="width: 100%; height: 80vh; border: none;"
-        title="Zen Documentation"
-    ></iframe>
-</Dialog>
+{#if $showHelp}
+    <aside>
+        <iframe 
+            src="/docs/modules.html" 
+            style="width: 100%; height: 100%; border: none;"
+            title="Zen Documentation"
+        ></iframe>
+    </aside>
+{/if}
 
-<style>
-    div {
-        width: 50vw;
+<style lang="scss">
+    aside {
+        width: 100vw;
+
+        @media (min-width: 800px) {
+            width: 50vw;
+        }
+        height: 100vh;
+        position: absolute;
+        right: 0;
+        top: 0;
+        border-left: 1px solid var(--color-grey-light);
+
+        // padding: 1.5rem 0;
+
     }
     h2 {
         margin-top: 0;
