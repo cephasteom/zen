@@ -36,7 +36,8 @@ export const messages = writable<{type: string, message: string}[]>([]);
 const initialMessages = [
     {type: 'success', message: 'Welcome to Zen!'},
     {type: 'info', message: 'shift + return to play.'},
-    {type: 'info', message: 'esc to stop.\n'},
+    {type: 'info', message: 'esc to stop.'},
+    {type: 'info', message: 'cmd/ctrl + h for help.\n'},
     {type: 'success', message: 'Commands ->'},
     {type: 'info', message: 'instruments()\nmidi()\nsamples()\nscales()\nchords()\nprint()\nclear()\n'},
     {type: 'credit', message: `© Cephas Teom ${new Date().getFullYear()}`},

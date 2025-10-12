@@ -1,8 +1,8 @@
 <script lang="ts">
     import { page } from '$app/state';
     import Icon from 'svelte-awesome';
-    import { faPlay, faStop, faFloppyDisk, faCode, faBars, faPeopleGroup } from '@fortawesome/free-solid-svg-icons';
-    import { isPlaying, showCircuit, toggleCircuit } from '$lib/stores/zen';
+    import { faPlay, faStop, faFloppyDisk, faCode, faBars, faQuestion, faPeopleGroup } from '@fortawesome/free-solid-svg-icons';
+    import { isPlaying, showCircuit, toggleCircuit, toggleHelp, showHelp } from '$lib/stores/zen';
     import { isApp } from '$lib/electronAPI/index';
     import Dialog from './Dialog.svelte'
     import Save from './Save.svelte'
@@ -43,6 +43,10 @@
         <!-- <button class="tools__collaborate" on:click={() => collaborate.showModal()} class:active={$isCollaborating}>
             <Icon scale={1.25} data={faPeopleGroup} />
         </button> -->
+
+        <button class="tools__help" on:click={e => { e.stopPropagation(); toggleHelp()}} class:active={$showHelp}>
+            <Icon scale={1.25} data={faQuestion} />
+        </button>
     </div>
 </div>
 

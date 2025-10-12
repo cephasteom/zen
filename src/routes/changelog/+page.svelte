@@ -7,8 +7,13 @@
     <div class="content__inner">
         <h1>Changelog</h1>
         <h2>Zen 5</h2>
+
+        <h3>Release Notes: 5.1.0: October 13th 2025</h3>
+        <ul>
+            <li><strong>Feature</strong>: help system, using auto-generated html docs from type annotations.</li>
+        </ul>   
         
-        <h3>Release Notes: October 2025</h3>
+        <h3>Release Notes: 5.0.0: October 7th 2025</h3>
         
         <ul>
             <li><strong>Syntax</strong>: remove <code>s0.p.</code> prefix from all parameters. E.g. <code>s0.banana.sine()</code>, rather than <code>s0.p.banana.sine()</code>.</li>

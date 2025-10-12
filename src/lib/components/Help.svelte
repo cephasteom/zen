@@ -23,9 +23,6 @@
         position: absolute;
         right: 0;
         top: 0;
-        border-left: 1px solid var(--color-grey-light);
-
-        // padding: 1.5rem 0;
 
     }
     h2 {
