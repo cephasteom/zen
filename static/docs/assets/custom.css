@@ -107,12 +107,36 @@ html {
     font-family: var(--font-body);
 }
 
-
+.container-main {
+    margin-top: 0.5rem;
+}
 a,
 a > span,
-.tsd-accordion-summary span {
+.tsd-accordion-summary span { 
 	color: var(--color-theme-1);
 	text-decoration: none;
+}
+
+.col-content .tsd-accordion-summary {
+    display: none;
+}
+
+.tsd-sources li,
+.tsd-signature-type,
+ul.tsd-parameter-list, ul.tsd-type-parameter-list {
+    color: var(--color-yellow);
+}
+
+.tsd-page-toolbar {
+    background: var(--color-black);
+}
+
+.tsd-toolbar-contents {
+    justify-content: flex-end;
+}
+
+.tsd-toolbar-contents > a {
+    display: none;
 }
 
 a:hover,
@@ -131,4 +155,18 @@ footer
 
 .tsd-panel-group {
     margin: 0;
+}
+
+.col-sidebar {
+    max-height: none;
+}
+
+#tsd-search[open] {
+    background: var(--color-grey-darkest);
+    border-radius: 0;
+}
+
+#tsd-search-input {
+    border-radius: 0;
+    background-color: var(--color-grey-dark);
 }
