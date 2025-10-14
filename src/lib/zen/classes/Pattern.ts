@@ -1282,7 +1282,7 @@ s0.e.every('0?1*4|*2')
      * @param amt amount to degrade by. 1 is fully degraded (all 0s), 0 is not degraded at all
      * @returns {Pattern}
      */
-    degrade(amt: patternable): Pattern {
+    degrade(amt: patternable = 0.5): Pattern {
         this.and(this.p().random().gt(amt))
         return this
     }
@@ -1453,7 +1453,7 @@ s0.e.set(1)
      * @param repeats number of times to repeat the cache before it clears. Default is 1.
      * @example s0.e.random(0,1).step(1).cache(16,4)
      */
-    cache(size: patternable = 1, repeats: patternable = 1): Pattern {
+    cache(size: patternable = 16, repeats: patternable = 4): Pattern {
         let values: any[] = []
         
         this.stack.push((x: patternValue) => {
