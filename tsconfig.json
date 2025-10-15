@@ -19,8 +19,8 @@
 	// from the referenced tsconfig.json - TypeScript does not merge them in
 
     // TODO: once ct-synths is fully typed, remove these
-    "include": [
-        "src/lib/zen/", 
+    // "include": [
+        // "src/lib/zen/", 
 		// "src/lib/oto/", 
 		// "src/lib/oto/ct-synths/", 
     //     "src/lib/oto/ct-synths/rnbo/Synth.ts", 
@@ -33,7 +33,7 @@
     //     "src/lib/oto/ct-synths/rnbo/FXChain.ts", 
     //     "src/lib/oto/ct-synths/rnbo/Reverb.ts", 
     //     "src/lib/oto/ct-synths/rnbo/Delay.ts", 
-    ],
+    // ],
 	// "exclude": [
 		// "src/lib/oto/ZMod/**/*",
 	// ]
