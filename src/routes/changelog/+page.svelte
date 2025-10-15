@@ -8,6 +8,11 @@
         <h1>Changelog</h1>
         <h2>Zen 5</h2>
 
+        <h3>Release Notes: 5.2.0: October 15th 2025</h3>
+        <ul>
+            <li><strong>Feature</strong>: Added 4 Tone.js synths. See "instruments()" and help files.</li>
+        </ul>   
+
         <h3>Release Notes: 5.1.0: October 13th 2025</h3>
         <ul>
             <li><strong>Feature</strong>: help system, using auto-generated html docs from type annotations.</li>
