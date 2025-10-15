@@ -19,7 +19,7 @@ const synths = writable<Dictionary>({});
 const synthTypes = [
     'synth', 'sampler', 'granular', 'additive', 'acid', 'drone', 'sub', 'superfm', 'wavetable', 
     'zmod', 
-    'tone.synth', 'tone.mono', 'tone.pluck', 'tone.fm', 'tone.am', 'tone.noise'
+    'tone.synth', 'tone.mono', 'tone.fm', 'tone.am'
 ];
 
 const makeSynth = (type: string) => {

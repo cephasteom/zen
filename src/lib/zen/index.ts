@@ -48,7 +48,7 @@ const scope: any = {
     scales: () => print('info', 'Scales ->\n' + Object.keys(modes).join(', ')),
     chords: () => print('info', 'Chords ->\n' + Object.keys(triads).join(', ')),
     samples: () => print('info', get(samplesMessage)),
-    instruments: () => print('info', 'Instruments ->\n0: synth\n1: sampler\n2: granular\n3: additive\n4: acid\n5: drone\n6: sub\n7: superfm\n8: wavetable'),
+    instruments: () => print('info', `Instruments ->\n0: synth\n1: sampler\n2: granular\n3: additive\n4: acid\n5: drone\n6: sub\n7: superfm\n8: wavetable\n9: zmod\n10: tone.synth\n11: tone.mono\n12: tone.fm\n13: tone.am\n`),
     midi: () => print('info', `Inputs ->\n${WebMidi.inputs.reduce((str, input, i) => `${str}${i}: ${input.name},\n`, '')}Outputs ->\n${WebMidi.outputs.reduce((str, output, i) => `${str}${i}: ${output.name},\n`, '')}`),
     clear,
     loadSamples,
