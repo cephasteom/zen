@@ -1,7 +1,10 @@
 import { writable, get } from "svelte/store";
 import { 
     CtSynth, CtSampler, CtGranulator, CtAdditive, CtAcidSynth, CtDroneSynth, CtSubSynth, CtSuperFM, CtWavetable,
-    CtToneSynth
+    CtToneSynth,
+    CtToneMonoSynth,
+    CtToneFMSynth,
+    CtToneAMSynth,
 } from "./ct-synths"
 import ZMod from './ZMod'
 import type { Dictionary } from './types'
@@ -13,7 +16,12 @@ const otoChannel = new BroadcastChannel('oto')
 
 const synths = writable<Dictionary>({});
 
-const synthTypes = ['synth', 'sampler', 'granular', 'additive', 'acid', 'drone', 'sub', 'superfm', 'wavetable', 'zmod', 'tsynth']
+const synthTypes = [
+    'synth', 'sampler', 'granular', 'additive', 'acid', 'drone', 'sub', 'superfm', 'wavetable', 
+    'zmod', 
+    'tone.synth', 'tone.mono', 'tone.pluck', 'tone.fm', 'tone.am', 'tone.noise'
+];
+
 const makeSynth = (type: string) => {
     switch(type) {
         case 'synth': return new CtSynth({lite: true})
@@ -26,7 +34,10 @@ const makeSynth = (type: string) => {
         case 'superfm': return new CtSuperFM()
         case 'wavetable': return new CtWavetable()
         case 'zmod': return new ZMod({busses})
-        case 'tsynth': return new CtToneSynth()
+        case 'tone.synth': return new CtToneSynth()
+        case 'tone.mono': return new CtToneMonoSynth()
+        case 'tone.fm': return new CtToneFMSynth()
+        case 'tone.am': return new CtToneAMSynth()
         default: return null
     }
 }
