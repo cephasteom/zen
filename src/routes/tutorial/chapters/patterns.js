@@ -18,11 +18,24 @@ s0.n.seq([60, 62, 64, 65, 67])
 s0.e.every(4)
 \`\`\`
 
-We can use it to create rhythmic patterns as well:
+Or, we could create a Pattern that generates random values within a range:
 \`\`\`js
-s0.set({inst: 'synth', amp: 0.5, cut: 0, reverb: 0.5})
-s0.n.sine(0.5,48,72).step(2)
-s0.e.every(3).or(every(4))
+s0.set({inst: 'synth', amp: 0.5, cut: 0})
+s0.n.random(48, 72)
+s0.e.every(2)
+\`\`\`
+
+We can use it to create rhythmic patterns as well. Try adding these to your code:
+\`\`\`js
+s0.e.rarely()
+\`\`\`
+
+\`\`\`js
+s0.e.every(4).or(every(3))
+\`\`\`
+
+\`\`\`js
+s0.e.random().gt(0.7)
 \`\`\`
 
 ### Challenges
