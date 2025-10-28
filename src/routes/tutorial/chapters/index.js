@@ -13,10 +13,10 @@ const content = {
     javascript_basics,
     streams,
     patterns,
-    mutations,
-    mini_notation,
     instruments,
-    effects
+    effects,
+    mini_notation,
+    mutations,
 };
 
 export const chapters = Object.entries(content).map(([key, markdown]) => ({
