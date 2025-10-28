@@ -17,19 +17,18 @@ s0.m.every(8)
 
 You can also use mutations to create interactions between Streams. In the example below, we use s1's events to trigger s0's mutations:
 \`\`\`js
-s0.set({inst: 1, bank:'bd808', cut:0})
+s0.set({inst: 1, bank:'bd808'})
+s0.cut.set(s2.e).ifelse(2, 0)
 s0.n.set('Ddor%8..?*16')
-s0.i.random(0,16).step(1).cache()
+s0.i.random(8,16,1).cache()
 s0.e.every(16).or(rarely()).cache().and(not(s1.e))
 
-s1.set({inst: 1, bank:'sd', cut:0, n: 74})
-s1.e.set('0 1')
+s1.set({inst: 1, bank:'sd', cut:0, n: 74, e: '0 1'})
 
-s2.set({inst: 0, dur:btms(4), lag:1000, reverb:.5})
-s2._n.saw(1,48,84)
+s2.set({inst: 0, dur:btms(4), lag:1000, reverb:.5, e: '1'})
+s2._n.saw(1,38,72)
 s2._modi.saw(1,0,10)
 s2._harm.saw(1,1,10)
-s2.e.every(16)
-s2.m.use(s1.e).print('m')
+s2.m.use(s1.e)
 \`\`\`
 `
