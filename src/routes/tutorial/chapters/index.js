@@ -7,6 +7,7 @@ import mini_notation from "./mini-notation.js";
 import instruments from "./instruments.js";
 import effects from "./effects.js";
 import mutations from "./mutations.js";
+import project_1_beatslicer from "./project-1-beatslicer.js"; 
 
 const content = {
     intro,
@@ -17,6 +18,7 @@ const content = {
     effects,
     mini_notation,
     mutations,
+    project_1_beatslicer
 };
 
 export const chapters = Object.entries(content).map(([key, markdown]) => ({
