@@ -9,9 +9,7 @@ First, let's define some functions to convert characters to MIDI note numbers an
 \`\`\`js
 let textToMidi = text => i => text.charCodeAt(i % text.length) % 60 + 24
 let textToRhythm = text => i => text.charCodeAt(i % text.length) > 110
-
-
-\`\`\
+\`\`\`
 
 Next, let's use them to generate some bloops and bleeps:
 \`\`\`js
