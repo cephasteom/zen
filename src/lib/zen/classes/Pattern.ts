@@ -781,6 +781,39 @@ s0.e.every('0?1*4|*2')
     }
 
     /**
+     * Convert text to MIDI values.
+     * @param text 
+     * @returns {Pattern}
+     * @example s0.n.textToMidi('hello world')
+     */
+    textToMidi(text: string): Pattern {
+        this.stack.push(t => text.charCodeAt(+t % text.length) % 60 + 24)
+        return this
+    }
+
+    /**
+     * Convert text to rhythm values.
+     * @param text
+     * @return {Pattern}
+     * @example s0.n.textToRhythm('hello world!')
+     */
+    textToRhythm(text: string): Pattern {
+        this.stack.push(t => text.charCodeAt(+t % text.length) > 100 ? 1 : 0)
+        return this
+    }
+
+    /**
+     * Convert text to normalised values between 0 and 1.
+     * @param text
+     * @return {Pattern}
+     * @example s0.n.textToNormal('hello world!')
+     */
+    textToNormal(text: string): Pattern {
+        this.stack.push(t => (text.charCodeAt(+t % text.length) % 32) * 4 / 127)
+        return this
+    }
+
+    /**
      * Clamp the previous value in the pattern chain to a range.
      * @param min minimum value
      * @param max maximum value
