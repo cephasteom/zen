@@ -98,7 +98,7 @@ export const handleSynthEvent = (time: number, params: Dictionary) => {
         [n].flat().forEach((n: number, noteIndex: number) => {
             const ps: Dictionary = Object.entries(params).reduce((obj, [key, val]) => ({
                 ...obj,
-                [key]: Array.isArray(val) ? val[instIndex%val.length] : val
+                [key]: Array.isArray(val) ? val[noteIndex%val.length] : val
             }), {});
 
             // special handling for zmod
