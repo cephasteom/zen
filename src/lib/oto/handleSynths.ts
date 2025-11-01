@@ -69,11 +69,6 @@ export const handleSynthEvent = (time: number, params: Dictionary) => {
 
     // Handle cut notes
     const toCut = cut !== undefined ? [cut].flat() : []
-    toCut.forEach((i: number) => {
-        const channel = +i * 2
-        const stream = get(synths)[channel] || {}
-        Object.values(stream).forEach((synth: any) => synth?.cut(time, cutr))
-    });
 
     const store = get(synths);
 
@@ -105,8 +100,16 @@ export const handleSynthEvent = (time: number, params: Dictionary) => {
             ps.n = inst === 'zmod' ? mtf(ps.n) : n
             inst === 'zmod' && synth.set(`${ps.patch}.out(${channel},${channel + 1})`).start(time)
 
+            const noteTime = time + (noteIndex * (strum/1000)) + (ps.nudge ||0);
             // play
-            synth.play(ps, time + (noteIndex * (strum/1000)));
+            synth.play(ps, noteTime);
+
+            // cut
+            toCut.forEach((i: number) => {
+                const channel = +i * 2
+                const stream = get(synths)[channel] || {}
+                Object.values(stream).forEach((synth: any) => synth?.cut(noteTime, cutr))
+            });
         })
     })
 
