@@ -764,23 +764,25 @@ s0.e.every('0?1*4|*2')
      * @returns {Pattern}
      */
     expand(n: patternable, callback?: (value: number, index: number, array: number[]) => number): Pattern {
-        const length = +this.handleTypes(n)
+        this.stack.push(x => {
+            const length = +this.handleTypes(n)
 
-        // The transform is pure: given x, return a new array
-        const transform = (x: number | number[]): number[] => {
-            const src = Array.isArray(x) ? x : [x]
+            // The transform is pure: given x, return a new array
+            const transform = (x: number | number[]): number[] => {
+                const src = Array.isArray(x) ? x : [x]
 
-            // Expand to the required length
-            const base = Array.from({ length }, (_, i) => 
-                i < src.length ? src[i] : src[src.length - 1]
-            )
+                // Expand to the required length
+                const base = Array.from({ length }, (_, i) => 
+                    i < src.length ? src[i] : src[src.length - 1]
+                )
 
-            // Apply callback (if provided), otherwise identity
-            return callback ? base.map(callback) : base
-        }
+                // Apply callback (if provided), otherwise identity
+                return callback ? base.map(callback) : base
+            }
 
-        // Register the pure transform on the pattern stack
-        this.stack.push(transform)
+            // Register the pure transform on the pattern stack
+            return transform(x)
+        })
 
         return this
     }
