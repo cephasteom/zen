@@ -152,24 +152,26 @@ export class Pattern implements Dictionary {
     
     /**
      * Return the current time
+     * @param wrap - optional number to wrap the time at
      * @example 
      * s0.x.t().mul(2)
      * @returns {Pattern}
      */
-    t(): Pattern {
-        this.stack.push(() => this._t)
+    t(wrap: number = -1): Pattern {
+        this.stack.push(() => this._t % (wrap > 0 ? wrap : Infinity))
         return this
     }
 
     /**
      * Return the current cycle
+     * @param wrap - optional number to wrap the cycle count at
      * @example 
+     * s0.test.c(4).print('Cycle')
      * s0.e.set(1)
-     * s0.x.c()
      * @returns {Pattern}
      */
-    c(): Pattern {
-        this.stack.push(() => Math.floor(this._t / this._q))
+    c(wrap: number = -1): Pattern {
+        this.stack.push(() => Math.floor(this._t / this._q) % (wrap > 0 ? wrap : Infinity))
         return this
     }
 
