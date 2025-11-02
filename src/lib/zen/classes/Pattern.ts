@@ -370,6 +370,17 @@ s0.e.every('0?1*4|*2')
     }
 
     /**
+     * Alias for ifelse
+     * @param ifValue - a value, instance of Pattern, or Zen pattern string
+     * @param elseValue - a value, instance of Pattern, or Zen pattern string
+     * @returns {Pattern}
+     */
+    ie(ifValue: patternable = 1, elseValue: patternable = 0): Pattern {
+        this.ifelse(ifValue, elseValue)
+        return this
+    }
+
+    /**
      * If the previous value in the pattern chain is truthy, return a new value, otherwise return previous value.
      * @param value - a value, instance of Pattern, or Zen pattern string
      * @deprecated - use ifelse() instead, kept for backwards compatibility
