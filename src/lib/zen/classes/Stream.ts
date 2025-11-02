@@ -30,9 +30,38 @@ export class Stream {
 
                 // wrap Pattern instance in callable proxy
                 const pattern = new Pattern(isTrigger(key));
-                
-                target[key] = pattern;
-                return pattern;
+
+                // function target (does nothing itself — Proxy handles behaviour)
+                const targetFn = function (...args: any[]) {
+                    // optional fallback: call set directly, though apply trap below will cover it
+                    // @ts-ignore
+                    return pattern.set(...args);
+                };
+
+                const callable = new Proxy(targetFn, {
+                    // when called like s0.amp(1)
+                    apply(_t, _thisArg, args) {
+                        // @ts-ignore
+                        return pattern.set(...args);
+                    },
+
+                    // when accessed like s0.amp.get(...) or s0.amp.set(...)
+                    get(_t, prop, _receiver) {
+                        const p = (pattern as any)[prop];
+                        // if it's a function on the pattern, return it bound to pattern
+                        if (typeof p === 'function') return p.bind(pattern);
+                        return p;
+                    },
+
+                    // if you want property assignment to forward to the pattern instance:
+                    set(_t, prop, value, _receiver) {
+                        (pattern as any)[prop] = value;
+                        return true;
+                    }
+                });
+
+                target[key] = callable;
+                return callable;
             }
         };
 
