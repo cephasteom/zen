@@ -85,4 +85,11 @@ s0.pan.set(0.5).expand(8, (p,i,a) => p + (1/a.length * i)).mod(1)
 
 s0.e.every(4).or(every(3))
 \`\`\`
+
+## Challenges
+
+1. Try using different drum breaks from the 'breaks' bank, setting the \`i\` parameter to choose different samples.
+2. Experiment with different slicing intervals (e.g., 1/8th, 1/32nd).
+3. Add effects like reverb or delay to the beatslicer output.
+4. Experiment with different rhythmic patterns on the \`s0.e\` event trigger.
 `
