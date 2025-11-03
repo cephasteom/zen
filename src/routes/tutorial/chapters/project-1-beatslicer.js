@@ -7,20 +7,16 @@ In this project, we'll create a simple beatslicer using Zen. A beatslicer takes 
 
 First, configure the stream to the sampler, load a drum break, and snap to the bpm grid:
 \`\`\`js
-z.bpm.set(140) // set the bpm to 140
+// Set the tempo
+z.bpm.set(160)
 
-s0.set({
-  inst: 'sampler', // use the built-in sampler instrument
-  bank: 'breaks', // load the 'breaks' sample bank
-  dur: btms(4), // set the duration to 4 beats
-  snap: 16, // snap to one cycle
-  cut: 0 // new events cut off old ones
-})
+// Configure the stream
+s0.set({inst: 'sampler',bank: 'breaks', dur: btms(4), snap: 16, cut: 0})
 \`\`\`
 
 Next, randomly select where to begin in the sample:
 \`\`\`js
-s0.begin.random(0,1).step(1/16) // random start point, stepping by 1/16th
+s0.begin.random().step(1/16) // random start point, stepping by 1/16th
 \`\`\`
 
 Finally, trigger the stream's events to play every 1/16th note:
@@ -37,22 +33,35 @@ Create some more interesting rhythms:
 s0.e.every(3).or(every(4))
 \`\`\`
 
+And try a noise function rather than random:
+\`\`\`js
+s0.begin.noise().step(1/16)
+\`\`\`
+
 Make sure we get the kick drum at the start of each bar:
 \`\`\`js
-s0.begin.mod(16).ifelse(
-  random(0,1).step(1/16).cache(),
-  0,
-)
+s0.begin
+  .t(16)
+  .eq(0)
+  .ifelse(0, noise().step(1/16))
 \`\`\`
 
 Create some repetitions in how it slices the beat:
 \`\`\`js
-s0.begin.random(0,1).step(1/16).cache()
+s0.begin.noise().step(1/16).cache()
 \`\`\`
 
-Sometimes, add some delay:
+## Advanced
+We can create a stutter effect by occasionally repeating the same slice:
 \`\`\`js
-s0.delay.rarely().ifelse(0.5,0.1)
+s0.n.set(60).expand(rarely().ifelse(8,1))
+s0.strum.btms(1/8)
+\`\`\`
+
+Add some detail by changing the amp and pan slightly for each stutter:
+\`\`\`js
+s0.amp.set(1).expand(8, (amp,i) => amp / (i+1))
+s0.pan.set(0.5).expand(8, (p,i,a) => p + (1/a.length * i)).mod(1)
 \`\`\`
 
 ## Conclusion
@@ -63,19 +72,17 @@ Here's the whole code together:
 \`\`\`js
 z.bpm.set(150)
 
-s0.set({
-  inst: 'sampler',
-  bank: 'breaks',
-  dur: btms(4),
-  snap: 16,
-  cut: 0,
-  i: 1,
-})
-s0.begin.mod(32).ifelse(
-  random(0,1).step(1/16).cache(),
-  0,
-)
-s0.delay.rarely().ifelse(0.5,0.1)
-s0.e.every(3).or(every(4))
+s0.set({inst: 'sampler',bank: 'breaks', dur: btms(4),snap: 16, cut: 0, strum: btms(1/8)})
+
+s0.begin
+  .t(16)
+  .eq(0)
+  .ifelse(0, noise().step(1/16))
+
+s0.n.set(60).expand( rarely().ifelse(8, 1) )
+s0.amp.set(1).expand(8, (amp,i) => amp / (i+1))
+s0.pan.set(0.5).expand(8, (p,i,a) => p + (1/a.length * i)).mod(1)
+
+s0.e.every(4).or(every(3))
 \`\`\`
 `
