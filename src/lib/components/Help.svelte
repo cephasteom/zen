@@ -1,11 +1,23 @@
 <script lang="ts">
     import { showHelp } from '$lib/stores/zen';
+    import { isApp } from '$lib/electronAPI';
+    import { onMount } from 'svelte';
+
+    let helpURL = '';
+
+    onMount(() => {
+        const isLocal = window.location.href.includes('localhost:');
+        
+        helpURL = isApp() || isLocal
+            ? '/docs/modules.html' 
+            : 'https://zen-help.netlify.app/modules.html';
+    });
 </script>
 
 {#if $showHelp}
     <aside>
         <iframe 
-            src="https://zen-help.netlify.app/modules.html" 
+            src={helpURL}
             style="width: 100%; height: 100%; border: none;"
             title="Zen Documentation"
         ></iframe>
