@@ -21,18 +21,22 @@ s0.e.textToRhythm('hello plymouth')
 Here's a more complete example that uses text to generate both a bassline and a drum pattern, combining the beatslicer techniques from Project 1 with note generation:
 
 \`\`\`
-z.bpm.set(150)
+z.bpm.set(170)
+
+let harmony = 'Dmpent%8 | Fmpent%8'
 
 // https://randomwordgenerator.com/sentence.php
-let words = 'Combines are no longer just for farms'
+let words = 'What’s it going to be then, eh?'
 
-s0.set({inst: 'acid', cut: 0, osc: 1, s: .1})
-s0.res.noise(.5,0.5,.95)
-s0.cutoff.noise(.5,100,5000)
-s0.i.textToMidi(words)
+s0.set({
+  inst: 'acid',
+  res: noise(), 
+  cutoff: noise().mul(5000)
+})
 s0.n.textToMidi(words)
-  .snap('Dmpent%8 | Fmpent%8').sub(36)
-s0.e.textToRhythm(words)
+  .snap(harmony)
+  .sub($(s1.begin).mul(q()).odd().ie(12,36))
+s0.e.set(s1.e)
 
 s1.set({
   inst: 'sampler',
@@ -40,12 +44,11 @@ s1.set({
   dur: btms(4),
   snap: 16,
   cut: [1,0],
-  i: 1,
+  i: 0,
 })
-s1.begin.mod(32).ifelse(
-  random(0,1).step(1/8).cache(),
-  0,
-)
-s1.e.every(16).or(textToRhythm(words))
+s1.begin.mod(32).ie(noise().step(1/16).cache())
+s1.e.every(16)
+  .or(textToRhythm(words))
+  .and(even())
 \`\`\`
 `
