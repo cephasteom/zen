@@ -101,6 +101,6 @@ s1.e.set(spat)
 // hh
 s2.set({inst: 1, bank: 'hh', cut: 0})
 s2.e.sometimes()
-  .and(not(s1.e))
+  .and(not(s1.e)) 
 \`\`\`
 `
