@@ -16,12 +16,15 @@ s2.set({inst: 'sampler', bank: 'hh'}) // hi-hats
 
 Next, under each stream, we can write out longhand sequences for each instrument. For example:
 \`\`\`js
-s0.e.set('1 0 0 0 1 0 0 1')
-s1.e.set('0 0 1 0 0 0 1 0')
-s2.e.set('0 1 0 0 1 0 0 1')
+let kpat = '1 0 0 1 0 1 0 0 | 1 0 0 1 0 0 0 1'
+let spat = '0 0 1 0 0 0 1 0'
+let hpat = '1 0 1 0 1 0 1 0 | 1 0 1 0 1 0 1 0'
+s0.e.set(kpat)
+s1.e.set(spat)
+s2.e.set(hpat)
 \`\`\`
 
-Try playing around with the sequences to create your own beat!
+Try playing around with the sequences to create your own beat.
 
 ## Extensions
 
@@ -32,26 +35,39 @@ We can use randomization to create more dynamic rhythms. For example, we can ran
 s2.e.sometimes()
 \`\`\`
 
-We can add some occasional variations to the snare patterns:
+We can add some occasional variations to the kick and snare patterns:
 \`\`\`js
-s1.e.set('0 0 1 0 0 0 1 0').or(rarely())
+s0.e.set(kpat)
+  .or(rarely())
+
+s1.e.set(spat)
+  .or(rarely())
 \`\`\`
 
-And we can get each layer to interact with each other. For example, let's prioritise hihats over snares, and kicks over everything:
+And we can get each layer to interact with each other. For example, let's ensure that the snare and hh only hit when the kick is not playing:
 \`\`\`js
-s1.e.set('0 0 1 0 0 0 1 0').or(rarely())
-  .and(not(s0.e).or(s2.e))
+s1.e.set(spat)
+  .or(rarely())
+  .and(not(kpat))
 
-s2.e.sometimes().and(not(s0.e))
+s2.e.sometimes()
+  .and(not(s1.e))
 \`\`\`
 
-Finally, let's add some swing and variation to the amplitude of each hit:
+Let's add some variation to the amplitude of each hit:
 \`\`\`js
-z.swing.set(0.05)
+s0.amp.set(kpat).ifelse(1,0.25)
+s1.amp.set(spat).ifelse(1,0.25)
+\`\`\`
 
-s0.amp.set(0.75)
-s1.amp.random(0.5,1)
-s2.amp.random(0.5,1)
+Finally, let\'s play around with the global time to create some fills:
+\`\`\`js
+let shouldFill = c(4).eq(3)
+
+z.t.set(shouldFill).ifelse(
+  noise(1,0,32).step(1),
+  t()
+)
 \`\`\`
 
 ## Conclusion
@@ -60,20 +76,31 @@ That's it! You've created a simple sequencer using Zen. Experiment with differen
 
 Here's the whole code:
 \`\`\`js
-z.bpm.set(140)
-z.swing.set(0.05)
+let shouldFill = c(4).eq(3)
 
-s0.set({inst: 'sampler', bank: 'bd', dur: 100, amp: .75})
-s0.e.set('1 0 0 0 1 0 0 1')
+z.t.set(shouldFill).ifelse(
+  noise(1,0,32).step(1),
+  t()
+)
 
-s1.set({inst: 'sampler', bank: 'sd808', cut: 3})
-s1.amp.random(0.5,1)
-s1.e.set('0 0 1 0 0 0 1 0')
-  .or(c().mod(8).eq(3).ifelse(rarely()))
-  .and(not(s0.e).or(s2.e))
+// kick
+let kpat = '1 0 0 1 0 1 0 0 | 1 0 0 1 0 0 0 1'
+s0.set({inst: 1, bank: 'bd'})
+s0.amp.set(kpat).ifelse(1,0.25)
+s0.e.set(kpat)
+  .or(rarely())
 
-s2.set({inst: 'sampler', bank: 'hh'}) // hi-hats
-s2.amp.random(0.5,1)
-s2.e.sometimes().and(not(s0.e))
+// snare
+let spat = '0 0 1 0 0 0 1 0'
+s1.set({inst: 1, bank: 'sd808', cut: 0})
+s1.amp.set(spat).ifelse(1,0.25)
+s1.e.set(spat)
+  .or(rarely())
+  .and(not(kpat))
+
+// hh
+s2.set({inst: 1, bank: 'hh', cut: 0})
+s2.e.sometimes()
+  .and(not(s1.e))
 \`\`\`
 `
