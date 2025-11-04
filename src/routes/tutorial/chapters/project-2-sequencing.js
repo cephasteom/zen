@@ -103,4 +103,10 @@ s2.set({inst: 1, bank: 'hh', cut: 0})
 s2.e.sometimes()
   .and(not(s1.e)) 
 \`\`\`
+
+## Challenges
+1. Try adding more instruments, like claps or percussion, using other streams.
+2. Experiment with different rhythms.
+3. Add effects like reverb or delay to individual streams.
+4. Try creating more complex fills.
 `

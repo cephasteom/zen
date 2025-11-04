@@ -77,4 +77,11 @@ s2.e.noise().gt(.5)
   .and(coin())
   .cache()
 \`\`\`
+
+## Challenges
+1. Try using different scales or modes for the harmony.
+2. Experiment with different rhythms for each stream.
+3. Add effects like reverb or delay to individual streams.
+4. Create variations in the melody based on the chord being played.
+5. Combine project 1 and 2 to create a full track with beats and harmony.
 `
