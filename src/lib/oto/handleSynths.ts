@@ -101,15 +101,16 @@ export const handleSynthEvent = (time: number, params: Dictionary) => {
             inst === 'zmod' && synth.set(`${ps.patch}.out(${channel},${channel + 1})`).start(time)
 
             const noteTime = time + (noteIndex * (strum/1000)) + (ps.nudge ||0);
-            // play
-            synth.play(ps, noteTime);
-
             // cut
             toCut.forEach((i: number) => {
                 const channel = +i * 2
                 const stream = get(synths)[channel] || {}
                 Object.values(stream).forEach((synth: any) => synth?.cut(noteTime, cutr))
             });
+            
+            // play
+            synth.play(ps, noteTime);
+
         })
     })
 
