@@ -100,7 +100,7 @@ export const handleSynthEvent = (time: number, params: Dictionary) => {
             ps.n = inst === 'zmod' ? mtf(ps.n) : n
             inst === 'zmod' && synth.set(`${ps.patch}.out(${channel},${channel + 1})`).start(time)
 
-            const noteTime = time + (noteIndex * (strum/1000)) + (ps.nudge ||0);
+            const noteTime = time + (noteIndex * (strum/1000)) + (ps.nudge/1000 ||0);
             // cut
             toCut.forEach((i: number) => {
                 const channel = +i * 2
