@@ -761,7 +761,7 @@ s0.e.every('0?1*4|*2')
      * @example s0.x.random(0,1).snap([0,0.25,0.5,0.75])
      * s0.e.set(1)
      */
-    snap(array: patternable): Pattern {
+    snap(array: patternable ): Pattern {
         this.stack.push(x => {
             const arr = this.handleTypes(array)
             if(!Array.isArray(arr)) return x
@@ -769,6 +769,45 @@ s0.e.every('0?1*4|*2')
         })
         return this
     }
+
+    /**
+     * Smooth values by wrapping them up or down by an interval
+     * so each value moves closer to the previous output.
+     *
+     * Works on single values or arrays.
+     *
+     * @param interval - numeric interval used for wrapping (default 12 for musical semitones)
+     */
+    smooth(interval: patternable = 12): Pattern {
+        let prev: number[] = []
+
+        this.stack.push((x: patternValue) => {
+            const vals = Array.isArray(x) ? x : [x]
+            const step = +this.handleTypes(interval)
+
+            if (prev.length === 0) {
+                prev = vals.slice()
+                return vals
+            }
+
+            const prevSet = new Set(prev)
+            const avg = prev.reduce((a, b) => a + b, 0) / prev.length
+
+            const out = vals.map(v => {
+                if (prevSet.has(v)) return v
+                if (prevSet.has(v + step)) return v + step
+                if (prevSet.has(v - step)) return v - step
+
+                return v + Math.round((avg - v) / step) * step
+            })
+
+            prev = out
+            return out
+        })
+
+        return this
+    }
+  
 
     /**
      * Expand the previous value in the pattern chain to to an array of length n.
@@ -1027,7 +1066,7 @@ s0.e.every('0?1*4|*2')
     }
 
     /**
-     * Invert the previous chord in the pattern chain
+     * Invert the previous value in the pattern chain. Assumes the previous value is an array (e.g. a chord).
      * @param n inversion
      * @returns {Pattern}
      * @example s0.n.set('Cmi7').inversion(1)
