@@ -776,16 +776,18 @@ s0.e.every('0?1*4|*2')
      *
      * Works on single values or arrays.
      *
+     * @param shouldSmooth - whether to apply smoothing or not (default true)
      * @param interval - numeric interval used for wrapping (default 12 for musical semitones)
      */
-    smooth(interval: patternable = 12): Pattern {
+    smooth(shouldSmooth: patternable = 1, interval: patternable = 12): Pattern {
         let prev: number[] = []
 
         this.stack.push((x: patternValue) => {
             const vals = Array.isArray(x) ? x : [x]
             const step = +this.handleTypes(interval)
+            const skip = !this.handleTypes(shouldSmooth)
 
-            if (prev.length === 0) {
+            if (prev.length === 0 || skip) {
                 prev = vals.slice()
                 return vals
             }
