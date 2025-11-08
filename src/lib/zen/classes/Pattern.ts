@@ -299,24 +299,26 @@ s0.e.every('0?1*4|*2')
     }
 
     /**
-     * Negate the value passed as the first argument
+     * Negate the previous value 
+     * 
+     * Or, if a value is passed, negate that value instead.
      * @param x - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      * @example 
      * s0.e.every(3)
-     * s1.e.not(s0.e)
-     * s3.e.every(1).and(not(s0.e)).and(not(s1.e))
+     * s1.e.not(s0.e) // this is equivalent to
+     * s1.e.set(s0.e).not() // this
      */ 
     not(x: patternable): Pattern {
-        this.stack.push(() => this.handleTypes(x) 
-            ? 0 
-            : 1
-        )
+        x !== undefined
+            ? this.set(x).ifelse(0, 1)
+            : this.ifelse(0, 1)
         return this
     }
 
     /**
-     * Toggle on or off using the value passed as the first argument
+     * Toggle on or off each time the pattern is triggered, or using the value passed as the first argument.
+     * 
      * A true value will toggle the pattern on, a false value will toggle it off
      * @param x - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
