@@ -248,7 +248,7 @@ s0.e.every('0?1*4|*2')
      * s0.x.counter(16, s0.e).div(q())
      * s0.e.set('3:8')
      */
-    counter(n: patternable = 0, reset: patternable): Pattern {
+    counter(n: patternable = 0, reset: patternable = 0): Pattern {
         let count = 0
         
         this.stack.push((t) => {
@@ -317,9 +317,11 @@ s0.e.every('0?1*4|*2')
     }
 
     /**
-     * Toggle on or off each time the pattern is triggered, or using the value passed as the first argument.
+     * Toggle a boolean value.
      * 
-     * A true value will toggle the pattern on, a false value will toggle it off
+     * If a value is passed, set the toggle state to that value.
+     * 
+     * If no value is passed, toggle the state on each call.
      * @param x - a value, instance of Pattern, or Zen pattern string
      * @returns {Pattern}
      * @example
@@ -329,9 +331,12 @@ s0.e.every('0?1*4|*2')
      */ 
     toggle(x: patternable): Pattern {
         const st = this._state
-        this.set(x)
-            .fn(x => st.toggle = x ? !st.toggle : st.toggle)
-            .ifelse()
+        x === undefined
+            // @ts-ignore
+            ? this.counter().mod(2).not()
+            : this.set(x)
+                .fn(x => st.toggle = x ? !st.toggle : st.toggle)
+                .ifelse()
         return this
     }
 
