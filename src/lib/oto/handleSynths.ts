@@ -90,7 +90,9 @@ export const handleSynthEvent = (time: number, params: Dictionary) => {
         
         
         // handle multiple notes
-        [n].flat().forEach((n: number, noteIndex: number) => {
+        [n].flat()
+            .filter(Boolean)
+            .forEach((n: number, noteIndex: number) => {
             const ps: Dictionary = Object.entries(params).reduce((obj, [key, val]) => ({
                 ...obj,
                 [key]: Array.isArray(val) ? val[noteIndex%val.length] : val
