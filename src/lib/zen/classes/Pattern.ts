@@ -1069,18 +1069,22 @@ s0.e.every('0?1*4|*2')
 
     /**
      * Invert the previous value in the pattern chain. Assumes the previous value is an array (e.g. a chord).
+     * 
+     * Minus numbers are supported to indicate inversions downwards.
      * @param n inversion
      * @returns {Pattern}
      * @example s0.n.set('Cmi7').inversion(1)
      */ 
     inversion(n: patternable): Pattern {
         this.stack.push((x: patternValue) => {
-            const i = this.handleTypes(n)
+            const i = +this.handleTypes(n)
             const chord = [x].flat()
-            const length = chord.length
-            const head = chord.slice(0, +i%length)
-            const tail = chord.slice(+i%length)
-            return [...tail, ...head.map(n => n + 12)].map(n => n + (12 * Math.floor((+i%(length*4))/length)))
+            if(i === 0) return chord
+
+            const inv = i > 0
+                ? chord.slice(i).concat(chord.slice(0, i).map(n => n + 12))
+                : chord.slice(chord.length + i).map(n => n - 12).concat(chord.slice(0, chord.length + i))
+            return inv
         })
         return this
     }
