@@ -8,6 +8,16 @@
         <h1>Changelog</h1>
         <h2>Zen 5</h2>
 
+        <h3>Release Notes: 5.3.0: November 10th 2025</h3>
+        <ul>
+            <li><strong>Syntax</strong>: <code>Pattern.smooth()</code>.</li>
+            <li><strong>Syntax</strong>: <code>Pattern.expand()</code>.</li>
+            <li><strong>Syntax</strong>: <code>Pattern.textToNote()</code>.</li>
+            <li><strong>Syntax</strong>: <code>Pattern.textToRhythm()</code>.</li>
+            <li><strong>Syntax</strong>: wrap argument for <code>t()</code> and <code>c()</code>.</li>
+            <li><strong>Docs</strong>: Tutorial projects.</li>
+        </ul>   
+
         <h3>Release Notes: 5.2.0: October 15th 2025</h3>
         <ul>
             <li><strong>Feature</strong>: Added 4 Tone.js synths. See "instruments()" and help files.</li>
