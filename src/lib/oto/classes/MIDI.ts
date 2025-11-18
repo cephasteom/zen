@@ -79,12 +79,7 @@ class Midi {
         const ccs = this.getCCsFromParams(params);
 
         // send ccs
-        ccs.forEach(({cc, value}) => {
-            const prev = this.history.ccs || {}
-            if(prev[cc] === value) return
-            
-            device.sendControlChange(cc, !prev[value] ? 0 : value, options)
-        })
+        ccs.forEach(({cc, value}) => device.sendControlChange(cc, value, options))
 
         this.storeHistory(+note, ccs, device, channels, +mididelay);
     }
