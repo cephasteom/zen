@@ -63,7 +63,8 @@
     --color-grey-dark: #7e6d66;      /* Cocoa Brown */
     --color-grey-darker: #5e4f49;    /* Deep Earth Grey (moderated) */
     --color-grey-darkest: #2f2521;   /* Muted Charcoal Brown */
-    --color-black: #15110f; /* Near-black with warm brown tone */
+    /*--color-black: #15110f; /* Near-black with warm brown tone */
+    --color-black: #000; 
     --color-white: #d4d4d4; /* Soft White */
     --color-pink: #f8d7da; /* Blush Pink */
     --color-box-shadow: rgba(60, 40, 40, 0.6); /* Warm Shadow */

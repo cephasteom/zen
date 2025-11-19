@@ -61,7 +61,7 @@
             <Notice />
         {/if}
     </section>
-    <Canvas />
+    <!-- <Canvas /> -->
 
     <Help />
 </main>
